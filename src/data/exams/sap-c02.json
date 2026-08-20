@@ -36,7 +36,11 @@
       "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS Organizations", "AWS IAM Identity Center", "Service Catalog"],
+      "services": [
+        "AWS Organizations",
+        "AWS IAM Identity Center",
+        "Service Catalog"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "A multinational enterprise uses AWS Organizations with more than 200 AWS accounts spread across multiple Organizational Units (OUs). The governance team must ensure that no member account, including the root user of member accounts, can disable AWS CloudTrail or modify centralized audit log buckets in Amazon S3. Which architectural solution is most scalable and compliant?",
@@ -62,7 +66,9 @@
           "explanation": "Incorrect: While it protects the bucket, it does not prevent local account administrators from stopping CloudTrail logging in their respective member accounts."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "AWS Organizations Service Control Policies (SCPs) provide central governance and are the recommended AWS mechanism to enforce preventive guardrails that cannot be overridden by member account users or administrators, including the root user.",
       "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
       "difficulty": "hard"
@@ -72,7 +78,11 @@
       "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS Transit Gateway", "AWS Direct Connect", "AWS Site-to-Site VPN"],
+      "services": [
+        "AWS Transit Gateway",
+        "AWS Direct Connect",
+        "AWS Site-to-Site VPN"
+      ],
       "type": "multiple",
       "requiredChoices": 2,
       "statement": "A financial institution needs to interconnect more than 50 VPCs spread across two AWS regions (us-east-1 and us-west-2) with two redundant on-premises corporate data centers. The architecture requires dynamic BGP routing, end-to-end IPsec encryption over dedicated low-latency connections, and automated failover. Which TWO options should be combined to build this architecture? (Choose TWO.)",
@@ -103,7 +113,10 @@
           "explanation": "Incorrect: Managing dozens of individual VGWs and VPN tunnels creates operational complexity and violates centralized Transit Gateway design principles."
         }
       ],
-      "correctAnswers": ["A", "B"],
+      "correctAnswers": [
+        "A",
+        "B"
+      ],
       "generalExplanation": "For large enterprise multi-region environments with encryption requirements over dedicated transport, the combination of inter-region AWS Transit Gateways with Direct Connect Transit VIFs and IPsec VPN over DX is the Well-Architected standard.",
       "referenceUrl": "https://docs.aws.amazon.com/whitepapers/latest/hybrid-connectivity/aws-transit-gateway-with-direct-connect-gateway.html",
       "difficulty": "hard"
@@ -111,9 +124,758 @@
     {
       "id": "sap-q003",
       "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "Amazon Route 53 Resolver",
+        "Hybrid DNS"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise has established AWS Direct Connect between on-premises data centers and AWS. On-premises servers must resolve private domain names hosted in Route 53 Private Hosted Zones (e.g., app.corp.aws.internal), and EC2 instances in VPCs must resolve on-premises DNS names (e.g., db.corp.local). Which Route 53 feature provides bidirectional automated hybrid DNS resolution?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy Route 53 Resolver Inbound Endpoints for on-premises to resolve AWS domains, and Route 53 Resolver Outbound Endpoints with forwarding rules to resolve on-premises domains.",
+          "explanation": "Correct: Inbound endpoints allow on-premises DNS servers to forward queries for AWS private hosted zones to Route 53, while outbound endpoints with forwarding rules forward VPC DNS queries for internal on-premises domains to corporate DNS servers."
+        },
+        {
+          "id": "B",
+          "text": "Configure public Route 53 Hosted Zones and open DNS port 53 to 0.0.0.0/0.",
+          "explanation": "Incorrect: Exposing internal domain records on public DNS zones violates corporate security standards."
+        },
+        {
+          "id": "C",
+          "text": "Install BIND DNS forwarder servers on EC2 in each VPC and manually update hosts files across all servers.",
+          "explanation": "Incorrect: Self-hosted BIND forwarders add heavy maintenance overhead compared to managed Route 53 Resolver endpoints."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS Transit Gateway Multicast domains to broadcast DNS packets.",
+          "explanation": "Incorrect: Multicast routing is not designed for standard hybrid unicast DNS queries."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Route 53 Resolver Inbound and Outbound Endpoints provide fully managed, bidirectional DNS resolution between Amazon VPCs and on-premises data centers.",
+      "referenceUrl": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q004",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS RAM",
+        "VPC Sharing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A central cloud networking team in Account A manages an Amazon VPC with multi-tier subnets. They need developers in Account B and Account C to launch EC2 instances and EKS worker nodes into specific private subnets within that shared VPC without granting them access to modify VPC route tables, gateways, or subnet CIDRs. Which solution satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Share the private subnets from Account A with Account B and Account C using AWS Resource Access Manager (AWS RAM).",
+          "explanation": "Correct: VPC Sharing via AWS RAM allows central network administrators to share subnets across accounts in an organization, allowing participant accounts to launch compute resources while preventing them from modifying network infrastructure."
+        },
+        {
+          "id": "B",
+          "text": "Create VPC Peering connections between Account A, Account B, and Account C and give IAM admin permissions to developers.",
+          "explanation": "Incorrect: VPC Peering requires separate VPCs in each account and granting IAM admin permissions violates the principle of least privilege."
+        },
+        {
+          "id": "C",
+          "text": "Export CloudFormation templates with static private IPs and deploy them via AWS CodeCommit.",
+          "explanation": "Incorrect: This does not provide live multi-account VPC subnet sharing."
+        },
+        {
+          "id": "D",
+          "text": "Deploy an AWS Storage Gateway in cached mode across all accounts.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance, completely unrelated to network subnet sharing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "VPC sharing (powered by AWS RAM) enables multiple AWS accounts to create application resources (such as EC2, EKS, RDS) in shared, centrally managed VPC subnets.",
+      "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q005",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Control Tower",
+        "Account Factory"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise wants to establish an automated multi-account landing zone governance framework. The solution must automatically provision new accounts configured with VPC baselines, mandatory preventative and detective guardrails, central SSO access, and aggregated CloudTrail auditing. Which service should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Control Tower with Account Factory",
+          "explanation": "Correct: AWS Control Tower provides the fastest way to set up and govern a secure, multi-account AWS environment using best-practice blueprints and automated guardrails with Account Factory provisioning."
+        },
+        {
+          "id": "B",
+          "text": "AWS Elastic Beanstalk Multi-Container Docker",
+          "explanation": "Incorrect: Elastic Beanstalk is an application deployment service, not a multi-account governance platform."
+        },
+        {
+          "id": "C",
+          "text": "AWS CloudHSM Cluster",
+          "explanation": "Incorrect: CloudHSM manages hardware cryptographic keys."
+        },
+        {
+          "id": "D",
+          "text": "AWS App Runner",
+          "explanation": "Incorrect: App Runner builds and runs containerized web apps."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Control Tower automates the setup of a Well-Architected multi-account landing zone, applying governance guardrails and Account Factory provisioning across AWS Organizations.",
+      "referenceUrl": "https://aws.amazon.com/controltower/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q006",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS KMS",
+        "Cross-Account KMS Keys"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An application in Account A needs to decrypt an Amazon S3 object located in Account B that is encrypted with a Customer Managed Key (CMK) in AWS KMS located in Account B. Which combination of IAM and KMS configurations is required to authorize this access?",
+      "options": [
+        {
+          "id": "A",
+          "text": "In Account B, configure the KMS Key Policy to allow kms:Decrypt to Account A's IAM principal; in Account A, attach an IAM Policy to the application's IAM Role allowing kms:Decrypt on the Account B Key ARN.",
+          "explanation": "Correct: Cross-account KMS access requires both: (1) The resource Key Policy in the owning account must grant permission to the external account principal, and (2) The IAM policy in the consuming account must grant permission to call the external Key ARN."
+        },
+        {
+          "id": "B",
+          "text": "Configure SSE-S3 default encryption on the bucket and disable IAM authentication.",
+          "explanation": "Incorrect: SSE-S3 uses AWS-managed keys and disabling IAM authentication is invalid and insecure."
+        },
+        {
+          "id": "C",
+          "text": "Copy the private key material from Account B to Account A via plaintext S3 download.",
+          "explanation": "Incorrect: KMS Customer Managed Keys never leave the KMS HSMs in plaintext."
+        },
+        {
+          "id": "D",
+          "text": "Attach an SCP to the root OU with Deny permissions on kms:Decrypt.",
+          "explanation": "Incorrect: Deny SCP blocks decryption for all accounts."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Cross-account KMS access requires explicit dual authorization: the KMS Key Policy in the resource account must permit the external account, and the IAM policy in the caller account must grant the action on the key ARN.",
+      "referenceUrl": "https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q007",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS CloudTrail",
+        "AWS Organizations",
+        "Centralized Logging"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A Chief Information Security Officer (CISO) requires a centralized audit trail capturing all management events across all existing and future member accounts in an organization. The audit logs must be written to an S3 bucket in a dedicated Log Archive account, with member accounts unable to tamper with or disable the trail. What is the recommended design?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create an Organization Trail in the AWS Organizations management account configured to send logs to a central Amazon S3 bucket in the Log Archive account with an S3 Bucket Policy restricting deletion.",
+          "explanation": "Correct: An Organization Trail applies automatically to all accounts in the organization (including future ones), records events across all regions, and cannot be modified or stopped by member account administrators."
+        },
+        {
+          "id": "B",
+          "text": "Create individual single-region CloudTrail trails in every member account manually.",
+          "explanation": "Incorrect: Individual trails require high operational overhead, miss new accounts, and can be disabled by local member account administrators."
+        },
+        {
+          "id": "C",
+          "text": "Use Amazon CloudWatch Synthetics canaries to poll API calls every 5 minutes.",
+          "explanation": "Incorrect: Synthetics is an endpoint testing tool, not a comprehensive multi-account API audit logging mechanism."
+        },
+        {
+          "id": "D",
+          "text": "Configure Amazon EC2 instances running Syslog daemons with open port 514.",
+          "explanation": "Incorrect: Syslog daemons do not capture AWS control plane API calls."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Creating an Organization Trail in the AWS Organizations management account ensures that logging is automatically enabled across all member accounts and regions into a secured centralized S3 bucket.",
+      "referenceUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q008",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS IAM Identity Center",
+        "External Identity Provider",
+        "SAML 2.0"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise with 10,000 employees uses Okta / Azure Active Directory as their corporate identity provider (IdP). The company needs to federate workforce identities into AWS to grant role-based Single Sign-On access to hundreds of AWS accounts with automated user and group provisioning. Which solution should be implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Integrate AWS IAM Identity Center with the corporate IdP using SAML 2.0 for authentication and SCIM (System for Cross-domain Identity Management) for automated identity provisioning.",
+          "explanation": "Correct: IAM Identity Center natively supports SAML 2.0 for SSO authentication and SCIM protocol for automatic user and group synchronization from external IdPs like Okta or Azure AD."
+        },
+        {
+          "id": "B",
+          "text": "Create 10,000 individual IAM users in each member account with static access keys.",
+          "explanation": "Incorrect: Creating hundreds of thousands of static IAM users across accounts is completely unmanageable and insecure."
+        },
+        {
+          "id": "C",
+          "text": "Configure an Amazon Cognito User Pool in every VPC and sync with LDAP via VPN.",
+          "explanation": "Incorrect: Cognito User Pools are for consumer mobile/web applications, not enterprise workforce multi-account governance."
+        },
+        {
+          "id": "D",
+          "text": "Deploy a fleet of Windows EC2 Domain Controllers in public subnets.",
+          "explanation": "Incorrect: Placing Domain Controllers in public subnets violates security best practices."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS IAM Identity Center configured with SAML 2.0 for federated authentication and SCIM for automated user/group lifecycle management is the enterprise standard for workforce IAM.",
+      "referenceUrl": "https://docs.aws.amazon.com/singlesignon/latest/userguide/supported-idps.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q009",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Transit Gateway",
+        "Appliance Mode",
+        "Stateful Inspection"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise deploys a centralized inspection VPC containing a cluster of stateful third-party firewall appliances behind an AWS Transit Gateway. During testing, bidirectional TCP sessions are intermittently dropped because return traffic routes through a different firewall appliance in a different Availability Zone. Which Transit Gateway feature must be enabled to fix asymmetric routing?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Transit Gateway Appliance Mode on the inspection VPC attachment.",
+          "explanation": "Correct: Transit Gateway Appliance Mode ensures that bidirectional traffic between source and destination attachments consistently routes through the same ENI in the same Availability Zone for the life of the flow, maintaining state in firewall appliances."
+        },
+        {
+          "id": "B",
+          "text": "Transit Gateway Multicast routing mode.",
+          "explanation": "Incorrect: Multicast routes packets to multiple subscribers simultaneously, which does not solve stateful unicast firewall symmetry."
+        },
+        {
+          "id": "C",
+          "text": "EC2 Auto Scaling Target Tracking on CPU utilization.",
+          "explanation": "Incorrect: Target tracking scales instance count, but does not alter Transit Gateway flow hashing symmetry."
+        },
+        {
+          "id": "D",
+          "text": "VPC Flow Logs packet truncation.",
+          "explanation": "Incorrect: Flow Logs is a monitoring tool, not a routing feature."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Enabling Transit Gateway Appliance Mode guarantees that both forward and return traffic flows traverse the same Availability Zone and firewall appliance interface, avoiding asymmetric drop issues.",
+      "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/tgw/transit-gateway-appliance-scenario.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q010",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Service Catalog",
+        "Governance"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A central cloud team wants to allow software developers to provision pre-approved, compliant infrastructure stacks (e.g., standardized S3 buckets, approved RDS databases, vetted EKS clusters) via self-service, without giving developers direct administrative permissions in IAM. Which service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Service Catalog with Launch Constraints",
+          "explanation": "Correct: AWS Service Catalog allows administrators to curate catalogs of approved CloudFormation templates (products) and share them across accounts; Launch Constraints allow end users to launch products using an elevated IAM role without possessing those permissions themselves."
+        },
+        {
+          "id": "B",
+          "text": "AWS Systems Manager Run Command",
+          "explanation": "Incorrect: Run Command executes shell scripts on already running servers."
+        },
+        {
+          "id": "C",
+          "text": "AWS Marketplace Private Offer",
+          "explanation": "Incorrect: Private Offers negotiate commercial pricing for third-party ISV software."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Lex Bot",
+          "explanation": "Incorrect: Amazon Lex is a conversational AI chatbot service."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Service Catalog enables organizations to create, manage, and distribute catalogs of approved IT services with launch constraints, enforcing governance while enabling developer self-service.",
+      "referenceUrl": "https://aws.amazon.com/servicecatalog/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q011",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Organizations",
+        "Tag Policies"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A financial enterprise requires standardized cost allocation tags (e.g., Environment, CostCenter, Owner) with strict case-sensitive formatting across all resources created in all member accounts. How can this requirement be centrally enforced?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configure AWS Organizations Tag Policies and enable enforcement on compliant tag keys and allowed values.",
+          "explanation": "Correct: Tag Policies in AWS Organizations allow you to define rules that standardize tags across resources, detect non-compliant tags, and optionally prevent non-compliant resource creation requests."
+        },
+        {
+          "id": "B",
+          "text": "Deploy a manual Python script on an EC2 instance that runs once every month.",
+          "explanation": "Incorrect: Monthly manual scripts do not prevent non-compliant resource provisioning in real time."
+        },
+        {
+          "id": "C",
+          "text": "Configure Route 53 Geolocation Routing policies.",
+          "explanation": "Incorrect: Route 53 manages DNS traffic routing, not resource metadata tagging."
+        },
+        {
+          "id": "D",
+          "text": "Attach an S3 Glacier Vault Lock policy.",
+          "explanation": "Incorrect: Vault Lock enforces archival retention, not AWS resource tagging standards."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Organizations Tag Policies help maintain consistent tags across resources in multiple accounts, specifying allowed tag keys and values with optional enforcement to block non-compliant operations.",
+      "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q012",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Network Firewall",
+        "Centralized Inspection"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise requires all outbound internet traffic from 100 VPCs to be routed through a centralized egress inspection VPC equipped with AWS Network Firewall for TLS inspection and domain allowlisting before reaching the internet. Which architecture achieves this at scale?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Connect all spoke VPCs to an AWS Transit Gateway; route 0.0.0.0/0 traffic from spoke route tables to the Transit Gateway; attach the centralized Egress Inspection VPC to Transit Gateway with AWS Network Firewall and NAT Gateways.",
+          "explanation": "Correct: Centralized Egress with AWS Transit Gateway + AWS Network Firewall in an inspection VPC routes all default outbound traffic through a central inspection point before exiting via NAT Gateways."
+        },
+        {
+          "id": "B",
+          "text": "Deploy an Internet Gateway and NAT Gateway in every single private subnet across all 100 VPCs.",
+          "explanation": "Incorrect: Deploying hundreds of decentralized NAT Gateways results in massive unnecessary cost and eliminates centralized security inspection."
+        },
+        {
+          "id": "C",
+          "text": "Create a full mesh of 4,950 VPC Peering connections with open routing.",
+          "explanation": "Incorrect: VPC Peering does not support transitive routing through an intermediate egress VPC."
+        },
+        {
+          "id": "D",
+          "text": "Configure AWS DataSync between all VPCs and on-premises firewalls.",
+          "explanation": "Incorrect: DataSync is for file data migration, not real-time network traffic routing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The centralized egress architecture using AWS Transit Gateway and AWS Network Firewall provides scalable, cost-effective inspection for outbound internet traffic across hundreds of VPCs.",
+      "referenceUrl": "https://aws.amazon.com/blogs/networking-and-content-delivery/deployment-models-for-aws-network-firewall/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q013",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "Amazon S3",
+        "Cross-Account Bucket Replication",
+        "KMS"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A company needs to replicate objects encrypted with SSE-KMS from an Amazon S3 bucket in Account A to a destination bucket in Account B in a different AWS Region, changing object ownership to Account B. What configuration steps are necessary?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enable S3 Cross-Region Replication with replica KMS key in Account B, configure KMS key policies to grant cross-account access, and configure replication ownership override to set ownership to the destination bucket owner.",
+          "explanation": "Correct: S3 Cross-Account replication with SSE-KMS requires replication rules specifying the target KMS key ID, IAM replication role with kms:Decrypt/kms:Encrypt permissions, and ownership transfer configuration."
+        },
+        {
+          "id": "B",
+          "text": "Make both buckets public and disable KMS encryption.",
+          "explanation": "Incorrect: Disabling encryption and making sensitive buckets public is a severe security violation."
+        },
+        {
+          "id": "C",
+          "text": "Use AWS Snowcone to ship physical disks between AWS regions every 24 hours.",
+          "explanation": "Incorrect: Physical transport cannot match real-time S3 replication."
+        },
+        {
+          "id": "D",
+          "text": "Create an EBS snapshot in Account A and share with Account B.",
+          "explanation": "Incorrect: EBS snapshots are for block volumes, not S3 object storage buckets."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Cross-account Amazon S3 replication with KMS encryption requires configuring IAM replication roles with cross-account KMS permissions and specifying destination ownership override.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-walkthrough-5.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q014",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Security Hub",
+        "Multi-Account Aggregation"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A corporate SecOps team manages 150 AWS accounts across 10 regions. They must designate a delegated administrator account to automatically aggregate security findings from GuardDuty, Inspector, Macie, IAM Access Analyzer, and AWS Systems Manager Patch Manager across all accounts and regions. Which service configuration accomplishes this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enable AWS Security Hub across all regions, designate a central Security Administrator account in AWS Organizations, and enable cross-region finding aggregation into an aggregation region.",
+          "explanation": "Correct: AWS Security Hub supports organization-wide delegated administration and cross-region aggregation, funneling all multi-account and multi-region findings into a single dashboard in an aggregation region."
+        },
+        {
+          "id": "B",
+          "text": "Create Amazon SQS FIFO queues in every account and write custom polling Lambda scripts in all 150 accounts.",
+          "explanation": "Incorrect: Custom SQS polling across 150 accounts introduces excessive operational complexity and maintenance overhead."
+        },
+        {
+          "id": "C",
+          "text": "Deploy Amazon CloudFront in front of the AWS Management Console.",
+          "explanation": "Incorrect: CloudFront is a CDN for web apps, not a security aggregation service."
+        },
+        {
+          "id": "D",
+          "text": "Attach an SCP denying all describe API calls in member accounts.",
+          "explanation": "Incorrect: Blocking describe calls breaks administration and does not aggregate security findings."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Security Hub enables delegated administrator management with cross-region aggregation, consolidating findings from all integrated security services across all accounts into a single view.",
+      "referenceUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cross-region-aggregation.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q015",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Cost Categories",
+        "AWS Cost Allocation Tags"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A conglomerate operates multiple business units with overlapping accounts, cost centers, and project codes. Finance requires custom hierarchical cost mapping (e.g., grouping accounts, tags, and services into Business Unit > Product Line > Environment) to generate categorized financial chargeback reports. Which AWS Cost Management feature satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Cost Categories",
+          "explanation": "Correct: AWS Cost Categories allows you to define custom rules mapping billing dimensions (accounts, tags, services, charge types) into customizable hierarchical business categories for Cost Explorer and Cost & Usage Reports."
+        },
+        {
+          "id": "B",
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM is a cryptographic key hardware security module."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Athena partitioned views without tags",
+          "explanation": "Incorrect: Athena views require manual SQL query authoring without built-in Cost Explorer integration."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Route 53 Traffic Flow",
+          "explanation": "Incorrect: Route 53 Traffic Flow manages visual DNS routing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Cost Categories enables organizations to map costs to specific business units, departments, and application projects by combining multiple billing dimensions with rule-based logic.",
+      "referenceUrl": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-cost-categories.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q016",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS PrivateLink",
+        "Multi-Account SaaS Architecture"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A SaaS provider hosts an analytics backend on AWS in Account A. Hundreds of enterprise customer AWS accounts need to connect their private VPCs to the provider's backend securely over the AWS private network without opening public internet access and without risking IP CIDR overlap conflicts. What is the recommended architectural solution?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create an AWS PrivateLink VPC Endpoint Service in Account A in front of a Network Load Balancer, and allow customer accounts to create Interface VPC Endpoints in their VPCs.",
+          "explanation": "Correct: AWS PrivateLink enables private unidirectional connectivity between VPCs across accounts without requiring VPC Peering, Transit Gateways, or managing IP address CIDR collisions."
+        },
+        {
+          "id": "B",
+          "text": "Establish VPC Peering connections with all customer accounts and require all customers to re-IP their corporate subnets.",
+          "explanation": "Incorrect: VPC Peering fails if CIDRs overlap and requires complex IP coordination across hundreds of independent customers."
+        },
+        {
+          "id": "C",
+          "text": "Deploy public Application Load Balancers and require customers to whitelist public IPs.",
+          "explanation": "Incorrect: Traverses the public internet, violating private connection requirements."
+        },
+        {
+          "id": "D",
+          "text": "Establish individual AWS Site-to-Site VPN tunnels over the internet to every customer VPC.",
+          "explanation": "Incorrect: VPN introduces encryption overhead, bandwidth bottlenecks, and manual routing maintenance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS PrivateLink provides private, secure connectivity between VPCs and services without exposing traffic to the internet and works seamlessly even when VPC CIDRs overlap.",
+      "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/privatelink/endpoint-service.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q017",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS CloudFormation StackSets",
+        "Multi-Account Deployment"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A central platform engineering team needs to automatically deploy standardized IAM roles, security configurations, and monitoring agents into all existing and newly created AWS accounts across multiple regions within an AWS Organization. Which tool should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS CloudFormation StackSets with service-managed permissions and automatic deployment enabled.",
+          "explanation": "Correct: CloudFormation StackSets with service-managed permissions automatically deploys stacks across all accounts in specified OUs and automatically provisions stacks when new accounts join the organization."
+        },
+        {
+          "id": "B",
+          "text": "Manual CloudFormation template execution in each account console.",
+          "explanation": "Incorrect: Manual deployment is error-prone, unscalable, and misses newly created accounts."
+        },
+        {
+          "id": "C",
+          "text": "AWS CodeDeploy in single-host deployment mode.",
+          "explanation": "Incorrect: CodeDeploy deploys application software onto compute servers, not multi-account infrastructure baselines."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Lex bot with Slack integration.",
+          "explanation": "Incorrect: Amazon Lex is a conversational AI chatbot service."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS CloudFormation StackSets lets you create, update, or delete stacks across multiple accounts and regions with a single operation, with automatic deployment to new accounts in targeted OUs.",
+      "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/what-is-cfnstacksets.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q018",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Config",
+        "Multi-Account Aggregation",
+        "Organization Rules"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An organization must continuously assess resource compliance against corporate standards (such as ensuring all EBS volumes are encrypted) across 200 AWS accounts. When a non-compliant resource is detected, automated remediation must be executed. Which architecture satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy AWS Config Organization Rules from the management account with AWS Systems Manager Automation Documents configured for automated remediation.",
+          "explanation": "Correct: AWS Config Organization Rules enforce compliance rules across all accounts in an organization and can invoke Systems Manager Automation Documents to automatically remediate non-compliant resources."
+        },
+        {
+          "id": "B",
+          "text": "Write a monthly cron script on a bastion host that runs aws ec2 describe-volumes.",
+          "explanation": "Incorrect: Periodic polling is not continuous and lacks real-time remediation."
+        },
+        {
+          "id": "C",
+          "text": "Configure an S3 Glacier Vault Lock policy on all accounts.",
+          "explanation": "Incorrect: Vault Lock enforces archival retention, not active EBS volume encryption."
+        },
+        {
+          "id": "D",
+          "text": "Attach an SCP with Deny on ec2:DescribeInstances.",
+          "explanation": "Incorrect: Denying describe permissions breaks operational visibility and does not fix unencrypted volumes."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Organization Config Rules allow central deployment of compliance rules across all accounts in AWS Organizations, paired with Systems Manager Automation Documents for automated remediation.",
+      "referenceUrl": "https://docs.aws.amazon.com/config/latest/developerguide/config-rule-multi-account-deployment.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q019",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "Amazon GuardDuty",
+        "Delegated Administrator"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "How should an enterprise configure Amazon GuardDuty to manage threat detection across 50 member accounts in an organization from a single central security account?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Designate the central security account as the GuardDuty Delegated Administrator in AWS Organizations and enable auto-enablement for all existing and new member accounts across all regions.",
+          "explanation": "Correct: Delegating GuardDuty administration to a dedicated security account allows central management, viewing of all findings, and auto-enables GuardDuty in existing and future accounts."
+        },
+        {
+          "id": "B",
+          "text": "Create individual IAM root access keys in each account and configure an external cron job.",
+          "explanation": "Incorrect: Distributing root access keys is a critical security vulnerability."
+        },
+        {
+          "id": "C",
+          "text": "Deploy GuardDuty agents manually onto each EC2 operating system via SSH.",
+          "explanation": "Incorrect: GuardDuty is an agentless service that analyzes VPC Flow Logs, DNS logs, and CloudTrail events."
+        },
+        {
+          "id": "D",
+          "text": "Configure an S3 bucket in each account with public write access.",
+          "explanation": "Incorrect: Public S3 buckets create severe security risks."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon GuardDuty integrates with AWS Organizations to allow delegation of security administration to a central account, automatically enabling monitoring across all accounts.",
+      "referenceUrl": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q020",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "AWS Transit Gateway",
+        "Direct Connect Gateway",
+        "Multi-Account Hybrid Routing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise has a dedicated 10 Gbps AWS Direct Connect connection with a Transit VIF. They have 80 VPCs across 10 AWS accounts. What is the most scalable architecture to connect all 80 VPCs to on-premises networks over this single Direct Connect connection?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Attach the Transit VIF to a Direct Connect Gateway, associate the Direct Connect Gateway with an AWS Transit Gateway, and attach all 80 VPCs to the Transit Gateway.",
+          "explanation": "Correct: Associating a Direct Connect Gateway with an AWS Transit Gateway allows up to thousands of VPCs across multiple accounts to share a single Direct Connect connection over a Transit VIF."
+        },
+        {
+          "id": "B",
+          "text": "Create 80 Private Virtual Interfaces (Private VIFs) on the Direct Connect connection and attach each to individual Virtual Private Gateways.",
+          "explanation": "Incorrect: Direct Connect connections have a limit of 50 Private VIFs per connection, creating high operational complexity."
+        },
+        {
+          "id": "C",
+          "text": "Establish public internet IPsec VPNs from on-premises routers to each individual EC2 instance.",
+          "explanation": "Incorrect: Unscalable and fails to utilize the dedicated Direct Connect circuit."
+        },
+        {
+          "id": "D",
+          "text": "Use VPC Peering between on-premises Cisco routers and Amazon S3.",
+          "explanation": "Incorrect: VPC Peering does not connect directly to on-premises routers."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Using a Transit VIF with a Direct Connect Gateway associated with an AWS Transit Gateway is the Well-Architected design to scale hybrid connectivity to hundreds of VPCs across multiple accounts.",
+      "referenceUrl": "https://docs.aws.amazon.com/whitepapers/latest/hybrid-connectivity/aws-transit-gateway-with-direct-connect-gateway.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q021",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon DynamoDB", "AWS Lambda", "Amazon API Gateway", "Amazon CloudFront"],
+      "services": [
+        "Amazon DynamoDB",
+        "AWS Lambda",
+        "Amazon API Gateway",
+        "Amazon CloudFront"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "A global e-commerce enterprise is launching a major flash sale event. The system expects millions of page views and up to 100,000 checkout requests per second globally, maintaining sub-millisecond read latency for product catalogs and guaranteeing no lost orders with strong inventory consistency. Which architecture solution satisfies all requirements?",
@@ -139,17 +901,24 @@
           "explanation": "Incorrect: Pure in-memory Redis without durable primary database backing risks order loss during node failovers."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "Combining CloudFront and DAX at the edge delivers sub-millisecond catalog reads, while DynamoDB Transactions guarantees ACID compliance and inventory data integrity at massive scale.",
       "referenceUrl": "https://aws.amazon.com/dynamodb/dax/",
       "difficulty": "hard"
     },
     {
-      "id": "sap-q004",
+      "id": "sap-q022",
       "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon S3", "Amazon S3 Glacier", "AWS KMS", "Amazon S3 Object Lock"],
+      "services": [
+        "Amazon S3",
+        "Amazon S3 Glacier",
+        "AWS KMS",
+        "Amazon S3 Object Lock"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "A financial institution regulated by the SEC (Securities and Exchange Commission) requires that all transaction reports be stored in compliance with SEC Rule 17a-4(f). Data must be recorded in WORM (Write Once, Read Many) format and cannot be altered or deleted by any user, including the AWS account root user, during a mandatory 7-year retention period. Which strategy strictly satisfies this requirement?",
@@ -175,17 +944,854 @@
           "explanation": "Incorrect: If Vault Lock is not locked/confirmed within 24 hours, the policy expires and can be deleted."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "Amazon S3 Object Lock in Compliance mode ensures that objects cannot be overwritten or deleted by any user, including the root account, for the configured retention duration, certified for compliance with SEC Rule 17a-4(f).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
       "difficulty": "medium"
     },
     {
-      "id": "sap-q005",
+      "id": "sap-q023",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS AppSync",
+        "GraphQL",
+        "DynamoDB",
+        "Cognito"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A collaborative mobile whiteboard application requires real-time bidirectional data synchronization, offline local caching with automatic conflict resolution upon reconnection, and granular field-level authorization for millions of users. Which architecture should be implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS AppSync (GraphQL) with Amazon DynamoDB resolvers, AWS AppSync Subscriptions for WebSockets real-time updates, and Amazon Cognito User Pools for user authentication and fine-grained authorization.",
+          "explanation": "Correct: AWS AppSync manages real-time subscriptions, client-side offline data caching with built-in conflict resolution (Delta Sync), and field-level IAM/Cognito authorization."
+        },
+        {
+          "id": "B",
+          "text": "Amazon S3 Static Hosting with periodic HTTP GET polling every 100 milliseconds.",
+          "explanation": "Incorrect: Polling S3 generates massive request costs, high latency, and lacks conflict resolution mechanisms."
+        },
+        {
+          "id": "C",
+          "text": "Amazon RDS for PostgreSQL with public IP addresses and direct TCP socket connections from mobile devices.",
+          "explanation": "Incorrect: Exposing relational database ports directly to mobile apps is a severe security flaw and does not provide offline conflict resolution."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Kinesis Data Streams writing to Amazon Redshift via Kinesis Firehose.",
+          "explanation": "Incorrect: Redshift is an analytics data warehouse, unsuitable for real-time mobile whiteboard synchronization."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS AppSync simplifies building real-time collaborative applications with GraphQL subscriptions, offline storage, conflict detection/resolution, and native Amazon Cognito integration.",
+      "referenceUrl": "https://aws.amazon.com/appsync/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q024",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon EventBridge",
+        "AWS Step Functions",
+        "AWS Lambda"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise is replacing a monolithic order management system with an event-driven microservices architecture. The system must ingest events from third-party payment gateways (Stripe, Shopify), validate payloads, orchestrate complex parallel inventory checks and shipment bookings, and handle transient API failures with exponential backoff. Which serverless design meets these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ingest webhook events using Amazon API Gateway into Amazon EventBridge; route events to an AWS Step Functions state machine with parallel execution branches, error catching, and exponential retry policies.",
+          "explanation": "Correct: EventBridge decouples event producers and consumers; Step Functions orchestrates parallel workflows and state transitions with native retry and error-handling mechanisms."
+        },
+        {
+          "id": "B",
+          "text": "Write a monolithic Python script running in an EC2 instance with infinite while-loops and time.sleep().",
+          "explanation": "Incorrect: Single monolithic EC2 instances introduce single points of failure and lack serverless elasticity."
+        },
+        {
+          "id": "C",
+          "text": "Store incoming events in Amazon S3 Glacier and trigger AWS Batch daily.",
+          "explanation": "Incorrect: Batch processing in Glacier creates high latency, failing real-time order processing requirements."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS CloudFormation custom resources to process payment events.",
+          "explanation": "Incorrect: CloudFormation custom resources are for infrastructure deployment, not operational application event routing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The combination of Amazon EventBridge for event routing and AWS Step Functions for resilient workflow orchestration is the AWS Well-Architected standard for event-driven microservices.",
+      "referenceUrl": "https://aws.amazon.com/event-driven-architecture/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q025",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon CloudFront",
+        "Lambda@Edge",
+        "CloudFront Functions"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A global media company needs to perform lightweight HTTP header manipulations, URL rewrites, and device-based redirects for 500 million requests daily at the lowest cost and sub-millisecond execution latency. Which edge compute solution is optimal?",
+      "options": [
+        {
+          "id": "A",
+          "text": "CloudFront Functions running at Edge Locations.",
+          "explanation": "Correct: CloudFront Functions runs lightweight JavaScript at hundreds of CloudFront Edge Locations with sub-millisecond execution times at 1/6th the cost of Lambda@Edge, ideal for header manipulations and URL rewrites."
+        },
+        {
+          "id": "B",
+          "text": "Lambda@Edge running in regional edge caches with 10 GB memory allocations.",
+          "explanation": "Incorrect: Lambda@Edge is more expensive and designed for heavy, long-running compute or network access, not sub-millisecond header rewrites."
+        },
+        {
+          "id": "C",
+          "text": "EC2 instances in us-east-1 running Nginx reverse proxies for all global traffic.",
+          "explanation": "Incorrect: Routing global traffic back to a single region introduces severe latency and high EC2 compute costs."
+        },
+        {
+          "id": "D",
+          "text": "AWS Step Functions state machines invoked synchronously on every HTTP request.",
+          "explanation": "Incorrect: Step Functions is an asynchronous orchestrator, unsuitable for low-latency edge HTTP header rewrites."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "CloudFront Functions is purpose-built for lightweight, high-scale, latency-sensitive edge transformations like header manipulation, URL rewrites, and authorization token validation.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions-choosing.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q026",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon EKS",
+        "AWS Fargate",
+        "Kubernetes"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A fintech company is deploying a Kubernetes microservices application on Amazon EKS. They must ensure that worker nodes scale automatically without managing EC2 instances or patching operating systems, and each Kubernetes Pod must have its own isolated micro-VM kernel for regulatory multi-tenant workload security. Which compute option should be used?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Run Amazon EKS Pods on AWS Fargate with custom Fargate Profiles.",
+          "explanation": "Correct: EKS on Fargate runs each Pod in its own dedicated single-tenant micro-VM (using Firecracker) with isolated kernel boundaries, eliminating EC2 server management and patching overhead."
+        },
+        {
+          "id": "B",
+          "text": "Deploy EC2 M5 instances in a single Auto Scaling group without Pod limits.",
+          "explanation": "Incorrect: EC2 worker nodes share the Linux kernel across Pods, requiring manual OS patching and lacking micro-VM hardware isolation."
+        },
+        {
+          "id": "C",
+          "text": "Deploy all microservices as AWS Lambda functions wrapped inside Docker containers on EC2.",
+          "explanation": "Incorrect: This is an unnecessarily complex anti-pattern that does not leverage native EKS orchestration."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS Storage Gateway Volume mode attached to EKS nodes.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon EKS on AWS Fargate provides serverless container execution where each Kubernetes Pod runs in an isolated VM environment with dedicated kernel resources.",
+      "referenceUrl": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q027",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon API Gateway",
+        "WebSocket API",
+        "AWS Lambda"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A financial brokerage platform requires real-time bidirectional communication to push live stock ticker updates and receive trade orders from 200,000 active web clients. Which serverless API architecture provides persistent, bidirectional TCP connections at scale?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon API Gateway WebSocket API integrated with AWS Lambda and Amazon DynamoDB to track active connection IDs (@connections).",
+          "explanation": "Correct: API Gateway WebSocket APIs maintain persistent, bidirectional stateful TCP connections with clients, using DynamoDB to store connection IDs and Lambda to handle $connect, $disconnect, and $default routes."
+        },
+        {
+          "id": "B",
+          "text": "Standard REST API with client long-polling every 500 milliseconds.",
+          "explanation": "Incorrect: Long-polling on REST APIs creates massive HTTP handshake overhead and severe concurrency bottlenecks."
+        },
+        {
+          "id": "C",
+          "text": "Amazon SQS FIFO queues exposed directly to the public internet.",
+          "explanation": "Incorrect: SQS queues cannot be exposed directly to public client browsers for bidirectional communication."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Route 53 Multi-Value Answer routing.",
+          "explanation": "Incorrect: Route 53 is a DNS service, not a persistent real-time socket transport."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon API Gateway WebSocket APIs manage persistent connections with client browsers and enable serverless push notifications using AWS Lambda and DynamoDB connection tracking.",
+      "referenceUrl": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q028",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS KMS",
+        "Multi-Region Keys"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A globally distributed application runs active-active in us-east-1 and eu-west-1. Data encrypted in us-east-1 must be stored in DynamoDB Global Tables and decrypted locally in eu-west-1 without making cross-region KMS API calls that would introduce network latency and regional dependencies. Which encryption strategy should be implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Use AWS KMS Multi-Region Keys with the primary key in us-east-1 and replicated key replica in eu-west-1 sharing identical key ID and key material.",
+          "explanation": "Correct: AWS KMS Multi-Region Keys have the exact same Key ID and cryptographic key material across regions, allowing client-side or server-side ciphertext encrypted in one region to be decrypted locally in another without cross-region KMS network calls."
+        },
+        {
+          "id": "B",
+          "text": "Create independent single-region KMS keys and hardcode plaintext private keys in application code.",
+          "explanation": "Incorrect: Single-region keys cannot decrypt ciphertext generated by different keys, and hardcoding plaintext keys is a critical security vulnerability."
+        },
+        {
+          "id": "C",
+          "text": "Disable encryption at rest across both regions.",
+          "explanation": "Incorrect: Disabling encryption violates enterprise security policies."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS Secrets Manager to replicate plaintext passwords over public HTTP.",
+          "explanation": "Incorrect: Plaintext transmission over HTTP violates basic security standards."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS KMS Multi-Region Keys allow you to encrypt data in one region and decrypt it in another region using local KMS endpoints, eliminating cross-region network latency and single-region dependencies.",
+      "referenceUrl": "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q029",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon Kinesis Data Firehose",
+        "Amazon OpenSearch",
+        "Data Transformation"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A cybersecurity analytics platform must ingest streaming application log data from thousands of servers, transform raw JSON logs (masking sensitive PII fields) in near real-time, and index the logs directly into Amazon OpenSearch Service while backing up raw logs to Amazon S3. Which serverless pipeline delivers this with minimal operational overhead?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Stream logs to Amazon Kinesis Data Firehose with an inline AWS Lambda data transformation function; configure OpenSearch as the destination and S3 as the source backup destination.",
+          "explanation": "Correct: Kinesis Data Firehose natively integrates with AWS Lambda for in-flight data transformation and supports direct managed delivery to OpenSearch Service and backup S3 buckets without managing stream infrastructure."
+        },
+        {
+          "id": "B",
+          "text": "Deploy a multi-node Apache Kafka cluster on EC2 instances running custom Java transform daemons.",
+          "explanation": "Incorrect: Self-managed Kafka clusters require extensive operational overhead, patching, and capacity planning."
+        },
+        {
+          "id": "C",
+          "text": "Write logs to Amazon DynamoDB and use DynamoDB Streams to write to S3 Glacier.",
+          "explanation": "Incorrect: DynamoDB is not optimized for high-volume streaming log indexing into OpenSearch."
+        },
+        {
+          "id": "D",
+          "text": "Configure an AWS Snowball Edge device in each server rack.",
+          "explanation": "Incorrect: Snowball Edge is for physical batch transfers, not continuous streaming log indexing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Kinesis Data Firehose handles data ingestion, automatic scaling, inline Lambda transformation, and direct delivery to Amazon OpenSearch Service and Amazon S3.",
+      "referenceUrl": "https://docs.aws.amazon.com/firehose/latest/dev/what-is-this-service.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q030",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS Global Accelerator",
+        "Multi-Region Anycast"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise operates a global API behind Network Load Balancers in three AWS Regions (us-east-1, eu-central-1, and ap-southeast-1). Clients require static IP addresses that do not change, intelligent TCP traffic routing over the private AWS backbone to the nearest healthy region, and automated instantaneous failover within seconds if a regional endpoint fails. Which service meets all requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Global Accelerator with endpoint groups configured for the NLBs in each region.",
+          "explanation": "Correct: AWS Global Accelerator provides 2 static Anycast IP addresses, routes TCP traffic across the AWS global private fiber network to the closest healthy NLB, and automatically reroutes traffic to alternative regions in seconds upon endpoint health check failure."
+        },
+        {
+          "id": "B",
+          "text": "Amazon Route 53 with weighted routing and 300-second TTL.",
+          "explanation": "Incorrect: DNS TTL caching in client resolvers delays failover by minutes, failing instantaneous failover requirements."
+        },
+        {
+          "id": "C",
+          "text": "Amazon CloudFront with Origin Failover.",
+          "explanation": "Incorrect: CloudFront is designed for HTTP/HTTPS caching and does not provide static Anycast IPs for raw TCP Network Load Balancers."
+        },
+        {
+          "id": "D",
+          "text": "AWS Direct Connect with public VIFs in each region.",
+          "explanation": "Incorrect: Direct Connect is a physical dedicated circuit for on-premises connectivity, not global public client routing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Global Accelerator provides 2 static Anycast IP addresses that route traffic over the AWS global network to optimal regional endpoints, delivering sub-minute automated failover unaffected by DNS caching.",
+      "referenceUrl": "https://aws.amazon.com/global-accelerator/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q031",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon ECS",
+        "AWS App Mesh",
+        "Service Discovery"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise is designing a multi-tier microservices architecture on Amazon ECS across multiple VPCs. The solution requires mutual TLS (mTLS) encryption between services, traffic splitting for canary rollouts (e.g., 90% v1 / 10% v2), and distributed tracing without modifying application source code. Which technology component satisfies these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy a Service Mesh (AWS App Mesh / Envoy sidecar proxies) integrated with AWS Cloud Map and AWS X-Ray.",
+          "explanation": "Correct: AWS App Mesh uses Envoy sidecar proxies deployed alongside ECS tasks to manage service-to-service communication, providing transparent mTLS encryption, traffic shifting/canary routing, and X-Ray distributed tracing without application code changes."
+        },
+        {
+          "id": "B",
+          "text": "Deploy an Application Load Balancer between every single pair of microservices.",
+          "explanation": "Incorrect: Placing ALBs between dozens of internal microservices introduces high cost, latency, and does not provide native mTLS service mesh capabilities."
+        },
+        {
+          "id": "C",
+          "text": "Use hardcoded EC2 private IP addresses in local hosts files.",
+          "explanation": "Incorrect: Hardcoded IPs break auto-scaling and lack routing/tracing capabilities."
+        },
+        {
+          "id": "D",
+          "text": "Configure AWS Storage Gateway Volume mode.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS AppMesh standardizes microservice communication with Envoy proxies, delivering observability, traffic routing controls (canary deployments), and secure mTLS encryption.",
+      "referenceUrl": "https://aws.amazon.com/app-mesh/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q032",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon Cognito",
+        "Advanced Security Features",
+        "Adaptive Authentication"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A digital banking application using Amazon Cognito User Pools must protect customer accounts against credential stuffing attacks, brute force password guessing, and compromised credentials found on dark web databases. If suspicious login risk is detected, the system must automatically prompt for second-factor authentication or block the request. Which feature should be enabled?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon Cognito Advanced Security Features (ASF) with Adaptive Authentication and Compromised Credentials Check.",
+          "explanation": "Correct: Cognito Advanced Security Features uses machine learning to evaluate login risk, check for leaked credentials, and automatically enforce Adaptive Authentication (prompting for SMS/TOTP MFA) or blocking compromised attempts."
+        },
+        {
+          "id": "B",
+          "text": "AWS WAF rate-limiting rule on TCP port 22.",
+          "explanation": "Incorrect: Port 22 is for SSH, not web application user authentication endpoints."
+        },
+        {
+          "id": "C",
+          "text": "AWS IAM Boundary attached to Amazon S3.",
+          "explanation": "Incorrect: IAM boundaries control IAM principal maximum permissions, not end-user Cognito login security."
+        },
+        {
+          "id": "D",
+          "text": "Amazon GuardDuty S3 Protection.",
+          "explanation": "Incorrect: GuardDuty S3 Protection monitors S3 data plane access, not Cognito authentication credential stuffing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Cognito Advanced Security Features provides automated threat protection, compromised credential detection, and risk-based adaptive authentication for user pools.",
+      "referenceUrl": "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q033",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon EventBridge",
+        "Schema Registry",
+        "Event-Driven Governance"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Multiple independent agile teams produce and consume events via Amazon EventBridge. The enterprise architecture board requires that event payloads adhere to strict standardized JSON schemas, with schema discovery and automated code generation of typed data models in Java and TypeScript. Which feature provides this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon EventBridge Schema Registry and Schema Discovery",
+          "explanation": "Correct: EventBridge Schema Registry collects and stores OpenAPI-compliant event schemas, discovers schemas automatically from the event bus, and generates typed code bindings for Java, Python, and TypeScript."
+        },
+        {
+          "id": "B",
+          "text": "AWS CloudTrail Event History",
+          "explanation": "Incorrect: CloudTrail logs API calls, but does not provide event schema registries or code generation bindings for application events."
+        },
+        {
+          "id": "C",
+          "text": "Amazon DynamoDB Streams with Kinesis Adapter",
+          "explanation": "Incorrect: DynamoDB Streams captures database table change records, not enterprise schema registry governance."
+        },
+        {
+          "id": "D",
+          "text": "Amazon QuickSight dashboards",
+          "explanation": "Incorrect: QuickSight is a BI visualization tool."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The Amazon EventBridge Schema Registry allows developers to discover, create, and manage OpenAPI/JSON schemas for events, generating typed code models to accelerate development.",
+      "referenceUrl": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q034",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS IoT Core",
+        "Device Shadow",
+        "Rules Engine"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An industrial IoT deployment connects 100,000 smart factory sensors that frequently lose internet connectivity. Mobile technician apps must be able to read the last reported sensor status and set new target configuration states even when sensors are offline, with updates automatically synchronized once sensors reconnect. Which service feature satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS IoT Core Device Shadow (Device State)",
+          "explanation": "Correct: AWS IoT Device Shadows maintain a persistent JSON document representing the reported and desired state of a device, enabling applications to interact with devices seamlessly regardless of whether the device is currently online."
+        },
+        {
+          "id": "B",
+          "text": "Amazon S3 Glacier Instant Retrieval",
+          "explanation": "Incorrect: S3 Glacier is an archive storage class, not an interactive bidirectional IoT state synchronization service."
+        },
+        {
+          "id": "C",
+          "text": "AWS Direct Connect 100G link",
+          "explanation": "Incorrect: Direct Connect is a physical fiber circuit for data centers, not edge IoT sensors."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Athena partitioned tables",
+          "explanation": "Incorrect: Athena is an interactive SQL analytics query engine."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The AWS IoT Device Shadow service provides a persistent virtual representation of a device that stores current reported and desired states, synchronizing state changes when devices come online.",
+      "referenceUrl": "https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q035",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon Managed Streaming for Apache Kafka (Amazon MSK)"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise financial platform needs to ingest 5 GB/second of real-time market data across thousands of financial instruments using standard open-source Apache Kafka producers and consumers, with multi-AZ broker high availability, IAM client authentication, and zero infrastructure provisioning overhead. Which service should they choose?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon MSK Serverless (Amazon Managed Streaming for Apache Kafka)",
+          "explanation": "Correct: Amazon MSK Serverless automatically scales compute and storage capacity on demand, fully manages Kafka clusters, supports native IAM authentication, and eliminates broker management."
+        },
+        {
+          "id": "B",
+          "text": "Deploy open-source Kafka on Amazon EC2 t3.micro instances.",
+          "explanation": "Incorrect: Micro EC2 instances lack throughput for 5 GB/s streaming and require heavy manual operations."
+        },
+        {
+          "id": "C",
+          "text": "Amazon S3 Standard with EventBridge notifications.",
+          "explanation": "Incorrect: S3 is an object store, not a high-throughput Apache Kafka pub/sub messaging broker."
+        },
+        {
+          "id": "D",
+          "text": "Amazon SimpleDB",
+          "explanation": "Incorrect: SimpleDB is a legacy NoSQL data store."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon MSK Serverless makes it easy to run Apache Kafka without managing and scaling cluster capacity, offering seamless compatibility with existing Kafka applications.",
+      "referenceUrl": "https://aws.amazon.com/msk/serverless/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q036",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon Redshift Serverless",
+        "Data Warehousing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A business intelligence team runs unpredictable, ad-hoc analytical queries on a 100 TB data lake in Amazon S3 and relational datasets during month-end financial closing. They need a data warehousing solution that automatically provisions and scales capacity up and down (in Redshift Processing Units - RPUs), shutting down to zero cost when no queries are running. Which solution meets this need?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon Redshift Serverless",
+          "explanation": "Correct: Amazon Redshift Serverless automatically provisions and scales data warehouse capacity in RPUs to deliver fast performance for ad-hoc queries, automatically pausing when idle to optimize costs."
+        },
+        {
+          "id": "B",
+          "text": "Amazon RDS for MySQL Single-AZ",
+          "explanation": "Incorrect: RDS MySQL is a transactional OLTP database, unsuitable for 100 TB analytics, and does not scale to zero."
+        },
+        {
+          "id": "C",
+          "text": "Provisioned Redshift ra3.16xlarge 12-node cluster running 24/7",
+          "explanation": "Incorrect: Provisioned clusters incur continuous high costs even when idle."
+        },
+        {
+          "id": "D",
+          "text": "AWS Snowball Edge",
+          "explanation": "Incorrect: Snowball Edge is a physical data transfer device."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Redshift Serverless allows you to analyze data at any scale without managing data warehouse clusters, scaling capacity dynamically and billing only for active query execution time.",
+      "referenceUrl": "https://aws.amazon.com/redshift/serverless/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q037",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS App Runner",
+        "Containerized Web Applications"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A startup wants to deploy containerized Node.js and Python web applications from GitHub repositories directly into production with automated HTTPS load balancing, automatic zero-to-peak scaling, and continuous deployment, without managing Kubernetes manifests, VPC subnets, or load balancer listener rules. Which service should they adopt?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS App Runner",
+          "explanation": "Correct: AWS App Runner is a fully managed service that makes it easy to quickly deploy containerized web applications and APIs from source code or container images without infrastructure configuration."
+        },
+        {
+          "id": "B",
+          "text": "Amazon EC2 Spot Fleet with manual iptables configurations",
+          "explanation": "Incorrect: Spot Fleets require extensive operational infrastructure and manual networking maintenance."
+        },
+        {
+          "id": "C",
+          "text": "AWS Outposts Rack",
+          "explanation": "Incorrect: AWS Outposts is physical hardware deployed in on-premises data centers."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Tape Gateway",
+          "explanation": "Incorrect: Tape Gateway is a virtual tape backup appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS App Runner provides an end-to-end managed service for containerized web applications, handling building, deployment, load balancing, TLS encryption, and auto-scaling automatically.",
+      "referenceUrl": "https://aws.amazon.com/apprunner/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q038",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon Keyspaces",
+        "Apache Cassandra Managed"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise is building a global telemetry application requiring an Apache Cassandra-compatible database with single-digit millisecond response times, automated scaling, built-in TLS encryption, and 99.999% availability without managing Cassandra cluster nodes, compaction, or JVM tuning. Which service satisfies these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon Keyspaces (for Apache Cassandra)",
+          "explanation": "Correct: Amazon Keyspaces is a scalable, highly available, and managed Apache Cassandra-compatible database service that is serverless, eliminating cluster management and patching."
+        },
+        {
+          "id": "B",
+          "text": "Amazon RDS for PostgreSQL",
+          "explanation": "Incorrect: RDS PostgreSQL is a relational SQL database, not compatible with Apache Cassandra CQL APIs."
+        },
+        {
+          "id": "C",
+          "text": "Self-hosted Cassandra on Amazon EC2 i3en instances",
+          "explanation": "Incorrect: Self-hosted Cassandra requires heavy operational overhead for node management, repairs, and tuning."
+        },
+        {
+          "id": "D",
+          "text": "Amazon S3 Glacier Flexible Retrieval",
+          "explanation": "Incorrect: S3 Glacier is an archive storage tier."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Keyspaces is a serverless, Apache Cassandra-compatible database service that manages scaling, replication, and maintenance automatically.",
+      "referenceUrl": "https://aws.amazon.com/keyspaces/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q039",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS Lake Formation",
+        "Fine-Grained Access Control"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A central data governance team needs to manage permissions on a multi-petabyte S3 data lake accessed by hundreds of data analysts using Athena, EMR, and Redshift Spectrum. They must enforce granular column-level and row-level security filters (e.g., masking credit card columns and restricting rows by Country) from a single centralized console. Which service should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Lake Formation",
+          "explanation": "Correct: AWS Lake Formation provides centralized data lake governance with granular column-level, row-level, and cell-level access control across analytics engines like Athena, Redshift Spectrum, and Amazon EMR."
+        },
+        {
+          "id": "B",
+          "text": "S3 Bucket Policies with separate buckets for each combination of user and column",
+          "explanation": "Incorrect: Creating hundreds of duplicate buckets is unscalable and impossible to maintain."
+        },
+        {
+          "id": "C",
+          "text": "Amazon CloudWatch Alarms",
+          "explanation": "Incorrect: CloudWatch alarms monitor metrics, they do not enforce column/row-level database security."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway File Gateway",
+          "explanation": "Incorrect: File Gateway is a hybrid NFS/SMB file bridge."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Lake Formation makes it easy to set up, secure, and manage data lakes, enforcing fine-grained table-, column-, row-, and cell-level access controls across integrated AWS analytics services.",
+      "referenceUrl": "https://aws.amazon.com/lake-formation/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q040",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon MemoryDB for Redis",
+        "ACID In-Memory Database"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An online gaming platform needs an ultra-fast in-memory database that delivers microsecond read latency and single-digit millisecond write latency, but requires full ACID transaction support and a Multi-AZ transactional log guaranteeing zero data loss during node reboots or failovers. Which service meets these criteria?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon MemoryDB for Redis",
+          "explanation": "Correct: Amazon MemoryDB for Redis is a Redis-compatible, durable, in-memory database service built with a Multi-AZ transactional log that provides durability, ACID transactions, and microsecond reads."
+        },
+        {
+          "id": "B",
+          "text": "Amazon ElastiCache for Memcached",
+          "explanation": "Incorrect: Memcached is a volatile in-memory cache without persistence, replication, or ACID transactions."
+        },
+        {
+          "id": "C",
+          "text": "Amazon S3 Standard",
+          "explanation": "Incorrect: S3 is an object storage service with millisecond latency, not a microsecond Redis database."
+        },
+        {
+          "id": "D",
+          "text": "Amazon DocumentDB",
+          "explanation": "Incorrect: DocumentDB is a MongoDB-compatible document database, not an ultra-fast Redis engine."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon MemoryDB for Redis combines ultra-fast in-memory performance with a distributed transactional log to deliver durable database storage and ACID compliance.",
+      "referenceUrl": "https://aws.amazon.com/memorydb/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q041",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "AWS Step Functions",
+        "Distributed Map",
+        "Large-Scale Data Processing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A media processing pipeline needs to process and transform 1,000,000 images stored in an Amazon S3 bucket concurrently. The workflow must execute up to 10,000 parallel AWS Lambda executions with visual error tracking and state management. Which Step Functions feature enables this massive concurrency?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Step Functions Distributed Map state",
+          "explanation": "Correct: The Distributed Map state in Step Functions allows you to orchestrate large-scale parallel data processing, running up to 10,000 parallel workflow executions to process datasets in S3."
+        },
+        {
+          "id": "B",
+          "text": "Standard Sequential State with 1 Lambda worker",
+          "explanation": "Incorrect: Sequential execution cannot achieve high concurrency and would take weeks to process 1M images."
+        },
+        {
+          "id": "C",
+          "text": "Amazon DynamoDB global secondary index",
+          "explanation": "Incorrect: GSIs index DynamoDB tables, they do not orchestrate 10,000 parallel Lambda workers."
+        },
+        {
+          "id": "D",
+          "text": "AWS Snowmobile",
+          "explanation": "Incorrect: Snowmobile is an exabyte-scale data shipping truck."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Step Functions Distributed Map coordinates high-concurrency serverless data processing, iterating over millions of items stored in Amazon S3 with up to 10,000 parallel executions.",
+      "referenceUrl": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-asl-use-map-state-distributed.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q042",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "domainName": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon OpenSearch Ingestion",
+        "Serverless Pipeline"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An observability platform needs to ingest, enrich, filter, and route petabytes of OpenTelemetry metrics and traces into Amazon OpenSearch Service without provisioning and maintaining third-party Logstash or Fluentd server clusters. Which managed feature should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon OpenSearch Ingestion (OSI)",
+          "explanation": "Correct: Amazon OpenSearch Ingestion is a fully managed, serverless data collector that ingests, filters, enriches, and delivers log, trace, and metric data to OpenSearch Service domains."
+        },
+        {
+          "id": "B",
+          "text": "AWS Cloud9 IDE with local bash scripts",
+          "explanation": "Incorrect: Cloud9 is a developer IDE, not a petabyte-scale streaming data pipeline."
+        },
+        {
+          "id": "C",
+          "text": "Amazon S3 Glacier Flexible Retrieval with manual curl scripts",
+          "explanation": "Incorrect: S3 Glacier is an archive storage class."
+        },
+        {
+          "id": "D",
+          "text": "Amazon WorkSpaces VDI",
+          "explanation": "Incorrect: WorkSpaces is a virtual cloud desktop service."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon OpenSearch Ingestion enables you to process and route telemetry data to Amazon OpenSearch Service without managing operational data pipelines or Logstash servers.",
+      "referenceUrl": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/ingestion.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q043",
       "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["Amazon Aurora Global Database", "AWS Route 53", "AWS Secrets Manager"],
+      "services": [
+        "Amazon Aurora Global Database",
+        "AWS Route 53",
+        "Disaster Recovery"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "A mission-critical banking application requires a Recovery Point Objective (RPO) of less than 1 second and a Recovery Time Objective (RTO) of less than 1 minute in the event of a total catastrophic region failure. The relational database stores continuous financial transactions and must support failover between us-east-1 (primary) and eu-west-1 (secondary). Which architecture meets these RPO and RTO requirements with minimal operational complexity?",
@@ -211,17 +1817,728 @@
           "explanation": "Incorrect: Self-hosted EC2 database nodes with DMS introduce heavy maintenance overhead and do not guarantee sub-minute RTO."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "Amazon Aurora Global Database is purpose-built for globally distributed applications with strict business continuity requirements, delivering storage-level replication with RPO < 1 second and rapid cross-region failover (RTO < 1 minute).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html",
       "difficulty": "hard"
     },
     {
-      "id": "sap-q006",
+      "id": "sap-q044",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS Fault Injection Simulator (FIS)",
+        "Chaos Engineering"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise wants to introduce Chaos Engineering into their CI/CD release pipeline to proactively validate that their microservices on Amazon EKS and Amazon RDS fail over gracefully under real-world stresses (such as CPU stress, AZ network partition, or RDS failover). Which AWS managed service executes controlled chaos experiments?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Fault Injection Simulator (AWS FIS)",
+          "explanation": "Correct: AWS FIS is a fully managed chaos engineering service for running controlled fault injection experiments on AWS workloads (EC2, EKS, ECS, RDS) to improve resilience and uncover hidden architectural flaws."
+        },
+        {
+          "id": "B",
+          "text": "AWS CodeBuild",
+          "explanation": "Incorrect: CodeBuild compiles code and runs unit tests, but does not manage controlled infrastructure chaos simulations."
+        },
+        {
+          "id": "C",
+          "text": "Amazon CloudWatch Synthetics",
+          "explanation": "Incorrect: Synthetics monitors endpoints using canary scripts, but does not inject synthetic faults into AWS infrastructure."
+        },
+        {
+          "id": "D",
+          "text": "AWS Systems Manager Patch Manager",
+          "explanation": "Incorrect: Patch Manager automates OS patching."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Fault Injection Simulator (AWS FIS) allows teams to conduct controlled chaos engineering experiments to test how applications handle disruptions and improve fault tolerance.",
+      "referenceUrl": "https://aws.amazon.com/fis/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q045",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS CodeDeploy",
+        "Canary Deployments",
+        "Deployment Strategies"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A critical payment service on AWS Lambda must be updated with zero downtime. The deployment must shift 10% of production traffic to the new version, wait 15 minutes while monitoring Amazon CloudWatch error alarms, and automatically roll back if errors spike before shifting the remaining 90% of traffic. Which CodeDeploy deployment configuration satisfies this requirement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "CodeDeployDefault.LambdaCanary10Percent15Minutes with rollback CloudWatch alarms configured.",
+          "explanation": "Correct: Canary10Percent15Minutes shifts 10% of traffic to the new Lambda alias version, pauses for 15 minutes to evaluate CloudWatch health alarms, and either completes the deployment or executes an instant automated rollback."
+        },
+        {
+          "id": "B",
+          "text": "CodeDeployDefault.AllAtOnce with manual health check.",
+          "explanation": "Incorrect: AllAtOnce shifts 100% of traffic immediately, risking widespread customer-facing outages if bugs exist."
+        },
+        {
+          "id": "C",
+          "text": "CodeDeployDefault.LambdaLinear10PercentEvery1Minute without CloudWatch alarms.",
+          "explanation": "Incorrect: Linear shifting every 1 minute shifts 10% every minute without the required 15-minute observation window."
+        },
+        {
+          "id": "D",
+          "text": "Manual DNS record switching in Amazon Route 53.",
+          "explanation": "Incorrect: Manual DNS switching is slow, prone to caching delays, and lacks automated rollback capabilities."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Canary deployments with AWS CodeDeploy and CloudWatch alarms provide safe, progressive traffic shifting with automatic rollback protection for serverless Lambda applications.",
+      "referenceUrl": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q046",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon CloudWatch",
+        "Composite Alarms",
+        "Metric Math"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An operations team receives hundreds of false-positive PagerDuty alerts because individual EC2 instances frequently hit temporary 95% CPU utilization during routine batch runs. The team only wants an incident generated when BOTH high CPU (>90%) AND high API error rate (>5%) occur simultaneously for more than 5 consecutive minutes. Which CloudWatch feature reduces alarm fatigue?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create Amazon CloudWatch Composite Alarms combining multiple underlying metric alarms with boolean AND logic.",
+          "explanation": "Correct: CloudWatch Composite Alarms combine multiple metric alarms using rule expressions (AND, OR, NOT), ensuring notifications are only triggered when multiple critical conditions are met simultaneously."
+        },
+        {
+          "id": "B",
+          "text": "Delete all CloudWatch alarms and rely solely on user bug reports.",
+          "explanation": "Incorrect: Disabling observability leads to undetected production outages."
+        },
+        {
+          "id": "C",
+          "text": "Configure Amazon S3 Lifecycle rules on CloudWatch log groups.",
+          "explanation": "Incorrect: S3 Lifecycle deletes objects from buckets, not CloudWatch alarm logic."
+        },
+        {
+          "id": "D",
+          "text": "Deploy an AWS Storage Gateway Volume in cached mode.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon CloudWatch Composite Alarms let you combine multiple alarms into a single alarm state using boolean logic, significantly reducing alert noise and false positives.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Create_Composite_Alarm.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q047",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS X-Ray",
+        "Distributed Tracing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A microservices application distributed across Amazon API Gateway, AWS Lambda, Amazon SQS, and Amazon DynamoDB is experiencing intermittent latency spikes. Developers are unable to pinpoint which downstream microservice or database call is causing the slowdown. Which AWS service should be implemented?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS X-Ray with active tracing enabled across all microservice components.",
+          "explanation": "Correct: AWS X-Ray collects trace data from distributed microservices, generating service maps and latency breakdown graphs that pinpoint exact bottlenecks and downstream errors."
+        },
+        {
+          "id": "B",
+          "text": "AWS CloudTrail Insights",
+          "explanation": "Incorrect: CloudTrail Insights identifies anomalous control-plane API call volume, not internal microservice execution latency breakdowns."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Athena partitioned views on VPC Flow Logs",
+          "explanation": "Incorrect: VPC Flow Logs capture IP packet headers, not application-level microservice execution traces."
+        },
+        {
+          "id": "D",
+          "text": "AWS Trusted Advisor",
+          "explanation": "Incorrect: Trusted Advisor performs best practice evaluations, not distributed application request tracing."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS X-Ray provides end-to-end distributed tracing across microservices, creating service maps and latency histograms to identify performance bottlenecks and root causes.",
+      "referenceUrl": "https://aws.amazon.com/xray/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q048",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS Systems Manager",
+        "Automation Documents",
+        "Auto-Healing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A solutions architect needs to build an automated self-healing mechanism for Amazon EC2 instances that detects disk volume corruption, automatically snapshots the volume, detaches the corrupt volume, attaches a newly initialized clean volume, and notifies the operations team via Slack. Which architecture accomplishes this with minimal custom infrastructure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configure an Amazon EventBridge rule that detects the disk failure event from Amazon CloudWatch and triggers an AWS Systems Manager Automation Document to perform remediation steps.",
+          "explanation": "Correct: EventBridge + Systems Manager Automation Documents provides a serverless, auditable auto-healing workflow with pre-built actions to snapshot, detach, and attach EBS volumes."
+        },
+        {
+          "id": "B",
+          "text": "Write a continuous bash script running on an EC2 bastion host with sudo permissions.",
+          "explanation": "Incorrect: Bastion scripts represent a single point of failure and lack central governance."
+        },
+        {
+          "id": "C",
+          "text": "Deploy Amazon Lex with voice response commands.",
+          "explanation": "Incorrect: Amazon Lex is a conversational chatbot service."
+        },
+        {
+          "id": "D",
+          "text": "Attach an S3 Glacier Vault Lock policy to the EC2 instance.",
+          "explanation": "Incorrect: Vault Lock is for immutable S3 archival retention."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Using Amazon EventBridge paired with AWS Systems Manager Automation Documents enables automated event-driven remediation and self-healing for cloud infrastructure.",
+      "referenceUrl": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q049",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS Secrets Manager",
+        "Multi-Region Replication",
+        "Disaster Recovery"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise deploys a multi-region active-passive disaster recovery architecture across us-east-1 and us-west-2. Database secrets and API tokens must be available immediately in us-west-2 with identical secret values whenever they are rotated in us-east-1. How should this be configured in AWS Secrets Manager?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Enable multi-region secret replication in AWS Secrets Manager, configuring us-east-1 as the primary region and us-west-2 as the replica region.",
+          "explanation": "Correct: AWS Secrets Manager multi-region secret replication automatically replicates secrets and metadata from the primary region to replica regions and keeps them synchronized during rotation."
+        },
+        {
+          "id": "B",
+          "text": "Create independent secrets in each region and manually copy values via copy-paste during outages.",
+          "explanation": "Incorrect: Manual copy-paste during a disaster outage is error-prone and violates strict RTO requirements."
+        },
+        {
+          "id": "C",
+          "text": "Write secrets to an unencrypted public S3 bucket accessible across all regions.",
+          "explanation": "Incorrect: Storing secrets in a public S3 bucket is a catastrophic security violation."
+        },
+        {
+          "id": "D",
+          "text": "Configure an AWS Storage Gateway File Gateway across regions.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance, not a secrets replication service."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Secrets Manager multi-region secret replication automatically keeps replica secrets in sync with the primary secret, including automatic rotation updates across regions.",
+      "referenceUrl": "https://docs.aws.amazon.com/secretsmanager/latest/userguide/create-manage-multi-region-secrets.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q050",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon Route 53",
+        "Application Recovery Controller (ARC)"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A financial institution runs a multi-region active-active architecture across us-east-1 and us-west-2. They require guaranteed automated routing control to instantly isolate an impaired region during gray failures (subtle impairments not detected by simple HTTP ping checks) and ensure readiness checks prevent routing traffic to unprepared replicas. Which service meets these criteria?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon Route 53 Application Recovery Controller (Route 53 ARC)",
+          "explanation": "Correct: Route 53 ARC provides Readiness Checks (continually auditing capacity and quota alignment across regions) and Routing Controls (highly reliable routing switches to safely redirect traffic during regional failovers)."
+        },
+        {
+          "id": "B",
+          "text": "Simple Route 53 weighted records with TTL 3600",
+          "explanation": "Incorrect: High TTL delays DNS propagation and weighted records lack automated readiness auditing."
+        },
+        {
+          "id": "C",
+          "text": "AWS CodeDeploy Blue/Green in single-region mode",
+          "explanation": "Incorrect: Single-region CodeDeploy cannot manage multi-region DNS failover."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Athena queries on CloudFront access logs",
+          "explanation": "Incorrect: Athena log queries do not provide active routing control switches."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon Route 53 Application Recovery Controller (ARC) helps build applications that recover from impairments faster by continually evaluating recovery readiness and providing simple, reliable routing controls.",
+      "referenceUrl": "https://docs.aws.amazon.com/r53recovery/latest/dg/what-is-route-53-recovery.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q051",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS CloudFormation",
+        "Drift Detection"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An organization manages its infrastructure using AWS CloudFormation. Over time, engineers made manual emergency changes directly in the AWS Console (e.g., modifying security group rules and changing instance sizes). How can the architect identify all differences between the expected template state and actual deployed infrastructure across stacks?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Run CloudFormation Drift Detection on the deployed stacks.",
+          "explanation": "Correct: CloudFormation Drift Detection compares the current live state of infrastructure against the deployed CloudFormation template and reports exact configuration differences (drift)."
+        },
+        {
+          "id": "B",
+          "text": "Delete all stacks and redeploy from scratch during business hours.",
+          "explanation": "Incorrect: Deleting production stacks causes massive service outages and data loss."
+        },
+        {
+          "id": "C",
+          "text": "Enable Amazon S3 Object Lock on the CloudFormation template bucket.",
+          "explanation": "Incorrect: S3 Object Lock prevents template file deletion, but does not detect runtime infrastructure drift."
+        },
+        {
+          "id": "D",
+          "text": "Attach an IAM Boundary to the VPC Internet Gateway.",
+          "explanation": "Incorrect: IAM Boundaries cannot be attached to Internet Gateways."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS CloudFormation Drift Detection identifies resources that have been modified outside of CloudFormation management, helping restore infrastructure consistency.",
+      "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q052",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon CloudWatch RUM",
+        "Real User Monitoring"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An e-commerce company needs to collect client-side performance telemetry directly from actual end-user browsers (including page load timing, JavaScript runtime errors, browser types, and geolocation) to identify front-end performance bottlenecks. Which AWS feature provides this capability?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon CloudWatch RUM (Real User Monitoring)",
+          "explanation": "Correct: CloudWatch RUM collects and analyzes client-side application performance data directly from real end users' browsers, giving visibility into page load times, client-side errors, and user journeys."
+        },
+        {
+          "id": "B",
+          "text": "Amazon CloudWatch Synthetics Canaries",
+          "explanation": "Incorrect: Synthetics runs simulated synthetic scripts, not telemetry collected from real human end users."
+        },
+        {
+          "id": "C",
+          "text": "AWS CloudTrail Data Events",
+          "explanation": "Incorrect: CloudTrail logs AWS API calls, not browser JavaScript errors or page load timing."
+        },
+        {
+          "id": "D",
+          "text": "AWS Network Firewall",
+          "explanation": "Incorrect: Network Firewall is a VPC firewall, not a browser client performance monitoring tool."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon CloudWatch RUM enables real-user monitoring by embedding a lightweight JavaScript snippet in web applications to gather client-side performance and error data.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-RUM.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q053",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS CloudTrail Lake",
+        "Audit Log Analytics"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A compliance audit requires querying 5 years of historical AWS CloudTrail management and data events across 200 AWS accounts using standard SQL without provisioning S3 buckets, Glue crawlers, or Athena tables. Which managed feature should be enabled?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS CloudTrail Lake with an event data store configured for 7-year retention.",
+          "explanation": "Correct: CloudTrail Lake is a managed data lake for auditing and security analysis that stores events with customizable retention (up to 7 years) and supports direct SQL querying without managing S3, Glue, or Athena infrastructure."
+        },
+        {
+          "id": "B",
+          "text": "Amazon DynamoDB with global secondary indexes.",
+          "explanation": "Incorrect: DynamoDB is not cost-effective for querying multi-terabyte 5-year log datasets with ad-hoc SQL."
+        },
+        {
+          "id": "C",
+          "text": "Amazon EC2 instance running Microsoft Access database.",
+          "explanation": "Incorrect: Access is a desktop database incapable of handling multi-account enterprise audit logs."
+        },
+        {
+          "id": "D",
+          "text": "Amazon S3 Glacier Deep Archive without extraction keys.",
+          "explanation": "Incorrect: S3 Glacier Deep Archive cannot be directly queried with real-time SQL without restoring objects."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS CloudTrail Lake provides a managed, immutable data store with built-in SQL query capabilities for analyzing activity and compliance across an AWS Organization.",
+      "referenceUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-lake.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q054",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon EventBridge Pipes",
+        "Serverless Integration"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A microservices application needs to connect an Amazon DynamoDB Stream to an Amazon SQS queue with point-to-point filtering, data transformation, and enrichment, without writing and maintaining custom AWS Lambda integration code. Which feature accomplishes this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon EventBridge Pipes",
+          "explanation": "Correct: EventBridge Pipes creates point-to-point integrations between event sources (DynamoDB Streams, Kinesis, SQS) and targets with built-in filtering, enrichment (API Destinations/Lambda), and transformation without boilerplate code."
+        },
+        {
+          "id": "B",
+          "text": "AWS Glue ETL batch job running every 24 hours",
+          "explanation": "Incorrect: 24-hour batch jobs fail real-time stream processing requirements."
+        },
+        {
+          "id": "C",
+          "text": "Amazon CloudFront distribution with Origin Shield",
+          "explanation": "Incorrect: CloudFront is a web CDN, not a serverless streaming event pipe."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Route 53 Resolver Outbound Endpoint",
+          "explanation": "Incorrect: Route 53 Resolver manages DNS queries, not stream data transformation."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon EventBridge Pipes provides a simple, consistent, and cost-effective way to create point-to-point integrations between event producers and consumers without writing integration code.",
+      "referenceUrl": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q055",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon DevOps Guru",
+        "ML-Driven Observability"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An operations team wants to use machine learning to automatically detect operational anomalies (such as memory leaks, under-provisioned DynamoDB tables, or database lock contentions), correlate related alarms, and receive actionable remediation suggestions before service degradation occurs. Which service provides this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon DevOps Guru",
+          "explanation": "Correct: Amazon DevOps Guru uses machine learning informed by years of Amazon.com operational experience to automatically detect operational issues, correlate metrics/logs into insights, and recommend fixes."
+        },
+        {
+          "id": "B",
+          "text": "AWS CodeCommit",
+          "explanation": "Incorrect: CodeCommit is a Git repository service."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Polly",
+          "explanation": "Incorrect: Polly converts text into lifelike speech."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Tape Mode",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon DevOps Guru is an ML-powered operational service that continuously monitors applications to identify anomalies and recommend actionable remediation steps.",
+      "referenceUrl": "https://aws.amazon.com/devops-guru/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q056",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS CloudWatch Evidentially",
+        "Feature Flags",
+        "A/B Testing"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A product team wants to safely launch new UI features in production by testing different variations with select percentages of user traffic (A/B testing) and using feature flags with instant kill switches if error rates increase. Which CloudWatch capability enables this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon CloudWatch Evidently",
+          "explanation": "Correct: CloudWatch Evidently enables developers to implement feature flags and conduct A/B experiments on live application features, measuring impact on business metrics and technical performance."
+        },
+        {
+          "id": "B",
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM is a cryptographic key hardware security module."
+        },
+        {
+          "id": "C",
+          "text": "AWS Snowcone",
+          "explanation": "Incorrect: Snowcone is an edge data transfer appliance."
+        },
+        {
+          "id": "D",
+          "text": "Amazon QuickSight",
+          "explanation": "Incorrect: QuickSight is a BI reporting dashboard tool."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon CloudWatch Evidently makes it easy for developers to safely launch new features with feature flags and validate features with statistical experimentation in production.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Evidently.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q057",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon RDS Proxy",
+        "Connection Pooling",
+        "Serverless Scale"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A serverless application with thousands of concurrent AWS Lambda invocations connects directly to an Amazon RDS for PostgreSQL database, causing database connection exhaustion and frequent timeouts. How can the architecture be improved to pool and share database connections efficiently?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy Amazon RDS Proxy between AWS Lambda and the RDS database.",
+          "explanation": "Correct: Amazon RDS Proxy pools and shares established database connections, reducing database memory/CPU connection overhead and reducing failover times by up to 66%."
+        },
+        {
+          "id": "B",
+          "text": "Increase the Lambda concurrency limit to 100,000.",
+          "explanation": "Incorrect: Increasing Lambda concurrency exacerbates connection exhaustion on the relational database."
+        },
+        {
+          "id": "C",
+          "text": "Change the RDS database to Single-AZ.",
+          "explanation": "Incorrect: Single-AZ reduces database availability and does not solve connection scaling."
+        },
+        {
+          "id": "D",
+          "text": "Store database passwords in plaintext in public S3 buckets.",
+          "explanation": "Incorrect: Plaintext password storage is a critical security vulnerability."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon RDS Proxy allows applications to pool and share database connections, protecting databases against connection saturation and improving serverless scalability.",
+      "referenceUrl": "https://aws.amazon.com/rds/proxy/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q058",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon CloudWatch",
+        "Cross-Account Observability"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A central Site Reliability Engineering (SRE) team in Account A needs to view CloudWatch metrics, search logs, and examine X-Ray traces originating from applications across 100 source accounts in an organization without logging into each account individually. Which feature should they configure?",
+      "options": [
+        {
+          "id": "A",
+          "text": "CloudWatch Cross-Account Observability, designating Account A as the monitoring account and sharing telemetry from source accounts via AWS Organizations.",
+          "explanation": "Correct: CloudWatch Cross-Account Observability allows central monitoring accounts to seamlessly search logs, aggregate metrics, and view traces across multiple linked accounts without custom pipeline infrastructure."
+        },
+        {
+          "id": "B",
+          "text": "Export logs daily to CSV files and email them to the SRE team.",
+          "explanation": "Incorrect: Manual CSV emailing is completely unscalable and lacks real-time observability."
+        },
+        {
+          "id": "C",
+          "text": "Deploy an Application Load Balancer in each source account.",
+          "explanation": "Incorrect: ALBs route web traffic; they do not aggregate cross-account CloudWatch metrics and traces."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS Storage Gateway File mode across all accounts.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage bridge."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "CloudWatch Cross-Account Observability enables seamless, centralized monitoring and troubleshooting across accounts within an AWS Organization or across specific account IDs.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Unified-Cross-Account.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q059",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "AWS Well-Architected Tool",
+        "Milestones",
+        "Workload Reviews"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise architecture team wants to track and measure architectural health across 50 production workloads over time, conducting periodic Well-Architected reviews, documenting high-risk issues (HRIs), and saving milestone snapshots as improvements are implemented. Which tool facilitates this governance?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Well-Architected Tool with custom lenses and milestone tracking.",
+          "explanation": "Correct: The AWS Well-Architected Tool provides a structured mechanism to review workloads against official pillars and custom organizational lenses, tracking high-risk issues (HRIs) and saving milestone snapshots over time."
+        },
+        {
+          "id": "B",
+          "text": "AWS Direct Connect management console.",
+          "explanation": "Incorrect: Direct Connect manages dedicated physical network links."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Lex bot builder.",
+          "explanation": "Incorrect: Amazon Lex builds conversational AI bots."
+        },
+        {
+          "id": "D",
+          "text": "AWS Snowmobile tracking portal.",
+          "explanation": "Incorrect: Snowmobile is an exabyte data transport container truck."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The AWS Well-Architected Tool enables teams to review workloads, track architectural improvements over time with milestone snapshots, and share reviews across organizations.",
+      "referenceUrl": "https://aws.amazon.com/well-architected-tool/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q060",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-improvement",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "services": [
+        "Amazon S3",
+        "S3 Multi-Region Access Points",
+        "Failover Controls"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise maintains replicated S3 buckets in us-east-1 and us-west-2. Global applications require a single S3 endpoint that automatically routes requests to the closest healthy bucket and allows administrators to shift 100% of read and write traffic to the secondary region in minutes during an operational event. Which feature provides this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Amazon S3 Multi-Region Access Points (MRAP) with Failover Controls",
+          "explanation": "Correct: S3 MRAP provides a single global DNS endpoint backed by AWS Global Accelerator and includes active-passive or active-active Failover Controls to shift S3 read/write traffic between regions in minutes."
+        },
+        {
+          "id": "B",
+          "text": "Standard S3 bucket URLs with manual code changes in client applications.",
+          "explanation": "Incorrect: Manual client code redeployments are slow and cannot meet rapid failover requirements."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Route 53 Simple routing pointing to public S3 website endpoints.",
+          "explanation": "Incorrect: Simple routing lacks automated failover controls and public website endpoints do not support authenticated REST APIs."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Volume mode.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon S3 Multi-Region Access Points with Failover Controls provide a single global S3 endpoint that dynamically routes traffic to the nearest bucket and allows instant traffic shifting between regions.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPointFailover.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q061",
       "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["AWS Application Migration Service", "AWS Database Migration Service", "AWS DataSync"],
+      "services": [
+        "AWS Application Migration Service",
+        "AWS Database Migration Service",
+        "AWS DataSync"
+      ],
       "type": "multiple",
       "requiredChoices": 2,
       "statement": "An enterprise is migrating a legacy on-premises monolithic system to AWS. The environment consists of 15 physical Linux/Windows servers, a 12 TB active Oracle Database cluster with continuous transactions, and an 80 TB NAS share. The migration must achieve near-zero downtime (cutover within a 30-minute window). Which TWO AWS tools should be used for continuous data synchronization prior to cutover? (Choose TWO.)",
@@ -252,10 +2569,589 @@
           "explanation": "Incorrect: DRS is for disaster recovery replication, not automatic microservices code refactoring."
         }
       ],
-      "correctAnswers": ["A", "B"],
+      "correctAnswers": [
+        "A",
+        "B"
+      ],
       "generalExplanation": "For enterprise migrations with minimal downtime windows, AWS MGN handles continuous block-level server machine replication, while AWS DMS with CDC handles continuous real-time relational database transaction replication.",
       "referenceUrl": "https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html",
       "difficulty": "hard"
+    },
+    {
+      "id": "sap-q062",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Schema Conversion Tool (SCT)",
+        "AWS DMS",
+        "Database Modernization"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An enterprise wants to modernize a commercial on-premises Microsoft SQL Server database to open-source Amazon Aurora PostgreSQL to eliminate expensive software licensing costs. The database contains complex stored procedures, PL/SQL scripts, and custom views. Which tool should be used to convert the database schema and stored procedures before migrating the data?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Schema Conversion Tool (AWS SCT)",
+          "explanation": "Correct: AWS Schema Conversion Tool (AWS SCT) automatically converts source database schemas, stored procedures, functions, triggers, and views into the target database engine format (e.g., SQL Server to Aurora PostgreSQL)."
+        },
+        {
+          "id": "B",
+          "text": "AWS Systems Manager Patch Manager",
+          "explanation": "Incorrect: Patch Manager updates operating system software on instances."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Athena",
+          "explanation": "Incorrect: Athena is an interactive SQL analytics service on S3, not a database schema converter."
+        },
+        {
+          "id": "D",
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM manages hardware encryption keys."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Schema Conversion Tool (AWS SCT) is specifically designed to convert commercial database schemas, triggers, and stored procedures to open-source cloud-native engines like Amazon Aurora.",
+      "referenceUrl": "https://aws.amazon.com/dms/schema-conversion-tool/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q063",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Application Discovery Service",
+        "Migration Evaluation"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A company plans a large-scale migration of 500 on-premises VMware virtual machines to AWS. Before migrating, they need to gather automated inventory data, CPU/memory performance utilization metrics, and map network dependencies between servers to design migration waves. Which tool should be deployed in the VMware environment?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Application Discovery Service using the agentless Discovery Connector (OVA) for VMware vCenter.",
+          "explanation": "Correct: AWS Application Discovery Service Discovery Connector is an agentless appliance deployed in VMware vCenter that collects VM inventory, performance metrics, and network connection dependencies to plan migration waves."
+        },
+        {
+          "id": "B",
+          "text": "AWS CloudFormation StackSets",
+          "explanation": "Incorrect: StackSets deploys infrastructure in AWS accounts, it does not inspect on-premises VMware clusters."
+        },
+        {
+          "id": "C",
+          "text": "Amazon CloudWatch Synthetics",
+          "explanation": "Incorrect: Synthetics tests web endpoints, not on-premises VMware VM dependencies."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Tape Gateway",
+          "explanation": "Incorrect: Tape Gateway is a virtual tape backup appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Application Discovery Service helps planning migrations by collecting server inventory, performance data, and network communication mappings from on-premises environments.",
+      "referenceUrl": "https://aws.amazon.com/application-discovery/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q064",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS DataSync",
+        "NAS Migration"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A media company needs to migrate 150 TB of shared file assets from an on-premises Network Attached Storage (NAS) appliance over a 1 Gbps Direct Connect link to Amazon EFS. The migration must preserve POSIX file permissions, timestamps, and ownership metadata, with automatic data verification. Which tool is optimized for this task?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS DataSync with a DataSync agent deployed on-premises.",
+          "explanation": "Correct: AWS DataSync is a purpose-built online data transfer service that accelerates moving data between on-premises storage (NFS/SMB) and AWS (EFS, S3, FSx), preserving file metadata and performing end-to-end data integrity validation."
+        },
+        {
+          "id": "B",
+          "text": "Standard rsync command running over public internet with no encryption.",
+          "explanation": "Incorrect: Basic rsync over internet is slow, unaccelerated, unmanaged, and insecure."
+        },
+        {
+          "id": "C",
+          "text": "AWS Snowmobile truck",
+          "explanation": "Incorrect: Snowmobile is designed for exabytes of data and is cost-prohibitive for 150 TB."
+        },
+        {
+          "id": "D",
+          "text": "Amazon DynamoDB import tool",
+          "explanation": "Incorrect: DynamoDB is a NoSQL database, not an NFS shared file system."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS DataSync accelerates file data migrations up to 10x faster than open source tools by using a custom network protocol, preserving POSIX metadata, and automating integrity checks.",
+      "referenceUrl": "https://aws.amazon.com/datasync/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q065",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Snowball Edge",
+        "Offline Data Migration"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A research organization needs to migrate 600 TB of satellite imagery stored in an isolated data center facility with an unstable 10 Mbps internet connection into Amazon S3. What is the fastest and most cost-effective migration method?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Order multiple AWS Snowball Edge Storage Optimized devices, copy the data locally over high-speed LAN, and ship the encrypted devices back to AWS for upload to Amazon S3.",
+          "explanation": "Correct: With a 10 Mbps connection, uploading 600 TB over the network would take over 15 years; ordering Snowball Edge devices achieves the migration within weeks."
+        },
+        {
+          "id": "B",
+          "text": "Upload all files over the 10 Mbps internet link using AWS CLI multi-threading.",
+          "explanation": "Incorrect: 600 TB over 10 Mbps takes over 15 years to transfer."
+        },
+        {
+          "id": "C",
+          "text": "Deploy Amazon S3 Transfer Acceleration on the 10 Mbps link.",
+          "explanation": "Incorrect: Transfer acceleration cannot overcome a fundamentally constrained 10 Mbps local bandwidth bottleneck."
+        },
+        {
+          "id": "D",
+          "text": "Send hard drives via standard commercial postal mail to an AWS employee's home address.",
+          "explanation": "Incorrect: This violates security protocols and AWS does not accept arbitrary personal mail-in drives."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "When network bandwidth is severely limited, physical data transport appliances like AWS Snowball Edge provide the fastest and most economical method to migrate hundreds of terabytes of data.",
+      "referenceUrl": "https://aws.amazon.com/snowball/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q066",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS App2Container",
+        "Container Modernization"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A company wants to modernize legacy Java and .NET Framework web applications running on Windows and Linux virtual machines into Docker container images deployable to Amazon ECS and Amazon EKS without rewriting application code. Which AWS modernization tool automates this containerization process?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS App2Container (A2C)",
+          "explanation": "Correct: AWS App2Container is a command-line tool that analyzes and containerizes legacy Java and .NET web applications running on VMs into Docker images, generating ECS task definitions and Kubernetes deployment manifests automatically."
+        },
+        {
+          "id": "B",
+          "text": "AWS Systems Manager Patch Manager",
+          "explanation": "Incorrect: Patch Manager updates OS patches on servers."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Lex",
+          "explanation": "Incorrect: Amazon Lex builds conversational AI chatbots."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Volume Gateway",
+          "explanation": "Incorrect: Storage Gateway is a hybrid block/file storage bridge."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS App2Container (A2C) automates the containerization of legacy applications, creating container images, ECR repositories, and ECS/EKS deployment configurations.",
+      "referenceUrl": "https://aws.amazon.com/app2container/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q067",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Storage Gateway",
+        "File Gateway"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An on-premises radiology clinic produces 2 TB of medical scan files daily. On-premises medical applications require low-latency SMB/NFS file share access to recently generated files, but older files must be automatically stored cost-effectively in Amazon S3 for long-term retention. Which hybrid storage solution meets these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy an Amazon S3 File Gateway (AWS Storage Gateway) on-premises in VMware ESXi.",
+          "explanation": "Correct: Amazon S3 File Gateway presents an industry-standard NFS/SMB file share on-premises with local caching for low-latency access, while asynchronously writing files directly as native objects to Amazon S3."
+        },
+        {
+          "id": "B",
+          "text": "Mount an Amazon S3 bucket directly over public internet using third-party FUSE drivers on every client PC.",
+          "explanation": "Incorrect: FUSE mounts over WAN lack local hardware caching performance and create high latency."
+        },
+        {
+          "id": "C",
+          "text": "Deploy Amazon FSx for Lustre on an on-premises physical server.",
+          "explanation": "Incorrect: FSx for Lustre is an AWS cloud managed service, not an on-premises downloadable VM appliance."
+        },
+        {
+          "id": "D",
+          "text": "Store all scans on USB flash drives stored in office filing cabinets.",
+          "explanation": "Incorrect: Physical flash drives lack durability, compliance, and cloud integration."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "Amazon S3 File Gateway bridges on-premises environments and cloud storage, providing local low-latency caching via SMB/NFS while storing data as native objects in Amazon S3.",
+      "referenceUrl": "https://aws.amazon.com/storagegateway/file/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q068",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Mainframe Modernization",
+        "Legacy Modernization"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An insurance enterprise wants to migrate and modernize legacy COBOL-based IBM z/OS mainframe core workloads to AWS cloud native microservices with automated refactoring. Which managed service provides the tooling and runtime environment for this migration?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Mainframe Modernization service (using AWS Blu Age automated refactoring)",
+          "explanation": "Correct: AWS Mainframe Modernization service with AWS Blu Age automatically analyzes, converts, and refactors legacy COBOL/PL1 mainframe applications into modern Java-based cloud microservices."
+        },
+        {
+          "id": "B",
+          "text": "AWS Snowball Edge Compute Optimized",
+          "explanation": "Incorrect: Snowball Edge provides edge compute and storage for physical data transport, not mainframe COBOL code refactoring."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Lex",
+          "explanation": "Incorrect: Lex is a conversational chatbot service."
+        },
+        {
+          "id": "D",
+          "text": "AWS Storage Gateway Tape Gateway",
+          "explanation": "Incorrect: Tape Gateway is a virtual tape backup appliance."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Mainframe Modernization provides managed tools and runtimes (including AWS Blu Age and Micro Focus) to migrate and modernize mainframe workloads to AWS.",
+      "referenceUrl": "https://aws.amazon.com/mainframe-modernization/",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q069",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Migration Hub",
+        "Migration Tracking"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A multinational enterprise is managing hundreds of application migrations across multiple AWS accounts using AWS Application Migration Service (MGN), AWS Database Migration Service (DMS), and partner tools. They need a single centralized dashboard to track migration progress across all applications and servers. Which service should they use?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Migration Hub",
+          "explanation": "Correct: AWS Migration Hub provides a single central location to track the progress of application migrations across multiple AWS and partner tools (MGN, DMS, ATADATA, CloudEndure)."
+        },
+        {
+          "id": "B",
+          "text": "AWS Cloud9",
+          "explanation": "Incorrect: Cloud9 is a cloud IDE for code authoring."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Route 53 Traffic Flow",
+          "explanation": "Incorrect: Route 53 Traffic Flow manages DNS routing policies."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Polly",
+          "explanation": "Incorrect: Polly converts text into speech."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Migration Hub gives you a single place to track the progress of application migrations across your entire portfolio, regardless of which migration tools you use.",
+      "referenceUrl": "https://aws.amazon.com/migration-hub/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q070",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Database Migration Service",
+        "Homogeneous Migration"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "An e-commerce company is migrating an on-premises 8 TB PostgreSQL database to Amazon Aurora PostgreSQL. The database is actively processing orders 24/7. How can the database be migrated with zero data loss and less than 5 minutes of total cutover downtime?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy an AWS DMS replication instance, perform Full Load of existing data, enable Ongoing Replication (Change Data Capture - CDC), wait for replication lag to reach zero, and switch application connection strings during the 5-minute cutover window.",
+          "explanation": "Correct: AWS DMS with Full Load + CDC synchronizes initial data while continuously capturing live transactional changes, allowing the cutover to occur in minutes with zero data loss."
+        },
+        {
+          "id": "B",
+          "text": "Shut down the on-premises database, run pg_dump to a USB drive, and drive it to an AWS data center.",
+          "explanation": "Incorrect: Physical transport causes hours or days of business downtime."
+        },
+        {
+          "id": "C",
+          "text": "Take daily manual snapshots in on-premises PostgreSQL and copy them to S3 Glacier.",
+          "explanation": "Incorrect: Snapshots cannot be restored into Aurora PostgreSQL with live continuous CDC syncing."
+        },
+        {
+          "id": "D",
+          "text": "Run an AWS Lambda function that executes SELECT * and INSERT statements every 10 seconds.",
+          "explanation": "Incorrect: Custom Lambda querying lacks transaction consistency, duplicates records, and drops data."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS DMS Full Load combined with Ongoing Replication (Change Data Capture / CDC) enables database migrations with near-zero downtime by continuously replicating transaction logs.",
+      "referenceUrl": "https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q071",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Application Migration Service",
+        "Post-Launch Actions"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A company is migrating 200 Windows and Linux servers to AWS using AWS Application Migration Service (MGN). As part of migration modernization, every launched instance must automatically install the AWS Systems Manager (SSM) agent, configure CloudWatch monitoring, and install disaster recovery software upon first boot. How should this be automated?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configure AWS Application Migration Service (MGN) Post-Launch Actions using built-in and custom AWS Systems Manager automation documents.",
+          "explanation": "Correct: AWS MGN Post-Launch Actions allow you to automatically execute actions (such as installing SSM agent, CloudWatch agent, or running custom SSM documents) on target instances immediately upon launch."
+        },
+        {
+          "id": "B",
+          "text": "Log into all 200 servers manually via RDP/SSH after cutover.",
+          "explanation": "Incorrect: Manual server-by-server configuration is slow, error-prone, and unscalable."
+        },
+        {
+          "id": "C",
+          "text": "Configure an S3 Glacier Vault Lock policy on the source servers.",
+          "explanation": "Incorrect: Vault Lock enforces S3 archival compliance, not EC2 post-boot software installation."
+        },
+        {
+          "id": "D",
+          "text": "Deploy Amazon CloudFront in front of the server boot sectors.",
+          "explanation": "Incorrect: CloudFront is a web CDN and does not interact with OS boot sectors."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS MGN Post-Launch Settings allow you to automate post-launch tasks, configuration updates, and agent installations using AWS Systems Manager upon server migration.",
+      "referenceUrl": "https://docs.aws.amazon.com/mgn/latest/ug/post-launch-actions.html",
+      "difficulty": "hard"
+    },
+    {
+      "id": "sap-q072",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Migration Strategies",
+        "7 Rs"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "During a portfolio assessment of 100 enterprise applications, the architecture team identifies an obsolete on-premises commercial CRM software suite that will be retired and replaced with a modern cloud Software as a Service (SaaS) provider (Salesforce). According to AWS migration 7 Rs framework, which migration strategy is this?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Repurchase (Drop and Shop)",
+          "explanation": "Correct: Repurchasing (also known as 'drop and shop') refers to replacing existing on-premises software with a modern SaaS solution or upgraded cloud-native licensing model."
+        },
+        {
+          "id": "B",
+          "text": "Rehost (Lift and Shift)",
+          "explanation": "Incorrect: Rehosting lifts and shifts existing VMs directly to EC2 without changing software."
+        },
+        {
+          "id": "C",
+          "text": "Refactor / Re-architect",
+          "explanation": "Incorrect: Refactoring involves rewriting application code to cloud-native serverless or microservices architectures."
+        },
+        {
+          "id": "D",
+          "text": "Replatform (Lift, Tinker, and Shift)",
+          "explanation": "Incorrect: Replatforming modifies basic components (like moving database to managed RDS) while keeping core app code."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "The 'Repurchase' strategy in the AWS 7 Rs migration framework involves moving to a different product, typically a SaaS platform (e.g., transitioning from an on-premises CRM to a cloud SaaS CRM).",
+      "referenceUrl": "https://docs.aws.amazon.com/whitepapers/latest/aws-migration-whitepaper/migration-strategies.html",
+      "difficulty": "easy"
+    },
+    {
+      "id": "sap-q073",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Transfer Family",
+        "SFTP Migration"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A supply chain enterprise receives invoices from 500 external B2B partners via SFTP (Secure File Transfer Protocol). The enterprise wants to eliminate on-premises SFTP servers and store incoming files directly in Amazon S3 without requiring external partners to change their client SFTP configurations, hostnames, or authentication keys. Which service should they implement?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Transfer Family for SFTP with custom domain names and Amazon S3 as the storage backend.",
+          "explanation": "Correct: AWS Transfer Family provides fully managed SFTP, FTPS, and FTP endpoints backed directly by Amazon S3 or Amazon EFS, supporting custom hostnames, SSH keys, and custom identity providers without altering partner workflows."
+        },
+        {
+          "id": "B",
+          "text": "Deploy an EC2 instance running open-source vsftpd with an EBS volume.",
+          "explanation": "Incorrect: Self-hosted EC2 FTP servers require patching, scaling, high availability management, and lack native serverless S3 integration."
+        },
+        {
+          "id": "C",
+          "text": "Amazon DynamoDB with public HTTP REST endpoints.",
+          "explanation": "Incorrect: External B2B partners use SFTP clients, not custom DynamoDB HTTP APIs."
+        },
+        {
+          "id": "D",
+          "text": "AWS CodeDeploy with Auto Scaling groups.",
+          "explanation": "Incorrect: CodeDeploy is a deployment automation service."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Transfer Family allows you to seamlessly migrate file transfer workflows to AWS by integrating with Amazon S3 and EFS while maintaining existing SFTP client configurations.",
+      "referenceUrl": "https://aws.amazon.com/aws-transfer-family/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q074",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "AWS Storage Gateway",
+        "Tape Gateway",
+        "Backup Modernization"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A bank maintains physical tape libraries and tape drives with backup software (Veeam / Commvault) to backup on-premises data to physical magnetic tapes. They want to eliminate physical tape hardware, offsite tape shipment, and physical vault storage costs without modifying their existing backup software workflows. Which solution meets these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Deploy an AWS Storage Gateway Tape Gateway (Virtual Tape Library - VTL) on-premises, writing virtual tapes to Amazon S3 and archiving to Amazon S3 Glacier Deep Archive.",
+          "explanation": "Correct: Tape Gateway emulates a physical Virtual Tape Library (VTL) compatible with major backup software (Veeam, Commvault, Veritas), storing virtual tapes seamlessly in S3 and S3 Glacier Flexible/Deep Archive."
+        },
+        {
+          "id": "B",
+          "text": "Export data daily to USB thumb drives and mail them to AWS data centers.",
+          "explanation": "Incorrect: Manual mailing of USB drives violates banking security standards and lacks automation."
+        },
+        {
+          "id": "C",
+          "text": "Deploy Amazon CloudSearch across all on-premises servers.",
+          "explanation": "Incorrect: CloudSearch is a search engine, not a tape backup bridge."
+        },
+        {
+          "id": "D",
+          "text": "Use AWS Direct Connect public VIFs with open SSH ports.",
+          "explanation": "Incorrect: Direct Connect does not emulate a Virtual Tape Library."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS Storage Gateway Tape Gateway replaces physical tapes on-premises with virtual tapes in AWS, reducing physical tape management overhead while preserving existing backup software investments.",
+      "referenceUrl": "https://aws.amazon.com/storagegateway/vtl/",
+      "difficulty": "medium"
+    },
+    {
+      "id": "sap-q075",
+      "examId": "SAP-C02",
+      "domainId": "domain-4-migration-modernization",
+      "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+      "services": [
+        "VM Import/Export",
+        "Golden Images"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A government agency has custom-hardened on-premises Windows and Red Hat Enterprise Linux golden VM images (VMDK and VHD formats) that have undergone strict security certifications. How can the agency import these pre-configured virtual machine disk images directly into AWS to launch them as Amazon EC2 Amazon Machine Images (AMIs)?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Upload the VMDK/VHD image files to an Amazon S3 bucket and use the VM Import/Export service (aws ec2 import-image) to convert them into EC2 AMIs.",
+          "explanation": "Correct: AWS VM Import/Export enables you to import VM disk images (VMDK, VHD, OVA) from S3 directly into Amazon EC2 as custom AMIs, preserving existing OS customizations and hardening configurations."
+        },
+        {
+          "id": "B",
+          "text": "Copy the VMDK files into Amazon DynamoDB and run a partition query.",
+          "explanation": "Incorrect: DynamoDB is a NoSQL database; it cannot store or convert raw VM disk image files."
+        },
+        {
+          "id": "C",
+          "text": "Deploy an AWS Storage Gateway Tape Gateway in cached mode.",
+          "explanation": "Incorrect: Tape Gateway is for virtual tape backup software, not VM AMI conversions."
+        },
+        {
+          "id": "D",
+          "text": "Attach an SCP denying ec2:RunInstances in all accounts.",
+          "explanation": "Incorrect: Denying run instances prevents launching compute instances entirely."
+        }
+      ],
+      "correctAnswers": [
+        "A"
+      ],
+      "generalExplanation": "AWS VM Import/Export allows organizations to easily import virtual machine images from existing virtualization environments into Amazon EC2 to create ready-to-launch AMIs.",
+      "referenceUrl": "https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html",
+      "difficulty": "medium"
     }
   ]
 }
