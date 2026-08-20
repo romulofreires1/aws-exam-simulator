@@ -1,0 +1,92 @@
+{
+  "singleChoiceExample": {
+    "id": "sap-q101",
+    "examId": "SAP-C02",
+    "domainId": "domain-1-org-complexity",
+    "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+    "services": [
+      "AWS Organizations",
+      "AWS IAM Identity Center",
+      "AWS KMS"
+    ],
+    "type": "single",
+    "requiredChoices": 1,
+    "statement": "Uma corporação global gerencia mais de 300 contas na AWS dentro do AWS Organizations. A equipe de segurança exige que todos os dados gravados no Amazon S3 em qualquer conta da organização sejam criptografados exclusivamente usando chaves KMS gerenciadas pelo cliente (Customer Managed Keys - CMK), com auditoria centralizada. Além disso, a solução deve impedir explicitamente que administradores de contas-membro criem buckets S3 ou instâncias EBS sem criptografia KMS, aplicando essa restrição de forma preventiva e sem depender de regras de remediação a posteriori. Qual solução atende a esses requisitos com a MENOR sobrecarga operacional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Criar uma Service Control Policy (SCP) na conta de gerenciamento que negue explicitamente as ações s3:PutObject e ec2:RunInstances caso os cabeçalhos de criptografia KMS ou parâmetros de criptografia de volume não estejam presentes. Aplicar a SCP na raiz da organização.",
+        "explanation": "Correto: SCPs atuam como guardrails preventivos no nível do AWS Organizations, bloqueando requisições não conformes na origem para todas as contas-membro (inclusive root) antes da criação do recurso."
+      },
+      {
+        "id": "B",
+        "text": "Implantar regras gerenciadas do AWS Config em cada conta-membro via AWS CloudFormation StackSets para verificar a conformidade e acionar runbooks do AWS Systems Manager Automation para excluir recursos criados sem criptografia KMS.",
+        "explanation": "Incorreto: O AWS Config é uma ferramenta detectiva com remediação a posteriori, o que viola o requisito de prevenir a criação do recurso."
+      },
+      {
+        "id": "C",
+        "text": "Criar uma política IAM de Permission Boundary anexada a todas as roles de usuários em cada conta-membro exigindo o uso de CMKs do KMS.",
+        "explanation": "Incorreto: Permission boundaries não se aplicam ao usuário root das contas-membro e exigem manutenção complexa e descentralizada em cada conta."
+      },
+      {
+        "id": "D",
+        "text": "Habilitar o AWS Security Hub em todas as contas e configurar o Amazon EventBridge para enviar notificações no Amazon SNS sempre que um recurso não criptografado for detectado.",
+        "explanation": "Incorreto: Notificações não impedem a criação de recursos e exigem ação manual posterior da equipe."
+      }
+    ],
+    "correctAnswers": [
+      "A"
+    ],
+    "generalExplanation": "Service Control Policies (SCPs) no AWS Organizations são o mecanismo nativo e recomendado para estabelecer guardrails preventivos em escala enterprise. Elas bloqueiam operações na camada de controle da API antes que qualquer recurso não compatível seja provisionado, aplicando-se a todos os usuários e roles de contas-membro.",
+    "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
+    "difficulty": "hard"
+  },
+  "multipleChoiceExample": {
+    "id": "sap-q102",
+    "examId": "SAP-C02",
+    "domainId": "domain-2-new-solutions",
+    "domainName": "Domain 2: Design for New Solutions",
+    "services": [
+      "Amazon Aurora",
+      "Amazon Route 53",
+      "AWS Elastic Disaster Recovery"
+    ],
+    "type": "multiple",
+    "requiredChoices": 2,
+    "statement": "Uma instituição financeira executa uma plataforma transacional de pagamentos crítica em us-east-1 utilizando instâncias EC2 e um banco de dados relacional Amazon Aurora MySQL. A empresa precisa estruturar uma estratégia de Disaster Recovery (DR) para a região us-west-2 com os seguintes requisitos: RTO inferior a 2 minutos e RPO inferior a 1 segundo para o banco de dados, com capacidade de validação automática contínua de prontidão dos recursos antes do redirecionamento do tráfego de DNS global. Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)",
+    "options": [
+      {
+        "id": "A",
+        "text": "Configurar o Amazon Aurora Global Database com a região primária em us-east-1 e uma região secundária em us-west-2 para replicação física em nível de armazenamento com latência típica menor que 1 segundo.",
+        "explanation": "Correto: O Aurora Global Database oferece replicação física no storage com latência < 1s (RPO < 1s) e failover planejado/não planejado em menos de 1 minuto (RTO < 2 min)."
+      },
+      {
+        "id": "B",
+        "text": "Configurar o AWS Route 53 Application Recovery Controller (ARC) com Routing Controls e Readiness Checks contínuos para monitorar a prontidão da infraestrutura em us-west-2 e executar a alternância de tráfego com segurança.",
+        "explanation": "Correto: O Route 53 ARC realiza verificações contínuas de prontidão (Readiness Checks) para evitar direcionar tráfego para uma região não preparada e permite alternar controles de roteamento sem depender do console central."
+      },
+      {
+        "id": "C",
+        "text": "Configurar réplicas de leitura assíncronas do Amazon RDS MySQL entre regiões e criar uma função do AWS Lambda para promover a réplica manualmente durante um desastre.",
+        "explanation": "Incorreto: Réplicas de leitura RDS Cross-Region utilizam replicação lógica mais lenta e o processo de promoção e reinicialização pode exceder o RTO de 2 minutos."
+      },
+      {
+        "id": "D",
+        "text": "Usar o AWS Backup para criar snapshots a cada 5 minutos do cluster Aurora e copiá-los automaticamente para us-west-2.",
+        "explanation": "Incorreto: Snapshots periódicos de 5 minutos violam o requisito estrito de RPO < 1 segundo."
+      },
+      {
+        "id": "E",
+        "text": "Implantar uma política de roteamento por geolocalização simples no Amazon Route 53 associada a Health Checks padrão na camada de aplicação.",
+        "explanation": "Incorreto: Health checks simples de Route 53 não realizam validação abrangente de prontidão de capacidade da infraestrutura secundária como o ARC."
+      }
+    ],
+    "correctAnswers": [
+      "A",
+      "B"
+    ],
+    "generalExplanation": "Para atender a requisitos severos de RTO < 2 min e RPO < 1s em banco relacional, o Amazon Aurora Global Database é a arquitetura ideal na AWS. Combinado com o Route 53 Application Recovery Controller (ARC), o sistema ganha validação contínua de prontidão (Readiness Checks) e failover controlado de DNS.",
+    "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html",
+    "difficulty": "hard"
+  }
+}

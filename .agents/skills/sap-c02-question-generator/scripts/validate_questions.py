@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+"""
+Validador de Questões SAP-C02 para o AWS Exam Simulator.
+Verifica integridade de schema, ids únicos, paridade de gabarito e regras de distratores.
+"""
+
+import sys
+import json
+import os
+
+VALID_DOMAINS = {
+    "domain-1-org-complexity": "Domain 1: Design Solutions for Organizational Complexity",
+    "domain-2-new-solutions": "Domain 2: Design for New Solutions",
+    "domain-3-continuous-improvement": "Domain 3: Continuous Improvement for Existing Solutions",
+    "domain-4-migration-modernization": "Domain 4: Accelerate Workload Migration and Modernization"
+}
+
+def validate_question(q, index=0):
+    errors = []
+    prefix = f"Question #{index+1} (ID: {q.get('id', 'MISSING')})"
+
+    # Required fields
+    required_fields = ["id", "examId", "domainId", "statement", "type", "requiredChoices", "options", "correctAnswers", "generalExplanation"]
+    for f in required_fields:
+        if f not in q or q[f] is None:
+            errors.append(f"{prefix}: Campo obrigatório ausente '{f}'.")
+
+    if not q.get("examId", "").startswith("SAP-C02"):
+        errors.append(f"{prefix}: examId deve começar com 'SAP-C02', encontrado '{q.get('examId')}'.")
+
+    if q.get("domainId") not in VALID_DOMAINS:
+        errors.append(f"{prefix}: domainId inválido '{q.get('domainId')}'. Valores permitidos: {list(VALID_DOMAINS.keys())}")
+
+    q_type = q.get("type")
+    req_choices = q.get("requiredChoices", 0)
+    correct_ans = q.get("correctAnswers", [])
+    options = q.get("options", [])
+
+    if q_type not in ["single", "multiple"]:
+        errors.append(f"{prefix}: 'type' deve ser 'single' ou 'multiple'.")
+
+    if q_type == "single" and req_choices != 1:
+        errors.append(f"{prefix}: Questões do tipo 'single' devem ter requiredChoices = 1.")
+
+    if q_type == "multiple" and req_choices < 2:
+        errors.append(f"{prefix}: Questões do tipo 'multiple' devem ter requiredChoices >= 2.")
+
+    if len(correct_ans) != req_choices:
+        errors.append(f"{prefix}: Quantidade de correctAnswers ({len(correct_ans)}) diferente de requiredChoices ({req_choices}).")
+
+    if not isinstance(options, list) or len(options) < 4:
+        errors.append(f"{prefix}: Deve ter no mínimo 4 opções de resposta.")
+    else:
+        option_ids = set()
+        for idx, opt in enumerate(options):
+            opt_id = opt.get("id")
+            if not opt_id:
+                errors.append(f"{prefix} Opção #{idx+1}: ID da opção ausente.")
+            elif opt_id in option_ids:
+                errors.append(f"{prefix} Opção '{opt_id}': ID duplicado.")
+            option_ids.add(opt_id)
+
+            if not opt.get("text", "").strip():
+                errors.append(f"{prefix} Opção '{opt_id}': Texto da opção vazio.")
+
+            if not opt.get("explanation", "").strip():
+                errors.append(f"{prefix} Opção '{opt_id}': Explicação da opção vazia.")
+
+        for ans in correct_ans:
+            if ans not in option_ids:
+                errors.append(f"{prefix}: Gabarito '{ans}' não existe entre as opções disponíveis ({sorted(list(option_ids))}).")
+
+    if not q.get("generalExplanation", "").strip():
+        errors.append(f"{prefix}: 'generalExplanation' não pode ser vazio.")
+
+    return errors
+
+def main():
+    if len(sys.argv) < 2:
+        print("Uso: python3 validate_questions.py <caminho_para_arquivo.json>")
+        sys.exit(1)
+
+    file_path = sys.argv[1]
+    if not os.path.exists(file_path):
+        print(f"❌ Arquivo não encontrado: {file_path}")
+        sys.exit(1)
+
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"❌ Erro ao ler JSON: {e}")
+        sys.exit(1)
+
+    questions_to_validate = []
+    if isinstance(data, dict):
+        if "questions" in data and isinstance(data["questions"], list):
+            questions_to_validate = data["questions"]
+        else:
+            # Maybe single question or map of examples
+            for k, v in data.items():
+                if isinstance(v, dict) and "statement" in v:
+                    questions_to_validate.append(v)
+                elif isinstance(v, list):
+                    questions_to_validate.extend(v)
+    elif isinstance(data, list):
+        questions_to_validate = data
+
+    print(f"🔍 Validando {len(questions_to_validate)} questão(ões) em {file_path}...")
+
+    all_errors = []
+    seen_ids = set()
+
+    for idx, q in enumerate(questions_to_validate):
+        q_id = q.get("id")
+        if q_id:
+            if q_id in seen_ids:
+                all_errors.append(f"ID duplicado detectado no arquivo: '{q_id}'")
+            seen_ids.add(q_id)
+        errs = validate_question(q, idx)
+        all_errors.extend(errs)
+
+    if all_errors:
+        print(f"❌ Foram encontrados {len(all_errors)} erro(s):")
+        for err in all_errors:
+            print(f"  - {err}")
+        sys.exit(1)
+    else:
+        print("🎉 Todas as questões foram validadas com sucesso e atendem ao padrão SAP-C02!")
+
+if __name__ == "__main__":
+    main()

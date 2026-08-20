@@ -1,11 +1,15 @@
 import { ExamDefinition } from '@/types/exam';
 import sapC02 from './sap-c02.json';
+import sapC02Sim1 from './sap-c02-sim-1.json';
+import sapC02Sim2 from './sap-c02-sim-2.json';
 import saaC03 from './saa-c03.json';
 import clfC02 from './clf-c02.json';
 
 // Central registry of available exams
 export const AVAILABLE_EXAMS: ExamDefinition[] = [
   sapC02 as unknown as ExamDefinition,
+  sapC02Sim1 as unknown as ExamDefinition,
+  sapC02Sim2 as unknown as ExamDefinition,
   saaC03 as unknown as ExamDefinition,
   clfC02 as unknown as ExamDefinition,
 ];

@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Validates advanced technical skills and experience in designing distributed applications and systems on the AWS platform.",
   "totalQuestions": 75,
-  "timeLimitMinutes": 180,
+  "timeLimitMinutes": 220,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [
