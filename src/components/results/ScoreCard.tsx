@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import confetti from 'canvas-confetti';
 import { Award, CheckCircle2, XCircle, Clock, Calendar, Shield } from 'lucide-react';
 import { ExamAttempt } from '@/types/exam';
 
@@ -17,16 +16,19 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
   const percentage = score?.percentage || 0;
 
   useEffect(() => {
-    if (passed) {
-      try {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
+    if (passed && typeof window !== 'undefined') {
+      import('canvas-confetti')
+        .then((module) => {
+          const confetti = module.default || module;
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        })
+        .catch(() => {
+          // Fallback safe se não carregar
         });
-      } catch (e) {
-        // Fallback safe
-      }
     }
   }, [passed]);
 

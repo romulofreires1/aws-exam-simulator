@@ -7,9 +7,14 @@ interface ExamRunnerPageProps {
 
 export function generateStaticParams() {
   const exams = getAllExams();
-  return exams.map((exam) => ({
-    examId: exam.id,
-  }));
+  const params: { examId: string }[] = [];
+  exams.forEach((exam) => {
+    params.push({ examId: exam.id });
+    if (exam.id.toLowerCase() !== exam.id) {
+      params.push({ examId: exam.id.toLowerCase() });
+    }
+  });
+  return params;
 }
 
 export default async function ExamRunnerPage({ params }: ExamRunnerPageProps) {
