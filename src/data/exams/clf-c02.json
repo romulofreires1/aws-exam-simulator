@@ -1,0 +1,184 @@
+{
+  "id": "CLF-C02",
+  "title": "AWS Certified Cloud Practitioner",
+  "code": "CLF-C02",
+  "category": "Foundational",
+  "description": "Valida a compreensão geral e fundamental dos conceitos de nuvem AWS, serviços centrais de segurança, conformidade e faturamento.",
+  "totalQuestions": 65,
+  "timeLimitMinutes": 90,
+  "passingScore": 700,
+  "icon": "cloud",
+  "domains": [
+    {
+      "id": "domain-1-cloud-concepts",
+      "name": "Domain 1: Cloud Concepts",
+      "weightPercentage": 24
+    },
+    {
+      "id": "domain-2-security-compliance",
+      "name": "Domain 2: Security and Compliance",
+      "weightPercentage": 30
+    },
+    {
+      "id": "domain-3-cloud-technology-services",
+      "name": "Domain 3: Cloud Technology and Services",
+      "weightPercentage": 34
+    },
+    {
+      "id": "domain-4-billing-pricing-support",
+      "name": "Domain 4: Billing, Pricing, and Support",
+      "weightPercentage": 12
+    }
+  ],
+  "questions": [
+    {
+      "id": "clf-q001",
+      "examId": "CLF-C02",
+      "domainId": "domain-1-cloud-concepts",
+      "domainName": "Domain 1: Cloud Concepts",
+      "services": ["AWS Global Infrastructure", "AWS Regions", "Availability Zones"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Qual conceito da computação em nuvem AWS descreve a capacidade de um sistema de ajustar automaticamente os recursos de computação com base no aumento ou na diminuição instantânea da demanda?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Elasticidade",
+          "explanation": "Correto: Elasticidade é a capacidade de alocar e desalocar recursos computacionais de forma automatizada conforme a variação da demanda."
+        },
+        {
+          "id": "B",
+          "text": "Tolerância a Falhas",
+          "explanation": "Incorreto: Tolerância a falhas é a capacidade do sistema continuar operando mesmo com a falha de componentes."
+        },
+        {
+          "id": "C",
+          "text": "Agilidade",
+          "explanation": "Incorreto: Agilidade refere-se à rapidez para lançar e inovar novas aplicações e ambientes na nuvem."
+        },
+        {
+          "id": "D",
+          "text": "Durabilidade",
+          "explanation": "Incorreto: Durabilidade é a proteção contra perda de dados armazenados ao longo do tempo."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "Elasticidade permite que a infraestrutura se expanda e contraia automaticamente, garantindo disponibilidade sem custos com superdimensionamento desnecessário de capacidade.",
+      "referenceUrl": "https://aws.amazon.com/what-is-cloud-computing/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "clf-q002",
+      "examId": "CLF-C02",
+      "domainId": "domain-2-security-compliance",
+      "domainName": "Domain 2: Security and Compliance",
+      "services": ["AWS IAM", "AWS Shared Responsibility Model"],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "De acordo com o Modelo de Responsabilidade Compartilhada da AWS, quais DUAS das seguintes tarefas são de responsabilidade do CLIENTE ao utilizar instâncias Amazon EC2? (Selecione DUAS.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Instalação de patches e atualizações no sistema operacional convidado (guest OS).",
+          "explanation": "Correto: No modelo IaaS do EC2, o cliente é responsável pela manutenção, atualizações e segurança do sistema operacional instalado na instância."
+        },
+        {
+          "id": "B",
+          "text": "Configuração das regras de firewall de entrada e saída (Security Groups).",
+          "explanation": "Correto: O gerenciamento e a definição de regras de firewall de rede virtual (Security Groups e Network ACLs) são de responsabilidade direta do cliente."
+        },
+        {
+          "id": "C",
+          "text": "Manutenção física e descarte seguro dos discos rígidos dos servidores físicos nos data centers.",
+          "explanation": "Incorreto: A segurança física e destruição de hardware é de responsabilidade exclusiva da AWS ('Segurança DA nuvem')."
+        },
+        {
+          "id": "D",
+          "text": "Aplicação de patches no hypervisor que virtualiza os servidores físicos.",
+          "explanation": "Incorreto: A camada de virtualização e hypervisor é gerida pela AWS."
+        },
+        {
+          "id": "E",
+          "text": "Fornecimento de geradores de energia redundantes e refrigeração nas instalações físicas.",
+          "explanation": "Incorreto: Instalações físicas e energia são de responsabilidade da AWS."
+        }
+      ],
+      "correctAnswers": ["A", "B"],
+      "generalExplanation": "No Modelo de Responsabilidade Compartilhada, a AWS é responsável pela 'Segurança DA Nuvem' (hardware, data centers, hypervisor), enquanto o cliente é responsável pela 'Segurança NA Nuvem' (SO convidado, dados, firewalls e controle de acessos IAM).",
+      "referenceUrl": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "clf-q003",
+      "examId": "CLF-C02",
+      "domainId": "domain-3-cloud-technology-services",
+      "domainName": "Domain 3: Cloud Technology and Services",
+      "services": ["AWS Lambda", "Amazon S3", "AWS Fargate"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Qual serviço da AWS permite executar código sem provisionar ou gerenciar servidores físicos ou virtuais, cobrando apenas pelo tempo de computação consumido em milissegundos?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Lambda",
+          "explanation": "Correto: O AWS Lambda é o serviço de computação serverless orientado a eventos da AWS."
+        },
+        {
+          "id": "B",
+          "text": "Amazon EC2",
+          "explanation": "Incorreto: O EC2 requer o provisionamento e gerência de instâncias de máquinas virtuais."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Lightsail",
+          "explanation": "Incorreto: O Lightsail fornece servidores virtuais privados simplificados pré-configurados."
+        },
+        {
+          "id": "D",
+          "text": "AWS Elastic Beanstalk",
+          "explanation": "Incorreto: O Beanstalk é uma plataforma de orquestração de deploy que ainda provisiona servidores EC2 por baixo."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "O AWS Lambda é o serviço de computação serverless central da AWS, permitindo execução de código acionado por eventos com escalabilidade automática e cobrança baseada no tempo de execução.",
+      "referenceUrl": "https://aws.amazon.com/lambda/",
+      "difficulty": "easy"
+    },
+    {
+      "id": "clf-q004",
+      "examId": "CLF-C02",
+      "domainId": "domain-4-billing-pricing-support",
+      "domainName": "Domain 4: Billing, Pricing, and Support",
+      "services": ["AWS Cost Explorer", "AWS Budgets", "AWS Pricing Calculator"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Uma empresa deseja receber notificações automáticas por e-mail ou SMS sempre que os custos previstos ou reais da conta ultrapassarem um limite de orçamento mensal predeterminado. Qual serviço atende a essa exigência?",
+      "options": [
+        {
+          "id": "A",
+          "text": "AWS Budgets",
+          "explanation": "Correto: O AWS Budgets permite definir orçamentos personalizados e enviar alertas quando os custos reais ou estimados excederem as metas."
+        },
+        {
+          "id": "B",
+          "text": "AWS Pricing Calculator",
+          "explanation": "Incorreto: O Pricing Calculator é uma ferramenta de estimativa prévia de custos de arquitetura."
+        },
+        {
+          "id": "C",
+          "text": "AWS Cost and Usage Report",
+          "explanation": "Incorreto: Fornece arquivos detalhados brutos de uso em S3 para análise e BI, sem envio de alertas em tempo real."
+        },
+        {
+          "id": "D",
+          "text": "AWS Trusted Advisor",
+          "explanation": "Incorreto: Fornece recomendações de boas práticas e verificações de custo, mas não é a ferramenta primária de monitoramento de metas de orçamento com alertas automatizados."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "O AWS Budgets é a ferramenta ideal para rastrear custos, uso e reservas, permitindo configurar alertas acionados por métricas de gastos reais ou previstos.",
+      "referenceUrl": "https://aws.amazon.com/aws-cost-management/aws-budgets/",
+      "difficulty": "easy"
+    }
+  ]
+}

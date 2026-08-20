@@ -1,0 +1,102 @@
+{
+  "id": "EXAM-CODE",
+  "title": "AWS Certified Example Title",
+  "code": "EXAM-CODE",
+  "category": "Associate",
+  "description": "Breve descrição sobre o propósito desta certificação.",
+  "totalQuestions": 65,
+  "timeLimitMinutes": 130,
+  "passingScore": 720,
+  "icon": "shield",
+  "domains": [
+    {
+      "id": "domain-1-example",
+      "name": "Domain 1: Example Architecture",
+      "weightPercentage": 30
+    },
+    {
+      "id": "domain-2-example",
+      "name": "Domain 2: Security & Compliance",
+      "weightPercentage": 70
+    }
+  ],
+  "questions": [
+    {
+      "id": "exam-q001",
+      "examId": "EXAM-CODE",
+      "domainId": "domain-1-example",
+      "domainName": "Domain 1: Example Architecture",
+      "services": ["S3", "CloudFront"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "A company is looking for a storage solution for static web assets that provides low latency globally. Which solution meets these requirements?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Host assets on Amazon S3 and distribute them globally via Amazon CloudFront.",
+          "explanation": "Correct: S3 combined with CloudFront edge locations provides high durability and low-latency global delivery."
+        },
+        {
+          "id": "B",
+          "text": "Store assets on Amazon EBS volumes attached to a single EC2 instance.",
+          "explanation": "Incorrect: EBS is block storage tied to a single AZ and does not scale globally."
+        },
+        {
+          "id": "C",
+          "text": "Store files on AWS Storage Gateway Volume Gateway.",
+          "explanation": "Incorrect: Storage Gateway is designed for hybrid on-premises environments, not low latency web asset distribution."
+        },
+        {
+          "id": "D",
+          "text": "Use Amazon DynamoDB to store large image files as binary attributes.",
+          "explanation": "Incorrect: DynamoDB item limit is 400KB and is not meant for direct public static web asset hosting."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "Amazon CloudFront in front of an Amazon S3 bucket is the AWS best practice for secure and low-latency global static asset delivery.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html",
+      "difficulty": "easy"
+    },
+    {
+      "id": "exam-q002",
+      "examId": "EXAM-CODE",
+      "domainId": "domain-2-example",
+      "domainName": "Domain 2: Security & Compliance",
+      "services": ["KMS", "S3"],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "A financial firm requires that all data stored at rest in Amazon S3 must be encrypted using customer-managed keys that are automatically rotated annually. Which TWO steps should the solutions architect take? (Choose TWO.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Create an AWS KMS customer managed key (CMK) and enable automatic key rotation.",
+          "explanation": "Correct: AWS KMS customer managed keys support automatic annual rotation."
+        },
+        {
+          "id": "B",
+          "text": "Configure the S3 bucket default encryption to use SSE-KMS with the created customer managed key.",
+          "explanation": "Correct: Default bucket encryption ensures all new objects are encrypted with the specified CMK."
+        },
+        {
+          "id": "C",
+          "text": "Use AWS KMS AWS managed key (aws/s3).",
+          "explanation": "Incorrect: AWS managed keys cannot be customized or manually managed, and rotate every 3 years."
+        },
+        {
+          "id": "D",
+          "text": "Enable SSE-S3 encryption on the S3 bucket.",
+          "explanation": "Incorrect: SSE-S3 uses 256-bit AES keys managed by S3, not customer managed KMS keys."
+        },
+        {
+          "id": "E",
+          "text": "Create an asymmetric KMS key pair and store the private key in AWS Secrets Manager.",
+          "explanation": "Incorrect: S3 server-side encryption requires symmetric KMS keys."
+        }
+      ],
+      "correctAnswers": ["A", "B"],
+      "generalExplanation": "To satisfy customer-managed key requirements with annual rotation, create a symmetric KMS CMK with key rotation enabled and configure S3 bucket default encryption with SSE-KMS.",
+      "referenceUrl": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+      "difficulty": "medium"
+    }
+  ]
+}

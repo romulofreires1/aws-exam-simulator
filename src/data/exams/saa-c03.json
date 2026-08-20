@@ -1,0 +1,184 @@
+{
+  "id": "SAA-C03",
+  "title": "AWS Certified Solutions Architect - Associate",
+  "code": "SAA-C03",
+  "category": "Associate",
+  "description": "Comprova a capacidade de projetar e implementar soluções seguras e robustas usando as tecnologias da AWS e os pilares do Well-Architected Framework.",
+  "totalQuestions": 65,
+  "timeLimitMinutes": 130,
+  "passingScore": 720,
+  "icon": "layers",
+  "domains": [
+    {
+      "id": "domain-1-secure-architectures",
+      "name": "Domain 1: Design Secure Architectures",
+      "weightPercentage": 30
+    },
+    {
+      "id": "domain-2-resilient-architectures",
+      "name": "Domain 2: Design Resilient Architectures",
+      "weightPercentage": 26
+    },
+    {
+      "id": "domain-3-high-performing-architectures",
+      "name": "Domain 3: Design High-Performing Architectures",
+      "weightPercentage": 24
+    },
+    {
+      "id": "domain-4-cost-optimized-architectures",
+      "name": "Domain 4: Design Cost-Optimized Architectures",
+      "weightPercentage": 20
+    }
+  ],
+  "questions": [
+    {
+      "id": "saa-q001",
+      "examId": "SAA-C03",
+      "domainId": "domain-1-secure-architectures",
+      "domainName": "Domain 1: Design Secure Architectures",
+      "services": ["Amazon S3", "Amazon CloudFront", "AWS WAF"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Uma empresa hospeda um site estático no Amazon S3 e distribui o conteúdo globalmente pelo Amazon CloudFront. A equipe de segurança exige que os usuários acessem os arquivos exclusivamente através da URL do CloudFront e nunca diretamente pelo endpoint do bucket S3. Qual é a configuração recomendada?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar uma Origin Access Control (OAC) na distribuição do CloudFront e atualizar a política do bucket S3 para permitir acesso somente a essa distribuição.",
+          "explanation": "Correto: OAC é a recomendação atual e segura da AWS para restringir o acesso ao bucket S3 apenas a distribuições CloudFront designadas."
+        },
+        {
+          "id": "B",
+          "text": "Configurar o bucket S3 como público e bloquear o tráfego usando regras de Security Group.",
+          "explanation": "Incorreto: Buckets S3 não utilizam Security Groups."
+        },
+        {
+          "id": "C",
+          "text": "Utilizar URLs assinadas (Pre-signed URLs) para todas as requisições de leitura de páginas públicas.",
+          "explanation": "Incorreto: Pre-signed URLs são voltadas para acessos temporários restritos, não para páginas e assets públicos estáticos."
+        },
+        {
+          "id": "D",
+          "text": "Criar um VPC Endpoint para S3 e apontar a distribuição do CloudFront para dentro de uma sub-rede privada.",
+          "explanation": "Incorreto: O CloudFront é um serviço público global de borda e não roda dentro de sub-redes privadas de VPC."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "Origin Access Control (OAC) substitui a antiga OAI e permite que o Amazon CloudFront acesse o bucket S3 de forma segura e autenticada via SigV4, bloqueando acessos públicos diretos ao S3.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "saa-q002",
+      "examId": "SAA-C03",
+      "domainId": "domain-2-resilient-architectures",
+      "domainName": "Domain 2: Design Resilient Architectures",
+      "services": ["Amazon SQS", "AWS Lambda", "Amazon EC2 Auto Scaling"],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "Um aplicativo de processamento de pedidos recebe picos imprevisíveis de tráfego. O processamento de cada pedido leva em média 2 minutos. Os arquitetos precisam desacoplar a camada web da camada de processamento de backend para garantir que nenhum pedido seja descartado durante os picos e que o backend escale automaticamente conforme a demanda. Quais DUAS opções atendem à necessidade? (Selecione DUAS.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Utilizar uma fila Amazon SQS entre a camada web e a camada de processamento de pedidos.",
+          "explanation": "Correto: O Amazon SQS desacopla as camadas e armazena as mensagens de forma durável e resiliente até que os consumidores possam processá-las."
+        },
+        {
+          "id": "B",
+          "text": "Configurar uma Target Tracking Scaling Policy no grupo de Auto Scaling das instâncias de processamento com base na métrica personalizada ApproximateNumberOfMessagesVisible da fila SQS.",
+          "explanation": "Correto: Escalar com base na profundidade da fila (backlog por instância) garante capacidade proporcional ao volume de mensagens pendentes."
+        },
+        {
+          "id": "C",
+          "text": "Utilizar um Application Load Balancer com sticky sessions diretamente para as instâncias de processamento.",
+          "explanation": "Incorreto: Sticky sessions não desacoplam os componentes e podem concentrar tráfego em nós sobrecarregados."
+        },
+        {
+          "id": "D",
+          "text": "Configurar Amazon SNS topics com entrega síncrona HTTP para os servidores de backend.",
+          "explanation": "Incorreto: SNS com HTTP síncrono não possui buffer durável de enfileiramento caso o backend fique temporariamente indisponível."
+        },
+        {
+          "id": "E",
+          "text": "Substituir o backend por instâncias EC2 Spot em um grupo de Auto Scaling com tamanho fixo sem fila intermediária.",
+          "explanation": "Incorreto: Instâncias Spot podem ser interrompidas com aviso prévio de 2 minutos e tamanho fixo não suporta picos imprevisíveis sem buffer."
+        }
+      ],
+      "correctAnswers": ["A", "B"],
+      "generalExplanation": "O padrão arquitetural padrão para desacoplamento assíncrono resiliente na AWS é o uso de filas Amazon SQS com grupos de Auto Scaling configurados para escalar de acordo com a profundidade da fila dividida pela capacidade do worker.",
+      "referenceUrl": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html",
+      "difficulty": "medium"
+    },
+    {
+      "id": "saa-q003",
+      "examId": "SAA-C03",
+      "domainId": "domain-3-high-performing-architectures",
+      "domainName": "Domain 3: Design High-Performing Architectures",
+      "services": ["Amazon ElastiCache", "Amazon RDS for MySQL"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Uma aplicação web de notícias com alto volume de leituras e poucas gravações está enfrentando degradação de desempenho devido à sobrecarga de consultas SQL repetitivas no banco de dados Amazon RDS MySQL. Qual solução aumentará o desempenho de leitura de forma mais econômica e rápida?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar um cluster Amazon ElastiCache for Redis na frente do Amazon RDS e implementar a estratégia de cache Lazy Loading (Cache-Aside).",
+          "explanation": "Correto: ElastiCache em memória reduz drasticamente a latência de leitura (sub-milissegundo) e alivia a carga do banco relacional de forma muito eficiente para workloads read-heavy."
+        },
+        {
+          "id": "B",
+          "text": "Migrar o banco de dados RDS para instâncias maiores com volumes EBS io2 Block Express.",
+          "explanation": "Incorreto: Escala vertical com io2 é muito mais custosa e não resolve a raiz de consultas idênticas repetitivas em memória."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar Multi-AZ no RDS e direcionar consultas SELECT para a instância standby secundária.",
+          "explanation": "Incorreto: No RDS tradicional Multi-AZ, a réplica standby é passiva para failover e não aceita conexões de leitura (ao contrário do Aurora ou Read Replicas dedicadas)."
+        },
+        {
+          "id": "D",
+          "text": "Ativar o AWS Auto Scaling diretamente no nó primário do RDS MySQL.",
+          "explanation": "Incorreto: RDS MySQL Single-Instance não possui auto-scaling de nós de computação sob demanda instantâneo para leitura como no ElastiCache."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "O uso de uma camada de cache em memória com Amazon ElastiCache (Redis ou Memcached) aplicando o padrão Cache-Aside é a melhor prática recomendada para aplicações intensivas em leitura.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Strategies.html",
+      "difficulty": "easy"
+    },
+    {
+      "id": "saa-q004",
+      "examId": "SAA-C03",
+      "domainId": "domain-4-cost-optimized-architectures",
+      "domainName": "Domain 4: Design Cost-Optimized Architectures",
+      "services": ["Amazon S3", "Amazon S3 Lifecycle", "Amazon S3 Glacier"],
+      "type": "single",
+      "requiredChoices": 1,
+      "statement": "Uma empresa médica gera imagens de exames que precisam ser acessadas com frequência nos primeiros 30 dias após a criação. Após 30 dias, as imagens raramente são acessadas, mas devem ser mantidas por 5 anos por requisitos legais, com tempo de recuperação de até 5 horas aceitável. Qual é a estratégia de ciclo de vida do Amazon S3 mais econômica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar uma política de ciclo de vida do S3 para transicionar os objetos de S3 Standard para S3 Glacier Flexible Retrieval após 30 dias, e expirar/excluir após 5 anos.",
+          "explanation": "Correto: S3 Standard atende os primeiros 30 dias e S3 Glacier Flexible Retrieval oferece o menor custo para arquivos raramente acessados com janela de recuperação de 3 a 5 horas."
+        },
+        {
+          "id": "B",
+          "text": "Armazenar todos os arquivos desde o início em S3 Glacier Deep Archive com recuperação acelerada.",
+          "explanation": "Incorreto: O Glacier Deep Archive não suporta acesso frequente inicial e não possui modalidade acelerada em minutos."
+        },
+        {
+          "id": "C",
+          "text": "Transicionar os objetos para S3 One Zone-IA após 30 dias e manter por 5 anos.",
+          "explanation": "Incorreto: S3 One Zone-IA é mais caro que o Glacier e possui menor resiliência (uma única AZ), o que não é recomendado para dados médicos críticos."
+        },
+        {
+          "id": "D",
+          "text": "Manter os objetos em S3 Standard e aplicar compressão gzip manual aos 30 dias.",
+          "explanation": "Incorreto: Manter 5 anos em S3 Standard gera custos desnecessários e compressão manual traz alta sobrecarga de gerência."
+        }
+      ],
+      "correctAnswers": ["A"],
+      "generalExplanation": "A transição automatizada via S3 Lifecycle para a classe S3 Glacier Flexible Retrieval minimiza os custos de armazenamento de longo prazo garantindo disponibilidade em conformidade com o prazo de recuperação tolerado.",
+      "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html",
+      "difficulty": "medium"
+    }
+  ]
+}
