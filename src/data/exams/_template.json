@@ -3,7 +3,7 @@
   "title": "AWS Certified Example Title",
   "code": "EXAM-CODE",
   "category": "Associate",
-  "description": "Breve descrição sobre o propósito desta certificação.",
+  "description": "Brief description of this certification's purpose and scope.",
   "totalQuestions": 65,
   "timeLimitMinutes": 130,
   "passingScore": 720,

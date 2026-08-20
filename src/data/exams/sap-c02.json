@@ -3,7 +3,7 @@
   "title": "AWS Certified Solutions Architect - Professional",
   "code": "SAP-C02",
   "category": "Professional",
-  "description": "Valida conhecimentos avançados em arquitetura e projeto de soluções complexas, escaláveis, resilientes, seguras e com otimização de custos na AWS.",
+  "description": "Validates advanced technical skills and experience in designing distributed applications and systems on the AWS platform.",
   "totalQuestions": 75,
   "timeLimitMinutes": 180,
   "passingScore": 750,
@@ -39,31 +39,31 @@
       "services": ["AWS Organizations", "AWS IAM Identity Center", "Service Catalog"],
       "type": "single",
       "requiredChoices": 1,
-      "statement": "Uma grande empresa multinacional utiliza o AWS Organizations com mais de 200 contas AWS distribuídas em várias Unidades Organizacionais (OUs). A equipe de governança precisa garantir que nenhuma conta membro, nem mesmo o usuário root de contas membros, possa desativar o AWS CloudTrail ou alterar buckets do Amazon S3 usados para armazenamento de logs de auditoria centralizados. Qual é a solução arquitetural mais escalável e em conformidade?",
+      "statement": "A multinational enterprise uses AWS Organizations with more than 200 AWS accounts spread across multiple Organizational Units (OUs). The governance team must ensure that no member account, including the root user of member accounts, can disable AWS CloudTrail or modify centralized audit log buckets in Amazon S3. Which architectural solution is most scalable and compliant?",
       "options": [
         {
           "id": "A",
-          "text": "Criar uma Service Control Policy (SCP) na conta de gerenciamento do AWS Organizations que nega explicitamente ações como cloudtrail:StopLogging, cloudtrail:DeleteTrail e s3:DeleteBucket, e anexar essa SCP à OU raiz.",
-          "explanation": "Correto: SCPs do AWS Organizations se aplicam a todas as contas membro e a todos os usuários/roles nelas (incluindo o usuário root da conta membro). Negativas explícitas em SCPs sobrepõem qualquer permissão IAM local."
+          "text": "Create a Service Control Policy (SCP) in the AWS Organizations management account that explicitly denies actions like cloudtrail:StopLogging, cloudtrail:DeleteTrail, and s3:DeleteBucket, and attach this SCP to the root OU.",
+          "explanation": "Correct: AWS Organizations SCPs apply to all member accounts and all users/roles within them (including the member account root user). Explicit denies in SCPs override any local IAM permission."
         },
         {
           "id": "B",
-          "text": "Configurar uma IAM Permission Boundary em todas as IAM Roles criadas nas contas membros que impeça alterações no CloudTrail.",
-          "explanation": "Incorreto: Permission boundaries não se aplicam ao usuário root da conta membro nem a novas roles que não incluam o boundary explicitamente."
+          "text": "Configure an IAM Permission Boundary on all IAM Roles created in member accounts preventing modifications to CloudTrail.",
+          "explanation": "Incorrect: Permission boundaries do not apply to the root user of a member account or to new roles created without the boundary."
         },
         {
           "id": "C",
-          "text": "Configurar regras do AWS Config com remediação automática via AWS Systems Manager Automation Document para recriar as trilhas caso sejam excluídas.",
-          "explanation": "Incorreto: O AWS Config é reativo e detecta após o evento, não impedindo preventivamente a deleção ou desativação."
+          "text": "Configure AWS Config rules with automated remediation via AWS Systems Manager Automation Documents to recreate trails if deleted.",
+          "explanation": "Incorrect: AWS Config is detective and reactive after the fact, failing to preventively block deletion or tampering."
         },
         {
           "id": "D",
-          "text": "Implantar uma Bucket Policy restritiva diretamente no bucket de logs central da conta de auditoria confiando apenas no ID da organização.",
-          "explanation": "Incorreto: Embora proteja o bucket central, não impede que administradores locais parem o envio de logs pelo CloudTrail da conta membro."
+          "text": "Deploy a restrictive S3 Bucket Policy directly on the central audit log bucket trusting only the Organization ID.",
+          "explanation": "Incorrect: While it protects the bucket, it does not prevent local account administrators from stopping CloudTrail logging in their respective member accounts."
         }
       ],
       "correctAnswers": ["A"],
-      "generalExplanation": "As Service Control Policies (SCPs) do AWS Organizations fornecem governança centralizada e são o mecanismo recomendado pela AWS para impor barreiras de proteção preventivas (guardrails) intransponíveis por usuários e administradores de contas membros, incluindo o root.",
+      "generalExplanation": "AWS Organizations Service Control Policies (SCPs) provide central governance and are the recommended AWS mechanism to enforce preventive guardrails that cannot be overridden by member account users or administrators, including the root user.",
       "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
       "difficulty": "hard"
     },
@@ -75,36 +75,36 @@
       "services": ["AWS Transit Gateway", "AWS Direct Connect", "AWS Site-to-Site VPN"],
       "type": "multiple",
       "requiredChoices": 2,
-      "statement": "Uma corporação financeira precisa interconectar mais de 50 VPCs espalhadas por duas regiões AWS (us-east-1 e us-west-2) a dois data centers corporativos on-premises redundantes. A arquitetura exige suporte a roteamento dinâmico BGP, criptografia ponta a ponta com IPsec sobre conexão dedicada de baixa latência e failover automatizado. Quais DUAS opções devem ser combinadas para compor esta arquitetura? (Selecione DUAS.)",
+      "statement": "A financial institution needs to interconnect more than 50 VPCs spread across two AWS regions (us-east-1 and us-west-2) with two redundant on-premises corporate data centers. The architecture requires dynamic BGP routing, end-to-end IPsec encryption over dedicated low-latency connections, and automated failover. Which TWO options should be combined to build this architecture? (Choose TWO.)",
       "options": [
         {
           "id": "A",
-          "text": "Implantar um AWS Transit Gateway em cada região e configurar o emparelhamento entre Transit Gateways (Transit Gateway Peering) entre us-east-1 e us-west-2.",
-          "explanation": "Correto: Transit Gateways simplificam a malha de VPCs em escala e o Transit Gateway Peering permite roteamento inter-regional criptografado nativo."
+          "text": "Deploy an AWS Transit Gateway in each region and configure Transit Gateway Peering between us-east-1 and us-west-2.",
+          "explanation": "Correct: Transit Gateways simplify scalable VPC meshing, and Transit Gateway Peering provides native inter-region encrypted routing."
         },
         {
           "id": "B",
-          "text": "Estabelecer conexões AWS Direct Connect com Transit VIF conectadas a um Direct Connect Gateway associado aos Transit Gateways, e estabelecer túneis VPN IPsec sobre as conexões Direct Connect para criptografia.",
-          "explanation": "Correto: Direct Connect com Transit VIF associado a Direct Connect Gateway permite ligar o on-premises aos Transit Gateways, e túneis VPN IPsec sobre Direct Connect atendem à exigência de trânsito criptografado."
+          "text": "Establish AWS Direct Connect connections with Transit VIF attached to a Direct Connect Gateway associated with the Transit Gateways, and establish IPsec VPN tunnels over Direct Connect connections for encryption.",
+          "explanation": "Correct: Direct Connect Transit VIFs connected to Direct Connect Gateway connect on-premises to Transit Gateways, and IPsec VPN tunnels over Direct Connect satisfy encryption-in-transit requirements."
         },
         {
           "id": "C",
-          "text": "Criar uma malha completa de conexões VPC Peering entre todas as 50 VPCs inter-regionais.",
-          "explanation": "Incorreto: VPC Peering não suporta roteamento transitivo, não escala para dezenas de VPCs e não se conecta diretamente com data centers on-premises."
+          "text": "Create a full mesh of inter-region VPC Peering connections between all 50 VPCs.",
+          "explanation": "Incorrect: VPC Peering does not support transitive routing, does not scale across dozens of VPCs, and cannot connect directly to on-premises data centers."
         },
         {
           "id": "D",
-          "text": "Utilizar AWS PrivateLink para expor todos os serviços das VPCs sem necessidade de roteamento de rede.",
-          "explanation": "Incorreto: PrivateLink é para conexões unidirecionais de serviços específicos (cliente-serviço) e não substitui a conectividade de rede corporativa bidirecional ampla exigida."
+          "text": "Use AWS PrivateLink to expose all VPC services without network routing.",
+          "explanation": "Incorrect: PrivateLink is for unidirectional service-to-client endpoint sharing and does not replace full bidirectional enterprise network connectivity."
         },
         {
           "id": "E",
-          "text": "Configurar Virtual Private Gateways (VGW) individuais em cada uma das 50 VPCs com túneis VPN dedicados para os roteadores on-premises.",
-          "explanation": "Incorreto: Gerenciar dezenas de VGWs e túneis VPN individuais é complexo, ineficiente e viola o princípio de centralização com Transit Gateway."
+          "text": "Configure individual Virtual Private Gateways (VGW) in each of the 50 VPCs with dedicated VPN tunnels to on-premises routers.",
+          "explanation": "Incorrect: Managing dozens of individual VGWs and VPN tunnels creates operational complexity and violates centralized Transit Gateway design principles."
         }
       ],
       "correctAnswers": ["A", "B"],
-      "generalExplanation": "Para ambientes corporativos de grande escala com múltiplas regiões e requisitos de criptografia sobre trânsito dedicado, a combinação de AWS Transit Gateway inter-regional com Direct Connect Transit VIFs e VPN IPsec sobre DX é o padrão Well-Architected da AWS.",
+      "generalExplanation": "For large enterprise multi-region environments with encryption requirements over dedicated transport, the combination of inter-region AWS Transit Gateways with Direct Connect Transit VIFs and IPsec VPN over DX is the Well-Architected standard.",
       "referenceUrl": "https://docs.aws.amazon.com/whitepapers/latest/hybrid-connectivity/aws-transit-gateway-with-direct-connect-gateway.html",
       "difficulty": "hard"
     },
@@ -116,31 +116,31 @@
       "services": ["Amazon DynamoDB", "AWS Lambda", "Amazon API Gateway", "Amazon CloudFront"],
       "type": "single",
       "requiredChoices": 1,
-      "statement": "Uma empresa de e-commerce global está lançando uma grande promoção estilo Black Friday. O sistema deve receber milhões de visualizações e até 100.000 requisições de checkout por segundo em escala mundial, mantendo latência de leitura sub-milissegundo para o catálogo e garantindo que pedidos nunca sejam perdidos, com consistência forte no estoque. Qual solução de arquitetura atende a todos os requisitos?",
+      "statement": "A global e-commerce enterprise is launching a major flash sale event. The system expects millions of page views and up to 100,000 checkout requests per second globally, maintaining sub-millisecond read latency for product catalogs and guaranteeing no lost orders with strong inventory consistency. Which architecture solution satisfies all requirements?",
       "options": [
         {
           "id": "A",
-          "text": "Amazon CloudFront na borda para cache do catálogo estático; Amazon API Gateway integrado com AWS Lambda para processamento de checkout; Amazon DynamoDB Global Tables com DynamoDB Accelerator (DAX) para leituras em cache e DynamoDB Transactions com escrita fortemente consistente para processamento de pedidos.",
-          "explanation": "Correto: CloudFront + DAX entrega leituras sub-milissegundo de catálogo em escala global, enquanto Lambda + DynamoDB Transactions garante atomicidade (ACID) e consistência forte no estoque sem perda de dados."
+          "text": "Amazon CloudFront at edge locations for static catalog caching; Amazon API Gateway integrated with AWS Lambda for checkout processing; Amazon DynamoDB Global Tables with DynamoDB Accelerator (DAX) for in-memory reads and DynamoDB Transactions with strongly consistent writes for order processing.",
+          "explanation": "Correct: CloudFront + DAX delivers global sub-millisecond catalog reads, while Lambda + DynamoDB Transactions ensures ACID atomicity and strong inventory consistency without data loss."
         },
         {
           "id": "B",
-          "text": "Amazon Route 53 com roteamento por geolocalização direcionando para instâncias Amazon EC2 com Auto Scaling em uma única região, gravando em Amazon Aurora PostgreSQL Single-AZ.",
-          "explanation": "Incorreto: Single-AZ no Aurora não fornece resiliência suficiente e uma única região com instâncias EC2 pode sofrer gargalo de latência e escala durante picos extremos globais."
+          "text": "Amazon Route 53 with geolocation routing directing to Amazon EC2 Auto Scaling in a single region, writing to Amazon Aurora PostgreSQL Single-AZ.",
+          "explanation": "Incorrect: Single-AZ Aurora lacks resilience, and a single region with EC2 cannot handle extreme global traffic spikes without latency bottlenecks."
         },
         {
           "id": "C",
-          "text": "Utilizar Amazon S3 para armazenar requisições de checkout em formato JSON e processar em lotes a cada 10 minutos via Amazon EMR.",
-          "explanation": "Incorreto: Processamento em lote a cada 10 minutos inviabiliza feedback imediato de checkout e controle de estoque em tempo real."
+          "text": "Use Amazon S3 to store checkout requests as JSON objects and process in batches every 10 minutes via Amazon EMR.",
+          "explanation": "Incorrect: 10-minute batch processing prevents real-time inventory locking and instant checkout confirmation."
         },
         {
           "id": "D",
-          "text": "Amazon ElastiCache for Redis como banco de dados primário persistente para todos os dados de usuários e pedidos, sem persistência em disco.",
-          "explanation": "Incorreto: Redis em memória puro sem persistência durável primária (como DynamoDB ou Aurora) traz riscos de perda de pedidos em reinicializações de nós."
+          "text": "Amazon ElastiCache for Redis as the primary persistent database for all user and order data without disk persistence.",
+          "explanation": "Incorrect: Pure in-memory Redis without durable primary database backing risks order loss during node failovers."
         }
       ],
       "correctAnswers": ["A"],
-      "generalExplanation": "A combinação de CloudFront na borda com DAX proporciona leitura sub-milissegundo para o catálogo, enquanto as transações ACID do DynamoDB garantem a consistência e integridade do estoque em escala massiva.",
+      "generalExplanation": "Combining CloudFront and DAX at the edge delivers sub-millisecond catalog reads, while DynamoDB Transactions guarantees ACID compliance and inventory data integrity at massive scale.",
       "referenceUrl": "https://aws.amazon.com/dynamodb/dax/",
       "difficulty": "hard"
     },
@@ -152,31 +152,31 @@
       "services": ["Amazon S3", "Amazon S3 Glacier", "AWS KMS", "Amazon S3 Object Lock"],
       "type": "single",
       "requiredChoices": 1,
-      "statement": "Uma instituição financeira regulamentada pela SEC (Securities and Exchange Commission) exige que todos os relatórios financeiros de transações sejam armazenados em conformidade com a regra SEC 17a-4(f). Os dados devem ser gravados no formato WORM (Write Once, Read Many), não podendo ser alterados ou excluídos nem mesmo pelo usuário root da conta AWS durante um período de retenção obrigatório de 7 anos. Qual estratégia atende estritamente a este requisito?",
+      "statement": "A financial institution regulated by the SEC (Securities and Exchange Commission) requires that all transaction reports be stored in compliance with SEC Rule 17a-4(f). Data must be recorded in WORM (Write Once, Read Many) format and cannot be altered or deleted by any user, including the AWS account root user, during a mandatory 7-year retention period. Which strategy strictly satisfies this requirement?",
       "options": [
         {
           "id": "A",
-          "text": "Habilitar o Amazon S3 Object Lock no bucket no modo Compliance (Conformidade), configurando a retenção padrão para 7 anos e aplicando um bloqueio de retenção legal (Legal Hold) aos novos objetos.",
-          "explanation": "Correto: O modo Compliance do S3 Object Lock impede que qualquer usuário (inclusive root da conta AWS e administradores) exclua ou modifique o objeto ou reduza o período de retenção até que o tempo expire, atendendo à norma SEC 17a-4."
+          "text": "Enable Amazon S3 Object Lock on the bucket in Compliance mode with a default 7-year retention period and apply a Legal Hold to new objects.",
+          "explanation": "Correct: S3 Object Lock in Compliance mode prevents any user (including root and administrators) from deleting or altering objects or shortening the retention period until it expires, meeting SEC Rule 17a-4(f)."
         },
         {
           "id": "B",
-          "text": "Habilitar o Amazon S3 Object Lock no modo Governance (Governança) com retenção de 7 anos e conceder permissões de bypass apenas a uma IAM Role com MFA.",
-          "explanation": "Incorreto: O modo Governance permite que usuários com permissões específicas (como s3:BypassGovernanceRetention) excluam o objeto, violando o requisito de proteção absoluta contra root."
+          "text": "Enable Amazon S3 Object Lock in Governance mode with 7-year retention and grant bypass permissions only to an IAM Role with MFA.",
+          "explanation": "Incorrect: Governance mode allows users with bypass permissions (e.g., s3:BypassGovernanceRetention) to alter or delete objects, violating strict regulatory requirements."
         },
         {
           "id": "C",
-          "text": "Criar uma política de bucket do S3 com Deny explícito para s3:DeleteObject e s3:DeleteObjectVersion aplicando a todos os principals exceto o root.",
-          "explanation": "Incorreto: O root ainda poderia alterar a política do bucket e remover a proteção."
+          "text": "Create an S3 bucket policy with an explicit Deny for s3:DeleteObject applying to all principals except root.",
+          "explanation": "Incorrect: The root user could modify or delete the bucket policy, removing the protection."
         },
         {
           "id": "D",
-          "text": "Utilizar o S3 Glacier Vault Lock com uma política de arquivo sem travar o bloqueio (Lock Vault).",
-          "explanation": "Incorreto: Se a política de Vault Lock não for confirmada e travada no Glacier, ela expira e pode ser alterada."
+          "text": "Use S3 Glacier Vault Lock with an archive policy without locking the vault.",
+          "explanation": "Incorrect: If Vault Lock is not locked/confirmed within 24 hours, the policy expires and can be deleted."
         }
       ],
       "correctAnswers": ["A"],
-      "generalExplanation": "O Amazon S3 Object Lock no modo Compliance garante que um objeto gravado não possa ser sobrescrito nem excluído por nenhum usuário, incluindo a conta root, pelo período configurado, sendo certificado para normas regulatórias como a SEC Rule 17a-4(f).",
+      "generalExplanation": "Amazon S3 Object Lock in Compliance mode ensures that objects cannot be overwritten or deleted by any user, including the root account, for the configured retention duration, certified for compliance with SEC Rule 17a-4(f).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
       "difficulty": "medium"
     },
@@ -188,31 +188,31 @@
       "services": ["Amazon Aurora Global Database", "AWS Route 53", "AWS Secrets Manager"],
       "type": "single",
       "requiredChoices": 1,
-      "statement": "Uma aplicação bancária crítica exige um Recovery Point Objective (RPO) inferior a 1 segundo e um Recovery Time Objective (RTO) inferior a 1 minuto para falha catastrófica total de região. O banco de dados relacional armazena transações contínuas e deve suportar failover entre as regiões us-east-1 (primária) e eu-west-1 (secundária). Qual arquitetura atende a estes requisitos de RPO e RTO com a menor complexidade operacional?",
+      "statement": "A mission-critical banking application requires a Recovery Point Objective (RPO) of less than 1 second and a Recovery Time Objective (RTO) of less than 1 minute in the event of a total catastrophic region failure. The relational database stores continuous financial transactions and must support failover between us-east-1 (primary) and eu-west-1 (secondary). Which architecture meets these RPO and RTO requirements with minimal operational complexity?",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar Amazon Aurora Global Database com cluster primário em us-east-1 e réplica secundária em eu-west-1, acionando o Managed Planned Failover ou desanexação/promoção automatizada da região secundária em caso de desastre.",
-          "explanation": "Correto: O Aurora Global Database utiliza replicação física dedicada no nível de armazenamento com latência típica de replicação inferior a 1 segundo (RPO < 1s) e promoção de região secundária com tráfego total em menos de 1 minuto (RTO < 1m)."
+          "text": "Use Amazon Aurora Global Database with the primary cluster in us-east-1 and secondary replica in eu-west-1, triggering Managed Planned Failover or automated detachment/promotion of the secondary region during disaster recovery.",
+          "explanation": "Correct: Aurora Global Database uses dedicated physical storage-level replication with typical replication latency under 1 second (RPO < 1s) and supports secondary region promotion with full read/write traffic in under 1 minute (RTO < 1m)."
         },
         {
           "id": "B",
-          "text": "Configurar Amazon RDS for PostgreSQL Multi-AZ com replicação lógica nativa via pglogical entre regiões.",
-          "explanation": "Incorreto: A replicação lógica Multi-Region do RDS tradicional possui maior atraso (lag), maior complexidade de reconciliação de schema e RTO superior a 1 minuto."
+          "text": "Configure Amazon RDS for PostgreSQL Multi-AZ with cross-region native logical replication using pglogical.",
+          "explanation": "Incorrect: Cross-region logical replication on traditional RDS has higher replication lag and failover times exceeding 1 minute."
         },
         {
           "id": "C",
-          "text": "Realizar snapshots automatizados do Amazon RDS a cada 5 minutos e copiá-los para eu-west-1 usando AWS Backup.",
-          "explanation": "Incorreto: Snapshots a cada 5 minutos resultam em RPO de 5 minutos, violando o requisito de RPO < 1s."
+          "text": "Take automated Amazon RDS snapshots every 5 minutes and copy them to eu-west-1 using AWS Backup.",
+          "explanation": "Incorrect: 5-minute snapshot intervals yield an RPO of up to 5 minutes, failing the RPO < 1s requirement."
         },
         {
           "id": "D",
-          "text": "Configurar AWS DMS (Database Migration Service) contínuo entre duas instâncias EC2 rodando PostgreSQL auto-hospedado.",
-          "explanation": "Incorreto: DMS contínuo inter-regional adiciona alta sobrecarga operacional de manutenção de nós EC2 e não oferece a resiliência e RTO garantidos pelo Aurora Global Database."
+          "text": "Configure continuous AWS DMS (Database Migration Service) between two EC2 instances running self-hosted PostgreSQL.",
+          "explanation": "Incorrect: Self-hosted EC2 database nodes with DMS introduce heavy maintenance overhead and do not guarantee sub-minute RTO."
         }
       ],
       "correctAnswers": ["A"],
-      "generalExplanation": "O Amazon Aurora Global Database foi construído especificamente para aplicações distribuídas globalmente com requisitos rigorosos de continuidade de negócios, entregando replicação baseada em infraestrutura de storage com RPO < 1 segundo e failover/promoção rápida (RTO < 1 minuto).",
+      "generalExplanation": "Amazon Aurora Global Database is purpose-built for globally distributed applications with strict business continuity requirements, delivering storage-level replication with RPO < 1 second and rapid cross-region failover (RTO < 1 minute).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html",
       "difficulty": "hard"
     },
@@ -224,36 +224,36 @@
       "services": ["AWS Application Migration Service", "AWS Database Migration Service", "AWS DataSync"],
       "type": "multiple",
       "requiredChoices": 2,
-      "statement": "Uma corporação está migrando um sistema monolítico legado em data center local para a AWS. O sistema é composto por 15 servidores físicos Linux/Windows, um cluster Oracle Database de 12 TB com transações contínuas e um NAS com 80 TB de arquivos não estruturados. A migração deve ocorrer com tempo de inatividade (downtime) quase zero (cutover em janela de 30 minutos). Quais DUAS ferramentas da AWS devem ser utilizadas para a sincronização contínua dos dados antes do cutover? (Selecione DUAS.)",
+      "statement": "An enterprise is migrating a legacy on-premises monolithic system to AWS. The environment consists of 15 physical Linux/Windows servers, a 12 TB active Oracle Database cluster with continuous transactions, and an 80 TB NAS share. The migration must achieve near-zero downtime (cutover within a 30-minute window). Which TWO AWS tools should be used for continuous data synchronization prior to cutover? (Choose TWO.)",
       "options": [
         {
           "id": "A",
-          "text": "AWS Application Migration Service (AWS MGN) para replicar continuamente os servidores físicos em nível de bloco para a AWS em segundo plano.",
-          "explanation": "Correto: O AWS MGN instala agentes leves nos servidores locais e realiza replicação contínua em nível de bloco sem interrupção operacional, permitindo testes prévios e cutover rápido em minutos."
+          "text": "AWS Application Migration Service (AWS MGN) to continuously replicate physical server disks at block level to AWS in the background.",
+          "explanation": "Correct: AWS MGN installs lightweight agents to replicate physical and virtual servers at block level without downtime, enabling non-disruptive testing and rapid cutover."
         },
         {
           "id": "B",
-          "text": "AWS Database Migration Service (AWS DMS) com replicação contínua (Change Data Capture - CDC) para manter o banco de dados Oracle na AWS em sincronia contínua até a janela de cutover.",
-          "explanation": "Correto: O AWS DMS com CDC captura e aplica em tempo real as transações do banco de dados de origem para o destino, permitindo que a virada ocorra quase instantaneamente."
+          "text": "AWS Database Migration Service (AWS DMS) with Change Data Capture (CDC) to keep the Oracle database synchronized in real time with AWS until the cutover window.",
+          "explanation": "Correct: AWS DMS with CDC captures ongoing transactions from the source database in real time, enabling near-instantaneous cutover."
         },
         {
           "id": "C",
-          "text": "AWS Snowball Edge Storage Optimized para realizar o upload único dos dados do Oracle Database na data do cutover.",
-          "explanation": "Incorreto: O envio físico do Snowball leva dias, impossibilitando migração contínua com downtime de 30 minutos."
+          "text": "AWS Snowball Edge Storage Optimized to perform a one-time upload of Oracle database data on cutover day.",
+          "explanation": "Incorrect: Physical shipping of Snowball takes days, making a 30-minute cutover window impossible."
         },
         {
           "id": "D",
-          "text": "AWS Server Migration Service (SMS) para converter as máquinas virtuais em AMIs a cada 24 horas.",
-          "explanation": "Incorreto: O SMS foi descontinuado em favor do AWS MGN e não atende máquinas físicas nem sincronia de bloco em tempo real."
+          "text": "AWS Server Migration Service (SMS) to convert virtual machines into AMIs every 24 hours.",
+          "explanation": "Incorrect: AWS SMS is deprecated in favor of AWS MGN and does not support continuous block-level sync for physical servers."
         },
         {
           "id": "E",
-          "text": "AWS Elastic Disaster Recovery (DRS) para migrar o código da aplicação monolítica para microsserviços em AWS Lambda.",
-          "explanation": "Incorreto: O DRS é voltado para recuperação de desastres, não para refatoração automática de código monolítico em microsserviços."
+          "text": "AWS Elastic Disaster Recovery (DRS) to refactor the monolithic application code into AWS Lambda microservices.",
+          "explanation": "Incorrect: DRS is for disaster recovery replication, not automatic microservices code refactoring."
         }
       ],
       "correctAnswers": ["A", "B"],
-      "generalExplanation": "Para migrações corporativas 'lift-and-shift' ou 'replatform' com janela mínima de indisponibilidade, o AWS MGN cuida da replicação contínua em nível de bloco das máquinas dos servidores, e o AWS DMS com CDC cuida da replicação contínua em tempo real dos bancos de dados relacionais.",
+      "generalExplanation": "For enterprise migrations with minimal downtime windows, AWS MGN handles continuous block-level server machine replication, while AWS DMS with CDC handles continuous real-time relational database transaction replication.",
       "referenceUrl": "https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html",
       "difficulty": "hard"
     }
