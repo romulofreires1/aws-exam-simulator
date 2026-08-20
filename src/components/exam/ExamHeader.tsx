@@ -89,13 +89,13 @@ export function ExamHeader({
                 : 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
             }`}
           >
-            {mode === 'real' ? 'Simulado Real' : mode === 'practice' ? 'Modo Treino' : 'Revisão'}
+            {mode === 'real' ? 'Real Exam' : mode === 'practice' ? 'Practice Mode' : 'Review'}
           </span>
         </div>
 
         {/* Right: Timer & Tools */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          {/* Timer Display (Apenas no Modo Real) */}
+          {/* Timer Display (Real Mode Only) */}
           {mode === 'real' ? (
             <div
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-sm font-bold transition-all ${
@@ -119,14 +119,14 @@ export function ExamHeader({
                   : 'bg-slate-800/80 text-slate-400 border border-slate-700/60'
               }`}
             >
-              <span>Sem limite de tempo</span>
+              <span>No time limit</span>
             </div>
           )}
 
           {/* Theme Switch */}
           <button
             onClick={onToggleTheme}
-            title={isPearson ? 'Alternar para Tema Moderno' : 'Alternar para Tema Pearson VUE'}
+            title={isPearson ? 'Switch to Modern Theme' : 'Switch to Pearson VUE Theme'}
             className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${
               isPearson
                 ? 'bg-blue-900/60 border-blue-700 text-blue-100 hover:bg-blue-800'
@@ -149,7 +149,7 @@ export function ExamHeader({
       >
         <div className="flex items-center gap-2 font-medium">
           <span className="font-bold text-sm text-white">
-            Questão {currentIndex + 1} de {totalQuestions}
+            Question {currentIndex + 1} of {totalQuestions}
           </span>
         </div>
 
@@ -166,7 +166,7 @@ export function ExamHeader({
             }`}
           >
             <Flag className={`h-3.5 w-3.5 ${isFlagged ? 'fill-current' : ''}`} />
-            <span>{isFlagged ? 'Marcada (F)' : 'Marcar p/ Revisar (F)'}</span>
+            <span>{isFlagged ? 'Flagged (F)' : 'Flag for Review (F)'}</span>
           </button>
 
           {/* Scratchpad Button */}
@@ -179,7 +179,7 @@ export function ExamHeader({
             }`}
           >
             <FileText className="h-3.5 w-3.5" />
-            <span>Anotações</span>
+            <span>Notes</span>
           </button>
 
           {/* Question Map */}
@@ -192,7 +192,7 @@ export function ExamHeader({
             }`}
           >
             <Grid className="h-3.5 w-3.5" />
-            <span>Mapa de Questões</span>
+            <span>Question Map</span>
           </button>
 
           {/* End / Review */}
@@ -205,7 +205,7 @@ export function ExamHeader({
             }`}
           >
             <CheckCircle2 className="h-3.5 w-3.5" />
-            <span>Revisar & Finalizar</span>
+            <span>Review & Finish</span>
           </button>
         </div>
       </div>

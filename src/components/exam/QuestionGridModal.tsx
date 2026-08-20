@@ -29,9 +29,9 @@ export function QuestionGridModal({
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-white">Mapa de Questões</h2>
+            <h2 className="text-lg font-bold text-white">Question Map</h2>
             <p className="text-xs text-slate-400">
-              Clique em qualquer número para navegar diretamente até a questão.
+              Click any question number to navigate directly.
             </p>
           </div>
           <button
@@ -46,19 +46,19 @@ export function QuestionGridModal({
         <div className="px-6 py-3 bg-slate-950/50 border-b border-slate-800 flex flex-wrap gap-4 text-xs font-medium">
           <div className="flex items-center gap-1.5 text-slate-300">
             <span className="h-3.5 w-3.5 rounded bg-emerald-600 inline-block" />
-            <span>Respondida</span>
+            <span>Answered</span>
           </div>
           <div className="flex items-center gap-1.5 text-slate-300">
             <span className="h-3.5 w-3.5 rounded bg-amber-500 inline-block" />
-            <span>Marcada (Flag)</span>
+            <span>Flagged</span>
           </div>
           <div className="flex items-center gap-1.5 text-slate-300">
             <span className="h-3.5 w-3.5 rounded border border-slate-600 bg-slate-800 inline-block" />
-            <span>Não Respondida</span>
+            <span>Unanswered</span>
           </div>
           <div className="flex items-center gap-1.5 text-slate-300">
             <span className="h-3.5 w-3.5 rounded border-2 border-amber-400 bg-slate-800 inline-block" />
-            <span>Questão Atual</span>
+            <span>Current Question</span>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export function QuestionGridModal({
             onClick={onClose}
             className="px-4 py-2 text-sm font-semibold rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-colors"
           >
-            Fechar
+            Close
           </button>
         </div>
       </div>

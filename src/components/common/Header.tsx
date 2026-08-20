@@ -9,7 +9,7 @@ export function Header() {
   const pathname = usePathname();
   const isRunner = pathname?.includes('/runner');
 
-  // No modo de execução do exame, usamos o ExamHeader dedicado para evitar distrações
+  // In exam runner mode, we use the dedicated ExamHeader to prevent distractions
   if (isRunner) {
     return null;
   }
@@ -42,7 +42,7 @@ export function Header() {
             }`}
           >
             <Layers className="h-4 w-4" />
-            <span className="hidden sm:inline">Simulados</span>
+            <span className="hidden sm:inline">Exams</span>
           </Link>
 
           <Link
@@ -54,7 +54,7 @@ export function Header() {
             }`}
           >
             <History className="h-4 w-4" />
-            <span className="hidden sm:inline">Histórico & Desempenho</span>
+            <span className="hidden sm:inline">History & Performance</span>
           </Link>
         </nav>
       </div>

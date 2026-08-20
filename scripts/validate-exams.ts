@@ -56,121 +56,121 @@ function validateExamFile(filePath: string): { isValid: boolean; errors: string[
   try {
     content = fs.readFileSync(filePath, 'utf-8');
   } catch (err) {
-    return { isValid: false, errors: [`Não foi possível ler o arquivo: ${(err as Error).message}`], stats: { totalQuestions: 0, domainsCount: 0 } };
+    return { isValid: false, errors: [`Could not read file: ${(err as Error).message}`], stats: { totalQuestions: 0, domainsCount: 0 } };
   }
 
   let exam: ExamDefinition;
   try {
     exam = JSON.parse(content);
   } catch (err) {
-    return { isValid: false, errors: [`JSON Inválido: ${(err as Error).message}`], stats: { totalQuestions: 0, domainsCount: 0 } };
+    return { isValid: false, errors: [`Invalid JSON: ${(err as Error).message}`], stats: { totalQuestions: 0, domainsCount: 0 } };
   }
 
-  // Valida campos obrigatórios no nível do exame
-  if (!exam.id) errors.push(`[${fileName}] Campo 'id' é obrigatório.`);
-  if (!exam.title) errors.push(`[${fileName}] Campo 'title' é obrigatório.`);
-  if (!exam.code) errors.push(`[${fileName}] Campo 'code' é obrigatório.`);
+  // Validate required fields at exam level
+  if (!exam.id) errors.push(`[${fileName}] Field 'id' is required.`);
+  if (!exam.title) errors.push(`[${fileName}] Field 'title' is required.`);
+  if (!exam.code) errors.push(`[${fileName}] Field 'code' is required.`);
   if (!['Foundational', 'Associate', 'Professional', 'Specialty'].includes(exam.category)) {
-    errors.push(`[${fileName}] Campo 'category' inválido: '${exam.category}'. Valores permitidos: Foundational, Associate, Professional, Specialty.`);
+    errors.push(`[${fileName}] Invalid 'category': '${exam.category}'. Allowed values: Foundational, Associate, Professional, Specialty.`);
   }
-  if (!exam.description) errors.push(`[${fileName}] Campo 'description' é obrigatório.`);
+  if (!exam.description) errors.push(`[${fileName}] Field 'description' is required.`);
   if (typeof exam.timeLimitMinutes !== 'number' || exam.timeLimitMinutes <= 0) {
-    errors.push(`[${fileName}] Campo 'timeLimitMinutes' deve ser um número positivo.`);
+    errors.push(`[${fileName}] Field 'timeLimitMinutes' must be a positive number.`);
   }
   if (typeof exam.passingScore !== 'number' || exam.passingScore < 100 || exam.passingScore > 1000) {
-    errors.push(`[${fileName}] Campo 'passingScore' deve ser um número entre 100 e 1000.`);
+    errors.push(`[${fileName}] Field 'passingScore' must be a number between 100 and 1000.`);
   }
 
-  // Validação de domínios
+  // Domain validation
   if (!Array.isArray(exam.domains) || exam.domains.length === 0) {
-    errors.push(`[${fileName}] 'domains' deve ser um array com pelo menos 1 domínio.`);
+    errors.push(`[${fileName}] 'domains' must be an array with at least 1 domain.`);
   }
 
   const validDomainIds = new Set<string>();
   if (Array.isArray(exam.domains)) {
     for (let i = 0; i < exam.domains.length; i++) {
       const d = exam.domains[i];
-      if (!d.id) errors.push(`[${fileName}] Domínio na posição ${i} não possui 'id'.`);
-      if (!d.name) errors.push(`[${fileName}] Domínio '${d.id || i}' não possui 'name'.`);
+      if (!d.id) errors.push(`[${fileName}] Domain at position ${i} is missing 'id'.`);
+      if (!d.name) errors.push(`[${fileName}] Domain '${d.id || i}' is missing 'name'.`);
       if (d.id) validDomainIds.add(d.id);
     }
   }
 
-  // Validação de questões
+  // Question validation
   if (!Array.isArray(exam.questions) || exam.questions.length === 0) {
-    errors.push(`[${fileName}] 'questions' deve ser um array com pelo menos 1 questão.`);
+    errors.push(`[${fileName}] 'questions' must be an array with at least 1 question.`);
   }
 
   const questionIds = new Set<string>();
 
   if (Array.isArray(exam.questions)) {
     exam.questions.forEach((q, idx) => {
-      const qPrefix = `[${fileName} > Questão #${idx + 1} (${q.id || 'sem id'})]`;
+      const qPrefix = `[${fileName} > Question #${idx + 1} (${q.id || 'no id'})]`;
 
       if (!q.id) {
-        errors.push(`${qPrefix} 'id' é obrigatório.`);
+        errors.push(`${qPrefix} 'id' is required.`);
       } else {
         if (questionIds.has(q.id)) {
-          errors.push(`${qPrefix} ID '${q.id}' está duplicado no simulado.`);
+          errors.push(`${qPrefix} Duplicate ID '${q.id}' found in exam.`);
         }
         questionIds.add(q.id);
       }
 
       if (!['single', 'multiple'].includes(q.type)) {
-        errors.push(`${qPrefix} 'type' deve ser 'single' ou 'multiple' (valor atual: '${q.type}').`);
+        errors.push(`${qPrefix} 'type' must be 'single' or 'multiple' (current value: '${q.type}').`);
       }
 
       if (typeof q.requiredChoices !== 'number' || q.requiredChoices < 1) {
-        errors.push(`${qPrefix} 'requiredChoices' deve ser um número >= 1.`);
+        errors.push(`${qPrefix} 'requiredChoices' must be a number >= 1.`);
       }
 
       if (q.type === 'single' && q.requiredChoices !== 1) {
-        errors.push(`${qPrefix} Questão do tipo 'single' deve ter requiredChoices = 1.`);
+        errors.push(`${qPrefix} 'single' type question must have requiredChoices = 1.`);
       }
 
       if (q.type === 'multiple' && q.requiredChoices < 2) {
-        errors.push(`${qPrefix} Questão do tipo 'multiple' deve ter requiredChoices >= 2.`);
+        errors.push(`${qPrefix} 'multiple' type question must have requiredChoices >= 2.`);
       }
 
       if (!q.domainId || !validDomainIds.has(q.domainId)) {
-        errors.push(`${qPrefix} 'domainId' ('${q.domainId}') não encontrado na lista de domínios declarada.`);
+        errors.push(`${qPrefix} 'domainId' ('${q.domainId}') not found in declared domains list.`);
       }
 
       if (!q.statement || q.statement.trim().length === 0) {
-        errors.push(`${qPrefix} 'statement' (enunciado) não pode ser vazio.`);
+        errors.push(`${qPrefix} 'statement' cannot be empty.`);
       }
 
       if (!Array.isArray(q.options) || q.options.length < 2) {
-        errors.push(`${qPrefix} 'options' deve ter pelo menos 2 alternativas.`);
+        errors.push(`${qPrefix} 'options' must have at least 2 choices.`);
       } else {
         const optionIds = new Set<string>();
         q.options.forEach((opt, optIdx) => {
-          if (!opt.id) errors.push(`${qPrefix} Alternativa #${optIdx + 1} não possui 'id'.`);
-          if (optionIds.has(opt.id)) errors.push(`${qPrefix} Alternativa com id '${opt.id}' duplicada.`);
+          if (!opt.id) errors.push(`${qPrefix} Option #${optIdx + 1} is missing 'id'.`);
+          if (optionIds.has(opt.id)) errors.push(`${qPrefix} Duplicate option id '${opt.id}'.`);
           optionIds.add(opt.id);
 
           if (!opt.text || opt.text.trim().length === 0) {
-            errors.push(`${qPrefix} Alternativa '${opt.id}' está com 'text' vazio.`);
+            errors.push(`${qPrefix} Option '${opt.id}' has empty 'text'.`);
           }
         });
 
         if (!Array.isArray(q.correctAnswers) || q.correctAnswers.length === 0) {
-          errors.push(`${qPrefix} 'correctAnswers' deve ser um array com pelo menos 1 resposta correta.`);
+          errors.push(`${qPrefix} 'correctAnswers' must be an array with at least 1 correct answer.`);
         } else {
           if (q.correctAnswers.length !== q.requiredChoices) {
-            errors.push(`${qPrefix} Quantidade de 'correctAnswers' (${q.correctAnswers.length}) não bate com 'requiredChoices' (${q.requiredChoices}).`);
+            errors.push(`${qPrefix} Count of 'correctAnswers' (${q.correctAnswers.length}) does not match 'requiredChoices' (${q.requiredChoices}).`);
           }
 
           q.correctAnswers.forEach((ans) => {
             if (!optionIds.has(ans)) {
-              errors.push(`${qPrefix} Resposta correta '${ans}' não existe entre as alternativas disponíveis (${Array.from(optionIds).join(', ')}).`);
+              errors.push(`${qPrefix} Correct answer '${ans}' does not exist among available options (${Array.from(optionIds).join(', ')}).`);
             }
           });
         }
       }
 
       if (!q.generalExplanation || q.generalExplanation.trim().length === 0) {
-        errors.push(`${qPrefix} 'generalExplanation' não pode ser vazio.`);
+        errors.push(`${qPrefix} 'generalExplanation' cannot be empty.`);
       }
     });
   }
@@ -186,18 +186,18 @@ function validateExamFile(filePath: string): { isValid: boolean; errors: string[
 }
 
 function runValidation() {
-  console.log('🔍 Validando bancos de questões em:', EXAMS_DIR);
+  console.log('🔍 Validating exam question banks in:', EXAMS_DIR);
   console.log('--------------------------------------------------');
 
   if (!fs.existsSync(EXAMS_DIR)) {
-    console.error(`❌ Diretório ${EXAMS_DIR} não encontrado.`);
+    console.error(`❌ Directory ${EXAMS_DIR} not found.`);
     process.exit(1);
   }
 
   const files = fs.readdirSync(EXAMS_DIR).filter((f) => f.endsWith('.json') && !f.startsWith('_'));
 
   if (files.length === 0) {
-    console.warn('⚠️  Nenhum arquivo de simulado (.json) encontrado para validar.');
+    console.warn('⚠️  No exam (.json) files found to validate.');
     process.exit(0);
   }
 
@@ -208,10 +208,10 @@ function runValidation() {
     const result = validateExamFile(fullPath);
 
     if (result.isValid) {
-      console.log(`✅ [OK] ${file} - ${result.stats.totalQuestions} questões | ${result.stats.domainsCount} domínios`);
+      console.log(`✅ [OK] ${file} - ${result.stats.totalQuestions} questions | ${result.stats.domainsCount} domains`);
     } else {
       hasErrors = true;
-      console.error(`❌ [ERRO] ${file} possui os seguintes problemas:`);
+      console.error(`❌ [ERROR] ${file} has the following issues:`);
       result.errors.forEach((err) => console.error(`   - ${err}`));
       console.log('');
     }
@@ -219,10 +219,10 @@ function runValidation() {
 
   console.log('--------------------------------------------------');
   if (hasErrors) {
-    console.error('❌ Falha na validação de simulados. Corrija os erros acima.');
+    console.error('❌ Exam validation failed. Please fix the errors above.');
     process.exit(1);
   } else {
-    console.log('🎉 Todos os simulados estão válidos e prontos para uso!');
+    console.log('🎉 All exams are valid and ready to use!');
   }
 }
 

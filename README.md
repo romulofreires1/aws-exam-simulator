@@ -1,26 +1,26 @@
 # 🛡️ AWS Exam Simulator
 
-> **Simulador de Certificações AWS moderno, offline e 100% client-side com fidelidade ao exame oficial (Pearson VUE).**
+> **A modern, offline-ready, 100% client-side AWS Certification Exam Simulator designed with high fidelity to the official testing interface (Pearson VUE).**
 
 ---
 
-## ✨ Funcionalidades Principais
+## ✨ Key Features
 
-- ⏱️ **Modo Simulado Real**: Temporizador oficial regressivo da AWS (com alertas visuais aos 15m e 5m finais), navegação livre, tela de revisão prévia e cálculo de nota na escala oficial AWS (100 a 1000 pontos).
-- 💡 **Modo Treino (Estudo)**: Sem limite de tempo, com botão de verificação de resposta sob demanda e explicações técnicas aprofundadas por alternativa + links para a documentação oficial da AWS.
-- 🚫 **Strikethrough (Riscador de Alternativas)**: Elimine alternativas descartadas com botão dedicado ou clicando com o botão direito do mouse.
-- ✨ **Highlighting (Realce de Texto)**: Selecione qualquer trecho no enunciado para pintar de amarelo com persistência entre questões.
-- 🚩 **Flag & Scratchpad**: Marque questões para revisar mais tarde e faça anotações de rascunho individuais por questão.
-- 📊 **Desempenho por Domínio**: Relatório final com radar de competências de acordo com o guia oficial de cada exame AWS.
-- 💾 **100% Armazenamento Local**: Auto-save automático contínuo no `localStorage`. Recarregue ou feche a aba sem perder o progresso.
-- ⌨️ **Atalhos de Teclado**: Teclas <kbd>A</kbd>–<kbd>E</kbd> para selecionar, <kbd>F</kbd> para Flag, <kbd>→</kbd> / <kbd>Enter</kbd> para próxima e <kbd>←</kbd> para anterior.
-- 🌗 **Alternância de Layout**: Troque em tempo real entre o tema **AWS Console Dark Moderno** e a interface clássica **Pearson VUE**.
+- ⏱️ **Real Exam Mode**: Official AWS countdown timer (with visual warning banners at 15m and 5m remaining), free navigation, pre-submission review screen, and scaled scoring on the official AWS scale (100 to 1000 points).
+- 💡 **Practice Mode (Study)**: Untimed mode with on-demand answer checking, detailed option-by-option architectural rationales, and official AWS documentation links.
+- 🚫 **Option Strikethrough**: Eliminate incorrect options using a dedicated button or right-clicking.
+- ✨ **Text Highlighting**: Select any text in the question statement to highlight in yellow with cross-question persistence.
+- 🚩 **Flag & Scratchpad**: Flag questions to review later and take dedicated scratchpad notes for each question.
+- 📊 **Domain Performance Breakdown**: Comprehensive score breakdown by domain competency according to the official AWS exam guide.
+- 💾 **100% Client-Side Local Storage**: Continuous automatic saving in `localStorage`. Refresh or close the browser tab without losing active session progress or attempt history.
+- ⌨️ **Keyboard Shortcuts**: Keys <kbd>A</kbd>–<kbd>E</kbd> to select options, <kbd>F</kbd> to flag/unflag, <kbd>→</kbd> / <kbd>Enter</kbd> for next question, and <kbd>←</kbd> for previous.
+- 🌗 **Layout Switching**: Toggle in real time between the **Modern Dark AWS Console** theme and the classic **Pearson VUE** testing layout.
 
 ---
 
-## 📚 Certificações Incluídas
+## 📚 Included Certification Exams
 
-| Código | Certificação | Nível | Tempo Oficial | Nota de Corte |
+| Code | Certification | Level | Official Time | Passing Score |
 | :--- | :--- | :--- | :--- | :--- |
 | **SAP-C02** | AWS Certified Solutions Architect - Professional | Professional | 180 min | 750 / 1000 |
 | **SAA-C03** | AWS Certified Solutions Architect - Associate | Associate | 130 min | 720 / 1000 |
@@ -28,20 +28,20 @@
 
 ---
 
-## 💻 Desenvolvimento e Execução Local
+## 💻 Local Development and Execution
 
-### 1. Instalação de Dependências
+### 1. Install Dependencies
 ```bash
 npm install
 ```
 
-### 2. Rodar em Ambiente de Desenvolvimento (Hot-Reload)
+### 2. Run Development Server (Hot-Reload)
 ```bash
 npm run dev
 ```
-Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 3. Build de Produção e Visualização Estática
+### 3. Production Build and Static Export
 ```bash
 npm run build
 npm run start
@@ -49,18 +49,18 @@ npm run start
 
 ---
 
-## 🤖 Como Adicionar Novos Simulados com IA
+## 🤖 Adding New Exams with AI
 
-O projeto possui um template padronizado e um validador automático para inclusão de novos exames sem necessidade de alterar a lógica da aplicação:
+The project includes a standardized template and automated validation script for easily adding new exams:
 
-1. Abra o arquivo [`.agent/AI_PROMPT_TEMPLATE.md`](.agent/AI_PROMPT_TEMPLATE.md) e copie o prompt para o seu assistente de IA favorito (ChatGPT, Claude, Gemini).
-2. Salve o JSON gerado em `src/data/exams/[codigo-do-exame].json`.
-3. Registre o exame no array `AVAILABLE_EXAMS` em `src/data/exams/index.ts`.
-4. Valide a integridade do JSON executando:
+1. Open [`.agent/AI_PROMPT_TEMPLATE.md`](.agent/AI_PROMPT_TEMPLATE.md) and copy the prompt to your favorite AI assistant (ChatGPT, Claude, Gemini).
+2. Save the generated JSON file to `src/data/exams/[exam-code].json`.
+3. Register the exam in the `AVAILABLE_EXAMS` array in `src/data/exams/index.ts`.
+4. Validate the JSON integrity by running:
    ```bash
    npm run validate:exams
    ```
-5. Faça o commit e push:
+5. Commit and push:
    ```bash
    git add src/data/exams/
    git commit -m "feat: add DVA-C02 exam"
@@ -69,18 +69,18 @@ O projeto possui um template padronizado e um validador automático para inclus�
 
 ---
 
-## 🚀 Deploy e Infraestrutura AWS
+## 🚀 Deployment and AWS Infrastructure
 
-Este projeto utiliza uma arquitetura multi-conta AWS com deploy automatizado via GitHub Actions:
+This project is configured for automated CI/CD deployment via GitHub Actions:
 
-- **Infraestrutura**: Amazon S3 (hospedagem estática), Amazon CloudFront (CDN global com SSL ACM) e Amazon Route 53 (DNS).
-- **CI/CD**: Ao fazer `git push origin main`, o workflow do GitHub Actions valida os exames, gera o build estático (`out/`), sincroniza com o bucket S3 e invalida o cache do CloudFront.
+- **Infrastructure**: Amazon S3 (static website hosting), Amazon CloudFront (global CDN with ACM SSL), and Amazon Route 53 (DNS).
+- **CI/CD**: Upon `git push origin main`, GitHub Actions validates exams, generates the static export (`out/`), synchronizes files to Amazon S3, and invalidates the CloudFront cache.
 
 ---
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
-- **Framework**: Next.js 15 (App Router, Static Export)
-- **UI & Estilização**: React 19, Tailwind CSS, Lucide React, Canvas Confetti
-- **Linguagem**: TypeScript
-- **Validação & Scripts**: TSX, Node.js
+- **Framework**: Next.js 15 (App Router, Static HTML Export)
+- **UI & Styling**: React 19, Tailwind CSS, Lucide React, Canvas Confetti
+- **Language**: TypeScript
+- **Validation & Scripts**: TSX, Node.js

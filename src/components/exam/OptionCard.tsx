@@ -77,7 +77,7 @@ export function OptionCard({
         )}
       </div>
 
-      {/* Texto da Alternativa */}
+      {/* Option Text */}
       <div className="flex-1 pt-0.5 min-w-0">
         <p
           className={`text-sm sm:text-base leading-relaxed ${
@@ -93,15 +93,15 @@ export function OptionCard({
 
         {isStruckOut && (
           <span className="inline-block mt-1 text-[11px] font-bold text-amber-400/80 uppercase tracking-wider">
-            (Alternativa eliminada / riscada)
+            (Option eliminated / struck out)
           </span>
         )}
       </div>
 
-      {/* Botão de Strike-Through */}
+      {/* Strike-Through Button */}
       <button
         type="button"
-        title={isStruckOut ? 'Restaurar alternativa eliminada' : 'Riscar alternativa (Eliminar)'}
+        title={isStruckOut ? 'Restore eliminated option' : 'Strike through option (Eliminate)'}
         onClick={handleStrikeClick}
         className={`flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs font-semibold transition-all shrink-0 ${
           isStruckOut
@@ -112,12 +112,12 @@ export function OptionCard({
         {isStruckOut ? (
           <>
             <RotateCcw className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Restaurar</span>
+            <span className="hidden sm:inline">Restore</span>
           </>
         ) : (
           <>
             <Strikethrough className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">Riscar</span>
+            <span className="hidden sm:inline">Strike</span>
           </>
         )}
       </button>

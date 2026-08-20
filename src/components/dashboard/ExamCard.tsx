@@ -60,15 +60,15 @@ export function ExamCard({ exam }: ExamCardProps) {
         {/* Exam Specifications */}
         <div className="grid grid-cols-3 gap-2 py-3 px-3.5 bg-slate-950/60 rounded-xl border border-slate-800/80 text-center mb-6">
           <div>
-            <p className="text-[10px] uppercase font-bold text-slate-500">Questões</p>
+            <p className="text-[10px] uppercase font-bold text-slate-500">Questions</p>
             <p className="text-sm font-bold text-slate-200">{exam.questions.length}</p>
           </div>
           <div className="border-x border-slate-800">
-            <p className="text-[10px] uppercase font-bold text-slate-500">Tempo</p>
+            <p className="text-[10px] uppercase font-bold text-slate-500">Time</p>
             <p className="text-sm font-bold text-slate-200">{exam.timeLimitMinutes} min</p>
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-slate-500">Nota Corte</p>
+            <p className="text-[10px] uppercase font-bold text-slate-500">Passing Score</p>
             <p className="text-sm font-bold text-slate-200">{exam.passingScore}/1000</p>
           </div>
         </div>
@@ -78,13 +78,13 @@ export function ExamCard({ exam }: ExamCardProps) {
           <div className="mb-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between text-xs">
             <div className="flex items-center gap-2 text-amber-300 font-semibold">
               <RotateCcw className="h-4 w-4 animate-spin" />
-              <span>Sessão em andamento ({activeSession.mode === 'real' ? 'Real' : 'Treino'})</span>
+              <span>In-progress Session ({activeSession.mode === 'real' ? 'Real' : 'Practice'})</span>
             </div>
             <Link
               href={`/exams/${exam.id}/runner?mode=${activeSession.mode}`}
               className="text-amber-400 hover:text-amber-300 font-bold underline text-xs"
             >
-              Continuar
+              Resume
             </Link>
           </div>
         )}
@@ -93,7 +93,7 @@ export function ExamCard({ exam }: ExamCardProps) {
           <div className="mb-4 px-3.5 py-2 rounded-xl bg-slate-950/40 border border-slate-800/80 flex items-center justify-between text-xs">
             <span className="text-slate-400 flex items-center gap-1.5">
               <Award className="h-4 w-4 text-amber-400" />
-              Melhor Pontuação:
+              Best Score:
             </span>
             <span
               className={`font-black ${
@@ -113,7 +113,7 @@ export function ExamCard({ exam }: ExamCardProps) {
           className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs border border-slate-700 transition-colors"
         >
           <HelpCircle className="h-3.5 w-3.5 text-blue-400" />
-          <span>Modo Treino</span>
+          <span>Practice Mode</span>
         </Link>
 
         <Link
@@ -121,7 +121,7 @@ export function ExamCard({ exam }: ExamCardProps) {
           className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs shadow-md shadow-orange-500/20 transition-all hover:scale-[1.02]"
         >
           <Play className="h-3.5 w-3.5 fill-current" />
-          <span>Simulado Real</span>
+          <span>Real Exam</span>
         </Link>
       </div>
     </div>

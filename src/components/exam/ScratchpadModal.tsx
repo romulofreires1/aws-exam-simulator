@@ -39,7 +39,7 @@ export function ScratchpadModal({
           <div className="flex items-center gap-2">
             <FileText className="h-5 w-5 text-amber-400" />
             <h2 className="text-base font-bold text-white">
-              Anotações da Questão #{questionNumber}
+              Notes for Question #{questionNumber}
             </h2>
           </div>
           <button
@@ -53,12 +53,12 @@ export function ScratchpadModal({
         {/* Content */}
         <div className="p-6">
           <p className="text-xs text-slate-400 mb-3">
-            Use este espaço como rascunho de raciocínio. Suas anotações ficam salvas junto à questão.
+            Use this space as a scratchpad for your reasoning. Your notes are saved with this question.
           </p>
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            placeholder="Ex: Eliminar opções C e D por não serem Multi-Region. Opção A usa Aurora Global com RTO < 1m..."
+            placeholder="e.g., Eliminate options C and D (not Multi-Region). Option A uses Aurora Global Database with RTO < 1m..."
             rows={6}
             className="w-full rounded-xl border border-slate-700 bg-slate-950 p-4 text-sm text-slate-100 placeholder-slate-500 focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 resize-none font-mono"
             autoFocus
@@ -71,14 +71,14 @@ export function ScratchpadModal({
             onClick={onClose}
             className="px-4 py-2 text-sm font-semibold rounded-lg text-slate-400 hover:text-white transition-colors"
           >
-            Cancelar
+            Cancel
           </button>
           <button
             onClick={handleSave}
             className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 transition-colors font-bold"
           >
             <Check className="h-4 w-4" />
-            <span>Salvar Anotação</span>
+            <span>Save Notes</span>
           </button>
         </div>
       </div>

@@ -25,7 +25,7 @@ export default function HistoryPage() {
   }, []);
 
   const handleDelete = (id: string) => {
-    if (confirm('Tem certeza que deseja excluir o registro deste simulado?')) {
+    if (confirm('Are you sure you want to delete this exam attempt?')) {
       deleteAttempt(id);
       setAttempts(getAllAttempts());
     }
@@ -64,10 +64,10 @@ export default function HistoryPage() {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <History className="h-6 w-6 text-amber-400" />
-              <h1 className="text-3xl font-black text-white">Histórico & Desempenho</h1>
+              <h1 className="text-3xl font-black text-white">History & Performance</h1>
             </div>
             <p className="text-xs sm:text-sm text-slate-400">
-              Acompanhe sua evolução e revise simulados anteriores salvos no navegador
+              Track your progress and review past exam attempts saved in your browser
             </p>
           </div>
         </div>
@@ -75,26 +75,26 @@ export default function HistoryPage() {
         {/* Global Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-            <p className="text-xs font-bold uppercase text-slate-400">Total de Simulados</p>
+            <p className="text-xs font-bold uppercase text-slate-400">Total Attempts</p>
             <p className="text-3xl font-black text-white mt-1">{totalCompleted}</p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-            <p className="text-xs font-bold uppercase text-slate-400">Aprovações</p>
+            <p className="text-xs font-bold uppercase text-slate-400">Passed</p>
             <p className="text-3xl font-black text-emerald-400 mt-1">
               {passedCount} <span className="text-xs text-slate-500">/ {totalCompleted}</span>
             </p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-            <p className="text-xs font-bold uppercase text-slate-400">Média Geral</p>
+            <p className="text-xs font-bold uppercase text-slate-400">Average Score</p>
             <p className="text-3xl font-black text-amber-400 mt-1">
               {averageScore > 0 ? `${averageScore}` : '—'}
             </p>
           </div>
 
           <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl">
-            <p className="text-xs font-bold uppercase text-slate-400">Tempo de Estudo</p>
+            <p className="text-xs font-bold uppercase text-slate-400">Study Time</p>
             <p className="text-3xl font-black text-blue-400 mt-1">{totalHours}h</p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function HistoryPage() {
                   : 'bg-slate-900 text-slate-300 border border-slate-800 hover:bg-slate-800'
               }`}
             >
-              Todos os Exames
+              All Exams
             </button>
             {uniqueExams.map((code) => (
               <button
@@ -132,15 +132,15 @@ export default function HistoryPage() {
         {filtered.length === 0 ? (
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-12 text-center max-w-lg mx-auto">
             <History className="h-12 w-12 text-slate-600 mx-auto mb-4" />
-            <h3 className="text-lg font-bold text-white mb-1">Nenhum Simulado Encontrado</h3>
+            <h3 className="text-lg font-bold text-white mb-1">No Exam Attempts Found</h3>
             <p className="text-xs text-slate-400 mb-6">
-              Complete um simulado para ver suas métricas e histórico detalhado aqui.
+              Complete an exam to see your metrics and detailed history here.
             </p>
             <Link
               href="/"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs"
             >
-              <span>Ir para o Catálogo</span>
+              <span>Go to Catalog</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -150,13 +150,13 @@ export default function HistoryPage() {
               <table className="w-full text-left text-sm text-slate-300">
                 <thead className="bg-slate-950/80 text-xs uppercase font-bold text-slate-400 border-b border-slate-800">
                   <tr>
-                    <th className="px-6 py-4">Exame</th>
-                    <th className="px-6 py-4">Modo</th>
-                    <th className="px-6 py-4">Pontuação</th>
-                    <th className="px-6 py-4">Resultado</th>
-                    <th className="px-6 py-4">Tempo Gasto</th>
-                    <th className="px-6 py-4">Data</th>
-                    <th className="px-6 py-4 text-right">Ações</th>
+                    <th className="px-6 py-4">Exam</th>
+                    <th className="px-6 py-4">Mode</th>
+                    <th className="px-6 py-4">Score</th>
+                    <th className="px-6 py-4">Result</th>
+                    <th className="px-6 py-4">Time Spent</th>
+                    <th className="px-6 py-4">Date</th>
+                    <th className="px-6 py-4 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
@@ -164,9 +164,9 @@ export default function HistoryPage() {
                     const mins = Math.floor(att.totalTimeSpentSeconds / 60);
                     const secs = att.totalTimeSpentSeconds % 60;
                     const dateStr = att.completedAt
-                      ? new Date(att.completedAt).toLocaleDateString('pt-BR', {
-                          day: '2-digit',
-                          month: '2-digit',
+                      ? new Date(att.completedAt).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
                           year: 'numeric',
                           hour: '2-digit',
                           minute: '2-digit',
@@ -197,7 +197,7 @@ export default function HistoryPage() {
                                 : 'bg-blue-500/10 text-blue-300 border border-blue-500/20'
                             }`}
                           >
-                            {att.mode === 'real' ? 'Simulado Real' : 'Modo Treino'}
+                            {att.mode === 'real' ? 'Real Exam' : 'Practice Mode'}
                           </span>
                         </td>
 
@@ -212,12 +212,12 @@ export default function HistoryPage() {
                           {att.score?.passed ? (
                             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">
                               <CheckCircle2 className="h-3.5 w-3.5" />
-                              Aprovado
+                              Passed
                             </span>
                           ) : (
                             <span className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-400 bg-rose-500/10 px-3 py-1 rounded-full">
                               <XCircle className="h-3.5 w-3.5" />
-                              Reprovado
+                              Failed
                             </span>
                           )}
                         </td>
@@ -235,12 +235,12 @@ export default function HistoryPage() {
                             href={`/exams/${att.examId}/result?attemptId=${att.id}`}
                             className="text-xs font-bold text-amber-400 hover:text-amber-300 underline"
                           >
-                            Revisar
+                            Review
                           </Link>
 
                           <button
                             onClick={() => handleDelete(att.id)}
-                            title="Excluir tentativa"
+                            title="Delete attempt"
                             className="text-slate-500 hover:text-rose-400 transition-colors p-1"
                           >
                             <Trash2 className="h-4 w-4" />

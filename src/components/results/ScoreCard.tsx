@@ -39,9 +39,9 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
   };
 
   const formattedDate = attempt.completedAt
-    ? new Date(attempt.completedAt).toLocaleDateString('pt-BR', {
-        day: '2-digit',
-        month: '2-digit',
+    ? new Date(attempt.completedAt).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
         year: 'numeric',
         hour: '2-digit',
         minute: '2-digit',
@@ -77,7 +77,7 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
                     : 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
                 }`}
               >
-                {passed ? 'APROVADO (PASS)' : 'NÃO APROVADO (FAIL)'}
+                {passed ? 'PASSED (PASS)' : 'FAILED (FAIL)'}
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-white">
@@ -90,7 +90,7 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
               </span>
               <span className="flex items-center gap-1">
                 <Clock className="h-3.5 w-3.5" />
-                Tempo: {formatDuration(attempt.totalTimeSpentSeconds)}
+                Time: {formatDuration(attempt.totalTimeSpentSeconds)}
               </span>
             </div>
           </div>
@@ -99,7 +99,7 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
         {/* Right: Scaled Score & Progress Gauge */}
         <div className="bg-slate-950/70 border border-slate-800/80 rounded-2xl p-5 min-w-[240px] text-center">
           <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">
-            Pontuação Oficial AWS (100–1000)
+            Official AWS Scaled Score (100–1000)
           </p>
           <div className="flex items-baseline justify-center gap-1.5">
             <span
@@ -114,13 +114,13 @@ export function ScoreCard({ attempt, passingScore }: ScoreCardProps) {
 
           <div className="mt-3 space-y-1 text-xs">
             <div className="flex justify-between text-slate-400">
-              <span>Nota de corte necessária:</span>
+              <span>Required passing score:</span>
               <span className="font-bold text-slate-200">{passingScore}</span>
             </div>
             <div className="flex justify-between text-slate-400">
-              <span>Taxa de Acertos:</span>
+              <span>Accuracy Rate:</span>
               <span className="font-bold text-slate-200">
-                {score?.totalCorrect} de {score?.totalQuestions} ({percentage}%)
+                {score?.totalCorrect} of {score?.totalQuestions} ({percentage}%)
               </span>
             </div>
           </div>

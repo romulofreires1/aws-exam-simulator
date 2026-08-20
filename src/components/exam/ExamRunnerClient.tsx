@@ -86,16 +86,16 @@ function ExamRunnerContent({ examId }: { examId: string }) {
       <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
         <div className="text-center max-w-md p-8 rounded-3xl bg-slate-900 border border-slate-800">
           <AlertCircle className="h-12 w-12 text-amber-400 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-white mb-2">Simulado Não Encontrado</h1>
+          <h1 className="text-2xl font-bold text-white mb-2">Exam Not Found</h1>
           <p className="text-slate-400 text-sm mb-6">
-            O exame com identificador &quot;{examId}&quot; não foi encontrado em nosso catálogo.
+            The exam with identifier &quot;{examId}&quot; was not found in our catalog.
           </p>
           <Link
             href="/"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Voltar ao Início</span>
+            <span>Back to Home</span>
           </Link>
         </div>
       </div>
@@ -110,7 +110,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         isPearson ? 'bg-[#001733] text-slate-100' : 'bg-slate-950 text-slate-100'
       }`}
     >
-      {/* Header do Exame */}
+      {/* Exam Header */}
       <ExamHeader
         examCode={exam.code}
         examTitle={exam.title}
@@ -131,7 +131,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* Conteúdo Principal */}
+      {/* Main Content */}
       <main className="flex-1">
         {engine.isReviewScreenOpen ? (
           <ExamReviewScreen
@@ -171,7 +171,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         )}
       </main>
 
-      {/* Modais de Suporte */}
+      {/* Support Modals */}
       <QuestionGridModal
         isOpen={engine.isQuestionMapOpen}
         onClose={() => engine.setIsQuestionMapOpen(false)}
@@ -197,7 +197,7 @@ export function ExamRunnerClient({ examId }: { examId: string }) {
     <Suspense
       fallback={
         <div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 text-sm">
-          Carregando simulado...
+          Loading exam...
         </div>
       }
     >

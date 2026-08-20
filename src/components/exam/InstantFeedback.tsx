@@ -19,7 +19,7 @@ export function InstantFeedback({
     return (
       <div className="mt-6 p-4 rounded-xl border border-dashed border-slate-800 bg-slate-900/30 text-slate-400 text-sm flex items-center gap-2">
         <HelpCircle className="h-4 w-4 text-slate-500 shrink-0" />
-        <span>Selecione uma resposta acima para ver o feedback e a explicação detalhada.</span>
+        <span>Select an answer above to view instant feedback and the detailed explanation.</span>
       </div>
     );
   }
@@ -41,29 +41,29 @@ export function InstantFeedback({
         )}
         <div>
           <h3 className="font-bold text-base">
-            {isCorrect ? 'Resposta Correta!' : 'Resposta Incorreta'}
+            {isCorrect ? 'Correct Answer!' : 'Incorrect Answer'}
           </h3>
           <p className="text-xs opacity-80">
             {isCorrect
-              ? 'Excelente raciocínio arquitetural.'
-              : `A resposta correta é: ${question.correctAnswers.join(', ')}.`}
+              ? 'Great architectural reasoning.'
+              : `The correct answer is: ${question.correctAnswers.join(', ')}.`}
           </p>
         </div>
       </div>
 
-      {/* Explicação Geral */}
+      {/* General Explanation */}
       <div className="mb-4 bg-slate-900/80 rounded-lg p-4 border border-slate-800 text-slate-200 text-sm leading-relaxed">
         <div className="flex items-center gap-2 font-semibold text-amber-400 mb-2">
           <Lightbulb className="h-4 w-4" />
-          <span>Explicação Oficial AWS:</span>
+          <span>Official AWS Explanation:</span>
         </div>
         <p>{question.generalExplanation}</p>
       </div>
 
-      {/* Detalhamento por Opção */}
+      {/* Option Breakdown */}
       <div className="space-y-2 mt-4">
         <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-          Análise de cada alternativa:
+          Analysis of each option:
         </p>
         {question.options.map((opt) => {
           const isThisCorrect = question.correctAnswers.includes(opt.id);
@@ -88,13 +88,13 @@ export function InstantFeedback({
                       : 'bg-slate-800 text-slate-400'
                   }`}
                 >
-                  Opção {opt.id}
+                  Option {opt.id}
                 </span>
                 {isThisCorrect && (
-                  <span className="text-emerald-400 text-[11px] font-bold">✓ Correta</span>
+                  <span className="text-emerald-400 text-[11px] font-bold">✓ Correct</span>
                 )}
                 {!isThisCorrect && wasSelected && (
-                  <span className="text-rose-400 text-[11px] font-bold">✗ Sua escolha</span>
+                  <span className="text-rose-400 text-[11px] font-bold">✗ Your choice</span>
                 )}
               </div>
               <p className="text-slate-300">{opt.explanation || opt.text}</p>
@@ -103,7 +103,7 @@ export function InstantFeedback({
         })}
       </div>
 
-      {/* Link de Referência */}
+      {/* Reference Link */}
       {question.referenceUrl && (
         <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-end">
           <a
@@ -112,7 +112,7 @@ export function InstantFeedback({
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-semibold underline"
           >
-            <span>Documentação Oficial AWS</span>
+            <span>Official AWS Documentation</span>
             <ExternalLink className="h-3 w-3" />
           </a>
         </div>

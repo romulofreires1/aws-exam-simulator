@@ -151,16 +151,16 @@ export function QuestionView({
           )}
         </div>
 
-        {/* Ferramentas de Destaque / Highlighting */}
+        {/* Highlighting Tools */}
         <div className="flex items-center gap-2">
           {highlightsCount > 0 && onClearHighlights && (
             <button
               onClick={onClearHighlights}
-              title="Remover todos os destaques desta questão"
+              title="Clear all highlights for this question"
               className="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-rose-400 px-2.5 py-1 rounded-lg border border-slate-800 hover:border-rose-500/40 bg-slate-900/60 transition-colors"
             >
               <Trash2 className="h-3 w-3" />
-              <span>Limpar Destaques ({highlightsCount})</span>
+              <span>Clear Highlights ({highlightsCount})</span>
             </button>
           )}
 
@@ -189,7 +189,7 @@ export function QuestionView({
             : 'bg-slate-900/90 border-slate-800 text-slate-100 backdrop-blur'
         }`}
       >
-        {/* Instruction pill & Dica de Highlight */}
+        {/* Instruction pill & Highlight hint */}
         <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
           <div
             className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold ${
@@ -201,21 +201,21 @@ export function QuestionView({
             <HelpCircle className="h-3.5 w-3.5" />
             <span>
               {isMultiple
-                ? `Selecione ${requiredCount} opções corretas (Choose ${
+                ? `Choose ${requiredCount} correct options (Choose ${
                     requiredCount === 2 ? 'TWO' : requiredCount === 3 ? 'THREE' : requiredCount
                   })`
-                : 'Selecione UMA única opção'}
+                : 'Choose ONE single option'}
             </span>
           </div>
 
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <span className="hidden md:inline">
-              Selecione o texto para realçar • Botão direito para riscar
+              Select text to highlight • Right-click to strike through
             </span>
           </div>
         </div>
 
-        {/* Floating Highlight Action Button quando há texto selecionado */}
+        {/* Floating Highlight Action Button when text is selected */}
         {selectedText && (
           <div className="mb-4 p-3 rounded-xl bg-amber-500/15 border border-amber-400/50 flex items-center justify-between animate-in fade-in slide-in-from-top-2 duration-150">
             <div className="flex items-center gap-2 text-xs text-amber-200 truncate mr-3">
@@ -227,12 +227,12 @@ export function QuestionView({
               className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs shadow-md transition-all"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Realçar Texto</span>
+              <span>Highlight Text</span>
             </button>
           </div>
         )}
 
-        {/* Statement com renderização de realce */}
+        {/* Statement with highlight rendering */}
         <div
           ref={statementRef}
           onMouseUp={handleMouseUp}
@@ -258,24 +258,24 @@ export function QuestionView({
           ))}
         </div>
 
-        {/* Practice Mode Action: Botão de Verificar Resposta */}
+        {/* Practice Mode Action: Check Answer Button */}
         {mode === 'practice' && (
           <div className="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="text-xs text-slate-400">
               {isMultiple ? (
                 <span>
-                  {response.selectedOptionIds.length} de {requiredCount} opções selecionadas
+                  {response.selectedOptionIds.length} of {requiredCount} options selected
                   {response.selectedOptionIds.length < requiredCount && (
                     <span className="text-amber-400 ml-1.5 font-semibold">
-                      (Selecione mais {requiredCount - response.selectedOptionIds.length})
+                      (Select {requiredCount - response.selectedOptionIds.length} more)
                     </span>
                   )}
                 </span>
               ) : (
                 <span>
                   {response.selectedOptionIds.length > 0
-                    ? '1 opção selecionada'
-                    : 'Selecione uma alternativa acima'}
+                    ? '1 option selected'
+                    : 'Select an option above'}
                 </span>
               )}
             </div>
@@ -295,14 +295,14 @@ export function QuestionView({
               <CheckCircle2 className="h-4 w-4" />
               <span>
                 {response.isAnswerChecked
-                  ? 'Ocultar Gabarito & Explicação'
-                  : 'Verificar Resposta & Explicação'}
+                  ? 'Hide Answer & Explanation'
+                  : 'Check Answer & Explanation'}
               </span>
             </button>
           </div>
         )}
 
-        {/* Practice Mode Feedback (Exibido após o usuário clicar em Verificar Resposta) */}
+        {/* Practice Mode Feedback */}
         {mode === 'practice' && response.isAnswerChecked && (
           <InstantFeedback
             question={question}
@@ -327,8 +327,8 @@ export function QuestionView({
             }`}
           >
             <ArrowLeft className="h-4 w-4" />
-            <span className="hidden sm:inline">Questão Anterior</span>
-            <span className="sm:hidden">Anterior</span>
+            <span className="hidden sm:inline">Previous Question</span>
+            <span className="sm:hidden">Previous</span>
             <kbd className="hidden md:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
               ←
             </kbd>
@@ -351,7 +351,7 @@ export function QuestionView({
                 : 'bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-amber-500/20'
             }`}
           >
-            <span>{isLastQuestion ? 'Revisar Simulado' : 'Próxima Questão'}</span>
+            <span>{isLastQuestion ? 'Review Exam' : 'Next Question'}</span>
             <ArrowRight className="h-4 w-4" />
             <kbd className="hidden md:inline-block text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/20 text-current">
               →

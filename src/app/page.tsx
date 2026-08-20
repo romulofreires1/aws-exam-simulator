@@ -35,34 +35,34 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold mb-4">
               <Zap className="h-3.5 w-3.5" />
-              <span>Simulador Oficial Client-Side • 100% Offline e Seguro</span>
+              <span>Official Client-Side Simulator • 100% Offline & Private</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-              Prepare-se para a sua certificação <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AWS</span>
+              Prepare for your <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AWS</span> certification
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed">
-              Simulados realistas com questões complexas, temporizador oficial, processo de eliminação com strike-through, explicações detalhadas e métricas por domínio.
+              Realistic exam simulations with complex scenario-based questions, official timers, elimination strike-through, detailed explanations, and domain breakdowns.
             </p>
           </div>
 
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
             <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <p className="text-xs font-bold uppercase text-slate-500">Certificações</p>
+              <p className="text-xs font-bold uppercase text-slate-500">Certifications</p>
               <p className="text-2xl font-black text-white mt-1">{exams.length}</p>
             </div>
             <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <p className="text-xs font-bold uppercase text-slate-500">Questões no Banco</p>
+              <p className="text-xs font-bold uppercase text-slate-500">Question Bank</p>
               <p className="text-2xl font-black text-amber-400 mt-1">{totalQuestionsInBank}</p>
             </div>
             <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <p className="text-xs font-bold uppercase text-slate-500">Simulados Realizados</p>
+              <p className="text-xs font-bold uppercase text-slate-500">Exams Completed</p>
               <p className="text-2xl font-black text-emerald-400 mt-1">{completedAttempts.length}</p>
             </div>
             <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-2xl">
-              <p className="text-xs font-bold uppercase text-slate-500">Média de Pontos</p>
+              <p className="text-xs font-bold uppercase text-slate-500">Average Score</p>
               <p className="text-2xl font-black text-white mt-1">
                 {averageScore > 0 ? `${averageScore}/1000` : '—'}
               </p>
@@ -75,9 +75,9 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h2 className="text-2xl font-black text-white">Catálogo de Certificações</h2>
+            <h2 className="text-2xl font-black text-white">Certification Catalog</h2>
             <p className="text-xs sm:text-sm text-slate-400">
-              Escolha uma certificação para iniciar no Modo Real ou Modo Treino
+              Select an exam to start in Real Exam or Practice Mode
             </p>
           </div>
         </div>
@@ -95,13 +95,13 @@ export default function HomePage() {
           <div className="flex items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-2">
               <History className="h-5 w-5 text-amber-400" />
-              <h2 className="text-xl font-bold text-white">Tentativas Recentes</h2>
+              <h2 className="text-xl font-bold text-white">Recent Attempts</h2>
             </div>
             <Link
               href="/history"
               className="text-xs font-semibold text-amber-400 hover:text-amber-300 flex items-center gap-1"
             >
-              <span>Ver histórico completo</span>
+              <span>View full history</span>
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
@@ -111,12 +111,12 @@ export default function HomePage() {
               <table className="w-full text-left text-sm text-slate-300">
                 <thead className="bg-slate-950/80 text-xs uppercase font-bold text-slate-400 border-b border-slate-800">
                   <tr>
-                    <th className="px-6 py-3.5">Exame</th>
-                    <th className="px-6 py-3.5">Modo</th>
-                    <th className="px-6 py-3.5">Pontuação</th>
-                    <th className="px-6 py-3.5">Resultado</th>
-                    <th className="px-6 py-3.5">Data</th>
-                    <th className="px-6 py-3.5 text-right">Relatório</th>
+                    <th className="px-6 py-3.5">Exam</th>
+                    <th className="px-6 py-3.5">Mode</th>
+                    <th className="px-6 py-3.5">Score</th>
+                    <th className="px-6 py-3.5">Result</th>
+                    <th className="px-6 py-3.5">Date</th>
+                    <th className="px-6 py-3.5 text-right">Report</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
@@ -126,7 +126,7 @@ export default function HomePage() {
                         {att.examCode}
                       </td>
                       <td className="px-6 py-4 text-xs capitalize text-slate-400">
-                        {att.mode === 'real' ? 'Simulado Real' : 'Modo Treino'}
+                        {att.mode === 'real' ? 'Real Exam' : 'Practice Mode'}
                       </td>
                       <td className="px-6 py-4 font-mono font-bold text-white">
                         {att.score?.scaledScore} / 1000 ({att.score?.percentage}%)
@@ -135,17 +135,21 @@ export default function HomePage() {
                         {att.score?.passed ? (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
                             <CheckCircle2 className="h-3.5 w-3.5" />
-                            Aprovado
+                            Passed
                           </span>
                         ) : (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full">
-                            Não Aprovado
+                            Failed
                           </span>
                         )}
                       </td>
                       <td className="px-6 py-4 text-xs text-slate-400">
                         {att.completedAt
-                          ? new Date(att.completedAt).toLocaleDateString('pt-BR')
+                          ? new Date(att.completedAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric',
+                            })
                           : '—'}
                       </td>
                       <td className="px-6 py-4 text-right">
@@ -153,7 +157,7 @@ export default function HomePage() {
                           href={`/exams/${att.examId}/result?attemptId=${att.id}`}
                           className="text-xs font-bold text-amber-400 hover:text-amber-300 underline"
                         >
-                          Ver Revisão
+                          View Review
                         </Link>
                       </td>
                     </tr>

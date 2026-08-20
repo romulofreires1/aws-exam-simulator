@@ -63,9 +63,9 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
       {/* Header & Filter Controls */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
         <div>
-          <h2 className="text-xl font-bold text-white">Revisão Detalhada das Questões</h2>
+          <h2 className="text-xl font-bold text-white">Detailed Question Review</h2>
           <p className="text-xs text-slate-400">
-            Analise cada questão, justificativas técnicas e referências da documentação oficial
+            Analyze each question, technical rationales, and official AWS documentation references
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            Todas ({questionStats.total})
+            All ({questionStats.total})
           </button>
 
           <button
@@ -90,7 +90,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            Erros ({questionStats.incorrectCount})
+            Incorrect ({questionStats.incorrectCount})
           </button>
 
           <button
@@ -101,7 +101,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            Acertos ({questionStats.correctCount})
+            Correct ({questionStats.correctCount})
           </button>
 
           <button
@@ -112,7 +112,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            Marcadas ({questionStats.flaggedCount})
+            Flagged ({questionStats.flaggedCount})
           </button>
         </div>
       </div>
@@ -121,7 +121,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
       <div className="space-y-8">
         {filteredQuestions.length === 0 ? (
           <div className="text-center py-12 text-slate-500">
-            Nenhuma questão encontrada com o filtro selecionado.
+            No questions found with the selected filter.
           </div>
         ) : (
           filteredQuestions.map((q) => {
@@ -144,7 +144,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
                   <div className="flex items-center gap-2.5">
                     <span className="font-mono font-black text-sm text-white bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-700">
-                      Questão {originalIndex + 1}
+                      Question {originalIndex + 1}
                     </span>
 
                     <span
@@ -157,12 +157,12 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                       {isCorrect ? (
                         <>
                           <CheckCircle2 className="h-3.5 w-3.5" />
-                          <span>Acertou</span>
+                          <span>Correct</span>
                         </>
                       ) : (
                         <>
                           <XCircle className="h-3.5 w-3.5" />
-                          <span>Errou</span>
+                          <span>Incorrect</span>
                         </>
                       )}
                     </span>
@@ -170,7 +170,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                     {isFlagged && (
                       <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">
                         <Flag className="h-3 w-3 fill-amber-400" />
-                        <span>Marcada</span>
+                        <span>Flagged</span>
                       </span>
                     )}
                   </div>
@@ -230,12 +230,12 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                           <span className="text-slate-200">{opt.text}</span>
                           {isThisCorrect && (
                             <span className="ml-auto text-xs text-emerald-400 font-bold">
-                              ✓ Correta
+                              ✓ Correct
                             </span>
                           )}
                           {!isThisCorrect && wasSelected && (
                             <span className="ml-auto text-xs text-rose-400 font-bold">
-                              ✗ Sua resposta
+                              ✗ Your answer
                             </span>
                           )}
                         </div>
@@ -254,7 +254,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                 <div className="bg-slate-950/80 rounded-xl p-4 border border-slate-800">
                   <div className="flex items-center gap-2 font-semibold text-xs text-amber-400 mb-1.5">
                     <Lightbulb className="h-4 w-4" />
-                    <span>Explicação e Boas Práticas AWS:</span>
+                    <span>Explanation & AWS Best Practices:</span>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {q.generalExplanation}
@@ -268,7 +268,7 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs text-amber-400 hover:text-amber-300 font-semibold underline"
                       >
-                        <span>Documentação Oficial AWS</span>
+                        <span>Official AWS Documentation</span>
                         <ExternalLink className="h-3 w-3" />
                       </a>
                     </div>

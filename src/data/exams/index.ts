@@ -3,7 +3,7 @@ import sapC02 from './sap-c02.json';
 import saaC03 from './saa-c03.json';
 import clfC02 from './clf-c02.json';
 
-// Registro central dos simulados disponíveis
+// Central registry of available exams
 export const AVAILABLE_EXAMS: ExamDefinition[] = [
   sapC02 as unknown as ExamDefinition,
   saaC03 as unknown as ExamDefinition,

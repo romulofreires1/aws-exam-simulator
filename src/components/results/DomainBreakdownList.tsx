@@ -20,9 +20,9 @@ export function DomainBreakdownList({ domains }: DomainBreakdownListProps) {
           <Layers className="h-5 w-5" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-white">Desempenho por Domínio Oficial</h2>
+          <h2 className="text-xl font-bold text-white">Performance by Official Domain</h2>
           <p className="text-xs text-slate-400">
-            Avaliação por seção de competência do guia oficial da certificação AWS
+            Competency section evaluation based on the official AWS certification guide
           </p>
         </div>
       </div>
@@ -42,7 +42,7 @@ export function DomainBreakdownList({ domains }: DomainBreakdownListProps) {
                     {d.domainName}
                   </h3>
                   <span className="text-xs text-slate-400">
-                    {d.correctQuestions} de {d.totalQuestions} questões corretas
+                    {d.correctQuestions} of {d.totalQuestions} questions correct
                   </span>
                 </div>
 
@@ -57,12 +57,12 @@ export function DomainBreakdownList({ domains }: DomainBreakdownListProps) {
                     {isProficient ? (
                       <>
                         <CheckCircle2 className="h-3 w-3" />
-                        <span>Atende à Competência</span>
+                        <span>Meets Competency</span>
                       </>
                     ) : (
                       <>
                         <AlertCircle className="h-3 w-3" />
-                        <span>Necessita Reforço</span>
+                        <span>Needs Improvement</span>
                       </>
                     )}
                   </span>
