@@ -1,0 +1,70 @@
+name: Deploy Static App (Novello)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOMAIN: ${{ vars.DOMAIN }}
+  AWS_REGION: us-east-1
+
+jobs:
+  infra:
+    name: Provision Infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 1. Configurar Credenciais de Produção
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_PROD_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_PROD_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      # 2. Localizar Hosted Zone e Provisionar ACM
+      - name: Provision Route53 & ACM
+        run: |
+          chmod +x ./scripts/infra-aws.sh
+          ./scripts/infra-aws.sh provision_zone
+          ./scripts/infra-aws.sh provision_acm
+
+      # 3. Provisionar S3 & CloudFront
+      - name: Provision S3 & CF
+        run: |
+          ./scripts/infra-aws.sh provision_s3
+          ./scripts/infra-aws.sh provision_cf
+
+      # 4. Criar Alias DNS para CloudFront
+      - name: Provision DNS Alias
+        run: ./scripts/infra-aws.sh provision_dns_alias
+
+  deploy:
+    name: Build and Deploy
+    needs: infra
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_PROD_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_PROD_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          
+      - name: Sync S3
+        run: aws s3 sync out/ s3://${{ env.DOMAIN }} --delete
+        
+      - name: Invalidate CloudFront
+        run: |
+          DIST_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='${{ env.DOMAIN }}'].Id" --output text)
+          aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
