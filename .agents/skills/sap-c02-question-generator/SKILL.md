@@ -54,8 +54,9 @@ Before drafting the scenario, review the domain references and gap analysis to i
 - [Domain 3 Reference: Continuous Improvement](./references/domain_3_continuous_imp.md)
 - [Domain 4 Reference: Migration & Modernization](./references/domain_4_migration_mod.md)
 
-### Step 3: Craft the Question Anatomy
-Every SAP-C02 question **MUST** exhibit professional-grade depth:
+### Step 3: Craft the Question Anatomy (100% Inéditas & Cenários Exclusivos)
+Every SAP-C02 question **MUST** exhibit professional-grade depth and be **completely new/unseen**:
+- **Regra de Ineditismo Obrigatória**: NUNCA copie ou reproduza enunciados literais já presentes nas notas ou questões de estudo do Obsidian. Use as notas apenas para extrair os *conceitos de arquitetura, limites e trade-offs*, criando **novas empresas fictícias e novos cenários de negócios** (ex: IoT de telemetria de frotas, plataformas de streaming OTT, processamento genômico, fintech de open banking, telecom, e-commerce global).
 1. **Scenario (2-4 sentences)**: Realistic enterprise context (e.g., 200+ AWS accounts, hybrid data center, global user base, regulatory compliance, microservices architecture).
 2. **Conflicting Constraints**: Establish 2 or more competing needs (e.g., strict RTO/RPO + minimal operational overhead; maximum security + no code modification; lowest egress cost + multi-VPC connectivity).
 3. **Decision Criteria Trigger (The Final Prompt)**:

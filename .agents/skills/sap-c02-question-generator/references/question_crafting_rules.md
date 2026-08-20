@@ -17,7 +17,16 @@ O exame **AWS Certified Solutions Architect - Professional (SAP-C02)** é notór
 
 ---
 
-## 2. Anatomia de uma Questão SAP-C02
+## 2. Regra de Ineditismo e Diversidade de Cenários
+
+Ao gerar novas questões:
+1. **Nunca reutilize enunciados existentes** dos arquivos do Obsidian (`Questions/Extras/`, `Questions/Video/`, etc.).
+2. **Sintetize novos contextos de negócio**: Crie empresas e desafios fictícios distintos (ex: telemetria de veículos elétricos, plataforma de streaming de jogos, processamento de dados genômicos, processamento de pagamentos PIX/instantâneos, distribuição de mídia com CDN, etc.).
+3. **Mantenha os conceitos e trade-offs avançados**: Utilize os tópicos do *Relatório de Lacunas* (KMS multi-region, Transit Gateway com Appliance Mode, Lake Formation, DRS, MGN com CDC, etc.) aplicando-os a esses novos cenários.
+
+---
+
+## 3. Anatomia de uma Questão SAP-C02
 
 Toda questão deve conter 4 componentes obrigatórios no enunciado:
 
