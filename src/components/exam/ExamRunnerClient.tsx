@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getExamById } from '@/data/exams';
 import { ExamMode } from '@/types/exam';
@@ -11,9 +11,11 @@ import { QuestionView } from '@/components/exam/QuestionView';
 import { ExamReviewScreen } from '@/components/exam/ExamReviewScreen';
 import { QuestionGridModal } from '@/components/exam/QuestionGridModal';
 import { ScratchpadModal } from '@/components/exam/ScratchpadModal';
+import { ExamPauseModal } from '@/components/exam/ExamPauseModal';
 import {
   getThemePreference,
   setThemePreference,
+  saveActiveSession,
   ExamTheme,
 } from '@/lib/storage/examStorage';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
@@ -71,6 +73,15 @@ function ExamRunnerContent({ examId }: { examId: string }) {
     },
   });
 
+  // Sincroniza estado de pausa com o timer
+  useEffect(() => {
+    if (engine.isPaused) {
+      timer.pause();
+    } else if (mode === 'real' && engine.isInitialized && !engine.isCompleted) {
+      timer.resume();
+    }
+  }, [engine.isPaused, mode, engine.isInitialized, engine.isCompleted]);
+
   // Atualiza tempo restante e tempo gasto no engine
   useEffect(() => {
     if (mode === 'real') {
@@ -80,6 +91,25 @@ function ExamRunnerContent({ examId }: { examId: string }) {
       );
     }
   }, [timer.seconds, exam, mode]);
+
+  const handleExitToHome = useCallback(() => {
+    if (exam && !engine.isCompleted && engine.attemptId) {
+      saveActiveSession({
+        id: engine.attemptId,
+        examId: exam.id,
+        examCode: exam.code,
+        examTitle: exam.title,
+        mode,
+        startedAt: new Date().toISOString(),
+        timeRemainingSeconds: timer.seconds,
+        totalTimeSpentSeconds: (exam.timeLimitMinutes * 60) - timer.seconds,
+        isCompleted: false,
+        currentQuestionIndex: engine.currentIndex,
+        responses: engine.responses,
+      });
+    }
+    router.push('/');
+  }, [exam, engine.isCompleted, engine.attemptId, engine.currentIndex, engine.responses, mode, timer.seconds, router]);
 
   if (!exam) {
     return (
@@ -123,6 +153,8 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         isTimerRunning={timer.isRunning}
         isFlagged={engine.currentResponse?.isFlagged || false}
         theme={theme}
+        isPaused={engine.isPaused}
+        onTogglePause={engine.togglePause}
         onToggleTimer={timer.isRunning ? timer.pause : timer.resume}
         onToggleFlag={engine.toggleFlag}
         onOpenQuestionMap={() => engine.setIsQuestionMapOpen(true)}
@@ -172,6 +204,24 @@ function ExamRunnerContent({ examId }: { examId: string }) {
       </main>
 
       {/* Support Modals */}
+      <ExamPauseModal
+        isOpen={engine.isPaused}
+        examCode={exam.code}
+        examTitle={exam.title}
+        mode={mode}
+        currentIndex={engine.currentIndex}
+        totalQuestions={exam.questions.length}
+        formattedTime={timer.formattedTime}
+        stats={engine.stats}
+        theme={theme}
+        onResume={engine.resumeExam}
+        onExit={handleExitToHome}
+        onReview={() => {
+          engine.resumeExam();
+          engine.setIsReviewScreenOpen(true);
+        }}
+      />
+
       <QuestionGridModal
         isOpen={engine.isQuestionMapOpen}
         onClose={() => engine.setIsQuestionMapOpen(false)}

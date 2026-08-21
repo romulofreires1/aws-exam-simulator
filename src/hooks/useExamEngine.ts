@@ -36,6 +36,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
   const [isQuestionMapOpen, setIsQuestionMapOpen] = useState<boolean>(false);
   const [isScratchpadOpen, setIsScratchpadOpen] = useState<boolean>(false);
   const [isReviewScreenOpen, setIsReviewScreenOpen] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   // Inicialização ou Retomada de Sessão
   useEffect(() => {
@@ -440,6 +441,21 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     };
   }, [exam.questions, responses]);
 
+  // Ações de Pausa
+  const pauseExam = useCallback(() => {
+    if (isCompleted) return;
+    setIsPaused(true);
+  }, [isCompleted]);
+
+  const resumeExam = useCallback(() => {
+    setIsPaused(false);
+  }, []);
+
+  const togglePause = useCallback(() => {
+    if (isCompleted) return;
+    setIsPaused((prev) => !prev);
+  }, [isCompleted]);
+
   // Suporte a Atalhos de Teclado
   useEffect(() => {
     if (!isInitialized || isCompleted || isReviewScreenOpen || isScratchpadOpen || isQuestionMapOpen) {
@@ -452,6 +468,21 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
 
       const key = e.key.toUpperCase();
+
+      if (key === 'P') {
+        e.preventDefault();
+        togglePause();
+        return;
+      }
+
+      // Se estiver pausado, não processa outros comandos do simulador
+      if (isPaused) {
+        if (key === 'ESCAPE' || key === 'ENTER') {
+          e.preventDefault();
+          resumeExam();
+        }
+        return;
+      }
 
       if (['A', 'B', 'C', 'D', 'E', 'F', 'G'].includes(key) && currentQuestion) {
         const optionExists = currentQuestion.options.some((opt) => opt.id.toUpperCase() === key);
@@ -480,6 +511,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
   }, [
     isInitialized,
     isCompleted,
+    isPaused,
     isReviewScreenOpen,
     isScratchpadOpen,
     isQuestionMapOpen,
@@ -488,6 +520,8 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     toggleFlag,
     prevQuestion,
     nextQuestion,
+    togglePause,
+    resumeExam,
   ]);
 
   return {
@@ -503,6 +537,12 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     setTimeRemainingSeconds,
     totalTimeSpentSeconds,
     setTotalTimeSpentSeconds,
+    // Pausa
+    isPaused,
+    setIsPaused,
+    pauseExam,
+    resumeExam,
+    togglePause,
     // Modais
     isQuestionMapOpen,
     setIsQuestionMapOpen,

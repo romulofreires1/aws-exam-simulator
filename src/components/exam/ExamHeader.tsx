@@ -27,6 +27,8 @@ interface ExamHeaderProps {
   isTimerRunning: boolean;
   isFlagged: boolean;
   theme: ExamTheme;
+  isPaused?: boolean;
+  onTogglePause?: () => void;
   onToggleTimer?: () => void;
   onToggleFlag: () => void;
   onOpenQuestionMap: () => void;
@@ -47,6 +49,8 @@ export function ExamHeader({
   isTimerRunning,
   isFlagged,
   theme,
+  isPaused,
+  onTogglePause,
   onToggleTimer,
   onToggleFlag,
   onOpenQuestionMap,
@@ -93,24 +97,26 @@ export function ExamHeader({
           </span>
         </div>
 
-        {/* Right: Timer & Tools */}
+        {/* Right: Timer, Pause & Tools */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           {/* Timer Display (Real Mode Only) */}
           {mode === 'real' ? (
-            <div
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-sm font-bold transition-all ${
+            <button
+              onClick={onTogglePause}
+              title="Pause Exam (P)"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-sm font-bold transition-all cursor-pointer ${
                 isTimerCritical
                   ? 'bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse'
                   : isTimerWarning
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
                   : isPearson
-                  ? 'bg-blue-900/80 text-white border border-blue-800'
-                  : 'bg-slate-800 text-slate-200 border border-slate-700'
+                  ? 'bg-blue-900/80 text-white border border-blue-800 hover:bg-blue-800'
+                  : 'bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600'
               }`}
             >
               <Clock className="h-4 w-4 shrink-0" />
               <span>{formattedTime}</span>
-            </div>
+            </button>
           ) : (
             <div
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold ${
@@ -121,6 +127,22 @@ export function ExamHeader({
             >
               <span>No time limit</span>
             </div>
+          )}
+
+          {/* Pause Button */}
+          {onTogglePause && (
+            <button
+              onClick={onTogglePause}
+              title="Pause Simulator (P)"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+                isPearson
+                  ? 'bg-blue-900/80 border-blue-700 text-blue-100 hover:bg-blue-800 hover:text-white'
+                  : 'bg-slate-800 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-amber-300'
+              }`}
+            >
+              <Pause className="h-3.5 w-3.5" />
+              <span className="hidden xs:inline sm:inline">Pause</span>
+            </button>
           )}
 
           {/* Theme Switch */}
