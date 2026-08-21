@@ -18,34 +18,33 @@ dificuldade: "hard"
 
 [Descrever o cenário enterprise de 2 a 4 frases, incluindo o contexto da organização, a infraestrutura atual, o problema/novo requisito de negócio, restrições específicas e o critério de decisão em negrito.]
 
-**[Pergunta de Decisão: ex: Qual combinação de ações atenderá a esses requisitos de forma MAIS eficiente operacionalmente? (Escolha duas.)]**
+**[Pergunta de Decisão: ex: Qual arquitetura atenderá a esses requisitos com a MENOR sobrecarga de gerenciamento?]**
 
 ---
 
 ## 🔘 Alternativas
 
-**A.** [Texto completo da alternativa detalhando as etapas de implementação]
+**A.** [Texto completo do distrator com sequência detalhada de configuração]
 
-**B.** [Texto completo da alternativa detalhando as etapas de implementação]
+**B.** [Texto completo do distrator com sequência detalhada de configuração]
 
-**C.** [Texto completo da alternativa detalhando as etapas de implementação]
+**C.** [Texto completo da alternativa correta detalhando as etapas de implementação]
 
-**D.** [Texto completo da alternativa detalhando as etapas de implementação]
+**D.** [Texto completo do distrator com sequência detalhada de configuração]
 
-**E.** [Texto completo da alternativa detalhando as etapas de implementação (se for múltipla escolha)]
+*(Nota: Assegure-se de que a resposta correta varie aleatoriamente entre A, B, C, D ou combinações de múltipla escolha como B, D)*
 
 ---
 
 ## 🎯 Gabarito e Justificativa
 
-### Resposta Correta: **[Letra(s)]**
+### Resposta Correta: **C** *(exemplo embaralhado)*
 
 ### Análise Detalhada das Alternativas:
-- **A. [Correto / Incorreto]:** [Explicação técnica detalhada justificando por que a opção está certa ou errada segundo o AWS Well-Architected Framework]
-- **B. [Correto / Incorreto]:** [Explicação técnica detalhada]
-- **C. [Correto / Incorreto]:** [Explicação técnica detalhada]
-- **D. [Correto / Incorreto]:** [Explicação técnica detalhada]
-- **E. [Correto / Incorreto]:** [Explicação técnica detalhada (se aplicável)]
+- **A. Incorreto:** [Explicação técnica detalhada justificando por que esta opção é incorreta ou sub-ótima]
+- **B. Incorreto:** [Explicação técnica detalhada]
+- **C. Correto:** [Explicação técnica detalhada justificando por que esta é a solução ideal segundo o AWS Well-Architected Framework]
+- **D. Incorreto:** [Explicação técnica detalhada]
 
 ---
 

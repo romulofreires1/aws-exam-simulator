@@ -1,10 +1,10 @@
-# Tópicos de Alta Relevância (Gap Analysis) e Pegadinhas da Prova SAP-C02
+# Padrões Arquiteturais Enterprise e Armadilhas do Exame SAP-C02
 
-Esta referência compila os tópicos avançados que diferenciam o exame **SAP-C02 (Professional)** do **SAA-C03 (Associate)**. Muitas questões de simulados comuns falham por não cobrirem esses tópicos críticos.
+Esta referência compila os principais tópicos e arquiteturas enterprise avaliadas no exame **AWS Certified Solutions Architect - Professional (SAP-C02)**, além das armadilhas clássicas de formulação de questões.
 
 ---
 
-## 🚀 Os 15 Tópicos de Maior Relevância e Alta Densidade na Prova
+## 🚀 Principais Padrões Arquiteturais Avaliados no Exame
 
 ### 1. IAM Identity Center (AWS SSO) + SCIM + ABAC
 - **Padrão:** Federação SAML 2.0 com IdPs corporativos (Microsoft Entra ID / Okta) na conta de gerenciamento.

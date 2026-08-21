@@ -36,7 +36,11 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS Transit Gateway", "AWS RAM", "AWS Direct Connect"],
+      "services": [
+        "AWS Transit Gateway",
+        "AWS RAM",
+        "AWS Direct Connect"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação global possui duas regiões AWS ativas (us-east-1 e eu-west-1) com mais de 60 VPCs em cada região distribuídas por 40 contas AWS. A empresa possui uma conexão AWS Direct Connect dedicada de 10 Gbps em São Paulo que precisa fornecer conectividade privada de baixa latência para todas as VPCs em ambas as regiões. A equipe de arquitetura exige uma topologia de rede centralizada que elimine a necessidade de criar interfaces virtuais privadas (Private VIFs) separadas para cada VPC e suporte roteamento dinâmico entre as regiões. Qual solução atende a esses requisitos com a MENOR sobrecarga de configuração?",
@@ -53,16 +57,18 @@
         },
         {
           "id": "C",
-          "text": "Configurar uma malha completa de VPC Peering entre todas as 120 VPCs e conectar a conexão Direct Connect a uma única VPC central que atue como roteador de tráfego transitivo.",
-          "explanation": "Incorreto: VPC Peering não suporta roteamento transitivo e criar mais de 7.000 conexões de peering ponto a ponto é operacionalmente impossível de manter."
+          "text": "Criar conexões AWS Site-to-Site VPN de backup sobre a internet pública para cada VPC a partir do roteador do data center.",
+          "explanation": "Incorreto: Conexões VPN individuais sobre a internet violam o requisito de utilizar a conexão dedicada de 10 Gbps do Direct Connect e aumentam a complexidade."
         },
         {
           "id": "D",
-          "text": "Criar conexões AWS Site-to-Site VPN de backup sobre a internet pública para cada VPC a partir do roteador do data center.",
-          "explanation": "Incorreto: Conexões VPN individuais sobre a internet violam o requisito de utilizar a conexão dedicada de 10 Gbps do Direct Connect e aumentam a complexidade."
+          "text": "Configurar uma malha completa de VPC Peering entre todas as 120 VPCs e conectar a conexão Direct Connect a uma única VPC central que atue como roteador de tráfego transitivo.",
+          "explanation": "Incorreto: VPC Peering não suporta roteamento transitivo e criar mais de 7.000 conexões de peering ponto a ponto é operacionalmente impossível de manter."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "O padrão de conectividade global da AWS combina AWS Direct Connect Gateway com Transit VIF conectado a múltiplos AWS Transit Gateways regionais. O TGW Peering estabelece a malha inter-regional com roteamento BGP simplificado.",
       "referenceUrl": "https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-transit-gateways.html",
       "difficulty": "hard"
@@ -72,7 +78,10 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS IAM", "AWS Organizations"],
+      "services": [
+        "AWS IAM",
+        "AWS Organizations"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma equipe de desenvolvimento em uma conta membro do AWS Organizations precisa de permissão para criar e gerenciar suas próprias funções IAM (IAM Roles) para funções AWS Lambda e instâncias EC2. No entanto, a equipe de segurança corporativa exige garantir que nenhum desenvolvedor consiga criar uma IAM Role que tenha privilégios maiores do que os permitidos (como permissões de administrador total ou acesso a buckets confidenciais de auditoria), mesmo que tentem anexar a política AdministratorAccess. Qual mecanismo deve ser implementado para delegar a criação de roles com segurança?",
@@ -84,13 +93,13 @@
         },
         {
           "id": "B",
-          "text": "Criar uma Service Control Policy (SCP) que negue iam:CreateRole para todos os usuários na conta membro.",
-          "explanation": "Incorreto: Negar iam:CreateRole via SCP impede totalmente os desenvolvedores de criarem roles, violando o requisito de delegar a criação com autonomia."
+          "text": "Configurar uma regra do AWS Config que detecte roles criadas com a política AdministratorAccess e invoque uma função Lambda para excluí-las.",
+          "explanation": "Incorreto: Esta é uma abordagem detectiva reativa que permite que a role com privilégios excessivos exista e seja utilizada antes de ser excluída."
         },
         {
           "id": "C",
-          "text": "Configurar uma regra do AWS Config que detecte roles criadas com a política AdministratorAccess e invoque uma função Lambda para excluí-las.",
-          "explanation": "Incorreto: Esta é uma abordagem detectiva reativa que permite que a role com privilégios excessivos exista e seja utilizada antes de ser excluída."
+          "text": "Criar uma Service Control Policy (SCP) que negue iam:CreateRole para todos os usuários na conta membro.",
+          "explanation": "Incorreto: Negar iam:CreateRole via SCP impede totalmente os desenvolvedores de criarem roles, violando o requisito de delegar a criação com autonomia."
         },
         {
           "id": "D",
@@ -98,7 +107,9 @@
           "explanation": "Incorreto: Bloquear iam:* nas credenciais do usuário impede que eles criem as roles necessárias para suas Lambdas e EC2."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "O recurso de IAM Permissions Boundary é a solução padrão da AWS para conceder a desenvolvedores a capacidade de criar e gerenciar IAM Roles para suas aplicações sem o risco de escalada de privilégios (Privilege Escalation), limitando o teto de permissões da role criada.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html",
       "difficulty": "hard"
@@ -108,33 +119,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS RAM", "Amazon VPC"],
+      "services": [
+        "AWS RAM",
+        "Amazon VPC"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação adota uma estratégia de contas segregadas por aplicação (mais de 50 contas) para desenvolvimento e produção. A equipe de redes corporativa deseja centralizar o gerenciamento de roteamento, sub-redes, gateways NAT e conectividade Direct Connect em uma única conta de rede (Network Account), permitindo que os desenvolvedores nas contas de aplicação lancem recursos (como instâncias EC2 e clusters EKS) diretamente nas sub-redes corporativas gerenciadas, mantendo o isolamento de visualização dos recursos de outros times. Qual arquitetura atende a esses requisitos com a MENOR complexidade de gerenciamento de rede?",
       "options": [
         {
           "id": "A",
-          "text": "Criar as VPCs e sub-redes na conta central de rede e compartilhá-las com as contas de aplicação do AWS Organizations utilizando o AWS Resource Access Manager (AWS RAM) através do recurso de VPC Compartilhada (VPC Sharing).",
-          "explanation": "Correto: O VPC Sharing via AWS RAM permite que a conta de rede mantenha o controle de VPCs, roteamento e NAT Gateways, enquanto contas de aplicação lançam seus recursos computacionais nas sub-redes compartilhadas."
-        },
-        {
-          "id": "B",
-          "text": "Criar uma VPC individual em cada uma das 50 contas e estabelecer conexões de VPC Peering bidirecionais com a VPC da conta de rede.",
-          "explanation": "Incorreto: Exige criar e gerenciar 50 VPCs separadas, múltiplos NAT Gateways redundantes por conta e complexas tabelas de roteamento individuais."
-        },
-        {
-          "id": "C",
           "text": "Implantar um AWS Transit Gateway na conta de rede e configurar um túnel IPSec VPN para cada conta de aplicação.",
           "explanation": "Incorreto: Conectar contas na mesma região via túneis VPN individuais sobre o Transit Gateway introduz limitações de throughput (1.25 Gbps) e custos desnecessários."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "Criar as VPCs e sub-redes na conta central de rede e compartilhá-las com as contas de aplicação do AWS Organizations utilizando o AWS Resource Access Manager (AWS RAM) através do recurso de VPC Compartilhada (VPC Sharing).",
+          "explanation": "Correto: O VPC Sharing via AWS RAM permite que a conta de rede mantenha o controle de VPCs, roteamento e NAT Gateways, enquanto contas de aplicação lançam seus recursos computacionais nas sub-redes compartilhadas."
+        },
+        {
+          "id": "C",
           "text": "Configurar AWS CloudFormation StackSets para clonar a mesma VPC e CIDR idêntico em todas as 50 contas membro.",
           "explanation": "Incorreto: Não centraliza o gerenciamento de sub-redes nem a infraestrutura de rede, criando duplicação de custos de NAT Gateway por conta."
+        },
+        {
+          "id": "D",
+          "text": "Criar uma VPC individual em cada uma das 50 contas e estabelecer conexões de VPC Peering bidirecionais com a VPC da conta de rede.",
+          "explanation": "Incorreto: Exige criar e gerenciar 50 VPCs separadas, múltiplos NAT Gateways redundantes por conta e complexas tabelas de roteamento individuais."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "B"
+      ],
       "generalExplanation": "O recurso de VPC Sharing (VPC Compartilhada) habilitado pelo AWS Resource Access Manager (RAM) é a melhor prática para ambientes corporativos que desejam separar a responsabilidade de administração de rede (Central Network Team) da administração de cargas de trabalho dos times de aplicação.",
       "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html",
       "difficulty": "medium"
@@ -144,20 +160,23 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["Amazon Route 53", "AWS Firewall Manager"],
+      "services": [
+        "Amazon Route 53",
+        "AWS Firewall Manager"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma empresa global de telecomunicações precisa proteger suas mais de 100 VPCs contra exfiltração de dados por tunelamento DNS e impedir que instâncias comprometidas resolvam nomes de domínio associados a botnets e servidores de comando e controle conhecidos. A equipe de segurança exige que as regras de filtragem de DNS sejam aplicadas e mantidas de forma centralizada em todas as contas e regiões do AWS Organizations, com auditoria de consultas bloqueadas. Qual solução atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar o AWS Firewall Manager para implantar e gerenciar centralmente políticas do Route 53 Resolver DNS Firewall em todas as VPCs e contas da organização, associando listas de regras gerenciadas da AWS e listas de domínios bloqueados personalizadas.",
-          "explanation": "Correto: O AWS Firewall Manager permite aplicar e auditar centralmente regras do Route 53 Resolver DNS Firewall em todas as contas e VPCs da organização no AWS Organizations."
+          "text": "Instalar agentes de firewall DNS locais em cada instância EC2 através de scripts no user-data e configurar regras de iptables para filtrar a porta UDP 53.",
+          "explanation": "Incorreto: Gerenciar iptables e agentes em instâncias individuais é frágil, não cobre serviços serverless e possui altíssima sobrecarga de manutenção."
         },
         {
           "id": "B",
-          "text": "Instalar agentes de firewall DNS locais em cada instância EC2 através de scripts no user-data e configurar regras de iptables para filtrar a porta UDP 53.",
-          "explanation": "Incorreto: Gerenciar iptables e agentes em instâncias individuais é frágil, não cobre serviços serverless e possui altíssima sobrecarga de manutenção."
+          "text": "Utilizar o AWS Firewall Manager para implantar e gerenciar centralmente políticas do Route 53 Resolver DNS Firewall em todas as VPCs e contas da organização, associando listas de regras gerenciadas da AWS e listas de domínios bloqueados personalizadas.",
+          "explanation": "Correto: O AWS Firewall Manager permite aplicar e auditar centralmente regras do Route 53 Resolver DNS Firewall em todas as contas e VPCs da organização no AWS Organizations."
         },
         {
           "id": "C",
@@ -170,7 +189,9 @@
           "explanation": "Incorreto: Criar zonas privadas manuais (DNS sinkholing manual) não escala para milhares de domínios maliciosos em constante mutação."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "B"
+      ],
       "generalExplanation": "A combinação do Route 53 Resolver DNS Firewall com o AWS Firewall Manager permite que equipes de segurança corporativas apliquem políticas de filtragem de nomes de domínio consistentes e automatizadas em toda a organização da AWS, bloqueando ataques de DNS tunneling e malware C&C.",
       "referenceUrl": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-dns-firewall.html",
       "difficulty": "hard"
@@ -180,20 +201,24 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS Budgets", "AWS Organizations", "AWS IAM"],
+      "services": [
+        "AWS Budgets",
+        "AWS Organizations",
+        "AWS IAM"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação possui 50 contas AWS de ambiente de testes (Sandbox) no AWS Organizations. Para evitar custos descontrolados provocados por desenvolvedores esquecendo recursos ativos, a gerência financeira exige que, se os gastos acumulados de qualquer conta Sandbox ultrapassarem US$ 1.000 no mês corrente, todas as permissões para provisionar novos recursos sejam revogadas automaticamente naquela conta específica, mantendo os recursos existentes em execução para análise. Qual solução implementa esse controle com a MENOR sobrecarga operacional?",
       "options": [
         {
           "id": "A",
-          "text": "Configurar um orçamento no AWS Budgets em cada conta Sandbox (ou via AWS Budgets com integração multi-conta) com uma ação de orçamento (Budget Action) configurada para anexar automaticamente uma SCP ou política IAM restritiva (negar ec2:RunInstances, rds:CreateDBInstance, etc.) quando o limite de US$ 1.000 for atingido.",
-          "explanation": "Correto: O AWS Budgets suporta nativamente Budget Actions que podem aplicar automaticamente IAM Policies, SCPs ou parar instâncias quando um limiar de custo pré-definido é ultrapassado."
+          "text": "Criar um alarme no Amazon CloudWatch Billing que envie um e-mail para o gerente de infraestrutura solicitando que ele faça login na conta e revogue as permissões manualmente.",
+          "explanation": "Incorreto: Exige intervenção manual humana e introduz atraso, não atendendo ao requisito de bloqueio automático imediato."
         },
         {
           "id": "B",
-          "text": "Criar um alarme no Amazon CloudWatch Billing que envie um e-mail para o gerente de infraestrutura solicitando que ele faça login na conta e revogue as permissões manualmente.",
-          "explanation": "Incorreto: Exige intervenção manual humana e introduz atraso, não atendendo ao requisito de bloqueio automático imediato."
+          "text": "Configurar uma SCP estática na raiz da organização negando todas as ações de criação durante os finais de semana.",
+          "explanation": "Incorreto: Não monitora o valor financeiro gasto e bloqueia o trabalho dos desenvolvedores mesmo quando estão abaixo do orçamento."
         },
         {
           "id": "C",
@@ -202,11 +227,13 @@
         },
         {
           "id": "D",
-          "text": "Configurar uma SCP estática na raiz da organização negando todas as ações de criação durante os finais de semana.",
-          "explanation": "Incorreto: Não monitora o valor financeiro gasto e bloqueia o trabalho dos desenvolvedores mesmo quando estão abaixo do orçamento."
+          "text": "Configurar um orçamento no AWS Budgets em cada conta Sandbox (ou via AWS Budgets com integração multi-conta) com uma ação de orçamento (Budget Action) configurada para anexar automaticamente uma SCP ou política IAM restritiva (negar ec2:RunInstances, rds:CreateDBInstance, etc.) quando o limite de US$ 1.000 for atingido.",
+          "explanation": "Correto: O AWS Budgets suporta nativamente Budget Actions que podem aplicar automaticamente IAM Policies, SCPs ou parar instâncias quando um limiar de custo pré-definido é ultrapassado."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O recurso AWS Budgets Actions permite definir ações programadas ou automáticas de governança financeira. Quando um limite orçamentário é ultrapassado, o Budgets pode aplicar políticas IAM/SCPs restritivas ou parar instâncias sem exigir código customizado.",
       "referenceUrl": "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-controls.html",
       "difficulty": "medium"
@@ -216,33 +243,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
-      "services": ["AWS Control Tower", "AWS CloudFormation"],
+      "services": [
+        "AWS Control Tower",
+        "AWS CloudFormation"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma instituição financeira utiliza o AWS Control Tower para governar seu ecossistema multi-contas. A equipe de DevOps precisa automatizar o pipeline de criação de contas através de ferramentas de Infraestrutura como Código (IaC) baseadas em Terraform, aplicando configurações customizadas de segurança, conexões de VPC e papéis IAM padronizados automaticamente no momento em que cada nova conta for solicitada por pull request. Qual solução é a recomendada pela AWS?",
       "options": [
         {
           "id": "A",
-          "text": "Implantar o Account Factory for Terraform (AFT) fornecido pela AWS para o AWS Control Tower, integrando o fluxo de solicitação de contas via repositório Git e pipelines automatizados do Terraform.",
-          "explanation": "Correto: O Account Factory for Terraform (AFT) é a solução oficial da AWS para estender o Control Tower, permitindo provisionar e personalizar contas automaticamente usando pipelines de Terraform e GitOps."
-        },
-        {
-          "id": "B",
-          "text": "Criar scripts Bash manuais que chamem a API create-account do AWS Organizations e executar terraform apply em uma máquina local.",
-          "explanation": "Incorreto: Processo manual, frágil, descentralizado e sem integração com os guardrails do Control Tower."
-        },
-        {
-          "id": "C",
           "text": "Desativar o AWS Control Tower e utilizar apenas módulos genéricos da comunidade Terraform para criar organizações e contas do zero.",
           "explanation": "Incorreto: Descartar o Control Tower perde todos os guardrails gerenciados, automação de Landing Zone e relatórios de conformidade nativos da AWS."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "Implantar o Account Factory for Terraform (AFT) fornecido pela AWS para o AWS Control Tower, integrando o fluxo de solicitação de contas via repositório Git e pipelines automatizados do Terraform.",
+          "explanation": "Correto: O Account Factory for Terraform (AFT) é a solução oficial da AWS para estender o Control Tower, permitindo provisionar e personalizar contas automaticamente usando pipelines de Terraform e GitOps."
+        },
+        {
+          "id": "C",
           "text": "Utilizar o AWS Service Catalog em cada conta membro para solicitar instâncias EC2 que executem scripts de configuração de conta.",
           "explanation": "Incorreto: O Service Catalog dentro de contas membro não gerencia o provisionamento de novas contas no nível da organização."
+        },
+        {
+          "id": "D",
+          "text": "Criar scripts Bash manuais que chamem a API create-account do AWS Organizations e executar terraform apply em uma máquina local.",
+          "explanation": "Incorreto: Processo manual, frágil, descentralizado e sem integração com os guardrails do Control Tower."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "B"
+      ],
       "generalExplanation": "O AWS Control Tower Account Factory for Terraform (AFT) estabelece uma linha de montagem automatizada (pipeline GitOps) para provisionamento e customização de contas com Terraform, mantendo total alinhamento com a governança da Landing Zone.",
       "referenceUrl": "https://docs.aws.amazon.com/controltower/latest/userguide/aft-overview.html",
       "difficulty": "hard"
@@ -252,15 +284,18 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon Redshift", "Amazon S3"],
+      "services": [
+        "Amazon Redshift",
+        "Amazon S3"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação de varejo possui múltiplos departamentos (Vendas, Logística e Inteligência de Negócios) operando em contas AWS separadas, cada um com seu próprio cluster Amazon Redshift. O departamento de Vendas armazena dados transacionais consolidados e precisa permitir que os clusters Redshift de Logística e BI façam consultas em tempo real nas tabelas de vendas sem a necessidade de copiar ou mover dados entre contas (sem pipelines ETL intermediários), garantindo que as consultas dos times consumidores não consumam a capacidade computacional do cluster produtor de Vendas. Qual solução atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar o recurso Amazon Redshift Data Sharing para compartilhar os bancos de dados e esquemas do cluster produtor (Vendas) com os clusters consumidores (Logística e BI) através do AWS Data Exchange ou permissões de compartilhamento direto entre contas do Redshift.",
-          "explanation": "Correto: O Redshift Data Sharing permite compartilhar dados em tempo real e de forma segura entre clusters e contas sem mover dados fisicamente, isolando a computação (o cluster consumidor paga pelo seu próprio processamento)."
+          "text": "Criar conexões de banco de dados dblink diretas entre os clusters Redshift através de conexões de VPC Peering entre as contas.",
+          "explanation": "Incorreto: Conexões diretas consomem recursos de CPU e memória do cluster produtor durante as consultas e dblink não é otimizado para grandes volumes analíticos no Redshift."
         },
         {
           "id": "B",
@@ -269,16 +304,18 @@
         },
         {
           "id": "C",
-          "text": "Criar conexões de banco de dados dblink diretas entre os clusters Redshift através de conexões de VPC Peering entre as contas.",
-          "explanation": "Incorreto: Conexões diretas consomem recursos de CPU e memória do cluster produtor durante as consultas e dblink não é otimizado para grandes volumes analíticos no Redshift."
+          "text": "Configurar o AWS Database Migration Service (DMS) para replicar continuamente as tabelas de Vendas para os clusters de Logística e BI.",
+          "explanation": "Incorreto: Replicar dados duplica custos de armazenamento em 3 clusters e cria dependência de instâncias de replicação DMS desnecessárias."
         },
         {
           "id": "D",
-          "text": "Configurar o AWS Database Migration Service (DMS) para replicar continuamente as tabelas de Vendas para os clusters de Logística e BI.",
-          "explanation": "Incorreto: Replicar dados duplica custos de armazenamento em 3 clusters e cria dependência de instâncias de replicação DMS desnecessárias."
+          "text": "Utilizar o recurso Amazon Redshift Data Sharing para compartilhar os bancos de dados e esquemas do cluster produtor (Vendas) com os clusters consumidores (Logística e BI) através do AWS Data Exchange ou permissões de compartilhamento direto entre contas do Redshift.",
+          "explanation": "Correto: O Redshift Data Sharing permite compartilhar dados em tempo real e de forma segura entre clusters e contas sem mover dados fisicamente, isolando a computação (o cluster consumidor paga pelo seu próprio processamento)."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O Amazon Redshift Data Sharing viabiliza o compartilhamento seguro e instantâneo de dados entre clusters Redshift (mesma conta ou cross-account) sem duplicação de storage e com isolamento total de carga computacional, permitindo que cada consumidor use sua própria capacidade de consulta.",
       "referenceUrl": "https://docs.aws.amazon.com/redshift/latest/dg/datashare-overview.html",
       "difficulty": "hard"
@@ -288,20 +325,24 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["AWS Step Functions", "AWS Lambda", "Amazon S3"],
+      "services": [
+        "AWS Step Functions",
+        "AWS Lambda",
+        "Amazon S3"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma empresa de imagens médicas precisa processar lotes diários contendo mais de 500.000 imagens de exames armazenadas no Amazon S3. Cada imagem requer validação de metadados, conversão de formato e extração de características com modelos de IA. O processamento deve ser totalmente serverless, executar milhares de tarefas em paralelo com controle de concorrência e gerenciamento de retentativas em caso de falha individual de imagem, com visibilidade visual do progresso de execução de cada item. Qual solução atende a esses requisitos com a MENOR sobrecarga de desenvolvimento?",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar o AWS Step Functions no modo Distributed Map para ler a lista de objetos diretamente do bucket S3 e orquestrar execuções paralelas de funções AWS Lambda com até 10.000 execuções concorrentes e controle integrado de erros por item.",
-          "explanation": "Correto: O Distributed Map do AWS Step Functions foi projetado especificamente para processamento paralelo em larga escala de milhões de objetos do S3, gerenciando concorrência, retentativas e rastreamento de status de forma serverless."
+          "text": "Criar um cluster Amazon EMR com Apache Spark executando em instâncias EC2 Spot dedicadas para processar as imagens via scripts PySpark.",
+          "explanation": "Incorreto: Gerenciar clusters EMR introduz sobrecarga operacional de infraestrutura considerável e não é uma solução serverless nativa leve."
         },
         {
           "id": "B",
-          "text": "Criar um cluster Amazon EMR com Apache Spark executando em instâncias EC2 Spot dedicadas para processar as imagens via scripts PySpark.",
-          "explanation": "Incorreto: Gerenciar clusters EMR introduz sobrecarga operacional de infraestrutura considerável e não é uma solução serverless nativa leve."
+          "text": "Utilizar o AWS Step Functions no modo Distributed Map para ler a lista de objetos diretamente do bucket S3 e orquestrar execuções paralelas de funções AWS Lambda com até 10.000 execuções concorrentes e controle integrado de erros por item.",
+          "explanation": "Correto: O Distributed Map do AWS Step Functions foi projetado especificamente para processamento paralelo em larga escala de milhões de objetos do S3, gerenciando concorrência, retentativas e rastreamento de status de forma serverless."
         },
         {
           "id": "C",
@@ -314,7 +355,9 @@
           "explanation": "Incorreto: Cria um gargalo de computação em uma única máquina, não é serverless, não possui alta disponibilidade e não escala para 500.000 imagens em paralelo."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "B"
+      ],
       "generalExplanation": "O estado Distributed Map do AWS Step Functions permite orquestrar fluxos de trabalho paralelos massivos no Amazon S3, suportando até 10.000 execuções concorrentes com rastreamento detalhado de cada item processado, eliminando a complexidade de gerenciar concorrência e falhas.",
       "referenceUrl": "https://docs.aws.amazon.com/step-functions/latest/dg/concepts-asl-use-map-state-distributed.html",
       "difficulty": "hard"
@@ -324,20 +367,24 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon S3", "Amazon Route 53", "AWS Global Accelerator"],
+      "services": [
+        "Amazon S3",
+        "Amazon Route 53",
+        "AWS Global Accelerator"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação multinacional armazena ativos digitais em buckets S3 nas regiões us-east-1, eu-west-1 e ap-southeast-1 com replicação bidirecional (CRR). Clientes distribuídos globalmente precisam fazer upload e download de arquivos com a MENOR latência de rede possível através de um único endpoint global público e consistente, com failover automático transparente caso uma das regiões da AWS fique temporariamente indisponível. Qual solução atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "Criar um Amazon S3 Multi-Region Access Point (MRAP) apontando para os buckets nas três regiões, aproveitando o roteamento acelerado via AWS Global Accelerator integrado e failover automático de tráfego.",
-          "explanation": "Correto: S3 Multi-Region Access Points (MRAP) fornecem um único endpoint global acelerado por Anycast da rede global da AWS que roteia requisições dinamicamente para o bucket regional mais próximo e saudável."
+          "text": "Configurar uma distribuição do Amazon CloudFront com Origin Groups na frente dos três buckets e permitir métodos HTTP PUT/POST.",
+          "explanation": "Incorreto: O CloudFront Origin Groups suporta failover apenas para requisições de leitura (GET/HEAD), não sendo adequado para failover automático de operações de upload (PUT/POST)."
         },
         {
           "id": "B",
-          "text": "Configurar uma distribuição do Amazon CloudFront com Origin Groups na frente dos três buckets e permitir métodos HTTP PUT/POST.",
-          "explanation": "Incorreto: O CloudFront Origin Groups suporta failover apenas para requisições de leitura (GET/HEAD), não sendo adequado para failover automático de operações de upload (PUT/POST)."
+          "text": "Implantar Application Load Balancers em cada região com instâncias EC2 atuando como proxies reversos NGINX para os buckets S3.",
+          "explanation": "Incorreto: Introduz alto custo de computação, sobrecarga operacional desnecessária e cria gargalos de transferência de dados em comparação à solução nativa S3 MRAP."
         },
         {
           "id": "C",
@@ -346,11 +393,13 @@
         },
         {
           "id": "D",
-          "text": "Implantar Application Load Balancers em cada região com instâncias EC2 atuando como proxies reversos NGINX para os buckets S3.",
-          "explanation": "Incorreto: Introduz alto custo de computação, sobrecarga operacional desnecessária e cria gargalos de transferência de dados em comparação à solução nativa S3 MRAP."
+          "text": "Criar um Amazon S3 Multi-Region Access Point (MRAP) apontando para os buckets nas três regiões, aproveitando o roteamento acelerado via AWS Global Accelerator integrado e failover automático de tráfego.",
+          "explanation": "Correto: S3 Multi-Region Access Points (MRAP) fornecem um único endpoint global acelerado por Anycast da rede global da AWS que roteia requisições dinamicamente para o bucket regional mais próximo e saudável."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O Amazon S3 Multi-Region Access Points (MRAP) estabelece um endpoint global único que utiliza a rede privada de fibra da AWS e o AWS Global Accelerator para rotear requisições para a cópia regional mais próxima do S3, oferecendo failover automático e redução de até 60% na latência de rede.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiRegionAccessPoints.html",
       "difficulty": "hard"
@@ -360,7 +409,10 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon EC2", "Amazon FSx"],
+      "services": [
+        "Amazon EC2",
+        "Amazon FSx"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma empresa de engenharia aeroespacial executa simulações de dinâmica de fluidos computacional (CFD) de Alta Performance (HPC) que exigem comunicação entre nós (inter-node) com latência de rede ultra-baixa de microssegundos e largura de banda de até 100 Gbps, além de um sistema de arquivos compartilhado compatível com POSIX capaz de entregar milhões de IOPS e throughput de centenas de GB/s integrado diretamente com dados no Amazon S3. Qual arquitetura de infraestrutura atende a esses requisitos?",
@@ -386,7 +438,9 @@
           "explanation": "Incorreto: Fargate e servidores NFS comuns não suportam os requisitos de microssegundos de latência de rede (sem EFA) nem o throughput de GB/s exigidos por simulações CFD."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "Para cargas de HPC (High Performance Computing), a arquitetura de referência na AWS combina instâncias de nós em um Cluster Placement Group utilizando Elastic Fabric Adapter (EFA) para contornar o stack do kernel do SO (OS bypass) e Amazon FSx for Lustre para I/O massivo conectado ao Amazon S3.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html",
       "difficulty": "hard"
@@ -396,25 +450,28 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon MSK", "Amazon VPC"],
+      "services": [
+        "Amazon MSK",
+        "Amazon VPC"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma instituição financeira está construindo uma plataforma de streaming de eventos de transações financeiras em tempo real utilizando o Amazon Managed Streaming for Apache Kafka (Amazon MSK). Aplicações produtoras e consumidoras em mais de 20 VPCs e contas distintas na mesma região precisam se comunicar de forma privada com o cluster MSK sem rotear tráfego pela internet e sem a complexidade de gerenciar tabelas de rotas e conexões de emparelhamento ponto a ponto. Qual recurso do Amazon MSK atende a esse requisito de forma nativa?",
       "options": [
         {
           "id": "A",
+          "text": "Implantar brokers Apache Kafka proxy em instâncias EC2 em cada VPC consumidora para fazer repasse TCP.",
+          "explanation": "Incorreto: Gerenciar proxies manuais cria sobrecarga operacional desnecessária e pontos de falha na cadeia de streaming."
+        },
+        {
+          "id": "B",
           "text": "Habilitar o recurso de conectividade multi-VPC (Multi-VPC connectivity) no cluster Amazon MSK, permitindo que as contas clientes criem conexões gerenciadas baseadas em AWS PrivateLink diretamente para os brokers do cluster.",
           "explanation": "Correto: O recurso nativo Multi-VPC connectivity do Amazon MSK utiliza o AWS PrivateLink para simplificar o acesso seguro e privado entre diferentes VPCs e contas sem exigir Transit Gateway ou VPC Peering."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Configurar o cluster Amazon MSK com acesso público ativado e utilizar regras de Security Groups para permitir apenas os IPs elásticos das instâncias clientes.",
           "explanation": "Incorreto: Expor o cluster publicamente viola a conformidade de dados financeiros privados e exige gerenciar centenas de IPs estáticos."
-        },
-        {
-          "id": "C",
-          "text": "Implantar brokers Apache Kafka proxy em instâncias EC2 em cada VPC consumidora para fazer repasse TCP.",
-          "explanation": "Incorreto: Gerenciar proxies manuais cria sobrecarga operacional desnecessária e pontos de falha na cadeia de streaming."
         },
         {
           "id": "D",
@@ -422,7 +479,9 @@
           "explanation": "Incorreto: Não atende ao streaming de eventos em tempo real com baixa latência exigido pela aplicação financeira."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "B"
+      ],
       "generalExplanation": "O recurso Multi-VPC Connectivity do Amazon MSK permite conectar clientes de diferentes VPCs e contas da AWS diretamente aos brokers Kafka de forma totalmente gerenciada através do AWS PrivateLink, eliminando a complexidade de redes de roteamento inter-VPC.",
       "referenceUrl": "https://docs.aws.amazon.com/msk/latest/developerguide/aws-privatelink.html",
       "difficulty": "medium"
@@ -432,7 +491,10 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
-      "services": ["Amazon Aurora", "Amazon RDS"],
+      "services": [
+        "Amazon Aurora",
+        "Amazon RDS"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma startup de tecnologia está lançando um novo aplicativo móvel SaaS com padrão de uso altamente imprevisível: em certos horários há centenas de milhares de requisições simultâneas, enquanto durante a madrugada a carga cai quase a zero. A equipe deseja utilizar um banco de dados relacional totalmente gerenciado compatível com PostgreSQL que consiga escalar a capacidade de computação (CPU e memória) para cima e para baixo instantaneamente em incrementos granulares e com alta disponibilidade Multi-AZ sem causar desconexão de clientes. Qual opção de banco de dados é a MAIS indicada?",
@@ -458,7 +520,9 @@
           "explanation": "Incorreto: O Redshift é um data warehouse para análise OLAP, não um banco de dados relacional transacional (OLTP) para aplicações de aplicativos móveis."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "O Amazon Aurora Serverless v2 é a solução relacional serverless recomendada para cargas transacionais imprevisíveis ou com picos repentinos. Ele escala instantaneamente em frações de segundo sem perda de sessões de clientes e suporta todos os recursos corporativos do Aurora (Multi-AZ, Global Database, Read Replicas).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html",
       "difficulty": "easy"
@@ -468,20 +532,23 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS Systems Manager", "Amazon EC2"],
+      "services": [
+        "AWS Systems Manager",
+        "Amazon EC2"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação gerencia centenas de instâncias EC2 executando sistemas operacionais heterogêneos (Amazon Linux 2, Ubuntu e Windows Server) distribuídas por múltiplas contas AWS. A equipe de governança exige um mecanismo automatizado para aplicar patches de segurança críticos mensalmente. A solução deve permitir definir regras de aprovação de patches específicas por sistema operacional, agendar janelas de manutenção sem intervenção humana e gerar relatórios de conformidade auditáveis no nível organizacional. Qual solução atende a esses requisitos com a MENOR sobrecarga de gerenciamento?",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar o AWS Systems Manager Patch Manager integrado ao AWS Organizations. Configurar Patch Baselines customizadas com regras de aprovação automática para cada sistema operacional e associá-las a Maintenance Windows (janelas de manutenção) e tarefas automatizadas do Systems Manager com relatórios de conformidade consolidados no Systems Manager Compliance.",
-          "explanation": "Correto: O SSM Patch Manager é a ferramenta nativa e automatizada da AWS para gerenciar baselines de patches, aprovações, agendamentos com Maintenance Windows e relatórios de conformidade multi-SO em larga escala."
+          "text": "Configurar cron jobs locais e tarefas agendadas do Windows em cada servidor para rodar scripts yum update e apt-get upgrade automaticamente todo domingo.",
+          "explanation": "Incorreto: Scripts locais descentralizados não oferecem controle centralizado de aprovação de patches, auditoria corporativa ou visibilidade de conformidade."
         },
         {
           "id": "B",
-          "text": "Configurar cron jobs locais e tarefas agendadas do Windows em cada servidor para rodar scripts yum update e apt-get upgrade automaticamente todo domingo.",
-          "explanation": "Incorreto: Scripts locais descentralizados não oferecem controle centralizado de aprovação de patches, auditoria corporativa ou visibilidade de conformidade."
+          "text": "Reconstruir e substituir todas as instâncias EC2 semanalmente utilizando novos templates do CloudFormation.",
+          "explanation": "Incorreto: Reconstruir frotas inteiras semanalmente pode causar interrupções operacionais e não substitui a governança formal de Patch Baselines exigida por auditorias."
         },
         {
           "id": "C",
@@ -490,11 +557,13 @@
         },
         {
           "id": "D",
-          "text": "Reconstruir e substituir todas as instâncias EC2 semanalmente utilizando novos templates do CloudFormation.",
-          "explanation": "Incorreto: Reconstruir frotas inteiras semanalmente pode causar interrupções operacionais e não substitui a governança formal de Patch Baselines exigida por auditorias."
+          "text": "Utilizar o AWS Systems Manager Patch Manager integrado ao AWS Organizations. Configurar Patch Baselines customizadas com regras de aprovação automática para cada sistema operacional e associá-las a Maintenance Windows (janelas de manutenção) e tarefas automatizadas do Systems Manager com relatórios de conformidade consolidados no Systems Manager Compliance.",
+          "explanation": "Correto: O SSM Patch Manager é a ferramenta nativa e automatizada da AWS para gerenciar baselines de patches, aprovações, agendamentos com Maintenance Windows e relatórios de conformidade multi-SO em larga escala."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O AWS Systems Manager Patch Manager automatiza o processo de aplicação de patches de segurança em sistemas operacionais corporativos, suportando Patch Baselines personalizadas, janelas de manutenção (Maintenance Windows) e rastreamento contínuo de conformidade.",
       "referenceUrl": "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-patch.html",
       "difficulty": "medium"
@@ -504,15 +573,19 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["Amazon Inspector", "Amazon ECR", "AWS Lambda"],
+      "services": [
+        "Amazon Inspector",
+        "Amazon ECR",
+        "AWS Lambda"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma equipe de segurança de software precisa implementar uma solução de varredura contínua e automatizada de vulnerabilidades (CVEs) em pipelines de integração contínua (CI/CD) e em tempo de execução para contêineres armazenados no Amazon ECR, instâncias Amazon EC2 e funções AWS Lambda (incluindo dependências de pacotes de terceiros). A solução deve alertar automaticamente os times quando uma nova vulnerabilidade de dia zero for divulgada publicamente sem exigir o reenvio de imagens ou acionamento manual de scans. Qual serviço atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "Amazon Inspector v2",
-          "explanation": "Correto: O Amazon Inspector v2 realiza varreduras contínuas e automatizadas em EC2, imagens no Amazon ECR e funções AWS Lambda, reavaliando automaticamente o ambiente sempre que novas vulnerabilidades (CVEs) são adicionadas à base de dados."
+          "text": "AWS Security Hub",
+          "explanation": "Incorreto: O Security Hub centraliza e normaliza achados gerados por outros serviços (como o Inspector), mas não executa a varredura profunda de vulnerabilidades por si só."
         },
         {
           "id": "B",
@@ -521,16 +594,18 @@
         },
         {
           "id": "C",
-          "text": "AWS Security Hub",
-          "explanation": "Incorreto: O Security Hub centraliza e normaliza achados gerados por outros serviços (como o Inspector), mas não executa a varredura profunda de vulnerabilidades por si só."
+          "text": "AWS WAF",
+          "explanation": "Incorreto: O AWS WAF inspeciona tráfego de camada 7 HTTP/HTTPS em ALBs/CloudFront, não analisando código de contêineres ou dependências de Lambda."
         },
         {
           "id": "D",
-          "text": "AWS WAF",
-          "explanation": "Incorreto: O AWS WAF inspeciona tráfego de camada 7 HTTP/HTTPS em ALBs/CloudFront, não analisando código de contêineres ou dependências de Lambda."
+          "text": "Amazon Inspector v2",
+          "explanation": "Correto: O Amazon Inspector v2 realiza varreduras contínuas e automatizadas em EC2, imagens no Amazon ECR e funções AWS Lambda, reavaliando automaticamente o ambiente sempre que novas vulnerabilidades (CVEs) são adicionadas à base de dados."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O Amazon Inspector v2 é o serviço de gerenciamento automatizado de vulnerabilidades que descobre e avalia continuamente vulnerabilidades de software e exposições de rede não intencionais em instâncias EC2, repositórios de contêineres no ECR e código de funções AWS Lambda.",
       "referenceUrl": "https://docs.aws.amazon.com/inspector/latest/user/what-is-inspector.html",
       "difficulty": "medium"
@@ -540,15 +615,19 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS KMS", "Auto Scaling", "Amazon EBS"],
+      "services": [
+        "AWS KMS",
+        "Auto Scaling",
+        "Amazon EBS"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma equipe de engenharia está criando um Auto Scaling Group para lançar instâncias EC2 a partir de uma Amazon Machine Image (AMI) personalizada cujos volumes EBS raiz são criptografados usando uma chave KMS Customer Managed Key (CMK) gerenciada em uma conta de segurança central. Ao testar a expansão automática (scale-out), as novas instâncias falham imediatamente ao inicializar com o erro 'Client.InternalError: Client error on launch'. Qual configuração está faltando na política de segurança?",
       "options": [
         {
           "id": "A",
-          "text": "A Key Policy da chave KMS na conta de segurança precisa conceder permissão para o serviço Auto Scaling criar uma KMS Grant (kms:CreateGrant) para a Service-Linked Role do Auto Scaling (AWSServiceRoleForAutoScaling), permitindo o uso da chave para descriptografar a AMI e criptografar os volumes EBS.",
-          "explanation": "Correto: Quando o Auto Scaling lança instâncias com volumes EBS criptografados por uma CMK, ele necessita de uma concessão KMS (Grant) criada via sua Service-Linked Role para utilizar a chave de forma delegada."
+          "text": "Alterar a política do Security Group das instâncias para liberar a porta 443 de saída para o endpoint do KMS.",
+          "explanation": "Incorreto: O erro ocorre durante o provisionamento do volume EBS pelo plano de controle da AWS (Auto Scaling service) antes mesmo de a instância iniciar seu sistema operacional."
         },
         {
           "id": "B",
@@ -557,16 +636,18 @@
         },
         {
           "id": "C",
-          "text": "Criar uma chave de acesso estática (Access Key e Secret Key) com permissão de administrador do KMS e salvá-la no script user-data da AMI.",
-          "explanation": "Incorreto: Salvar credenciais estáticas de longa duração em user-data é um anti-padrão gravíssimo de segurança."
+          "text": "A Key Policy da chave KMS na conta de segurança precisa conceder permissão para o serviço Auto Scaling criar uma KMS Grant (kms:CreateGrant) para a Service-Linked Role do Auto Scaling (AWSServiceRoleForAutoScaling), permitindo o uso da chave para descriptografar a AMI e criptografar os volumes EBS.",
+          "explanation": "Correto: Quando o Auto Scaling lança instâncias com volumes EBS criptografados por uma CMK, ele necessita de uma concessão KMS (Grant) criada via sua Service-Linked Role para utilizar a chave de forma delegada."
         },
         {
           "id": "D",
-          "text": "Alterar a política do Security Group das instâncias para liberar a porta 443 de saída para o endpoint do KMS.",
-          "explanation": "Incorreto: O erro ocorre durante o provisionamento do volume EBS pelo plano de controle da AWS (Auto Scaling service) antes mesmo de a instância iniciar seu sistema operacional."
+          "text": "Criar uma chave de acesso estática (Access Key e Secret Key) com permissão de administrador do KMS e salvá-la no script user-data da AMI.",
+          "explanation": "Incorreto: Salvar credenciais estáticas de longa duração em user-data é um anti-padrão gravíssimo de segurança."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "C"
+      ],
       "generalExplanation": "Para que o Amazon EC2 Auto Scaling consiga lançar instâncias utilizando volumes EBS ou AMIs criptografadas com chaves KMS gerenciadas pelo cliente (CMK), a política da chave KMS deve incluir permissões para que o serviço crie concessões temporárias (KMS Grants) através da Service-Linked Role do Auto Scaling.",
       "referenceUrl": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-kms.html",
       "difficulty": "hard"
@@ -576,33 +657,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS Fault Injection Simulator", "AWS Systems Manager"],
+      "services": [
+        "AWS Fault Injection Simulator",
+        "AWS Systems Manager"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma instituição financeira exige que todas as aplicações de missão crítica realizem testes regulares de Engenharia do Caos (Chaos Engineering) para validar se os mecanismos de failover automatizados (como recuperação de falhas de nós em clusters EKS, failover de banco de dados RDS e interrupções de zonas de disponibilidade) funcionam conforme o esperado em produção sem causar indisponibilidade para os usuários finais. Qual serviço nativo da AWS foi projetado para executar esses experimentos de injeção controlada de falhas?",
       "options": [
         {
           "id": "A",
-          "text": "AWS Fault Injection Simulator (AWS FIS)",
-          "explanation": "Correto: O AWS Fault Injection Simulator (FIS) é o serviço totalmente gerenciado da AWS para realizar experimentos de engenharia do caos e injeção de falhas controladas (parar instâncias, drenar tráfego, injetar latência de rede) com condições de parada automática seguras."
+          "text": "Amazon CloudWatch Synthetics",
+          "explanation": "Incorreto: O CloudWatch Synthetics cria canários de monitoramento contínuo de endpoints, mas não injeta falhas na infraestrutura."
         },
         {
           "id": "B",
-          "text": "AWS CloudFormation Drift Detection",
-          "explanation": "Incorreto: O Drift Detection apenas compara se o estado real dos recursos na conta diverge do template IaC original."
-        },
-        {
-          "id": "C",
           "text": "AWS Trusted Advisor",
           "explanation": "Incorreto: O Trusted Advisor fornece recomendações de melhores práticas em custo, performance e segurança, não executando experimentos de falha ativa."
         },
         {
+          "id": "C",
+          "text": "AWS CloudFormation Drift Detection",
+          "explanation": "Incorreto: O Drift Detection apenas compara se o estado real dos recursos na conta diverge do template IaC original."
+        },
+        {
           "id": "D",
-          "text": "Amazon CloudWatch Synthetics",
-          "explanation": "Incorreto: O CloudWatch Synthetics cria canários de monitoramento contínuo de endpoints, mas não injeta falhas na infraestrutura."
+          "text": "AWS Fault Injection Simulator (AWS FIS)",
+          "explanation": "Correto: O AWS Fault Injection Simulator (FIS) é o serviço totalmente gerenciado da AWS para realizar experimentos de engenharia do caos e injeção de falhas controladas (parar instâncias, drenar tráfego, injetar latência de rede) com condições de parada automática seguras."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O AWS Fault Injection Simulator (FIS) permite que arquitetos testem a resiliência de suas cargas de trabalho simulando falhas reais controladas (ex: alta utilização de CPU, perda de conexões de banco de dados, interrupção de AZs) com salvaguardas (stop conditions) automáticas.",
       "referenceUrl": "https://docs.aws.amazon.com/fis/latest/userguide/what-is.html",
       "difficulty": "medium"
@@ -612,33 +698,39 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS Cost and Usage Report", "Amazon Athena", "Amazon QuickSight"],
+      "services": [
+        "AWS Cost and Usage Report",
+        "Amazon Athena",
+        "Amazon QuickSight"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "O time de FinOps de uma multinacional precisa analisar os custos detalhados de mais de 100 contas AWS. Eles precisam realizar consultas SQL complexas nos dados de faturamento por hora, cruzando dados de tags de alocação de custos corporativas, tipos de operação e IDs de recursos individuais para identificar desperdícios de gastos, exportando relatórios visuais dinâmicos para a diretoria. Qual arquitetura atende a esses requisitos com o MENOR custo e maior flexibilidade?",
       "options": [
         {
           "id": "A",
-          "text": "Configurar a entrega do AWS Cost and Usage Report (CUR) particionado em formato Apache Parquet em um bucket Amazon S3 central, mapear o catálogo de dados no AWS Glue e realizar consultas analíticas via Amazon Athena, conectando os resultados ao Amazon QuickSight para visualização de dashboards.",
-          "explanation": "Correto: O padrão oficial de FinOps da AWS (CUR + Parquet + Athena + QuickSight) fornece granularidade máxima de custos, flexibilidade SQL serverless de baixo custo e dashboards executivos."
+          "text": "Implantar um cluster Amazon Redshift dedicado de nós densos de computação para importar os logs do CloudTrail e calcular despesas.",
+          "explanation": "Incorreto: O CloudTrail registra eventos de API, não dados financeiros de faturamento, e manter um cluster Redshift 24/7 gera custo fixo elevado desnecessário."
         },
         {
           "id": "B",
-          "text": "Utilizar a API do AWS Cost Explorer para extrair dados brutos de todas as contas para um banco de dados relacional Amazon RDS MySQL dedicado.",
-          "explanation": "Incorreto: A API do Cost Explorer cobra US$ 0,01 por requisição paginada, tornando consultas detalhadas de 100 contas com milhões de registros extremamente caras e lentas."
-        },
-        {
-          "id": "C",
           "text": "Fazer download manual dos relatórios em PDF de faturamento em cada conta membro todo final de mês e compilar os dados em planilhas locais.",
           "explanation": "Incorreto: Processo manual ineficiente que não fornece dados granulares por hora nem escala para 100 contas."
         },
         {
+          "id": "C",
+          "text": "Configurar a entrega do AWS Cost and Usage Report (CUR) particionado em formato Apache Parquet em um bucket Amazon S3 central, mapear o catálogo de dados no AWS Glue e realizar consultas analíticas via Amazon Athena, conectando os resultados ao Amazon QuickSight para visualização de dashboards.",
+          "explanation": "Correto: O padrão oficial de FinOps da AWS (CUR + Parquet + Athena + QuickSight) fornece granularidade máxima de custos, flexibilidade SQL serverless de baixo custo e dashboards executivos."
+        },
+        {
           "id": "D",
-          "text": "Implantar um cluster Amazon Redshift dedicado de nós densos de computação para importar os logs do CloudTrail e calcular despesas.",
-          "explanation": "Incorreto: O CloudTrail registra eventos de API, não dados financeiros de faturamento, e manter um cluster Redshift 24/7 gera custo fixo elevado desnecessário."
+          "text": "Utilizar a API do AWS Cost Explorer para extrair dados brutos de todas as contas para um banco de dados relacional Amazon RDS MySQL dedicado.",
+          "explanation": "Incorreto: A API do Cost Explorer cobra US$ 0,01 por requisição paginada, tornando consultas detalhadas de 100 contas com milhões de registros extremamente caras e lentas."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "C"
+      ],
       "generalExplanation": "A solução recomendada pela AWS para inteligência de custos enterprise é o AWS Cost and Usage Report (CUR) integrado ao Amazon Athena (SQL serverless sobre Parquet no S3) e Amazon QuickSight para dashboards de FinOps.",
       "referenceUrl": "https://docs.aws.amazon.com/cur/latest/userguide/cur-query-athena.html",
       "difficulty": "medium"
@@ -648,7 +740,10 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS Compute Optimizer", "Amazon CloudWatch"],
+      "services": [
+        "AWS Compute Optimizer",
+        "Amazon CloudWatch"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação percebeu que centenas de instâncias EC2 em suas contas estão superdimensionadas (over-provisioned), consumindo em média menos de 10% de CPU e memória, gerando desperdício financeiro considerável. A equipe quer receber recomendações automatizadas baseadas em machine learning que indiquem os tipos e tamanhos de instâncias ideais (right-sizing), inclusive sugerindo migrações para processadores baseados em ARM (AWS Graviton) quando apropriado. A equipe ativou o AWS Compute Optimizer, mas percebeu que as recomendações de memória (RAM) não estão disponíveis. Qual ação deve ser realizada para habilitar recomendações de memória?",
@@ -660,8 +755,8 @@
         },
         {
           "id": "B",
-          "text": "Habilitar o monitoramento detalhado (Detailed Monitoring) no console do Amazon EC2 para as instâncias.",
-          "explanation": "Incorreto: O Detailed Monitoring apenas aumenta a frequência de coleta de métricas padrão do hipervisor para intervalos de 1 minuto, mas o hipervisor não tem visibilidade da memória interna do sistema operacional."
+          "text": "Criar um script em Python que execute chamadas de API via Boto3 para consultar a memória diretamente pelo AWS Systems Manager.",
+          "explanation": "Incorreto: Não alimenta o motor de machine learning do Compute Optimizer no formato nativo esperado."
         },
         {
           "id": "C",
@@ -670,11 +765,13 @@
         },
         {
           "id": "D",
-          "text": "Criar um script em Python que execute chamadas de API via Boto3 para consultar a memória diretamente pelo AWS Systems Manager.",
-          "explanation": "Incorreto: Não alimenta o motor de machine learning do Compute Optimizer no formato nativo esperado."
+          "text": "Habilitar o monitoramento detalhado (Detailed Monitoring) no console do Amazon EC2 para as instâncias.",
+          "explanation": "Incorreto: O Detailed Monitoring apenas aumenta a frequência de coleta de métricas padrão do hipervisor para intervalos de 1 minuto, mas o hipervisor não tem visibilidade da memória interna do sistema operacional."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "A"
+      ],
       "generalExplanation": "Para que o AWS Compute Optimizer forneça recomendações precisas de dimensionamento de memória (RAM) para instâncias EC2, é necessário que as instâncias estejam executando o Amazon CloudWatch Agent publicando a métrica de utilização de memória.",
       "referenceUrl": "https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent-metrics",
       "difficulty": "medium"
@@ -684,15 +781,19 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
-      "services": ["AWS X-Ray", "Amazon CloudWatch", "AWS Lambda"],
+      "services": [
+        "AWS X-Ray",
+        "Amazon CloudWatch",
+        "AWS Lambda"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma arquitetura de microsserviços altamente distribuída composta por dezenas de funções AWS Lambda, filas Amazon SQS, tópicos SNS e tabelas DynamoDB está apresentando lentidão intermitente em requisições de checkout. A equipe de desenvolvimento precisa de uma ferramenta de observabilidade e rastreamento distribuído ponta a ponta (distributed tracing) que permita visualizar o mapa de dependências dos serviços, identificar gargalos de latência em chamadas downstream específicas e analisar a causa raiz de exceções. Qual serviço atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "AWS X-Ray",
-          "explanation": "Correto: O AWS X-Ray fornece rastreamento distribuído de ponta a ponta, gerando mapas de serviços (service maps), identificando gargalos de latência e isolando erros em arquiteturas de microsserviços."
+          "text": "AWS Config",
+          "explanation": "Incorreto: O AWS Config rastreia alterações no histórico de configuração de recursos da AWS, não fluxos de execução de requisições de software."
         },
         {
           "id": "B",
@@ -701,16 +802,18 @@
         },
         {
           "id": "C",
-          "text": "Amazon GuardDuty",
-          "explanation": "Incorreto: O GuardDuty é um serviço de detecção de ameaças de segurança, não uma ferramenta de observabilidade de latência de código."
+          "text": "AWS X-Ray",
+          "explanation": "Correto: O AWS X-Ray fornece rastreamento distribuído de ponta a ponta, gerando mapas de serviços (service maps), identificando gargalos de latência e isolando erros em arquiteturas de microsserviços."
         },
         {
           "id": "D",
-          "text": "AWS Config",
-          "explanation": "Incorreto: O AWS Config rastreia alterações no histórico de configuração de recursos da AWS, não fluxos de execução de requisições de software."
+          "text": "Amazon GuardDuty",
+          "explanation": "Incorreto: O GuardDuty é um serviço de detecção de ameaças de segurança, não uma ferramenta de observabilidade de latência de código."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "C"
+      ],
       "generalExplanation": "O AWS X-Ray é o serviço nativo da AWS dedicado a tracing distribuído e análise de performance para aplicações modernas de microsserviços e serverless, permitindo que desenvolvedores analisem latências e identifiquem a causa raiz de problemas em tempo de execução.",
       "referenceUrl": "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html",
       "difficulty": "easy"
@@ -720,33 +823,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["AWS Application Discovery Service", "AWS Migration Hub"],
+      "services": [
+        "AWS Application Discovery Service",
+        "AWS Migration Hub"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação está planejando a migração em massa de um data center corporativo contendo mais de 1.000 servidores físicos e máquinas virtuais. A equipe de arquitetura precisa realizar o levantamento de inventário detalhado, descobrindo o perfil de utilização de hardware (CPU, memória, disco e rede) e mapeando com precisão os relacionamentos e dependências de comunicação de rede entre os diferentes servidores para planejar as ondas de migração (Wave Planning) sem quebrar dependências de microsserviços. Qual abordagem de coleta de dados é a mais indicada?",
       "options": [
         {
           "id": "A",
-          "text": "Implantar o AWS Application Discovery Agent em cada servidor on-premises para coletar dados detalhados de inventário de sistema, utilização de recursos e mapeamento de conexões de rede de entrada e saída, visualizando os dados consolidados no AWS Migration Hub.",
-          "explanation": "Correto: O AWS Application Discovery Agent coleta informações detalhadas de SO e mapeia conexões de rede ativas (dependências entre processos e servidores), essencial para planejar ondas de migração seguras."
-        },
-        {
-          "id": "B",
-          "text": "Utilizar exclusivamente o AWS Application Discovery Agentless Collector implantado no VMware vCenter.",
-          "explanation": "Incorreto: O Agentless Collector coleta apenas metadados de VMs e utilização agregada de hypervisor, não mapeando as dependências de rede e conexões de processos internos entre os servidores."
-        },
-        {
-          "id": "C",
           "text": "Solicitar aos operadores de infraestrutura que preencham planilhas manuais com os endereços IP de cada servidor.",
           "explanation": "Incorreto: Processo manual propenso a erros graves, estourando cronogramas e falhando em identificar conexões de rede ocultas."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Executar o AWS Schema Conversion Tool (SCT) em todos os servidores para mapear dependências de rede.",
           "explanation": "Incorreto: O SCT é exclusivo para conversão de esquemas de banco de dados e código SQL, não para descoberta de infraestrutura e mapeamento de dependências de rede."
+        },
+        {
+          "id": "C",
+          "text": "Implantar o AWS Application Discovery Agent em cada servidor on-premises para coletar dados detalhados de inventário de sistema, utilização de recursos e mapeamento de conexões de rede de entrada e saída, visualizando os dados consolidados no AWS Migration Hub.",
+          "explanation": "Correto: O AWS Application Discovery Agent coleta informações detalhadas de SO e mapeia conexões de rede ativas (dependências entre processos e servidores), essencial para planejar ondas de migração seguras."
+        },
+        {
+          "id": "D",
+          "text": "Utilizar exclusivamente o AWS Application Discovery Agentless Collector implantado no VMware vCenter.",
+          "explanation": "Incorreto: O Agentless Collector coleta apenas metadados de VMs e utilização agregada de hypervisor, não mapeando as dependências de rede e conexões de processos internos entre os servidores."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "C"
+      ],
       "generalExplanation": "O AWS Application Discovery Service com agentes instalados (Agent-based Discovery) é o padrão da AWS para mapear dependências de rede complexas entre servidores e coletar métricas de performance precisas para alimentar o planejamento de ondas no AWS Migration Hub.",
       "referenceUrl": "https://docs.aws.amazon.com/application-discovery/latest/userguide/what-is-appdiscovery.html",
       "difficulty": "hard"
@@ -756,15 +864,19 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["AWS DataSync", "AWS Direct Connect", "Amazon S3"],
+      "services": [
+        "AWS DataSync",
+        "AWS Direct Connect",
+        "Amazon S3"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma produtora de cinema precisa transferir diariamente 20 TB de arquivos de vídeo brutos de seus estúdios locais para um bucket Amazon S3 através de uma conexão AWS Direct Connect de 10 Gbps. A equipe de rede exige que a transferência utilize aceleração e paralelismo para atingir a máxima velocidade possível, realize validação automática de integridade dos dados transferidos (checksum) e permita limitar o consumo de largura de banda durante o horário comercial (das 08:00 às 18:00) para não impactar outras operações corporativas. Qual solução atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "Implantar o AWS DataSync Agent no ambiente local e criar tarefas de transferência programadas apontando para o bucket S3, configurando o controle de limitação de largura de banda (bandwidth throttling) para o horário comercial e validação de integridade durante a transferência.",
-          "explanation": "Correto: O AWS DataSync foi construído com protocolo otimizado de aceleração de transferência, suporta agendamento de tarefas, limitação de banda por horário e validação automática de integridade ponta a ponta."
+          "text": "Utilizar o AWS Snowcone para carregar os dados fisicamente todos os dias e enviá-los por correio expresso.",
+          "explanation": "Incorreto: O Snowcone tem capacidade de apenas 8 TB (insuficiente para 20 TB diários) e o envio físico diário de hardware é inviável operacionalmente quando já existe um link Direct Connect de 10 Gbps."
         },
         {
           "id": "B",
@@ -773,8 +885,8 @@
         },
         {
           "id": "C",
-          "text": "Utilizar o AWS Snowcone para carregar os dados fisicamente todos os dias e enviá-los por correio expresso.",
-          "explanation": "Incorreto: O Snowcone tem capacidade de apenas 8 TB (insuficiente para 20 TB diários) e o envio físico diário de hardware é inviável operacionalmente quando já existe um link Direct Connect de 10 Gbps."
+          "text": "Implantar o AWS DataSync Agent no ambiente local e criar tarefas de transferência programadas apontando para o bucket S3, configurando o controle de limitação de largura de banda (bandwidth throttling) para o horário comercial e validação de integridade durante a transferência.",
+          "explanation": "Correto: O AWS DataSync foi construído com protocolo otimizado de aceleração de transferência, suporta agendamento de tarefas, limitação de banda por horário e validação automática de integridade ponta a ponta."
         },
         {
           "id": "D",
@@ -782,7 +894,9 @@
           "explanation": "Incorreto: O S3 Transfer Acceleration opera sobre a internet pública e edge locations do CloudFront, não aproveitando a conexão dedicada privada do Direct Connect nem oferecendo controle de banda corporativo."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "C"
+      ],
       "generalExplanation": "O AWS DataSync é o serviço gerenciado de transferência de dados da AWS otimizado para acelerar e automatizar movimentações massivas de dados entre armazenamento local e serviços como Amazon S3, EFS e FSx, oferecendo verificação nativa de integridade e limitação dinâmica de banda.",
       "referenceUrl": "https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html",
       "difficulty": "medium"
@@ -792,33 +906,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["Amazon FSx", "AWS Directory Service"],
+      "services": [
+        "Amazon FSx",
+        "AWS Directory Service"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma corporação possui 80 TB de compartilhamentos de arquivos corporativos em servidores de arquivos Windows Server locais gerenciados com Microsoft Active Directory e organizados via DFS Namespaces (Distributed File System). A empresa precisa migrar esse armazenamento para um serviço totalmente gerenciado na AWS mantendo total integração com o Active Directory corporativo on-premises, suporte nativo a ACLs de segurança NTFS, cotas de usuários e redundância automática Multi-AZ. Qual solução atende a esses requisitos com a MENOR alteração na experiência dos usuários?",
       "options": [
         {
           "id": "A",
-          "text": "Implantar o Amazon FSx for Windows File Server com implantação Multi-AZ, associá-lo ao Active Directory corporativo através de relação de confiança ou AWS Managed Microsoft AD e integrar os compartilhamentos existentes aos DFS Namespaces.",
-          "explanation": "Correto: O FSx for Windows File Server oferece armazenamento de arquivos nativo do Windows com suporte a SMB, permissões NTFS, DFS Namespaces e alta disponibilidade Multi-AZ totalmente gerenciada."
+          "text": "Lançar instâncias EC2 com volumes EBS gp3 e instalar o Windows Server manualmente em um cluster de failover de duas instâncias.",
+          "explanation": "Incorreto: Introduz alta sobrecarga operacional contínua de gerenciamento de SO, patches de segurança e manutenção de clusters de failover que o serviço gerenciado FSx elimina."
         },
         {
           "id": "B",
-          "text": "Criar um sistema de arquivos Amazon Elastic File System (Amazon EFS) com modo de acesso General Purpose.",
-          "explanation": "Incorreto: O Amazon EFS é baseado no protocolo NFS (Linux) e não oferece suporte nativo ao protocolo SMB do Windows nem integração com ACLs NTFS do Active Directory."
-        },
-        {
-          "id": "C",
           "text": "Armazenar todos os arquivos no Amazon S3 e orientar os usuários a instalarem ferramentas de terceiros para montar buckets como unidades de disco locais (drive mapping).",
           "explanation": "Incorreto: O S3 é armazenamento de objetos e ferramentas de montagem de drive não fornecem semântica de sistema de arquivos compatível com bloqueio de arquivos SMB ou ACLs NTFS."
         },
         {
+          "id": "C",
+          "text": "Criar um sistema de arquivos Amazon Elastic File System (Amazon EFS) com modo de acesso General Purpose.",
+          "explanation": "Incorreto: O Amazon EFS é baseado no protocolo NFS (Linux) e não oferece suporte nativo ao protocolo SMB do Windows nem integração com ACLs NTFS do Active Directory."
+        },
+        {
           "id": "D",
-          "text": "Lançar instâncias EC2 com volumes EBS gp3 e instalar o Windows Server manualmente em um cluster de failover de duas instâncias.",
-          "explanation": "Incorreto: Introduz alta sobrecarga operacional contínua de gerenciamento de SO, patches de segurança e manutenção de clusters de failover que o serviço gerenciado FSx elimina."
+          "text": "Implantar o Amazon FSx for Windows File Server com implantação Multi-AZ, associá-lo ao Active Directory corporativo através de relação de confiança ou AWS Managed Microsoft AD e integrar os compartilhamentos existentes aos DFS Namespaces.",
+          "explanation": "Correto: O FSx for Windows File Server oferece armazenamento de arquivos nativo do Windows com suporte a SMB, permissões NTFS, DFS Namespaces e alta disponibilidade Multi-AZ totalmente gerenciada."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O Amazon FSx for Windows File Server é o serviço de armazenamento gerenciado construído no Windows Server, fornecendo compatibilidade nativa com o ecossistema corporativo da Microsoft (SMB, Active Directory, ACLs NTFS, DFS Namespaces e Shadow Copies).",
       "referenceUrl": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html",
       "difficulty": "medium"
@@ -828,15 +947,18 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["Amazon Elastic Kubernetes Service", "AWS Fargate"],
+      "services": [
+        "Amazon Elastic Kubernetes Service",
+        "AWS Fargate"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma instituição financeira está modernizando uma plataforma bancária monolítica migrando-a para microsserviços em contêineres gerenciados no Amazon Elastic Kubernetes Service (Amazon EKS). A equipe de segurança exige que cada pod de microsserviço seja executado em um ambiente de isolamento estrito de hypervisor (Kernel isolation), sem compartilhamento de instâncias host subjacentes com outros pods de diferentes microsserviços, e eliminando a necessidade de a equipe de operações gerenciar, fazer patching ou dimensionar nós EC2 de trabalhadores (worker nodes). Qual modelo de computação deve ser selecionado?",
       "options": [
         {
           "id": "A",
-          "text": "Executar os pods do Amazon EKS no AWS Fargate utilizando perfis do Fargate (Fargate Profiles) para os namespaces desejados.",
-          "explanation": "Correto: O AWS Fargate executa cada pod do EKS em seu próprio ambiente computacional isolado por microVM (Firecracker), eliminando a sobrecarga de gerenciar servidores host e oferecendo isolamento estrito de kernel."
+          "text": "Executar os contêineres no Amazon ECS utilizando a capacidade EC2 Spot.",
+          "explanation": "Incorreto: Não atende à exigência de utilizar o Amazon EKS (Kubernetes) e instâncias Spot podem ser interrompidas sem atender ao isolamento de pods por hypervisor individual."
         },
         {
           "id": "B",
@@ -850,11 +972,13 @@
         },
         {
           "id": "D",
-          "text": "Executar os contêineres no Amazon ECS utilizando a capacidade EC2 Spot.",
-          "explanation": "Incorreto: Não atende à exigência de utilizar o Amazon EKS (Kubernetes) e instâncias Spot podem ser interrompidas sem atender ao isolamento de pods por hypervisor individual."
+          "text": "Executar os pods do Amazon EKS no AWS Fargate utilizando perfis do Fargate (Fargate Profiles) para os namespaces desejados.",
+          "explanation": "Correto: O AWS Fargate executa cada pod do EKS em seu próprio ambiente computacional isolado por microVM (Firecracker), eliminando a sobrecarga de gerenciar servidores host e oferecendo isolamento estrito de kernel."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O AWS Fargate com Amazon EKS fornece uma experiência Kubernetes totalmente serverless. Cada pod é lançado em uma máquina virtual isolada dedicada com limites de recursos garantidos, sem compartilhamento de kernel e sem necessidade de gerenciar nós subjacentes.",
       "referenceUrl": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html",
       "difficulty": "medium"
@@ -864,33 +988,38 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["AWS Snowball", "AWS Storage Gateway"],
+      "services": [
+        "AWS Snowball",
+        "AWS Storage Gateway"
+      ],
       "type": "single",
       "requiredChoices": 1,
       "statement": "Uma empresa de exploração de petróleo e gás opera navios de pesquisa em alto-mar sem conectividade estável com a internet. Os sensores a bordo coletam cerca de 80 TB de dados sísmicos por expedição marítima (de 30 dias). A equipe de cientistas precisa processar e filtrar esses dados localmente a bordo em tempo real utilizando instâncias de computação compatíveis com Amazon EC2 e carregar os dados brutos filtrados no Amazon S3 após o retorno do navio ao porto. Qual dispositivo da família AWS Snow atende a esses requisitos?",
       "options": [
         {
           "id": "A",
-          "text": "AWS Snowball Edge Compute Optimized com capacidade de armazenamento e instâncias EC2 integradas.",
-          "explanation": "Correto: O Snowball Edge Compute Optimized combina capacidades de computação local (até 104 vCPUs e GPUs opcionais para rodar AMIs EC2) com dezenas de TBs de armazenamento resistente para ambientes desconectados (Edge Computing)."
+          "text": "AWS Snowmobile",
+          "explanation": "Incorreto: O Snowmobile é um caminhão de 45 pés para até 100 PB em terra firme, sendo impossível de embarcar em navios em alto-mar."
         },
         {
           "id": "B",
-          "text": "AWS DataSync Agent instalado em um pendrive USB.",
-          "explanation": "Incorreto: O DataSync depende de conectividade de rede ativa com a nuvem e não opera offline sem internet a bordo."
-        },
-        {
-          "id": "C",
           "text": "AWS Storage Gateway no modo Volume Gateway.",
           "explanation": "Incorreto: O Storage Gateway requer conexão constante com a AWS para sincronização de metadados e snapshots."
         },
         {
+          "id": "C",
+          "text": "AWS DataSync Agent instalado em um pendrive USB.",
+          "explanation": "Incorreto: O DataSync depende de conectividade de rede ativa com a nuvem e não opera offline sem internet a bordo."
+        },
+        {
           "id": "D",
-          "text": "AWS Snowmobile",
-          "explanation": "Incorreto: O Snowmobile é um caminhão de 45 pés para até 100 PB em terra firme, sendo impossível de embarcar em navios em alto-mar."
+          "text": "AWS Snowball Edge Compute Optimized com capacidade de armazenamento e instâncias EC2 integradas.",
+          "explanation": "Correto: O Snowball Edge Compute Optimized combina capacidades de computação local (até 104 vCPUs e GPUs opcionais para rodar AMIs EC2) com dezenas de TBs de armazenamento resistente para ambientes desconectados (Edge Computing)."
         }
       ],
-      "correctAnswers": ["A"],
+      "correctAnswers": [
+        "D"
+      ],
       "generalExplanation": "O AWS Snowball Edge Compute Optimized foi projetado especificamente para Edge Computing e coleta de dados em ambientes desconectados ou com conectividade intermitente (navios, minas, fábricas), fornecendo poder de computação EC2 local e armazenamento seguro.",
       "referenceUrl": "https://docs.aws.amazon.com/snowball/latest/developer-guide/whatisedge.html",
       "difficulty": "medium"
@@ -900,30 +1029,34 @@
       "examId": "SAP-C02-SIM-2",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
-      "services": ["AWS Application Migration Service", "AWS Database Migration Service", "Amazon Route 53"],
+      "services": [
+        "AWS Application Migration Service",
+        "AWS Database Migration Service",
+        "Amazon Route 53"
+      ],
       "type": "multiple",
       "requiredChoices": 2,
       "statement": "Uma corporação está executando um projeto de migração de um ERP corporativo composto por servidores de aplicação em máquinas virtuais Windows/Linux e um banco de dados relacional Microsoft SQL Server on-premises de 6 TB. A estratégia aprovada é o Rehost dos servidores de aplicação e Replatform do banco de dados para o Amazon RDS for SQL Server Multi-AZ. A janela de corte final (cutover) no fim de semana permite no máximo 30 minutos de inatividade total da aplicação. Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)",
       "options": [
         {
           "id": "A",
-          "text": "Utilizar o AWS Application Migration Service (AWS MGN) para replicar continuamente em nível de bloco os discos dos servidores de aplicação para a AWS em segundo plano e lançar instâncias de teste antes da janela de cutover.",
-          "explanation": "Correto: O AWS MGN garante replicação contínua sem interrupção e permite testes completos antes do cutover rápido de servidores de aplicação."
-        },
-        {
-          "id": "B",
           "text": "Configurar o AWS Database Migration Service (AWS DMS) com Full Load mais Change Data Capture (CDC) contínuo para replicar as alterações do SQL Server on-premises para o Amazon RDS for SQL Server até o momento do corte.",
           "explanation": "Correto: O DMS com CDC mantém a base RDS atualizada em tempo real, viabilizando a virada de banco de dados em poucos minutos."
         },
         {
+          "id": "B",
+          "text": "Utilizar o AWS Application Migration Service (AWS MGN) para replicar continuamente em nível de bloco os discos dos servidores de aplicação para a AWS em segundo plano e lançar instâncias de teste antes da janela de cutover.",
+          "explanation": "Correto: O AWS MGN garante replicação contínua sem interrupção e permite testes completos antes do cutover rápido de servidores de aplicação."
+        },
+        {
           "id": "C",
-          "text": "Fazer um backup nativo (.bak) do banco de dados SQL Server de 6 TB na sexta-feira à noite e transferi-lo via internet pública para o Amazon RDS.",
-          "explanation": "Incorreto: Transferir e restaurar 6 TB durante a janela de corte levaria muitas horas ou dias, violando o tempo limite de 30 minutos de inatividade."
+          "text": "Desligar os servidores de aplicação on-premises e exportá-los em formato OVA para carregar no Amazon S3.",
+          "explanation": "Incorreto: Exportação e conversão de OVAs é um processo lento que exige desligar as máquinas de produção antecipadamente."
         },
         {
           "id": "D",
-          "text": "Desligar os servidores de aplicação on-premises e exportá-los em formato OVA para carregar no Amazon S3.",
-          "explanation": "Incorreto: Exportação e conversão de OVAs é um processo lento que exige desligar as máquinas de produção antecipadamente."
+          "text": "Fazer um backup nativo (.bak) do banco de dados SQL Server de 6 TB na sexta-feira à noite e transferi-lo via internet pública para o Amazon RDS.",
+          "explanation": "Incorreto: Transferir e restaurar 6 TB durante a janela de corte levaria muitas horas ou dias, violando o tempo limite de 30 minutos de inatividade."
         },
         {
           "id": "E",
@@ -931,7 +1064,10 @@
           "explanation": "Incorreto: Viola a estratégia aprovada de Replatform para Amazon RDS for SQL Server e exige reescrita substancial da aplicação legada."
         }
       ],
-      "correctAnswers": ["A", "B"],
+      "correctAnswers": [
+        "A",
+        "B"
+      ],
       "generalExplanation": "A melhor prática arquitetural para migração híbrida de sistemas com bancos relacionais e camadas de aplicação consiste em combinar o AWS Application Migration Service (MGN) para replicação de blocos das máquinas de aplicação com o AWS Database Migration Service (DMS) com CDC contínuo para manter o banco sincronizado até a janela de corte.",
       "referenceUrl": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-strategy/welcome.html",
       "difficulty": "hard"

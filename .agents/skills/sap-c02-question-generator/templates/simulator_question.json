@@ -15,18 +15,18 @@
     "options": [
       {
         "id": "A",
-        "text": "Criar uma Service Control Policy (SCP) na conta de gerenciamento que negue explicitamente as ações s3:PutObject e ec2:RunInstances caso os cabeçalhos de criptografia KMS ou parâmetros de criptografia de volume não estejam presentes. Aplicar a SCP na raiz da organização.",
-        "explanation": "Correto: SCPs atuam como guardrails preventivos no nível do AWS Organizations, bloqueando requisições não conformes na origem para todas as contas-membro (inclusive root) antes da criação do recurso."
-      },
-      {
-        "id": "B",
         "text": "Implantar regras gerenciadas do AWS Config em cada conta-membro via AWS CloudFormation StackSets para verificar a conformidade e acionar runbooks do AWS Systems Manager Automation para excluir recursos criados sem criptografia KMS.",
         "explanation": "Incorreto: O AWS Config é uma ferramenta detectiva com remediação a posteriori, o que viola o requisito de prevenir a criação do recurso."
       },
       {
-        "id": "C",
+        "id": "B",
         "text": "Criar uma política IAM de Permission Boundary anexada a todas as roles de usuários em cada conta-membro exigindo o uso de CMKs do KMS.",
         "explanation": "Incorreto: Permission boundaries não se aplicam ao usuário root das contas-membro e exigem manutenção complexa e descentralizada em cada conta."
+      },
+      {
+        "id": "C",
+        "text": "Criar uma Service Control Policy (SCP) na conta de gerenciamento que negue explicitamente as ações s3:PutObject e ec2:RunInstances caso os cabeçalhos de criptografia KMS ou parâmetros de criptografia de volume não estejam presentes. Aplicar a SCP na raiz da organização.",
+        "explanation": "Correto: SCPs atuam como guardrails preventivos no nível do AWS Organizations, bloqueando requisições não conformes na origem para todas as contas-membro (inclusive root) antes da criação do recurso."
       },
       {
         "id": "D",
@@ -35,7 +35,7 @@
       }
     ],
     "correctAnswers": [
-      "A"
+      "C"
     ],
     "generalExplanation": "Service Control Policies (SCPs) no AWS Organizations são o mecanismo nativo e recomendado para estabelecer guardrails preventivos em escala enterprise. Elas bloqueiam operações na camada de controle da API antes que qualquer recurso não compatível seja provisionado, aplicando-se a todos os usuários e roles de contas-membro.",
     "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
@@ -49,7 +49,7 @@
     "services": [
       "Amazon Aurora",
       "Amazon Route 53",
-      "AWS Elastic Disaster Recovery"
+      "AWS Route 53 Application Recovery Controller"
     ],
     "type": "multiple",
     "requiredChoices": 2,
@@ -57,23 +57,23 @@
     "options": [
       {
         "id": "A",
-        "text": "Configurar o Amazon Aurora Global Database com a região primária em us-east-1 e uma região secundária em us-west-2 para replicação física em nível de armazenamento com latência típica menor que 1 segundo.",
-        "explanation": "Correto: O Aurora Global Database oferece replicação física no storage com latência < 1s (RPO < 1s) e failover planejado/não planejado em menos de 1 minuto (RTO < 2 min)."
-      },
-      {
-        "id": "B",
-        "text": "Configurar o AWS Route 53 Application Recovery Controller (ARC) com Routing Controls e Readiness Checks contínuos para monitorar a prontidão da infraestrutura em us-west-2 e executar a alternância de tráfego com segurança.",
-        "explanation": "Correto: O Route 53 ARC realiza verificações contínuas de prontidão (Readiness Checks) para evitar direcionar tráfego para uma região não preparada e permite alternar controles de roteamento sem depender do console central."
-      },
-      {
-        "id": "C",
         "text": "Configurar réplicas de leitura assíncronas do Amazon RDS MySQL entre regiões e criar uma função do AWS Lambda para promover a réplica manualmente durante um desastre.",
         "explanation": "Incorreto: Réplicas de leitura RDS Cross-Region utilizam replicação lógica mais lenta e o processo de promoção e reinicialização pode exceder o RTO de 2 minutos."
       },
       {
-        "id": "D",
+        "id": "B",
+        "text": "Configurar o Amazon Aurora Global Database com a região primária em us-east-1 e uma região secundária em us-west-2 para replicação física em nível de armazenamento com latência típica menor que 1 segundo.",
+        "explanation": "Correto: O Aurora Global Database oferece replicação física no storage com latência < 1s (RPO < 1s) e failover planejado/não planejado em menos de 1 minuto (RTO < 2 min)."
+      },
+      {
+        "id": "C",
         "text": "Usar o AWS Backup para criar snapshots a cada 5 minutos do cluster Aurora e copiá-los automaticamente para us-west-2.",
         "explanation": "Incorreto: Snapshots periódicos de 5 minutos violam o requisito estrito de RPO < 1 segundo."
+      },
+      {
+        "id": "D",
+        "text": "Configurar o AWS Route 53 Application Recovery Controller (ARC) com Routing Controls e Readiness Checks contínuos para monitorar a prontidão da infraestrutura em us-west-2 e executar a alternância de tráfego com segurança.",
+        "explanation": "Correto: O Route 53 ARC realiza verificações contínuas de prontidão (Readiness Checks) para evitar direcionar tráfego para uma região não preparada e permite alternar controles de roteamento sem depender do console central."
       },
       {
         "id": "E",
@@ -82,8 +82,8 @@
       }
     ],
     "correctAnswers": [
-      "A",
-      "B"
+      "B",
+      "D"
     ],
     "generalExplanation": "Para atender a requisitos severos de RTO < 2 min e RPO < 1s em banco relacional, o Amazon Aurora Global Database é a arquitetura ideal na AWS. Combinado com o Route 53 Application Recovery Controller (ARC), o sistema ganha validação contínua de prontidão (Readiness Checks) e failover controlado de DNS.",
     "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html",

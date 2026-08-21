@@ -1,6 +1,6 @@
 # Regras e Anatomia para Criação de Questões SAP-C02
 
-O exame **AWS Certified Solutions Architect - Professional (SAP-C02)** é notório pelo seu alto nível de complexidade técnica, enunciados longos e alternativas sofisticadas. Esta referência define as regras rigorosas para elaborar questões de nível profissional idênticas às da prova real.
+O exame **AWS Certified Solutions Architect - Professional (SAP-C02)** avalia a capacidade de projetar arquiteturas avançadas, seguras, resilientes e econômicas na AWS em escala enterprise. Esta referência define as regras rigorosas para elaborar questões de nível profissional idênticas às da prova oficial.
 
 ---
 
@@ -17,35 +17,49 @@ O exame **AWS Certified Solutions Architect - Professional (SAP-C02)** é notór
 
 ---
 
-## 2. Regra de Ineditismo e Diversidade de Cenários
+## 2. Regra de Embaralhamento e Distribuição de Gabaritos (OBRIGATÓRIO)
 
-Ao gerar novas questões:
-1. **Nunca reutilize enunciados existentes** dos arquivos do Obsidian (`Questions/Extras/`, `Questions/Video/`, etc.).
-2. **Sintetize novos contextos de negócio**: Crie empresas e desafios fictícios distintos (ex: telemetria de veículos elétricos, plataforma de streaming de jogos, processamento de dados genômicos, processamento de pagamentos PIX/instantâneos, distribuição de mídia com CDN, etc.).
-3. **Mantenha os conceitos e trade-offs avançados**: Utilize os tópicos do *Relatório de Lacunas* (KMS multi-region, Transit Gateway com Appliance Mode, Lake Formation, DRS, MGN com CDC, etc.) aplicando-os a esses novos cenários.
+Para garantir que o simulador seja um reflexo fiel da prova real e não induza vícios de resposta:
+
+1. **PROIBIDO Gabarito Fixo em A ou A/B**:
+   - **NUNCA** gere questões onde a resposta correta é invariavelmente a opção `A` (ou `A` e `B` em múltipla escolha).
+2. **Distribuição Equilibrada e Aleatória**:
+   - Em qualquer lote ou simulado de questões, a posição da resposta correta deve ser distribuída de forma uniforme e pseudo-aleatória entre todas as alternativas disponíveis:
+     - **Escolha Única (Single Choice)**: ~25% das questões com gabarito `A`, ~25% `B`, ~25% `C`, ~25% `D`.
+     - **Múltipla Escolha (Multiple Choice)**: As duplas/trios corretos devem variar amplamente (ex: `["B", "D"]`, `["A", "C"]`, `["C", "E"]`, `["A", "D"]`, `["B", "E"]`, `["A", "E"]`, `["C", "D"]`, etc.).
+3. **Isolamento e Coerência de Explicação**:
+   - A explicação (`explanation`) de cada alternativa deve permanecer estritamente atrelada ao conteúdo de sua própria opção ao embaralhar. A opção correta deve iniciar com `Correto: ` (ou `Correct: `) e os distratores com `Incorreto: ` (ou `Incorrect: `).
 
 ---
 
-## 3. Anatomia de uma Questão SAP-C02
+## 3. Cobertura Abrangente e Ineditismo de Cenários
 
-Toda questão deve conter 4 componentes obrigatórios no enunciado:
+Ao gerar novas questões:
+1. **Cobertura Total do Blueprint**: O simulador pode e deve explorar qualquer serviço, recurso, padrão ou desafio técnico do exame SAP-C02 (conectividade híbrida, governança multi-contas, segurança e IAM, recuperação de desastres, modernização serverless, data lakes, finops, migração, etc.).
+2. **Cenários Enterprise Originais**: Sintetize contextos de negócios diversificados e inovadores (ex: plataformas de telemetria IoT, processamento de pagamentos instantâneos, genômica e biotecnologia, streaming de mídia OTT, redes de distribuição global, SaaS multi-tenant B2B, manufatura automatizada).
+
+---
+
+## 4. Anatomia de uma Questão SAP-C02
+
+Toda questão deve conter 4 componentes estruturais obrigatórios:
 
 ```
 [1. CONTEXTO ENTERPRISE & ARQUITETURA ATUAL]
 + [2. PROBLEMA TÉCNICO OU NOVO REQUISITO DE NEGÓCIO]
 + [3. RESTRIÇÕES ESPECÍFICAS / CONSTRAINTS]
-+ [4. DIRETIVA DE DECISÃO FINAL (GATILHO)]
++ [4. DIRETIVA DE DECISÃO FINAL (GATILHO EM NEGRITO)]
 ```
 
-### Exemplo de Estrutura de Enunciado:
-1. **Contexto**: Uma empresa global de serviços financeiros possui mais de 300 contas AWS sob uma única organização no AWS Organizations, distribuídas em várias Unidades Organizacionais (OUs).
-2. **Problema/Requisito**: A empresa precisa implementar uma solução de conectividade de rede hub-and-spoke para permitir que mais de 50 VPCs comuniquem-se de forma privada entre si e com a rede on-premises via AWS Direct Connect, inspecionando todo o tráfego Leste-Oeste e Norte-Sul com IDS/IPS centralizado.
-3. **Restrições**: A solução deve manter o IP de origem dos clientes (sem SNAT), garantir roteamento simétrico através de appliances de firewall de alta disponibilidade em múltiplas AZs e suportar sobreposição de CIDR em ambientes de parceiros terceiros.
-4. **Gatilho de Decisão**: *Qual arquitetura atenderá a esses requisitos com a MAIOR escalabilidade e MENOR complexidade de gerenciamento de rotas?*
+### Exemplo de Estrutura:
+1. **Contexto**: Uma instituição global de pagamentos executa uma arquitetura de microsserviços distribuída em mais de 150 contas AWS integradas via AWS Organizations e AWS Transit Gateway.
+2. **Problema/Requisito**: A empresa precisa implementar uma solução de auditoria de conformidade para inspecionar e registrar todo o tráfego de saída (Egress) para a Internet, bloqueando conexões para domínios não autorizados e prevenindo exfiltração de dados confidenciais de cartões (PCI-DSS).
+3. **Restrições**: A solução deve ser altamente disponível em múltiplas AZs, operar sem necessidade de NAT Gateway individual em cada VPC de aplicação, manter a simetria de fluxo sem utilizar SNAT e ter o menor custo de manutenção operacional.
+4. **Gatilho de Decisão**: *Qual arquitetura atenderá a esses requisitos com a MENOR sobrecarga de gerenciamento?*
 
 ---
 
-## 3. Matriz de Palavras-Chave e Gatilhos de Decisão (Decision Triggers)
+## 5. Matriz de Palavras-Chave e Gatilhos de Decisão (Decision Triggers)
 
 O final do enunciado determina qual trade-off da arquitetura deve vencer:
 
@@ -60,45 +74,26 @@ O final do enunciado determina qual trade-off da arquitetura deve vencer:
 
 ---
 
-## 4. Engenharia de Distratores (Opções Incorretas)
+## 6. Engenharia de Distratores (Opções Incorretas)
 
-Para que a questão seja genuinamente de nível Professional, crie distratores seguindo estas 4 categorias de armadilhas clássicas da AWS:
+Crie distratores autênticos seguindo estas 4 categorias clássicas de armadilhas da AWS:
 
-1. **O Anti-Padrão Tecnológico**:
-   - Usa um serviço que tecnicamente funciona mas que viola os limites da AWS (ex: usar VPC Peering para roteamento transitivo entre 100 VPCs; usar DynamoDB para armazenar arquivos binários de 50MB).
-2. **A Solução Operacionalmente Invencionista**:
-   - Funciona, mas reinventa a roda com scripts manuais, EC2 e cron jobs quando existe um serviço nativo gerenciado (ex: criar um cluster BIND em EC2 para repasse de DNS em vez de usar Route 53 Resolver Inbound/Outbound Endpoints).
-3. **A Falha de Escopo / Requisito Oculto**:
-   - Atende à parte principal do problema mas ignora uma restrição crucial mencionada no texto (ex: atende a conectividade multi-conta, mas exige reconfigurar IPs e falha no requisito de blocos CIDR sobrepostos; ou atende a auditoria de logs, mas não impede que o usuário root da conta membro apague o CloudTrail).
-4. **O Trade-off Invertido (Custo vs. Performance)**:
-   - A solução é excessivamente cara para um requisito simples (ex: configurar Multi-Region Active-Active com Aurora Global Database quando o enunciado exigia explicitamente RTO de 24 horas e foco em menor custo).
+1. **O Anti-Padrão Tecnológico**: Usa um serviço que não suporta a escala ou viola limites da AWS (ex: VPC Peering transitivo entre dezenas de VPCs; DynamoDB para arquivos binários grandes).
+2. **A Solução Operacionalmente Invencionista**: Funciona, mas reinventa a roda com EC2 e scripts manuais quando há serviço nativo gerenciado (ex: cluster BIND em EC2 em vez de Route 53 Resolver).
+3. **A Falha de Escopo / Requisito Oculto**: Atende ao objetivo geral, mas ignora uma restrição crucial (ex: não suporta IPs sobrepostos; não impede que o usuário root da conta membro apague logs).
+4. **O Trade-off Invertido**: Solução excessivamente cara ou complexa para um requisito simples (ex: Multi-Region Active-Active com Aurora Global Database quando o requisito pedia menor custo e RTO de 24 horas).
 
 ---
 
-## 5. Regras de Formato e Tipos de Questão
+## 7. Regras de Formato
 
 ### Tipo Single Choice (Escolha Única)
 - **4 alternativas (A, B, C, D)**.
-- **Exatamente 1 alternativa correta**.
-- `type: "single"`
-- `requiredChoices: 1`
+- **Exatamente 1 alternativa correta** (distribuída aleatoriamente entre A, B, C ou D).
+- `type: "single"`, `requiredChoices: 1`.
 
 ### Tipo Multiple Choice (Múltipla Escolha)
-- **5 alternativas (A, B, C, D, E)** com **2 corretas** ("(Escolha duas.)" / "(Choose two.)"), OU
-- **6 alternativas (A, B, C, D, E, F)** com **3 corretas** ("(Escolha três.)" / "(Choose three.)").
-- `type: "multiple"`
-- `requiredChoices: 2` ou `3`.
-- No enunciado, inclua explicitamente a frase em negrito: `**Qual combinação de etapas atenderá a esses requisitos? (Escolha duas.)**`
-
----
-
-## 6. Padrão de Explicações e Rationale
-
-Cada questão gerada deve conter:
-1. **Explicação de cada opção individual (`explanation`)**:
-   - Começar com `Correto: ` ou `Incorreto: ` (ou `Correct: ` / `Incorrect: ` se em inglês).
-   - Justificar claramente o motivo técnico e a relação com o Well-Architected Framework.
-2. **Explicação Geral (`generalExplanation`)**:
-   - Resumo arquitetural de 2 a 4 parágrafos sintetizando por que a solução escolhida é a recomendada pela AWS.
-3. **URL de Referência Oficial (`referenceUrl`)**:
-   - Link direto para a documentação oficial da AWS (docs.aws.amazon.com) ou AWS Architecture Blog / Whitepaper relevante.
+- **5 alternativas (A, B, C, D, E)** com **2 corretas**, OU **6 alternativas (A, B, C, D, E, F)** com **3 corretas**.
+- `type: "multiple"`, `requiredChoices: 2` ou `3`.
+- No enunciado, inclua em negrito: `**Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)**` ou `(Escolha três.)`.
+- Letras corretas distribuídas aleatoriamente (ex: `["B", "D"]`, `["A", "E"]`).

@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
 Validador de Questões SAP-C02 para o AWS Exam Simulator.
-Verifica integridade de schema, ids únicos, paridade de gabarito e regras de distratores.
+Verifica integridade de schema, ids únicos, paridade de gabarito, regras de distratores
+e distribuição equilibrada/embaralhada de respostas (sem vícios em A ou A,B).
 """
 
 import sys
 import json
 import os
+from collections import Counter
 
 VALID_DOMAINS = {
     "domain-1-org-complexity": "Domain 1: Design Solutions for Organizational Complexity",
@@ -75,6 +77,43 @@ def validate_question(q, index=0):
 
     return errors
 
+def check_answer_distribution(questions):
+    """
+    Verifica se as respostas não estão viciadas em A ou A, B.
+    Em um simulado com >= 10 questões, nenhuma opção individual deve concentrar mais de 45% dos gabaritos.
+    """
+    warnings = []
+    if len(questions) < 10:
+        return warnings
+
+    single_answers = []
+    multiple_answer_sets = []
+
+    for q in questions:
+        if q.get("type") == "single" and q.get("correctAnswers"):
+            single_answers.append(q["correctAnswers"][0])
+        elif q.get("type") == "multiple" and q.get("correctAnswers"):
+            multiple_answer_sets.append(tuple(sorted(q["correctAnswers"])))
+
+    if single_answers:
+        counts = Counter(single_answers)
+        total = len(single_answers)
+        for opt, cnt in counts.items():
+            pct = (cnt / total) * 100
+            if pct > 45.0:
+                warnings.append(
+                    f"⚠️ Vício de gabarito detectado: Opção '{opt}' concentra {pct:.1f}% ({cnt}/{total}) das questões single choice! As alternativas devem ser embaralhadas uniformemente."
+                )
+
+    if multiple_answer_sets:
+        all_ab = all(s == ("A", "B") for s in multiple_answer_sets)
+        if len(multiple_answer_sets) >= 3 and all_ab:
+            warnings.append(
+                "⚠️ Vício de gabarito múltiplo: 100% das questões de múltipla escolha têm gabarito ['A', 'B']. Embaralhe as posições das alternativas corretas."
+            )
+
+    return warnings
+
 def main():
     if len(sys.argv) < 2:
         print("Uso: python3 validate_questions.py <caminho_para_arquivo.json>")
@@ -97,7 +136,7 @@ def main():
         if "questions" in data and isinstance(data["questions"], list):
             questions_to_validate = data["questions"]
         else:
-            # Maybe single question or map of examples
+            # Single question or map of examples
             for k, v in data.items():
                 if isinstance(v, dict) and "statement" in v:
                     questions_to_validate.append(v)
@@ -120,12 +159,18 @@ def main():
         errs = validate_question(q, idx)
         all_errors.extend(errs)
 
+    # Check distribution
+    dist_warnings = check_answer_distribution(questions_to_validate)
+
     if all_errors:
         print(f"❌ Foram encontrados {len(all_errors)} erro(s):")
         for err in all_errors:
             print(f"  - {err}")
         sys.exit(1)
     else:
+        if dist_warnings:
+            for w in dist_warnings:
+                print(w)
         print("🎉 Todas as questões foram validadas com sucesso e atendem ao padrão SAP-C02!")
 
 if __name__ == "__main__":

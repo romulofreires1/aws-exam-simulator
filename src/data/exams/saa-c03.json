@@ -47,13 +47,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure Origin Access Control (OAC) on the CloudFront distribution and update the S3 bucket policy to allow access only from that distribution.",
-          "explanation": "Correct: OAC is the current secure AWS recommendation to restrict S3 bucket access solely to designated CloudFront distributions."
+          "text": "Create an S3 VPC Endpoint and route CloudFront distribution into a private subnet.",
+          "explanation": "Incorrect: CloudFront is a global edge service and does not run inside private VPC subnets."
         },
         {
           "id": "B",
-          "text": "Make the S3 bucket public and block direct traffic using Security Group rules.",
-          "explanation": "Incorrect: S3 buckets do not use Security Groups."
+          "text": "Configure Origin Access Control (OAC) on the CloudFront distribution and update the S3 bucket policy to allow access only from that distribution.",
+          "explanation": "Correct: OAC is the current secure AWS recommendation to restrict S3 bucket access solely to designated CloudFront distributions."
         },
         {
           "id": "C",
@@ -62,12 +62,12 @@
         },
         {
           "id": "D",
-          "text": "Create an S3 VPC Endpoint and route CloudFront distribution into a private subnet.",
-          "explanation": "Incorrect: CloudFront is a global edge service and does not run inside private VPC subnets."
+          "text": "Make the S3 bucket public and block direct traffic using Security Group rules.",
+          "explanation": "Incorrect: S3 buckets do not use Security Groups."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Origin Access Control (OAC) supersedes legacy OAI and enables Amazon CloudFront to authenticate with S3 buckets via SigV4, completely restricting direct public access to S3.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
@@ -94,13 +94,13 @@
         },
         {
           "id": "B",
-          "text": "Store the credentials in AWS Systems Manager Parameter Store standard string parameters and update them manually each month.",
-          "explanation": "Incorrect: Parameter Store standard strings do not provide native automated scheduled rotation for RDS."
+          "text": "Hardcode the password in the EC2 User Data script and reboot the instances every 30 days.",
+          "explanation": "Incorrect: Hardcoding credentials in User Data is an insecure anti-pattern and disrupts instances."
         },
         {
           "id": "C",
-          "text": "Hardcode the password in the EC2 User Data script and reboot the instances every 30 days.",
-          "explanation": "Incorrect: Hardcoding credentials in User Data is an insecure anti-pattern and disrupts instances."
+          "text": "Store the credentials in AWS Systems Manager Parameter Store standard string parameters and update them manually each month.",
+          "explanation": "Incorrect: Parameter Store standard strings do not provide native automated scheduled rotation for RDS."
         },
         {
           "id": "D",
@@ -131,8 +131,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Server-Side Encryption with Customer Managed Keys stored in AWS KMS (SSE-KMS).",
-          "explanation": "Correct: SSE-KMS with Customer Managed Keys gives full control over key policies, rotation, immediate key disabling, and logs every key usage event in AWS CloudTrail."
+          "text": "Client-Side Encryption with unencrypted plaintext keys stored in Amazon DynamoDB.",
+          "explanation": "Incorrect: Plaintext key storage is insecure and lacks KMS governance."
         },
         {
           "id": "B",
@@ -141,17 +141,17 @@
         },
         {
           "id": "C",
-          "text": "Client-Side Encryption with unencrypted plaintext keys stored in Amazon DynamoDB.",
-          "explanation": "Incorrect: Plaintext key storage is insecure and lacks KMS governance."
+          "text": "Amazon S3 Glacier Flexible Retrieval with default vault access.",
+          "explanation": "Incorrect: S3 Glacier vault access does not provide key auditability like KMS."
         },
         {
           "id": "D",
-          "text": "Amazon S3 Glacier Flexible Retrieval with default vault access.",
-          "explanation": "Incorrect: S3 Glacier vault access does not provide key auditability like KMS."
+          "text": "Server-Side Encryption with Customer Managed Keys stored in AWS KMS (SSE-KMS).",
+          "explanation": "Correct: SSE-KMS with Customer Managed Keys gives full control over key policies, rotation, immediate key disabling, and logs every key usage event in AWS CloudTrail."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "SSE-KMS with Customer Managed Keys provides granular access control, key rotation management, and detailed audit trails in AWS CloudTrail for every decryption request.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html",
@@ -173,27 +173,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Create an Amazon S3 Gateway VPC Endpoint and update the route tables of the private subnets.",
-          "explanation": "Correct: Gateway VPC Endpoints provide private routing to Amazon S3 directly over the AWS private network without internet gateways, NAT devices, or additional cost."
+          "text": "Deploy a Fleet of NAT Instances across two public subnets.",
+          "explanation": "Incorrect: NAT instances route traffic over the public internet, violating policy."
         },
         {
           "id": "B",
-          "text": "Attach an Internet Gateway to the VPC and assign public Elastic IPs to private instances.",
-          "explanation": "Incorrect: This exposes instances to the public internet, violating the security policy."
-        },
-        {
-          "id": "C",
           "text": "Configure an AWS Site-to-Site VPN from the VPC to the S3 public IP endpoint.",
           "explanation": "Incorrect: S3 is an AWS regional service, not an on-premises remote network reachable via Site-to-Site VPN."
         },
         {
+          "id": "C",
+          "text": "Create an Amazon S3 Gateway VPC Endpoint and update the route tables of the private subnets.",
+          "explanation": "Correct: Gateway VPC Endpoints provide private routing to Amazon S3 directly over the AWS private network without internet gateways, NAT devices, or additional cost."
+        },
+        {
           "id": "D",
-          "text": "Deploy a Fleet of NAT Instances across two public subnets.",
-          "explanation": "Incorrect: NAT instances route traffic over the public internet, violating policy."
+          "text": "Attach an Internet Gateway to the VPC and assign public Elastic IPs to private instances.",
+          "explanation": "Incorrect: This exposes instances to the public internet, violating the security policy."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Gateway VPC Endpoints allow resources in private subnets to communicate with Amazon S3 over private AWS network infrastructure without requiring NAT Gateways or Internet Gateways.",
       "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html",
@@ -215,13 +215,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Attach an IAM Role with appropriate SQS and DynamoDB permissions to the EC2 instance profile.",
-          "explanation": "Correct: IAM instance profiles supply temporary credentials automatically rotated by the instance metadata service (IMDS), avoiding hardcoded keys."
+          "text": "Save the AWS access key and secret access key in a config file inside the Git repository.",
+          "explanation": "Incorrect: Storing credentials in source code or Git repositories is a major security risk."
         },
         {
           "id": "B",
-          "text": "Save the AWS access key and secret access key in a config file inside the Git repository.",
-          "explanation": "Incorrect: Storing credentials in source code or Git repositories is a major security risk."
+          "text": "Attach an IAM Role with appropriate SQS and DynamoDB permissions to the EC2 instance profile.",
+          "explanation": "Correct: IAM instance profiles supply temporary credentials automatically rotated by the instance metadata service (IMDS), avoiding hardcoded keys."
         },
         {
           "id": "C",
@@ -235,7 +235,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Attaching an IAM Role to an EC2 instance profile is the AWS Well-Architected standard for granting applications secure, temporary access to AWS services.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html",
@@ -261,13 +261,13 @@
         },
         {
           "id": "B",
-          "text": "Configure Network ACLs to block incoming traffic on TCP port 443.",
-          "explanation": "Incorrect: Blocking port 443 on NACLs would block all legitimate HTTPS traffic."
+          "text": "Deploy Amazon GuardDuty to automatically terminate the EC2 instances.",
+          "explanation": "Incorrect: GuardDuty is a detective threat service; it does not filter layer 7 web traffic on ALBs."
         },
         {
           "id": "C",
-          "text": "Deploy Amazon GuardDuty to automatically terminate the EC2 instances.",
-          "explanation": "Incorrect: GuardDuty is a detective threat service; it does not filter layer 7 web traffic on ALBs."
+          "text": "Configure Network ACLs to block incoming traffic on TCP port 443.",
+          "explanation": "Incorrect: Blocking port 443 on NACLs would block all legitimate HTTPS traffic."
         },
         {
           "id": "D",
@@ -297,27 +297,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Apply a Service Control Policy (SCP) at the root OU denying ec2:* actions with a condition StringNotEquals on aws:RequestedRegion for eu-west-1 and us-east-1.",
-          "explanation": "Correct: SCPs enforce preventive guardrails across all member accounts that even local account root users cannot override."
-        },
-        {
-          "id": "B",
           "text": "Configure an IAM boundary in the master account and attach it to an S3 bucket policy.",
           "explanation": "Incorrect: S3 bucket policies do not restrict EC2 regional instance launching."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Create an AWS Config rule in each account with manual remediation scripts.",
           "explanation": "Incorrect: AWS Config is detective rather than preventive; it does not block the API call."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Delete all default VPCs in unauthorized regions.",
           "explanation": "Incorrect: Deleting default VPCs does not prevent users from creating custom VPCs and launching instances."
+        },
+        {
+          "id": "D",
+          "text": "Apply a Service Control Policy (SCP) at the root OU denying ec2:* actions with a condition StringNotEquals on aws:RequestedRegion for eu-west-1 and us-east-1.",
+          "explanation": "Correct: SCPs enforce preventive guardrails across all member accounts that even local account root users cannot override."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Service Control Policies (SCPs) in AWS Organizations provide central enforcement of region restrictions using the aws:RequestedRegion condition key.",
       "referenceUrl": "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html",
@@ -343,18 +343,18 @@
         },
         {
           "id": "B",
+          "text": "AWS Systems Manager Session Manager",
+          "explanation": "Incorrect: Session Manager is for managing EC2 instance shell sessions."
+        },
+        {
+          "id": "C",
           "text": "AWS IAM Identity Center with SAML 2.0 assertions for each mobile phone",
           "explanation": "Incorrect: IAM Identity Center is designed for corporate workforce SSO, not external consumer mobile apps."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "AWS Directory Service for Microsoft Active Directory",
           "explanation": "Incorrect: Active Directory is an enterprise directory service, unsuitable for consumer mobile social federation."
-        },
-        {
-          "id": "D",
-          "text": "AWS Systems Manager Session Manager",
-          "explanation": "Incorrect: Session Manager is for managing EC2 instance shell sessions."
         }
       ],
       "correctAnswers": [
@@ -379,27 +379,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Certificate Manager (ACM) in the us-east-1 (N. Virginia) region.",
-          "explanation": "Correct: CloudFront distributions require custom SSL/TLS certificates to be provisioned in ACM specifically in the us-east-1 (N. Virginia) region."
-        },
-        {
-          "id": "B",
           "text": "AWS Certificate Manager (ACM) in any local region where the backend EC2 is located.",
           "explanation": "Incorrect: CloudFront is a global service and requires certificates to be requested in us-east-1."
         },
         {
+          "id": "B",
+          "text": "AWS Secrets Manager in eu-central-1.",
+          "explanation": "Incorrect: Secrets Manager stores secrets, it does not issue public SSL certificates."
+        },
+        {
           "id": "C",
-          "text": "AWS KMS in us-west-2.",
-          "explanation": "Incorrect: AWS KMS creates cryptographic keys, not public SSL/TLS web certificates."
+          "text": "AWS Certificate Manager (ACM) in the us-east-1 (N. Virginia) region.",
+          "explanation": "Correct: CloudFront distributions require custom SSL/TLS certificates to be provisioned in ACM specifically in the us-east-1 (N. Virginia) region."
         },
         {
           "id": "D",
-          "text": "AWS Secrets Manager in eu-central-1.",
-          "explanation": "Incorrect: Secrets Manager stores secrets, it does not issue public SSL certificates."
+          "text": "AWS KMS in us-west-2.",
+          "explanation": "Incorrect: AWS KMS creates cryptographic keys, not public SSL/TLS web certificates."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "To use an ACM certificate with Amazon CloudFront, you must request or import the certificate in the US East (N. Virginia) region (us-east-1).",
       "referenceUrl": "https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html",
@@ -420,27 +420,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Shield Advanced",
-          "explanation": "Correct: AWS Shield Advanced provides expanded DDoS protection, 24/7 DRT engagement, financial cost spike protection, and bundled AWS WAF support."
-        },
-        {
-          "id": "B",
           "text": "AWS Shield Standard",
           "explanation": "Incorrect: Shield Standard is basic automatic protection included for all customers without DRT support or cost protection."
         },
         {
+          "id": "B",
+          "text": "AWS Shield Advanced",
+          "explanation": "Correct: AWS Shield Advanced provides expanded DDoS protection, 24/7 DRT engagement, financial cost spike protection, and bundled AWS WAF support."
+        },
+        {
           "id": "C",
-          "text": "Amazon GuardDuty",
-          "explanation": "Incorrect: GuardDuty detects security anomalies, not active DDoS attack mitigation."
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM is a cryptographic key hardware appliance."
         },
         {
           "id": "D",
-          "text": "AWS CloudHSM",
-          "explanation": "Incorrect: CloudHSM is a cryptographic key hardware appliance."
+          "text": "Amazon GuardDuty",
+          "explanation": "Incorrect: GuardDuty detects security anomalies, not active DDoS attack mitigation."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Shield Advanced provides enterprise-grade DDoS mitigation with 24/7 DRT assistance and DDoS cost protection against scaling spikes.",
       "referenceUrl": "https://aws.amazon.com/shield/features/",
@@ -461,27 +461,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Create an IAM Role in Account B with an S3 ReadOnly policy and a trust policy that permits Account A to assume the role via AWS STS.",
-          "explanation": "Correct: Cross-account IAM roles with trust relationships allow users from another account to assume temporary credentials securely."
-        },
-        {
-          "id": "B",
-          "text": "Create an IAM user in Account B with static access keys and email the keys to the auditor.",
-          "explanation": "Incorrect: Creating static keys and emailing them is an insecure practice."
-        },
-        {
-          "id": "C",
           "text": "Make all S3 buckets in Account B public with read-only bucket policies.",
           "explanation": "Incorrect: Making buckets public exposes sensitive data to the entire world."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "Create an IAM Role in Account B with an S3 ReadOnly policy and a trust policy that permits Account A to assume the role via AWS STS.",
+          "explanation": "Correct: Cross-account IAM roles with trust relationships allow users from another account to assume temporary credentials securely."
+        },
+        {
+          "id": "C",
           "text": "Configure VPC Peering between the default VPCs of both accounts.",
           "explanation": "Incorrect: VPC Peering establishes network connectivity, not IAM authorization to S3."
+        },
+        {
+          "id": "D",
+          "text": "Create an IAM user in Account B with static access keys and email the keys to the auditor.",
+          "explanation": "Incorrect: Creating static keys and emailing them is an insecure practice."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Cross-account access in AWS is best accomplished by defining an IAM role in the target account with a trust policy specifying the trusted account ID.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html",
@@ -502,27 +502,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Security Hub",
-          "explanation": "Correct: AWS Security Hub provides automated security checks against standard benchmarks such as the CIS AWS Foundations Benchmark and AWS Foundational Security Best Practices."
-        },
-        {
-          "id": "B",
           "text": "AWS CloudTrail Insights",
           "explanation": "Incorrect: CloudTrail Insights identifies anomalous API call volume, not configuration compliance standards."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Amazon Athena",
           "explanation": "Incorrect: Athena requires writing and maintaining custom SQL queries on log files."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "AWS CodeDeploy",
           "explanation": "Incorrect: CodeDeploy automates application software deployments."
+        },
+        {
+          "id": "D",
+          "text": "AWS Security Hub",
+          "explanation": "Correct: AWS Security Hub provides automated security checks against standard benchmarks such as the CIS AWS Foundations Benchmark and AWS Foundational Security Best Practices."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Security Hub provides built-in automated security standard checks including CIS AWS Foundations Benchmarks and PCI-DSS compliance.",
       "referenceUrl": "https://aws.amazon.com/security-hub/",
@@ -548,13 +548,13 @@
         },
         {
           "id": "B",
-          "text": "Configure an Amazon S3 Lifecycle rule to expire public objects after 1 day.",
-          "explanation": "Incorrect: Lifecycle rules delete objects over time, but do not prevent public read access."
+          "text": "Delete the S3 VPC Endpoint from the VPC route table.",
+          "explanation": "Incorrect: This affects VPC private routing, not public S3 bucket permissions."
         },
         {
           "id": "C",
-          "text": "Delete the S3 VPC Endpoint from the VPC route table.",
-          "explanation": "Incorrect: This affects VPC private routing, not public S3 bucket permissions."
+          "text": "Configure an Amazon S3 Lifecycle rule to expire public objects after 1 day.",
+          "explanation": "Incorrect: Lifecycle rules delete objects over time, but do not prevent public read access."
         },
         {
           "id": "D",
@@ -584,8 +584,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Systems Manager Session Manager",
-          "explanation": "Correct: Session Manager provides secure, one-click shell access to EC2 instances via the SSM Agent over HTTPS without opening inbound ports or managing SSH keys."
+          "text": "Amazon API Gateway with Lambda Authorizers",
+          "explanation": "Incorrect: API Gateway is for REST/WebSocket APIs, not interactive server shell sessions."
         },
         {
           "id": "B",
@@ -594,17 +594,17 @@
         },
         {
           "id": "C",
-          "text": "AWS Direct Connect",
-          "explanation": "Incorrect: Direct Connect is a physical dedicated network link."
+          "text": "AWS Systems Manager Session Manager",
+          "explanation": "Correct: Session Manager provides secure, one-click shell access to EC2 instances via the SSM Agent over HTTPS without opening inbound ports or managing SSH keys."
         },
         {
           "id": "D",
-          "text": "Amazon API Gateway with Lambda Authorizers",
-          "explanation": "Incorrect: API Gateway is for REST/WebSocket APIs, not interactive server shell sessions."
+          "text": "AWS Direct Connect",
+          "explanation": "Incorrect: Direct Connect is a physical dedicated network link."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Systems Manager Session Manager enables secure instance management through TLS connections over outbound port 443 via the SSM agent, eliminating the need for open inbound ports, bastion hosts, or SSH keys.",
       "referenceUrl": "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html",
@@ -625,8 +625,8 @@
       "options": [
         {
           "id": "A",
-          "text": "KMS saves the previous key material to seamlessly decrypt old ciphertext while using the new key material to encrypt new data.",
-          "explanation": "Correct: KMS preserves old key versions backing the CMK, so data encrypted under older versions is decrypted automatically without manual re-encryption."
+          "text": "A new CMK ARN is generated and all IAM policies must be updated.",
+          "explanation": "Incorrect: The CMK Key ID and ARN remain unchanged during rotation."
         },
         {
           "id": "B",
@@ -635,17 +635,17 @@
         },
         {
           "id": "C",
-          "text": "Old data becomes permanently corrupted unless copied to an unencrypted S3 bucket.",
-          "explanation": "Incorrect: KMS retains previous key versions indefinitely to support decryption."
+          "text": "KMS saves the previous key material to seamlessly decrypt old ciphertext while using the new key material to encrypt new data.",
+          "explanation": "Correct: KMS preserves old key versions backing the CMK, so data encrypted under older versions is decrypted automatically without manual re-encryption."
         },
         {
           "id": "D",
-          "text": "A new CMK ARN is generated and all IAM policies must be updated.",
-          "explanation": "Incorrect: The CMK Key ID and ARN remain unchanged during rotation."
+          "text": "Old data becomes permanently corrupted unless copied to an unencrypted S3 bucket.",
+          "explanation": "Incorrect: KMS retains previous key versions indefinitely to support decryption."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "When KMS automatic key rotation is enabled, KMS generates new cryptographic material annually while retaining previous versions to decrypt data seamlessly without changing the Key ID or ARN.",
       "referenceUrl": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
@@ -667,27 +667,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure an Amazon EventBridge rule that matches GuardDuty finding events and targets an AWS Lambda function to perform isolation.",
-          "explanation": "Correct: GuardDuty sends finding events to EventBridge in near real-time, which can trigger Lambda functions for automated response and SNS for alerting."
-        },
-        {
-          "id": "B",
           "text": "Configure Amazon S3 Lifecycle rules on GuardDuty log exports to run daily Python scripts.",
           "explanation": "Incorrect: S3 Lifecycle manages object storage expiration, not real-time event triggering."
         },
         {
+          "id": "B",
+          "text": "Attach an IAM policy directly to GuardDuty with Deny permissions on EC2.",
+          "explanation": "Incorrect: GuardDuty is an analysis service, not an IAM entity with policy attachments."
+        },
+        {
           "id": "C",
-          "text": "Create an AWS CloudFormation stack that polls GuardDuty APIs every 6 hours.",
-          "explanation": "Incorrect: CloudFormation provisions resources, it does not poll APIs for security alerts."
+          "text": "Configure an Amazon EventBridge rule that matches GuardDuty finding events and targets an AWS Lambda function to perform isolation.",
+          "explanation": "Correct: GuardDuty sends finding events to EventBridge in near real-time, which can trigger Lambda functions for automated response and SNS for alerting."
         },
         {
           "id": "D",
-          "text": "Attach an IAM policy directly to GuardDuty with Deny permissions on EC2.",
-          "explanation": "Incorrect: GuardDuty is an analysis service, not an IAM entity with policy attachments."
+          "text": "Create an AWS CloudFormation stack that polls GuardDuty APIs every 6 hours.",
+          "explanation": "Incorrect: CloudFormation provisions resources, it does not poll APIs for security alerts."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "The event-driven pattern of Amazon GuardDuty -> Amazon EventBridge -> AWS Lambda / Amazon SNS provides automated, real-time threat detection and incident remediation.",
       "referenceUrl": "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html",
@@ -713,18 +713,18 @@
         },
         {
           "id": "B",
+          "text": "AWS KMS multi-region keys without key rotation",
+          "explanation": "Incorrect: KMS keys manage encryption, not immutable WORM vault locking."
+        },
+        {
+          "id": "C",
           "text": "Amazon S3 Access Points with public read permissions",
           "explanation": "Incorrect: Access Points do not enforce immutable WORM retention against root deletion."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "AWS IAM Boundary with MFA Delete on EC2",
           "explanation": "Incorrect: MFA Delete applies to versioned S3 buckets, but does not lock Glacier vaults against root policy alterations like Vault Lock."
-        },
-        {
-          "id": "D",
-          "text": "AWS KMS multi-region keys without key rotation",
-          "explanation": "Incorrect: KMS keys manage encryption, not immutable WORM vault locking."
         }
       ],
       "correctAnswers": [
@@ -749,27 +749,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Enable Amazon Inspector automated scanning for Amazon ECR repositories.",
-          "explanation": "Correct: Amazon Inspector provides automated continuous vulnerability scanning for container images stored in Amazon ECR upon push."
+          "text": "Use AWS Storage Gateway Volume mode.",
+          "explanation": "Incorrect: Storage Gateway is a hybrid cloud storage appliance."
         },
         {
           "id": "B",
-          "text": "Run an Amazon CloudSearch crawler on the container registry every midnight.",
-          "explanation": "Incorrect: CloudSearch is a search engine, not a CVE vulnerability scanner."
-        },
-        {
-          "id": "C",
           "text": "Attach AWS WAF rules to the Amazon ECR endpoint.",
           "explanation": "Incorrect: AWS WAF inspects web traffic on ALBs/CloudFront, not container image layers."
         },
         {
+          "id": "C",
+          "text": "Enable Amazon Inspector automated scanning for Amazon ECR repositories.",
+          "explanation": "Correct: Amazon Inspector provides automated continuous vulnerability scanning for container images stored in Amazon ECR upon push."
+        },
+        {
           "id": "D",
-          "text": "Use AWS Storage Gateway Volume mode.",
-          "explanation": "Incorrect: Storage Gateway is a hybrid cloud storage appliance."
+          "text": "Run an Amazon CloudSearch crawler on the container registry every midnight.",
+          "explanation": "Incorrect: CloudSearch is a search engine, not a CVE vulnerability scanner."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon Inspector integrates natively with Amazon ECR to automatically assess container images for operating system and programming language package vulnerabilities on push.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html",
@@ -791,27 +791,27 @@
       "options": [
         {
           "id": "A",
-          "text": "CloudTrail Log File Integrity Validation",
-          "explanation": "Correct: CloudTrail Log File Integrity Validation uses SHA-256 hashing and digital signatures with digest files to detect if log files have been modified or deleted."
+          "text": "Amazon EBS snapshot copy",
+          "explanation": "Incorrect: EBS snapshots are volume backups, not S3 log file integrity validators."
         },
         {
           "id": "B",
-          "text": "Amazon S3 Object Tags",
-          "explanation": "Incorrect: Object tags are simple key-value pairs that can be altered and do not validate cryptographic file integrity."
-        },
-        {
-          "id": "C",
           "text": "Amazon CloudWatch Logs Insights query",
           "explanation": "Incorrect: CloudWatch Insights is a log querying tool, not a cryptographic hash validator."
         },
         {
+          "id": "C",
+          "text": "CloudTrail Log File Integrity Validation",
+          "explanation": "Correct: CloudTrail Log File Integrity Validation uses SHA-256 hashing and digital signatures with digest files to detect if log files have been modified or deleted."
+        },
+        {
           "id": "D",
-          "text": "Amazon EBS snapshot copy",
-          "explanation": "Incorrect: EBS snapshots are volume backups, not S3 log file integrity validators."
+          "text": "Amazon S3 Object Tags",
+          "explanation": "Incorrect: Object tags are simple key-value pairs that can be altered and do not validate cryptographic file integrity."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "CloudTrail log file integrity validation enables you to determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it.",
       "referenceUrl": "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html",
@@ -832,18 +832,18 @@
       "options": [
         {
           "id": "A",
+          "text": "AWS Shield Standard",
+          "explanation": "Incorrect: Shield Standard provides DDoS mitigation, not outbound domain filtering or IPS."
+        },
+        {
+          "id": "B",
           "text": "AWS Network Firewall",
           "explanation": "Correct: AWS Network Firewall provides stateful layer 3-7 inspection, Suricata-compatible IPS rules, and outbound domain list filtering across VPC subnets."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Standard Network ACLs",
           "explanation": "Incorrect: Network ACLs are stateless layer 4 firewalls and cannot inspect domain names or provide IPS capabilities."
-        },
-        {
-          "id": "C",
-          "text": "AWS Shield Standard",
-          "explanation": "Incorrect: Shield Standard provides DDoS mitigation, not outbound domain filtering or IPS."
         },
         {
           "id": "D",
@@ -852,7 +852,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Network Firewall is a stateful managed network firewall and intrusion detection/prevention service that supports 5-tuple filtering, domain allowlists, and deep packet inspection.",
       "referenceUrl": "https://aws.amazon.com/network-firewall/",
@@ -879,28 +879,28 @@
         },
         {
           "id": "B",
-          "text": "Configure a Target Tracking Scaling Policy on the worker Auto Scaling group based on the customized SQS metric ApproximateNumberOfMessagesVisible.",
-          "explanation": "Correct: Scaling based on queue depth backlog per instance ensures capacity scales proportionally to pending message volume."
-        },
-        {
-          "id": "C",
           "text": "Use an Application Load Balancer with sticky sessions directly to the processing instances.",
           "explanation": "Incorrect: Sticky sessions do not decouple tiers and may overload specific worker nodes."
         },
         {
+          "id": "C",
+          "text": "Configure a Target Tracking Scaling Policy on the worker Auto Scaling group based on the customized SQS metric ApproximateNumberOfMessagesVisible.",
+          "explanation": "Correct: Scaling based on queue depth backlog per instance ensures capacity scales proportionally to pending message volume."
+        },
+        {
           "id": "D",
-          "text": "Configure Amazon SNS topics with synchronous HTTP delivery to backend servers.",
-          "explanation": "Incorrect: SNS HTTP delivery does not provide a durable buffering queue if workers are temporarily overwhelmed."
+          "text": "Replace the backend with Spot EC2 instances in a fixed-size Auto Scaling group without an intermediate queue.",
+          "explanation": "Incorrect: Spot instances can be interrupted and fixed size cannot handle unpredictable traffic bursts without a buffer."
         },
         {
           "id": "E",
-          "text": "Replace the backend with Spot EC2 instances in a fixed-size Auto Scaling group without an intermediate queue.",
-          "explanation": "Incorrect: Spot instances can be interrupted and fixed size cannot handle unpredictable traffic bursts without a buffer."
+          "text": "Configure Amazon SNS topics with synchronous HTTP delivery to backend servers.",
+          "explanation": "Incorrect: SNS HTTP delivery does not provide a durable buffering queue if workers are temporarily overwhelmed."
         }
       ],
       "correctAnswers": [
         "A",
-        "B"
+        "C"
       ],
       "generalExplanation": "The standard AWS architectural pattern for resilient asynchronous decoupling is using Amazon SQS queues with EC2 Auto Scaling groups scaled according to queue backlog depth per instance.",
       "referenceUrl": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html",
@@ -921,18 +921,18 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure a Failover Routing policy with health checks pointing to the primary and secondary endpoints.",
-          "explanation": "Correct: Route 53 Failover Routing is purpose-built for active-passive setups, routing to primary when healthy and automatically switching to secondary when primary fails health checks."
-        },
-        {
-          "id": "B",
           "text": "Configure a Simple Routing policy with two A records.",
           "explanation": "Incorrect: Simple routing returns multiple values in random order without automated health-check failover."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Configure a Geolocation Routing policy based solely on client IP location.",
           "explanation": "Incorrect: Geolocation routes by location, not automatic failure status."
+        },
+        {
+          "id": "C",
+          "text": "Configure a Failover Routing policy with health checks pointing to the primary and secondary endpoints.",
+          "explanation": "Correct: Route 53 Failover Routing is purpose-built for active-passive setups, routing to primary when healthy and automatically switching to secondary when primary fails health checks."
         },
         {
           "id": "D",
@@ -941,7 +941,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Route 53 Failover Routing uses health checks to automatically redirect traffic from an unhealthy primary site to a healthy secondary disaster recovery site.",
       "referenceUrl": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-failover",
@@ -962,8 +962,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Enable Multi-AZ deployment on the Amazon RDS instance.",
-          "explanation": "Correct: RDS Multi-AZ synchronously replicates data to a standby instance in a different AZ and automatically fails over within 60-120 seconds if an outage occurs."
+          "text": "Take daily manual DB snapshots and copy them to S3.",
+          "explanation": "Incorrect: Snapshots take hours to restore and do not provide automated failover."
         },
         {
           "id": "B",
@@ -972,17 +972,17 @@
         },
         {
           "id": "C",
-          "text": "Take daily manual DB snapshots and copy them to S3.",
-          "explanation": "Incorrect: Snapshots take hours to restore and do not provide automated failover."
+          "text": "Configure an AWS Lambda script to export database tables to DynamoDB every 15 minutes.",
+          "explanation": "Incorrect: Exporting to DynamoDB is an expensive, custom, non-relational workaround."
         },
         {
           "id": "D",
-          "text": "Configure an AWS Lambda script to export database tables to DynamoDB every 15 minutes.",
-          "explanation": "Incorrect: Exporting to DynamoDB is an expensive, custom, non-relational workaround."
+          "text": "Enable Multi-AZ deployment on the Amazon RDS instance.",
+          "explanation": "Correct: RDS Multi-AZ synchronously replicates data to a standby instance in a different AZ and automatically fails over within 60-120 seconds if an outage occurs."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon RDS Multi-AZ deployments provide enhanced availability and durability by automatically creating a synchronous standby copy in a different Availability Zone with automatic failover.",
       "referenceUrl": "https://aws.amazon.com/rds/features/multi-az/",
@@ -1044,8 +1044,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon S3 Cross-Region Replication (CRR) with S3 Versioning enabled on source and destination buckets.",
-          "explanation": "Correct: S3 CRR automatically and asynchronously replicates objects across buckets in different AWS Regions when versioning is enabled on both buckets."
+          "text": "AWS DataSync running once every 30 days.",
+          "explanation": "Incorrect: A 30-day periodic sync fails real-time regulatory compliance requirements."
         },
         {
           "id": "B",
@@ -1054,17 +1054,17 @@
         },
         {
           "id": "C",
-          "text": "Amazon S3 Intelligent-Tiering with archive tiering.",
-          "explanation": "Incorrect: Intelligent-Tiering changes storage classes within the same bucket, not across regions."
+          "text": "Amazon S3 Cross-Region Replication (CRR) with S3 Versioning enabled on source and destination buckets.",
+          "explanation": "Correct: S3 CRR automatically and asynchronously replicates objects across buckets in different AWS Regions when versioning is enabled on both buckets."
         },
         {
           "id": "D",
-          "text": "AWS DataSync running once every 30 days.",
-          "explanation": "Incorrect: A 30-day periodic sync fails real-time regulatory compliance requirements."
+          "text": "Amazon S3 Intelligent-Tiering with archive tiering.",
+          "explanation": "Incorrect: Intelligent-Tiering changes storage classes within the same bucket, not across regions."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon S3 Cross-Region Replication (CRR) replicates objects (and metadata/tags) continuously between buckets in different AWS Regions to satisfy geographic compliance.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html",
@@ -1095,13 +1095,13 @@
         },
         {
           "id": "C",
-          "text": "Disable health checks on the Application Load Balancer target group.",
-          "explanation": "Incorrect: Disabling health checks causes ALB to route traffic to failed instances."
+          "text": "Assign public Elastic IP addresses directly to all EC2 instances.",
+          "explanation": "Incorrect: Elastic IPs do not fix health check evaluation logic in Auto Scaling."
         },
         {
           "id": "D",
-          "text": "Assign public Elastic IP addresses directly to all EC2 instances.",
-          "explanation": "Incorrect: Elastic IPs do not fix health check evaluation logic in Auto Scaling."
+          "text": "Disable health checks on the Application Load Balancer target group.",
+          "explanation": "Incorrect: Disabling health checks causes ALB to route traffic to failed instances."
         }
       ],
       "correctAnswers": [
@@ -1135,13 +1135,13 @@
         },
         {
           "id": "C",
-          "text": "Amazon CloudWatch Synthetics",
-          "explanation": "Incorrect: CloudWatch Synthetics runs canary tests for endpoints."
+          "text": "AWS CloudFormation Drift Detection",
+          "explanation": "Incorrect: Drift Detection checks template infrastructure drift."
         },
         {
           "id": "D",
-          "text": "AWS CloudFormation Drift Detection",
-          "explanation": "Incorrect: Drift Detection checks template infrastructure drift."
+          "text": "Amazon CloudWatch Synthetics",
+          "explanation": "Incorrect: CloudWatch Synthetics runs canary tests for endpoints."
         }
       ],
       "correctAnswers": [
@@ -1166,8 +1166,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure an Amazon SQS Dead-Letter Queue (DLQ) with a maxReceiveCount threshold.",
-          "explanation": "Correct: A Dead-Letter Queue isolates unprocessable 'poison' messages after a specified number of failed processing attempts (maxReceiveCount), keeping the main queue flowing."
+          "text": "Enable Amazon S3 Object Lock on the SQS queue.",
+          "explanation": "Incorrect: S3 Object Lock is an S3 feature, not an SQS queuing mechanism."
         },
         {
           "id": "B",
@@ -1176,8 +1176,8 @@
         },
         {
           "id": "C",
-          "text": "Enable Amazon S3 Object Lock on the SQS queue.",
-          "explanation": "Incorrect: S3 Object Lock is an S3 feature, not an SQS queuing mechanism."
+          "text": "Configure an Amazon SQS Dead-Letter Queue (DLQ) with a maxReceiveCount threshold.",
+          "explanation": "Correct: A Dead-Letter Queue isolates unprocessable 'poison' messages after a specified number of failed processing attempts (maxReceiveCount), keeping the main queue flowing."
         },
         {
           "id": "D",
@@ -1186,7 +1186,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon SQS Dead-Letter Queues (DLQs) help isolate messages that cannot be processed successfully to analyze failure reasons and prevent blocking other valid messages.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
@@ -1249,27 +1249,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Enable S3 Versioning and configure S3 MFA Delete on the bucket.",
-          "explanation": "Correct: S3 Versioning keeps historical versions of objects, and MFA Delete requires authentication from a physical MFA device to permanently delete an object version or change bucket versioning states."
-        },
-        {
-          "id": "B",
-          "text": "Create an S3 Lifecycle policy to delete expired delete markers every 30 days.",
-          "explanation": "Incorrect: Expiring delete markers does not require MFA verification."
-        },
-        {
-          "id": "C",
           "text": "Attach an IAM policy with Action s3:* and Condition StringEquals on ec2:InstanceType.",
           "explanation": "Incorrect: This is invalid syntax and does not enforce MFA for S3 deletion."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Enable Amazon CloudWatch Detailed Monitoring on the bucket.",
           "explanation": "Incorrect: CloudWatch monitors metrics, it does not prevent object deletion."
+        },
+        {
+          "id": "C",
+          "text": "Enable S3 Versioning and configure S3 MFA Delete on the bucket.",
+          "explanation": "Correct: S3 Versioning keeps historical versions of objects, and MFA Delete requires authentication from a physical MFA device to permanently delete an object version or change bucket versioning states."
+        },
+        {
+          "id": "D",
+          "text": "Create an S3 Lifecycle policy to delete expired delete markers every 30 days.",
+          "explanation": "Incorrect: Expiring delete markers does not require MFA verification."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "S3 MFA Delete adds an extra layer of security on versioned S3 buckets: only the bucket owner using root credentials with MFA can permanently delete object versions.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingMFADelete.html",
@@ -1290,18 +1290,18 @@
       "options": [
         {
           "id": "A",
+          "text": "Amazon AppFlow",
+          "explanation": "Incorrect: AppFlow integrates SaaS data transfers."
+        },
+        {
+          "id": "B",
           "text": "AWS Elastic Disaster Recovery (AWS DRS)",
           "explanation": "Correct: AWS DRS continuously replicates physical and virtual machines at block level into low-cost staging storage, only provisioning full compute instances during failover tests or actual disasters."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "AWS Snowball Edge",
           "explanation": "Incorrect: Snowball Edge is for physical data migration, not real-time continuous disaster recovery failover."
-        },
-        {
-          "id": "C",
-          "text": "Amazon AppFlow",
-          "explanation": "Incorrect: AppFlow integrates SaaS data transfers."
         },
         {
           "id": "D",
@@ -1310,7 +1310,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Elastic Disaster Recovery (AWS DRS) minimizes downtime and data loss with fast, reliable recovery of on-premises and cloud-based applications using affordable storage and minimal compute resources.",
       "referenceUrl": "https://aws.amazon.com/disaster-recovery/",
@@ -1337,18 +1337,18 @@
         },
         {
           "id": "B",
+          "text": "Enable S3 Transfer Acceleration on the EC2 instance.",
+          "explanation": "Incorrect: Transfer Acceleration is for long-distance S3 uploads, not EBS initialization."
+        },
+        {
+          "id": "C",
           "text": "Change the volume type to Cold HDD (sc1).",
           "explanation": "Incorrect: Cold HDD has low throughput and does not solve block initialization latency."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Attach an Elastic IP directly to the EBS volume.",
           "explanation": "Incorrect: EBS volumes are block storage devices; they do not have IP addresses."
-        },
-        {
-          "id": "D",
-          "text": "Enable S3 Transfer Acceleration on the EC2 instance.",
-          "explanation": "Incorrect: Transfer Acceleration is for long-distance S3 uploads, not EBS initialization."
         }
       ],
       "correctAnswers": [
@@ -1373,13 +1373,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Increase the number of shards in the Kinesis Data Stream or switch the stream capacity mode to On-Demand.",
-          "explanation": "Correct: Kinesis capacity is determined by shards (1 MB/sec in, 2 MB/sec out per shard) or On-Demand mode which automatically scales shard capacity to match throughput spikes."
+          "text": "Convert the stream into an S3 Glacier Flexible Retrieval vault.",
+          "explanation": "Incorrect: S3 Glacier is an archive storage class, not a real-time streaming ingestion pipeline."
         },
         {
           "id": "B",
-          "text": "Convert the stream into an S3 Glacier Flexible Retrieval vault.",
-          "explanation": "Incorrect: S3 Glacier is an archive storage class, not a real-time streaming ingestion pipeline."
+          "text": "Increase the number of shards in the Kinesis Data Stream or switch the stream capacity mode to On-Demand.",
+          "explanation": "Correct: Kinesis capacity is determined by shards (1 MB/sec in, 2 MB/sec out per shard) or On-Demand mode which automatically scales shard capacity to match throughput spikes."
         },
         {
           "id": "C",
@@ -1393,7 +1393,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon Kinesis Data Streams throughput is scaled by splitting shards or using On-Demand capacity mode, which automatically manages shard capacity in response to traffic changes.",
       "referenceUrl": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpu-exceeded-exceptions.html",
@@ -1413,8 +1413,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Global Accelerator",
-          "explanation": "Correct: AWS Global Accelerator provides 2 static Anycast IP addresses and routes TCP/UDP traffic over the AWS global fiber backbone to the nearest healthy regional endpoint."
+          "text": "Amazon Route 53 Simple Routing",
+          "explanation": "Incorrect: Route 53 simple routing does not provide static anycast IP endpoints or private backbone routing."
         },
         {
           "id": "B",
@@ -1423,17 +1423,17 @@
         },
         {
           "id": "C",
-          "text": "Amazon Route 53 Simple Routing",
-          "explanation": "Incorrect: Route 53 simple routing does not provide static anycast IP endpoints or private backbone routing."
+          "text": "AWS Storage Gateway",
+          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
         },
         {
           "id": "D",
-          "text": "AWS Storage Gateway",
-          "explanation": "Incorrect: Storage Gateway is a hybrid storage appliance."
+          "text": "AWS Global Accelerator",
+          "explanation": "Correct: AWS Global Accelerator provides 2 static Anycast IP addresses and routes TCP/UDP traffic over the AWS global fiber backbone to the nearest healthy regional endpoint."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Global Accelerator uses the AWS global network backbone and Anycast static IP addresses to optimize routing for TCP and UDP workloads like gaming, VoIP, and IoT.",
       "referenceUrl": "https://aws.amazon.com/global-accelerator/",
@@ -1454,8 +1454,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Step Functions",
-          "explanation": "Correct: AWS Step Functions is a low-code visual workflow service used to orchestrate microservices, manage long-running stateful workflows, and handle retries and human approvals."
+          "text": "Amazon ElastiCache for Memcached",
+          "explanation": "Incorrect: Memcached is an in-memory caching engine, not a workflow state machine."
         },
         {
           "id": "B",
@@ -1469,12 +1469,12 @@
         },
         {
           "id": "D",
-          "text": "Amazon ElastiCache for Memcached",
-          "explanation": "Incorrect: Memcached is an in-memory caching engine, not a workflow state machine."
+          "text": "AWS Step Functions",
+          "explanation": "Correct: AWS Step Functions is a low-code visual workflow service used to orchestrate microservices, manage long-running stateful workflows, and handle retries and human approvals."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Step Functions lets you coordinate multiple AWS services into serverless workflows with error handling, branching, and support for executions that can run up to 1 year.",
       "referenceUrl": "https://aws.amazon.com/step-functions/",
@@ -1495,8 +1495,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon SQS FIFO (First-In-First-Out) Queue",
-          "explanation": "Correct: SQS FIFO queues preserve the exact order of messages and support deduplication to ensure messages are processed exactly once in strict chronological order."
+          "text": "Amazon SNS Standard Topic",
+          "explanation": "Incorrect: Standard SNS topics do not guarantee strict message ordering or exactly-once delivery."
         },
         {
           "id": "B",
@@ -1505,8 +1505,8 @@
         },
         {
           "id": "C",
-          "text": "Amazon SNS Standard Topic",
-          "explanation": "Incorrect: Standard SNS topics do not guarantee strict message ordering or exactly-once delivery."
+          "text": "Amazon SQS FIFO (First-In-First-Out) Queue",
+          "explanation": "Correct: SQS FIFO queues preserve the exact order of messages and support deduplication to ensure messages are processed exactly once in strict chronological order."
         },
         {
           "id": "D",
@@ -1515,7 +1515,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon SQS FIFO queues have the .fifo suffix and guarantee that message order is strictly preserved with exactly-once processing and deduplication.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html",
@@ -1536,27 +1536,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Auto Scaling Lifecycle Hooks",
-          "explanation": "Correct: Lifecycle hooks pause the termination or launch of an instance, putting it in a Terminating:Wait state to allow custom scripts or Lambda functions to complete before final termination."
-        },
-        {
-          "id": "B",
-          "text": "EC2 User Data scripts",
-          "explanation": "Incorrect: User Data scripts execute only upon instance initial launch/boot, not termination."
-        },
-        {
-          "id": "C",
           "text": "AWS Trusted Advisor",
           "explanation": "Incorrect: Trusted Advisor performs best practice evaluations, not instance shutdown lifecycle hooks."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Elastic Load Balancing Sticky Sessions",
           "explanation": "Incorrect: Sticky sessions bind user sessions to specific instances."
+        },
+        {
+          "id": "C",
+          "text": "EC2 User Data scripts",
+          "explanation": "Incorrect: User Data scripts execute only upon instance initial launch/boot, not termination."
+        },
+        {
+          "id": "D",
+          "text": "Auto Scaling Lifecycle Hooks",
+          "explanation": "Correct: Lifecycle hooks pause the termination or launch of an instance, putting it in a Terminating:Wait state to allow custom scripts or Lambda functions to complete before final termination."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon EC2 Auto Scaling Lifecycle Hooks give you control over instances as they enter and leave an Auto Scaling group, enabling custom log harvesting or graceful connection draining before termination.",
       "referenceUrl": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html",
@@ -1577,8 +1577,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Deploy an Amazon ElastiCache for Redis cluster in front of Amazon RDS and implement a Lazy Loading (Cache-Aside) caching strategy.",
-          "explanation": "Correct: In-memory ElastiCache dramatically reduces read latency to sub-milliseconds and offloads repetitive read queries from the relational database."
+          "text": "Enable Multi-AZ on RDS and direct SELECT queries to the secondary standby instance.",
+          "explanation": "Incorrect: Traditional RDS Multi-AZ standby instances are passive for failover and do not accept read traffic (unlike Aurora or dedicated Read Replicas)."
         },
         {
           "id": "B",
@@ -1587,17 +1587,17 @@
         },
         {
           "id": "C",
-          "text": "Enable Multi-AZ on RDS and direct SELECT queries to the secondary standby instance.",
-          "explanation": "Incorrect: Traditional RDS Multi-AZ standby instances are passive for failover and do not accept read traffic (unlike Aurora or dedicated Read Replicas)."
+          "text": "Enable AWS Auto Scaling directly on the RDS MySQL primary node.",
+          "explanation": "Incorrect: Standard RDS MySQL single instances do not support instantaneous on-demand compute node auto-scaling for reads like ElastiCache."
         },
         {
           "id": "D",
-          "text": "Enable AWS Auto Scaling directly on the RDS MySQL primary node.",
-          "explanation": "Incorrect: Standard RDS MySQL single instances do not support instantaneous on-demand compute node auto-scaling for reads like ElastiCache."
+          "text": "Deploy an Amazon ElastiCache for Redis cluster in front of Amazon RDS and implement a Lazy Loading (Cache-Aside) caching strategy.",
+          "explanation": "Correct: In-memory ElastiCache dramatically reduces read latency to sub-milliseconds and offloads repetitive read queries from the relational database."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "An in-memory caching layer with Amazon ElastiCache (Redis or Memcached) using the Cache-Aside pattern is the recommended AWS best practice for read-heavy relational database workloads.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Strategies.html",
@@ -1619,27 +1619,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Distribute objects across multiple distinct S3 key prefixes to achieve up to 5,500 GET requests/sec per prefix.",
-          "explanation": "Correct: S3 automatically scales to support at least 3,500 PUT/POST/DELETE and 5,500 GET/HEAD requests per second per partitioned prefix."
-        },
-        {
-          "id": "B",
-          "text": "Enable S3 Cross-Region Replication to 10 different regions.",
-          "explanation": "Incorrect: CRR replicates objects across regions, but does not increase per-prefix throughput in the source bucket."
-        },
-        {
-          "id": "C",
           "text": "Combine all files into a single 5 TB object stored in S3 Glacier.",
           "explanation": "Incorrect: Glacier has retrieval times of minutes to hours and does not support high-concurrency real-time reads."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Attach an Elastic Load Balancer directly in front of the S3 bucket endpoint.",
           "explanation": "Incorrect: Elastic Load Balancers cannot be placed in front of Amazon S3 buckets."
+        },
+        {
+          "id": "C",
+          "text": "Distribute objects across multiple distinct S3 key prefixes to achieve up to 5,500 GET requests/sec per prefix.",
+          "explanation": "Correct: S3 automatically scales to support at least 3,500 PUT/POST/DELETE and 5,500 GET/HEAD requests per second per partitioned prefix."
+        },
+        {
+          "id": "D",
+          "text": "Enable S3 Cross-Region Replication to 10 different regions.",
+          "explanation": "Incorrect: CRR replicates objects across regions, but does not increase per-prefix throughput in the source bucket."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon S3 scales automatically to handle high request rates: each distinct prefix supports at least 3,500 write requests and 5,500 read requests per second.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html",
@@ -1660,27 +1660,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Provisioned IOPS SSD (io2 or io2 Block Express)",
-          "explanation": "Correct: io2 / io2 Block Express volumes are designed for business-critical I/O intensive databases requiring up to 256,000 IOPS and sub-millisecond latency with 99.999% durability."
+          "text": "Cold HDD (sc1)",
+          "explanation": "Incorrect: sc1 is low-cost magnetic storage for infrequently accessed sequential workloads."
         },
         {
           "id": "B",
-          "text": "General Purpose SSD (gp3)",
-          "explanation": "Incorrect: gp3 maxes out at 16,000 IOPS, which cannot meet the 40,000 IOPS requirement."
-        },
-        {
-          "id": "C",
           "text": "Throughput Optimized HDD (st1)",
           "explanation": "Incorrect: st1 is magnetic storage optimized for throughput (MB/s) on large sequential workloads, not high random IOPS."
         },
         {
+          "id": "C",
+          "text": "General Purpose SSD (gp3)",
+          "explanation": "Incorrect: gp3 maxes out at 16,000 IOPS, which cannot meet the 40,000 IOPS requirement."
+        },
+        {
           "id": "D",
-          "text": "Cold HDD (sc1)",
-          "explanation": "Incorrect: sc1 is low-cost magnetic storage for infrequently accessed sequential workloads."
+          "text": "Provisioned IOPS SSD (io2 or io2 Block Express)",
+          "explanation": "Correct: io2 / io2 Block Express volumes are designed for business-critical I/O intensive databases requiring up to 256,000 IOPS and sub-millisecond latency with 99.999% durability."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon EBS Provisioned IOPS SSD (io2 Block Express) volumes deliver the highest performance block storage on AWS, supporting up to 256,000 IOPS and 4,000 MB/s throughput.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html",
@@ -1701,27 +1701,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Enable Amazon S3 Transfer Acceleration on the bucket and use the accelerated endpoint for uploads.",
-          "explanation": "Correct: S3 Transfer Acceleration uses Amazon CloudFront's globally distributed Edge Locations to route uploads over the optimized AWS private network backbone to the S3 bucket."
-        },
-        {
-          "id": "B",
           "text": "Configure an AWS Site-to-Site VPN from every user's computer to us-east-1.",
           "explanation": "Incorrect: Creating individual VPN tunnels for end consumers across the globe is impractical."
         },
         {
+          "id": "B",
+          "text": "Enable Amazon S3 Transfer Acceleration on the bucket and use the accelerated endpoint for uploads.",
+          "explanation": "Correct: S3 Transfer Acceleration uses Amazon CloudFront's globally distributed Edge Locations to route uploads over the optimized AWS private network backbone to the S3 bucket."
+        },
+        {
           "id": "C",
-          "text": "Deploy NAT Gateways in Europe and Asia connected to us-east-1.",
-          "explanation": "Incorrect: NAT Gateways are deployed inside VPCs, not for global public consumer uploads."
+          "text": "Require users to compress videos into zip files and email them to AWS Support.",
+          "explanation": "Incorrect: This is an unfeasible operational anti-pattern."
         },
         {
           "id": "D",
-          "text": "Require users to compress videos into zip files and email them to AWS Support.",
-          "explanation": "Incorrect: This is an unfeasible operational anti-pattern."
+          "text": "Deploy NAT Gateways in Europe and Asia connected to us-east-1.",
+          "explanation": "Incorrect: NAT Gateways are deployed inside VPCs, not for global public consumer uploads."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket by utilizing AWS Edge Locations.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html",
@@ -1742,18 +1742,18 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon FSx for Lustre",
-          "explanation": "Correct: Amazon FSx for Lustre is built for high-performance computing (HPC), machine learning, and media rendering, integrating natively with S3 buckets for high-throughput sub-millisecond shared storage."
-        },
-        {
-          "id": "B",
           "text": "Amazon FSx for Windows File Server",
           "explanation": "Incorrect: FSx for Windows is designed for SMB-based Windows enterprise workloads."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "AWS Storage Gateway Tape Gateway",
           "explanation": "Incorrect: Tape Gateway is for long-term virtual tape archives."
+        },
+        {
+          "id": "C",
+          "text": "Amazon FSx for Lustre",
+          "explanation": "Correct: Amazon FSx for Lustre is built for high-performance computing (HPC), machine learning, and media rendering, integrating natively with S3 buckets for high-throughput sub-millisecond shared storage."
         },
         {
           "id": "D",
@@ -1762,7 +1762,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon FSx for Lustre is a fully managed file system optimized for compute-intensive workloads such as high-performance computing, machine learning, and data analytics.",
       "referenceUrl": "https://aws.amazon.com/fsx/lustre/",
@@ -1783,8 +1783,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Cluster Placement Group",
-          "explanation": "Correct: A Cluster Placement Group packs instances close together inside a single Availability Zone to achieve low-latency network performance up to 100 Gbps."
+          "text": "Partition Placement Group",
+          "explanation": "Incorrect: Partition placement groups divide instances across logical partitions for large distributed workloads like HDFS/Cassandra."
         },
         {
           "id": "B",
@@ -1793,17 +1793,17 @@
         },
         {
           "id": "C",
-          "text": "Partition Placement Group",
-          "explanation": "Incorrect: Partition placement groups divide instances across logical partitions for large distributed workloads like HDFS/Cassandra."
+          "text": "Multi-Region Global Group",
+          "explanation": "Incorrect: Placement groups operate within a single region, not cross-region."
         },
         {
           "id": "D",
-          "text": "Multi-Region Global Group",
-          "explanation": "Incorrect: Placement groups operate within a single region, not cross-region."
+          "text": "Cluster Placement Group",
+          "explanation": "Correct: A Cluster Placement Group packs instances close together inside a single Availability Zone to achieve low-latency network performance up to 100 Gbps."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "A Cluster Placement Group is a logical grouping of instances within a single Availability Zone that enables applications to participate in a low-latency, high-throughput network.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html#placement-groups-cluster",
@@ -1824,27 +1824,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Deploy Amazon DynamoDB Accelerator (DAX).",
-          "explanation": "Correct: DAX is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement (from milliseconds to microseconds) and is API-compatible without code refactoring."
+          "text": "Migrate all data to an Amazon RDS MySQL database with Multi-AZ.",
+          "explanation": "Incorrect: RDS requires full application query rewrites and does not deliver microsecond latency."
         },
         {
           "id": "B",
-          "text": "Deploy an Amazon Redshift cluster and replicate data every hour.",
-          "explanation": "Incorrect: Redshift is an analytics warehouse with second-level query latency, not a microsecond cache."
-        },
-        {
-          "id": "C",
           "text": "Switch DynamoDB to Provisioned Billing with autoscaling.",
           "explanation": "Incorrect: Provisioned billing handles millisecond reads, but does not provide in-memory microsecond caching without code changes."
         },
         {
+          "id": "C",
+          "text": "Deploy Amazon DynamoDB Accelerator (DAX).",
+          "explanation": "Correct: DAX is a fully managed, highly available, in-memory cache for DynamoDB that delivers up to a 10x performance improvement (from milliseconds to microseconds) and is API-compatible without code refactoring."
+        },
+        {
           "id": "D",
-          "text": "Migrate all data to an Amazon RDS MySQL database with Multi-AZ.",
-          "explanation": "Incorrect: RDS requires full application query rewrites and does not deliver microsecond latency."
+          "text": "Deploy an Amazon Redshift cluster and replicate data every hour.",
+          "explanation": "Incorrect: Redshift is an analytics warehouse with second-level query latency, not a microsecond cache."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon DynamoDB Accelerator (DAX) is an in-memory cache that reduces DynamoDB response times to microseconds and is drop-in compatible with existing DynamoDB API calls.",
       "referenceUrl": "https://aws.amazon.com/dynamodb/dax/",
@@ -1870,8 +1870,8 @@
         },
         {
           "id": "B",
-          "text": "Convert the primary database to Single-AZ mode.",
-          "explanation": "Incorrect: Single-AZ reduces availability and does not solve read contention."
+          "text": "Replace the Aurora cluster with an Amazon EBS magnetic volume.",
+          "explanation": "Incorrect: Magnetic volumes provide inferior performance and lack relational engine capabilities."
         },
         {
           "id": "C",
@@ -1880,8 +1880,8 @@
         },
         {
           "id": "D",
-          "text": "Replace the Aurora cluster with an Amazon EBS magnetic volume.",
-          "explanation": "Incorrect: Magnetic volumes provide inferior performance and lack relational engine capabilities."
+          "text": "Convert the primary database to Single-AZ mode.",
+          "explanation": "Incorrect: Single-AZ reduces availability and does not solve read contention."
         }
       ],
       "correctAnswers": [
@@ -1907,27 +1907,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure Provisioned Concurrency for the AWS Lambda functions.",
-          "explanation": "Correct: Provisioned Concurrency keeps a specified number of execution environments initialized and hyper-ready to respond immediately in double-digit milliseconds, eliminating cold starts."
-        },
-        {
-          "id": "B",
-          "text": "Increase the Lambda function timeout setting from 3 seconds to 15 minutes.",
-          "explanation": "Incorrect: Function timeout limits maximum execution duration; it does not eliminate cold start initialization delay."
-        },
-        {
-          "id": "C",
           "text": "Migrate the Lambda functions to run on an Amazon Lightsail instance.",
           "explanation": "Incorrect: Lightsail is a virtual server VPS, removing serverless benefits and scalability."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "Configure Provisioned Concurrency for the AWS Lambda functions.",
+          "explanation": "Correct: Provisioned Concurrency keeps a specified number of execution environments initialized and hyper-ready to respond immediately in double-digit milliseconds, eliminating cold starts."
+        },
+        {
+          "id": "C",
           "text": "Attach an Elastic IP directly to the Lambda function.",
           "explanation": "Incorrect: Lambda functions cannot have Elastic IPs attached directly."
+        },
+        {
+          "id": "D",
+          "text": "Increase the Lambda function timeout setting from 3 seconds to 15 minutes.",
+          "explanation": "Incorrect: Function timeout limits maximum execution duration; it does not eliminate cold start initialization delay."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Provisioned Concurrency initializes requested execution environments ahead of time so they can respond immediately without cold start initialization latencies.",
       "referenceUrl": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html",
@@ -1948,27 +1948,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Enhanced Networking using the Elastic Network Adapter (ENA)",
-          "explanation": "Correct: Enhanced Networking uses SR-IOV to bypass the hypervisor and provide higher I/O performance and lower CPU utilization with speeds up to 100 Gbps."
-        },
-        {
-          "id": "B",
-          "text": "Elastic IP dynamic reassignment",
-          "explanation": "Incorrect: Elastic IPs manage public IPv4 addresses, not network hardware acceleration."
-        },
-        {
-          "id": "C",
           "text": "Amazon S3 Select acceleration",
           "explanation": "Incorrect: S3 Select filters CSV/JSON data inside S3, not EC2 network interfaces."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "AWS Direct Connect gateway aggregation",
           "explanation": "Incorrect: Direct Connect connects on-premises networks to AWS."
+        },
+        {
+          "id": "C",
+          "text": "Enhanced Networking using the Elastic Network Adapter (ENA)",
+          "explanation": "Correct: Enhanced Networking uses SR-IOV to bypass the hypervisor and provide higher I/O performance and lower CPU utilization with speeds up to 100 Gbps."
+        },
+        {
+          "id": "D",
+          "text": "Elastic IP dynamic reassignment",
+          "explanation": "Incorrect: Elastic IPs manage public IPv4 addresses, not network hardware acceleration."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Enhanced Networking uses Single Root I/O Virtualization (SR-IOV) via the Elastic Network Adapter (ENA) to deliver high packets-per-second (PPS) and low latency.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html",
@@ -1993,18 +1993,18 @@
         },
         {
           "id": "B",
-          "text": "Amazon Athena",
-          "explanation": "Incorrect: Athena is for interactive SQL analytics on S3, not sub-second interactive full-text web search."
-        },
-        {
-          "id": "C",
           "text": "AWS Glue DataBrew",
           "explanation": "Incorrect: DataBrew is a visual data preparation tool."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Amazon S3 Glacier Instant Retrieval",
           "explanation": "Incorrect: S3 Glacier Instant Retrieval is an archive storage tier."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Athena",
+          "explanation": "Incorrect: Athena is for interactive SQL analytics on S3, not sub-second interactive full-text web search."
         }
       ],
       "correctAnswers": [
@@ -2029,27 +2029,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Latency-based Routing",
-          "explanation": "Correct: Latency-based routing directs user DNS queries to the AWS Region that gives the lowest network latency based on AWS worldwide network measurements."
+          "text": "Failover Routing with passive replicas",
+          "explanation": "Incorrect: Failover routing is for active-passive disaster recovery, not multi-region performance optimization."
         },
         {
           "id": "B",
-          "text": "Weighted Routing with equal weights (33/33/33)",
-          "explanation": "Incorrect: Weighted routing distributes traffic evenly regardless of user geographic location or network latency."
-        },
-        {
-          "id": "C",
           "text": "Simple Routing with multiple IP addresses",
           "explanation": "Incorrect: Simple routing returns IP addresses in random order without evaluating network performance."
         },
         {
+          "id": "C",
+          "text": "Weighted Routing with equal weights (33/33/33)",
+          "explanation": "Incorrect: Weighted routing distributes traffic evenly regardless of user geographic location or network latency."
+        },
+        {
           "id": "D",
-          "text": "Failover Routing with passive replicas",
-          "explanation": "Incorrect: Failover routing is for active-passive disaster recovery, not multi-region performance optimization."
+          "text": "Latency-based Routing",
+          "explanation": "Correct: Latency-based routing directs user DNS queries to the AWS Region that gives the lowest network latency based on AWS worldwide network measurements."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon Route 53 Latency-based Routing routes traffic to the AWS Region that provides the best latency for the user, improving application performance globally.",
       "referenceUrl": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-latency.html",
@@ -2071,13 +2071,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Partition the data in Amazon S3 by year, month, and day (e.g., year=2026/month=08/day=20/).",
-          "explanation": "Correct: Partitioning limits the amount of data Athena scans per query to only the relevant date folders, dramatically cutting query time and scanned byte costs."
+          "text": "Change S3 bucket versioning to MFA Delete mode.",
+          "explanation": "Incorrect: MFA Delete is a security feature that has no impact on SQL query scanning performance."
         },
         {
           "id": "B",
-          "text": "Convert the data files into columnar formats such as Apache Parquet or Apache ORC.",
-          "explanation": "Correct: Columnar formats (Parquet/ORC) allow Athena to read only the required columns and compress data efficiently, reducing I/O and query costs by up to 90%."
+          "text": "Enable S3 Cross-Region Replication to 5 other regions.",
+          "explanation": "Incorrect: Replication increases storage costs and does not optimize Athena query scanning."
         },
         {
           "id": "C",
@@ -2086,18 +2086,18 @@
         },
         {
           "id": "D",
-          "text": "Change S3 bucket versioning to MFA Delete mode.",
-          "explanation": "Incorrect: MFA Delete is a security feature that has no impact on SQL query scanning performance."
+          "text": "Convert the data files into columnar formats such as Apache Parquet or Apache ORC.",
+          "explanation": "Correct: Columnar formats (Parquet/ORC) allow Athena to read only the required columns and compress data efficiently, reducing I/O and query costs by up to 90%."
         },
         {
           "id": "E",
-          "text": "Enable S3 Cross-Region Replication to 5 other regions.",
-          "explanation": "Incorrect: Replication increases storage costs and does not optimize Athena query scanning."
+          "text": "Partition the data in Amazon S3 by year, month, and day (e.g., year=2026/month=08/day=20/).",
+          "explanation": "Correct: Partitioning limits the amount of data Athena scans per query to only the relevant date folders, dramatically cutting query time and scanned byte costs."
         }
       ],
       "correctAnswers": [
-        "A",
-        "B"
+        "D",
+        "E"
       ],
       "generalExplanation": "Partitioning data and converting files to columnar formats (Parquet or ORC) are the two most effective strategies to optimize Athena query performance and reduce scanning costs.",
       "referenceUrl": "https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html",
@@ -2123,18 +2123,18 @@
         },
         {
           "id": "B",
-          "text": "Create an S3 bucket in each edge location.",
-          "explanation": "Incorrect: S3 buckets exist in AWS Regions, not inside CloudFront edge locations."
-        },
-        {
-          "id": "C",
           "text": "Disable CloudFront caching completely.",
           "explanation": "Incorrect: Disabling caching routes 100% of traffic to the origin, worsening the problem."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Configure Route 53 Weighted routing to random instances.",
           "explanation": "Incorrect: Weighted routing does not provide edge caching consolidation."
+        },
+        {
+          "id": "D",
+          "text": "Create an S3 bucket in each edge location.",
+          "explanation": "Incorrect: S3 buckets exist in AWS Regions, not inside CloudFront edge locations."
         }
       ],
       "correctAnswers": [
@@ -2159,27 +2159,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Attach multiple EBS volumes and configure a software RAID 0 array inside the operating system.",
-          "explanation": "Correct: RAID 0 stripes data across multiple EBS volumes, combining their IOPS and throughput up to the EC2 instance's maximum EBS-optimized bandwidth."
+          "text": "Attach an AWS Storage Gateway Volume Gateway in cached mode.",
+          "explanation": "Incorrect: Storage Gateway cached mode is for hybrid on-premises access."
         },
         {
           "id": "B",
-          "text": "Configure a software RAID 1 array across multiple EBS volumes.",
-          "explanation": "Incorrect: RAID 1 mirrors data for redundancy; it does not aggregate write throughput."
-        },
-        {
-          "id": "C",
           "text": "Store data in an Amazon S3 Glacier Vault.",
           "explanation": "Incorrect: S3 Glacier is cold archival storage, not high-speed OS block storage."
         },
         {
+          "id": "C",
+          "text": "Configure a software RAID 1 array across multiple EBS volumes.",
+          "explanation": "Incorrect: RAID 1 mirrors data for redundancy; it does not aggregate write throughput."
+        },
+        {
           "id": "D",
-          "text": "Attach an AWS Storage Gateway Volume Gateway in cached mode.",
-          "explanation": "Incorrect: Storage Gateway cached mode is for hybrid on-premises access."
+          "text": "Attach multiple EBS volumes and configure a software RAID 0 array inside the operating system.",
+          "explanation": "Correct: RAID 0 stripes data across multiple EBS volumes, combining their IOPS and throughput up to the EC2 instance's maximum EBS-optimized bandwidth."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Configuring a software RAID 0 array across multiple EBS volumes allows you to stripe I/O and achieve higher throughput and IOPS than a single EBS volume can provide.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/raid-config.html",
@@ -2201,27 +2201,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure an S3 Lifecycle policy to transition objects from S3 Standard to S3 Glacier Flexible Retrieval after 30 days, and expire/delete them after 5 years.",
-          "explanation": "Correct: S3 Standard covers initial active access, while S3 Glacier Flexible Retrieval provides low-cost long-term storage for 3-5 hour retrieval requirements."
-        },
-        {
-          "id": "B",
           "text": "Store all files in S3 Glacier Deep Archive from the start with expedited retrieval.",
           "explanation": "Incorrect: Glacier Deep Archive does not support initial frequent access and does not offer expedited retrieval."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Transition objects to S3 One Zone-IA after 30 days and retain for 5 years.",
           "explanation": "Incorrect: S3 One Zone-IA has higher storage costs than Glacier and lower resilience (single AZ), which is not suitable for critical medical data."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Keep objects in S3 Standard and manually apply gzip compression after 30 days.",
           "explanation": "Incorrect: Keeping files in S3 Standard for 5 years incurs excessive costs and manual compression creates high operational overhead."
+        },
+        {
+          "id": "D",
+          "text": "Configure an S3 Lifecycle policy to transition objects from S3 Standard to S3 Glacier Flexible Retrieval after 30 days, and expire/delete them after 5 years.",
+          "explanation": "Correct: S3 Standard covers initial active access, while S3 Glacier Flexible Retrieval provides low-cost long-term storage for 3-5 hour retrieval requirements."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Automated transition via S3 Lifecycle to S3 Glacier Flexible Retrieval minimizes long-term storage costs while maintaining compliant availability within acceptable retrieval timeframes.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html",
@@ -2248,18 +2248,18 @@
         },
         {
           "id": "B",
-          "text": "Purchase 3-year All Upfront Dedicated Hosts.",
-          "explanation": "Incorrect: Dedicated Hosts are the most expensive EC2 purchasing option and lock up capital."
-        },
-        {
-          "id": "C",
           "text": "Launch On-Demand Instances with EBS io2 Block Express volumes.",
           "explanation": "Incorrect: On-Demand pricing is significantly more expensive than Spot for batch jobs."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Purchase 1-year Standard Reserved Instances for maximum nightly capacity.",
           "explanation": "Incorrect: Paying 24/7 for Reserved Instances that only run 4 hours per night results in significant wasted idle cost."
+        },
+        {
+          "id": "D",
+          "text": "Purchase 3-year All Upfront Dedicated Hosts.",
+          "explanation": "Incorrect: Dedicated Hosts are the most expensive EC2 purchasing option and lock up capital."
         }
       ],
       "correctAnswers": [
@@ -2286,27 +2286,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Compute Savings Plans",
-          "explanation": "Correct: Compute Savings Plans provide up to 66% discount and automatically apply across EC2 instances (regardless of family, OS, or region), AWS Fargate, and AWS Lambda."
-        },
-        {
-          "id": "B",
-          "text": "EC2 Instance Savings Plans",
-          "explanation": "Incorrect: EC2 Instance Savings Plans are locked to a specific instance family in a specific region and do not apply to Fargate or Lambda."
-        },
-        {
-          "id": "C",
           "text": "Standard Reserved Instances",
           "explanation": "Incorrect: Standard RIs do not apply to Fargate or Lambda and lack cross-family/cross-region flexibility."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "On-Demand Capacity Reservations",
           "explanation": "Incorrect: Capacity Reservations reserve capacity at On-Demand rates without providing billing discounts."
+        },
+        {
+          "id": "C",
+          "text": "Compute Savings Plans",
+          "explanation": "Correct: Compute Savings Plans provide up to 66% discount and automatically apply across EC2 instances (regardless of family, OS, or region), AWS Fargate, and AWS Lambda."
+        },
+        {
+          "id": "D",
+          "text": "EC2 Instance Savings Plans",
+          "explanation": "Incorrect: EC2 Instance Savings Plans are locked to a specific instance family in a specific region and do not apply to Fargate or Lambda."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Compute Savings Plans provide the greatest flexibility, automatically reducing costs across EC2 instance families, operating systems, regions, and container/serverless services (Fargate and Lambda).",
       "referenceUrl": "https://aws.amazon.com/savingsplans/compute-pricing/",
@@ -2369,27 +2369,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Migrate the volumes from gp2 to General Purpose SSD (gp3) using Elastic Volumes.",
-          "explanation": "Correct: gp3 volumes are up to 20% cheaper per GB than gp2, provide baseline 3,000 IOPS and 125 MB/s throughput, and allow independent provisioning of IOPS/throughput without increasing disk size."
-        },
-        {
-          "id": "B",
-          "text": "Convert all volumes to Provisioned IOPS SSD (io2).",
-          "explanation": "Incorrect: io2 volumes are significantly more expensive than gp2/gp3."
-        },
-        {
-          "id": "C",
           "text": "Create snapshots and delete the original EBS volumes.",
           "explanation": "Incorrect: Deleting active volumes breaks running applications."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "Migrate the volumes from gp2 to General Purpose SSD (gp3) using Elastic Volumes.",
+          "explanation": "Correct: gp3 volumes are up to 20% cheaper per GB than gp2, provide baseline 3,000 IOPS and 125 MB/s throughput, and allow independent provisioning of IOPS/throughput without increasing disk size."
+        },
+        {
+          "id": "C",
           "text": "Move data to Amazon S3 Glacier Deep Archive.",
           "explanation": "Incorrect: Glacier Deep Archive cannot be attached as live block storage to EC2."
+        },
+        {
+          "id": "D",
+          "text": "Convert all volumes to Provisioned IOPS SSD (io2).",
+          "explanation": "Incorrect: io2 volumes are significantly more expensive than gp2/gp3."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon EBS gp3 volumes offer up to 20% lower price per GB than gp2 and provide baseline performance of 3,000 IOPS and 125 MB/s included with any volume size.",
       "referenceUrl": "https://aws.amazon.com/ebs/general-purpose/",
@@ -2410,27 +2410,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Aurora Serverless v2",
-          "explanation": "Correct: Aurora Serverless v2 scales compute capacity dynamically in fractions of an ACU (Aurora Capacity Unit) in milliseconds, paying only for database capacity consumed during active usage."
+          "text": "Amazon S3 Glacier Vault",
+          "explanation": "Incorrect: S3 Glacier is an archive storage tier, not an active transactional relational database."
         },
         {
           "id": "B",
-          "text": "Amazon RDS for MySQL Multi-AZ provisioned with db.m5.24xlarge instances 24/7",
-          "explanation": "Incorrect: Fixed provisioned large instances incur continuous high costs during nights and weekends."
-        },
-        {
-          "id": "C",
           "text": "Amazon Redshift with fixed 16-node cluster",
           "explanation": "Incorrect: Redshift is an analytics data warehouse and fixed clusters incur constant hourly billing."
         },
         {
+          "id": "C",
+          "text": "Amazon RDS for MySQL Multi-AZ provisioned with db.m5.24xlarge instances 24/7",
+          "explanation": "Incorrect: Fixed provisioned large instances incur continuous high costs during nights and weekends."
+        },
+        {
           "id": "D",
-          "text": "Amazon S3 Glacier Vault",
-          "explanation": "Incorrect: S3 Glacier is an archive storage tier, not an active transactional relational database."
+          "text": "Amazon Aurora Serverless v2",
+          "explanation": "Correct: Aurora Serverless v2 scales compute capacity dynamically in fractions of an ACU (Aurora Capacity Unit) in milliseconds, paying only for database capacity consumed during active usage."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon Aurora Serverless v2 adjusts database capacity in fine-grained increments in fractions of a second to match workload demand, saving up to 90% compared to provisioning for peak capacity.",
       "referenceUrl": "https://aws.amazon.com/rds/aurora/serverless/",
@@ -2450,27 +2450,27 @@
       "options": [
         {
           "id": "A",
+          "text": "AWS KMS",
+          "explanation": "Incorrect: AWS KMS manages cryptographic encryption keys."
+        },
+        {
+          "id": "B",
           "text": "AWS Compute Optimizer",
           "explanation": "Correct: AWS Compute Optimizer uses machine learning to analyze historical CloudWatch utilization metrics and delivers actionable right-sizing recommendations for EC2, EBS, Lambda, and ECS."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "AWS CodeDeploy",
           "explanation": "Incorrect: CodeDeploy automates code deployments."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Amazon CloudFront",
           "explanation": "Incorrect: CloudFront is a content delivery network."
-        },
-        {
-          "id": "D",
-          "text": "AWS KMS",
-          "explanation": "Incorrect: AWS KMS manages cryptographic encryption keys."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Compute Optimizer recommends optimal AWS resources for your workloads to reduce costs by up to 25% by analyzing historical utilization metrics.",
       "referenceUrl": "https://aws.amazon.com/compute-optimizer/",
@@ -2532,8 +2532,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Cost Anomaly Detection",
-          "explanation": "Correct: AWS Cost Anomaly Detection uses advanced machine learning models to identify unexpected spending anomalies and cost drivers, delivering alert notifications with root cause analysis."
+          "text": "AWS Shield Standard",
+          "explanation": "Incorrect: Shield Standard is for DDoS attack mitigation."
         },
         {
           "id": "B",
@@ -2542,8 +2542,8 @@
         },
         {
           "id": "C",
-          "text": "AWS Shield Standard",
-          "explanation": "Incorrect: Shield Standard is for DDoS attack mitigation."
+          "text": "AWS Cost Anomaly Detection",
+          "explanation": "Correct: AWS Cost Anomaly Detection uses advanced machine learning models to identify unexpected spending anomalies and cost drivers, delivering alert notifications with root cause analysis."
         },
         {
           "id": "D",
@@ -2552,7 +2552,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Cost Anomaly Detection uses machine learning to continuously monitor cost and usage patterns to detect anomalous spending events and identify root causes.",
       "referenceUrl": "https://aws.amazon.com/aws-cost-management/aws-cost-anomaly-detection/",
@@ -2578,8 +2578,8 @@
         },
         {
           "id": "B",
-          "text": "Configure an AWS Direct Connect 10 Gbps dedicated connection for all end users.",
-          "explanation": "Incorrect: Direct Connect cannot connect millions of individual global public internet consumers."
+          "text": "Switch all EC2 instances to Windows Server Bare Metal instances.",
+          "explanation": "Incorrect: Bare metal instances increase compute and licensing costs without reducing egress traffic."
         },
         {
           "id": "C",
@@ -2588,8 +2588,8 @@
         },
         {
           "id": "D",
-          "text": "Switch all EC2 instances to Windows Server Bare Metal instances.",
-          "explanation": "Incorrect: Bare metal instances increase compute and licensing costs without reducing egress traffic."
+          "text": "Configure an AWS Direct Connect 10 Gbps dedicated connection for all end users.",
+          "explanation": "Incorrect: Direct Connect cannot connect millions of individual global public internet consumers."
         }
       ],
       "correctAnswers": [
@@ -2614,13 +2614,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Migrate the microservices to AWS Graviton-based instance families (e.g., m7g or c7g).",
-          "explanation": "Correct: AWS Graviton processors (custom ARM64 silicon) offer up to 40% better price-performance over comparable x86 instances for Linux workloads running open-source runtimes like Python, Node.js, and Java."
+          "text": "Disable multi-threading in the Linux kernel on current m5 instances.",
+          "explanation": "Incorrect: Disabling hyperthreading reduces throughput without reducing instance hourly costs."
         },
         {
           "id": "B",
-          "text": "Upgrade to larger x86 instances with GPU accelerators (p4d.24xlarge).",
-          "explanation": "Incorrect: GPU instances are designed for ML training and are vastly more expensive."
+          "text": "Migrate the microservices to AWS Graviton-based instance families (e.g., m7g or c7g).",
+          "explanation": "Correct: AWS Graviton processors (custom ARM64 silicon) offer up to 40% better price-performance over comparable x86 instances for Linux workloads running open-source runtimes like Python, Node.js, and Java."
         },
         {
           "id": "C",
@@ -2629,12 +2629,12 @@
         },
         {
           "id": "D",
-          "text": "Disable multi-threading in the Linux kernel on current m5 instances.",
-          "explanation": "Incorrect: Disabling hyperthreading reduces throughput without reducing instance hourly costs."
+          "text": "Upgrade to larger x86 instances with GPU accelerators (p4d.24xlarge).",
+          "explanation": "Incorrect: GPU instances are designed for ML training and are vastly more expensive."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Graviton processors deliver major cost savings and price-performance improvements for cloud workloads built on Linux and open-source stacks.",
       "referenceUrl": "https://aws.amazon.com/ec2/graviton/",
@@ -2655,8 +2655,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon S3 Storage Lens",
-          "explanation": "Correct: S3 Storage Lens is a cloud storage analytics feature providing organization-wide visibility into object storage usage, cost optimization metrics, and data protection insights."
+          "text": "Amazon CloudWatch Synthetics",
+          "explanation": "Incorrect: Synthetics monitors website REST APIs."
         },
         {
           "id": "B",
@@ -2665,8 +2665,8 @@
         },
         {
           "id": "C",
-          "text": "Amazon CloudWatch Synthetics",
-          "explanation": "Incorrect: Synthetics monitors website REST APIs."
+          "text": "Amazon S3 Storage Lens",
+          "explanation": "Correct: S3 Storage Lens is a cloud storage analytics feature providing organization-wide visibility into object storage usage, cost optimization metrics, and data protection insights."
         },
         {
           "id": "D",
@@ -2675,7 +2675,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon S3 Storage Lens provides centralized visibility and actionable recommendations to optimize storage costs across all buckets and accounts in an AWS Organization.",
       "referenceUrl": "https://aws.amazon.com/s3/storage-lens/",
@@ -2696,13 +2696,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Configure an S3 Lifecycle rule with the action AbortIncompleteMultipartUpload to abort and delete incomplete parts after a specified number of days.",
-          "explanation": "Correct: The AbortIncompleteMultipartUpload lifecycle action automatically deletes partial parts of incomplete multipart uploads after a specified retention window (e.g., 7 days), preventing hidden storage costs."
+          "text": "Enable Amazon S3 Object Lock in Governance mode.",
+          "explanation": "Incorrect: Object Lock prevents deletion, which would keep incomplete parts forever."
         },
         {
           "id": "B",
-          "text": "Enable Amazon S3 Object Lock in Governance mode.",
-          "explanation": "Incorrect: Object Lock prevents deletion, which would keep incomplete parts forever."
+          "text": "Convert the bucket to S3 Glacier Deep Archive.",
+          "explanation": "Incorrect: Changing storage class does not abort incomplete multipart uploads."
         },
         {
           "id": "C",
@@ -2711,12 +2711,12 @@
         },
         {
           "id": "D",
-          "text": "Convert the bucket to S3 Glacier Deep Archive.",
-          "explanation": "Incorrect: Changing storage class does not abort incomplete multipart uploads."
+          "text": "Configure an S3 Lifecycle rule with the action AbortIncompleteMultipartUpload to abort and delete incomplete parts after a specified number of days.",
+          "explanation": "Correct: The AbortIncompleteMultipartUpload lifecycle action automatically deletes partial parts of incomplete multipart uploads after a specified retention window (e.g., 7 days), preventing hidden storage costs."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Configuring an S3 Lifecycle rule to abort incomplete multipart uploads is an AWS Well-Architected cost optimization best practice to prevent uncompleted upload parts from consuming billable storage.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpu-abort-incomplete-mpu-lifecycle-config.html",

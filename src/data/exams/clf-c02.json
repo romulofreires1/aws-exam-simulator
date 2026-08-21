@@ -47,18 +47,18 @@
       "options": [
         {
           "id": "A",
+          "text": "Agility",
+          "explanation": "Incorrect: Agility refers to the speed and organizational responsiveness to innovate, experiment, and deploy applications rapidly."
+        },
+        {
+          "id": "B",
           "text": "Elasticity",
           "explanation": "Correct: Elasticity is the ability to automatically provision and de-provision computing resources in real time to match fluctuating workload demands."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Reliability",
           "explanation": "Incorrect: Reliability is the ability of a workload to perform its intended function correctly and consistently over time."
-        },
-        {
-          "id": "C",
-          "text": "Agility",
-          "explanation": "Incorrect: Agility refers to the speed and organizational responsiveness to innovate, experiment, and deploy applications rapidly."
         },
         {
           "id": "D",
@@ -67,7 +67,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Elasticity enables cloud environments to dynamically scale compute and storage capacity up and down in response to demand, preventing costly over-provisioning.",
       "referenceUrl": "https://aws.amazon.com/what-is-cloud-computing/",
@@ -93,18 +93,18 @@
         },
         {
           "id": "B",
-          "text": "It replaces operational expenses (OpEx) with fixed long-term capital investments (CapEx).",
-          "explanation": "Incorrect: Traditional on-premises models rely on CapEx, whereas AWS enables variable OpEx."
-        },
-        {
-          "id": "C",
           "text": "It requires upfront 5-year hardware procurement commitments before launching services.",
           "explanation": "Incorrect: AWS allows immediate on-demand resource provisioning without upfront long-term commitments."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "It shifts all application software license compliance liability to AWS.",
           "explanation": "Incorrect: Customers remain responsible for their own third-party software licensing terms and compliance."
+        },
+        {
+          "id": "D",
+          "text": "It replaces operational expenses (OpEx) with fixed long-term capital investments (CapEx).",
+          "explanation": "Incorrect: Traditional on-premises models rely on CapEx, whereas AWS enables variable OpEx."
         }
       ],
       "correctAnswers": [
@@ -129,27 +129,27 @@
       "options": [
         {
           "id": "A",
-          "text": "A physical geographical location in the world where AWS clusters multiple, isolated Availability Zones.",
-          "explanation": "Correct: An AWS Region is a distinct geographical area that contains multiple, physically separated and isolated Availability Zones interconnected by low-latency links."
-        },
-        {
-          "id": "B",
           "text": "A single physical data center with dedicated utility feeds.",
           "explanation": "Incorrect: A single data center or group of data centers within a region constitutes an Availability Zone, not an entire Region."
         },
         {
+          "id": "B",
+          "text": "A virtual network perimeter deployed inside a specific customer AWS account.",
+          "explanation": "Incorrect: A virtual network inside an account is an Amazon VPC."
+        },
+        {
           "id": "C",
-          "text": "A global edge server used exclusively by Amazon CloudFront for caching content.",
-          "explanation": "Incorrect: Edge servers are Points of Presence (Edge Locations), not Regions."
+          "text": "A physical geographical location in the world where AWS clusters multiple, isolated Availability Zones.",
+          "explanation": "Correct: An AWS Region is a distinct geographical area that contains multiple, physically separated and isolated Availability Zones interconnected by low-latency links."
         },
         {
           "id": "D",
-          "text": "A virtual network perimeter deployed inside a specific customer AWS account.",
-          "explanation": "Incorrect: A virtual network inside an account is an Amazon VPC."
+          "text": "A global edge server used exclusively by Amazon CloudFront for caching content.",
+          "explanation": "Incorrect: Edge servers are Points of Presence (Edge Locations), not Regions."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "An AWS Region is a physical geographical location comprising multiple, physically separated and isolated Availability Zones.",
       "referenceUrl": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
@@ -170,8 +170,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Deploying application resources across multiple Availability Zones (Multi-AZ).",
-          "explanation": "Correct: Availability Zones are physically isolated from each other with independent power, cooling, and networking. Deploying across Multi-AZ ensures high availability."
+          "text": "Using hardcoded IP addresses across server clusters.",
+          "explanation": "Incorrect: Hardcoded IPs hinder fault tolerance and dynamic traffic failover."
         },
         {
           "id": "B",
@@ -180,17 +180,17 @@
         },
         {
           "id": "C",
-          "text": "Creating multiple IAM roles with administrative permissions.",
-          "explanation": "Incorrect: IAM roles manage access permissions, not infrastructure redundancy."
+          "text": "Deploying application resources across multiple Availability Zones (Multi-AZ).",
+          "explanation": "Correct: Availability Zones are physically isolated from each other with independent power, cooling, and networking. Deploying across Multi-AZ ensures high availability."
         },
         {
           "id": "D",
-          "text": "Using hardcoded IP addresses across server clusters.",
-          "explanation": "Incorrect: Hardcoded IPs hinder fault tolerance and dynamic traffic failover."
+          "text": "Creating multiple IAM roles with administrative permissions.",
+          "explanation": "Incorrect: IAM roles manage access permissions, not infrastructure redundancy."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Deploying workloads across multiple Availability Zones (Multi-AZ) is the fundamental AWS architectural best practice for achieving high availability and fault tolerance.",
       "referenceUrl": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
@@ -215,8 +215,8 @@
         },
         {
           "id": "B",
-          "text": "Sustainability",
-          "explanation": "Correct: Sustainability is an official pillar focused on minimizing the environmental impacts of running cloud workloads."
+          "text": "Capital Accumulation",
+          "explanation": "Incorrect: Financial capital accumulation is not a Well-Architected pillar."
         },
         {
           "id": "C",
@@ -225,8 +225,8 @@
         },
         {
           "id": "D",
-          "text": "Capital Accumulation",
-          "explanation": "Incorrect: Financial capital accumulation is not a Well-Architected pillar."
+          "text": "Sustainability",
+          "explanation": "Correct: Sustainability is an official pillar focused on minimizing the environmental impacts of running cloud workloads."
         },
         {
           "id": "E",
@@ -236,7 +236,7 @@
       ],
       "correctAnswers": [
         "A",
-        "B"
+        "D"
       ],
       "generalExplanation": "The 6 pillars of the AWS Well-Architected Framework are: Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability.",
       "referenceUrl": "https://aws.amazon.com/architecture/well-architected/",
@@ -257,8 +257,8 @@
       "options": [
         {
           "id": "A",
-          "text": "To cache web content closer to global end users to reduce latency.",
-          "explanation": "Correct: Edge Locations host Amazon CloudFront CDN and AWS Lambda@Edge to deliver low-latency web traffic to users worldwide."
+          "text": "To host multi-node Cassandra database clusters.",
+          "explanation": "Incorrect: Distributed database nodes run in compute instances within VPCs."
         },
         {
           "id": "B",
@@ -267,17 +267,17 @@
         },
         {
           "id": "C",
-          "text": "To provide on-premises hardware storage appliances to replace tape backups.",
-          "explanation": "Incorrect: Physical on-premises storage appliances are AWS Storage Gateway or AWS Snowball."
+          "text": "To cache web content closer to global end users to reduce latency.",
+          "explanation": "Correct: Edge Locations host Amazon CloudFront CDN and AWS Lambda@Edge to deliver low-latency web traffic to users worldwide."
         },
         {
           "id": "D",
-          "text": "To host multi-node Cassandra database clusters.",
-          "explanation": "Incorrect: Distributed database nodes run in compute instances within VPCs."
+          "text": "To provide on-premises hardware storage appliances to replace tape backups.",
+          "explanation": "Incorrect: Physical on-premises storage appliances are AWS Storage Gateway or AWS Snowball."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Edge Locations are Points of Presence (PoPs) deployed globally to cache and serve static and dynamic content with minimal latency via Amazon CloudFront.",
       "referenceUrl": "https://aws.amazon.com/cloudfront/features/",
@@ -302,18 +302,18 @@
         },
         {
           "id": "B",
-          "text": "Stop guessing capacity",
-          "explanation": "Incorrect: Eliminating capacity guessing is achieved through elasticity and auto scaling."
-        },
-        {
-          "id": "C",
           "text": "Increase speed and agility",
           "explanation": "Incorrect: Speed and agility refer to instant provisioning and rapid deployment cycles."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Go global in minutes",
           "explanation": "Incorrect: Going global refers to deploying applications across multiple worldwide regions with minimal effort."
+        },
+        {
+          "id": "D",
+          "text": "Stop guessing capacity",
+          "explanation": "Incorrect: Eliminating capacity guessing is achieved through elasticity and auto scaling."
         }
       ],
       "correctAnswers": [
@@ -338,8 +338,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Local Zones",
-          "explanation": "Correct: AWS Local Zones place compute, storage, database, and select AWS services close to large population, industry, and IT centers for sub-10 millisecond latency requirements."
+          "text": "Amazon S3 Glacier Vault",
+          "explanation": "Incorrect: S3 Glacier Vault is a cold storage archive container."
         },
         {
           "id": "B",
@@ -348,17 +348,17 @@
         },
         {
           "id": "C",
-          "text": "AWS Billing Conductor",
-          "explanation": "Incorrect: AWS Billing Conductor is a cost and billing customization tool."
+          "text": "AWS Local Zones",
+          "explanation": "Correct: AWS Local Zones place compute, storage, database, and select AWS services close to large population, industry, and IT centers for sub-10 millisecond latency requirements."
         },
         {
           "id": "D",
-          "text": "Amazon S3 Glacier Vault",
-          "explanation": "Incorrect: S3 Glacier Vault is a cold storage archive container."
+          "text": "AWS Billing Conductor",
+          "explanation": "Incorrect: AWS Billing Conductor is a cost and billing customization tool."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Local Zones extend AWS Regions to place AWS infrastructure and services close to end users for ultra-low latency applications like real-time gaming and media rendering.",
       "referenceUrl": "https://aws.amazon.com/about-aws/global-infrastructure/localzones/",
@@ -379,27 +379,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Outposts",
-          "explanation": "Correct: AWS Outposts is a fully managed service that delivers AWS racks of servers and infrastructure directly to customer on-premises data centers."
-        },
-        {
-          "id": "B",
           "text": "AWS Elastic Beanstalk",
           "explanation": "Incorrect: Elastic Beanstalk is an application deployment service in the AWS cloud."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Amazon Route 53",
           "explanation": "Incorrect: Route 53 is a cloud DNS and domain registration service."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "AWS Cloud9",
           "explanation": "Incorrect: AWS Cloud9 is a cloud-based integrated development environment (IDE)."
+        },
+        {
+          "id": "D",
+          "text": "AWS Outposts",
+          "explanation": "Correct: AWS Outposts is a fully managed service that delivers AWS racks of servers and infrastructure directly to customer on-premises data centers."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Outposts brings native AWS hardware and cloud services directly to on-premises facilities for a truly consistent hybrid experience.",
       "referenceUrl": "https://aws.amazon.com/outposts/",
@@ -425,18 +425,18 @@
         },
         {
           "id": "B",
+          "text": "Single tenancy isolation",
+          "explanation": "Incorrect: Single tenancy refers to dedicated hardware, not development agility."
+        },
+        {
+          "id": "C",
           "text": "Data sovereignty compliance",
           "explanation": "Incorrect: Data sovereignty deals with legal data residency requirements."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Fixed monthly utility overhead",
           "explanation": "Incorrect: Cloud uses flexible pay-as-you-go variable pricing rather than fixed utility hardware overhead."
-        },
-        {
-          "id": "D",
-          "text": "Single tenancy isolation",
-          "explanation": "Incorrect: Single tenancy refers to dedicated hardware, not development agility."
         }
       ],
       "correctAnswers": [
@@ -461,27 +461,27 @@
       "options": [
         {
           "id": "A",
+          "text": "AWS App Runner",
+          "explanation": "Incorrect: App Runner is a containerized web application runner."
+        },
+        {
+          "id": "B",
           "text": "AWS Wavelength",
           "explanation": "Correct: AWS Wavelength brings AWS services to the edge of 5G networks, minimizing latency to mobile devices and end users."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "AWS Direct Connect",
           "explanation": "Incorrect: Direct Connect provides dedicated private fiber connections from on-premises to AWS, not 5G edge integration."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "AWS Snowball",
           "explanation": "Incorrect: Snowball is a physical data transport appliance."
-        },
-        {
-          "id": "D",
-          "text": "AWS App Runner",
-          "explanation": "Incorrect: App Runner is a containerized web application runner."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Wavelength enables developers to build applications that deliver ultra-low latencies to mobile devices and end users by deploying AWS infrastructure inside 5G networks.",
       "referenceUrl": "https://aws.amazon.com/wavelength/",
@@ -506,8 +506,8 @@
         },
         {
           "id": "B",
-          "text": "Security",
-          "explanation": "Incorrect: Security focuses on protecting information, data assets, and identities."
+          "text": "Cost Optimization",
+          "explanation": "Incorrect: Cost Optimization focuses on avoiding unnecessary expenditure and matching supply with demand."
         },
         {
           "id": "C",
@@ -516,8 +516,8 @@
         },
         {
           "id": "D",
-          "text": "Cost Optimization",
-          "explanation": "Incorrect: Cost Optimization focuses on avoiding unnecessary expenditure and matching supply with demand."
+          "text": "Security",
+          "explanation": "Incorrect: Security focuses on protecting information, data assets, and identities."
         }
       ],
       "correctAnswers": [
@@ -541,8 +541,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Hybrid Cloud",
-          "explanation": "Correct: A hybrid deployment connects infrastructure and applications between cloud-based resources and existing on-premises systems."
+          "text": "Community Cloud",
+          "explanation": "Incorrect: Community cloud is shared by several organizations with common compliance interests."
         },
         {
           "id": "B",
@@ -551,8 +551,8 @@
         },
         {
           "id": "C",
-          "text": "Community Cloud",
-          "explanation": "Incorrect: Community cloud is shared by several organizations with common compliance interests."
+          "text": "Hybrid Cloud",
+          "explanation": "Correct: A hybrid deployment connects infrastructure and applications between cloud-based resources and existing on-premises systems."
         },
         {
           "id": "D",
@@ -561,7 +561,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "A Hybrid Cloud deployment model bridges on-premises infrastructure and the public cloud, allowing organizations to extend and scale their operations seamlessly.",
       "referenceUrl": "https://aws.amazon.com/what-is-hybrid-cloud/",
@@ -581,27 +581,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Fault Tolerance",
-          "explanation": "Correct: Fault tolerance is the capability of a system to continue operating without interruption even when sub-components or underlying physical servers fail."
+          "text": "Variable Billing",
+          "explanation": "Incorrect: Variable billing is a pricing mechanism."
         },
         {
           "id": "B",
-          "text": "Horizontal Scalability",
-          "explanation": "Incorrect: Scalability is the ability to grow capacity, which complements fault tolerance."
-        },
-        {
-          "id": "C",
           "text": "Agile Development",
           "explanation": "Incorrect: Agile development is a software delivery methodology."
         },
         {
+          "id": "C",
+          "text": "Fault Tolerance",
+          "explanation": "Correct: Fault tolerance is the capability of a system to continue operating without interruption even when sub-components or underlying physical servers fail."
+        },
+        {
           "id": "D",
-          "text": "Variable Billing",
-          "explanation": "Incorrect: Variable billing is a pricing mechanism."
+          "text": "Horizontal Scalability",
+          "explanation": "Incorrect: Scalability is the ability to grow capacity, which complements fault tolerance."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Fault tolerance ensures that an application continues to function properly without degradation in the event of hardware or software component failures.",
       "referenceUrl": "https://aws.amazon.com/builders-library/",
@@ -622,8 +622,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Proximity to end users to reduce network latency.",
-          "explanation": "Correct: Choosing a region geographically close to customers minimizes latency and provides optimal user experience."
+          "text": "The serial numbers of server racks installed in data centers.",
+          "explanation": "Incorrect: Underlying hardware serial numbers are managed and abstracted by AWS."
         },
         {
           "id": "B",
@@ -637,18 +637,18 @@
         },
         {
           "id": "D",
-          "text": "The number of VPCs owned by competitor companies in that region.",
-          "explanation": "Incorrect: Cloud tenants are logically isolated and competitor count is irrelevant."
+          "text": "Proximity to end users to reduce network latency.",
+          "explanation": "Correct: Choosing a region geographically close to customers minimizes latency and provides optimal user experience."
         },
         {
           "id": "E",
-          "text": "The serial numbers of server racks installed in data centers.",
-          "explanation": "Incorrect: Underlying hardware serial numbers are managed and abstracted by AWS."
+          "text": "The number of VPCs owned by competitor companies in that region.",
+          "explanation": "Incorrect: Cloud tenants are logically isolated and competitor count is irrelevant."
         }
       ],
       "correctAnswers": [
-        "A",
-        "B"
+        "B",
+        "D"
       ],
       "generalExplanation": "AWS Region selection is primarily guided by: (1) Data residency and legal compliance, (2) Proximity/latency to users, (3) Service availability, and (4) Cost variance across regions.",
       "referenceUrl": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
@@ -668,27 +668,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Cloud Adoption Framework (AWS CAF)",
-          "explanation": "Correct: AWS CAF organizes guidance across six foundational perspectives to help organizations accelerate cloud transformation readiness."
-        },
-        {
-          "id": "B",
-          "text": "AWS SDK for JavaScript",
-          "explanation": "Incorrect: AWS SDK is a programming toolkit to invoke AWS APIs in software code."
-        },
-        {
-          "id": "C",
           "text": "AWS Snowmobile",
           "explanation": "Incorrect: AWS Snowmobile is an exabyte-scale physical data transport truck."
         },
         {
-          "id": "D",
+          "id": "B",
+          "text": "AWS Cloud Adoption Framework (AWS CAF)",
+          "explanation": "Correct: AWS CAF organizes guidance across six foundational perspectives to help organizations accelerate cloud transformation readiness."
+        },
+        {
+          "id": "C",
           "text": "Amazon Lex",
           "explanation": "Incorrect: Amazon Lex is an AI service for building conversational interfaces."
+        },
+        {
+          "id": "D",
+          "text": "AWS SDK for JavaScript",
+          "explanation": "Incorrect: AWS SDK is a programming toolkit to invoke AWS APIs in software code."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "The AWS Cloud Adoption Framework (AWS CAF) leverages AWS experience to help organizations identify and prioritize cloud transformation capabilities.",
       "referenceUrl": "https://aws.amazon.com/cloud-adoption-framework/",
@@ -709,23 +709,23 @@
       "options": [
         {
           "id": "A",
-          "text": "Applying security updates and patches to the guest operating system (guest OS).",
-          "explanation": "Correct: The customer is responsible for maintaining and patching the operating system installed on their EC2 instances."
-        },
-        {
-          "id": "B",
           "text": "Configuring security groups and firewall network access rules.",
           "explanation": "Correct: Setting up virtual firewall ingress/egress rules (Security Groups and Network ACLs) is the customer's responsibility."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Physical security of the servers and building facilities in AWS data centers.",
           "explanation": "Incorrect: Physical security is the sole responsibility of AWS ('Security OF the Cloud')."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Patching the virtualization hypervisor layer on physical host hardware.",
           "explanation": "Incorrect: Hypervisor patching and physical server maintenance are managed by AWS."
+        },
+        {
+          "id": "D",
+          "text": "Applying security updates and patches to the guest operating system (guest OS).",
+          "explanation": "Correct: The customer is responsible for maintaining and patching the operating system installed on their EC2 instances."
         },
         {
           "id": "E",
@@ -735,7 +735,7 @@
       ],
       "correctAnswers": [
         "A",
-        "B"
+        "D"
       ],
       "generalExplanation": "Under the Shared Responsibility Model, AWS manages 'Security OF the Cloud' (hardware, facilities, hypervisors), while customers manage 'Security IN the Cloud' (guest OS, firewalls, IAM, application code).",
       "referenceUrl": "https://aws.amazon.com/compliance/shared-responsibility-model/",
@@ -756,27 +756,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Protect the root user with Multi-Factor Authentication (MFA) and avoid using it for daily administrative tasks.",
-          "explanation": "Correct: The root account has unrestricted access. Best practices dictate enabling MFA, locking away access keys, and using IAM roles/users for routine operations."
-        },
-        {
-          "id": "B",
           "text": "Share the root user password with all senior software engineers for urgent troubleshooting.",
           "explanation": "Incorrect: Sharing root credentials violates fundamental security principles."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Embed root access keys into mobile app source code for API calls.",
           "explanation": "Incorrect: Hardcoding root access keys in code is a severe security vulnerability."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Delete the root account immediately after creating a VPC.",
           "explanation": "Incorrect: The root account cannot be deleted; it must be securely protected."
+        },
+        {
+          "id": "D",
+          "text": "Protect the root user with Multi-Factor Authentication (MFA) and avoid using it for daily administrative tasks.",
+          "explanation": "Correct: The root account has unrestricted access. Best practices dictate enabling MFA, locking away access keys, and using IAM roles/users for routine operations."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "The root user identity has complete unrestricted access to all resources. Enable MFA and restrict its use strictly to tasks that explicitly require root privileges.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
@@ -796,27 +796,27 @@
       "options": [
         {
           "id": "A",
-          "text": "An IAM Role",
-          "explanation": "Correct: IAM Roles provide temporary security credentials automatically rotated by AWS, eliminating the need to store long-term keys on compute instances."
-        },
-        {
-          "id": "B",
-          "text": "An IAM Root Password",
-          "explanation": "Incorrect: Root passwords must never be stored on instances."
-        },
-        {
-          "id": "C",
           "text": "A VPC Peering Link",
           "explanation": "Incorrect: VPC Peering connects networks, but does not provide IAM authentication."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "An Amazon S3 Bucket Tag",
           "explanation": "Incorrect: S3 bucket tags are metadata, not security principals."
+        },
+        {
+          "id": "C",
+          "text": "An IAM Root Password",
+          "explanation": "Incorrect: Root passwords must never be stored on instances."
+        },
+        {
+          "id": "D",
+          "text": "An IAM Role",
+          "explanation": "Correct: IAM Roles provide temporary security credentials automatically rotated by AWS, eliminating the need to store long-term keys on compute instances."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "IAM Roles allow applications running on AWS resources (like EC2 or Lambda) to obtain temporary, automatically rotated AWS credentials safely.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html",
@@ -836,27 +836,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Principle of Least Privilege",
-          "explanation": "Correct: The Principle of Least Privilege advocates granting only the permissions required to complete specific tasks and nothing more."
-        },
-        {
-          "id": "B",
           "text": "Principle of High Throughput",
           "explanation": "Incorrect: High throughput refers to data transfer rates."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Principle of Infinite Redundancy",
           "explanation": "Incorrect: This is not a formal security principle."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Principle of Elastic Scalability",
           "explanation": "Incorrect: Elastic scalability is a performance/operational concept."
+        },
+        {
+          "id": "D",
+          "text": "Principle of Least Privilege",
+          "explanation": "Correct: The Principle of Least Privilege advocates granting only the permissions required to complete specific tasks and nothing more."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Granting least privilege is a fundamental AWS security best practice: determine what users need to do and craft IAM policies granting only those specific actions on specific resources.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege",
@@ -882,8 +882,8 @@
         },
         {
           "id": "B",
-          "text": "AWS CodeDeploy",
-          "explanation": "Incorrect: AWS CodeDeploy automates software deployments to compute services."
+          "text": "Amazon Athena",
+          "explanation": "Incorrect: Amazon Athena is an interactive SQL analytics service."
         },
         {
           "id": "C",
@@ -892,8 +892,8 @@
         },
         {
           "id": "D",
-          "text": "Amazon Athena",
-          "explanation": "Incorrect: Amazon Athena is an interactive SQL analytics service."
+          "text": "AWS CodeDeploy",
+          "explanation": "Incorrect: AWS CodeDeploy automates software deployments to compute services."
         }
       ],
       "correctAnswers": [
@@ -922,8 +922,8 @@
         },
         {
           "id": "B",
-          "text": "AWS Trusted Advisor",
-          "explanation": "Incorrect: Trusted Advisor provides optimization and best practice checks."
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM is a dedicated hardware security module for cryptographic key storage."
         },
         {
           "id": "C",
@@ -932,8 +932,8 @@
         },
         {
           "id": "D",
-          "text": "AWS CloudHSM",
-          "explanation": "Incorrect: CloudHSM is a dedicated hardware security module for cryptographic key storage."
+          "text": "AWS Trusted Advisor",
+          "explanation": "Incorrect: Trusted Advisor provides optimization and best practice checks."
         }
       ],
       "correctAnswers": [
@@ -957,27 +957,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon GuardDuty",
-          "explanation": "Correct: Amazon GuardDuty is an intelligent threat detection service that uses machine learning and threat intelligence to identify unauthorized behavior and malicious activity."
-        },
-        {
-          "id": "B",
-          "text": "Amazon QuickSight",
-          "explanation": "Incorrect: QuickSight is a business intelligence and data visualization tool."
-        },
-        {
-          "id": "C",
           "text": "AWS Glue",
           "explanation": "Incorrect: AWS Glue is a serverless data integration and ETL service."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Amazon Polly",
           "explanation": "Incorrect: Amazon Polly turns text into lifelike speech."
+        },
+        {
+          "id": "C",
+          "text": "Amazon GuardDuty",
+          "explanation": "Correct: Amazon GuardDuty is an intelligent threat detection service that uses machine learning and threat intelligence to identify unauthorized behavior and malicious activity."
+        },
+        {
+          "id": "D",
+          "text": "Amazon QuickSight",
+          "explanation": "Incorrect: QuickSight is a business intelligence and data visualization tool."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon GuardDuty is an agentless threat detection service that continuously monitors your AWS accounts, instances, container workloads, and data for anomalous activity.",
       "referenceUrl": "https://aws.amazon.com/guardduty/",
@@ -997,18 +997,18 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Inspector",
-          "explanation": "Correct: Amazon Inspector automatically scans EC2 instances, Lambda functions, and ECR container images for software vulnerabilities and network vulnerabilities."
-        },
-        {
-          "id": "B",
           "text": "Amazon Comprehend",
           "explanation": "Incorrect: Amazon Comprehend is a natural language processing (NLP) service."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "AWS Batch",
           "explanation": "Incorrect: AWS Batch runs batch computing jobs."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Inspector",
+          "explanation": "Correct: Amazon Inspector automatically scans EC2 instances, Lambda functions, and ECR container images for software vulnerabilities and network vulnerabilities."
         },
         {
           "id": "D",
@@ -1017,7 +1017,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon Inspector is an automated vulnerability management service that continually scans AWS workloads for software vulnerabilities and unintended network exposure.",
       "referenceUrl": "https://aws.amazon.com/inspector/",
@@ -1037,27 +1037,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Macie",
-          "explanation": "Correct: Amazon Macie uses machine learning and pattern matching to discover, classify, and protect sensitive data such as PII and credit card numbers in Amazon S3."
+          "text": "Amazon SQS",
+          "explanation": "Incorrect: SQS is a message queuing service."
         },
         {
           "id": "B",
-          "text": "AWS Step Functions",
-          "explanation": "Incorrect: Step Functions is a serverless visual workflow orchestrator."
-        },
-        {
-          "id": "C",
           "text": "Amazon DynamoDB Streams",
           "explanation": "Incorrect: DynamoDB Streams captures item-level modification events in DynamoDB tables."
         },
         {
+          "id": "C",
+          "text": "AWS Step Functions",
+          "explanation": "Incorrect: Step Functions is a serverless visual workflow orchestrator."
+        },
+        {
           "id": "D",
-          "text": "Amazon SQS",
-          "explanation": "Incorrect: SQS is a message queuing service."
+          "text": "Amazon Macie",
+          "explanation": "Correct: Amazon Macie uses machine learning and pattern matching to discover, classify, and protect sensitive data such as PII and credit card numbers in Amazon S3."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon Macie is a fully managed data security and privacy service that uses machine learning to automatically discover and protect sensitive data in Amazon S3.",
       "referenceUrl": "https://aws.amazon.com/macie/",
@@ -1082,13 +1082,13 @@
         },
         {
           "id": "B",
-          "text": "AWS Systems Manager Run Command",
-          "explanation": "Incorrect: Run Command executes scripts on managed servers."
+          "text": "Amazon Elastic Transcoder",
+          "explanation": "Incorrect: Elastic Transcoder converts media files in the cloud."
         },
         {
           "id": "C",
-          "text": "Amazon Elastic Transcoder",
-          "explanation": "Incorrect: Elastic Transcoder converts media files in the cloud."
+          "text": "AWS Systems Manager Run Command",
+          "explanation": "Incorrect: Run Command executes scripts on managed servers."
         },
         {
           "id": "D",
@@ -1117,13 +1117,13 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Secrets Manager",
-          "explanation": "Correct: AWS Secrets Manager helps you protect secrets needed to access applications and services, featuring built-in automated rotation for Amazon RDS, Redshift, and DocumentDB."
+          "text": "Amazon Connect",
+          "explanation": "Incorrect: Amazon Connect is a cloud contact center service."
         },
         {
           "id": "B",
-          "text": "Amazon CloudFront",
-          "explanation": "Incorrect: CloudFront is a Content Delivery Network (CDN)."
+          "text": "AWS Secrets Manager",
+          "explanation": "Correct: AWS Secrets Manager helps you protect secrets needed to access applications and services, featuring built-in automated rotation for Amazon RDS, Redshift, and DocumentDB."
         },
         {
           "id": "C",
@@ -1132,12 +1132,12 @@
         },
         {
           "id": "D",
-          "text": "Amazon Connect",
-          "explanation": "Incorrect: Amazon Connect is a cloud contact center service."
+          "text": "Amazon CloudFront",
+          "explanation": "Incorrect: CloudFront is a Content Delivery Network (CDN)."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Secrets Manager allows you to manage, retrieve, and automatically rotate database credentials, API keys, and sensitive tokens safely.",
       "referenceUrl": "https://aws.amazon.com/secrets-manager/",
@@ -1157,27 +1157,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Artifact",
-          "explanation": "Correct: AWS Artifact is your go-to, central resource for compliance-related information, offering on-demand downloads of AWS security and compliance reports (SOC, PCI-DSS, ISO)."
-        },
-        {
-          "id": "B",
           "text": "AWS CodeCommit",
           "explanation": "Incorrect: CodeCommit is a managed Git source control service."
         },
         {
+          "id": "B",
+          "text": "AWS Artifact",
+          "explanation": "Correct: AWS Artifact is your go-to, central resource for compliance-related information, offering on-demand downloads of AWS security and compliance reports (SOC, PCI-DSS, ISO)."
+        },
+        {
           "id": "C",
-          "text": "Amazon AppFlow",
-          "explanation": "Incorrect: AppFlow integrates SaaS applications with AWS."
+          "text": "AWS Marketplace",
+          "explanation": "Incorrect: AWS Marketplace is a digital catalog to buy third-party software."
         },
         {
           "id": "D",
-          "text": "AWS Marketplace",
-          "explanation": "Incorrect: AWS Marketplace is a digital catalog to buy third-party software."
+          "text": "Amazon AppFlow",
+          "explanation": "Incorrect: AppFlow integrates SaaS applications with AWS."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Artifact is the central compliance portal providing direct, self-service access to AWS compliance reports, certifications, and agreements.",
       "referenceUrl": "https://aws.amazon.com/artifact/",
@@ -1202,8 +1202,8 @@
         },
         {
           "id": "B",
-          "text": "AWS Elastic Beanstalk",
-          "explanation": "Incorrect: Beanstalk manages application deployments."
+          "text": "Amazon Personalize",
+          "explanation": "Incorrect: Personalize provides ML-powered recommendation engines."
         },
         {
           "id": "C",
@@ -1212,8 +1212,8 @@
         },
         {
           "id": "D",
-          "text": "Amazon Personalize",
-          "explanation": "Incorrect: Personalize provides ML-powered recommendation engines."
+          "text": "AWS Elastic Beanstalk",
+          "explanation": "Incorrect: Beanstalk manages application deployments."
         }
       ],
       "correctAnswers": [
@@ -1247,13 +1247,13 @@
         },
         {
           "id": "C",
-          "text": "AWS Direct Connect",
-          "explanation": "Incorrect: Direct Connect is dedicated physical network connectivity."
+          "text": "AWS Global Accelerator",
+          "explanation": "Incorrect: Global Accelerator optimizes global IP network routing."
         },
         {
           "id": "D",
-          "text": "AWS Global Accelerator",
-          "explanation": "Incorrect: Global Accelerator optimizes global IP network routing."
+          "text": "AWS Direct Connect",
+          "explanation": "Incorrect: Direct Connect is dedicated physical network connectivity."
         }
       ],
       "correctAnswers": [
@@ -1279,27 +1279,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Security Groups operate at the instance level and are stateful; Network ACLs operate at the subnet level and are stateless.",
-          "explanation": "Correct: Security Groups are stateful firewalls applied to ENIs/instances, while Network ACLs are stateless firewall rules applied across an entire subnet."
-        },
-        {
-          "id": "B",
           "text": "Security Groups are stateless; Network ACLs are stateful.",
           "explanation": "Incorrect: Security Groups are stateful and Network ACLs are stateless."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Security Groups only block traffic; Network ACLs only allow traffic.",
           "explanation": "Incorrect: Security Groups support allow rules; Network ACLs support both allow and deny rules."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Security Groups manage billing; Network ACLs manage DNS.",
           "explanation": "Incorrect: Both are network virtual firewalls."
+        },
+        {
+          "id": "D",
+          "text": "Security Groups operate at the instance level and are stateful; Network ACLs operate at the subnet level and are stateless.",
+          "explanation": "Correct: Security Groups are stateful firewalls applied to ENIs/instances, while Network ACLs are stateless firewall rules applied across an entire subnet."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Security Groups are stateful firewalls attached to individual instance interfaces (if outbound is allowed, return inbound is automatically allowed). Network ACLs are stateless rules evaluated at the subnet boundary.",
       "referenceUrl": "https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html",
@@ -1319,27 +1319,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS IAM Identity Center (successor to AWS Single Sign-On)",
-          "explanation": "Correct: AWS IAM Identity Center centralizes access management for multiple AWS accounts in AWS Organizations and cloud applications."
-        },
-        {
-          "id": "B",
-          "text": "Amazon SimpleDB",
-          "explanation": "Incorrect: SimpleDB is a legacy NoSQL data store."
-        },
-        {
-          "id": "C",
           "text": "AWS Snowmobile",
           "explanation": "Incorrect: Snowmobile is an exabyte data transport container truck."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Amazon Polly",
           "explanation": "Incorrect: Polly converts text into speech."
+        },
+        {
+          "id": "C",
+          "text": "AWS IAM Identity Center (successor to AWS Single Sign-On)",
+          "explanation": "Correct: AWS IAM Identity Center centralizes access management for multiple AWS accounts in AWS Organizations and cloud applications."
+        },
+        {
+          "id": "D",
+          "text": "Amazon SimpleDB",
+          "explanation": "Incorrect: SimpleDB is a legacy NoSQL data store."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS IAM Identity Center helps you securely create or connect your workforce identities and manage their access centrally across AWS accounts and applications.",
       "referenceUrl": "https://aws.amazon.com/iam/identity-center/",
@@ -1359,8 +1359,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Config",
-          "explanation": "Correct: AWS Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations."
+          "text": "Amazon Transcribe",
+          "explanation": "Incorrect: Amazon Transcribe converts speech to text."
         },
         {
           "id": "B",
@@ -1369,17 +1369,17 @@
         },
         {
           "id": "C",
-          "text": "Amazon Lex",
-          "explanation": "Incorrect: Amazon Lex is a conversational chatbot service."
+          "text": "AWS Config",
+          "explanation": "Correct: AWS Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations."
         },
         {
           "id": "D",
-          "text": "Amazon Transcribe",
-          "explanation": "Incorrect: Amazon Transcribe converts speech to text."
+          "text": "Amazon Lex",
+          "explanation": "Incorrect: Amazon Lex is a conversational chatbot service."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Config tracks resource configuration changes over time and automatically alerts or remediates when resources deviate from compliance baselines.",
       "referenceUrl": "https://aws.amazon.com/config/",
@@ -1400,27 +1400,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Managing bucket access policies, permissions, and enabling server-side encryption.",
-          "explanation": "Correct: The customer is responsible for configuring access permissions, bucket policies, IAM access, and choosing encryption settings for their data."
-        },
-        {
-          "id": "B",
           "text": "Replacing defective hard drives in the underlying storage arrays.",
           "explanation": "Incorrect: Hardware drive replacement is managed by AWS."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "Ensuring physical security of the storage facilities.",
           "explanation": "Incorrect: Physical facility security is managed by AWS."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Updating disk firmware across S3 storage clusters.",
           "explanation": "Incorrect: Storage software and firmware are managed by AWS."
+        },
+        {
+          "id": "D",
+          "text": "Managing bucket access policies, permissions, and enabling server-side encryption.",
+          "explanation": "Correct: The customer is responsible for configuring access permissions, bucket policies, IAM access, and choosing encryption settings for their data."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "For managed services like Amazon S3, AWS manages the infrastructure, hardware, and replication, while customers control data classification, permissions, and encryption.",
       "referenceUrl": "https://aws.amazon.com/compliance/shared-responsibility-model/",
@@ -1451,13 +1451,13 @@
         },
         {
           "id": "C",
-          "text": "Amazon CloudWatch Alarms",
-          "explanation": "Incorrect: CloudWatch alarms monitor metric thresholds."
+          "text": "AWS Data Pipeline",
+          "explanation": "Incorrect: Data Pipeline is a data workflow management service."
         },
         {
           "id": "D",
-          "text": "AWS Data Pipeline",
-          "explanation": "Incorrect: Data Pipeline is a data workflow management service."
+          "text": "Amazon CloudWatch Alarms",
+          "explanation": "Incorrect: CloudWatch alarms monitor metric thresholds."
         }
       ],
       "correctAnswers": [
@@ -1482,27 +1482,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Multi-Factor Authentication (MFA)",
-          "explanation": "Correct: MFA adds an extra layer of security by requiring a second verification factor in addition to standard credentials."
-        },
-        {
-          "id": "B",
           "text": "Single AZ Redundancy",
           "explanation": "Incorrect: Redundancy is an infrastructure availability design."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "AWS CloudHSM",
           "explanation": "Incorrect: CloudHSM manages hardware security encryption keys."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Amazon EBS Snapshot",
           "explanation": "Incorrect: EBS snapshot is a point-in-time volume backup."
+        },
+        {
+          "id": "D",
+          "text": "Multi-Factor Authentication (MFA)",
+          "explanation": "Correct: MFA adds an extra layer of security by requiring a second verification factor in addition to standard credentials."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Multi-Factor Authentication (MFA) is a critical security practice that requires two or more verification factors to gain access to AWS accounts.",
       "referenceUrl": "https://aws.amazon.com/iam/features/mfa/",
@@ -1522,18 +1522,18 @@
       "options": [
         {
           "id": "A",
-          "text": "Spot Instances",
-          "explanation": "Correct: Spot Instances allow you to request unused EC2 capacity at steep discounts (up to 90%), suitable for fault-tolerant and stateless workloads."
-        },
-        {
-          "id": "B",
           "text": "Dedicated Hosts",
           "explanation": "Incorrect: Dedicated Hosts provide physical servers dedicated to your use and are the most expensive option."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "On-Demand Instances",
           "explanation": "Incorrect: On-Demand instances charge standard fixed hourly rates without long-term commitments or interruptions."
+        },
+        {
+          "id": "C",
+          "text": "Spot Instances",
+          "explanation": "Correct: Spot Instances allow you to request unused EC2 capacity at steep discounts (up to 90%), suitable for fault-tolerant and stateless workloads."
         },
         {
           "id": "D",
@@ -1542,7 +1542,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon EC2 Spot Instances offer the largest discount on compute by utilizing spare AWS capacity for interruption-tolerant batch and background workloads.",
       "referenceUrl": "https://aws.amazon.com/ec2/spot/",
@@ -1563,27 +1563,27 @@
       "options": [
         {
           "id": "A",
+          "text": "AWS OpsWorks",
+          "explanation": "Incorrect: OpsWorks is a configuration management service using Chef/Puppet."
+        },
+        {
+          "id": "B",
           "text": "AWS Lambda",
           "explanation": "Correct: AWS Lambda is a serverless compute service that executes code triggered by events and automatically manages underlying compute resources."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Amazon EC2",
           "explanation": "Incorrect: EC2 requires managing virtual server instances and operating systems."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Amazon Lightsail",
           "explanation": "Incorrect: Lightsail provides simplified pre-configured virtual private servers."
-        },
-        {
-          "id": "D",
-          "text": "AWS OpsWorks",
-          "explanation": "Incorrect: OpsWorks is a configuration management service using Chef/Puppet."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Lambda is the premier serverless compute service on AWS, enabling event-driven architectures with zero server maintenance.",
       "referenceUrl": "https://aws.amazon.com/lambda/",
@@ -1604,27 +1604,27 @@
       "options": [
         {
           "id": "A",
-          "text": "S3 Intelligent-Tiering",
-          "explanation": "Correct: S3 Intelligent-Tiering automatically moves data between access tiers based on frequency of access without performance impact or retrieval fees."
-        },
-        {
-          "id": "B",
-          "text": "S3 Standard-IA",
-          "explanation": "Incorrect: Standard-IA is for data accessed less frequently but requiring millisecond access, with manual transition."
-        },
-        {
-          "id": "C",
           "text": "S3 Glacier Deep Archive",
           "explanation": "Incorrect: Glacier Deep Archive is for long-term cold archive retrieval (9-12 hours)."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "S3 One Zone-IA",
           "explanation": "Incorrect: One Zone-IA stores data in a single AZ for non-critical infrequent data."
+        },
+        {
+          "id": "C",
+          "text": "S3 Standard-IA",
+          "explanation": "Incorrect: Standard-IA is for data accessed less frequently but requiring millisecond access, with manual transition."
+        },
+        {
+          "id": "D",
+          "text": "S3 Intelligent-Tiering",
+          "explanation": "Correct: S3 Intelligent-Tiering automatically moves data between access tiers based on frequency of access without performance impact or retrieval fees."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "S3 Intelligent-Tiering is the only cloud storage class that delivers automatic cost savings by moving data between access tiers when access patterns change.",
       "referenceUrl": "https://aws.amazon.com/s3/storage-classes/intelligent-tiering/",
@@ -1651,18 +1651,18 @@
         },
         {
           "id": "B",
-          "text": "Amazon S3 Glacier",
-          "explanation": "Incorrect: S3 Glacier is an archive storage class."
-        },
-        {
-          "id": "C",
           "text": "AWS Direct Connect",
           "explanation": "Incorrect: Direct Connect is a physical network service."
         },
         {
-          "id": "D",
+          "id": "C",
           "text": "Amazon Kinesis",
           "explanation": "Incorrect: Kinesis is a streaming data platform."
+        },
+        {
+          "id": "D",
+          "text": "Amazon S3 Glacier",
+          "explanation": "Incorrect: S3 Glacier is an archive storage class."
         }
       ],
       "correctAnswers": [
@@ -1691,18 +1691,18 @@
         },
         {
           "id": "B",
+          "text": "Cold tape storage replacement.",
+          "explanation": "Incorrect: Cold archive tape storage is S3 Glacier."
+        },
+        {
+          "id": "C",
           "text": "Object storage accessible globally over HTTP REST APIs.",
           "explanation": "Incorrect: Global object storage over HTTP is Amazon S3."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Managed relational database table storage.",
           "explanation": "Incorrect: Relational database management is Amazon RDS."
-        },
-        {
-          "id": "D",
-          "text": "Cold tape storage replacement.",
-          "explanation": "Incorrect: Cold archive tape storage is S3 Glacier."
         }
       ],
       "correctAnswers": [
@@ -1731,18 +1731,18 @@
         },
         {
           "id": "B",
+          "text": "Amazon Redshift",
+          "explanation": "Incorrect: Redshift is a data warehousing service."
+        },
+        {
+          "id": "C",
           "text": "Amazon EBS",
           "explanation": "Incorrect: EBS volumes are block devices typically attached to a single EC2 instance in a single AZ."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "AWS Snowball Edge",
           "explanation": "Incorrect: Snowball Edge is a physical data transport appliance."
-        },
-        {
-          "id": "D",
-          "text": "Amazon Redshift",
-          "explanation": "Incorrect: Redshift is a data warehousing service."
         }
       ],
       "correctAnswers": [
@@ -1767,27 +1767,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Relational Database Service (Amazon RDS)",
-          "explanation": "Correct: Amazon RDS simplifies setup, operation, and scaling of relational databases across multiple popular engines with automated patching and backups."
+          "text": "Amazon DocumentDB",
+          "explanation": "Incorrect: DocumentDB is a MongoDB-compatible document database."
         },
         {
           "id": "B",
-          "text": "Amazon DynamoDB",
-          "explanation": "Incorrect: DynamoDB is a managed NoSQL key-value and document database."
-        },
-        {
-          "id": "C",
           "text": "Amazon Neptune",
           "explanation": "Incorrect: Neptune is a graph database service."
         },
         {
+          "id": "C",
+          "text": "Amazon DynamoDB",
+          "explanation": "Incorrect: DynamoDB is a managed NoSQL key-value and document database."
+        },
+        {
           "id": "D",
-          "text": "Amazon DocumentDB",
-          "explanation": "Incorrect: DocumentDB is a MongoDB-compatible document database."
+          "text": "Amazon Relational Database Service (Amazon RDS)",
+          "explanation": "Correct: Amazon RDS simplifies setup, operation, and scaling of relational databases across multiple popular engines with automated patching and backups."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon RDS makes it easy to set up, operate, and scale traditional relational databases in the cloud with automated backups, Multi-AZ replication, and maintenance patching.",
       "referenceUrl": "https://aws.amazon.com/rds/",
@@ -1807,18 +1807,18 @@
       "options": [
         {
           "id": "A",
-          "text": "An enterprise-grade, MySQL and PostgreSQL-compatible relational database built for the cloud by AWS offering up to 5x throughput of standard MySQL.",
-          "explanation": "Correct: Amazon Aurora is a fully managed relational database engine designed by AWS with high performance, distributed self-healing storage, and up to 15 read replicas."
-        },
-        {
-          "id": "B",
           "text": "An in-memory caching engine compatible with Redis.",
           "explanation": "Incorrect: In-memory caching with Redis is Amazon ElastiCache."
         },
         {
-          "id": "C",
+          "id": "B",
           "text": "A serverless object storage bucket service.",
           "explanation": "Incorrect: Object storage is Amazon S3."
+        },
+        {
+          "id": "C",
+          "text": "An enterprise-grade, MySQL and PostgreSQL-compatible relational database built for the cloud by AWS offering up to 5x throughput of standard MySQL.",
+          "explanation": "Correct: Amazon Aurora is a fully managed relational database engine designed by AWS with high performance, distributed self-healing storage, and up to 15 read replicas."
         },
         {
           "id": "D",
@@ -1827,7 +1827,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon Aurora combines the speed and availability of high-end commercial databases with the simplicity and cost-effectiveness of open source databases.",
       "referenceUrl": "https://aws.amazon.com/rds/aurora/",
@@ -1847,27 +1847,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon DynamoDB",
-          "explanation": "Correct: Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed for fast and predictable performance with seamless scalability."
-        },
-        {
-          "id": "B",
           "text": "Amazon RDS for PostgreSQL",
           "explanation": "Incorrect: RDS is a traditional relational SQL database."
         },
         {
+          "id": "B",
+          "text": "AWS Database Migration Service",
+          "explanation": "Incorrect: AWS DMS migrates data between database endpoints."
+        },
+        {
           "id": "C",
-          "text": "Amazon Athena",
-          "explanation": "Incorrect: Athena is an interactive SQL analytics query service on S3."
+          "text": "Amazon DynamoDB",
+          "explanation": "Correct: Amazon DynamoDB is a fully managed, serverless, key-value NoSQL database designed for fast and predictable performance with seamless scalability."
         },
         {
           "id": "D",
-          "text": "AWS Database Migration Service",
-          "explanation": "Incorrect: AWS DMS migrates data between database endpoints."
+          "text": "Amazon Athena",
+          "explanation": "Incorrect: Athena is an interactive SQL analytics query service on S3."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon DynamoDB is a managed NoSQL database offering consistent single-digit millisecond response times, built-in security, backup, and global multi-master tables.",
       "referenceUrl": "https://aws.amazon.com/dynamodb/",
@@ -1887,8 +1887,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon ElastiCache",
-          "explanation": "Correct: Amazon ElastiCache is a fully managed in-memory caching service compatible with Redis and Memcached, reducing database query load and read latency."
+          "text": "AWS CloudFormation",
+          "explanation": "Incorrect: CloudFormation is an Infrastructure as Code (IaC) templating service."
         },
         {
           "id": "B",
@@ -1897,17 +1897,17 @@
         },
         {
           "id": "C",
-          "text": "AWS CloudFormation",
-          "explanation": "Incorrect: CloudFormation is an Infrastructure as Code (IaC) templating service."
+          "text": "Amazon Simple Email Service (SES)",
+          "explanation": "Incorrect: SES is a transactional email service."
         },
         {
           "id": "D",
-          "text": "Amazon Simple Email Service (SES)",
-          "explanation": "Incorrect: SES is a transactional email service."
+          "text": "Amazon ElastiCache",
+          "explanation": "Correct: Amazon ElastiCache is a fully managed in-memory caching service compatible with Redis and Memcached, reducing database query load and read latency."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon ElastiCache improves application performance by allowing you to retrieve information from fast, managed in-memory data stores instead of relying on slower disk-based databases.",
       "referenceUrl": "https://aws.amazon.com/elasticache/",
@@ -1927,18 +1927,18 @@
       "options": [
         {
           "id": "A",
+          "text": "Amazon Lightsail",
+          "explanation": "Incorrect: Lightsail is a virtual private server platform."
+        },
+        {
+          "id": "B",
           "text": "Amazon Redshift",
           "explanation": "Correct: Amazon Redshift is a fast, scalable, fully managed cloud data warehouse that makes it simple and cost-effective to analyze data using standard SQL and BI tools."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "Amazon SQS",
           "explanation": "Incorrect: SQS is an asynchronous message queuing service."
-        },
-        {
-          "id": "C",
-          "text": "Amazon Lightsail",
-          "explanation": "Incorrect: Lightsail is a virtual private server platform."
         },
         {
           "id": "D",
@@ -1947,7 +1947,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon Redshift uses columnar storage and massively parallel processing (MPP) to deliver fast query performance for large enterprise data warehouses.",
       "referenceUrl": "https://aws.amazon.com/redshift/",
@@ -1967,18 +1967,18 @@
       "options": [
         {
           "id": "A",
+          "text": "A global domain name system service.",
+          "explanation": "Incorrect: Global DNS routing is Amazon Route 53."
+        },
+        {
+          "id": "B",
           "text": "A logically isolated virtual network dedicated to your AWS account where you launch AWS resources.",
           "explanation": "Correct: An Amazon VPC is your own private virtual network in the cloud with full control over IP address ranges, subnets, route tables, and gateways."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "A physical private fiber connection from your office to AWS.",
           "explanation": "Incorrect: A physical dedicated fiber connection is AWS Direct Connect."
-        },
-        {
-          "id": "C",
-          "text": "A global domain name system service.",
-          "explanation": "Incorrect: Global DNS routing is Amazon Route 53."
         },
         {
           "id": "D",
@@ -1987,7 +1987,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon VPC lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define.",
       "referenceUrl": "https://aws.amazon.com/vpc/",
@@ -2007,13 +2007,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Route 53",
-          "explanation": "Correct: Amazon Route 53 is a highly available and scalable cloud DNS web service designed to route user requests to internet applications and register domain names."
+          "text": "Amazon EC2 Auto Scaling",
+          "explanation": "Incorrect: EC2 Auto Scaling adjusts compute instance count based on load."
         },
         {
           "id": "B",
-          "text": "Amazon EC2 Auto Scaling",
-          "explanation": "Incorrect: EC2 Auto Scaling adjusts compute instance count based on load."
+          "text": "Amazon Route 53",
+          "explanation": "Correct: Amazon Route 53 is a highly available and scalable cloud DNS web service designed to route user requests to internet applications and register domain names."
         },
         {
           "id": "C",
@@ -2027,7 +2027,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon Route 53 effectively connects user requests to infrastructure running in AWS (such as EC2, Elastic Load Balancing, or S3) as well as infrastructure outside of AWS.",
       "referenceUrl": "https://aws.amazon.com/route53/",
@@ -2047,27 +2047,27 @@
       "options": [
         {
           "id": "A",
-          "text": "To automatically distribute incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses.",
-          "explanation": "Correct: Elastic Load Balancing distributes network/application traffic across multiple compute targets across multiple Availability Zones to increase fault tolerance."
-        },
-        {
-          "id": "B",
           "text": "To convert video files into multiple streaming formats.",
           "explanation": "Incorrect: Media conversion is AWS Elemental MediaConvert."
         },
         {
+          "id": "B",
+          "text": "To provide physical tape storage.",
+          "explanation": "Incorrect: Tape storage is S3 Glacier Tape Gateway."
+        },
+        {
           "id": "C",
-          "text": "To store confidential API keys.",
-          "explanation": "Incorrect: Key storage is AWS Secrets Manager or Parameter Store."
+          "text": "To automatically distribute incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses.",
+          "explanation": "Correct: Elastic Load Balancing distributes network/application traffic across multiple compute targets across multiple Availability Zones to increase fault tolerance."
         },
         {
           "id": "D",
-          "text": "To provide physical tape storage.",
-          "explanation": "Incorrect: Tape storage is S3 Glacier Tape Gateway."
+          "text": "To store confidential API keys.",
+          "explanation": "Incorrect: Key storage is AWS Secrets Manager or Parameter Store."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Elastic Load Balancing automatically distributes incoming traffic across multiple targets in one or more Availability Zones, ensuring seamless application availability.",
       "referenceUrl": "https://aws.amazon.com/elasticloadbalancing/",
@@ -2093,13 +2093,13 @@
         },
         {
           "id": "B",
-          "text": "Amazon Lex",
-          "explanation": "Incorrect: Amazon Lex builds AI voice and text chatbots."
+          "text": "AWS Control Tower",
+          "explanation": "Incorrect: Control Tower automates multi-account governance setup."
         },
         {
           "id": "C",
-          "text": "AWS Control Tower",
-          "explanation": "Incorrect: Control Tower automates multi-account governance setup."
+          "text": "Amazon Lex",
+          "explanation": "Incorrect: Amazon Lex builds AI voice and text chatbots."
         },
         {
           "id": "D",
@@ -2138,13 +2138,13 @@
         },
         {
           "id": "C",
-          "text": "AWS Direct Connect",
-          "explanation": "Incorrect: Direct Connect is a physical network connection."
+          "text": "AWS App2Container",
+          "explanation": "Incorrect: App2Container containerizes legacy applications."
         },
         {
           "id": "D",
-          "text": "AWS App2Container",
-          "explanation": "Incorrect: App2Container containerizes legacy applications."
+          "text": "AWS Direct Connect",
+          "explanation": "Incorrect: Direct Connect is a physical network connection."
         }
       ],
       "correctAnswers": [
@@ -2169,27 +2169,27 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Simple Queue Service (Amazon SQS)",
-          "explanation": "Correct: Amazon SQS is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications."
-        },
-        {
-          "id": "B",
-          "text": "Amazon Polly",
-          "explanation": "Incorrect: Polly is a text-to-speech AI service."
-        },
-        {
-          "id": "C",
           "text": "AWS Snowball",
           "explanation": "Incorrect: Snowball is a physical data transfer hardware device."
         },
         {
-          "id": "D",
+          "id": "B",
           "text": "Amazon Rekognition",
           "explanation": "Incorrect: Rekognition is a computer vision image analysis service."
+        },
+        {
+          "id": "C",
+          "text": "Amazon Simple Queue Service (Amazon SQS)",
+          "explanation": "Correct: Amazon SQS is a fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications."
+        },
+        {
+          "id": "D",
+          "text": "Amazon Polly",
+          "explanation": "Incorrect: Polly is a text-to-speech AI service."
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Amazon SQS eliminates the complexity and overhead associated with managing and operating message-oriented middleware, empowering developers to decouple microservices.",
       "referenceUrl": "https://aws.amazon.com/sqs/",
@@ -2209,13 +2209,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon Simple Notification Service (Amazon SNS)",
-          "explanation": "Correct: Amazon SNS is a fully managed pub/sub messaging service for both application-to-application (A2A) and application-to-person (A2P) notifications."
+          "text": "AWS CodeBuild",
+          "explanation": "Incorrect: CodeBuild compiles source code and runs unit tests in CI/CD."
         },
         {
           "id": "B",
-          "text": "AWS CodeBuild",
-          "explanation": "Incorrect: CodeBuild compiles source code and runs unit tests in CI/CD."
+          "text": "AWS IAM",
+          "explanation": "Incorrect: IAM manages access control."
         },
         {
           "id": "C",
@@ -2224,12 +2224,12 @@
         },
         {
           "id": "D",
-          "text": "AWS IAM",
-          "explanation": "Incorrect: IAM manages access control."
+          "text": "Amazon Simple Notification Service (Amazon SNS)",
+          "explanation": "Correct: Amazon SNS is a fully managed pub/sub messaging service for both application-to-application (A2A) and application-to-person (A2P) notifications."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "Amazon SNS enables publisher applications to send messages to a topic, which instantly fans out messages to multiple subscriber endpoints (SQS, Lambda, HTTP, Email, SMS).",
       "referenceUrl": "https://aws.amazon.com/sns/",
@@ -2249,13 +2249,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Amazon EventBridge",
-          "explanation": "Correct: Amazon EventBridge is a serverless event bus that lets you build event-driven architectures by routing events from sources like SaaS apps and AWS services to targets."
+          "text": "AWS Snowcone",
+          "explanation": "Incorrect: Snowcone is an edge data transfer device."
         },
         {
           "id": "B",
-          "text": "AWS Snowcone",
-          "explanation": "Incorrect: Snowcone is an edge data transfer device."
+          "text": "Amazon EventBridge",
+          "explanation": "Correct: Amazon EventBridge is a serverless event bus that lets you build event-driven architectures by routing events from sources like SaaS apps and AWS services to targets."
         },
         {
           "id": "C",
@@ -2269,7 +2269,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "Amazon EventBridge enables scalable event-driven architectures, ingesting and routing events from AWS services and SaaS partner applications to targets like Lambda or SQS.",
       "referenceUrl": "https://aws.amazon.com/eventbridge/",
@@ -2289,27 +2289,27 @@
       "options": [
         {
           "id": "A",
+          "text": "Amazon CloudFront Edge Cache",
+          "explanation": "Incorrect: CloudFront is an online internet-based CDN."
+        },
+        {
+          "id": "B",
           "text": "AWS Snowball Edge Storage Optimized",
           "explanation": "Correct: AWS Snowball Edge Storage Optimized devices provide high-capacity physical ruggedized appliances (up to 80TB) for secure physical data transport to Amazon S3."
         },
         {
-          "id": "B",
+          "id": "C",
           "text": "AWS Direct Connect 100 Gbps link",
           "explanation": "Incorrect: Direct Connect requires physical fiber infrastructure, unavailable in remote ocean environments."
         },
         {
-          "id": "C",
+          "id": "D",
           "text": "Amazon VPC Peering",
           "explanation": "Incorrect: VPC Peering connects virtual networks in the cloud."
-        },
-        {
-          "id": "D",
-          "text": "Amazon CloudFront Edge Cache",
-          "explanation": "Incorrect: CloudFront is an online internet-based CDN."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "The AWS Snow Family provides physical hardware appliances (Snowcone, Snowball Edge, Snowmobile) to transport large volumes of data into AWS without consuming network bandwidth.",
       "referenceUrl": "https://aws.amazon.com/snow/",
@@ -2329,27 +2329,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Elastic Beanstalk",
-          "explanation": "Correct: AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker."
-        },
-        {
-          "id": "B",
           "text": "AWS Systems Manager Run Command",
           "explanation": "Incorrect: Run Command executes operational scripts on EC2 instances."
         },
         {
+          "id": "B",
+          "text": "AWS Elastic Beanstalk",
+          "explanation": "Correct: AWS Elastic Beanstalk is an easy-to-use service for deploying and scaling web applications and services developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker."
+        },
+        {
           "id": "C",
-          "text": "Amazon S3 Glacier Flexible Retrieval",
-          "explanation": "Incorrect: S3 Glacier is a cold data archive class."
+          "text": "AWS Trusted Advisor",
+          "explanation": "Incorrect: Trusted Advisor performs best practice evaluations."
         },
         {
           "id": "D",
-          "text": "AWS Trusted Advisor",
-          "explanation": "Incorrect: Trusted Advisor performs best practice evaluations."
+          "text": "Amazon S3 Glacier Flexible Retrieval",
+          "explanation": "Incorrect: S3 Glacier is a cold data archive class."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B"
       ],
       "generalExplanation": "AWS Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your code, and Elastic Beanstalk automatically handles the deployment details.",
       "referenceUrl": "https://aws.amazon.com/elasticbeanstalk/",
@@ -2369,8 +2369,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Budgets",
-          "explanation": "Correct: AWS Budgets allows you to set custom spending thresholds and alerts you via email or SNS when your costs or usage exceed (or are forecasted to exceed) your budgeted amount."
+          "text": "AWS Cost and Usage Report",
+          "explanation": "Incorrect: The Cost and Usage Report delivers raw CSV data files to S3, but does not send automated threshold email alerts."
         },
         {
           "id": "B",
@@ -2379,8 +2379,8 @@
         },
         {
           "id": "C",
-          "text": "AWS Cost and Usage Report",
-          "explanation": "Incorrect: The Cost and Usage Report delivers raw CSV data files to S3, but does not send automated threshold email alerts."
+          "text": "AWS Budgets",
+          "explanation": "Correct: AWS Budgets allows you to set custom spending thresholds and alerts you via email or SNS when your costs or usage exceed (or are forecasted to exceed) your budgeted amount."
         },
         {
           "id": "D",
@@ -2389,7 +2389,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "AWS Budgets gives you the ability to set custom budgets that alert you when your costs or usage exceed (or are forecasted to exceed) your budgeted amount.",
       "referenceUrl": "https://aws.amazon.com/aws-cost-management/aws-budgets/",
@@ -2409,27 +2409,27 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Cost Explorer",
-          "explanation": "Correct: AWS Cost Explorer provides an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time (including up to 12 months of historical data and 12-month forecasts)."
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: CloudHSM is a cryptographic hardware security module."
         },
         {
           "id": "B",
-          "text": "AWS CodeCommit",
-          "explanation": "Incorrect: CodeCommit is a source code repository."
-        },
-        {
-          "id": "C",
           "text": "Amazon Inspector",
           "explanation": "Incorrect: Inspector is an automated vulnerability scanner."
         },
         {
+          "id": "C",
+          "text": "AWS CodeCommit",
+          "explanation": "Incorrect: CodeCommit is a source code repository."
+        },
+        {
           "id": "D",
-          "text": "AWS CloudHSM",
-          "explanation": "Incorrect: CloudHSM is a cryptographic hardware security module."
+          "text": "AWS Cost Explorer",
+          "explanation": "Correct: AWS Cost Explorer provides an easy-to-use interface that lets you visualize, understand, and manage your AWS costs and usage over time (including up to 12 months of historical data and 12-month forecasts)."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Cost Explorer is the default visualization tool to analyze historical spending, identify cost drivers, view usage trends, and forecast future costs.",
       "referenceUrl": "https://aws.amazon.com/aws-cost-management/aws-cost-explorer/",
@@ -2449,8 +2449,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Pricing Calculator",
-          "explanation": "Correct: The AWS Pricing Calculator is a free web-based tool that lets you explore AWS services and create detailed cost estimates for your architecture use cases prior to deployment."
+          "text": "AWS Artifact",
+          "explanation": "Incorrect: AWS Artifact provides compliance audit reports."
         },
         {
           "id": "B",
@@ -2459,17 +2459,17 @@
         },
         {
           "id": "C",
-          "text": "AWS Artifact",
-          "explanation": "Incorrect: AWS Artifact provides compliance audit reports."
+          "text": "AWS Organizations",
+          "explanation": "Incorrect: AWS Organizations consolidates multiple accounts."
         },
         {
           "id": "D",
-          "text": "AWS Organizations",
-          "explanation": "Incorrect: AWS Organizations consolidates multiple accounts."
+          "text": "AWS Pricing Calculator",
+          "explanation": "Correct: The AWS Pricing Calculator is a free web-based tool that lets you explore AWS services and create detailed cost estimates for your architecture use cases prior to deployment."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Pricing Calculator is a pre-deployment estimation tool that allows users to model architecture costs before building in the cloud.",
       "referenceUrl": "https://calculator.aws/",
@@ -2490,13 +2490,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Receiving a single combined monthly invoice for all member accounts.",
-          "explanation": "Correct: Consolidated billing aggregates all account charges into a single monthly bill paid by the management account."
+          "text": "Volume pricing discounts achieved by aggregating usage across all member accounts.",
+          "explanation": "Correct: AWS aggregates resource usage across all linked accounts to qualify for tiered volume discounts (such as tiered S3 storage pricing)."
         },
         {
           "id": "B",
-          "text": "Volume pricing discounts achieved by aggregating usage across all member accounts.",
-          "explanation": "Correct: AWS aggregates resource usage across all linked accounts to qualify for tiered volume discounts (such as tiered S3 storage pricing)."
+          "text": "Free 24/7 dedicated Technical Account Manager (TAM) assigned to all accounts.",
+          "explanation": "Incorrect: A TAM requires the Enterprise Support plan."
         },
         {
           "id": "C",
@@ -2505,18 +2505,18 @@
         },
         {
           "id": "D",
-          "text": "Free 24/7 dedicated Technical Account Manager (TAM) assigned to all accounts.",
-          "explanation": "Incorrect: A TAM requires the Enterprise Support plan."
+          "text": "Unlimited free EC2 compute instances for member accounts.",
+          "explanation": "Incorrect: Consolidated billing does not make EC2 instances free."
         },
         {
           "id": "E",
-          "text": "Unlimited free EC2 compute instances for member accounts.",
-          "explanation": "Incorrect: Consolidated billing does not make EC2 instances free."
+          "text": "Receiving a single combined monthly invoice for all member accounts.",
+          "explanation": "Correct: Consolidated billing aggregates all account charges into a single monthly bill paid by the management account."
         }
       ],
       "correctAnswers": [
         "A",
-        "B"
+        "E"
       ],
       "generalExplanation": "Consolidated Billing in AWS Organizations provides one single bill, simplifies accounting, and shares volume discounts across all member accounts.",
       "referenceUrl": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html",
@@ -2537,8 +2537,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Compute Savings Plans",
-          "explanation": "Correct: Compute Savings Plans offer flexible discounts up to 66-72% across EC2, Fargate, and Lambda in exchange for a 1 or 3-year hourly spend commitment."
+          "text": "AWS Free Tier",
+          "explanation": "Incorrect: Free Tier is introductory allowances for new accounts or select free products."
         },
         {
           "id": "B",
@@ -2547,8 +2547,8 @@
         },
         {
           "id": "C",
-          "text": "AWS Free Tier",
-          "explanation": "Incorrect: Free Tier is introductory allowances for new accounts or select free products."
+          "text": "Compute Savings Plans",
+          "explanation": "Correct: Compute Savings Plans offer flexible discounts up to 66-72% across EC2, Fargate, and Lambda in exchange for a 1 or 3-year hourly spend commitment."
         },
         {
           "id": "D",
@@ -2557,7 +2557,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "C"
       ],
       "generalExplanation": "Savings Plans are a flexible pricing model offering lower prices compared to On-Demand pricing, in exchange for a specific, consistent usage commitment ($/hour) for a 1 or 3-year period.",
       "referenceUrl": "https://aws.amazon.com/savingsplans/",
@@ -2587,13 +2587,13 @@
         },
         {
           "id": "C",
-          "text": "Basic Support",
-          "explanation": "Incorrect: Basic plan is free and only covers customer service and billing inquiries."
+          "text": "Business Support",
+          "explanation": "Incorrect: Business Support includes 24/7 technical support and <1-hour critical response, but does NOT include a designated TAM or <15-minute emergency response."
         },
         {
           "id": "D",
-          "text": "Business Support",
-          "explanation": "Incorrect: Business Support includes 24/7 technical support and <1-hour critical response, but does NOT include a designated TAM or <15-minute emergency response."
+          "text": "Basic Support",
+          "explanation": "Incorrect: Basic plan is free and only covers customer service and billing inquiries."
         }
       ],
       "correctAnswers": [
@@ -2627,13 +2627,13 @@
         },
         {
           "id": "C",
-          "text": "Amazon Pinpoint",
-          "explanation": "Incorrect: Amazon Pinpoint is a customer engagement marketing communication service."
+          "text": "AWS AppSync",
+          "explanation": "Incorrect: AppSync is a managed GraphQL API service."
         },
         {
           "id": "D",
-          "text": "AWS AppSync",
-          "explanation": "Incorrect: AppSync is a managed GraphQL API service."
+          "text": "Amazon Pinpoint",
+          "explanation": "Incorrect: Amazon Pinpoint is a customer engagement marketing communication service."
         }
       ],
       "correctAnswers": [
@@ -2657,8 +2657,8 @@
       "options": [
         {
           "id": "A",
-          "text": "AWS Compute Optimizer",
-          "explanation": "Correct: AWS Compute Optimizer uses machine learning to analyze historical utilization metrics and recommend optimal AWS resources to reduce costs and improve performance."
+          "text": "AWS Elastic Transcoder",
+          "explanation": "Incorrect: Elastic Transcoder is a media file conversion service."
         },
         {
           "id": "B",
@@ -2672,12 +2672,12 @@
         },
         {
           "id": "D",
-          "text": "AWS Elastic Transcoder",
-          "explanation": "Incorrect: Elastic Transcoder is a media file conversion service."
+          "text": "AWS Compute Optimizer",
+          "explanation": "Correct: AWS Compute Optimizer uses machine learning to analyze historical utilization metrics and recommend optimal AWS resources to reduce costs and improve performance."
         }
       ],
       "correctAnswers": [
-        "A"
+        "D"
       ],
       "generalExplanation": "AWS Compute Optimizer helps you avoid over-provisioning (which drives up costs) and under-provisioning (which causes performance bottlenecks) by recommending optimal resource configurations.",
       "referenceUrl": "https://aws.amazon.com/compute-optimizer/",
