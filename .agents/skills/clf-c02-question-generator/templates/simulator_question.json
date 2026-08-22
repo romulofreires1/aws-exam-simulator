@@ -1,0 +1,89 @@
+{
+  "singleChoiceExample": {
+    "id": "clf-q070",
+    "examId": "CLF-C02",
+    "domainId": "domain-1-cloud-concepts",
+    "domainName": "Domain 1: Cloud Concepts",
+    "services": [
+      "AWS Well-Architected Framework"
+    ],
+    "type": "single",
+    "requiredChoices": 1,
+    "statement": "Qual pilar do AWS Well-Architected Framework enfatiza a capacidade de recuperar sistemas diante de interrupções de infraestrutura ou falhas de serviço e adquirir dinamicamente recursos computacionais para atender à demanda?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Excelência Operacional",
+        "explanation": "Incorreto: A Excelência Operacional foca em executar e monitorar sistemas e aprimorar processos de negócios continuamente."
+      },
+      {
+        "id": "B",
+        "text": "Eficiência de Performance",
+        "explanation": "Incorreto: A Eficiência de Performance foca no uso estruturado e eficiente de recursos de TI e na evolução tecnológica contínua."
+      },
+      {
+        "id": "C",
+        "text": "Confiabilidade (Reliability)",
+        "explanation": "Correto: O pilar Confiabilidade abrange a capacidade de um sistema se recuperar de falhas de componentes, mitigar interrupções e adquirir recursos computacionais dinamicamente para atender à demanda."
+      },
+      {
+        "id": "D",
+        "text": "Otimização de Custos",
+        "explanation": "Incorreto: A Otimização de Custos foca em evitar gastos desnecessários e maximizar o retorno financeiro do investimento em nuvem."
+      }
+    ],
+    "correctAnswers": [
+      "C"
+    ],
+    "generalExplanation": "O pilar Confiabilidade (Reliability) do AWS Well-Architected Framework é projetado para garantir que as cargas de trabalho executem suas funções pretendidas de forma correta e consistente, recuperando-se automaticamente de falhas de infraestrutura ou serviços.",
+    "referenceUrl": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+    "difficulty": "easy"
+  },
+  "multipleChoiceExample": {
+    "id": "clf-q071",
+    "examId": "CLF-C02",
+    "domainId": "domain-2-security-compliance",
+    "domainName": "Domain 2: Security and Compliance",
+    "services": [
+      "AWS Shared Responsibility Model",
+      "Amazon EC2"
+    ],
+    "type": "multiple",
+    "requiredChoices": 2,
+    "statement": "De acordo com o Modelo de Responsabilidade Compartilhada da AWS, quais das seguintes tarefas são responsabilidades exclusivas do cliente ao executar uma instância Amazon EC2? (Escolha duas.)",
+    "options": [
+      {
+        "id": "A",
+        "text": "Configurar regras de firewall de rede através de Security Groups e Network ACLs.",
+        "explanation": "Correto: A configuração de regras de tráfego de entrada e saída nos Security Groups é responsabilidade exclusiva do cliente."
+      },
+      {
+        "id": "B",
+        "text": "Substituir discos físicos defeituosos e servidores host no data center da AWS.",
+        "explanation": "Incorreto: A manutenção e substituição de hardware físico é responsabilidade total da AWS (Segurança DA Nuvem)."
+      },
+      {
+        "id": "C",
+        "text": "Instalar atualizações de segurança e patches no sistema operacional convidado (Guest OS) da instância.",
+        "explanation": "Correto: O cliente é responsável pelo gerenciamento, configuração e instalação de patches no sistema operacional convidado de instâncias EC2."
+      },
+      {
+        "id": "D",
+        "text": "Atualizar o software de virtualização do hypervisor que hospeda as instâncias EC2.",
+        "explanation": "Incorreto: A atualização do hypervisor subjacente e da camada de virtualização é de responsabilidade da AWS."
+      },
+      {
+        "id": "E",
+        "text": "Garantir a segurança física e o controle de acesso biométrico às instalações dos data centers.",
+        "explanation": "Incorreto: A segurança física de todos os data centers é de responsabilidade exclusiva da AWS."
+      }
+    ],
+    "correctAnswers": [
+      "A",
+      "C"
+    ],
+    "generalExplanation": "No Modelo de Responsabilidade Compartilhada para serviços IaaS como o Amazon EC2, a AWS é responsável pela segurança 'DA' nuvem (hardware, data centers, hypervisor), enquanto o cliente é responsável pela segurança 'NA' nuvem (patches de SO convidado, firewalls de Security Groups, senhas e dados).",
+    "referenceUrl": "https://aws.amazon.com/compliance/shared-responsibility-model/",
+    "difficulty": "easy"
+  }
+}

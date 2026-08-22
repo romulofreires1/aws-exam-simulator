@@ -1,0 +1,92 @@
+{
+  "singleChoiceExample": {
+    "id": "saa-q070",
+    "examId": "SAA-C03",
+    "domainId": "domain-1-secure-architectures",
+    "domainName": "Domain 1: Design Secure Architectures",
+    "services": [
+      "Amazon S3",
+      "Amazon CloudFront",
+      "Origin Access Control"
+    ],
+    "type": "single",
+    "requiredChoices": 1,
+    "statement": "Uma empresa hospeda uma aplicação de comércio eletrônico cujo conteúdo estático está armazenado em um bucket privado do Amazon S3 e distribuído globalmente através do Amazon CloudFront. A equipe de segurança exige que os usuários finais acessem os arquivos exclusivamente através da URL da distribuição do CloudFront, bloqueando qualquer acesso direto ou público ao endpoint do bucket S3. Além disso, a solução deve suportar criptografia SSE-KMS e ser alinhada às melhores práticas atuais da AWS. Qual solução atende a esses requisitos com a MENOR sobrecarga operacional?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Criar uma política de bucket no S3 que restrinja o acesso com base no endereço IP das instâncias EC2 da empresa.",
+        "explanation": "Incorreto: Usuários finais acessam o CloudFront a partir de IPs públicos dinâmicos globais e o CloudFront não possui um IP fixo de origem para filtragem simples por IP de instâncias."
+      },
+      {
+        "id": "B",
+        "text": "Configurar Origin Access Control (OAC) na distribuição do CloudFront e atualizar a política do bucket S3 para permitir acesso exclusivo da entidade do CloudFront com condição na distribuição específica.",
+        "explanation": "Correto: O Origin Access Control (OAC) é a solução moderna e recomendada pela AWS para restringir o acesso a buckets S3 a partir de distribuições CloudFront, com suporte nativo a SSE-KMS e todos os métodos HTTP."
+      },
+      {
+        "id": "C",
+        "text": "Criar um VPC Endpoint do tipo Gateway para o S3 dentro de sub-redes privadas e rotear o CloudFront para dentro da VPC.",
+        "explanation": "Incorreto: O CloudFront é um serviço global de borda que opera fora da VPC e não pode ser encapsulado diretamente em sub-redes privadas com Gateway Endpoints."
+      },
+      {
+        "id": "D",
+        "text": "Configurar URLs pré-assinadas (Pre-signed URLs) para todas as requisições de leitura de páginas públicas e imagens de catálogo.",
+        "explanation": "Incorreto: URLs pré-assinadas geram sobrecarga operacional e computacional excessiva para arquivos estáticos públicos em massa do catálogo."
+      }
+    ],
+    "correctAnswers": [
+      "B"
+    ],
+    "generalExplanation": "O Origin Access Control (OAC) é o mecanismo padrão da AWS para restringir com segurança o acesso a buckets S3 a distribuições específicas do CloudFront. OAC substitui o legado Origin Access Identity (OAI) e oferece suporte a chaves KMS gerenciadas pelo cliente e métodos dinâmicos.",
+    "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
+    "difficulty": "medium"
+  },
+  "multipleChoiceExample": {
+    "id": "saa-q071",
+    "examId": "SAA-C03",
+    "domainId": "domain-2-resilient-architectures",
+    "domainName": "Domain 2: Design Resilient Architectures",
+    "services": [
+      "Amazon EC2",
+      "Amazon SQS",
+      "AWS Auto Scaling"
+    ],
+    "type": "multiple",
+    "requiredChoices": 2,
+    "statement": "Uma empresa de processamento de fotos permite que usuários façam upload de imagens de alta resolução que são convertidas em miniaturas por uma frota de instâncias EC2. Durante promoções sazonais, picos imprevisíveis de uploads causam sobrecarga e perda eventual de arquivos antes do processamento. A arquitetura precisa ser redesenhada para garantir que nenhum upload seja perdido e que a frota de processamento dimensione de forma eficiente com base na demanda real da fila. Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)",
+    "options": [
+      {
+        "id": "A",
+        "text": "Configurar as instâncias EC2 em um Auto Scaling Group com política de escalabilidade baseada no tamanho da fila aproximado (ApproximateNumberOfMessagesVisible) dividido pelo número de instâncias.",
+        "explanation": "Correto: Escalar o Auto Scaling Group com base no backlog de mensagens por instância (métrica ApproximateNumberOfMessagesVisible) garante que a frota aumente proporcionalmente à carga da fila SQS."
+      },
+      {
+        "id": "B",
+        "text": "Publicar os metadados de upload em uma fila do Amazon SQS para atuar como buffer assíncrono entre a camada de upload e os workers EC2.",
+        "explanation": "Correto: O Amazon SQS desacopla a ingestão do processamento, retendo as mensagens com segurança e evitando perda de requisições durante picos."
+      },
+      {
+        "id": "C",
+        "text": "Armazenar temporariamente os uploads nos discos de volume de inicialização raiz das instâncias EC2 e sincronizar via rsync a cada minuto.",
+        "explanation": "Incorreto: Volumes de boot locais não fornecem durabilidade desacoplada e o rsync introduz atrasos e riscos de perda de dados se a instância falhar."
+      },
+      {
+        "id": "D",
+        "text": "Configurar o Auto Scaling Group para utilizar apenas a utilização de CPU das instâncias EC2 como gatilho de Target Tracking em 90%.",
+        "explanation": "Incorreto: A CPU das instâncias pode demorar a subir ou não refletir o acúmulo de mensagens pendentes na fila, atrasando o escalonamento."
+      },
+      {
+        "id": "E",
+        "text": "Substituir o armazenamento das fotos por instâncias com armazenamento efêmero Instance Store em configuração RAID 0.",
+        "explanation": "Incorreto: O Instance Store é efêmero e perde todos os dados caso a instância seja interrompida ou reiniciada."
+      }
+    ],
+    "correctAnswers": [
+      "A",
+      "B"
+    ],
+    "generalExplanation": "O padrão arquitetural recomendado para desacoplamento e absorção de picos de processamento na AWS é o uso de filas Amazon SQS como buffer intermediário, combinado com Auto Scaling Groups que utilizam métricas personalizadas de backlog da fila (ApproximateNumberOfMessagesVisible) para dimensionamento elástico.",
+    "referenceUrl": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html",
+    "difficulty": "medium"
+  }
+}
