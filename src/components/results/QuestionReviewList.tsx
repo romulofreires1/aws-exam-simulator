@@ -10,19 +10,29 @@ import {
   Lightbulb,
   Tag,
   Layers,
+  Globe,
 } from 'lucide-react';
-import { Question, QuestionUserResponse } from '@/types/exam';
+import { Question, QuestionUserResponse, ExamLanguage } from '@/types/exam';
 import { isAnswerCorrect } from '@/lib/scoreCalculator';
+import { getLocalizedQuestion, SUPPORTED_LANGUAGES } from '@/lib/localization';
 
 interface QuestionReviewListProps {
   questions: Question[];
   responses: Record<string, QuestionUserResponse>;
+  language?: ExamLanguage;
+  availableLanguages?: ExamLanguage[];
 }
 
 type FilterType = 'all' | 'incorrect' | 'correct' | 'flagged';
 
-export function QuestionReviewList({ questions, responses }: QuestionReviewListProps) {
+export function QuestionReviewList({
+  questions,
+  responses,
+  language: initialLanguage = 'en',
+  availableLanguages = ['en'],
+}: QuestionReviewListProps) {
   const [filter, setFilter] = useState<FilterType>('all');
+  const [currentLang, setCurrentLang] = useState<ExamLanguage>(initialLanguage);
 
   const questionStats = useMemo(() => {
     let correctCount = 0;
@@ -69,51 +79,86 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              filter === 'all'
-                ? 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/20'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-            }`}
-          >
-            All ({questionStats.total})
-          </button>
+        {/* Filter & Language Controls */}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Language Selector */}
+          <div className="flex items-center gap-1 bg-slate-950/80 border border-slate-800 rounded-xl p-1">
+            <span className="text-[11px] text-slate-500 font-bold px-1.5 flex items-center gap-1">
+              <Globe className="h-3 w-3 text-amber-400" />
+              <span className="hidden sm:inline">Language:</span>
+            </span>
+            {(['en', 'pt', 'es'] as ExamLanguage[]).map((lang) => {
+              const meta = SUPPORTED_LANGUAGES[lang];
+              const isAvailable = availableLanguages?.includes(lang);
+              const isSelected = isAvailable && currentLang === lang;
 
-          <button
-            onClick={() => setFilter('incorrect')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              filter === 'incorrect'
-                ? 'bg-rose-500 text-white shadow-sm shadow-rose-500/20'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-            }`}
-          >
-            Incorrect ({questionStats.incorrectCount})
-          </button>
+              return (
+                <button
+                  key={lang}
+                  disabled={!isAvailable}
+                  onClick={() => isAvailable && setCurrentLang(lang)}
+                  title={isAvailable ? `View explanations in ${meta?.label || lang}` : `${meta?.label || lang} (Not available for this exam)`}
+                  className={`px-2 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 transition-all ${
+                    !isAvailable
+                      ? 'opacity-35 cursor-not-allowed text-slate-600 hover:bg-transparent'
+                      : isSelected
+                      ? 'bg-amber-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                  }`}
+                >
+                  <span>{meta?.flag}</span>
+                  <span className="uppercase text-[11px]">{lang}</span>
+                </button>
+              );
+            })}
+          </div>
 
-          <button
-            onClick={() => setFilter('correct')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              filter === 'correct'
-                ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/20'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-            }`}
-          >
-            Correct ({questionStats.correctCount})
-          </button>
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setFilter('all')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                filter === 'all'
+                  ? 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              All ({questionStats.total})
+            </button>
 
-          <button
-            onClick={() => setFilter('flagged')}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
-              filter === 'flagged'
-                ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/20'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-            }`}
-          >
-            Flagged ({questionStats.flaggedCount})
-          </button>
+            <button
+              onClick={() => setFilter('incorrect')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                filter === 'incorrect'
+                  ? 'bg-rose-500 text-white shadow-sm shadow-rose-500/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              Incorrect ({questionStats.incorrectCount})
+            </button>
+
+            <button
+              onClick={() => setFilter('correct')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                filter === 'correct'
+                  ? 'bg-emerald-600 text-white shadow-sm shadow-emerald-600/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              Correct ({questionStats.correctCount})
+            </button>
+
+            <button
+              onClick={() => setFilter('flagged')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                filter === 'flagged'
+                  ? 'bg-amber-600 text-white shadow-sm shadow-amber-600/20'
+                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              }`}
+            >
+              Flagged ({questionStats.flaggedCount})
+            </button>
+          </div>
         </div>
       </div>
 
@@ -124,11 +169,12 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
             No questions found with the selected filter.
           </div>
         ) : (
-          filteredQuestions.map((q) => {
-            const originalIndex = questions.findIndex((orig) => orig.id === q.id);
-            const resp = responses[q.id];
+          filteredQuestions.map((rawQ) => {
+            const q = getLocalizedQuestion(rawQ, currentLang);
+            const originalIndex = questions.findIndex((orig) => orig.id === rawQ.id);
+            const resp = responses[rawQ.id];
             const selectedOptions = resp?.selectedOptionIds || [];
-            const isCorrect = isAnswerCorrect(selectedOptions, q.correctAnswers);
+            const isCorrect = isAnswerCorrect(selectedOptions, rawQ.correctAnswers);
             const isFlagged = !!resp?.isFlagged;
 
             return (

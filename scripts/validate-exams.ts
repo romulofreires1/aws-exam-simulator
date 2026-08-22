@@ -25,6 +25,7 @@ interface Question {
   options: QuestionOption[];
   correctAnswers: string[];
   generalExplanation: string;
+  translations?: Record<string, any>;
   referenceUrl?: string;
   difficulty?: 'easy' | 'medium' | 'hard';
 }
@@ -44,6 +45,8 @@ interface ExamDefinition {
   totalQuestions?: number;
   timeLimitMinutes: number;
   passingScore: number;
+  availableLanguages?: string[];
+  defaultLanguage?: string;
   domains: DomainDefinition[];
   questions: Question[];
 }
@@ -171,6 +174,39 @@ function validateExamFile(filePath: string): { isValid: boolean; errors: string[
 
       if (!q.generalExplanation || q.generalExplanation.trim().length === 0) {
         errors.push(`${qPrefix} 'generalExplanation' cannot be empty.`);
+      }
+
+      // Multi-language translation validation
+      if (q.translations && typeof q.translations === 'object') {
+        const allowedLanguages = ['en', 'pt', 'es'];
+        const baseOptionIds = (q.options || []).map((o) => o.id);
+
+        for (const [lang, trans] of Object.entries(q.translations)) {
+          if (!allowedLanguages.includes(lang)) {
+            errors.push(`${qPrefix} Unsupported translation language '${lang}'. Allowed: ${allowedLanguages.join(', ')}.`);
+          }
+          if (trans && typeof trans === 'object') {
+            const t = trans as { statement?: string; options?: { id: string; text: string }[]; generalExplanation?: string };
+            if (!t.statement || t.statement.trim().length === 0) {
+              errors.push(`${qPrefix} Translation [${lang}] has empty 'statement'.`);
+            }
+            if (!Array.isArray(t.options) || t.options.length !== baseOptionIds.length) {
+              errors.push(`${qPrefix} Translation [${lang}] 'options' count (${t.options?.length || 0}) does not match base options count (${baseOptionIds.length}).`);
+            } else {
+              t.options.forEach((tOpt) => {
+                if (!baseOptionIds.includes(tOpt.id)) {
+                  errors.push(`${qPrefix} Translation [${lang}] option '${tOpt.id}' does not match base option IDs (${baseOptionIds.join(', ')}).`);
+                }
+                if (!tOpt.text || tOpt.text.trim().length === 0) {
+                  errors.push(`${qPrefix} Translation [${lang}] option '${tOpt.id}' has empty text.`);
+                }
+              });
+            }
+            if (!t.generalExplanation || t.generalExplanation.trim().length === 0) {
+              errors.push(`${qPrefix} Translation [${lang}] has empty 'generalExplanation'.`);
+            }
+          }
+        }
       }
     });
   }

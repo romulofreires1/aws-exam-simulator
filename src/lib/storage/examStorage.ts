@@ -1,14 +1,34 @@
-import { ExamAttempt } from '@/types/exam';
+import { ExamAttempt, ExamLanguage } from '@/types/exam';
 
 const ACTIVE_SESSION_PREFIX = 'aws_exam_active_session_';
 const ATTEMPTS_KEY = 'aws_exam_history_attempts';
 const THEME_KEY = 'aws_exam_theme_preference';
+const LANGUAGE_KEY = 'aws_exam_language_preference';
 
 export type ExamTheme = 'aws-modern' | 'pearson-vue';
 
 // Verifica disponibilidade de window/localStorage (SSR Safe)
 function isClient(): boolean {
   return typeof window !== 'undefined' && !!window.localStorage;
+}
+
+export function getLanguagePreference(): ExamLanguage {
+  if (!isClient()) return 'en';
+  try {
+    const saved = localStorage.getItem(LANGUAGE_KEY) as ExamLanguage;
+    return saved === 'pt' || saved === 'es' || saved === 'en' ? saved : 'en';
+  } catch {
+    return 'en';
+  }
+}
+
+export function setLanguagePreference(lang: ExamLanguage): void {
+  if (!isClient()) return;
+  try {
+    localStorage.setItem(LANGUAGE_KEY, lang);
+  } catch (e) {
+    console.error('Erro ao salvar preferência de idioma:', e);
+  }
 }
 
 export function saveActiveSession(attempt: ExamAttempt): void {

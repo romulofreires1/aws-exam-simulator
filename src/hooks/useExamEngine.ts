@@ -5,6 +5,7 @@ import {
   ExamDefinition,
   ExamMode,
   ExamAttempt,
+  ExamLanguage,
   QuestionUserResponse,
 } from '@/types/exam';
 import {
@@ -12,16 +13,20 @@ import {
   getActiveSession,
   clearActiveSession,
   saveCompletedAttempt,
+  getLanguagePreference,
+  setLanguagePreference,
 } from '@/lib/storage/examStorage';
 import { calculateExamScore, isAnswerCorrect } from '@/lib/scoreCalculator';
+import { getLocalizedQuestion, getExamAvailableLanguages } from '@/lib/localization';
 
 interface UseExamEngineProps {
   exam: ExamDefinition;
   mode: ExamMode;
+  initialLanguage?: ExamLanguage;
   onFinishExam?: (attemptId: string) => void;
 }
 
-export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) {
+export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: UseExamEngineProps) {
   const [attemptId, setAttemptId] = useState<string>('');
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [responses, setResponses] = useState<Record<string, QuestionUserResponse>>({});
@@ -31,6 +36,21 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
   const [totalTimeSpentSeconds, setTotalTimeSpentSeconds] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+
+  // Idioma ativo do simulado
+  const availableLanguages = useMemo(() => getExamAvailableLanguages(exam), [exam]);
+  const [language, setLanguageState] = useState<ExamLanguage>(() => {
+    if (initialLanguage && (initialLanguage === 'en' || initialLanguage === 'pt' || initialLanguage === 'es')) {
+      return initialLanguage;
+    }
+    const pref = getLanguagePreference();
+    return availableLanguages.includes(pref) ? pref : availableLanguages[0] || 'en';
+  });
+
+  const setLanguage = useCallback((newLang: ExamLanguage) => {
+    setLanguageState(newLang);
+    setLanguagePreference(newLang);
+  }, []);
 
   // Modais de suporte e estado de pausa
   const [isQuestionMapOpen, setIsQuestionMapOpen] = useState<boolean>(false);
@@ -46,6 +66,9 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       setAttemptId(existing.id);
       setCurrentIndex(existing.currentQuestionIndex || 0);
       setResponses(existing.responses || {});
+      if (existing.language && (existing.language === 'en' || existing.language === 'pt' || existing.language === 'es')) {
+        setLanguageState(existing.language);
+      }
       const savedRemaining =
         typeof existing.timeRemainingSeconds === 'number'
           ? existing.timeRemainingSeconds
@@ -70,10 +93,14 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     setIsInitialized(true);
   }, [exam.id, exam.timeLimitMinutes, mode]);
 
-  // Questão Atual
-  const currentQuestion = useMemo(() => {
+  // Questão Atual Localizada
+  const rawQuestion = useMemo(() => {
     return exam.questions[currentIndex] || exam.questions[0];
   }, [exam.questions, currentIndex]);
+
+  const currentQuestion = useMemo(() => {
+    return getLocalizedQuestion(rawQuestion, language);
+  }, [rawQuestion, language]);
 
   const currentResponse = useMemo(() => {
     if (!currentQuestion) return undefined;
@@ -96,6 +123,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       examCode: exam.code,
       examTitle: exam.title,
       mode,
+      language,
       startedAt: new Date(Date.now() - totalTimeSpentSeconds * 1000).toISOString(),
       timeRemainingSeconds,
       totalTimeSpentSeconds,
@@ -113,6 +141,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     exam.code,
     exam.title,
     mode,
+    language,
     totalTimeSpentSeconds,
     timeRemainingSeconds,
     currentIndex,
@@ -419,6 +448,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       examCode: exam.code,
       examTitle: exam.title,
       mode,
+      language,
       startedAt: new Date(Date.now() - totalTimeSpentSeconds * 1000).toISOString(),
       completedAt: new Date().toISOString(),
       timeRemainingSeconds,
@@ -442,6 +472,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     exam,
     responses,
     mode,
+    language,
     totalTimeSpentSeconds,
     timeRemainingSeconds,
     currentIndex,
@@ -622,6 +653,10 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     setTimeRemainingSeconds,
     totalTimeSpentSeconds,
     setTotalTimeSpentSeconds,
+    // Idioma
+    language,
+    setLanguage,
+    availableLanguages,
     // Timer e formatação
     formattedTime,
     isTimerWarning,

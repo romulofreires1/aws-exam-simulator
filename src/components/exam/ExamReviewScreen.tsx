@@ -2,11 +2,13 @@
 
 import React from 'react';
 import { Flag, CheckCircle, AlertTriangle, ArrowLeft, Send } from 'lucide-react';
-import { Question, QuestionUserResponse } from '@/types/exam';
+import { Question, QuestionUserResponse, ExamLanguage } from '@/types/exam';
+import { getLocalizedQuestion } from '@/lib/localization';
 
 interface ExamReviewScreenProps {
   questions: Question[];
   responses: Record<string, QuestionUserResponse>;
+  language?: ExamLanguage;
   onGoToQuestion: (index: number) => void;
   onBackToExam: () => void;
   onSubmitExam: () => void;
@@ -15,6 +17,7 @@ interface ExamReviewScreenProps {
 export function ExamReviewScreen({
   questions,
   responses,
+  language = 'en',
   onGoToQuestion,
   onBackToExam,
   onSubmitExam,
@@ -96,14 +99,15 @@ export function ExamReviewScreen({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800/60">
-              {questions.map((q, idx) => {
-                const resp = responses[q.id];
+              {questions.map((rawQ, idx) => {
+                const q = getLocalizedQuestion(rawQ, language);
+                const resp = responses[rawQ.id];
                 const isRespAnswered = !!(resp?.selectedOptionIds && resp.selectedOptionIds.length > 0);
                 const isRespFlagged = !!resp?.isFlagged;
 
                 return (
                   <tr
-                    key={q.id}
+                    key={rawQ.id}
                     onClick={() => onGoToQuestion(idx)}
                     className="hover:bg-slate-800/50 cursor-pointer transition-colors"
                   >

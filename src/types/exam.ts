@@ -4,10 +4,25 @@ export type ExamCategory = 'Foundational' | 'Associate' | 'Professional' | 'Spec
 
 export type ExamMode = 'real' | 'practice' | 'review';
 
+export type ExamLanguage = 'en' | 'pt' | 'es';
+
 export interface QuestionOption {
   id: string; // e.g. "A", "B", "C", "D", "E"
   text: string;
   explanation?: string;
+}
+
+export interface LocalizedOption {
+  id: string;
+  text: string;
+  explanation?: string;
+}
+
+export interface LocalizedQuestionContent {
+  statement: string;
+  options: LocalizedOption[];
+  generalExplanation: string;
+  domainName?: string;
 }
 
 export interface Question {
@@ -22,6 +37,7 @@ export interface Question {
   options: QuestionOption[];
   correctAnswers: string[];
   generalExplanation: string;
+  translations?: Partial<Record<ExamLanguage, LocalizedQuestionContent>>;
   referenceUrl?: string;
   difficulty?: 'easy' | 'medium' | 'hard';
 }
@@ -42,6 +58,8 @@ export interface ExamDefinition {
   timeLimitMinutes: number;
   passingScore: number; // e.g. 700 or 750 (scale 100-1000)
   icon?: string;
+  availableLanguages?: ExamLanguage[];
+  defaultLanguage?: ExamLanguage;
   domains: DomainDefinition[];
   questions: Question[];
 }
@@ -81,6 +99,7 @@ export interface ExamAttempt {
   examCode: string;
   examTitle: string;
   mode: ExamMode;
+  language?: ExamLanguage;
   startedAt: string;
   completedAt?: string;
   timeRemainingSeconds: number;

@@ -11,6 +11,8 @@ import { DomainBreakdownList } from '@/components/results/DomainBreakdownList';
 import { QuestionReviewList } from '@/components/results/QuestionReviewList';
 import { RotateCcw, History, AlertCircle, ArrowLeft } from 'lucide-react';
 
+import { getExamAvailableLanguages } from '@/lib/localization';
+
 function ExamResultContent({ examId }: { examId: string }) {
   const searchParams = useSearchParams();
   const attemptId = searchParams.get('attemptId');
@@ -109,7 +111,12 @@ function ExamResultContent({ examId }: { examId: string }) {
         )}
 
         {/* 3. Detailed Question Review */}
-        <QuestionReviewList questions={exam.questions} responses={attempt.responses} />
+        <QuestionReviewList
+          questions={exam.questions}
+          responses={attempt.responses}
+          language={attempt.language || 'en'}
+          availableLanguages={getExamAvailableLanguages(exam)}
+        />
       </div>
     </div>
   );

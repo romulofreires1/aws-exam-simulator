@@ -71,7 +71,90 @@
       ],
       "generalExplanation": "AWS CloudHSM provides fully managed, dedicated single-tenant hardware security modules (HSMs) under customer control for strict regulatory and FIPS 140-2 Level 3 compliance.",
       "referenceUrl": "https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "A sovereign wealth fund has a strict regulatory requirement mandating that cryptographic encryption keys must be generated, stored, and managed inside dedicated, single-tenant FIPS 140-2 Level 3 validated Hardware Security Modules (HSMs) directly under the sole physical and logical control of the company's security officers. AWS personnel must have zero administrative access to the HSM key material. Which AWS service meets these compliance requirements?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorrect: ACM manages SSL/TLS public certificates, not custom corporate symmetric HSM encryption keys."
+            },
+            {
+              "id": "B",
+              "text": "Deploy an AWS CloudHSM cluster inside a private VPC to manage single-tenant FIPS 140-2 Level 3 cryptographic hardware.",
+              "explanation": "Correct: AWS CloudHSM provides dedicated, single-tenant FIPS 140-2 Level 3 validated hardware security modules running in your VPC where the customer has sole ownership and control of cryptographic keys and HSM user administration."
+            },
+            {
+              "id": "C",
+              "text": "AWS Key Management Service (AWS KMS) with multi-tenant default key stores",
+              "explanation": "Incorrect: Standard AWS KMS uses multi-tenant HSMs validated to FIPS 140-2 Level 3 (or Level 2) managed by AWS, rather than dedicated customer-administered single-tenant appliances."
+            },
+            {
+              "id": "D",
+              "text": "Store application configuration feature flags in AWS Secrets Manager and schedule automatic secret rotation.",
+              "explanation": "Incorrect: Secrets Manager stores database credentials and API keys, relying on KMS or CloudHSM for key encryption."
+            }
+          ],
+          "generalExplanation": "AWS CloudHSM provides fully managed, dedicated single-tenant hardware security modules (HSMs) under customer control for strict regulatory and FIPS 140-2 Level 3 compliance."
+        },
+        "pt": {
+          "statement": "A sovereign wealth fund has a strict regulatory requirement mandating that cryptographic encryption keys must be generated, stored, and managed inside dedicated, single-tenant FIPS 140-2 Level 3 validated Hardware Security Modules (HSMs) directly under the sole physical and logical control of the company's security officers. AWS personnel must have zero administrative access to the HSM key material. Which AWS service meets these compliance requirements?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorreto: ACM manages SSL/TLS public certificates, not custom corporate symmetric HSM encryption keys."
+            },
+            {
+              "id": "B",
+              "text": "Implantar an AWS CloudHSM cluster inside a private VPC to manage single-tenant FIPS 140-2 Level 3 cryptographic hardware.",
+              "explanation": "Correto: AWS CloudHSM provides dedicated, single-tenant FIPS 140-2 Level 3 validated hardware security modules running in your VPC where the customer has sole ownership and control of cryptographic keys and HSM user administration."
+            },
+            {
+              "id": "C",
+              "text": "AWS Key Management Service (AWS KMS) with multi-tenant default key stores",
+              "explanation": "Incorreto: Standard AWS KMS uses multi-tenant HSMs validated to FIPS 140-2 Level 3 (or Level 2) managed by AWS, rather than dedicated customer-administered single-tenant appliances."
+            },
+            {
+              "id": "D",
+              "text": "Armazenar application configuration feature flags in AWS Secrets Manager and schedule automatic secret rotation.",
+              "explanation": "Incorreto: Secrets Manager stores database credentials and API keys, relying on KMS or CloudHSM for key encryption."
+            }
+          ],
+          "generalExplanation": "AWS CloudHSM provides fully managed, dedicated single-tenant hardware security modules (HSMs) under customer control for strict regulatory and FIPS 140-2 Level 3 compliance."
+        },
+        "es": {
+          "statement": "A sovereign wealth fund has a strict regulatory requirement mandating that cryptographic encryption keys must be generated, stored, and managed inside dedicated, single-tenant FIPS 140-2 Level 3 validated Hardware Security Modules (HSMs) directly under the sole physical and logical control of the company's security officers. AWS personnel must have zero administrative access to the HSM key material. Which AWS service meets these compliance requirements?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorrecto: ACM manages SSL/TLS public certificates, not custom corporate symmetric HSM encryption keys."
+            },
+            {
+              "id": "B",
+              "text": "Implementar an AWS CloudHSM cluster inside a private VPC to manage single-tenant FIPS 140-2 Level 3 cryptographic hardware.",
+              "explanation": "Correcto: AWS CloudHSM provides dedicated, single-tenant FIPS 140-2 Level 3 validated hardware security modules running in your VPC where the customer has sole ownership and control of cryptographic keys and HSM user administration."
+            },
+            {
+              "id": "C",
+              "text": "AWS Key Management Service (AWS KMS) with multi-tenant default key stores",
+              "explanation": "Incorrecto: Standard AWS KMS uses multi-tenant HSMs validated to FIPS 140-2 Level 3 (or Level 2) managed by AWS, rather than dedicated customer-administered single-tenant appliances."
+            },
+            {
+              "id": "D",
+              "text": "Almacenar application configuration feature flags in AWS Secrets Manager and schedule automatic secret rotation.",
+              "explanation": "Incorrecto: Secrets Manager stores database credentials and API keys, relying on KMS or CloudHSM for key encryption."
+            }
+          ],
+          "generalExplanation": "AWS CloudHSM provides fully managed, dedicated single-tenant hardware security modules (HSMs) under customer control for strict regulatory and FIPS 140-2 Level 3 compliance."
+        }
+      }
     },
     {
       "id": "sap-sim3-q002",
@@ -113,7 +196,90 @@
       ],
       "generalExplanation": "AWS Billing Conductor enables customers and MSPs to customize billing parameters, create billing groups, apply custom pricing rules, and present pro forma invoices to end users.",
       "referenceUrl": "https://docs.aws.amazon.com/billingconductor/latest/userguide/what-is-billingconductor.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "A global managed service provider (MSP) manages 500 AWS accounts under a consolidated billing AWS Organization. The MSP needs to generate customized pro forma billing invoices for different enterprise clients, apply custom markup rates and tiered pricing discounts, and allow clients to view their customized billing rates in their own consoles without exposing the MSP's actual wholesale AWS volume discounts. Which AWS service is designed for this requirement?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrect: Cost Explorer displays actual historical AWS costs and discounts across consolidated billing, without custom client markup engines."
+            },
+            {
+              "id": "B",
+              "text": "Use AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorrect: Pricing Calculator is an architecture estimation tool, not an automated live multi-account billing customization engine."
+            },
+            {
+              "id": "C",
+              "text": "Configure AWS Billing Conductor to define custom billing groups, apply pricing markups, and generate pro forma invoices.",
+              "explanation": "Correct: AWS Billing Conductor is a customizable billing service that allows MSPs and enterprises to customize billing rates, group accounts into billing groups, and generate pro forma billing views for end clients."
+            },
+            {
+              "id": "D",
+              "text": "Configure AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrect: AWS Budgets sends spending alerts, but does not calculate custom rate markups or generate pro forma billing invoices."
+            }
+          ],
+          "generalExplanation": "AWS Billing Conductor enables customers and MSPs to customize billing parameters, create billing groups, apply custom pricing rules, and present pro forma invoices to end users."
+        },
+        "pt": {
+          "statement": "A global managed service provider (MSP) manages 500 AWS accounts under a consolidated billing AWS Organization. The MSP precisa generate customized pro forma billing invoices for different enterprise clients, apply custom markup rates and tiered pricing discounts, and allow clients to view their customized billing rates in their own consoles without exposing the MSP's actual wholesale AWS volume discounts. Which AWS service is designed for this requirement?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorreto: Cost Explorer displays actual historical AWS costs and discounts across consolidated billing, without custom client markup engines."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorreto: Pricing Calculator is an architecture estimation tool, not an automated live multi-account billing customization engine."
+            },
+            {
+              "id": "C",
+              "text": "Configurar AWS Billing Conductor to define custom billing groups, apply pricing markups, and generate pro forma invoices.",
+              "explanation": "Correto: AWS Billing Conductor is a customizable billing service that allows MSPs and enterprises to customize billing rates, group accounts into billing groups, and generate pro forma billing views for end clients."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorreto: AWS Budgets sends spending alerts, but does not calculate custom rate markups or generate pro forma billing invoices."
+            }
+          ],
+          "generalExplanation": "AWS Billing Conductor enables customers and MSPs to customize billing parameters, create billing groups, apply custom pricing rules, and present pro forma invoices to end users."
+        },
+        "es": {
+          "statement": "A global managed service provider (MSP) manages 500 AWS accounts under a consolidated billing AWS Organization. The MSP necesita generate customized pro forma billing invoices for different enterprise clients, apply custom markup rates and tiered pricing discounts, and allow clients to view their customized billing rates in their own consoles without exposing the MSP's actual wholesale AWS volume discounts. Which AWS service is designed for this requirement?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrecto: Cost Explorer displays actual historical AWS costs and discounts across consolidated billing, without custom client markup engines."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorrecto: Pricing Calculator is an architecture estimation tool, not an automated live multi-account billing customization engine."
+            },
+            {
+              "id": "C",
+              "text": "Configurar AWS Billing Conductor to define custom billing groups, apply pricing markups, and generate pro forma invoices.",
+              "explanation": "Correcto: AWS Billing Conductor is a customizable billing service that allows MSPs and enterprises to customize billing rates, group accounts into billing groups, and generate pro forma billing views for end clients."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrecto: AWS Budgets sends spending alerts, but does not calculate custom rate markups or generate pro forma billing invoices."
+            }
+          ],
+          "generalExplanation": "AWS Billing Conductor enables customers and MSPs to customize billing parameters, create billing groups, apply custom pricing rules, and present pro forma invoices to end users."
+        }
+      }
     },
     {
       "id": "sap-sim3-q003",
@@ -155,7 +321,90 @@
       ],
       "generalExplanation": "Centralized egress VPC architecture with AWS Transit Gateway and AWS Network Firewall provides scalable, highly available Layer 7 domain filtering and Suricata-compatible IPS inspection.",
       "referenceUrl": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/arch-centralized.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "An enterprise needs to implement centralized outbound internet egress inspection for 80 VPCs across 2 AWS Regions. All outbound web requests must be inspected against TLS Server Name Indication (SNI) domain whitelists and intrusion prevention system (IPS) Suricata rule sets. The solution must scale to 45 Gbps of egress traffic per region with high availability across 3 Availability Zones and zero single point of failure. Which architecture should be deployed?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy a centralized Egress Inspection VPC in each region containing an AWS Transit Gateway attachment with Appliance Mode enabled, and deploy AWS Network Firewall endpoints in a dedicated firewall subnet in each Availability Zone backed by a stateful rule group for domain list SNI filtering and IPS Suricata rules.",
+              "explanation": "Correct: Centralized egress inspection via AWS Transit Gateway with Appliance Mode and AWS Network Firewall endpoints across 3 AZs scales up to 100 Gbps, provides stateful SNI domain filtering, and eliminates single points of failure."
+            },
+            {
+              "id": "B",
+              "text": "Deploy squid proxy EC2 instances on a single t3.medium instance in each spoke VPC.",
+              "explanation": "Incorrect: Self-managed proxy instances on t3.medium cannot handle 45 Gbps, create single points of failure, and introduce massive operational maintenance."
+            },
+            {
+              "id": "C",
+              "text": "Configure Amazon Route 53 private hosted zones in each VPC with wildcard records pointing to 127.0.0.1.",
+              "explanation": "Incorrect: Route 53 DNS sinkholing does not provide stateful Layer 7 IPS packet inspection or SNI filtering for active TCP flows."
+            },
+            {
+              "id": "D",
+              "text": "Create VPC Peering connections between all 80 VPCs and deploy NAT Gateways in every spoke subnet.",
+              "explanation": "Incorrect: Deploying NAT Gateways in hundreds of spoke subnets is extremely expensive and lacks centralized stateful IPS/SNI inspection."
+            }
+          ],
+          "generalExplanation": "Centralized egress VPC architecture with AWS Transit Gateway and AWS Network Firewall provides scalable, highly available Layer 7 domain filtering and Suricata-compatible IPS inspection."
+        },
+        "pt": {
+          "statement": "Uma empresa precisa implement centralized outbound internet egress inspection for 80 VPCs across 2 AWS Regions. All outbound web requests must be inspected against TLS Server Name Indication (SNI) domain whitelists and intrusion prevention system (IPS) Suricata rule sets. The solution must scale to 45 Gbps of egress traffic per region with alta disponibilidade across 3 Availability Zones and zero single point of failure. Which architecture should be deployed?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar a centralized Egress Inspection VPC in each region containing an AWS Transit Gateway attachment with Appliance Mode enabled, and deploy AWS Network Firewall endpoints in a dedicated firewall subnet in each Availability Zone backed by a stateful rule group for domain list SNI filtering and IPS Suricata rules.",
+              "explanation": "Correto: Centralized egress inspection via AWS Transit Gateway with Appliance Mode and AWS Network Firewall endpoints across 3 AZs scales up to 100 Gbps, provides stateful SNI domain filtering, and eliminates single points of failure."
+            },
+            {
+              "id": "B",
+              "text": "Implantar squid proxy EC2 instances on a single t3.medium instance in each spoke VPC.",
+              "explanation": "Incorreto: Self-managed proxy instances on t3.medium cannot handle 45 Gbps, create single points of failure, and introduce massive operational maintenance."
+            },
+            {
+              "id": "C",
+              "text": "Configurar Amazon Route 53 private hosted zones in each VPC with wildcard records pointing to 127.0.0.1.",
+              "explanation": "Incorreto: Route 53 DNS sinkholing does not provide stateful Layer 7 IPS packet inspection or SNI filtering for active TCP flows."
+            },
+            {
+              "id": "D",
+              "text": "Criar VPC Peering connections between all 80 VPCs and deploy NAT Gateways in every spoke subnet.",
+              "explanation": "Incorreto: Deploying NAT Gateways in hundreds of spoke subnets is extremely expensive and lacks centralized stateful IPS/SNI inspection."
+            }
+          ],
+          "generalExplanation": "Centralized egress VPC architecture with AWS Transit Gateway and AWS Network Firewall provides scalable, highly available Layer 7 domain filtering and Suricata-compatible IPS inspection."
+        },
+        "es": {
+          "statement": "Una empresa necesita implement centralized outbound internet egress inspection for 80 VPCs across 2 AWS Regions. All outbound web requests must be inspected against TLS Server Name Indication (SNI) domain whitelists and intrusion prevention system (IPS) Suricata rule sets. The solution must scale to 45 Gbps of egress traffic per region with alta disponibilidad across 3 Availability Zones and zero single point of failure. Which architecture should be deployed?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar a centralized Egress Inspection VPC in each region containing an AWS Transit Gateway attachment with Appliance Mode enabled, and deploy AWS Network Firewall endpoints in a dedicated firewall subnet in each Availability Zone backed by a stateful rule group for domain list SNI filtering and IPS Suricata rules.",
+              "explanation": "Correcto: Centralized egress inspection via AWS Transit Gateway with Appliance Mode and AWS Network Firewall endpoints across 3 AZs scales up to 100 Gbps, provides stateful SNI domain filtering, and eliminates single points of failure."
+            },
+            {
+              "id": "B",
+              "text": "Implementar squid proxy EC2 instances on a single t3.medium instance in each spoke VPC.",
+              "explanation": "Incorrecto: Self-managed proxy instances on t3.medium cannot handle 45 Gbps, create single points of failure, and introduce massive operational maintenance."
+            },
+            {
+              "id": "C",
+              "text": "Configurar Amazon Route 53 private hosted zones in each VPC with wildcard records pointing to 127.0.0.1.",
+              "explanation": "Incorrecto: Route 53 DNS sinkholing does not provide stateful Layer 7 IPS packet inspection or SNI filtering for active TCP flows."
+            },
+            {
+              "id": "D",
+              "text": "Crear VPC Peering connections between all 80 VPCs and deploy NAT Gateways in every spoke subnet.",
+              "explanation": "Incorrecto: Deploying NAT Gateways in hundreds of spoke subnets is extremely expensive and lacks centralized stateful IPS/SNI inspection."
+            }
+          ],
+          "generalExplanation": "Centralized egress VPC architecture with AWS Transit Gateway and AWS Network Firewall provides scalable, highly available Layer 7 domain filtering and Suricata-compatible IPS inspection."
+        }
+      }
     },
     {
       "id": "sap-sim3-q004",
@@ -197,7 +446,90 @@
       ],
       "generalExplanation": "Using an External ID in the `Condition` block of an IAM role's trust policy is the standard AWS mechanism to prevent the Confused Deputy problem during cross-account role assumption.",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/confused-deputy.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "An automated data processing pipeline running on an EC2 instance in Account A needs to access an Amazon S3 bucket in Account B. For enhanced security, Account B requires that the IAM role in Account A must provide an External ID when assuming the cross-account role to prevent the 'Confused Deputy' problem. How should the IAM trust policy in Account B be configured?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create an IAM user in Account B with an access key and send the plaintext secret key to Account A via email.",
+              "explanation": "Incorrect: Distributing static long-term IAM credentials violates security best practices and does not solve the confused deputy vulnerability."
+            },
+            {
+              "id": "B",
+              "text": "Add a public read/write bucket policy on the S3 bucket in Account B.",
+              "explanation": "Incorrect: Making the bucket public exposes all data to the internet."
+            },
+            {
+              "id": "C",
+              "text": "Configure the trust policy of the IAM role in Account B with an `sts:AssumeRole` action, specifying Account A's role as the Principal, and add a `Condition` block requiring `sts:ExternalId` matching the shared unique identifier string.",
+              "explanation": "Correct: The Confused Deputy problem is mitigated by requiring the third-party/cross-account role assumption to supply an `sts:ExternalId` in the `Condition` block of the IAM role's trust policy."
+            },
+            {
+              "id": "D",
+              "text": "Configure VPC Peering and disable IAM authorization entirely.",
+              "explanation": "Incorrect: VPC Peering operates at the network layer and does not bypass or configure IAM role trust authorization."
+            }
+          ],
+          "generalExplanation": "Using an External ID in the `Condition` block of an IAM role's trust policy is the standard AWS mechanism to prevent the Confused Deputy problem during cross-account role assumption."
+        },
+        "pt": {
+          "statement": "An automated data processing pipeline running on an EC2 instance in Account A precisa access an Amazon S3 bucket in Account B. For enhanced security, Account B exige que the IAM role in Account A must provide an External ID when assuming the cross-account role para prevenir the 'Confused Deputy' problem. How should the IAM trust policy in Account B be configured?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar an IAM user in Account B with an access key and send the plaintext secret key to Account A via email.",
+              "explanation": "Incorreto: Distributing static long-term IAM credentials violates security best practices and does not solve the confused deputy vulnerability."
+            },
+            {
+              "id": "B",
+              "text": "Add a public read/write bucket policy on the S3 bucket in Account B.",
+              "explanation": "Incorreto: Making the bucket public exposes all data to the internet."
+            },
+            {
+              "id": "C",
+              "text": "Configurar the trust policy of the IAM role in Account B with an `sts:AssumeRole` action, specifying Account A's role as the Principal, and add a `Condition` block requiring `sts:ExternalId` matching the shared unique identifier string.",
+              "explanation": "Correto: The Confused Deputy problem is mitigated by requiring the third-party/cross-account role assumption to supply an `sts:ExternalId` in the `Condition` block of the IAM role's trust policy."
+            },
+            {
+              "id": "D",
+              "text": "Configurar VPC Peering and disable IAM authorization entirely.",
+              "explanation": "Incorreto: VPC Peering operates at the network layer and does not bypass or configure IAM role trust authorization."
+            }
+          ],
+          "generalExplanation": "Using an External ID in the `Condition` block of an IAM role's trust policy is the standard AWS mechanism para prevenir the Confused Deputy problem during cross-account role assumption."
+        },
+        "es": {
+          "statement": "An automated data processing pipeline running on an EC2 instance in Account A necesita access an Amazon S3 bucket in Account B. For enhanced security, Account B requiere que the IAM role in Account A must provide an External ID when assuming the cross-account role para prevenir the 'Confused Deputy' problem. How should the IAM trust policy in Account B be configured?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear an IAM user in Account B with an access key and send the plaintext secret key to Account A via email.",
+              "explanation": "Incorrecto: Distributing static long-term IAM credentials violates security best practices and does not solve the confused deputy vulnerability."
+            },
+            {
+              "id": "B",
+              "text": "Add a public read/write bucket policy on the S3 bucket in Account B.",
+              "explanation": "Incorrecto: Making the bucket public exposes all data to the internet."
+            },
+            {
+              "id": "C",
+              "text": "Configurar the trust policy of the IAM role in Account B with an `sts:AssumeRole` action, specifying Account A's role as the Principal, and add a `Condition` block requiring `sts:ExternalId` matching the shared unique identifier string.",
+              "explanation": "Correcto: The Confused Deputy problem is mitigated by requiring the third-party/cross-account role assumption to supply an `sts:ExternalId` in the `Condition` block of the IAM role's trust policy."
+            },
+            {
+              "id": "D",
+              "text": "Configurar VPC Peering and disable IAM authorization entirely.",
+              "explanation": "Incorrecto: VPC Peering operates at the network layer and does not bypass or configure IAM role trust authorization."
+            }
+          ],
+          "generalExplanation": "Using an External ID in the `Condition` block of an IAM role's trust policy is the standard AWS mechanism para prevenir the Confused Deputy problem during cross-account role assumption."
+        }
+      }
     },
     {
       "id": "sap-sim3-q005",
@@ -239,7 +571,90 @@
       ],
       "generalExplanation": "AWS Managed Microsoft AD shared across accounts combined with a forest trust and AWS Systems Manager Seamless Domain Join provides a scalable, highly available enterprise directory architecture.",
       "referenceUrl": "https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_seamless_domain_join.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise runs 1,000 Amazon EC2 Windows Server instances across multiple AWS accounts in an AWS Organization. The instances must be joined seamlessly to an Active Directory domain for centralized Group Policy Objects (GPOs) and Kerberos authentication. The company wants to minimize on-premises domain controller traffic over Direct Connect and eliminate manual domain-join scripting. Which solution is most appropriate?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Point all 1,000 EC2 instances across all accounts directly to on-premises domain controller IP addresses over the public internet.",
+              "explanation": "Incorrect: Exposing Active Directory ports over the public internet is a major security vulnerability and creates high network latency."
+            },
+            {
+              "id": "B",
+              "text": "Create local Windows Administrator users on every EC2 instance using EC2 User Data.",
+              "explanation": "Incorrect: Local user management on 1,000 instances lacks centralized domain governance, GPOs, and Kerberos SSO."
+            },
+            {
+              "id": "C",
+              "text": "Deploy Amazon Cognito User Pools and configure Windows login via OAuth 2.0.",
+              "explanation": "Incorrect: Windows Server Active Directory domain join and GPOs require native Microsoft Active Directory / Kerberos / LDAP, not Cognito."
+            },
+            {
+              "id": "D",
+              "text": "Deploy AWS Directory Service for Microsoft Active Directory (AWS Managed Microsoft AD) in a shared Services account, establish a two-way forest trust to the on-premises Active Directory, share the directory with member accounts via AWS RAM, and use AWS Systems Manager Seamless Domain Join.",
+              "explanation": "Correct: AWS Managed Microsoft AD deployed in AWS with a forest trust to on-prem AD allows low-latency local domain authentication in AWS, and SSM Seamless Domain Join automates domain joining across accounts without custom scripts."
+            }
+          ],
+          "generalExplanation": "AWS Managed Microsoft AD shared across accounts combined with a forest trust and AWS Systems Manager Seamless Domain Join provides a scalable, highly available enterprise directory architecture."
+        },
+        "pt": {
+          "statement": "Uma empresa runs 1,000 Amazon EC2 Windows Server instances across multiple AWS accounts in an AWS Organization. The instances must be joined seamlessly to an Active Directory domain for centralized Group Policy Objects (GPOs) and Kerberos authentication. The company deseja minimize on-premises domain controller traffic over Direct Connect and eliminate manual domain-join scripting. Which solution is most appropriate?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Point all 1,000 EC2 instances across all accounts directly to on-premises domain controller IP addresses over the public internet.",
+              "explanation": "Incorreto: Exposing Active Directory ports over the public internet is a major security vulnerability and creates high network latency."
+            },
+            {
+              "id": "B",
+              "text": "Criar local Windows Administrator users on every EC2 instance using EC2 User Data.",
+              "explanation": "Incorreto: Local user management on 1,000 instances lacks centralized domain governance, GPOs, and Kerberos SSO."
+            },
+            {
+              "id": "C",
+              "text": "Implantar Amazon Cognito User Pools and configure Windows login via OAuth 2.0.",
+              "explanation": "Incorreto: Windows Server Active Directory domain join and GPOs require native Microsoft Active Directory / Kerberos / LDAP, not Cognito."
+            },
+            {
+              "id": "D",
+              "text": "Implantar AWS Directory Service for Microsoft Active Directory (AWS Managed Microsoft AD) in a shared Services account, establish a two-way forest trust to the on-premises Active Directory, share the directory with member accounts via AWS RAM, and use AWS Systems Manager Seamless Domain Join.",
+              "explanation": "Correto: AWS Managed Microsoft AD deployed in AWS with a forest trust to on-prem AD allows low-latency local domain authentication in AWS, and SSM Seamless Domain Join automates domain joining across accounts without custom scripts."
+            }
+          ],
+          "generalExplanation": "AWS Managed Microsoft AD shared across accounts combined with a forest trust and AWS Systems Manager Seamless Domain Join provides a scalable, highly available enterprise directory architecture."
+        },
+        "es": {
+          "statement": "Una empresa runs 1,000 Amazon EC2 Windows Server instances across multiple AWS accounts in an AWS Organization. The instances must be joined seamlessly to an Active Directory domain for centralized Group Policy Objects (GPOs) and Kerberos authentication. The company desea minimize on-premises domain controller traffic over Direct Connect and eliminate manual domain-join scripting. Which solution is most appropriate?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Point all 1,000 EC2 instances across all accounts directly to on-premises domain controller IP addresses over the public internet.",
+              "explanation": "Incorrecto: Exposing Active Directory ports over the public internet is a major security vulnerability and creates high network latency."
+            },
+            {
+              "id": "B",
+              "text": "Crear local Windows Administrator users on every EC2 instance using EC2 User Data.",
+              "explanation": "Incorrecto: Local user management on 1,000 instances lacks centralized domain governance, GPOs, and Kerberos SSO."
+            },
+            {
+              "id": "C",
+              "text": "Implementar Amazon Cognito User Pools and configure Windows login via OAuth 2.0.",
+              "explanation": "Incorrecto: Windows Server Active Directory domain join and GPOs require native Microsoft Active Directory / Kerberos / LDAP, not Cognito."
+            },
+            {
+              "id": "D",
+              "text": "Implementar AWS Directory Service for Microsoft Active Directory (AWS Managed Microsoft AD) in a shared Services account, establish a two-way forest trust to the on-premises Active Directory, share the directory with member accounts via AWS RAM, and use AWS Systems Manager Seamless Domain Join.",
+              "explanation": "Correcto: AWS Managed Microsoft AD deployed in AWS with a forest trust to on-prem AD allows low-latency local domain authentication in AWS, and SSM Seamless Domain Join automates domain joining across accounts without custom scripts."
+            }
+          ],
+          "generalExplanation": "AWS Managed Microsoft AD shared across accounts combined with a forest trust and AWS Systems Manager Seamless Domain Join provides a scalable, highly available enterprise directory architecture."
+        }
+      }
     },
     {
       "id": "sap-sim3-q006",
@@ -281,7 +696,90 @@
       ],
       "generalExplanation": "AWS Security Hub aggregates, organizes, and prioritizes security findings from supported AWS services and evaluates multi-account environments against regulatory standards like CIS and PCI-DSS.",
       "referenceUrl": "https://docs.aws.amazon.com/securityhub/latest/userguide/standards-reference.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "An organization requires continuous auditing of compliance across 100 AWS accounts against the CIS AWS Foundations Benchmark and PCI-DSS standards. Non-compliant resource findings must be automatically consolidated into a central security account, and executive compliance scorecards must be visible in a single dashboard. Which service should be designated as the central compliance posture manager?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy an EC2 instance in each member account running custom open-source compliance scanning scripts and save output files to S3.",
+              "explanation": "Incorrect: Custom scanning scripts on 100 EC2 instances introduce high maintenance, lack continuous evaluation, and require custom aggregation coding."
+            },
+            {
+              "id": "B",
+              "text": "Configure AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrect: AWS Budgets tracks financial cost thresholds, not security configuration standards."
+            },
+            {
+              "id": "C",
+              "text": "Designate a Security Audit account as the delegated administrator for AWS Security Hub, enable Security Hub across all member accounts with the CIS AWS Foundations and PCI-DSS standards activated, and view aggregated compliance scores in the central dashboard.",
+              "explanation": "Correct: AWS Security Hub provides automated, continuous compliance checks against security industry standards (CIS, PCI-DSS, NIST) with consolidated multi-account scoring and finding aggregation."
+            },
+            {
+              "id": "D",
+              "text": "Configure Amazon CloudWatch Logs Insights to scan raw VPC Flow Logs daily.",
+              "explanation": "Incorrect: VPC Flow Logs contain network flow records, not IAM, S3, and CIS foundational configuration compliance data."
+            }
+          ],
+          "generalExplanation": "AWS Security Hub aggregates, organizes, and prioritizes security findings from supported AWS services and evaluates multi-account environments against regulatory standards like CIS and PCI-DSS."
+        },
+        "pt": {
+          "statement": "An organization requires continuous auditing of compliance across 100 AWS accounts against the CIS AWS Foundations Benchmark and PCI-DSS standards. Non-compliant resource findings must be automatically consolidated into a central security account, and executive compliance scorecards must be visible in a single dashboard. Which service should be designated as the central compliance posture manager?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar an EC2 instance in each member account running custom open-source compliance scanning scripts and save output files to S3.",
+              "explanation": "Incorreto: Custom scanning scripts on 100 EC2 instances introduce high maintenance, lack continuous evaluation, and require custom aggregation coding."
+            },
+            {
+              "id": "B",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorreto: AWS Budgets tracks financial cost thresholds, not security configuration standards."
+            },
+            {
+              "id": "C",
+              "text": "Designate a Security Audit account as the delegated administrator for AWS Security Hub, enable Security Hub across all member accounts with the CIS AWS Foundations and PCI-DSS standards activated, and view aggregated compliance scores in the central dashboard.",
+              "explanation": "Correto: AWS Security Hub provides automated, continuous compliance checks against security industry standards (CIS, PCI-DSS, NIST) with consolidated multi-account scoring and finding aggregation."
+            },
+            {
+              "id": "D",
+              "text": "Configurar Amazon CloudWatch Logs Insights to scan raw VPC Flow Logs daily.",
+              "explanation": "Incorreto: VPC Flow Logs contain network flow records, not IAM, S3, and CIS foundational configuration compliance data."
+            }
+          ],
+          "generalExplanation": "AWS Security Hub aggregates, organizes, and prioritizes security findings from supported AWS services and evaluates multi-account environments against regulatory standards like CIS and PCI-DSS."
+        },
+        "es": {
+          "statement": "An organization requires continuous auditing of compliance across 100 AWS accounts against the CIS AWS Foundations Benchmark and PCI-DSS standards. Non-compliant resource findings must be automatically consolidated into a central security account, and executive compliance scorecards must be visible in a single dashboard. Which service should be designated as the central compliance posture manager?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar an EC2 instance in each member account running custom open-source compliance scanning scripts and save output files to S3.",
+              "explanation": "Incorrecto: Custom scanning scripts on 100 EC2 instances introduce high maintenance, lack continuous evaluation, and require custom aggregation coding."
+            },
+            {
+              "id": "B",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrecto: AWS Budgets tracks financial cost thresholds, not security configuration standards."
+            },
+            {
+              "id": "C",
+              "text": "Designate a Security Audit account as the delegated administrator for AWS Security Hub, enable Security Hub across all member accounts with the CIS AWS Foundations and PCI-DSS standards activated, and view aggregated compliance scores in the central dashboard.",
+              "explanation": "Correcto: AWS Security Hub provides automated, continuous compliance checks against security industry standards (CIS, PCI-DSS, NIST) with consolidated multi-account scoring and finding aggregation."
+            },
+            {
+              "id": "D",
+              "text": "Configurar Amazon CloudWatch Logs Insights to scan raw VPC Flow Logs daily.",
+              "explanation": "Incorrecto: VPC Flow Logs contain network flow records, not IAM, S3, and CIS foundational configuration compliance data."
+            }
+          ],
+          "generalExplanation": "AWS Security Hub aggregates, organizes, and prioritizes security findings from supported AWS services and evaluates multi-account environments against regulatory standards like CIS and PCI-DSS."
+        }
+      }
     },
     {
       "id": "sap-sim3-q007",
@@ -323,7 +821,90 @@
       ],
       "generalExplanation": "AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standardized, governed multi-account provisioning integrated with enterprise ITSM tools like ServiceNow.",
       "referenceUrl": "https://docs.aws.amazon.com/controltower/latest/userguide/account-factory.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise landing zone managed by AWS Control Tower needs to automate account provisioning for new engineering teams. The account creation process must provision a dedicated AWS account, attach it to the appropriate Organizational Unit (OU), apply baseline Service Control Policies (SCPs), configure IAM Identity Center permission sets, and initialize network connectivity via Transit Gateway automatically through a ServiceNow ticket approval. Which solution enables this automated workflow?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use AWS Control Tower Account Factory integrated with the AWS Service Catalog ServiceNow connector (or Account Factory for Terraform - AFT) to automate end-to-end account provisioning upon ticket approval.",
+              "explanation": "Correct: AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standard account creation, governance guardrails, and network provisioning via API/ITSM integration."
+            },
+            {
+              "id": "B",
+              "text": "Instruct an administrator to manually log in to the AWS Management Console to create accounts one by one.",
+              "explanation": "Incorrect: Manual console account creation is slow, error-prone, and cannot integrate automatically with ServiceNow ticket approvals."
+            },
+            {
+              "id": "C",
+              "text": "Deploy an AWS Lambda function that calls `create-user` across all accounts.",
+              "explanation": "Incorrect: `create-user` creates individual IAM users, not complete new AWS accounts within AWS Organizations."
+            },
+            {
+              "id": "D",
+              "text": "Attach a Service Control Policy (SCP) to ServiceNow's IP address.",
+              "explanation": "Incorrect: SCPs are applied to AWS Organizations OUs and accounts, not external third-party IP addresses."
+            }
+          ],
+          "generalExplanation": "AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standardized, governed multi-account provisioning integrated with enterprise ITSM tools like ServiceNow."
+        },
+        "pt": {
+          "statement": "Uma empresa landing zone managed by AWS Control Tower precisa automate account provisioning for new engineering teams. The account creation process must provision a dedicated AWS account, attach it to the appropriate Organizational Unit (OU), apply baseline Service Control Policies (SCPs), configure IAM Identity Center permission sets, and initialize network connectivity via Transit Gateway automatically through a ServiceNow ticket approval. Which solution enables this automated workflow?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Control Tower Account Factory integrated with the AWS Service Catalog ServiceNow connector (or Account Factory for Terraform - AFT) para automatizar end-to-end account provisioning upon ticket approval.",
+              "explanation": "Correto: AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standard account creation, governance guardrails, and network provisioning via API/ITSM integration."
+            },
+            {
+              "id": "B",
+              "text": "Instruct an administrator to manually log in to the AWS Management Console to create accounts one by one.",
+              "explanation": "Incorreto: Manual console account creation is slow, error-prone, and cannot integrate automatically with ServiceNow ticket approvals."
+            },
+            {
+              "id": "C",
+              "text": "Implantar an AWS Lambda function that calls `create-user` across all accounts.",
+              "explanation": "Incorreto: `create-user` creates individual IAM users, not complete new AWS accounts within AWS Organizations."
+            },
+            {
+              "id": "D",
+              "text": "Anexar a Service Control Policy (SCP) to ServiceNow's IP address.",
+              "explanation": "Incorreto: SCPs are applied to AWS Organizations OUs and accounts, not external third-party IP addresses."
+            }
+          ],
+          "generalExplanation": "AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standardized, governed multi-account provisioning integrated with enterprise ITSM tools like ServiceNow."
+        },
+        "es": {
+          "statement": "Una empresa landing zone managed by AWS Control Tower necesita automate account provisioning for new engineering teams. The account creation process must provision a dedicated AWS account, attach it to the appropriate Organizational Unit (OU), apply baseline Service Control Policies (SCPs), configure IAM Identity Center permission sets, and initialize network connectivity via Transit Gateway automatically through a ServiceNow ticket approval. Which solution enables this automated workflow?",
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Control Tower Account Factory integrated with the AWS Service Catalog ServiceNow connector (or Account Factory for Terraform - AFT) para automatizar end-to-end account provisioning upon ticket approval.",
+              "explanation": "Correcto: AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standard account creation, governance guardrails, and network provisioning via API/ITSM integration."
+            },
+            {
+              "id": "B",
+              "text": "Instruct an administrator to manually log in to the AWS Management Console to create accounts one by one.",
+              "explanation": "Incorrecto: Manual console account creation is slow, error-prone, and cannot integrate automatically with ServiceNow ticket approvals."
+            },
+            {
+              "id": "C",
+              "text": "Implementar an AWS Lambda function that calls `create-user` across all accounts.",
+              "explanation": "Incorrecto: `create-user` creates individual IAM users, not complete new AWS accounts within AWS Organizations."
+            },
+            {
+              "id": "D",
+              "text": "Adjuntar a Service Control Policy (SCP) to ServiceNow's IP address.",
+              "explanation": "Incorrecto: SCPs are applied to AWS Organizations OUs and accounts, not external third-party IP addresses."
+            }
+          ],
+          "generalExplanation": "AWS Control Tower Account Factory and Account Factory for Terraform (AFT) automate standardized, governed multi-account provisioning integrated with enterprise ITSM tools like ServiceNow."
+        }
+      }
     },
     {
       "id": "sap-sim3-q008",
@@ -365,7 +946,90 @@
       ],
       "generalExplanation": "Amazon S3 Batch Replication allows you to replicate existing objects that were stored in a bucket prior to configuring S3 Cross-Region Replication (CRR).",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-batch-replication-batch.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "A multinational financial enterprise stores 10 petabytes of historical transaction files in an Amazon S3 bucket in us-east-1. To meet new disaster recovery and data residency compliance requirements, all newly uploaded objects AND all existing 10 petabytes of historical objects must be replicated to a secondary bucket in eu-west-1. The objects are encrypted with an AWS KMS customer managed key (SSE-KMS). What combination of actions must be taken to replicate both new and existing data?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Enable S3 Versioning on both buckets, configure S3 Cross-Region Replication (CRR) with KMS encryption options and a destination KMS key specified, and initiate an Amazon S3 Batch Replication job to replicate the pre-existing objects.",
+              "explanation": "Correct: Standard S3 CRR replicates only newly uploaded objects after the rule is created. Replicating existing objects requires creating an Amazon S3 Batch Replication job in addition to configuring CRR with SSE-KMS permissions."
+            },
+            {
+              "id": "B",
+              "text": "Enable S3 Cross-Region Replication (CRR) and wait 24 hours for AWS to automatically synchronize all historical objects.",
+              "explanation": "Incorrect: Standard S3 CRR rules do NOT automatically replicate objects that existed prior to rule creation without an S3 Batch Replication job."
+            },
+            {
+              "id": "C",
+              "text": "Use the AWS CLI command `aws s3 cp` on an EC2 t3.nano instance over the public internet.",
+              "explanation": "Incorrect: An EC2 t3.nano instance will run out of memory, take months to transfer 10 PB over the internet, and cost substantially more than native S3 Batch Replication."
+            },
+            {
+              "id": "D",
+              "text": "Change the storage class of the source bucket to S3 Glacier Flexible Archive to trigger automatic cross-region mirroring.",
+              "explanation": "Incorrect: Storage class transitions do not replicate data across AWS regions."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Batch Replication allows you to replicate existing objects that were stored in a bucket prior to configuring S3 Cross-Region Replication (CRR)."
+        },
+        "pt": {
+          "statement": "A multinational financial enterprise stores 10 petabytes of historical transaction files in an Amazon S3 bucket in us-east-1. To meet new recuperação de desastres and data residency compliance requirements, all newly uploaded objects AND all existing 10 petabytes of historical objects must be replicated to a secondary bucket in eu-west-1. The objects are encrypted with an AWS KMS customer managed key (SSE-KMS). What combination of actions must be taken para replicar both new and existing data?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar S3 Versioning on both buckets, configure S3 Cross-Region Replication (CRR) with KMS encryption options and a destination KMS key specified, and initiate an Amazon S3 Batch Replication job para replicar the pre-existing objects.",
+              "explanation": "Correto: Standard S3 CRR replicates only newly uploaded objects after the rule is created. Replicating existing objects requires creating an Amazon S3 Batch Replication job in addition to configuring CRR with SSE-KMS permissions."
+            },
+            {
+              "id": "B",
+              "text": "Habilitar S3 Cross-Region Replication (CRR) and wait 24 hours for AWS to automatically synchronize all historical objects.",
+              "explanation": "Incorreto: Standard S3 CRR rules do NOT automatically replicate objects that existed prior to rule creation without an S3 Batch Replication job."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar the AWS CLI command `aws s3 cp` on an EC2 t3.nano instance over the public internet.",
+              "explanation": "Incorreto: An EC2 t3.nano instance will run out of memory, take months to transfer 10 PB over the internet, and cost substantially more than native S3 Batch Replication."
+            },
+            {
+              "id": "D",
+              "text": "Change the storage class of the source bucket to S3 Glacier Flexible Archive to trigger automatic cross-region mirroring.",
+              "explanation": "Incorreto: Storage class transitions do not replicate data across AWS regions."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Batch Replication allows you para replicar existing objects that were stored in a bucket prior to configuring S3 Cross-Region Replication (CRR)."
+        },
+        "es": {
+          "statement": "A multinational financial enterprise stores 10 petabytes of historical transaction files in an Amazon S3 bucket in us-east-1. To meet new recuperación ante desastres and data residency compliance requirements, all newly uploaded objects AND all existing 10 petabytes of historical objects must be replicated to a secondary bucket in eu-west-1. The objects are encrypted with an AWS KMS customer managed key (SSE-KMS). What combination of actions must be taken para replicar both new and existing data?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar S3 Versioning on both buckets, configure S3 Cross-Region Replication (CRR) with KMS encryption options and a destination KMS key specified, and initiate an Amazon S3 Batch Replication job para replicar the pre-existing objects.",
+              "explanation": "Correcto: Standard S3 CRR replicates only newly uploaded objects after the rule is created. Replicating existing objects requires creating an Amazon S3 Batch Replication job in addition to configuring CRR with SSE-KMS permissions."
+            },
+            {
+              "id": "B",
+              "text": "Habilitar S3 Cross-Region Replication (CRR) and wait 24 hours for AWS to automatically synchronize all historical objects.",
+              "explanation": "Incorrecto: Standard S3 CRR rules do NOT automatically replicate objects that existed prior to rule creation without an S3 Batch Replication job."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar the AWS CLI command `aws s3 cp` on an EC2 t3.nano instance over the public internet.",
+              "explanation": "Incorrecto: An EC2 t3.nano instance will run out of memory, take months to transfer 10 PB over the internet, and cost substantially more than native S3 Batch Replication."
+            },
+            {
+              "id": "D",
+              "text": "Change the storage class of the source bucket to S3 Glacier Flexible Archive to trigger automatic cross-region mirroring.",
+              "explanation": "Incorrecto: Storage class transitions do not replicate data across AWS regions."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Batch Replication allows you para replicar existing objects that were stored in a bucket prior to configuring S3 Cross-Region Replication (CRR)."
+        }
+      }
     },
     {
       "id": "sap-sim3-q009",
@@ -407,7 +1071,90 @@
       ],
       "generalExplanation": "Amazon DynamoDB Global Tables enables fully managed active-active multi-region data replication, delivering local sub-10ms read/write latency across global user bases.",
       "referenceUrl": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "A global gaming company is developing an active-active multiplayer game platform deployed across three AWS Regions: us-east-1, eu-central-1, and ap-northeast-1. Players must be able to read and write player inventory data locally in their closest region with single-digit millisecond latency, and data must be replicated bidirectionally across all three regions with automatic conflict resolution based on timestamps. Which database solution satisfies these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon RDS PostgreSQL Multi-AZ with cross-region read replicas in all three regions.",
+              "explanation": "Incorrect: RDS read replicas are read-only; they do not allow active-active local transactional writes in secondary regions."
+            },
+            {
+              "id": "B",
+              "text": "Amazon DocumentDB with periodic S3 export and import jobs.",
+              "explanation": "Incorrect: Periodic S3 export/import introduces hours of latency and does not support real-time active-active multi-region replication."
+            },
+            {
+              "id": "C",
+              "text": "Amazon DynamoDB Global Tables (version 2019.11.21) deployed across all three regions with auto-scaling configured.",
+              "explanation": "Correct: Amazon DynamoDB Global Tables provides fully managed, active-active multi-region replication with local read/write latency in single-digit milliseconds and automatic 'last-writer-wins' conflict resolution."
+            },
+            {
+              "id": "D",
+              "text": "Configure and deploy Amazon Redshift cross-region snapshot copy. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrect: Redshift is an analytical data warehouse, not a real-time transactional gaming database."
+            }
+          ],
+          "generalExplanation": "Amazon DynamoDB Global Tables enables fully managed active-active multi-region data replication, delivering local sub-10ms read/write latency across global user bases."
+        },
+        "pt": {
+          "statement": "A global gaming company is developing an active-active multiplayer game platform deployed across three AWS Regions: us-east-1, eu-central-1, and ap-northeast-1. Players must be able to read and write player inventory data locally in their closest region with single-digit millisecond latency, and data must be replicated bidirectionally across all three regions with automatic conflict resolution based on timestamps. Which database solution satisfies these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon RDS PostgreSQL Multi-AZ with cross-region read replicas in all three regions.",
+              "explanation": "Incorreto: RDS read replicas are read-only; they do not allow active-active local transactional writes in secondary regions."
+            },
+            {
+              "id": "B",
+              "text": "Amazon DocumentDB with periodic S3 export and import jobs.",
+              "explanation": "Incorreto: Periodic S3 export/import introduces hours of latency and does not support real-time active-active multi-region replication."
+            },
+            {
+              "id": "C",
+              "text": "Amazon DynamoDB Global Tables (version 2019.11.21) deployed across all three regions with auto-scaling configured.",
+              "explanation": "Correto: Amazon DynamoDB Global Tables provides fully managed, active-active multi-region replication with local read/write latency in single-digit milliseconds and automatic 'last-writer-wins' conflict resolution."
+            },
+            {
+              "id": "D",
+              "text": "Configurar and deploy Amazon Redshift cross-region snapshot copy. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorreto: Redshift is an analytical data warehouse, not a real-time transactional gaming database."
+            }
+          ],
+          "generalExplanation": "Amazon DynamoDB Global Tables enables fully managed active-active multi-region data replication, delivering local sub-10ms read/write latency across global user bases."
+        },
+        "es": {
+          "statement": "A global gaming company is developing an active-active multiplayer game platform deployed across three AWS Regions: us-east-1, eu-central-1, and ap-northeast-1. Players must be able to read and write player inventory data locally in their closest region with single-digit millisecond latency, and data must be replicated bidirectionally across all three regions with automatic conflict resolution based on timestamps. Which database solution satisfies these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon RDS PostgreSQL Multi-AZ with cross-region read replicas in all three regions.",
+              "explanation": "Incorrecto: RDS read replicas are read-only; they do not allow active-active local transactional writes in secondary regions."
+            },
+            {
+              "id": "B",
+              "text": "Amazon DocumentDB with periodic S3 export and import jobs.",
+              "explanation": "Incorrecto: Periodic S3 export/import introduces hours of latency and does not support real-time active-active multi-region replication."
+            },
+            {
+              "id": "C",
+              "text": "Amazon DynamoDB Global Tables (version 2019.11.21) deployed across all three regions with auto-scaling configured.",
+              "explanation": "Correcto: Amazon DynamoDB Global Tables provides fully managed, active-active multi-region replication with local read/write latency in single-digit milliseconds and automatic 'last-writer-wins' conflict resolution."
+            },
+            {
+              "id": "D",
+              "text": "Configurar and deploy Amazon Redshift cross-region snapshot copy. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrecto: Redshift is an analytical data warehouse, not a real-time transactional gaming database."
+            }
+          ],
+          "generalExplanation": "Amazon DynamoDB Global Tables enables fully managed active-active multi-region data replication, delivering local sub-10ms read/write latency across global user bases."
+        }
+      }
     },
     {
       "id": "sap-sim3-q010",
@@ -449,7 +1196,90 @@
       ],
       "generalExplanation": "Amazon FSx for Windows File Server provides fully managed native Microsoft Windows file storage with SMB support, full NTFS ACLs, AD integration, and Multi-AZ high availability.",
       "referenceUrl": "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "A corporate enterprise runs business-critical Windows applications on Amazon EC2 instances and on-premises Windows servers. The applications require a fully managed, shared Microsoft Windows file system that supports SMB protocol, Windows NTFS file permissions, Microsoft Active Directory integration, DFS Namespaces, and Multi-AZ high availability with sub-millisecond latency. Which storage service should the architect choose?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon Elastic File System (Amazon EFS) with Max I/O mode.",
+              "explanation": "Incorrect: Amazon EFS is an NFSv4 file system designed for Linux environments, and does not support Windows SMB or native NTFS ACLs."
+            },
+            {
+              "id": "B",
+              "text": "Amazon FSx for Windows File Server deployed in a Multi-AZ configuration integrated with Microsoft Active Directory.",
+              "explanation": "Correct: Amazon FSx for Windows File Server is built on Windows Server, providing native SMB support, NTFS permissions, Active Directory integration, DFS Namespaces, and Multi-AZ automatic failover."
+            },
+            {
+              "id": "C",
+              "text": "Configure and deploy Amazon S3 Standard with S3 File Gateway. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrect: S3 File Gateway is intended for hybrid backup caching, not a native high-performance Multi-AZ Windows transactional file system with DFS."
+            },
+            {
+              "id": "D",
+              "text": "Amazon EBS gp3 volumes configured with EBS Multi-Attach across Availability Zones.",
+              "explanation": "Incorrect: EBS Multi-Attach is supported only on io2 volumes within a single AZ, not across multiple Availability Zones, and requires a cluster-aware filesystem."
+            }
+          ],
+          "generalExplanation": "Amazon FSx for Windows File Server provides fully managed native Microsoft Windows file storage with SMB support, full NTFS ACLs, AD integration, and Multi-AZ high availability."
+        },
+        "pt": {
+          "statement": "A corporate enterprise runs business-critical Windows applications on Amazon EC2 instances and on-premises Windows servers. The applications require a fully managed, shared Microsoft Windows file system that supports SMB protocol, Windows NTFS file permissions, Microsoft Active Directory integration, DFS Namespaces, and Multi-AZ alta disponibilidade with sub-millisecond latency. Which storage service should the architect choose?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon Elastic File System (Amazon EFS) with Max I/O mode.",
+              "explanation": "Incorreto: Amazon EFS is an NFSv4 file system designed for Linux environments, and does not support Windows SMB or native NTFS ACLs."
+            },
+            {
+              "id": "B",
+              "text": "Amazon FSx for Windows File Server deployed in a Multi-AZ configuration integrated with Microsoft Active Directory.",
+              "explanation": "Correto: Amazon FSx for Windows File Server is built on Windows Server, providing native SMB support, NTFS permissions, Active Directory integration, DFS Namespaces, and Multi-AZ automatic failover."
+            },
+            {
+              "id": "C",
+              "text": "Configurar and deploy Amazon S3 Standard with S3 File Gateway. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorreto: S3 File Gateway is intended for hybrid backup caching, not a native high-performance Multi-AZ Windows transactional file system with DFS."
+            },
+            {
+              "id": "D",
+              "text": "Amazon EBS gp3 volumes configured with EBS Multi-Anexar across Availability Zones.",
+              "explanation": "Incorreto: EBS Multi-Anexar is supported only on io2 volumes within a single AZ, not em múltiplas Zonas de Disponibilidade, and necessita de um(a) cluster-aware filesystem."
+            }
+          ],
+          "generalExplanation": "Amazon FSx for Windows File Server provides fully managed native Microsoft Windows file storage with SMB support, full NTFS ACLs, AD integration, and Multi-AZ alta disponibilidade."
+        },
+        "es": {
+          "statement": "A corporate enterprise runs business-critical Windows applications on Amazon EC2 instances and on-premises Windows servers. The applications require a fully managed, shared Microsoft Windows file system that supports SMB protocol, Windows NTFS file permissions, Microsoft Active Directory integration, DFS Namespaces, and Multi-AZ alta disponibilidad with sub-millisecond latency. Which storage service should the architect choose?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Amazon Elastic File System (Amazon EFS) with Max I/O mode.",
+              "explanation": "Incorrecto: Amazon EFS is an NFSv4 file system designed for Linux environments, and does not support Windows SMB or native NTFS ACLs."
+            },
+            {
+              "id": "B",
+              "text": "Amazon FSx for Windows File Server deployed in a Multi-AZ configuration integrated with Microsoft Active Directory.",
+              "explanation": "Correcto: Amazon FSx for Windows File Server is built on Windows Server, providing native SMB support, NTFS permissions, Active Directory integration, DFS Namespaces, and Multi-AZ automatic failover."
+            },
+            {
+              "id": "C",
+              "text": "Configurar and deploy Amazon S3 Standard with S3 File Gateway. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrecto: S3 File Gateway is intended for hybrid backup caching, not a native high-performance Multi-AZ Windows transactional file system with DFS."
+            },
+            {
+              "id": "D",
+              "text": "Amazon EBS gp3 volumes configured with EBS Multi-Adjuntar across Availability Zones.",
+              "explanation": "Incorrecto: EBS Multi-Adjuntar is supported only on io2 volumes within a single AZ, not en múltiples Zonas de Disponibilidad, and requiere un(a) cluster-aware filesystem."
+            }
+          ],
+          "generalExplanation": "Amazon FSx for Windows File Server provides fully managed native Microsoft Windows file storage with SMB support, full NTFS ACLs, AD integration, and Multi-AZ alta disponibilidad."
+        }
+      }
     },
     {
       "id": "sap-sim3-q011",
@@ -491,7 +1321,90 @@
       ],
       "generalExplanation": "Combining Amazon DynamoDB as the transactional data store with Amazon OpenSearch Service for full-text search and indexing (via DynamoDB Streams) provides the optimal architecture for e-commerce search.",
       "referenceUrl": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/integrations.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An e-commerce marketplace with millions of product listings needs to implement an intelligent search autocomplete and full-text search capability supporting fuzzy matching, typo tolerance, synonyms, and faceted filtering (by brand, price, rating). The primary database is Amazon DynamoDB. How should the search indexing pipeline be architected?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Stream DynamoDB item modifications via DynamoDB Streams to an AWS Lambda function that indexes documents into Amazon OpenSearch Service, and direct search queries from client applications to OpenSearch Service.",
+              "explanation": "Correct: DynamoDB Streams + Lambda provides near real-time synchronization of database records into Amazon OpenSearch Service, which is purpose-built for fuzzy matching, faceting, and typo-tolerant full-text search."
+            },
+            {
+              "id": "B",
+              "text": "Store all product descriptions in Amazon S3 and run Amazon Athena SQL queries on every user keystroke.",
+              "explanation": "Incorrect: Athena queries take seconds to execute and are not suitable for sub-100ms real-time search autocomplete bars."
+            },
+            {
+              "id": "C",
+              "text": "Execute DynamoDB `Scan` operations with complex filter expressions on every keystroke typed by users in the search bar.",
+              "explanation": "Incorrect: Running `Scan` queries across millions of items on every keystroke consumes massive RCUs, introduces severe latency, and does not support fuzzy typo matching."
+            },
+            {
+              "id": "D",
+              "text": "Deploy an Amazon ElastiCache for Memcached cluster to execute SQL full-text queries.",
+              "explanation": "Incorrect: Memcached is a simple in-memory key-value cache, not a search engine with full-text tokenizers and synonym filters."
+            }
+          ],
+          "generalExplanation": "Combining Amazon DynamoDB as the transactional data store with Amazon OpenSearch Service for full-text search and indexing (via DynamoDB Streams) provides the optimal architecture for e-commerce search."
+        },
+        "pt": {
+          "statement": "An e-commerce marketplace with millions of product listings precisa implement an intelligent search autocomplete and full-text search capability supporting fuzzy matching, typo tolerance, synonyms, and faceted filtering (by brand, price, rating). The primary database is Amazon DynamoDB. How should the search indexing pipeline be architected?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Stream DynamoDB item modifications via DynamoDB Streams to an AWS Lambda function that indexes documents into Amazon OpenSearch Service, and direct search queries from client applications to OpenSearch Service.",
+              "explanation": "Correto: DynamoDB Streams + Lambda provides near real-time synchronization of database records into Amazon OpenSearch Service, which is purpose-built for fuzzy matching, faceting, and typo-tolerant full-text search."
+            },
+            {
+              "id": "B",
+              "text": "Armazenar all product descriptions in Amazon S3 and run Amazon Athena SQL queries on every user keystroke.",
+              "explanation": "Incorreto: Athena queries take seconds to execute and are not suitable for sub-100ms real-time search autocomplete bars."
+            },
+            {
+              "id": "C",
+              "text": "Execute DynamoDB `Scan` operations with complex filter expressions on every keystroke typed by users in the search bar.",
+              "explanation": "Incorreto: Running `Scan` queries across millions of items on every keystroke consumes massive RCUs, introduces severe latency, and does not support fuzzy typo matching."
+            },
+            {
+              "id": "D",
+              "text": "Implantar an Amazon ElastiCache for Memcached cluster to execute SQL full-text queries.",
+              "explanation": "Incorreto: Memcached is a simple in-memory key-value cache, not a search engine with full-text tokenizers and synonym filters."
+            }
+          ],
+          "generalExplanation": "Combining Amazon DynamoDB as the transactional data store with Amazon OpenSearch Service for full-text search and indexing (via DynamoDB Streams) provides the optimal architecture for e-commerce search."
+        },
+        "es": {
+          "statement": "An e-commerce marketplace with millions of product listings necesita implement an intelligent search autocomplete and full-text search capability supporting fuzzy matching, typo tolerance, synonyms, and faceted filtering (by brand, price, rating). The primary database is Amazon DynamoDB. How should the search indexing pipeline be architected?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Stream DynamoDB item modifications via DynamoDB Streams to an AWS Lambda function that indexes documents into Amazon OpenSearch Service, and direct search queries from client applications to OpenSearch Service.",
+              "explanation": "Correcto: DynamoDB Streams + Lambda provides near real-time synchronization of database records into Amazon OpenSearch Service, which is purpose-built for fuzzy matching, faceting, and typo-tolerant full-text search."
+            },
+            {
+              "id": "B",
+              "text": "Almacenar all product descriptions in Amazon S3 and run Amazon Athena SQL queries on every user keystroke.",
+              "explanation": "Incorrecto: Athena queries take seconds to execute and are not suitable for sub-100ms real-time search autocomplete bars."
+            },
+            {
+              "id": "C",
+              "text": "Execute DynamoDB `Scan` operations with complex filter expressions on every keystroke typed by users in the search bar.",
+              "explanation": "Incorrecto: Running `Scan` queries across millions of items on every keystroke consumes massive RCUs, introduces severe latency, and does not support fuzzy typo matching."
+            },
+            {
+              "id": "D",
+              "text": "Implementar an Amazon ElastiCache for Memcached cluster to execute SQL full-text queries.",
+              "explanation": "Incorrecto: Memcached is a simple in-memory key-value cache, not a search engine with full-text tokenizers and synonym filters."
+            }
+          ],
+          "generalExplanation": "Combining Amazon DynamoDB as the transactional data store with Amazon OpenSearch Service for full-text search and indexing (via DynamoDB Streams) provides the optimal architecture for e-commerce search."
+        }
+      }
     },
     {
       "id": "sap-sim3-q012",
@@ -533,7 +1446,90 @@
       ],
       "generalExplanation": "AWS IoT Core provides secure MQTT communication at scale, while the IoT Rules Engine and Amazon Timestream enable serverless time-series ingestion and real-time alarming.",
       "referenceUrl": "https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An industrial manufacturing company is deploying 200,000 IoT temperature sensors in production facilities worldwide. The sensors publish telemetry messages every 5 seconds over MQTT with TLS mutual authentication. The system must ingest the sensor telemetry, route data to a dedicated time-series database optimized for time-series analytics and SQL queries, and trigger automated emergency alarms if temperature exceeds 95°C. Which AWS architecture fulfills these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have all 200,000 sensors send HTTP POST requests directly to an Amazon RDS PostgreSQL database.",
+              "explanation": "Incorrect: 200,000 sensors sending synchronous HTTP POST requests will overwhelm database connections and sensor devices often require lightweight MQTT."
+            },
+            {
+              "id": "B",
+              "text": "Store sensor data in Amazon S3 Glacier Deep Archive and run daily Glue ETL jobs.",
+              "explanation": "Incorrect: Deep Archive has hours of retrieval delay and cannot provide immediate emergency alerting for 95°C temperature breaches."
+            },
+            {
+              "id": "C",
+              "text": "Deploy a fleet of Amazon EC2 instances running Mosquitto MQTT brokers in an Auto Scaling group with self-signed SSL certificates.",
+              "explanation": "Incorrect: Self-managed MQTT broker clusters require extensive maintenance, patching, and custom certificate lifecycle management compared to serverless AWS IoT Core."
+            },
+            {
+              "id": "D",
+              "text": "Connect sensors to AWS IoT Core using X.509 client certificates, use AWS IoT Rules Engine to evaluate temperature thresholds and publish to Amazon SNS for alarms, and route time-series data directly to Amazon Timestream.",
+              "explanation": "Correct: AWS IoT Core supports MQTT with X.509 mTLS authentication. The IoT Rules Engine filters events and routes time-series telemetry natively into Amazon Timestream, with SNS for real-time alerting."
+            }
+          ],
+          "generalExplanation": "AWS IoT Core provides secure MQTT communication at scale, while the IoT Rules Engine and Amazon Timestream enable serverless time-series ingestion and real-time alarming."
+        },
+        "pt": {
+          "statement": "An industrial manufacturing company está implantando 200,000 IoT temperature sensors in production facilities worldwide. The sensors publish telemetry messages every 5 seconds over MQTT with TLS mutual authentication. The system must ingest the sensor telemetry, route data to a dedicated time-series database optimized for time-series analytics and SQL queries, and trigger automated emergency alarms if temperature exceeds 95°C. Which AWS architecture fulfills these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have all 200,000 sensors send HTTP POST requests directly to an Amazon RDS PostgreSQL database.",
+              "explanation": "Incorreto: 200,000 sensors sending synchronous HTTP POST requests will overwhelm database connections and sensor devices often require lightweight MQTT."
+            },
+            {
+              "id": "B",
+              "text": "Armazenar sensor data in Amazon S3 Glacier Deep Archive and run daily Glue ETL jobs.",
+              "explanation": "Incorreto: Deep Archive has hours of retrieval delay and cannot provide immediate emergency alerting for 95°C temperature breaches."
+            },
+            {
+              "id": "C",
+              "text": "Implantar a fleet of Amazon EC2 instances running Mosquitto MQTT brokers in an Auto Scaling group with self-signed SSL certificates.",
+              "explanation": "Incorreto: Self-managed MQTT broker clusters require extensive maintenance, patching, and custom certificate lifecycle management compared to serverless AWS IoT Core."
+            },
+            {
+              "id": "D",
+              "text": "Connect sensors to AWS IoT Core using X.509 client certificates, use AWS IoT Rules Engine to evaluate temperature thresholds and publish to Amazon SNS for alarms, and route time-series data directly to Amazon Timestream.",
+              "explanation": "Correto: AWS IoT Core supports MQTT with X.509 mTLS authentication. The IoT Rules Engine filters events and routes time-series telemetry natively into Amazon Timestream, with SNS for real-time alerting."
+            }
+          ],
+          "generalExplanation": "AWS IoT Core provides secure MQTT communication at scale, while the IoT Rules Engine and Amazon Timestream enable serverless time-series ingestion and real-time alarming."
+        },
+        "es": {
+          "statement": "An industrial manufacturing company está implementando 200,000 IoT temperature sensors in production facilities worldwide. The sensors publish telemetry messages every 5 seconds over MQTT with TLS mutual authentication. The system must ingest the sensor telemetry, route data to a dedicated time-series database optimized for time-series analytics and SQL queries, and trigger automated emergency alarms if temperature exceeds 95°C. Which AWS architecture fulfills these requirements?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Have all 200,000 sensors send HTTP POST requests directly to an Amazon RDS PostgreSQL database.",
+              "explanation": "Incorrecto: 200,000 sensors sending synchronous HTTP POST requests will overwhelm database connections and sensor devices often require lightweight MQTT."
+            },
+            {
+              "id": "B",
+              "text": "Almacenar sensor data in Amazon S3 Glacier Deep Archive and run daily Glue ETL jobs.",
+              "explanation": "Incorrecto: Deep Archive has hours of retrieval delay and cannot provide immediate emergency alerting for 95°C temperature breaches."
+            },
+            {
+              "id": "C",
+              "text": "Implementar a fleet of Amazon EC2 instances running Mosquitto MQTT brokers in an Auto Scaling group with self-signed SSL certificates.",
+              "explanation": "Incorrecto: Self-managed MQTT broker clusters require extensive maintenance, patching, and custom certificate lifecycle management compared to serverless AWS IoT Core."
+            },
+            {
+              "id": "D",
+              "text": "Connect sensors to AWS IoT Core using X.509 client certificates, use AWS IoT Rules Engine to evaluate temperature thresholds and publish to Amazon SNS for alarms, and route time-series data directly to Amazon Timestream.",
+              "explanation": "Correcto: AWS IoT Core supports MQTT with X.509 mTLS authentication. The IoT Rules Engine filters events and routes time-series telemetry natively into Amazon Timestream, with SNS for real-time alerting."
+            }
+          ],
+          "generalExplanation": "AWS IoT Core provides secure MQTT communication at scale, while the IoT Rules Engine and Amazon Timestream enable serverless time-series ingestion and real-time alarming."
+        }
+      }
     },
     {
       "id": "sap-sim3-q013",
@@ -575,7 +1571,90 @@
       ],
       "generalExplanation": "AWS Shield Advanced provides enterprise-grade DDoS protection with 24/7 SRT engagement and cost protection, integrating with AWS WAF Bot Control and Account Takeover Prevention (ATP).",
       "referenceUrl": "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "A high-profile financial trading website fronted by Amazon CloudFront experiences recurring sophisticated Layer 7 DDoS attacks, automated scraping bots targeting market prices, and credential stuffing attacks on the `/login` endpoint. The company requires advanced managed protection with 24/7 access to the AWS DDoS Response Team (DRT), financial protection against scaling cost spikes during attacks, and automated bot mitigation. Which combination of services provides this comprehensive defense?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Enable AWS Shield Standard on an Application Load Balancer and write custom iptables firewall scripts on EC2 instances.",
+              "explanation": "Incorrect: Shield Standard does not include 24/7 SRT support, DDoS cost protection, or managed Bot Control rules."
+            },
+            {
+              "id": "B",
+              "text": "Subscribe to AWS Shield Advanced, grant the AWS Shield Response Team (SRT) proactive engagement and IAM access, and deploy AWS WAF on the CloudFront distribution with AWS Managed Rules for Bot Control and Account Takeover Prevention (ATP).",
+              "explanation": "Correct: AWS Shield Advanced provides 24/7 SRT support, DDoS cost spike protection, and proactive engagement. AWS WAF Bot Control and ATP mitigate credential stuffing and scraper bots at the edge."
+            },
+            {
+              "id": "C",
+              "text": "Deploy Network ACLs with explicit Deny rules on all VPC subnets.",
+              "explanation": "Incorrect: Network ACLs operate at Layer 4 (IP/port) and cannot parse HTTP payloads for credential stuffing or provide DDoS financial spike protection."
+            },
+            {
+              "id": "D",
+              "text": "Change all DNS records in Amazon Route 53 to private hosted zones.",
+              "explanation": "Incorrect: Private hosted zones make the website inaccessible to public internet clients."
+            }
+          ],
+          "generalExplanation": "AWS Shield Advanced provides enterprise-grade DDoS protection with 24/7 SRT engagement and cost protection, integrating with AWS WAF Bot Control and Account Takeover Prevention (ATP)."
+        },
+        "pt": {
+          "statement": "A high-profile financial trading website fronted by Amazon CloudFront experiences recurring sophisticated Layer 7 DDoS attacks, automated scraping bots targeting market prices, and credential stuffing attacks on the `/login` endpoint. The company necessita de um(a)dvanced managed protection with 24/7 access to the AWS DDoS Response Team (DRT), financial protection against scaling cost spikes during attacks, and automated bot mitigation. Which combination of services provides this comprehensive defense?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar AWS Shield Standard on an Application Load Balancer and write custom iptables firewall scripts on EC2 instances.",
+              "explanation": "Incorreto: Shield Standard does not include 24/7 SRT support, DDoS cost protection, or managed Bot Control rules."
+            },
+            {
+              "id": "B",
+              "text": "Assinar AWS Shield Advanced, grant the AWS Shield Response Team (SRT) proactive engagement and IAM access, and deploy AWS WAF on the CloudFront distribution with AWS Managed Rules for Bot Control and Account Takeover Prevention (ATP).",
+              "explanation": "Correto: AWS Shield Advanced provides 24/7 SRT support, DDoS cost spike protection, and proactive engagement. AWS WAF Bot Control and ATP mitigate credential stuffing and scraper bots at the edge."
+            },
+            {
+              "id": "C",
+              "text": "Implantar Network ACLs with explicit Deny rules on all VPC subnets.",
+              "explanation": "Incorreto: Network ACLs operate at Layer 4 (IP/port) and cannot parse HTTP payloads for credential stuffing or provide DDoS financial spike protection."
+            },
+            {
+              "id": "D",
+              "text": "Change all DNS records in Amazon Route 53 to private hosted zones.",
+              "explanation": "Incorreto: Private hosted zones make the website inaccessible to public internet clients."
+            }
+          ],
+          "generalExplanation": "AWS Shield Advanced provides enterprise-grade DDoS protection with 24/7 SRT engagement and cost protection, integrating with AWS WAF Bot Control and Account Takeover Prevention (ATP)."
+        },
+        "es": {
+          "statement": "A high-profile financial trading website fronted by Amazon CloudFront experiences recurring sophisticated Layer 7 DDoS attacks, automated scraping bots targeting market prices, and credential stuffing attacks on the `/login` endpoint. The company requiere un(a)dvanced managed protection with 24/7 access to the AWS DDoS Response Team (DRT), financial protection against scaling cost spikes during attacks, and automated bot mitigation. Which combination of services provides this comprehensive defense?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar AWS Shield Standard on an Application Load Balancer and write custom iptables firewall scripts on EC2 instances.",
+              "explanation": "Incorrecto: Shield Standard does not include 24/7 SRT support, DDoS cost protection, or managed Bot Control rules."
+            },
+            {
+              "id": "B",
+              "text": "Suscribirse a AWS Shield Advanced, grant the AWS Shield Response Team (SRT) proactive engagement and IAM access, and deploy AWS WAF on the CloudFront distribution with AWS Managed Rules for Bot Control and Account Takeover Prevention (ATP).",
+              "explanation": "Correcto: AWS Shield Advanced provides 24/7 SRT support, DDoS cost spike protection, and proactive engagement. AWS WAF Bot Control and ATP mitigate credential stuffing and scraper bots at the edge."
+            },
+            {
+              "id": "C",
+              "text": "Implementar Network ACLs with explicit Deny rules on all VPC subnets.",
+              "explanation": "Incorrecto: Network ACLs operate at Layer 4 (IP/port) and cannot parse HTTP payloads for credential stuffing or provide DDoS financial spike protection."
+            },
+            {
+              "id": "D",
+              "text": "Change all DNS records in Amazon Route 53 to private hosted zones.",
+              "explanation": "Incorrecto: Private hosted zones make the website inaccessible to public internet clients."
+            }
+          ],
+          "generalExplanation": "AWS Shield Advanced provides enterprise-grade DDoS protection with 24/7 SRT engagement and cost protection, integrating with AWS WAF Bot Control and Account Takeover Prevention (ATP)."
+        }
+      }
     },
     {
       "id": "sap-sim3-q014",
@@ -617,7 +1696,90 @@
       ],
       "generalExplanation": "Amazon Cognito User Pools combined with API Gateway Cognito Authorizers provides a fully managed, serverless authentication and authorization solution for web and mobile applications.",
       "referenceUrl": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "A fintech mobile app needs to support user sign-up, sign-in with email or social providers (Apple, Google), multi-factor authentication (MFA via SMS/TOTP), and seamless integration with Amazon API Gateway. When a user authenticates, API Gateway must automatically validate the OAuth 2.0 / OpenID Connect (OIDC) JWT token before passing requests to backend microservices. Which solution implements this with the LEAST custom code?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Store user passwords in an Amazon RDS MySQL database and write custom PHP authentication scripts on an EC2 instance.",
+              "explanation": "Incorrect: Storing passwords manually in MySQL requires implementing custom hashing, salt, MFA, and token issuance code from scratch."
+            },
+            {
+              "id": "B",
+              "text": "Deploy an Amazon Cognito User Pool with social identity provider federation and MFA enabled, and configure an Amazon API Gateway Cognito Authorizer on the REST API endpoints.",
+              "explanation": "Correct: Amazon Cognito User Pools handles user management, social federation, and MFA out-of-the-box. API Gateway Cognito Authorizers natively validate tokens without writing custom authentication code."
+            },
+            {
+              "id": "C",
+              "text": "Create an IAM user for every mobile app customer.",
+              "explanation": "Incorrect: IAM users are for cloud workforce identities and cannot scale to consumer mobile apps."
+            },
+            {
+              "id": "D",
+              "text": "Configure an AWS WAF rate-based rule on the API Gateway.",
+              "explanation": "Incorrect: AWS WAF rate-based rules filter request frequency, but do not provide user authentication, token issuance, or social login."
+            }
+          ],
+          "generalExplanation": "Amazon Cognito User Pools combined with API Gateway Cognito Authorizers provides a fully managed, serverless authentication and authorization solution for web and mobile applications."
+        },
+        "pt": {
+          "statement": "A fintech mobile app precisa support user sign-up, sign-in with email or social providers (Apple, Google), multi-factor authentication (MFA via SMS/TOTP), and seamless integration with Amazon API Gateway. When a user authenticates, API Gateway must automatically validate the OAuth 2.0 / OpenID Connect (OIDC) JWT token before passing requests to backend microservices. Which solution implements this with the LEAST custom code?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Armazenar user passwords in an Amazon RDS MySQL database and write custom PHP authentication scripts on an EC2 instance.",
+              "explanation": "Incorreto: Storing passwords manually in MySQL requires implementing custom hashing, salt, MFA, and token issuance code from scratch."
+            },
+            {
+              "id": "B",
+              "text": "Implantar an Amazon Cognito User Pool with social identity provider federation and MFA enabled, and configure an Amazon API Gateway Cognito Authorizer on the REST API endpoints.",
+              "explanation": "Correto: Amazon Cognito User Pools handles user management, social federation, and MFA out-of-the-box. API Gateway Cognito Authorizers natively validate tokens without writing custom authentication code."
+            },
+            {
+              "id": "C",
+              "text": "Criar an IAM user for every mobile app customer.",
+              "explanation": "Incorreto: IAM users are for cloud workforce identities and cannot scale to consumer mobile apps."
+            },
+            {
+              "id": "D",
+              "text": "Configurar an AWS WAF rate-based rule on the API Gateway.",
+              "explanation": "Incorreto: AWS WAF rate-based rules filter request frequency, but do not provide user authentication, token issuance, or social login."
+            }
+          ],
+          "generalExplanation": "Amazon Cognito User Pools combined with API Gateway Cognito Authorizers provides a fully managed, serverless authentication and authorization solution for web and mobile applications."
+        },
+        "es": {
+          "statement": "A fintech mobile app necesita support user sign-up, sign-in with email or social providers (Apple, Google), multi-factor authentication (MFA via SMS/TOTP), and seamless integration with Amazon API Gateway. When a user authenticates, API Gateway must automatically validate the OAuth 2.0 / OpenID Connect (OIDC) JWT token before passing requests to backend microservices. Which solution implements this with the LEAST custom code?",
+          "domainName": "Domain 2: Design for New Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Almacenar user passwords in an Amazon RDS MySQL database and write custom PHP authentication scripts on an EC2 instance.",
+              "explanation": "Incorrecto: Storing passwords manually in MySQL requires implementing custom hashing, salt, MFA, and token issuance code from scratch."
+            },
+            {
+              "id": "B",
+              "text": "Implementar an Amazon Cognito User Pool with social identity provider federation and MFA enabled, and configure an Amazon API Gateway Cognito Authorizer on the REST API endpoints.",
+              "explanation": "Correcto: Amazon Cognito User Pools handles user management, social federation, and MFA out-of-the-box. API Gateway Cognito Authorizers natively validate tokens without writing custom authentication code."
+            },
+            {
+              "id": "C",
+              "text": "Crear an IAM user for every mobile app customer.",
+              "explanation": "Incorrecto: IAM users are for cloud workforce identities and cannot scale to consumer mobile apps."
+            },
+            {
+              "id": "D",
+              "text": "Configurar an AWS WAF rate-based rule on the API Gateway.",
+              "explanation": "Incorrecto: AWS WAF rate-based rules filter request frequency, but do not provide user authentication, token issuance, or social login."
+            }
+          ],
+          "generalExplanation": "Amazon Cognito User Pools combined with API Gateway Cognito Authorizers provides a fully managed, serverless authentication and authorization solution for web and mobile applications."
+        }
+      }
     },
     {
       "id": "sap-sim3-q015",
@@ -659,7 +1821,90 @@
       ],
       "generalExplanation": "Compute Savings Plans provide significant cost savings (up to 66%) with maximum flexibility, applying automatically regardless of instance family, size, OS, region, Fargate, or Lambda.",
       "referenceUrl": "https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise spends $500,000 monthly on Amazon EC2 compute across multiple AWS Regions and instance families (c5, m6g, r5, g4dn), alongside growing usage of AWS Fargate for containerized microservices and AWS Lambda. The finance and engineering teams agree to make a 3-year monetary commitment ($/hour) to maximize cost savings, while retaining complete architectural flexibility to change instance families, operating systems, compute platforms, and AWS Regions in the future. Which pricing model should the architect recommend?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Purchase 3-year Standard Reserved Instances for specific c5.xlarge instances in us-east-1.",
+              "explanation": "Incorrect: Standard RIs are locked to specific instance families, regions, and platforms, and do not apply to Fargate or Lambda."
+            },
+            {
+              "id": "B",
+              "text": "Purchase 3-year Compute Savings Plans with All Upfront or Partial Upfront payment.",
+              "explanation": "Correct: Compute Savings Plans provide the highest flexibility, automatically applying up to 66% discount across EC2 instance families, sizes, OS, tenancy, AWS Regions, AWS Fargate, and AWS Lambda."
+            },
+            {
+              "id": "C",
+              "text": "Purchase EC2 Instance Savings Plans locked to the c5 family in us-east-1.",
+              "explanation": "Incorrect: EC2 Instance Savings Plans do not apply across regions, to other instance families (m6g, r5), or to Fargate/Lambda."
+            },
+            {
+              "id": "D",
+              "text": "Rely solely on On-Demand billing with volume discounts.",
+              "explanation": "Incorrect: On-Demand billing does not provide commitment discounts of up to 66% available through Savings Plans."
+            }
+          ],
+          "generalExplanation": "Compute Savings Plans provide significant cost savings (up to 66%) with maximum flexibility, applying automatically regardless of instance family, size, OS, region, Fargate, or Lambda."
+        },
+        "pt": {
+          "statement": "Uma empresa spends $500,000 monthly on Amazon EC2 compute em múltiplas Regiões AWS and instance families (c5, m6g, r5, g4dn), alongside growing usage of AWS Fargate for containerized microservices and AWS Lambda. The finance and engineering teams agree to make a 3-year monetary commitment ($/hour) to maximize cost savings, while retaining complete architectural flexibility to change instance families, operating systems, compute platforms, and AWS Regions in the future. Which pricing model should the architect recommend?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Purchase 3-year Standard Reserved Instances for specific c5.xlarge instances in us-east-1.",
+              "explanation": "Incorreto: Standard RIs are locked to specific instance families, regions, and platforms, and do not apply to Fargate or Lambda."
+            },
+            {
+              "id": "B",
+              "text": "Purchase 3-year Compute Savings Plans with All Upfront or Partial Upfront payment.",
+              "explanation": "Correto: Compute Savings Plans provide the highest flexibility, automatically applying up to 66% discount across EC2 instance families, sizes, OS, tenancy, AWS Regions, AWS Fargate, and AWS Lambda."
+            },
+            {
+              "id": "C",
+              "text": "Purchase EC2 Instance Savings Plans locked to the c5 family in us-east-1.",
+              "explanation": "Incorreto: EC2 Instance Savings Plans do not apply across regions, to other instance families (m6g, r5), or to Fargate/Lambda."
+            },
+            {
+              "id": "D",
+              "text": "Rely solely on On-Demand billing with volume discounts.",
+              "explanation": "Incorreto: On-Demand billing does not provide commitment discounts of up to 66% available through Savings Plans."
+            }
+          ],
+          "generalExplanation": "Compute Savings Plans provide significant cost savings (up to 66%) with maximum flexibility, applying automatically regardless of instance family, size, OS, region, Fargate, or Lambda."
+        },
+        "es": {
+          "statement": "Una empresa spends $500,000 monthly on Amazon EC2 compute en múltiples Regiones de AWS and instance families (c5, m6g, r5, g4dn), alongside growing usage of AWS Fargate for containerized microservices and AWS Lambda. The finance and engineering teams agree to make a 3-year monetary commitment ($/hour) to maximize cost savings, while retaining complete architectural flexibility to change instance families, operating systems, compute platforms, and AWS Regions in the future. Which pricing model should the architect recommend?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Purchase 3-year Standard Reserved Instances for specific c5.xlarge instances in us-east-1.",
+              "explanation": "Incorrecto: Standard RIs are locked to specific instance families, regions, and platforms, and do not apply to Fargate or Lambda."
+            },
+            {
+              "id": "B",
+              "text": "Purchase 3-year Compute Savings Plans with All Upfront or Partial Upfront payment.",
+              "explanation": "Correcto: Compute Savings Plans provide the highest flexibility, automatically applying up to 66% discount across EC2 instance families, sizes, OS, tenancy, AWS Regions, AWS Fargate, and AWS Lambda."
+            },
+            {
+              "id": "C",
+              "text": "Purchase EC2 Instance Savings Plans locked to the c5 family in us-east-1.",
+              "explanation": "Incorrecto: EC2 Instance Savings Plans do not apply across regions, to other instance families (m6g, r5), or to Fargate/Lambda."
+            },
+            {
+              "id": "D",
+              "text": "Rely solely on On-Demand billing with volume discounts.",
+              "explanation": "Incorrecto: On-Demand billing does not provide commitment discounts of up to 66% available through Savings Plans."
+            }
+          ],
+          "generalExplanation": "Compute Savings Plans provide significant cost savings (up to 66%) with maximum flexibility, applying automatically regardless of instance family, size, OS, region, Fargate, or Lambda."
+        }
+      }
     },
     {
       "id": "sap-sim3-q016",
@@ -701,7 +1946,90 @@
       ],
       "generalExplanation": "Amazon CloudWatch Synthetics allows you to monitor application endpoints and multi-step user workflows using synthetic canaries that run 24/7 to catch issues proactively.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "An e-commerce retailer wants to monitor the health and customer experience of its multi-step checkout workflow (Login -> Add to Cart -> Enter Payment -> Confirm Order) 24/7. The monitoring solution must simulate realistic user actions in a headless browser from multiple geographic regions, take screenshots of failed steps, measure UI page load times, and alert the on-call DevOps engineer before real customers are impacted. Which service meets these criteria?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy Amazon GuardDuty on the checkout EC2 instances to monitor operating system and network anomalies.",
+              "explanation": "Incorrect: GuardDuty monitors security threats, not synthetic end-user checkout experience and UI performance."
+            },
+            {
+              "id": "B",
+              "text": "Deploy Amazon CloudWatch Synthetics canaries (using Puppeteer/Node.js or Selenium/Python scripts) running on a 1-minute schedule from multiple AWS Regions with CloudWatch Alarms.",
+              "explanation": "Correct: CloudWatch Synthetics canaries run automated scripts simulating user actions in headless browsers, capturing UI latency, API responses, and screenshot artifacts on failure."
+            },
+            {
+              "id": "C",
+              "text": "Enable Amazon VPC Flow Logs on all public subnets to capture raw packet metadata across instances.",
+              "explanation": "Incorrect: VPC Flow Logs capture Layer 4 network IP traffic, not application UI workflows, browser rendering, or user simulation."
+            },
+            {
+              "id": "D",
+              "text": "Configure Amazon Route 53 DNS Health Checks on the public homepage URL without multi-step browser simulation.",
+              "explanation": "Incorrect: A basic homepage TCP/HTTP health check does not simulate multi-step login/cart/checkout workflows or capture screenshots."
+            }
+          ],
+          "generalExplanation": "Amazon CloudWatch Synthetics allows you to monitor application endpoints and multi-step user workflows using synthetic canaries that run 24/7 to catch issues proactively."
+        },
+        "pt": {
+          "statement": "An e-commerce retailer deseja monitor the health and customer experience of its multi-step checkout workflow (Login -> Add to Cart -> Enter Payment -> Confirm Order) 24/7. The monitoring solution must simulate realistic user actions in a headless browser from multiple geographic regions, take screenshots of failed steps, measure UI page load times, and alert the on-call DevOps engineer before real customers are impacted. Qual serviço atende a esses critérios?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar Amazon GuardDuty on the checkout EC2 instances para monitorar sistema operacional and network anomalies.",
+              "explanation": "Incorreto: GuardDuty monitors security threats, not synthetic end-user checkout experience and UI performance."
+            },
+            {
+              "id": "B",
+              "text": "Implantar canários do Amazon CloudWatch Synthetics (usando scripts Puppeteer/Node.js ou Selenium/Python) em execução a cada 1 minuto a partir de múltiplas Regiões AWS com Alarmes do CloudWatch.",
+              "explanation": "Correto: CloudWatch Synthetics canaries run automated scripts simulating user actions in headless browsers, capturing UI latency, API responses, and screenshot artifacts on failure."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar Amazon VPC Flow Logs on all public subnets to capture raw packet metadata across instances.",
+              "explanation": "Incorreto: VPC Flow Logs capture Layer 4 network IP traffic, not application UI workflows, browser rendering, or user simulation."
+            },
+            {
+              "id": "D",
+              "text": "Configurar Amazon Route 53 DNS Health Checks on the public homepage URL without multi-step browser simulation.",
+              "explanation": "Incorreto: A basic homepage TCP/HTTP health check does not simulate multi-step login/cart/checkout workflows or capture screenshots."
+            }
+          ],
+          "generalExplanation": "Amazon CloudWatch Synthetics allows you para monitorar application endpoints and multi-step user workflows using synthetic canaries that run 24/7 to catch issues proactively."
+        },
+        "es": {
+          "statement": "An e-commerce retailer desea monitor the health and customer experience of its multi-step checkout workflow (Login -> Add to Cart -> Enter Payment -> Confirm Order) 24/7. The monitoring solution must simulate realistic user actions in a headless browser from multiple geographic regions, take screenshots of failed steps, measure UI page load times, and alert the on-call DevOps engineer before real customers are impacted. ¿Qué servicio cumple con estos criterios?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar Amazon GuardDuty on the checkout EC2 instances para monitorear sistema operativo and network anomalies.",
+              "explanation": "Incorrecto: GuardDuty monitors security threats, not synthetic end-user checkout experience and UI performance."
+            },
+            {
+              "id": "B",
+              "text": "Implementar canarios de Amazon CloudWatch Synthetics (usando scripts de Puppeteer/Node.js o Selenium/Python) que se ejecutan en un intervalo de 1 minuto desde múltiples Regiones de AWS con Alarmas de CloudWatch.",
+              "explanation": "Correcto: CloudWatch Synthetics canaries run automated scripts simulating user actions in headless browsers, capturing UI latency, API responses, and screenshot artifacts on failure."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar Amazon VPC Flow Logs on all public subnets to capture raw packet metadata across instances.",
+              "explanation": "Incorrecto: VPC Flow Logs capture Layer 4 network IP traffic, not application UI workflows, browser rendering, or user simulation."
+            },
+            {
+              "id": "D",
+              "text": "Configurar Amazon Route 53 DNS Health Checks on the public homepage URL without multi-step browser simulation.",
+              "explanation": "Incorrecto: A basic homepage TCP/HTTP health check does not simulate multi-step login/cart/checkout workflows or capture screenshots."
+            }
+          ],
+          "generalExplanation": "Amazon CloudWatch Synthetics allows you para monitorear application endpoints and multi-step user workflows using synthetic canaries that run 24/7 to catch issues proactively."
+        }
+      }
     },
     {
       "id": "sap-sim3-q017",
@@ -743,7 +2071,90 @@
       ],
       "generalExplanation": "AWS Resilience Hub provides a single dashboard to define, measure, and improve the resilience of your AWS applications based on business RTO and RPO targets.",
       "referenceUrl": "https://docs.aws.amazon.com/resilience-hub/latest/userguide/what-is.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise is preparing for an annual regulatory resilience audit. The solutions architect needs a central service that can define Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for critical business applications, assess the entire architecture against these targets, recommend remediation strategies, and generate automated test suites to validate disaster recovery readiness. Which AWS service is designed specifically for this purpose?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implement AWS Resilience Hub to assess application architectures against business RTO and RPO targets and generate test suites.",
+              "explanation": "Correct: AWS Resilience Hub provides a central place to define, measure, and manage the resilience posture of your applications, tracking RTO/RPO targets and generating automated test templates for AWS FIS."
+            },
+            {
+              "id": "B",
+              "text": "Use AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrect: Cost Explorer is a financial reporting tool, not a disaster recovery RTO/RPO assessment engine."
+            },
+            {
+              "id": "C",
+              "text": "Use AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorrect: AWS Certificate Manager (ACM) manages public and private SSL/TLS certificates and does not evaluate architectural RTO/RPO resilience."
+            },
+            {
+              "id": "D",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorrect: AWS Artifact provides compliance reports for AWS cloud infrastructure, but does not assess custom customer application architectures against RTO/RPO targets."
+            }
+          ],
+          "generalExplanation": "AWS Resilience Hub provides a single dashboard to define, measure, and improve the resilience of your AWS applications based on business RTO and RPO targets."
+        },
+        "pt": {
+          "statement": "Uma empresa está se preparando para an annual regulatory resilience audit. O arquiteto de soluções needs a central service that can define Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for critical business applications, assess the entire architecture against these targets, recommend remediation strategies, and generate automated test suites to validate recuperação de desastres readiness. Qual serviço da AWS é projetado especificamente para essa finalidade?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar o AWS Resilience Hub para avaliar arquiteturas de aplicações em relação às metas de RTO e RPO do negócio e gerar conjuntos de testes.",
+              "explanation": "Correto: AWS Resilience Hub provides a central place to define, measure, and manage the resilience posture of your applications, tracking RTO/RPO targets and generating automated test templates for AWS FIS."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorreto: Cost Explorer is a financial reporting tool, not a recuperação de desastres RTO/RPO assessment engine."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorreto: AWS Certificate Manager (ACM) manages public and private SSL/TLS certificates and does not evaluate architectural RTO/RPO resilience."
+            },
+            {
+              "id": "D",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorreto: AWS Artifact provides compliance reports for AWS cloud infrastructure, but does not assess custom customer application architectures against RTO/RPO targets."
+            }
+          ],
+          "generalExplanation": "AWS Resilience Hub provides a single dashboard to define, measure, and improve the resilience of your AWS applications based on business RTO and RPO targets."
+        },
+        "es": {
+          "statement": "Una empresa se está preparando para an annual regulatory resilience audit. El arquitecto de soluciones needs a central service that can define Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for critical business applications, assess the entire architecture against these targets, recommend remediation strategies, and generate automated test suites to validate recuperación ante desastres readiness. ¿Qué servicio de AWS está diseñado específicamente para este propósito?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar AWS Resilience Hub para evaluar las arquitecturas de las aplicaciones frente a los objetivos de RTO y RPO del negocio y generar conjuntos de pruebas.",
+              "explanation": "Correcto: AWS Resilience Hub provides a central place to define, measure, and manage the resilience posture of your applications, tracking RTO/RPO targets and generating automated test templates for AWS FIS."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrecto: Cost Explorer is a financial reporting tool, not a recuperación ante desastres RTO/RPO assessment engine."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar AWS Certificate Manager (ACM) to provision and automatically renew public SSL/TLS certificates.",
+              "explanation": "Incorrecto: AWS Certificate Manager (ACM) manages public and private SSL/TLS certificates and does not evaluate architectural RTO/RPO resilience."
+            },
+            {
+              "id": "D",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorrecto: AWS Artifact provides compliance reports for AWS cloud infrastructure, but does not assess custom customer application architectures against RTO/RPO targets."
+            }
+          ],
+          "generalExplanation": "AWS Resilience Hub provides a single dashboard to define, measure, and improve the resilience of your AWS applications based on business RTO and RPO targets."
+        }
+      }
     },
     {
       "id": "sap-sim3-q018",
@@ -785,7 +2196,90 @@
       ],
       "generalExplanation": "Amazon Data Lifecycle Manager (DLM) provides automated snapshot lifecycle management for EBS volumes, supporting custom retention tiers and cross-region replication based on tags.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "An enterprise manages 5,000 Amazon EBS volumes across 200 EC2 instances in an AWS Region. The compliance policy mandates taking automated daily snapshots of all production EBS volumes (identified by the tag `Environment=Production`), retaining daily snapshots for 14 days, weekly snapshots for 90 days, monthly snapshots for 1 year, and replicating all snapshots to a secondary disaster recovery region. Which solution accomplishes this with the LEAST operational overhead?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configure and deploy Enable S3 Versioning on the EBS volumes. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrect: EBS volumes are block devices and do not support S3 Versioning."
+            },
+            {
+              "id": "B",
+              "text": "Write a Python script on an EC2 instance that calls `ec2:CreateSnapshot` and `ec2:CopySnapshot` via a cron job.",
+              "explanation": "Incorrect: Custom scripts require ongoing maintenance, error handling, and server management compared to native DLM."
+            },
+            {
+              "id": "C",
+              "text": "Attach all 5,000 EBS volumes to a single central EC2 instance and run `dd` commands to tape.",
+              "explanation": "Incorrect: Attaching 5,000 volumes to one instance exceeds EC2 attachment limits and `dd` is an anti-pattern."
+            },
+            {
+              "id": "D",
+              "text": "Configure an Amazon Data Lifecycle Manager (Amazon DLM) lifecycle policy targeting EBS volumes tagged `Environment=Production`, defining daily, weekly, and monthly schedules with retention periods and automated cross-region copy rules.",
+              "explanation": "Correct: Amazon Data Lifecycle Manager (Amazon DLM) automates the creation, retention, and cross-region replication of EBS snapshots based on declarative resource tags with zero custom scripting."
+            }
+          ],
+          "generalExplanation": "Amazon Data Lifecycle Manager (DLM) provides automated snapshot lifecycle management for EBS volumes, supporting custom retention tiers and cross-region replication based on tags."
+        },
+        "pt": {
+          "statement": "Uma empresa manages 5,000 Amazon EBS volumes across 200 EC2 instances in an AWS Region. The compliance policy mandates taking automated daily snapshots of all production EBS volumes (identified by the tag `Environment=Production`), retaining daily snapshots for 14 days, weekly snapshots for 90 days, monthly snapshots for 1 year, and replicating all snapshots to a secondary recuperação de desastres region. Which solution accomplishes this with the LEAST operational overhead?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar and deploy Habilitar S3 Versioning on the EBS volumes. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorreto: EBS volumes are block devices and do not support S3 Versioning."
+            },
+            {
+              "id": "B",
+              "text": "Write a Python script on an EC2 instance that calls `ec2:CreateSnapshot` and `ec2:CopySnapshot` via a cron job.",
+              "explanation": "Incorreto: Custom scripts require ongoing maintenance, error handling, and server management compared to native DLM."
+            },
+            {
+              "id": "C",
+              "text": "Anexar all 5,000 EBS volumes to a single central EC2 instance and run `dd` commands to tape.",
+              "explanation": "Incorreto: Attaching 5,000 volumes to one instance exceeds EC2 attachment limits and `dd` is an anti-pattern."
+            },
+            {
+              "id": "D",
+              "text": "Configurar an Amazon Data Lifecycle Manager (Amazon DLM) lifecycle policy targeting EBS volumes tagged `Environment=Production`, defining daily, weekly, and monthly schedules with retention periods and automated cross-region copy rules.",
+              "explanation": "Correto: Amazon Data Lifecycle Manager (Amazon DLM) automates the creation, retention, and cross-region replication of EBS snapshots based on declarative resource tags with zero custom scripting."
+            }
+          ],
+          "generalExplanation": "Amazon Data Lifecycle Manager (DLM) provides automated snapshot lifecycle management for EBS volumes, supporting custom retention tiers and cross-region replication based on tags."
+        },
+        "es": {
+          "statement": "Una empresa manages 5,000 Amazon EBS volumes across 200 EC2 instances in an AWS Region. The compliance policy mandates taking automated daily snapshots of all production EBS volumes (identified by the tag `Environment=Production`), retaining daily snapshots for 14 days, weekly snapshots for 90 days, monthly snapshots for 1 year, and replicating all snapshots to a secondary recuperación ante desastres region. Which solution accomplishes this with the LEAST operational overhead?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar and deploy Habilitar S3 Versioning on the EBS volumes. following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrecto: EBS volumes are block devices and do not support S3 Versioning."
+            },
+            {
+              "id": "B",
+              "text": "Write a Python script on an EC2 instance that calls `ec2:CreateSnapshot` and `ec2:CopySnapshot` via a cron job.",
+              "explanation": "Incorrecto: Custom scripts require ongoing maintenance, error handling, and server management compared to native DLM."
+            },
+            {
+              "id": "C",
+              "text": "Adjuntar all 5,000 EBS volumes to a single central EC2 instance and run `dd` commands to tape.",
+              "explanation": "Incorrecto: Attaching 5,000 volumes to one instance exceeds EC2 attachment limits and `dd` is an anti-pattern."
+            },
+            {
+              "id": "D",
+              "text": "Configurar an Amazon Data Lifecycle Manager (Amazon DLM) lifecycle policy targeting EBS volumes tagged `Environment=Production`, defining daily, weekly, and monthly schedules with retention periods and automated cross-region copy rules.",
+              "explanation": "Correcto: Amazon Data Lifecycle Manager (Amazon DLM) automates the creation, retention, and cross-region replication of EBS snapshots based on declarative resource tags with zero custom scripting."
+            }
+          ],
+          "generalExplanation": "Amazon Data Lifecycle Manager (DLM) provides automated snapshot lifecycle management for EBS volumes, supporting custom retention tiers and cross-region replication based on tags."
+        }
+      }
     },
     {
       "id": "sap-sim3-q019",
@@ -827,7 +2321,90 @@
       ],
       "generalExplanation": "Amazon S3 Object Lock in Compliance Mode prevents an object version from being deleted or overwritten by any user, including the root user, satisfying SEC Rule 17a-4 compliance.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "A financial banking institution must store regulatory SEC Rule 17a-4 transaction records in Amazon S3 for a mandatory retention period of 5 years. The records must be strictly immutable: no IAM user, administrator, or AWS account root user can delete or overwrite any object or shorten the retention period during the 5-year window. Which configuration enforces this compliance guarantee?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Apply an S3 Bucket Policy with an explicit Deny for `s3:DeleteObject` covering all IAM users.",
+              "explanation": "Incorrect: The AWS account root user or an administrator with IAM privileges can modify or delete the bucket policy to bypass the restriction."
+            },
+            {
+              "id": "B",
+              "text": "Configure an S3 Lifecycle rule to transition objects to S3 Glacier Deep Archive.",
+              "explanation": "Incorrect: S3 Lifecycle transitions change storage class, but do not prevent deletion by authorized users unless Object Lock is enabled."
+            },
+            {
+              "id": "C",
+              "text": "Enable Amazon S3 Object Lock in Governance Mode with a 5-year retention period.",
+              "explanation": "Incorrect: Governance Mode allows users with specific IAM permissions (s3:BypassGovernanceRetention) or root to alter or delete protected objects."
+            },
+            {
+              "id": "D",
+              "text": "Enable S3 Versioning on the bucket and configure Amazon S3 Object Lock in Compliance Mode with a default retention period of 5 years.",
+              "explanation": "Correct: S3 Object Lock in Compliance Mode enforces a strict WORM (Write Once, Read Many) model where no user, including the root user in the AWS account, can delete objects or reduce retention during the compliance period."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Object Lock in Compliance Mode prevents an object version from being deleted or overwritten by any user, including the root user, satisfying SEC Rule 17a-4 compliance."
+        },
+        "pt": {
+          "statement": "A financial banking institution must store regulatory SEC Rule 17a-4 transaction records in Amazon S3 for a mandatory retention period of 5 years. The records must be strictly immutable: no IAM user, administrator, or AWS account root user can delete or overwrite any object or shorten the retention period during the 5-year window. Which configuration enforces this compliance guarantee?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Apply an S3 Bucket Policy with an explicit Deny for `s3:DeleteObject` covering all IAM users.",
+              "explanation": "Incorreto: The AWS account root user or an administrator with IAM privileges can modify or delete the bucket policy to bypass the restriction."
+            },
+            {
+              "id": "B",
+              "text": "Configurar an S3 Lifecycle rule to transition objects to S3 Glacier Deep Archive.",
+              "explanation": "Incorreto: S3 Lifecycle transitions change storage class, but do not prevent deletion by authorized users unless Object Lock is enabled."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar Amazon S3 Object Lock in Governance Mode with a 5-year retention period.",
+              "explanation": "Incorreto: Governance Mode allows users with specific IAM permissions (s3:BypassGovernanceRetention) or root to alter or delete protected objects."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar S3 Versioning on the bucket and configure Amazon S3 Object Lock in Compliance Mode with a default retention period of 5 years.",
+              "explanation": "Correto: S3 Object Lock in Compliance Mode enforces a strict WORM (Write Once, Read Many) model where no user, including the root user in the AWS account, can delete objects or reduce retention during the compliance period."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Object Lock in Compliance Mode prevents an object version from being deleted or overwritten by any user, including the root user, satisfying SEC Rule 17a-4 compliance."
+        },
+        "es": {
+          "statement": "A financial banking institution must store regulatory SEC Rule 17a-4 transaction records in Amazon S3 for a mandatory retention period of 5 years. The records must be strictly immutable: no IAM user, administrator, or AWS account root user can delete or overwrite any object or shorten the retention period during the 5-year window. Which configuration enforces this compliance guarantee?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Apply an S3 Bucket Policy with an explicit Deny for `s3:DeleteObject` covering all IAM users.",
+              "explanation": "Incorrecto: The AWS account root user or an administrator with IAM privileges can modify or delete the bucket policy to bypass the restriction."
+            },
+            {
+              "id": "B",
+              "text": "Configurar an S3 Lifecycle rule to transition objects to S3 Glacier Deep Archive.",
+              "explanation": "Incorrecto: S3 Lifecycle transitions change storage class, but do not prevent deletion by authorized users unless Object Lock is enabled."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar Amazon S3 Object Lock in Governance Mode with a 5-year retention period.",
+              "explanation": "Incorrecto: Governance Mode allows users with specific IAM permissions (s3:BypassGovernanceRetention) or root to alter or delete protected objects."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar S3 Versioning on the bucket and configure Amazon S3 Object Lock in Compliance Mode with a default retention period of 5 years.",
+              "explanation": "Correcto: S3 Object Lock in Compliance Mode enforces a strict WORM (Write Once, Read Many) model where no user, including the root user in the AWS account, can delete objects or reduce retention during the compliance period."
+            }
+          ],
+          "generalExplanation": "Amazon S3 Object Lock in Compliance Mode prevents an object version from being deleted or overwritten by any user, including the root user, satisfying SEC Rule 17a-4 compliance."
+        }
+      }
     },
     {
       "id": "sap-sim3-q020",
@@ -869,7 +2446,90 @@
       ],
       "generalExplanation": "Amazon CloudFront Geographic Restrictions (Geo-blocking) allows you to restrict access to all or selected files at the edge based on the country of the viewer.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html",
-      "difficulty": "easy"
+      "difficulty": "easy",
+      "translations": {
+        "en": {
+          "statement": "A global media company distributes video files and dynamic news via Amazon CloudFront. Due to regional licensing agreements, certain video content must only be accessible to viewers located in specific countries (such as United States and Canada), while viewers from other countries must receive an HTTP 403 Forbidden response. Which solution enforces this restriction at the edge with the LEAST latency?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy an Application Load Balancer in each country and write custom PHP scripts to check client IP addresses against a third-party GeoIP database.",
+              "explanation": "Incorrect: Managing custom GeoIP lookups on ALBs adds unnecessary operational overhead and fails to block requests at the global CDN edge."
+            },
+            {
+              "id": "B",
+              "text": "Configure Amazon CloudFront Geographic Restrictions (Geo-blocking) to allow access only from authorized countries (United States and Canada) at the CloudFront edge locations.",
+              "explanation": "Correct: CloudFront Geographic Restrictions block or allow content distribution based on the viewer's geographic location directly at edge locations, preventing unauthorized viewers from downloading content."
+            },
+            {
+              "id": "C",
+              "text": "Configure an Amazon S3 Bucket Policy with IP address whitelisting.",
+              "explanation": "Incorrect: Global users have dynamic public IPs, making static S3 IP whitelisting unviable and country geo-tagging impossible."
+            },
+            {
+              "id": "D",
+              "text": "Disable CloudFront and require users to connect via an AWS Site-to-Site VPN.",
+              "explanation": "Incorrect: Site-to-Site VPN is for corporate offices, not consumer public media streaming."
+            }
+          ],
+          "generalExplanation": "Amazon CloudFront Geographic Restrictions (Geo-blocking) allows you to restrict access to all or selected files at the edge based on the country of the viewer."
+        },
+        "pt": {
+          "statement": "A global media company distributes video files and dynamic news via Amazon CloudFront. Due to regional licensing agreements, certain video content must only be accessible to viewers located in specific countries (such as United States and Canada), while viewers from other countries must receive an HTTP 403 Forbidden response. Which solution enforces this restriction at the edge with the LEAST latency?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar an Application Load Balancer in each country and write custom PHP scripts to check client IP addresses against a third-party GeoIP database.",
+              "explanation": "Incorreto: Managing custom GeoIP lookups on ALBs adds unnecessary operational overhead and fails to block requests at the global CDN edge."
+            },
+            {
+              "id": "B",
+              "text": "Configurar Amazon CloudFront Geographic Restrictions (Geo-blocking) para permitir access only from authorized countries (United States and Canada) at the CloudFront edge locations.",
+              "explanation": "Correto: CloudFront Geographic Restrictions block or allow content distribution based on the viewer's geographic location directly at edge locations, preventing unauthorized viewers from downloading content."
+            },
+            {
+              "id": "C",
+              "text": "Configurar an Amazon S3 Bucket Policy with IP address whitelisting.",
+              "explanation": "Incorreto: Global users have dynamic public IPs, making static S3 IP whitelisting unviable and country geo-tagging impossible."
+            },
+            {
+              "id": "D",
+              "text": "Desabilitar CloudFront and require users para conectar via an AWS Site-to-Site VPN.",
+              "explanation": "Incorreto: Site-to-Site VPN is for corporate offices, not consumer public media streaming."
+            }
+          ],
+          "generalExplanation": "Amazon CloudFront Geographic Restrictions (Geo-blocking) allows you to restrict access to all or selected files at the edge based on the country of the viewer."
+        },
+        "es": {
+          "statement": "A global media company distributes video files and dynamic news via Amazon CloudFront. Due to regional licensing agreements, certain video content must only be accessible to viewers located in specific countries (such as United States and Canada), while viewers from other countries must receive an HTTP 403 Forbidden response. Which solution enforces this restriction at the edge with the LEAST latency?",
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar an Application Load Balancer in each country and write custom PHP scripts to check client IP addresses against a third-party GeoIP database.",
+              "explanation": "Incorrecto: Managing custom GeoIP lookups on ALBs adds unnecessary operational overhead and fails to block requests at the global CDN edge."
+            },
+            {
+              "id": "B",
+              "text": "Configurar Amazon CloudFront Geographic Restrictions (Geo-blocking) para permitir access only from authorized countries (United States and Canada) at the CloudFront edge locations.",
+              "explanation": "Correcto: CloudFront Geographic Restrictions block or allow content distribution based on the viewer's geographic location directly at edge locations, preventing unauthorized viewers from downloading content."
+            },
+            {
+              "id": "C",
+              "text": "Configurar an Amazon S3 Bucket Policy with IP address whitelisting.",
+              "explanation": "Incorrecto: Global users have dynamic public IPs, making static S3 IP whitelisting unviable and country geo-tagging impossible."
+            },
+            {
+              "id": "D",
+              "text": "Deshabilitar CloudFront and require users para conectar via an AWS Site-to-Site VPN.",
+              "explanation": "Incorrecto: Site-to-Site VPN is for corporate offices, not consumer public media streaming."
+            }
+          ],
+          "generalExplanation": "Amazon CloudFront Geographic Restrictions (Geo-blocking) allows you to restrict access to all or selected files at the edge based on the country of the viewer."
+        }
+      }
     },
     {
       "id": "sap-sim3-q021",
@@ -911,7 +2571,90 @@
       ],
       "generalExplanation": "AWS Application Migration Service (AWS MGN) automates server lift-and-shift migrations with continuous replication, non-disruptive testing, and post-launch automation.",
       "referenceUrl": "https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise is planning to migrate 250 on-premises Windows and Linux servers to AWS within a tight 60-day deadline. The migration plan requires non-disruptive continuous data replication, automated pre-cutover testing in an isolated staging VPC without impacting source production systems, and automated post-launch actions (such as installing AWS Systems Manager Agent and updating drivers). Which AWS service should be used?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy AWS DataSync agents on on-premises virtual machines to transfer file systems into Amazon S3.",
+              "explanation": "Incorrect: DataSync migrates filesystem/object data, not running OS boot volumes and server migration workflows."
+            },
+            {
+              "id": "B",
+              "text": "AWS Application Migration Service (AWS MGN) configured with Launch Templates and Post-Launch Settings.",
+              "explanation": "Correct: AWS Application Migration Service (AWS MGN) provides non-disruptive continuous block-level replication, allows automated pre-cutover testing in isolated VPCs, and supports automated post-launch configuration actions (SSM agent installation, driver updates, custom scripts)."
+            },
+            {
+              "id": "C",
+              "text": "Deploy legacy AWS Server Migration Service (AWS SMS) connector to create periodic hypervisor snapshot backups.",
+              "explanation": "Incorrect: AWS SMS is deprecated, snapshot-based (not continuous replication), and lacks modern post-launch automation capabilities."
+            },
+            {
+              "id": "D",
+              "text": "Order an AWS Snowball Edge Storage Optimized physical appliance to transport server disk images offline.",
+              "explanation": "Incorrect: Snowball Edge is for offline bulk data migration, not automated live server replication with post-launch driver initialization."
+            }
+          ],
+          "generalExplanation": "AWS Application Migration Service (AWS MGN) automates server lift-and-shift migrations with continuous replication, non-disruptive testing, and post-launch automation."
+        },
+        "pt": {
+          "statement": "Uma empresa está planejando to migrate 250 on-premises Windows and Linux servers to AWS within a tight 60-day deadline. The migration plan requires non-disruptive continuous data replication, automated pre-cutover testing in an isolated staging VPC without impacting source production systems, and automated post-launch actions (such as installing AWS Systems Manager Agent and updating drivers). Which AWS service should be used?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar AWS DataSync agents on on-premises virtual machines to transfer file systems into Amazon S3.",
+              "explanation": "Incorreto: DataSync migrates filesystem/object data, not running OS boot volumes and server migration workflows."
+            },
+            {
+              "id": "B",
+              "text": "AWS Application Migration Service (AWS MGN) configured with Launch Templates and Post-Launch Settings.",
+              "explanation": "Correto: AWS Application Migration Service (AWS MGN) provides non-disruptive continuous block-level replication, allows automated pre-cutover testing in isolated VPCs, and supports automated post-launch configuration actions (SSM agent installation, driver updates, custom scripts)."
+            },
+            {
+              "id": "C",
+              "text": "Implantar legacy AWS Server Migration Service (AWS SMS) connector to create periodic hypervisor snapshot backups.",
+              "explanation": "Incorreto: AWS SMS is deprecated, snapshot-based (not continuous replication), and lacks modern post-launch automation capabilities."
+            },
+            {
+              "id": "D",
+              "text": "Order an AWS Snowball Edge Storage Optimized physical appliance to transport server disk images offline.",
+              "explanation": "Incorreto: Snowball Edge is for offline bulk data migration, not automated live server replication with post-launch driver initialization."
+            }
+          ],
+          "generalExplanation": "AWS Application Migration Service (AWS MGN) automates server lift-and-shift migrations with continuous replication, non-disruptive testing, and post-launch automation."
+        },
+        "es": {
+          "statement": "Una empresa está planificando to migrate 250 on-premises Windows and Linux servers to AWS within a tight 60-day deadline. The migration plan requires non-disruptive continuous data replication, automated pre-cutover testing in an isolated staging VPC without impacting source production systems, and automated post-launch actions (such as installing AWS Systems Manager Agent and updating drivers). Which AWS service should be used?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar AWS DataSync agents on on-premises virtual machines to transfer file systems into Amazon S3.",
+              "explanation": "Incorrecto: DataSync migrates filesystem/object data, not running OS boot volumes and server migration workflows."
+            },
+            {
+              "id": "B",
+              "text": "AWS Application Migration Service (AWS MGN) configured with Launch Templates and Post-Launch Settings.",
+              "explanation": "Correcto: AWS Application Migration Service (AWS MGN) provides non-disruptive continuous block-level replication, allows automated pre-cutover testing in isolated VPCs, and supports automated post-launch configuration actions (SSM agent installation, driver updates, custom scripts)."
+            },
+            {
+              "id": "C",
+              "text": "Implementar legacy AWS Server Migration Service (AWS SMS) connector to create periodic hypervisor snapshot backups.",
+              "explanation": "Incorrecto: AWS SMS is deprecated, snapshot-based (not continuous replication), and lacks modern post-launch automation capabilities."
+            },
+            {
+              "id": "D",
+              "text": "Order an AWS Snowball Edge Storage Optimized physical appliance to transport server disk images offline.",
+              "explanation": "Incorrecto: Snowball Edge is for offline bulk data migration, not automated live server replication with post-launch driver initialization."
+            }
+          ],
+          "generalExplanation": "AWS Application Migration Service (AWS MGN) automates server lift-and-shift migrations with continuous replication, non-disruptive testing, and post-launch automation."
+        }
+      }
     },
     {
       "id": "sap-sim3-q022",
@@ -953,7 +2696,90 @@
       ],
       "generalExplanation": "Optimizing AWS DMS for Large Binary Objects (LOBs) requires configuring Full LOB or Inline LOB modes with custom LOB chunk sizes and parallel task distribution.",
       "referenceUrl": "https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.LOBSupport.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "A financial company is migrating an on-premises 20 TB Microsoft SQL Server database to Amazon Aurora PostgreSQL. During the initial full load phase, database tables containing Large Binary Objects (LOBs) are causing AWS DMS migration tasks to run extremely slowly. The application requires replicating all LOB data accurately without truncating data. Which AWS DMS configuration optimizes LOB migration performance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configure AWS DMS with Limited LOB mode for initial validation and Full LOB mode (or Inline LOB mode with an optimized Max LOB Size) for tables with large LOB columns, splitting large tables across multiple dedicated replication tasks.",
+              "explanation": "Correct: AWS DMS LOB optimization involves tuning LOB modes: Full LOB mode preserves complete data without truncation, while configuring Inline LOB mode with appropriate buffer sizing and splitting large tables across parallel tasks optimizes throughput."
+            },
+            {
+              "id": "B",
+              "text": "Drop all LOB columns from the source SQL Server database before migration.",
+              "explanation": "Incorrect: Dropping production LOB data causes permanent data loss and violates application integrity."
+            },
+            {
+              "id": "C",
+              "text": "Switch AWS DMS replication engine to single-threaded sequential mode on a t3.nano instance.",
+              "explanation": "Incorrect: Single-threaded mode on a tiny instance severely degrades replication performance."
+            },
+            {
+              "id": "D",
+              "text": "Use AWS Storage Gateway Volume Gateway to mirror the database.",
+              "explanation": "Incorrect: Storage Gateway does not convert schemas between heterogeneous database engines (SQL Server to PostgreSQL)."
+            }
+          ],
+          "generalExplanation": "Optimizing AWS DMS for Large Binary Objects (LOBs) requires configuring Full LOB or Inline LOB modes with custom LOB chunk sizes and parallel task distribution."
+        },
+        "pt": {
+          "statement": "A financial company está migrando an on-premises 20 TB Microsoft SQL Server database to Amazon Aurora PostgreSQL. During the initial full load phase, database tables containing Large Binary Objects (LOBs) are causing AWS DMS migration tasks to run extremely slowly. The application requires replicating all LOB data accurately without truncating data. Which AWS DMS configuration optimizes LOB migration performance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar AWS DMS with Limited LOB mode for initial validation and Full LOB mode (or Inline LOB mode with an optimized Max LOB Size) for tables with large LOB columns, splitting large tables across multiple dedicated replication tasks.",
+              "explanation": "Correto: AWS DMS LOB optimization involves tuning LOB modes: Full LOB mode preserves complete data without truncation, while configuring Inline LOB mode with appropriate buffer sizing and splitting large tables across parallel tasks optimizes throughput."
+            },
+            {
+              "id": "B",
+              "text": "Drop all LOB columns from the source SQL Server database before migration.",
+              "explanation": "Incorreto: Dropping production LOB data causes permanent data loss and violates application integrity."
+            },
+            {
+              "id": "C",
+              "text": "Switch AWS DMS replication engine to single-threaded sequential mode on a t3.nano instance.",
+              "explanation": "Incorreto: Single-threaded mode on a tiny instance severely degrades replication performance."
+            },
+            {
+              "id": "D",
+              "text": "Utilizar AWS Storage Gateway Volume Gateway to mirror the database.",
+              "explanation": "Incorreto: Storage Gateway does not convert schemas between heterogeneous database engines (SQL Server to PostgreSQL)."
+            }
+          ],
+          "generalExplanation": "Optimizing AWS DMS for Large Binary Objects (LOBs) requires configuring Full LOB or Inline LOB modes with custom LOB chunk sizes and parallel task distribution."
+        },
+        "es": {
+          "statement": "A financial company está migrando an on-premises 20 TB Microsoft SQL Server database to Amazon Aurora PostgreSQL. During the initial full load phase, database tables containing Large Binary Objects (LOBs) are causing AWS DMS migration tasks to run extremely slowly. The application requires replicating all LOB data accurately without truncating data. Which AWS DMS configuration optimizes LOB migration performance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar AWS DMS with Limited LOB mode for initial validation and Full LOB mode (or Inline LOB mode with an optimized Max LOB Size) for tables with large LOB columns, splitting large tables across multiple dedicated replication tasks.",
+              "explanation": "Correcto: AWS DMS LOB optimization involves tuning LOB modes: Full LOB mode preserves complete data without truncation, while configuring Inline LOB mode with appropriate buffer sizing and splitting large tables across parallel tasks optimizes throughput."
+            },
+            {
+              "id": "B",
+              "text": "Drop all LOB columns from the source SQL Server database before migration.",
+              "explanation": "Incorrecto: Dropping production LOB data causes permanent data loss and violates application integrity."
+            },
+            {
+              "id": "C",
+              "text": "Switch AWS DMS replication engine to single-threaded sequential mode on a t3.nano instance.",
+              "explanation": "Incorrecto: Single-threaded mode on a tiny instance severely degrades replication performance."
+            },
+            {
+              "id": "D",
+              "text": "Utilizar AWS Storage Gateway Volume Gateway to mirror the database.",
+              "explanation": "Incorrecto: Storage Gateway does not convert schemas between heterogeneous database engines (SQL Server to PostgreSQL)."
+            }
+          ],
+          "generalExplanation": "Optimizing AWS DMS for Large Binary Objects (LOBs) requires configuring Full LOB or Inline LOB modes with custom LOB chunk sizes and parallel task distribution."
+        }
+      }
     },
     {
       "id": "sap-sim3-q023",
@@ -995,7 +2821,90 @@
       ],
       "generalExplanation": "The AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report evaluates the complexity of migrating heterogeneous database schemas and highlights manual conversion tasks.",
       "referenceUrl": "https://docs.aws.amazon.com/dms/latest/sct/CHAP_AssessmentReport.html",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "A company wants to migrate an on-premises Oracle data warehouse with complex PL/SQL ETL scripts to Amazon Redshift. Before starting the migration, the architecture team needs an automated assessment report detailing the percentage of database objects that can be automatically converted versus those requiring manual refactoring, along with step-by-step remediation guidance. Which tool generates this assessment?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report",
+              "explanation": "Correct: AWS SCT generates a comprehensive Database Migration Assessment Report that analyzes schemas, stored procedures, and ETL code, reporting the conversion percentage and outlining manual action items."
+            },
+            {
+              "id": "B",
+              "text": "Use AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrect: Cost Explorer analyzes cloud spending, not database schema code compatibility."
+            },
+            {
+              "id": "C",
+              "text": "Configure and deploy Amazon Inspector following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrect: Inspector scans for software security CVEs, not database PL/SQL to Redshift SQL compatibility."
+            },
+            {
+              "id": "D",
+              "text": "Configure and deploy AWS Application Discovery Service following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrect: Application Discovery Service discovers server virtual machines and network dependencies, not internal database SQL/PL-SQL stored procedure logic."
+            }
+          ],
+          "generalExplanation": "The AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report evaluates the complexity of migrating heterogeneous database schemas and highlights manual conversion tasks."
+        },
+        "pt": {
+          "statement": "Uma empresa deseja migrate an on-premises Oracle data warehouse with complex PL/SQL ETL scripts to Amazon Redshift. Before starting the migration, the architecture team needs an automated assessment report detailing the percentage of database objects that can be automatically converted versus those requiring manual refactoring, along with step-by-step remediation guidance. Which tool generates this assessment?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report",
+              "explanation": "Correto: AWS SCT generates a comprehensive Database Migration Assessment Report that analyzes schemas, stored procedures, and ETL code, reporting the conversion percentage and outlining manual action items."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorreto: Cost Explorer analyzes cloud spending, not database schema code compatibility."
+            },
+            {
+              "id": "C",
+              "text": "Configurar and deploy Amazon Inspector following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorreto: Inspector scans for software security CVEs, not database PL/SQL to Redshift SQL compatibility."
+            },
+            {
+              "id": "D",
+              "text": "Configurar and deploy AWS Application Discovery Service following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorreto: Application Discovery Service discovers server virtual machines and network dependencies, not internal database SQL/PL-SQL stored procedure logic."
+            }
+          ],
+          "generalExplanation": "The AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report evaluates the complexity of migrating heterogeneous database schemas and highlights manual conversion tasks."
+        },
+        "es": {
+          "statement": "Una empresa desea migrate an on-premises Oracle data warehouse with complex PL/SQL ETL scripts to Amazon Redshift. Before starting the migration, the architecture team needs an automated assessment report detailing the percentage of database objects that can be automatically converted versus those requiring manual refactoring, along with step-by-step remediation guidance. Which tool generates this assessment?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report",
+              "explanation": "Correcto: AWS SCT generates a comprehensive Database Migration Assessment Report that analyzes schemas, stored procedures, and ETL code, reporting the conversion percentage and outlining manual action items."
+            },
+            {
+              "id": "B",
+              "text": "Utilizar AWS Cost Explorer to visualize consolidated historical AWS expenditure and forecast future usage.",
+              "explanation": "Incorrecto: Cost Explorer analyzes cloud spending, not database schema code compatibility."
+            },
+            {
+              "id": "C",
+              "text": "Configurar and deploy Amazon Inspector following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrecto: Inspector scans for software security CVEs, not database PL/SQL to Redshift SQL compatibility."
+            },
+            {
+              "id": "D",
+              "text": "Configurar and deploy AWS Application Discovery Service following AWS Well-Architected Framework enterprise best practices.",
+              "explanation": "Incorrecto: Application Discovery Service discovers server virtual machines and network dependencies, not internal database SQL/PL-SQL stored procedure logic."
+            }
+          ],
+          "generalExplanation": "The AWS Schema Conversion Tool (AWS SCT) Database Migration Assessment Report evaluates the complexity of migrating heterogeneous database schemas and highlights manual conversion tasks."
+        }
+      }
     },
     {
       "id": "sap-sim3-q024",
@@ -1037,7 +2946,90 @@
       ],
       "generalExplanation": "AWS Proton is the first fully managed application deployment service for container and serverless applications, enabling platform teams to define and manage consistent infrastructure templates.",
       "referenceUrl": "https://docs.aws.amazon.com/proton/latest/userguide/welcome.html",
-      "difficulty": "hard"
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "statement": "An enterprise platform engineering team wants to provide standardized infrastructure templates and automated deployment pipelines for hundreds of microservice development teams deploying containerized services on Amazon ECS and Amazon EKS. The platform team must manage environment architectures centrally, while developers simply push application code and declare service parameters without managing underlying CloudFormation or Terraform templates. Which AWS service is purpose-built for this platform engineering governance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy AWS OpsWorks Stacks to manage configuration automation using Chef recipes on Amazon EC2 instances.",
+              "explanation": "Incorrect: OpsWorks is a managed Chef/Puppet configuration service, not a modern container platform engineering orchestrator."
+            },
+            {
+              "id": "B",
+              "text": "Provision AWS Cloud9 cloud integrated development environments for developers to edit application code.",
+              "explanation": "Incorrect: Cloud9 is a cloud-based integrated development environment (IDE)."
+            },
+            {
+              "id": "C",
+              "text": "Deploy AWS Proton to centrally manage standard environment and service infrastructure templates for development teams.",
+              "explanation": "Correct: AWS Proton is a fully managed service for platform engineering teams to provide standard infrastructure templates, automated CI/CD pipelines, and environment management for microservices running on containers and serverless."
+            },
+            {
+              "id": "D",
+              "text": "Configure AWS CodeDeploy with in-place deployment mode and custom lifecycle deployment hook scripts across the fleet.",
+              "explanation": "Incorrect: CodeDeploy is an individual deployment service, lacking centralized environment template governance and platform engineering abstractions."
+            }
+          ],
+          "generalExplanation": "AWS Proton is the first fully managed application deployment service for container and serverless applications, enabling platform teams to define and manage consistent infrastructure templates."
+        },
+        "pt": {
+          "statement": "Uma empresa platform engineering team deseja provide standardized infrastructure templates and automated deployment pipelines for hundreds of microservice development teams deploying containerized services on Amazon ECS and Amazon EKS. The platform team must manage environment architectures centrally, while developers simply push application code and declare service parameters without managing underlying CloudFormation or Terraform templates. Which AWS service is purpose-built for this platform engineering governance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar AWS OpsWorks Stacks to manage configuration automation using Chef recipes on Amazon EC2 instances.",
+              "explanation": "Incorreto: OpsWorks is a managed Chef/Puppet configuration service, not a modern container platform engineering orchestrator."
+            },
+            {
+              "id": "B",
+              "text": "Provisionar AWS Cloud9 cloud integrated development environments for developers to edit application code.",
+              "explanation": "Incorreto: Cloud9 is a cloud-based integrated development environment (IDE)."
+            },
+            {
+              "id": "C",
+              "text": "Implantar AWS Proton to centrally manage standard environment and service infrastructure templates for development teams.",
+              "explanation": "Correto: AWS Proton is a fully managed service for platform engineering teams para fornecer standard infrastructure templates, automated CI/CD pipelines, and environment management for microservices running on containers and serverless."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS CodeImplantar with in-place deployment mode and custom lifecycle deployment hook scripts across the fleet.",
+              "explanation": "Incorreto: CodeImplantar is an individual deployment service, lacking centralized environment template governance and platform engineering abstractions."
+            }
+          ],
+          "generalExplanation": "AWS Proton is the first fully managed application deployment service for container and serverless applications, enabling platform teams to define and manage consistent infrastructure templates."
+        },
+        "es": {
+          "statement": "Una empresa platform engineering team desea provide standardized infrastructure templates and automated deployment pipelines for hundreds of microservice development teams deploying containerized services on Amazon ECS and Amazon EKS. The platform team must manage environment architectures centrally, while developers simply push application code and declare service parameters without managing underlying CloudFormation or Terraform templates. Which AWS service is purpose-built for this platform engineering governance?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar AWS OpsWorks Stacks to manage configuration automation using Chef recipes on Amazon EC2 instances.",
+              "explanation": "Incorrecto: OpsWorks is a managed Chef/Puppet configuration service, not a modern container platform engineering orchestrator."
+            },
+            {
+              "id": "B",
+              "text": "Aprovisionar AWS Cloud9 cloud integrated development environments for developers to edit application code.",
+              "explanation": "Incorrecto: Cloud9 is a cloud-based integrated development environment (IDE)."
+            },
+            {
+              "id": "C",
+              "text": "Implementar AWS Proton to centrally manage standard environment and service infrastructure templates for development teams.",
+              "explanation": "Correcto: AWS Proton is a fully managed service for platform engineering teams para proporcionar standard infrastructure templates, automated CI/CD pipelines, and environment management for microservices running on containers and serverless."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS CodeImplementar with in-place deployment mode and custom lifecycle deployment hook scripts across the fleet.",
+              "explanation": "Incorrecto: CodeImplementar is an individual deployment service, lacking centralized environment template governance and platform engineering abstractions."
+            }
+          ],
+          "generalExplanation": "AWS Proton is the first fully managed application deployment service for container and serverless applications, enabling platform teams to define and manage consistent infrastructure templates."
+        }
+      }
     },
     {
       "id": "sap-sim3-q025",
@@ -1079,7 +3071,96 @@
       ],
       "generalExplanation": "AWS Migration Evaluator (formerly TSO Logic) builds data-driven business cases for cloud migration by analyzing on-premises inventory and optimizing for compute right-sizing and software licensing.",
       "referenceUrl": "https://aws.amazon.com/migration-evaluator/",
-      "difficulty": "medium"
+      "difficulty": "medium",
+      "translations": {
+        "en": {
+          "statement": "An enterprise CFO requires a comprehensive Total Cost of Ownership (TCO) business case comparison before committing to migrating 2,000 on-premises servers to AWS. The analysis must model multiple migration scenarios (including Bring-Your-Own-License vs AWS-provided licensing, compute right-sizing based on actual historical CPU/RAM utilization, and optimal AWS purchasing options like Compute Savings Plans). Which AWS service provides this business case analysis?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use AWS Migration Evaluator (formerly TSO Logic) to analyze on-premises inventory and model total cost of ownership business cases.",
+              "explanation": "Correct: AWS Migration Evaluator provides complimentary business case modeling and total cost of ownership (TCO) analysis, analyzing actual on-premises compute utilization and software licensing (Microsoft SQL/Windows) to project optimized AWS spend."
+            },
+            {
+              "id": "B",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorrect: AWS Artifact provides compliance audit reports."
+            },
+            {
+              "id": "C",
+              "text": "Use AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorrect: Pricing Calculator requires manual input of each resource and does not automatically analyze actual on-premises server inventory or software licensing optimization."
+            },
+            {
+              "id": "D",
+              "text": "Configure AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrect: AWS Budgets is for setting spending limits on existing AWS accounts."
+            }
+          ],
+          "generalExplanation": "AWS Migration Evaluator (formerly TSO Logic) builds data-driven business cases for cloud migration by analyzing on-premises inventory and optimizing for compute right-sizing and software licensing."
+        },
+        "pt": {
+          "statement": "Uma empresa CFO necessita de um(a) comprehensive Total Cost of Ownership (TCO) business case comparison before committing to migrating 2,000 on-premises servers to AWS. The analysis must model multiple migration scenarios (including Bring-Your-Own-License vs AWS-provided licensing, compute right-sizing based on actual historical CPU/RAM utilization, and optimal AWS purchasing options like Compute Savings Plans). Which AWS service provides this business case analysis?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Migration Evaluator (formerly TSO Logic) to analyze on-premises inventory and model total cost of ownership business cases.",
+              "explanation": "Correto: AWS Migration Evaluator provides complimentary business case modeling and total cost of ownership (TCO) analysis, analyzing actual on-premises compute utilization and software licensing (Microsoft SQL/Windows) to project optimized AWS spend."
+            },
+            {
+              "id": "B",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorreto: AWS Artifact provides compliance audit reports."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorreto: Pricing Calculator requires manual input of each resource and does not automatically analyze actual on-premises server inventory or software licensing optimization."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorreto: AWS Budgets is for setting spending limits on existing AWS accounts."
+            }
+          ],
+          "generalExplanation": "AWS Migration Evaluator (formerly TSO Logic) builds data-driven business cases for cloud migration by analyzing on-premises inventory and optimizing for compute right-sizing and software licensing."
+        },
+        "es": {
+          "statement": "Una empresa CFO requiere un(a) comprehensive Total Cost of Ownership (TCO) business case comparison before committing to migrating 2,000 on-premises servers to AWS. The analysis must model multiple migration scenarios (including Bring-Your-Own-License vs AWS-provided licensing, compute right-sizing based on actual historical CPU/RAM utilization, and optimal AWS purchasing options like Compute Savings Plans). Which AWS service provides this business case analysis?",
+          "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilizar AWS Migration Evaluator (formerly TSO Logic) to analyze on-premises inventory and model total cost of ownership business cases.",
+              "explanation": "Correcto: AWS Migration Evaluator provides complimentary business case modeling and total cost of ownership (TCO) analysis, analyzing actual on-premises compute utilization and software licensing (Microsoft SQL/Windows) to project optimized AWS spend."
+            },
+            {
+              "id": "B",
+              "text": "Download compliance reports and regulatory certifications from the AWS Artifact self-service portal.",
+              "explanation": "Incorrecto: AWS Artifact provides compliance audit reports."
+            },
+            {
+              "id": "C",
+              "text": "Utilizar AWS Pricing Calculator to model architecture costs before provisioning AWS infrastructure resources.",
+              "explanation": "Incorrecto: Pricing Calculator requires manual input of each resource and does not automatically analyze actual on-premises server inventory or software licensing optimization."
+            },
+            {
+              "id": "D",
+              "text": "Configurar AWS Budgets to send automated notifications when monthly spending limits exceed predefined thresholds.",
+              "explanation": "Incorrecto: AWS Budgets is for setting spending limits on existing AWS accounts."
+            }
+          ],
+          "generalExplanation": "AWS Migration Evaluator (formerly TSO Logic) builds data-driven business cases for cloud migration by analyzing on-premises inventory and optimizing for compute right-sizing and software licensing."
+        }
+      }
     }
-  ]
+  ],
+  "availableLanguages": [
+    "en",
+    "pt",
+    "es"
+  ],
+  "defaultLanguage": "en"
 }

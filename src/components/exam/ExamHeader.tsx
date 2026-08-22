@@ -11,9 +11,11 @@ import {
   CheckCircle2,
   SlidersHorizontal,
   Eye,
+  Globe,
 } from 'lucide-react';
-import { ExamMode } from '@/types/exam';
+import { ExamMode, ExamLanguage } from '@/types/exam';
 import { ExamTheme } from '@/lib/storage/examStorage';
+import { SUPPORTED_LANGUAGES } from '@/lib/localization';
 
 interface ExamHeaderProps {
   examCode: string;
@@ -27,7 +29,10 @@ interface ExamHeaderProps {
   isTimerRunning: boolean;
   isFlagged: boolean;
   theme: ExamTheme;
+  language?: ExamLanguage;
+  availableLanguages?: ExamLanguage[];
   isPaused?: boolean;
+  onSelectLanguage?: (lang: ExamLanguage) => void;
   onTogglePause?: () => void;
   onToggleTimer?: () => void;
   onToggleFlag: () => void;
@@ -49,7 +54,10 @@ export function ExamHeader({
   isTimerRunning,
   isFlagged,
   theme,
+  language = 'en',
+  availableLanguages = ['en'],
   isPaused,
+  onSelectLanguage,
   onTogglePause,
   onToggleTimer,
   onToggleFlag,
@@ -143,6 +151,40 @@ export function ExamHeader({
               <Pause className="h-3.5 w-3.5" />
               <span className="hidden xs:inline sm:inline">Pause</span>
             </button>
+          )}
+
+          {/* Language Switcher */}
+          {onSelectLanguage && (
+            <div className={`flex items-center gap-1 p-0.5 rounded-lg border ${
+              isPearson ? 'bg-blue-950/80 border-blue-800' : 'bg-slate-800/90 border-slate-700'
+            }`}>
+              {(['en', 'pt', 'es'] as ExamLanguage[]).map((lang) => {
+                const meta = SUPPORTED_LANGUAGES[lang];
+                const isAvailable = availableLanguages?.includes(lang);
+                const isSelected = isAvailable && language === lang;
+
+                return (
+                  <button
+                    key={lang}
+                    disabled={!isAvailable}
+                    onClick={() => isAvailable && onSelectLanguage(lang)}
+                    title={isAvailable ? `Switch questions to ${meta?.label || lang}` : `${meta?.label || lang} (Not available for this exam)`}
+                    className={`px-2 py-1 rounded text-xs font-bold flex items-center gap-1 transition-all ${
+                      !isAvailable
+                        ? 'opacity-35 cursor-not-allowed text-slate-500 hover:bg-transparent'
+                        : isSelected
+                        ? isPearson
+                          ? 'bg-amber-400 text-slate-950 shadow-sm'
+                          : 'bg-amber-500 text-slate-950 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-700/60'
+                    }`}
+                  >
+                    <span>{meta?.flag}</span>
+                    <span className="uppercase text-[11px]">{lang}</span>
+                  </button>
+                );
+              })}
+            </div>
           )}
 
           {/* Theme Switch */}

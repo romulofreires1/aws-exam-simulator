@@ -23,6 +23,8 @@ function ExamRunnerContent({ examId }: { examId: string }) {
   const searchParams = useSearchParams();
   const rawMode = searchParams.get('mode');
   const mode: ExamMode = rawMode === 'practice' ? 'practice' : 'real';
+  const rawLang = searchParams.get('lang');
+  const initialLanguage = (rawLang === 'en' || rawLang === 'pt' || rawLang === 'es') ? rawLang : undefined;
 
   const router = useRouter();
   const exam = getExamById(examId);
@@ -57,6 +59,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
       questions: [],
     },
     mode,
+    initialLanguage,
     onFinishExam: handleFinishExam,
   });
 
@@ -107,7 +110,10 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         isTimerRunning={engine.isTimerRunning}
         isFlagged={engine.currentResponse?.isFlagged || false}
         theme={theme}
+        language={engine.language}
+        availableLanguages={engine.availableLanguages}
         isPaused={engine.isPaused}
+        onSelectLanguage={engine.setLanguage}
         onTogglePause={engine.togglePause}
         onToggleTimer={engine.togglePause}
         onToggleFlag={engine.toggleFlag}
@@ -123,6 +129,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
           <ExamReviewScreen
             questions={exam.questions}
             responses={engine.responses}
+            language={engine.language}
             onGoToQuestion={(idx) => {
               engine.goToQuestion(idx);
               engine.setIsReviewScreenOpen(false);
@@ -146,6 +153,9 @@ function ExamRunnerContent({ examId }: { examId: string }) {
             }
             mode={mode}
             theme={theme}
+            language={engine.language}
+            availableLanguages={engine.availableLanguages}
+            onSelectLanguage={engine.setLanguage}
             onToggleOption={engine.toggleOption}
             onToggleStrikeThrough={engine.toggleStrikeThrough}
             onToggleHighlight={engine.toggleHighlight}

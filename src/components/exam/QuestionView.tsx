@@ -13,10 +13,12 @@ import {
   Trash2,
   Sparkles,
 } from 'lucide-react';
-import { Question, QuestionUserResponse, ExamMode } from '@/types/exam';
+import { Question, QuestionUserResponse, ExamMode, ExamLanguage } from '@/types/exam';
 import { OptionCard } from './OptionCard';
 import { InstantFeedback } from './InstantFeedback';
 import { ExamTheme } from '@/lib/storage/examStorage';
+import { SUPPORTED_LANGUAGES } from '@/lib/localization';
+import { Globe } from 'lucide-react';
 
 interface QuestionViewProps {
   question: Question;
@@ -25,6 +27,9 @@ interface QuestionViewProps {
   response: QuestionUserResponse;
   mode: ExamMode;
   theme: ExamTheme;
+  language?: ExamLanguage;
+  availableLanguages?: ExamLanguage[];
+  onSelectLanguage?: (lang: ExamLanguage) => void;
   onToggleOption: (optionId: string) => void;
   onToggleStrikeThrough: (optionId: string) => void;
   onToggleHighlight?: (text: string) => void;
@@ -41,6 +46,9 @@ export function QuestionView({
   response,
   mode,
   theme,
+  language = 'en',
+  availableLanguages = ['en'],
+  onSelectLanguage,
   onToggleOption,
   onToggleStrikeThrough,
   onToggleHighlight,
@@ -208,10 +216,44 @@ export function QuestionView({
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span className="hidden md:inline">
-              Select text to highlight • Right-click to strike through
-            </span>
+          <div className="flex items-center gap-3">
+            {onSelectLanguage && (
+              <div className="flex items-center gap-1 bg-slate-950/60 border border-slate-800 rounded-lg p-0.5">
+                <span className="text-[11px] text-slate-500 font-semibold px-1.5 flex items-center gap-1">
+                  <Globe className="h-3 w-3 text-amber-400" />
+                  <span className="hidden sm:inline">Language:</span>
+                </span>
+                {(['en', 'pt', 'es'] as ExamLanguage[]).map((lang) => {
+                  const meta = SUPPORTED_LANGUAGES[lang];
+                  const isAvailable = availableLanguages?.includes(lang);
+                  const isSelected = isAvailable && language === lang;
+
+                  return (
+                    <button
+                      key={lang}
+                      type="button"
+                      disabled={!isAvailable}
+                      onClick={() => isAvailable && onSelectLanguage(lang)}
+                      title={isAvailable ? `View question in ${meta?.label || lang}` : `${meta?.label || lang} (Not available for this exam)`}
+                      className={`px-1.5 py-0.5 rounded text-[11px] font-bold flex items-center gap-1 transition-all ${
+                        !isAvailable
+                          ? 'opacity-35 cursor-not-allowed text-slate-600 hover:bg-transparent'
+                          : isSelected
+                          ? 'bg-amber-500 text-slate-950 shadow-sm'
+                          : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                      }`}
+                    >
+                      <span>{meta?.flag}</span>
+                      <span className="uppercase">{lang}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            <div className="hidden md:flex items-center gap-2 text-xs text-slate-400">
+              <span>Select text to highlight • Right-click to strike through</span>
+            </div>
           </div>
         </div>
 
