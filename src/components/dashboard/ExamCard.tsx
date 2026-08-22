@@ -69,7 +69,7 @@ export function ExamCard({ exam, onSelectCategory }: ExamCardProps) {
           <button
             type="button"
             onClick={() => onSelectCategory(exam.category)}
-            title={`Filtrar simulados de nível ${exam.category}`}
+            title={`Filter ${exam.category} level exams`}
             className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border transition-all hover:scale-105 active:scale-95 cursor-pointer ${categoryColor}`}
           >
             {exam.category}
