@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { getExamById } from '@/data/exams';
 import { ExamMode } from '@/types/exam';
 import { useExamEngine } from '@/hooks/useExamEngine';
-import { useTimer } from '@/hooks/useTimer';
 import { ExamHeader } from '@/components/exam/ExamHeader';
 import { QuestionView } from '@/components/exam/QuestionView';
 import { ExamReviewScreen } from '@/components/exam/ExamReviewScreen';
@@ -15,7 +14,6 @@ import { ExamPauseModal } from '@/components/exam/ExamPauseModal';
 import {
   getThemePreference,
   setThemePreference,
-  saveActiveSession,
   ExamTheme,
 } from '@/lib/storage/examStorage';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
@@ -62,54 +60,10 @@ function ExamRunnerContent({ examId }: { examId: string }) {
     onFinishExam: handleFinishExam,
   });
 
-  const timer = useTimer({
-    initialSeconds: engine.timeRemainingSeconds,
-    countDown: true,
-    autoStart: mode === 'real',
-    onTimeUp: () => {
-      if (mode === 'real') {
-        engine.submitExam();
-      }
-    },
-  });
-
-  // Sincroniza estado de pausa com o timer
-  useEffect(() => {
-    if (engine.isPaused) {
-      timer.pause();
-    } else if (mode === 'real' && engine.isInitialized && !engine.isCompleted) {
-      timer.resume();
-    }
-  }, [engine.isPaused, mode, engine.isInitialized, engine.isCompleted]);
-
-  // Atualiza tempo restante e tempo gasto no engine
-  useEffect(() => {
-    if (mode === 'real') {
-      engine.setTimeRemainingSeconds(timer.seconds);
-      engine.setTotalTimeSpentSeconds(
-        (exam ? exam.timeLimitMinutes * 60 : 0) - timer.seconds
-      );
-    }
-  }, [timer.seconds, exam, mode]);
-
   const handleExitToHome = useCallback(() => {
-    if (exam && !engine.isCompleted && engine.attemptId) {
-      saveActiveSession({
-        id: engine.attemptId,
-        examId: exam.id,
-        examCode: exam.code,
-        examTitle: exam.title,
-        mode,
-        startedAt: new Date().toISOString(),
-        timeRemainingSeconds: timer.seconds,
-        totalTimeSpentSeconds: (exam.timeLimitMinutes * 60) - timer.seconds,
-        isCompleted: false,
-        currentQuestionIndex: engine.currentIndex,
-        responses: engine.responses,
-      });
-    }
+    engine.saveCurrentSession();
     router.push('/');
-  }, [exam, engine.isCompleted, engine.attemptId, engine.currentIndex, engine.responses, mode, timer.seconds, router]);
+  }, [engine, router]);
 
   if (!exam) {
     return (
@@ -147,15 +101,15 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         mode={mode}
         currentIndex={engine.currentIndex}
         totalQuestions={exam.questions.length}
-        formattedTime={timer.formattedTime}
-        isTimerWarning={timer.isWarning}
-        isTimerCritical={timer.isCritical}
-        isTimerRunning={timer.isRunning}
+        formattedTime={engine.formattedTime}
+        isTimerWarning={engine.isTimerWarning}
+        isTimerCritical={engine.isTimerCritical}
+        isTimerRunning={engine.isTimerRunning}
         isFlagged={engine.currentResponse?.isFlagged || false}
         theme={theme}
         isPaused={engine.isPaused}
         onTogglePause={engine.togglePause}
-        onToggleTimer={timer.isRunning ? timer.pause : timer.resume}
+        onToggleTimer={engine.togglePause}
         onToggleFlag={engine.toggleFlag}
         onOpenQuestionMap={() => engine.setIsQuestionMapOpen(true)}
         onOpenScratchpad={() => engine.setIsScratchpadOpen(true)}
@@ -211,7 +165,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         mode={mode}
         currentIndex={engine.currentIndex}
         totalQuestions={exam.questions.length}
-        formattedTime={timer.formattedTime}
+        formattedTime={engine.formattedTime}
         stats={engine.stats}
         theme={theme}
         onResume={engine.resumeExam}

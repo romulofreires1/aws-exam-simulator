@@ -215,33 +215,35 @@ export function QuestionReviewList({ questions, responses }: QuestionReviewListP
                             : 'bg-slate-950/30 border-slate-800 text-slate-400'
                         }`}
                       >
-                        <div className="flex items-center gap-2 font-bold mb-1">
-                          <span
-                            className={`flex h-6 w-6 items-center justify-center rounded-lg text-xs font-mono font-black ${
-                              isThisCorrect
-                                ? 'bg-emerald-500 text-slate-950'
-                                : wasSelected
-                                ? 'bg-rose-500 text-white'
-                                : 'bg-slate-800 text-slate-400'
-                            }`}
-                          >
-                            {opt.id}
-                          </span>
-                          <span className="text-slate-200">{opt.text}</span>
+                        <div className="flex items-start justify-between gap-3 font-medium mb-1">
+                          <div className="flex items-start gap-2.5 flex-1 min-w-0">
+                            <span
+                              className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-mono font-black mt-0.5 ${
+                                isThisCorrect
+                                  ? 'bg-emerald-500 text-slate-950'
+                                  : wasSelected
+                                  ? 'bg-rose-500 text-white'
+                                  : 'bg-slate-800 text-slate-400'
+                              }`}
+                            >
+                              {opt.id}
+                            </span>
+                            <span className="text-slate-200 text-sm leading-relaxed">{opt.text}</span>
+                          </div>
                           {isThisCorrect && (
-                            <span className="ml-auto text-xs text-emerald-400 font-bold">
+                            <span className="shrink-0 text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
                               ✓ Correct
                             </span>
                           )}
                           {!isThisCorrect && wasSelected && (
-                            <span className="ml-auto text-xs text-rose-400 font-bold">
+                            <span className="shrink-0 text-xs text-rose-400 font-bold bg-rose-500/10 px-2 py-0.5 rounded-md border border-rose-500/20">
                               ✗ Your answer
                             </span>
                           )}
                         </div>
 
                         {opt.explanation && (
-                          <p className="mt-2 text-xs text-slate-300 pl-8">
+                          <p className="mt-2 text-xs text-slate-300 pl-8.5 border-t border-slate-800/60 pt-2">
                             {opt.explanation}
                           </p>
                         )}

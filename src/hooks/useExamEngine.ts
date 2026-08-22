@@ -32,7 +32,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
-  // Modais de suporte
+  // Modais de suporte e estado de pausa
   const [isQuestionMapOpen, setIsQuestionMapOpen] = useState<boolean>(false);
   const [isScratchpadOpen, setIsScratchpadOpen] = useState<boolean>(false);
   const [isReviewScreenOpen, setIsReviewScreenOpen] = useState<boolean>(false);
@@ -46,8 +46,18 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       setAttemptId(existing.id);
       setCurrentIndex(existing.currentQuestionIndex || 0);
       setResponses(existing.responses || {});
-      setTimeRemainingSeconds(existing.timeRemainingSeconds ?? exam.timeLimitMinutes * 60);
-      setTotalTimeSpentSeconds(existing.totalTimeSpentSeconds ?? 0);
+      const savedRemaining =
+        typeof existing.timeRemainingSeconds === 'number'
+          ? existing.timeRemainingSeconds
+          : exam.timeLimitMinutes * 60;
+      setTimeRemainingSeconds(savedRemaining);
+      const savedSpent =
+        typeof existing.totalTimeSpentSeconds === 'number'
+          ? existing.totalTimeSpentSeconds
+          : Math.max(0, exam.timeLimitMinutes * 60 - savedRemaining);
+      setTotalTimeSpentSeconds(savedSpent);
+      // Mantém pausado para que o usuário retome conscientemente sem perder tempo
+      setIsPaused(true);
     } else {
       const newId = `attempt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
       setAttemptId(newId);
@@ -55,6 +65,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       setResponses({});
       setTimeRemainingSeconds(exam.timeLimitMinutes * 60);
       setTotalTimeSpentSeconds(0);
+      setIsPaused(false);
     }
     setIsInitialized(true);
   }, [exam.id, exam.timeLimitMinutes, mode]);
@@ -75,9 +86,9 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     };
   }, [responses, currentQuestion]);
 
-  // Auto-Save periódico
-  useEffect(() => {
-    if (!isInitialized || isCompleted || !attemptId) return;
+  // Função centralizada para salvar a sessão ativa
+  const saveCurrentSession = useCallback(() => {
+    if (!isInitialized || isCompleted || !attemptId || !exam.id) return;
 
     const currentAttempt: ExamAttempt = {
       id: attemptId,
@@ -85,7 +96,7 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
       examCode: exam.code,
       examTitle: exam.title,
       mode,
-      startedAt: new Date().toISOString(),
+      startedAt: new Date(Date.now() - totalTimeSpentSeconds * 1000).toISOString(),
       timeRemainingSeconds,
       totalTimeSpentSeconds,
       isCompleted: false,
@@ -102,11 +113,34 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     exam.code,
     exam.title,
     mode,
-    timeRemainingSeconds,
     totalTimeSpentSeconds,
+    timeRemainingSeconds,
     currentIndex,
     responses,
   ]);
+
+  // Auto-Save periódico a cada 5 segundos
+  useEffect(() => {
+    if (!isInitialized || isCompleted || !attemptId) return;
+
+    const interval = setInterval(() => {
+      saveCurrentSession();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isInitialized, isCompleted, attemptId, saveCurrentSession]);
+
+  // Salva no beforeunload (ao fechar aba ou recarregar página)
+  useEffect(() => {
+    if (!isInitialized || isCompleted || !attemptId) return;
+
+    const handleBeforeUnload = () => {
+      saveCurrentSession();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [isInitialized, isCompleted, attemptId, saveCurrentSession]);
 
   // Ações de Resposta
   const toggleOption = useCallback(
@@ -524,6 +558,57 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     resumeExam,
   ]);
 
+  // Timer countdown e contagem de tempo de estudo
+  useEffect(() => {
+    if (!isInitialized || isCompleted || isPaused) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      if (mode === 'real') {
+        setTimeRemainingSeconds((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }
+      setTotalTimeSpentSeconds((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isInitialized, isCompleted, isPaused, mode]);
+
+  // Auto-submissão quando o tempo esgota no modo real
+  useEffect(() => {
+    if (isInitialized && !isCompleted && mode === 'real' && timeRemainingSeconds === 0) {
+      submitExam();
+    }
+  }, [isInitialized, isCompleted, mode, timeRemainingSeconds, submitExam]);
+
+  // Formatação do tempo
+  const formatTime = useCallback((secs: number) => {
+    const hours = Math.floor(secs / 3600);
+    const minutes = Math.floor((secs % 3600) / 60);
+    const remainingSeconds = secs % 60;
+
+    const pad = (n: number) => n.toString().padStart(2, '0');
+
+    if (hours > 0) {
+      return `${pad(hours)}:${pad(minutes)}:${pad(remainingSeconds)}`;
+    }
+    return `${pad(minutes)}:${pad(remainingSeconds)}`;
+  }, []);
+
+  const formattedTime = useMemo(
+    () => formatTime(timeRemainingSeconds),
+    [formatTime, timeRemainingSeconds]
+  );
+  const isTimerWarning = mode === 'real' && timeRemainingSeconds <= 900 && timeRemainingSeconds > 300; // <= 15 min
+  const isTimerCritical = mode === 'real' && timeRemainingSeconds <= 300; // <= 5 min
+  const isTimerRunning = !isPaused && mode === 'real' && isInitialized && !isCompleted;
+
   return {
     attemptId,
     currentIndex,
@@ -537,12 +622,18 @@ export function useExamEngine({ exam, mode, onFinishExam }: UseExamEngineProps) 
     setTimeRemainingSeconds,
     totalTimeSpentSeconds,
     setTotalTimeSpentSeconds,
+    // Timer e formatação
+    formattedTime,
+    isTimerWarning,
+    isTimerCritical,
+    isTimerRunning,
     // Pausa
     isPaused,
     setIsPaused,
     pauseExam,
     resumeExam,
     togglePause,
+    saveCurrentSession,
     // Modais
     isQuestionMapOpen,
     setIsQuestionMapOpen,
