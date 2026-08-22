@@ -10,7 +10,6 @@ import { QuestionView } from '@/components/exam/QuestionView';
 import { ExamReviewScreen } from '@/components/exam/ExamReviewScreen';
 import { QuestionGridModal } from '@/components/exam/QuestionGridModal';
 import { ScratchpadModal } from '@/components/exam/ScratchpadModal';
-import { ExamPauseModal } from '@/components/exam/ExamPauseModal';
 import { ExamAbandonModal } from '@/components/exam/ExamAbandonModal';
 import {
   getThemePreference,
@@ -127,6 +126,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         onOpenScratchpad={() => engine.setIsScratchpadOpen(true)}
         onOpenReviewScreen={() => engine.setIsReviewScreenOpen(true)}
         onOpenAbandonModal={() => engine.setIsAbandonModalOpen(true)}
+        onSaveAndExit={handleExitToHome}
         onToggleTheme={handleToggleTheme}
       />
 
@@ -176,26 +176,6 @@ function ExamRunnerContent({ examId }: { examId: string }) {
       </main>
 
       {/* Support Modals */}
-      <ExamPauseModal
-        isOpen={engine.isPaused}
-        examCode={exam.code}
-        examTitle={exam.title}
-        mode={mode}
-        currentIndex={engine.currentIndex}
-        totalQuestions={exam.questions.length}
-        formattedTime={engine.formattedTime}
-        stats={engine.stats}
-        theme={theme}
-        language={engine.language}
-        onResume={engine.resumeExam}
-        onExit={handleExitToHome}
-        onReview={() => {
-          engine.resumeExam();
-          engine.setIsReviewScreenOpen(true);
-        }}
-        onAbandon={() => engine.setIsAbandonModalOpen(true)}
-      />
-
       <ExamAbandonModal
         isOpen={engine.isAbandonModalOpen}
         examCode={exam.code}

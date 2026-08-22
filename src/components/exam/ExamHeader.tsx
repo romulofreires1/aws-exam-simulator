@@ -13,6 +13,7 @@ import {
   Eye,
   Globe,
   LogOut,
+  Home,
 } from 'lucide-react';
 import { ExamMode, ExamLanguage } from '@/types/exam';
 import { ExamTheme } from '@/lib/storage/examStorage';
@@ -41,6 +42,7 @@ interface ExamHeaderProps {
   onOpenScratchpad: () => void;
   onOpenReviewScreen: () => void;
   onOpenAbandonModal?: () => void;
+  onSaveAndExit?: () => void;
   onToggleTheme: () => void;
 }
 
@@ -67,6 +69,7 @@ export function ExamHeader({
   onOpenScratchpad,
   onOpenReviewScreen,
   onOpenAbandonModal,
+  onSaveAndExit,
   onToggleTheme,
 }: ExamHeaderProps) {
   const isPearson = theme === 'pearson-vue';
@@ -114,9 +117,23 @@ export function ExamHeader({
           {mode === 'real' ? (
             <button
               onClick={onTogglePause}
-              title="Pause Exam (P)"
+              title={
+                isPaused
+                  ? language === 'pt'
+                    ? 'Simulado pausado. Clique para retomar (P)'
+                    : language === 'es'
+                    ? 'Simulador pausado. Clic para reanudar (P)'
+                    : 'Exam paused. Click to resume (P)'
+                  : language === 'pt'
+                  ? 'Pausar simulado (P)'
+                  : language === 'es'
+                  ? 'Pausar simulador (P)'
+                  : 'Pause exam (P)'
+              }
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-sm font-bold transition-all cursor-pointer ${
-                isTimerCritical
+                isPaused
+                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/60 shadow-sm'
+                  : isTimerCritical
                   ? 'bg-red-500/20 text-red-400 border border-red-500/50 animate-pulse'
                   : isTimerWarning
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
@@ -125,8 +142,17 @@ export function ExamHeader({
                   : 'bg-slate-800 text-slate-200 border border-slate-700 hover:border-slate-600'
               }`}
             >
-              <Clock className="h-4 w-4 shrink-0" />
+              {isPaused ? (
+                <Pause className="h-4 w-4 text-amber-400 shrink-0" />
+              ) : (
+                <Clock className="h-4 w-4 shrink-0" />
+              )}
               <span>{formattedTime}</span>
+              {isPaused && (
+                <span className="text-[10px] uppercase font-sans font-black px-1.5 py-0.2 rounded bg-amber-500 text-slate-950">
+                  {language === 'pt' ? 'Pausa' : language === 'es' ? 'Pausa' : 'Paused'}
+                </span>
+              )}
             </button>
           ) : (
             <div
@@ -140,19 +166,44 @@ export function ExamHeader({
             </div>
           )}
 
-          {/* Pause Button */}
+          {/* Pause / Resume Button */}
           {onTogglePause && (
             <button
               onClick={onTogglePause}
-              title="Pause Simulator (P)"
+              title={
+                isPaused
+                  ? language === 'pt'
+                    ? 'Retomar simulado (P)'
+                    : language === 'es'
+                    ? 'Reanudar simulador (P)'
+                    : 'Resume exam (P)'
+                  : language === 'pt'
+                  ? 'Pausar simulado (P)'
+                  : language === 'es'
+                  ? 'Pausar simulador (P)'
+                  : 'Pause exam (P)'
+              }
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border cursor-pointer ${
-                isPearson
+                isPaused
+                  ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 border-amber-400 font-black shadow-md shadow-amber-500/25 ring-2 ring-amber-400/40'
+                  : isPearson
                   ? 'bg-blue-900/80 border-blue-700 text-blue-100 hover:bg-blue-800 hover:text-white'
                   : 'bg-slate-800 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-amber-300'
               }`}
             >
-              <Pause className="h-3.5 w-3.5" />
-              <span className="hidden xs:inline sm:inline">Pause</span>
+              {isPaused ? (
+                <>
+                  <Play className="h-3.5 w-3.5 fill-current" />
+                  <span>{language === 'pt' ? 'Retomar' : language === 'es' ? 'Reanudar' : 'Resume'}</span>
+                </>
+              ) : (
+                <>
+                  <Pause className="h-3.5 w-3.5" />
+                  <span className="hidden xs:inline sm:inline">
+                    {language === 'pt' ? 'Pausar' : language === 'es' ? 'Pausar' : 'Pause'}
+                  </span>
+                </>
+              )}
             </button>
           )}
 
@@ -261,6 +312,31 @@ export function ExamHeader({
             <Grid className="h-3.5 w-3.5" />
             <span>Question Map</span>
           </button>
+
+          {/* Save and Exit Button */}
+          {onSaveAndExit && (
+            <button
+              type="button"
+              onClick={onSaveAndExit}
+              title={
+                language === 'pt'
+                  ? 'Salvar progresso e voltar ao catálogo'
+                  : language === 'es'
+                  ? 'Guardar progreso e ir al inicio'
+                  : 'Save progress and exit to home'
+              }
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border cursor-pointer ${
+                isPearson
+                  ? 'bg-blue-900/60 border-blue-700 text-blue-100 hover:bg-blue-800 hover:text-white'
+                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
+              }`}
+            >
+              <Home className="h-3.5 w-3.5 text-slate-400" />
+              <span className="hidden sm:inline">
+                {language === 'pt' ? 'Salvar e Sair' : language === 'es' ? 'Guardar y Salir' : 'Save & Exit'}
+              </span>
+            </button>
+          )}
 
           {/* Abandon Exam Button */}
           {onOpenAbandonModal && (

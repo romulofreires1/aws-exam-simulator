@@ -81,8 +81,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
           ? existing.totalTimeSpentSeconds
           : Math.max(0, exam.timeLimitMinutes * 60 - savedRemaining);
       setTotalTimeSpentSeconds(savedSpent);
-      // Mantém pausado para que o usuário retome conscientemente sem perder tempo
-      setIsPaused(true);
+      setIsPaused(false);
     } else {
       const newId = `attempt_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
       setAttemptId(newId);
@@ -555,15 +554,6 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
       if (key === 'P') {
         e.preventDefault();
         togglePause();
-        return;
-      }
-
-      // Se estiver pausado, não processa outros comandos do simulador
-      if (isPaused) {
-        if (key === 'ESCAPE' || key === 'ENTER') {
-          e.preventDefault();
-          resumeExam();
-        }
         return;
       }
 
