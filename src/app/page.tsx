@@ -1,16 +1,39 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { getAllExams } from '@/data/exams';
 import { ExamCard } from '@/components/dashboard/ExamCard';
 import { getAllAttempts } from '@/lib/storage/examStorage';
 import { ExamAttempt } from '@/types/exam';
-import { Award, CheckCircle2, History, Layers, Zap, Clock, ArrowRight, ShieldAlert } from 'lucide-react';
+import {
+  Award,
+  CheckCircle2,
+  History,
+  Layers,
+  Zap,
+  Clock,
+  ArrowRight,
+  ShieldAlert,
+  Search,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  SearchX,
+} from 'lucide-react';
+
+const CATEGORIES = ['All', 'Foundational', 'Associate', 'Professional', 'Specialty'] as const;
+type CategoryFilter = (typeof CATEGORIES)[number];
+
+const ITEMS_PER_PAGE = 6;
 
 export default function HomePage() {
-  const exams = getAllExams();
+  const exams = useMemo(() => getAllExams(), []);
   const [attempts, setAttempts] = useState<ExamAttempt[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     setAttempts(getAllAttempts());
@@ -26,6 +49,92 @@ export default function HomePage() {
             completedAttempts.length
         )
       : 0;
+
+  // Categorias disponíveis dinamicamente com base nos exames cadastrados
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: exams.length };
+    exams.forEach((exam) => {
+      const cat = exam.category || 'Other';
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+    return counts;
+  }, [exams]);
+
+  // Lista apenas categorias que realmente têm simulados para não gerar filtros vazios
+  const activeCategoriesList = useMemo(() => {
+    const list = ['All'];
+    ['Foundational', 'Associate', 'Professional', 'Specialty'].forEach((cat) => {
+      if ((categoryCounts[cat] || 0) > 0) {
+        list.push(cat);
+      }
+    });
+    return list;
+  }, [categoryCounts]);
+
+  // Filtragem combinada por busca e categoria
+  const filteredExams = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    const selectedCat = selectedCategory.trim().toLowerCase();
+
+    return exams.filter((exam) => {
+      const examCat = (exam.category || '').trim().toLowerCase();
+
+      // Filtro de categoria
+      const matchesCategory =
+        selectedCat === 'all' || examCat === selectedCat;
+
+      if (!matchesCategory) return false;
+
+      // Filtro de busca textual
+      if (!query) return true;
+
+      const code = (exam.code || '').toLowerCase();
+      const title = (exam.title || '').toLowerCase();
+      const description = (exam.description || '').toLowerCase();
+      const id = (exam.id || '').toLowerCase();
+      const category = (exam.category || '').toLowerCase();
+
+      return (
+        code.includes(query) ||
+        title.includes(query) ||
+        description.includes(query) ||
+        id.includes(query) ||
+        category.includes(query)
+      );
+    });
+  }, [exams, searchQuery, selectedCategory]);
+
+  // Paginação
+  const totalPages = Math.max(1, Math.ceil(filteredExams.length / ITEMS_PER_PAGE));
+
+  const paginatedExams = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredExams.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredExams, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    const catalogElement = document.getElementById('catalog-section');
+    if (catalogElement) {
+      catalogElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleCategorySelect = (cat: string) => {
+    setSelectedCategory((prev) => (prev.toLowerCase() === cat.toLowerCase() ? 'All' : cat));
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    setCurrentPage(1);
+  };
+
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setSelectedCategory('All');
+    setCurrentPage(1);
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 pb-20">
@@ -72,21 +181,247 @@ export default function HomePage() {
       </section>
 
       {/* Main Catalog */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-          <div>
-            <h2 className="text-2xl font-black text-white">Certification Catalog</h2>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Select an exam to start in Real Exam or Practice Mode
-            </p>
+      <section id="catalog-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 scroll-mt-6">
+        {/* Header & Controls */}
+        <div className="flex flex-col gap-5 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-black text-white">Certification Catalog</h2>
+              <p className="text-xs sm:text-sm text-slate-400">
+                Select an exam to start in Real Exam or Practice Mode
+              </p>
+            </div>
+
+            {/* Results Count Badge */}
+            <div className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 bg-slate-900 px-3.5 py-2 rounded-xl border border-slate-800 self-start sm:self-auto">
+              <span>
+                Showing{' '}
+                <strong className="text-white">
+                  {filteredExams.length > 0
+                    ? `${(currentPage - 1) * ITEMS_PER_PAGE + 1}–${Math.min(
+                        currentPage * ITEMS_PER_PAGE,
+                        filteredExams.length
+                      )}`
+                    : '0'}
+                </strong>{' '}
+                of <strong className="text-amber-400">{filteredExams.length}</strong> exams
+              </span>
+            </div>
           </div>
+
+          {/* Search Bar & Category Filters (No nested scrollbars) */}
+          <div className="p-4 sm:p-5 bg-slate-900/80 border border-slate-800 rounded-2xl flex flex-col gap-4 shadow-lg">
+            {/* Search Input Box */}
+            <div className="relative w-full">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                placeholder="Search certifications by code (CLF, SAA, SAP...), title, or keywords..."
+                className="w-full pl-10 pr-10 py-3 bg-slate-950/90 border border-slate-750 focus:border-amber-500/80 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => handleSearchChange('')}
+                  title="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Category Filter Pills (Wrap Naturally - No horizontal scroll) */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800/60">
+              <span className="text-xs text-slate-400 font-semibold mr-1 flex items-center gap-1.5">
+                <Filter className="h-3.5 w-3.5 text-amber-400" />
+                <span>Level:</span>
+              </span>
+
+              {activeCategoriesList.map((cat) => {
+                const isSelected = selectedCategory.toLowerCase() === cat.toLowerCase();
+                const count = categoryCounts[cat] || 0;
+
+                const getCategoryStyle = () => {
+                  if (isSelected) {
+                    if (cat === 'Foundational') return 'bg-emerald-500 text-slate-950 shadow-sm shadow-emerald-500/20 ring-2 ring-emerald-400/50';
+                    if (cat === 'Associate') return 'bg-blue-500 text-slate-950 shadow-sm shadow-blue-500/20 ring-2 ring-blue-400/50';
+                    if (cat === 'Professional') return 'bg-purple-600 text-white shadow-sm shadow-purple-600/20 ring-2 ring-purple-400/50';
+                    if (cat === 'Specialty') return 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/20 ring-2 ring-amber-400/50';
+                    return 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/20 ring-2 ring-amber-400/50';
+                  }
+
+                  if (cat === 'Foundational') return 'bg-slate-950/60 hover:bg-emerald-500/10 text-emerald-300 border border-emerald-500/30';
+                  if (cat === 'Associate') return 'bg-slate-950/60 hover:bg-blue-500/10 text-blue-300 border border-blue-500/30';
+                  if (cat === 'Professional') return 'bg-slate-950/60 hover:bg-purple-500/10 text-purple-300 border border-purple-500/30';
+                  if (cat === 'Specialty') return 'bg-slate-950/60 hover:bg-amber-500/10 text-amber-300 border border-amber-500/30';
+                  return 'bg-slate-950/60 hover:bg-slate-800 text-slate-300 border border-slate-800';
+                };
+
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => handleCategorySelect(cat)}
+                    title={isSelected ? `Remove filter ${cat}` : `Filter by ${cat}`}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer hover:scale-105 active:scale-95 ${getCategoryStyle()}`}
+                  >
+                    <span>{cat === 'All' ? 'All Levels' : cat}</span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+                        isSelected
+                          ? cat === 'Professional'
+                            ? 'bg-purple-950/80 text-purple-100'
+                            : 'bg-slate-950/30 text-slate-950'
+                          : 'bg-slate-900 border border-slate-800 text-slate-400'
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+
+              {(selectedCategory !== 'All' || searchQuery) && (
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="sm:ml-auto text-xs text-amber-400 hover:text-amber-200 underline font-semibold flex items-center gap-1 cursor-pointer py-1"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  <span>Clear all filters</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Active Filter Indicator Banner */}
+          {(selectedCategory !== 'All' || searchQuery) && (
+            <div className="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs">
+              <div className="flex items-center gap-2 text-amber-300">
+                <Filter className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+                <span>
+                  Filtering by:{' '}
+                  {selectedCategory !== 'All' && (
+                    <strong className="underline mr-2">Level: {selectedCategory}</strong>
+                  )}
+                  {searchQuery && (
+                    <span>
+                      Search: <strong>&quot;{searchQuery}&quot;</strong>
+                    </span>
+                  )}
+                  {' '}({filteredExams.length} {filteredExams.length === 1 ? 'exam' : 'exams'} found)
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="text-xs font-bold text-amber-400 hover:text-amber-200 underline cursor-pointer"
+              >
+                Reset
+              </button>
+            </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {exams.map((exam) => (
-            <ExamCard key={exam.id} exam={exam} />
-          ))}
-        </div>
+        {/* Card Grid / Empty State */}
+        {paginatedExams.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all">
+            {paginatedExams.map((exam) => (
+              <ExamCard
+                key={exam.id}
+                exam={exam}
+                onSelectCategory={(cat) => handleCategorySelect(cat)}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16 px-4 bg-slate-900/50 border border-dashed border-slate-800 rounded-3xl animate-in fade-in duration-150">
+            <div className="mx-auto w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
+              <SearchX className="h-8 w-8" />
+            </div>
+            <h3 className="text-lg font-bold text-white mb-2">No exams found</h3>
+            <p className="text-sm text-slate-400 max-w-md mx-auto mb-6 leading-relaxed">
+              No certifications matched your filter{' '}
+              {selectedCategory !== 'All' && <span>(Category: <strong className="text-white">{selectedCategory}</strong>)</span>}
+              {searchQuery && <span> with search query &quot;<strong className="text-white">{searchQuery}</strong>&quot;</span>}.
+            </p>
+            <button
+              type="button"
+              onClick={handleClearFilters}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold border border-slate-700 transition-colors cursor-pointer"
+            >
+              <X className="h-3.5 w-3.5" />
+              <span>Clear filters & show all</span>
+            </button>
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-10 pt-6 border-t border-slate-800/80">
+            <p className="text-xs text-slate-400 order-2 sm:order-1 font-medium">
+              Page <strong className="text-white">{currentPage}</strong> of{' '}
+              <strong className="text-white">{totalPages}</strong> ({filteredExams.length} total exams)
+            </p>
+
+            <div className="flex items-center gap-2 order-1 sm:order-2">
+              {/* Previous Button */}
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-xs font-bold transition-all border ${
+                  currentPage === 1
+                    ? 'opacity-40 cursor-not-allowed bg-slate-950 border-slate-850 text-slate-600'
+                    : 'bg-slate-900 hover:bg-slate-800 border-slate-700 text-slate-200 hover:text-white cursor-pointer shadow-sm'
+                }`}
+              >
+                <ChevronLeft className="h-4 w-4" />
+                <span className="hidden xs:inline">Previous</span>
+              </button>
+
+              {/* Numbered Page Buttons */}
+              <div className="flex items-center gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+                  const isCurrent = pageNum === currentPage;
+                  return (
+                    <button
+                      key={pageNum}
+                      type="button"
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`h-8 w-8 rounded-xl text-xs font-mono font-bold transition-all cursor-pointer ${
+                        isCurrent
+                          ? 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/20'
+                          : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white border border-slate-800'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-xs font-bold transition-all border ${
+                  currentPage === totalPages
+                    ? 'opacity-40 cursor-not-allowed bg-slate-950 border-slate-850 text-slate-600'
+                    : 'bg-slate-900 hover:bg-slate-800 border-slate-700 text-slate-200 hover:text-white cursor-pointer shadow-sm'
+                }`}
+              >
+                <span className="hidden xs:inline">Next</span>
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Recent Activity */}

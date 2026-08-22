@@ -9,9 +9,10 @@ import { getExamAvailableLanguages, SUPPORTED_LANGUAGES } from '@/lib/localizati
 
 interface ExamCardProps {
   exam: ExamDefinition;
+  onSelectCategory?: (category: string) => void;
 }
 
-export function ExamCard({ exam }: ExamCardProps) {
+export function ExamCard({ exam, onSelectCategory }: ExamCardProps) {
   const [activeSession, setActiveSession] = useState<ExamAttempt | null>(null);
   const [historyAttempts, setHistoryAttempts] = useState<ExamAttempt[]>([]);
   const availableLanguages = useMemo(() => getExamAvailableLanguages(exam), [exam]);
@@ -50,12 +51,12 @@ export function ExamCard({ exam }: ExamCardProps) {
 
   const categoryColor =
     exam.category === 'Professional'
-      ? 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+      ? 'bg-purple-500/20 text-purple-300 border-purple-500/30 hover:bg-purple-500/30'
       : exam.category === 'Associate'
-      ? 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+      ? 'bg-blue-500/20 text-blue-300 border-blue-500/30 hover:bg-blue-500/30'
       : exam.category === 'Specialty'
-      ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
-      : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+      ? 'bg-amber-500/20 text-amber-300 border-amber-500/30 hover:bg-amber-500/30'
+      : 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/30';
 
   return (
     <div className="group relative rounded-3xl border border-slate-800 bg-slate-900/90 p-6 sm:p-7 shadow-xl hover:border-slate-700 hover:shadow-2xl transition-all duration-200 flex flex-col h-full">
@@ -64,9 +65,20 @@ export function ExamCard({ exam }: ExamCardProps) {
         <span className="font-mono text-xs font-black px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 shadow-sm">
           {exam.code}
         </span>
-        <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${categoryColor}`}>
-          {exam.category}
-        </span>
+        {onSelectCategory ? (
+          <button
+            type="button"
+            onClick={() => onSelectCategory(exam.category)}
+            title={`Filtrar simulados de nível ${exam.category}`}
+            className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border transition-all hover:scale-105 active:scale-95 cursor-pointer ${categoryColor}`}
+          >
+            {exam.category}
+          </button>
+        ) : (
+          <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${categoryColor}`}>
+            {exam.category}
+          </span>
+        )}
       </div>
 
       <h3
