@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Flag, CheckCircle, AlertTriangle, ArrowLeft, Send } from 'lucide-react';
+import { Flag, CheckCircle, AlertTriangle, ArrowLeft, Send, LogOut } from 'lucide-react';
 import { Question, QuestionUserResponse, ExamLanguage } from '@/types/exam';
 import { getLocalizedQuestion } from '@/lib/localization';
 
@@ -12,6 +12,7 @@ interface ExamReviewScreenProps {
   onGoToQuestion: (index: number) => void;
   onBackToExam: () => void;
   onSubmitExam: () => void;
+  onAbandonExam?: () => void;
 }
 
 export function ExamReviewScreen({
@@ -21,6 +22,7 @@ export function ExamReviewScreen({
   onGoToQuestion,
   onBackToExam,
   onSubmitExam,
+  onAbandonExam,
 }: ExamReviewScreenProps) {
   const total = questions.length;
   let answered = 0;
@@ -161,19 +163,50 @@ export function ExamReviewScreen({
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
         <button
           onClick={onBackToExam}
-          className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-sm transition-colors"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-sm transition-colors cursor-pointer"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>Back to Questions</span>
+          <span>
+            {language === 'pt'
+              ? 'Voltar às Questões'
+              : language === 'es'
+              ? 'Volver a las Preguntas'
+              : 'Back to Questions'}
+          </span>
         </button>
 
-        <button
-          onClick={onSubmitExam}
-          className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02]"
-        >
-          <Send className="h-4 w-4" />
-          <span>Submit & Finish Exam</span>
-        </button>
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          {onAbandonExam && (
+            <button
+              type="button"
+              onClick={onAbandonExam}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-rose-900/60 bg-rose-950/20 hover:bg-rose-950/40 text-rose-300 hover:text-rose-200 font-semibold text-sm transition-colors cursor-pointer"
+            >
+              <LogOut className="h-4 w-4 text-rose-400" />
+              <span>
+                {language === 'pt'
+                  ? 'Abandonar Exame'
+                  : language === 'es'
+                  ? 'Abandonar Examen'
+                  : 'Abandon Exam'}
+              </span>
+            </button>
+          )}
+
+          <button
+            onClick={onSubmitExam}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02] cursor-pointer"
+          >
+            <Send className="h-4 w-4" />
+            <span>
+              {language === 'pt'
+                ? 'Finalizar e Enviar Exame'
+                : language === 'es'
+                ? 'Finalizar y Enviar Examen'
+                : 'Submit & Finish Exam'}
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );

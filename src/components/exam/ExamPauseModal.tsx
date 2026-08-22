@@ -11,8 +11,9 @@ import {
   PauseCircle,
   Layers,
   Sparkles,
+  LogOut,
 } from 'lucide-react';
-import { ExamMode } from '@/types/exam';
+import { ExamMode, ExamLanguage } from '@/types/exam';
 import { ExamTheme } from '@/lib/storage/examStorage';
 
 interface ExamPauseModalProps {
@@ -31,9 +32,11 @@ interface ExamPauseModalProps {
     percentage: number;
   };
   theme: ExamTheme;
+  language?: ExamLanguage;
   onResume: () => void;
   onExit: () => void;
   onReview?: () => void;
+  onAbandon?: () => void;
 }
 
 export function ExamPauseModal({
@@ -46,9 +49,11 @@ export function ExamPauseModal({
   formattedTime,
   stats,
   theme,
+  language = 'pt',
   onResume,
   onExit,
   onReview,
+  onAbandon,
 }: ExamPauseModalProps) {
   const isPearson = theme === 'pearson-vue';
 
@@ -202,14 +207,20 @@ export function ExamPauseModal({
           <button
             onClick={onResume}
             autoFocus
-            className={`w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-2xl font-black text-sm transition-all shadow-lg hover:scale-[1.01] active:scale-[0.99] ${
+            className={`w-full flex items-center justify-center gap-2 py-3.5 px-5 rounded-2xl font-black text-sm transition-all shadow-lg hover:scale-[1.01] active:scale-[0.99] cursor-pointer ${
               isPearson
                 ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-amber-500/20'
                 : 'bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 shadow-orange-500/25'
             }`}
           >
             <Play className="h-4 w-4 fill-current" />
-            <span>Resume Exam (Press P or Enter)</span>
+            <span>
+              {language === 'pt'
+                ? 'Retomar Exame (Pressione P ou Enter)'
+                : language === 'es'
+                ? 'Reanudar Examen (Presiona P o Enter)'
+                : 'Resume Exam (Press P or Enter)'}
+            </span>
           </button>
 
           {/* Secondary Actions Row */}
@@ -217,23 +228,55 @@ export function ExamPauseModal({
             {onReview && (
               <button
                 onClick={onReview}
-                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors"
+                className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer"
               >
                 <HelpCircle className="h-4 w-4 text-blue-400" />
-                <span>Review Answers</span>
+                <span>
+                  {language === 'pt'
+                    ? 'Revisar Respostas'
+                    : language === 'es'
+                    ? 'Revisar Respuestas'
+                    : 'Review Answers'}
+                </span>
               </button>
             )}
 
             <button
               onClick={onExit}
-              className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border text-xs font-bold transition-colors ${
-                !onReview ? 'col-span-2' : ''
+              className={`flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border text-xs font-bold transition-colors cursor-pointer ${
+                !onReview && !onAbandon ? 'col-span-2' : ''
               } border-slate-700/80 bg-slate-800/40 hover:bg-slate-800 text-slate-300 hover:text-white`}
             >
               <Home className="h-4 w-4 text-slate-400" />
-              <span>Save & Return to Home</span>
+              <span>
+                {language === 'pt'
+                  ? 'Salvar e Ir para Início'
+                  : language === 'es'
+                  ? 'Guardar e Ir al Inicio'
+                  : 'Save & Return to Home'}
+              </span>
             </button>
           </div>
+
+          {/* Abandon Button Row */}
+          {onAbandon && (
+            <div className="pt-1">
+              <button
+                type="button"
+                onClick={onAbandon}
+                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-rose-900/50 bg-rose-950/20 hover:bg-rose-950/40 text-rose-300 hover:text-rose-200 text-xs font-bold transition-colors cursor-pointer"
+              >
+                <LogOut className="h-3.5 w-3.5 text-rose-400" />
+                <span>
+                  {language === 'pt'
+                    ? 'Abandonar Exame (Descartar Tentativa)'
+                    : language === 'es'
+                    ? 'Abandonar Examen (Descartar Intento)'
+                    : 'Abandon Exam (Discard Attempt)'}
+                </span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

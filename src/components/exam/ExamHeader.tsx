@@ -12,6 +12,7 @@ import {
   SlidersHorizontal,
   Eye,
   Globe,
+  LogOut,
 } from 'lucide-react';
 import { ExamMode, ExamLanguage } from '@/types/exam';
 import { ExamTheme } from '@/lib/storage/examStorage';
@@ -39,6 +40,7 @@ interface ExamHeaderProps {
   onOpenQuestionMap: () => void;
   onOpenScratchpad: () => void;
   onOpenReviewScreen: () => void;
+  onOpenAbandonModal?: () => void;
   onToggleTheme: () => void;
 }
 
@@ -64,6 +66,7 @@ export function ExamHeader({
   onOpenQuestionMap,
   onOpenScratchpad,
   onOpenReviewScreen,
+  onOpenAbandonModal,
   onToggleTheme,
 }: ExamHeaderProps) {
   const isPearson = theme === 'pearson-vue';
@@ -142,7 +145,7 @@ export function ExamHeader({
             <button
               onClick={onTogglePause}
               title="Pause Simulator (P)"
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border cursor-pointer ${
                 isPearson
                   ? 'bg-blue-900/80 border-blue-700 text-blue-100 hover:bg-blue-800 hover:text-white'
                   : 'bg-slate-800 border-slate-700 text-slate-200 hover:bg-slate-700 hover:text-amber-300'
@@ -191,7 +194,7 @@ export function ExamHeader({
           <button
             onClick={onToggleTheme}
             title={isPearson ? 'Switch to Modern Theme' : 'Switch to Pearson VUE Theme'}
-            className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${
+            className={`hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors border cursor-pointer ${
               isPearson
                 ? 'bg-blue-900/60 border-blue-700 text-blue-100 hover:bg-blue-800'
                 : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -221,7 +224,7 @@ export function ExamHeader({
           {/* Flag Button */}
           <button
             onClick={onToggleFlag}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border cursor-pointer ${
               isFlagged
                 ? 'bg-amber-500 text-slate-950 border-amber-400 font-bold shadow-sm shadow-amber-500/20'
                 : isPearson
@@ -236,7 +239,7 @@ export function ExamHeader({
           {/* Scratchpad Button */}
           <button
             onClick={onOpenScratchpad}
-            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition-colors border ${
+            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition-colors border cursor-pointer ${
               isPearson
                 ? 'bg-blue-900/80 border-blue-700 text-white hover:bg-blue-800'
                 : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -249,7 +252,7 @@ export function ExamHeader({
           {/* Question Map */}
           <button
             onClick={onOpenQuestionMap}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition-colors border ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-medium transition-colors border cursor-pointer ${
               isPearson
                 ? 'bg-blue-900/80 border-blue-700 text-white hover:bg-blue-800'
                 : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
@@ -259,10 +262,35 @@ export function ExamHeader({
             <span>Question Map</span>
           </button>
 
+          {/* Abandon Exam Button */}
+          {onOpenAbandonModal && (
+            <button
+              type="button"
+              onClick={onOpenAbandonModal}
+              title={
+                language === 'pt'
+                  ? 'Abandonar Exame'
+                  : language === 'es'
+                  ? 'Abandonar Examen'
+                  : 'Abandon Exam'
+              }
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border cursor-pointer ${
+                isPearson
+                  ? 'bg-rose-950/40 border-rose-900/60 text-rose-200 hover:bg-rose-900/70 hover:text-white'
+                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:text-rose-300 hover:bg-rose-950/30 hover:border-rose-800/60'
+              }`}
+            >
+              <LogOut className="h-3.5 w-3.5 text-rose-400" />
+              <span className="hidden xs:inline">
+                {language === 'pt' ? 'Abandonar' : language === 'es' ? 'Abandonar' : 'Abandon'}
+              </span>
+            </button>
+          )}
+
           {/* End / Review */}
           <button
             onClick={onOpenReviewScreen}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md font-semibold text-white transition-all shadow-sm ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md font-semibold text-white transition-all shadow-sm cursor-pointer ${
               isPearson
                 ? 'bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold'
                 : 'bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/30'

@@ -11,6 +11,7 @@ import { ExamReviewScreen } from '@/components/exam/ExamReviewScreen';
 import { QuestionGridModal } from '@/components/exam/QuestionGridModal';
 import { ScratchpadModal } from '@/components/exam/ScratchpadModal';
 import { ExamPauseModal } from '@/components/exam/ExamPauseModal';
+import { ExamAbandonModal } from '@/components/exam/ExamAbandonModal';
 import {
   getThemePreference,
   setThemePreference,
@@ -68,6 +69,11 @@ function ExamRunnerContent({ examId }: { examId: string }) {
     router.push('/');
   }, [engine, router]);
 
+  const handleConfirmAbandon = useCallback(() => {
+    engine.abandonExam();
+    router.push('/');
+  }, [engine, router]);
+
   if (!exam) {
     return (
       <div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center p-4">
@@ -120,6 +126,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         onOpenQuestionMap={() => engine.setIsQuestionMapOpen(true)}
         onOpenScratchpad={() => engine.setIsScratchpadOpen(true)}
         onOpenReviewScreen={() => engine.setIsReviewScreenOpen(true)}
+        onOpenAbandonModal={() => engine.setIsAbandonModalOpen(true)}
         onToggleTheme={handleToggleTheme}
       />
 
@@ -135,6 +142,7 @@ function ExamRunnerContent({ examId }: { examId: string }) {
               engine.setIsReviewScreenOpen(false);
             }}
             onBackToExam={() => engine.setIsReviewScreenOpen(false)}
+            onAbandonExam={() => engine.setIsAbandonModalOpen(true)}
             onSubmitExam={engine.submitExam}
           />
         ) : (
@@ -178,12 +186,29 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         formattedTime={engine.formattedTime}
         stats={engine.stats}
         theme={theme}
+        language={engine.language}
         onResume={engine.resumeExam}
         onExit={handleExitToHome}
         onReview={() => {
           engine.resumeExam();
           engine.setIsReviewScreenOpen(true);
         }}
+        onAbandon={() => engine.setIsAbandonModalOpen(true)}
+      />
+
+      <ExamAbandonModal
+        isOpen={engine.isAbandonModalOpen}
+        examCode={exam.code}
+        examTitle={exam.title}
+        mode={mode}
+        currentIndex={engine.currentIndex}
+        totalQuestions={exam.questions.length}
+        formattedTime={engine.formattedTime}
+        stats={engine.stats}
+        theme={theme}
+        language={engine.language}
+        onClose={() => engine.setIsAbandonModalOpen(false)}
+        onConfirmAbandon={handleConfirmAbandon}
       />
 
       <QuestionGridModal

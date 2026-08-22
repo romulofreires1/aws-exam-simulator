@@ -56,7 +56,9 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
   const [isQuestionMapOpen, setIsQuestionMapOpen] = useState<boolean>(false);
   const [isScratchpadOpen, setIsScratchpadOpen] = useState<boolean>(false);
   const [isReviewScreenOpen, setIsReviewScreenOpen] = useState<boolean>(false);
+  const [isAbandonModalOpen, setIsAbandonModalOpen] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [isAbandoned, setIsAbandoned] = useState<boolean>(false);
 
   // Inicialização ou Retomada de Sessão
   useEffect(() => {
@@ -115,7 +117,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
 
   // Função centralizada para salvar a sessão ativa
   const saveCurrentSession = useCallback(() => {
-    if (!isInitialized || isCompleted || !attemptId || !exam.id) return;
+    if (!isInitialized || isCompleted || isAbandoned || !attemptId || !exam.id) return;
 
     const currentAttempt: ExamAttempt = {
       id: attemptId,
@@ -136,6 +138,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
   }, [
     isInitialized,
     isCompleted,
+    isAbandoned,
     attemptId,
     exam.id,
     exam.code,
@@ -150,18 +153,18 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
 
   // Auto-Save periódico a cada 5 segundos
   useEffect(() => {
-    if (!isInitialized || isCompleted || !attemptId) return;
+    if (!isInitialized || isCompleted || isAbandoned || !attemptId) return;
 
     const interval = setInterval(() => {
       saveCurrentSession();
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isInitialized, isCompleted, attemptId, saveCurrentSession]);
+  }, [isInitialized, isCompleted, isAbandoned, attemptId, saveCurrentSession]);
 
   // Salva no beforeunload (ao fechar aba ou recarregar página)
   useEffect(() => {
-    if (!isInitialized || isCompleted || !attemptId) return;
+    if (!isInitialized || isCompleted || isAbandoned || !attemptId) return;
 
     const handleBeforeUnload = () => {
       saveCurrentSession();
@@ -506,24 +509,39 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
     };
   }, [exam.questions, responses]);
 
-  // Ações de Pausa
+  // Ações de Pausa e Abandono
   const pauseExam = useCallback(() => {
-    if (isCompleted) return;
+    if (isCompleted || isAbandoned) return;
     setIsPaused(true);
-  }, [isCompleted]);
+  }, [isCompleted, isAbandoned]);
 
   const resumeExam = useCallback(() => {
     setIsPaused(false);
   }, []);
 
   const togglePause = useCallback(() => {
-    if (isCompleted) return;
+    if (isCompleted || isAbandoned) return;
     setIsPaused((prev) => !prev);
-  }, [isCompleted]);
+  }, [isCompleted, isAbandoned]);
+
+  const abandonExam = useCallback(() => {
+    setIsAbandoned(true);
+    setIsPaused(true);
+    setIsAbandonModalOpen(false);
+    clearActiveSession(exam.id);
+  }, [exam.id]);
 
   // Suporte a Atalhos de Teclado
   useEffect(() => {
-    if (!isInitialized || isCompleted || isReviewScreenOpen || isScratchpadOpen || isQuestionMapOpen) {
+    if (
+      !isInitialized ||
+      isCompleted ||
+      isAbandoned ||
+      isReviewScreenOpen ||
+      isScratchpadOpen ||
+      isQuestionMapOpen ||
+      isAbandonModalOpen
+    ) {
       return;
     }
 
@@ -576,10 +594,12 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
   }, [
     isInitialized,
     isCompleted,
+    isAbandoned,
     isPaused,
     isReviewScreenOpen,
     isScratchpadOpen,
     isQuestionMapOpen,
+    isAbandonModalOpen,
     currentQuestion,
     toggleOption,
     toggleFlag,
@@ -591,7 +611,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
 
   // Timer countdown e contagem de tempo de estudo
   useEffect(() => {
-    if (!isInitialized || isCompleted || isPaused) {
+    if (!isInitialized || isCompleted || isAbandoned || isPaused) {
       return;
     }
 
@@ -609,14 +629,14 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isInitialized, isCompleted, isPaused, mode]);
+  }, [isInitialized, isCompleted, isAbandoned, isPaused, mode]);
 
   // Auto-submissão quando o tempo esgota no modo real
   useEffect(() => {
-    if (isInitialized && !isCompleted && mode === 'real' && timeRemainingSeconds === 0) {
+    if (isInitialized && !isCompleted && !isAbandoned && mode === 'real' && timeRemainingSeconds === 0) {
       submitExam();
     }
-  }, [isInitialized, isCompleted, mode, timeRemainingSeconds, submitExam]);
+  }, [isInitialized, isCompleted, isAbandoned, mode, timeRemainingSeconds, submitExam]);
 
   // Formatação do tempo
   const formatTime = useCallback((secs: number) => {
@@ -638,7 +658,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
   );
   const isTimerWarning = mode === 'real' && timeRemainingSeconds <= 900 && timeRemainingSeconds > 300; // <= 15 min
   const isTimerCritical = mode === 'real' && timeRemainingSeconds <= 300; // <= 5 min
-  const isTimerRunning = !isPaused && mode === 'real' && isInitialized && !isCompleted;
+  const isTimerRunning = !isPaused && !isAbandoned && mode === 'real' && isInitialized && !isCompleted;
 
   return {
     attemptId,
@@ -649,6 +669,7 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
     stats,
     isCompleted,
     isInitialized,
+    isAbandoned,
     timeRemainingSeconds,
     setTimeRemainingSeconds,
     totalTimeSpentSeconds,
@@ -669,6 +690,8 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
     resumeExam,
     togglePause,
     saveCurrentSession,
+    // Abandono
+    abandonExam,
     // Modais
     isQuestionMapOpen,
     setIsQuestionMapOpen,
@@ -676,6 +699,8 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
     setIsScratchpadOpen,
     isReviewScreenOpen,
     setIsReviewScreenOpen,
+    isAbandonModalOpen,
+    setIsAbandonModalOpen,
     // Ações
     toggleOption,
     toggleStrikeThrough,

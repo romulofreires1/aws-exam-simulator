@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { Clock, ShieldCheck, HelpCircle, ArrowRight, Play, RotateCcw, Award, CheckCircle, Globe } from 'lucide-react';
+import { Clock, ShieldCheck, HelpCircle, ArrowRight, Play, RotateCcw, Award, CheckCircle, Globe, Trash2 } from 'lucide-react';
 import { ExamDefinition, ExamAttempt, ExamLanguage } from '@/types/exam';
-import { getActiveSession, getAttemptsByExamId, getLanguagePreference, setLanguagePreference } from '@/lib/storage/examStorage';
+import { getActiveSession, clearActiveSession, getAttemptsByExamId, getLanguagePreference, setLanguagePreference } from '@/lib/storage/examStorage';
 import { getExamAvailableLanguages, SUPPORTED_LANGUAGES } from '@/lib/localization';
 
 interface ExamCardProps {
@@ -31,6 +31,13 @@ export function ExamCard({ exam }: ExamCardProps) {
   const handleSelectLanguage = (lang: ExamLanguage) => {
     setSelectedLanguage(lang);
     setLanguagePreference(lang);
+  };
+
+  const handleDiscardSession = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    clearActiveSession(exam.id);
+    setActiveSession(null);
   };
 
   const bestAttempt = historyAttempts.reduce<ExamAttempt | null>((best, current) => {
@@ -130,17 +137,27 @@ export function ExamCard({ exam }: ExamCardProps) {
       {/* History / Active Session Status Area */}
       <div className="flex-1 flex flex-col justify-end space-y-2 mb-6 min-h-[3rem]">
         {activeSession && !activeSession.isCompleted && (
-          <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2 text-amber-300 font-semibold truncate pr-2">
-              <RotateCcw className="h-4 w-4 animate-spin shrink-0" />
+          <div className="p-2.5 sm:p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-2 text-amber-300 font-semibold truncate min-w-0">
+              <RotateCcw className="h-4 w-4 text-amber-400 shrink-0" />
               <span className="truncate">In-progress ({activeSession.mode === 'real' ? 'Real' : 'Practice'})</span>
             </div>
-            <Link
-              href={`/exams/${exam.id}/runner?mode=${activeSession.mode}&lang=${activeSession.language || selectedLanguage}`}
-              className="text-amber-400 hover:text-amber-300 font-bold underline text-xs shrink-0"
-            >
-              Resume
-            </Link>
+            <div className="flex items-center gap-2.5 shrink-0">
+              <Link
+                href={`/exams/${exam.id}/runner?mode=${activeSession.mode}&lang=${activeSession.language || selectedLanguage}`}
+                className="text-amber-400 hover:text-amber-300 font-bold underline text-xs"
+              >
+                Resume
+              </Link>
+              <button
+                type="button"
+                onClick={handleDiscardSession}
+                title="Discard in-progress session"
+                className="p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/15 transition-colors cursor-pointer"
+              >
+                <Trash2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
         )}
 
