@@ -1,25 +1,38 @@
 # 🤖 Template de Prompt para IA Gerar Novos Simulados AWS
 
-Copie e cole o prompt abaixo em qualquer IA (ChatGPT, Claude, Gemini, etc.) para gerar um novo simulado pronto para inclusão no projeto:
+Copie e cole o prompt abaixo em qualquer IA (ChatGPT, Claude, Gemini, etc.) para gerar um novo simulado pronto para inclusão no projeto.
+
+> 💡 **Dica**: Para gerar questões com os prompts e regras mais avançados do repositório, consulte também as **Agent Skills** especializadas em [`.agents/skills/`](skills/):
+> - [CLF-C02 Question Generator](skills/clf-c02-question-generator/SKILL.md)
+> - [SAA-C03 Question Generator](skills/saa-c03-question-generator/SKILL.md)
+> - [SAP-C02 Question Generator](skills/sap-c02-question-generator/SKILL.md)
 
 ---
 
 ```markdown
-Por favor, gere um banco de questões para a certificação AWS **[SUBSTITUA PELO CÓDIGO DA CERTIFICAÇÃO, ex: DVA-C02 ou ANS-C01]** seguindo rigorosamente o esquema JSON abaixo.
+Por favor, gere um banco de questões para a certificação AWS **[SUBSTITUA PELO CÓDIGO DA CERTIFICAÇÃO, ex: DVA-C02 ou ANS-C01]** seguindo rigorosamente as diretrizes e o esquema JSON abaixo.
 
-### Regras Obrigatórias:
-1. Respeite os Domínios oficiais da prova AWS e seus pesos aproximados.
-2. Cada questão deve ter:
+### Diretrizes Obrigatórias de Engenharia de Questões:
+1. **Domínios Oficiais**: Respeite os Domínios oficiais do blueprint da AWS e seus respectivos pesos percentuais.
+2. **Matriz de Decisão 2x2 & Distratores Altamente Plausíveis**:
+   - NÃO crie alternativas ingênuas, absurdas ou obviamente incorretas.
+   - Todas as opções DEVEM descrever soluções técnicas válidas e profissionais no ecossistema AWS.
+   - Os distratores devem falhar apenas em restrições sutis do cenário (ex: custo excessivo, sobrecarga operacional, falta de tolerância a falhas multi-AZ, ou limites específicos de serviços).
+3. **Embaralhamento Rigoroso de Gabaritos**:
+   - NUNCA concentre respostas certas na letra A ou nas letras A/B.
+   - Distribua as respostas uniformemente entre as opções (A, B, C, D para single; combinações variadas como B/D, A/C, C/E para multiple).
+4. **Campos da Questão**:
    - `id`: único (ex: "dva-q001")
-   - `type`: "single" (1 resposta correta) ou "multiple" (2 ou mais corretas)
-   - `requiredChoices`: 1 para single, ou o número exato de opções que o candidato deve selecionar (ex: 2 para "Choose TWO")
-   - `statement`: Enunciado detalhado em formato de cenário realista de arquitetura/desenvolvimento AWS. Se for de múltipla resposta, termine o enunciado com "(Choose TWO.)" ou "(Choose THREE.)".
-   - `options`: Lista com id ("A", "B", "C", "D", "E"), text da alternativa e explanation explicando detalhadamente o porquê de estar certa ou errada.
-   - `correctAnswers`: Array com as letras corretas, ex: ["A"] ou ["B", "D"].
-   - `generalExplanation`: Resumo da solução ideal e boas práticas do Well-Architected Framework.
-   - `referenceUrl`: Link oficial da documentação da AWS sobre o serviço abordado.
-   - `services`: Lista dos serviços AWS envolvidos (ex: ["DynamoDB", "Lambda"]).
+   - `type`: "single" (1 correta) ou "multiple" (2 ou mais corretas)
+   - `requiredChoices`: 1 para single, ou o número exato de opções exigidas (ex: 2 para "(Choose TWO.)")
+   - `statement`: Enunciado com cenário empresarial realista. Se for de múltipla resposta, inclua "(Choose TWO.)" ou "(Choose THREE.)" no final.
+   - `options`: Array de opções com `id` ("A", "B", "C", "D", "E"), `text` detalhado e `explanation` justificando tecnicamente o porquê de estar certa ou errada.
+   - `correctAnswers`: Array com as letras corretas, ex: `["C"]` ou `["B", "D"]`.
+   - `generalExplanation`: Síntese da arquitetura recomendada baseada no AWS Well-Architected Framework.
+   - `referenceUrl`: Link oficial da documentação da AWS.
+   - `services`: Lista dos serviços AWS abordados (ex: `["DynamoDB", "Lambda", "API Gateway"]`).
    - `difficulty`: "easy", "medium" ou "hard".
+   - `translations` *(opcional)*: Objeto com traduções localizadas para `"pt"`, `"en"` e/ou `"es"`.
 
 ### Formato JSON Esperado:
 ```json
@@ -32,7 +45,8 @@ Por favor, gere um banco de questões para a certificação AWS **[SUBSTITUA PEL
   "totalQuestions": 65,
   "timeLimitMinutes": 130,
   "passingScore": 720,
-  "icon": "aws-service-ou-shield",
+  "availableLanguages": ["en", "pt", "es"],
+  "defaultLanguage": "en",
   "domains": [
     {
       "id": "domain-1-development-with-aws-services",
@@ -64,31 +78,31 @@ Por favor, gere um banco de questões para a certificação AWS **[SUBSTITUA PEL
       "services": ["DynamoDB", "Lambda"],
       "type": "single",
       "requiredChoices": 1,
-      "statement": "A developer is designing an application that receives high-frequency IoT sensor telemetry...",
+      "statement": "A company is designing a high-throughput microservice backend to ingest telemetry data from millions of connected smart devices...",
       "options": [
         {
           "id": "A",
-          "text": "Use Amazon DynamoDB with auto-scaling enabled and partition key on device_id...",
-          "explanation": "Correto: DynamoDB escala horizontalmente e distribui a carga de escrita com boa chave de partição."
+          "text": "Buffer raw telemetry payloads into Amazon SQS Standard and write batch records to Amazon RDS MySQL Single-AZ...",
+          "explanation": "Incorrect: RDS Single-AZ introduces a database write bottleneck and single point of failure under peak ingestion."
         },
         {
           "id": "B",
-          "text": "Write data directly to Amazon RDS MySQL Single-AZ...",
-          "explanation": "Incorreto: RDS MySQL Single-AZ não possui a escalabilidade elástica necessária para picos de telemetria IoT."
+          "text": "Mount Amazon EFS Elastic Throughput onto an EC2 fleet behind an Application Load Balancer to log incoming payloads...",
+          "explanation": "Incorrect: EFS file storage creates unnecessary compute fleet management overhead compared to managed serverless NoSQL."
         },
         {
           "id": "C",
-          "text": "Store messages in AWS SQS FIFO queue with default throughput...",
-          "explanation": "Incorreto: SQS FIFO possui limites estritos de TPS que podem causar gargalo sem batching/high-throughput."
+          "text": "Stream incoming payloads via Amazon Kinesis Data Streams and process records using AWS Lambda into Amazon DynamoDB with on-demand capacity...",
+          "explanation": "Correct: Kinesis provides elastic stream buffering, Lambda auto-scales compute, and DynamoDB on-demand seamlessly absorbs massive write bursts."
         },
         {
           "id": "D",
-          "text": "Save data in Amazon EFS mount target...",
-          "explanation": "Incorreto: EFS não é o banco de dados orientado para telemetria de sensores."
+          "text": "Write records directly to Amazon Redshift using multi-statement transactions over an API Gateway HTTP API...",
+          "explanation": "Incorrect: Amazon Redshift is optimized for analytical batch OLAP queries, not continuous single-row transaction ingestion."
         }
       ],
-      "correctAnswers": ["A"],
-      "generalExplanation": "Amazon DynamoDB é a solução serverless recomendada para ingestão e consulta de dados de telemetria em alta escala.",
+      "correctAnswers": ["C"],
+      "generalExplanation": "Combining Amazon Kinesis Data Streams with AWS Lambda and Amazon DynamoDB delivers a serverless, highly scalable ingestion pipeline without database bottlenecks.",
       "referenceUrl": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html",
       "difficulty": "medium"
     }
@@ -98,15 +112,21 @@ Por favor, gere um banco de questões para a certificação AWS **[SUBSTITUA PEL
 ---
 
 ### Como Adicionar ao Projeto após Gerado:
-1. Salve o JSON retornado em `src/data/exams/[codigo-do-exame].json` (ex: `src/data/exams/dva-c02.json`).
-2. Execute o validador para garantir integridade:
+1. Salve o JSON gerado em `src/data/exams/[codigo-do-exame].json` (ex: `src/data/exams/dva-c02.json`).
+2. Registre o exame no array `AVAILABLE_EXAMS` em `src/data/exams/index.ts`.
+3. Valide a integridade:
    ```bash
    npm run validate:exams
    ```
-3. Faça o commit e push:
+4. Teste o build:
    ```bash
-   git add src/data/exams/dva-c02.json
+   npm run build
+   ```
+5. Faça o commit e push:
+   ```bash
+   git add src/data/exams/
    git commit -m "feat(exams): add DVA-C02 exam simulator"
    git push origin main
    ```
-Pronto! O novo simulado aparecerá automaticamente no catálogo da aplicação.
+Pronto! O novo simulado aparecerá automaticamente no catálogo da aplicação com contagem e filtros dinâmicos.
+
