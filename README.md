@@ -53,7 +53,7 @@ npm run start
 
 The project includes a standardized template and automated validation script for easily adding new exams:
 
-1. Open [`.agent/AI_PROMPT_TEMPLATE.md`](.agent/AI_PROMPT_TEMPLATE.md) and copy the prompt to your favorite AI assistant (ChatGPT, Claude, Gemini).
+1. Open [`.agents/AI_PROMPT_TEMPLATE.md`](.agents/AI_PROMPT_TEMPLATE.md) and copy the prompt to your favorite AI assistant (ChatGPT, Claude, Gemini).
 2. Save the generated JSON file to `src/data/exams/[exam-code].json`.
 3. Register the exam in the `AVAILABLE_EXAMS` array in `src/data/exams/index.ts`.
 4. Validate the JSON integrity by running:
