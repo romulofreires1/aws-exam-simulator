@@ -17,8 +17,9 @@ VALID_DOMAINS = {
     "domain-4-migration-modernization": "Domain 4: Accelerate Workload Migration and Modernization"
 }
 
-def validate_question(q, index=0):
+def validate_question(q, index=0, strict=False):
     errors = []
+    warnings = []
     prefix = f"Question #{index+1} (ID: {q.get('id', 'MISSING')})"
 
     # Required fields
@@ -54,6 +55,7 @@ def validate_question(q, index=0):
         errors.append(f"{prefix}: Deve ter no mínimo 4 opções de resposta.")
     else:
         option_ids = set()
+        option_lengths = []
         for idx, opt in enumerate(options):
             opt_id = opt.get("id")
             if not opt_id:
@@ -62,11 +64,38 @@ def validate_question(q, index=0):
                 errors.append(f"{prefix} Opção '{opt_id}': ID duplicado.")
             option_ids.add(opt_id)
 
-            if not opt.get("text", "").strip():
+            text = opt.get("text", "").strip()
+            if not text:
                 errors.append(f"{prefix} Opção '{opt_id}': Texto da opção vazio.")
+            else:
+                option_lengths.append(len(text))
+                if len(text.split()) < 8:
+                    msg = f"{prefix} Opção '{opt_id}': Texto muito curto ({len(text.split())} palavras). Distratores SAP-C02 devem ser detalhados e plausíveis."
+                    if strict:
+                        errors.append(msg)
+                    else:
+                        warnings.append(msg)
 
-            if not opt.get("explanation", "").strip():
+            explanation = opt.get("explanation", "").strip()
+            if not explanation:
                 errors.append(f"{prefix} Opção '{opt_id}': Explicação da opção vazia.")
+            elif len(explanation.split()) < 6:
+                msg = f"{prefix} Opção '{opt_id}': Explicação muito rasa ({len(explanation.split())} palavras). Deve justificar tecnicamente o acerto ou erro."
+                if strict:
+                    errors.append(msg)
+                else:
+                    warnings.append(msg)
+
+        # Checagem de assimetria de distratores (evita alternativa correta gigante e erradas minúsculas)
+        if option_lengths:
+            min_len = min(option_lengths)
+            max_len = max(option_lengths)
+            if max_len > 0 and (min_len / max_len) < 0.25:
+                msg = f"{prefix}: Grande assimetria entre alternativas (menor: {min_len} chars, maior: {max_len} chars). Mantenha simetria estrutural para evitar distratores óbvios."
+                if strict:
+                    errors.append(msg)
+                else:
+                    warnings.append(msg)
 
         for ans in correct_ans:
             if ans not in option_ids:
@@ -75,7 +104,7 @@ def validate_question(q, index=0):
     if not q.get("generalExplanation", "").strip():
         errors.append(f"{prefix}: 'generalExplanation' não pode ser vazio.")
 
-    return errors
+    return errors, warnings
 
 def check_answer_distribution(questions):
     """
@@ -116,10 +145,12 @@ def check_answer_distribution(questions):
 
 def main():
     if len(sys.argv) < 2:
-        print("Uso: python3 validate_questions.py <caminho_para_arquivo.json>")
+        print("Uso: python3 validate_questions.py <caminho_para_arquivo.json> [--strict]")
         sys.exit(1)
 
-    file_path = sys.argv[1]
+    strict_mode = "--strict" in sys.argv
+    file_path = [arg for arg in sys.argv[1:] if not arg.startswith("--")][0]
+
     if not os.path.exists(file_path):
         print(f"❌ Arquivo não encontrado: {file_path}")
         sys.exit(1)
@@ -145,9 +176,10 @@ def main():
     elif isinstance(data, list):
         questions_to_validate = data
 
-    print(f"🔍 Validando {len(questions_to_validate)} questão(ões) em {file_path}...")
+    print(f"🔍 Validando {len(questions_to_validate)} questão(ões) em {file_path} (Modo estrito: {strict_mode})...")
 
     all_errors = []
+    all_warnings = []
     seen_ids = set()
 
     for idx, q in enumerate(questions_to_validate):
@@ -156,11 +188,13 @@ def main():
             if q_id in seen_ids:
                 all_errors.append(f"ID duplicado detectado no arquivo: '{q_id}'")
             seen_ids.add(q_id)
-        errs = validate_question(q, idx)
+        errs, warns = validate_question(q, idx, strict=strict_mode)
         all_errors.extend(errs)
+        all_warnings.extend(warns)
 
     # Check distribution
     dist_warnings = check_answer_distribution(questions_to_validate)
+    all_warnings.extend(dist_warnings)
 
     if all_errors:
         print(f"❌ Foram encontrados {len(all_errors)} erro(s):")
@@ -168,9 +202,12 @@ def main():
             print(f"  - {err}")
         sys.exit(1)
     else:
-        if dist_warnings:
-            for w in dist_warnings:
-                print(w)
+        if all_warnings:
+            print(f"⚠️ {len(all_warnings)} aviso(s) de qualidade de distratores detectado(s):")
+            for w in all_warnings[:10]:
+                print(f"  - {w}")
+            if len(all_warnings) > 10:
+                print(f"  ... e mais {len(all_warnings) - 10} avisos.")
         print("🎉 Todas as questões foram validadas com sucesso e atendem ao padrão SAP-C02!")
 
 if __name__ == "__main__":

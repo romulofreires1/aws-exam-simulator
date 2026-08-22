@@ -20,7 +20,12 @@ This skill guides the creation and validation of exam-grade questions for the **
    - It is **NOT** restricted to any specific folder, past gaps list, or external subset. It explores the entire breadth of AWS enterprise architectures (hybrid networking, IAM/governance multi-account, resilience/DR, analytics/data lakes, cost optimization, migration 7 Rs, container & serverless modernizations, etc.).
 2. **100% Inéditas (Original Enterprise Scenarios)**:
    - All questions feature fresh, realistic enterprise scenarios (fintechs, streaming OTT, global retail, healthcare compliance, autonomous vehicles, genomic pipelines, industrial IoT, telecom, SaaS multi-tenant).
-3. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
+3. **Engenharia Rigorosa de Distratores Altamente Plausíveis (ZERO Alternativas Óbvias)**:
+   - **PROIBIDO**: Distratores obviamente errados, ingênuos, curtos ou contendo serviços/scripts absurdos.
+   - **OBRIGATÓRIO**: Todas as 4 alternativas (ou 5/6 em múltipla escolha) **DEVEM parecer soluções 100% profissionais, válidas, modernas e viáveis tecnicamente**.
+   - **Matriz de Decisão 2x2**: Estruture as opções em pares conceituais (ex: 2 opções usam Abordagem A e 2 usam Abordagem B; uma acerta a nuance técnica exata e as outras falham por sutilezas como sobrecarga operacional, custo desnecessário, ou limites não-transitivos da AWS).
+   - **Simetria Estrutural e de Extensão**: Todas as alternativas devem ter comprimento similar (3 a 5 linhas cada) e mesmo nível de detalhamento técnico passo a passo.
+4. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
    - **NUNCA** posicione a resposta correta sempre na opção `A` ou nas opções `A` e `B`.
    - As respostas corretas **DEVEM** ser distribuídas de forma balanceada e pseudo-aleatória entre todas as opções (`A`, `B`, `C`, `D` para escolha única; combinações variadas como `["B", "D"]`, `["A", "C"]`, `["C", "E"]`, `["A", "D"]`, `["B", "E"]` para múltipla escolha).
    - Em um lote ou simulado completo, a distribuição de gabaritos individuais deve ser equilibrada (~25% para cada letra).
@@ -67,15 +72,20 @@ Every question **MUST** exhibit professional-grade depth:
    - *"Qual solução atenderá a esses requisitos de forma MAIS eficiente operacionalmente?"*
    - *"Qual combinação de etapas atenderá a esses requisitos com o MENOR custo?"*
    - *"Qual arquitetura atenderá a esses requisitos com a MENOR sobrecarga de manutenção e SEM alterar o código?"*
-4. **Distractor Engineering & Answer Shuffling**:
-   - Create 4 options for single-choice (A, B, C, D) or 5-6 options for multiple-choice (A-E or A-F).
-   - Distractors must represent plausible, realistic AWS patterns that fail specific constraints (higher operational overhead, higher cost, exceeding RTO, manual scripting).
+4. **High-Fidelity Distractor Engineering (Engenharia de Distratores Plausíveis)**:
+   - **Apply the 2x2 Decision Matrix**: Provide 2 competing architectural approaches (2 options for Approach 1, 2 options for Approach 2).
+   - In each approach, design real, multi-step technical steps (3-5 lines per option) with matching terminology.
+   - Distractors must fail purely on subtle constraints:
+     - *Nuance Trap*: Misses a non-obvious technical limit (e.g., Appliance Mode missing on Transit Gateway VPC attachment; S3 Batch Replication omitted for existing objects; SCP applied to Management Account).
+     - *Overhead Trap*: Works, but introduces custom scripts, Lambda orchestrators, or manual tasks where a managed AWS capability exists.
+     - *Cost/Over-Engineering Trap*: Highly resilient and functional, but unnecessarily expensive for the specified RTO/RPO.
+     - *Compliance/Scope Trap*: Satisfies the main technical flow, but leaves a specific security requirement unaddressed.
    - **Shuffle the final options**: Randomly assign the correct answer(s) across different positions (e.g., Q1 -> `C`, Q2 -> `A`, Q3 -> `D`, Q4 -> `B`, Q5 -> `["B", "D"]`, Q6 -> `["A", "E"]`).
 
 ### Step 4: Write Detailed Explanations
 For each option (both correct and incorrect):
 - **Correct Option(s)**: Explain *why* this architecture satisfies all constraints and the specific optimization criteria (Well-Architected Framework justification).
-- **Incorrect Options**: Explicitly point out *why* each distractor is wrong or sub-optimal (e.g., "Incorreto: Peering de VPC não suporta roteamento transitivo", "Incorreto: RPO de 1 hora viola o requisito de RPO < 1 minuto").
+- **Incorrect Options**: Explicitly point out *why* each distractor is wrong or sub-optimal with deep technical rigor (e.g., "Incorreto: Embora o AWS Network Firewall seja a escolha correta, a falta do Appliance Mode no TGW attachment causa roteamento assimétrico e descarte de pacotes com estado").
 
 ### Step 5: Validate Output
 - If generating JSON for the simulator, validate against the JSON schema and ensure:

@@ -114,3 +114,24 @@ Esta referência compila os principais tópicos e arquiteturas enterprise avalia
   - **Amazon SQS (Standard vs. FIFO):** DLQ (Dead Letter Queue) com redrive policy para falhas de processamento; SQS Extended Client para mensagens > 256 KB via S3.
   - **Amazon SNS:** Fan-out para múltiplos assinantes SQS, Lambda e HTTPS com Message Filtering por atributos.
   - **Amazon EventBridge:** Barramentos de eventos personalizados (Custom Event Buses), barramentos multi-contas e schema registry para arquiteturas orientadas a eventos enterprise.
+
+---
+
+## 🎯 Catálogo de Nuances & Armadilhas para Distratores de Alta Plausibilidade
+
+Ao gerar opções incorretas, utilize estas nuances reais da AWS para criar distratores sofisticados que exigem conhecimento aprofundado:
+
+| Categoria | Nuance Técnica Real (Armadilha de Distrator) | Por Que o Distrator Falha? |
+| :--- | :--- | :--- |
+| **Networking** | Esquecer de habilitar o `Appliance Mode` no Transit Gateway VPC attachment ao usar AWS Network Firewall ou GWLB Multi-AZ. | O tráfego de retorno usa uma AZ diferente da requisição original, quebrando o stateful firewall (conexão TCP dropada). |
+| **Networking** | Tentar usar VPC Peering para roteamento transitivo através de uma VPC intermediária (ex: On-prem -> Direct Connect -> VPC Hub -> VPC Spoke). | VPC Peering não suporta roteamento transitivo ou borda; requer AWS Transit Gateway ou PrivateLink. |
+| **Networking** | Usar Gateway Endpoint para serviços além de S3 e DynamoDB. | Gateway Endpoints só existem para S3 e DynamoDB; todos os outros serviços AWS exigem Interface Endpoints (PrivateLink). |
+| **Storage / S3** | Configurar S3 Cross-Region Replication (CRR) sem executar S3 Batch Replication para objetos pré-existentes. | S3 CRR por padrão só replica objetos gravados APÓS a habilitação da regra; os dados já existentes não são replicados. |
+| **IAM / Org** | Aplicar uma Service Control Policy (SCP) na Management Account da Organization. | SCPs afetam apenas Member Accounts (inclusive usuário root das member accounts), mas nunca têm efeito sobre a Management Account. |
+| **IAM / Org** | Compartilhar recursos entre contas usando políticas baseadas em recursos (Resource Policies) quando a Organização exige isolamento estrito via RAM. | Políticas baseadas em recursos exigem manutenção manual em cada recurso; o AWS RAM permite compartilhamento centralizado por OU. |
+| **Database** | Propor Aurora Multi-Master para recuperação de desastres multi-região. | Aurora Multi-Master só opera dentro de uma única região e não suporta replicação global ativo-ativo (para isso usa-se Aurora Global Database ou DynamoDB Global Tables). |
+| **Database** | Usar RDS Read Replicas convencionais para RTO < 1 minuto em failover regional. | RDS Read Replicas usam replicação lógica assíncrona; promover réplica a primário exige reinicialização do motor e redirecionamento manual de DNS. |
+| **Security / KMS** | Tentar conceder permissões a instâncias Auto Scaling usando IAM Policies sem configurar KMS Grants na CMK. | Serviços que criam recursos delegados (como Auto Scaling provisionando volumes EBS criptografados) necessitam de KMS Grants. |
+| **Disaster Recovery** | Usar CloudFront Origin Groups para failover dinâmico de banco de dados ou lógica de negócios. | CloudFront Origin Groups só disparam failover em erros de resposta HTTP de origem (ex: 500, 502, 503, 504), e não em latência ou falha de infraestrutura interna. |
+| **Analytics** | Tentar compartilhar tabelas do Glue Data Catalog com centenas de contas usando apenas S3 Bucket Policies e IAM. | Causa explosão de complexidade de políticas que excedem o limite de tamanho do IAM/S3; a solução escalável correta é o **AWS Lake Formation cross-account permissions**. |
+| **Modernization** | Propor AWS App2Container para aplicações com dependência de kernel customizado ou arquitetura não suportada. | App2Container containeriza aplicações Java e .NET em IIS/Linux; re-architecting complexo requer refatoração direta ou rehost via AWS MGN. |

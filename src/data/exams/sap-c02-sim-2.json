@@ -385,13 +385,13 @@
       "options": [
         {
           "id": "A",
-          "text": "Implantar um sistema de arquivos Amazon EFS com o EFS Mount Helper configurado em instâncias Windows.",
-          "explanation": "Incorreto: O Amazon EFS é um sistema de arquivos NFS nativo para Linux e não fornece suporte nativo a ACLs NTFS, Kerberos via Active Directory e protocolo SMB para Windows."
+          "text": "Criar um sistema de arquivos Amazon FSx for Windows File Server com implantação Single-AZ 2 e armazenamento SSD de alto throughput. Integrar o sistema de arquivos ao Microsoft Active Directory corporativo através de uma relação de confiança (Forest Trust) com o AWS Managed Microsoft AD e habilitar cópias de sombra periódicas (Shadow Copies / VSS) com failover via snapshots diários.",
+          "explanation": "Incorreto: A implantação Single-AZ não oferece failover automático e transparente entre múltiplas Availability Zones em caso de falha de infraestrutura, violando o requisito de alta disponibilidade transparente."
         },
         {
           "id": "B",
-          "text": "Montar volumes Amazon EBS Multi-Attach em instâncias EC2 rodando Windows Server em cluster de failover.",
-          "explanation": "Incorreto: Volumes EBS Multi-Attach (io1/io2) não oferecem sistema de arquivos SMB gerenciado com suporte nativo a Active Directory e Shadow Copies para instâncias em múltiplas AZs."
+          "text": "Provisionar um par de instâncias EC2 Windows Server configuradas em cluster de failover (WSFC) em múltiplas AZs com volumes Amazon EBS io2 Block Express compartilhados via Multi-Attach. Unir as instâncias ao Active Directory corporativo, configurar compartilhamentos SMB com ACLs NTFS e habilitar o Volume Shadow Copy Service (VSS) localmente.",
+          "explanation": "Incorreto: Volumes EBS Multi-Attach com io2 não oferecem sistema de arquivos SMB distribuído gerenciado com suporte nativo transparente a failover de arquivos, além de introduzir altíssima sobrecarga operacional de manutenção de nós e storage clusterizado."
         },
         {
           "id": "C",
@@ -400,8 +400,8 @@
         },
         {
           "id": "D",
-          "text": "Utilizar o Amazon S3 File Gateway montado como disco de rede em cada estação Windows.",
-          "explanation": "Incorreto: O S3 File Gateway não suporta bloqueio de arquivos SMB avançado exigido por aplicações CAD e não implementa o conjunto completo de ACLs NTFS e Shadow Copies."
+          "text": "Implantar um AWS Storage Gateway do tipo Amazon S3 File Gateway em instâncias EC2 Multi-AZ com cache local SSD. Unir o File Gateway ao Microsoft Active Directory corporativo para autenticação SMB e configurar versionamento no bucket S3 de destino para restaurar versões anteriores de arquivos CAD.",
+          "explanation": "Incorreto: O S3 File Gateway não suporta bloqueio de arquivos SMB avançado exigido por aplicações de engenharia/CAD e não implementa o conjunto completo de ACLs NTFS nativas nem suporte ao cliente Windows Shadow Copies (VSS)."
         }
       ],
       "correctAnswers": [

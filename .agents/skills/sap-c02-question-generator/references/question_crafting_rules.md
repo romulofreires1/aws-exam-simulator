@@ -74,14 +74,57 @@ O final do enunciado determina qual trade-off da arquitetura deve vencer:
 
 ---
 
-## 6. Engenharia de Distratores (Opções Incorretas)
+## 6. Engenharia Rigorosa de Distratores (Eliminação de Alternativas Óbvias)
 
-Crie distratores autênticos seguindo estas 4 categorias clássicas de armadilhas da AWS:
+No exame SAP-C02, **nenhuma alternativa pode ser descartada com uma leitura rápida ou superficial**. Para que o simulador tenha o mesmo nível de dificuldade da prova oficial, os distratores **DEVEM** ser elaborados seguindo 4 regras fundamentais:
 
-1. **O Anti-Padrão Tecnológico**: Usa um serviço que não suporta a escala ou viola limites da AWS (ex: VPC Peering transitivo entre dezenas de VPCs; DynamoDB para arquivos binários grandes).
-2. **A Solução Operacionalmente Invencionista**: Funciona, mas reinventa a roda com EC2 e scripts manuais quando há serviço nativo gerenciado (ex: cluster BIND em EC2 em vez de Route 53 Resolver).
-3. **A Falha de Escopo / Requisito Oculto**: Atende ao objetivo geral, mas ignora uma restrição crucial (ex: não suporta IPs sobrepostos; não impede que o usuário root da conta membro apague logs).
-4. **O Trade-off Invertido**: Solução excessivamente cara ou complexa para um requisito simples (ex: Multi-Region Active-Active com Aurora Global Database quando o requisito pedia menor custo e RTO de 24 horas).
+### 6.1. A Regra da Matriz de Decisão 2x2 (OBRIGATÓRIO)
+Estruture as 4 alternativas em **dois pares de abordagens concorrentes**:
+- **Abordagem 1 (2 opções: ex. A e B)**: Propõe resolver o cenário usando o Padrão Arquitetural X (ex: *AWS Network Firewall centralizado com Transit Gateway*).
+- **Abordagem 2 (2 opções: ex. C e D)**: Propõe resolver o cenário usando o Padrão Arquitetural Y (ex: *Gateway Load Balancer com appliances de terceiros*).
+
+Dentro de cada par:
+- Uma opção acerta a implementação técnica completa e atende a todos os critérios do gatilho.
+- A outra opção propõe quase os mesmos passos, mas erra em uma **nuance técnica crítica** (ex: esquece de habilitar o *Appliance Mode* no attachment do Transit Gateway, ou usa *Gateway Endpoint* em vez de *Interface Endpoint*).
+
+Dessa forma, o candidato é forçado a:
+1. Identificar qual das duas famílias arquiteturais (X ou Y) é a mais adequada para o trade-off do enunciado.
+2. Analisar minuciosamente a configuração técnica interna para discernir qual das duas opções do mesmo padrão possui a implementação perfeita.
+
+---
+
+### 6.2. Simetria Estrutural e Sintática Estrita
+- **Comprimento Equivalente**: Todas as 4 alternativas devem ter extensão semelhante (3 a 5 linhas de texto bem estruturado). Nunca crie a alternativa correta longa e detalhada e os distratores com apenas 1 linha.
+- **Mesma Estrutura de Passos**: Todas as alternativas devem descrever uma sequência acionável e completa de passos técnicos:
+  - *Passo 1*: Provisionamento/Criação do recurso base.
+  - *Passo 2*: Configuração de rede, roteamento ou IAM.
+  - *Passo 3*: Associação, política de segurança ou automação.
+
+---
+
+### 6.3. Os 4 Arquétipos de Distratores Profissionais (Plausible Distractors)
+
+| Arquétipo | Como Funciona | Por Que o Candidato Fica em Dúvida? | Exemplo Real SAP-C02 |
+| :--- | :--- | :--- | :--- |
+| **1. A Nuance Técnica Oculta** *(Technical Nuance Trap)* | A arquitetura usa exatamente os serviços certos e modernos, mas falha em um detalhe interno de funcionamento da AWS. | Parece 100% correta à primeira vista; exige conhecimento profundo do serviço. | Configura S3 Cross-Region Replication para novos dados, mas omite o **S3 Batch Replication** para replicar os petabytes de dados já existentes no bucket. |
+| **2. O Trade-off de Custo / Over-Engineering** *(Cost Mismatch)* | A solução funciona perfeitamente, é altamente resiliente e automatizada, mas é excessivamente complexa e cara para o RTO/RPO solicitado. | É uma solução válida em produção, mas desrespeita a restrição de "MENOR custo". | Propõe *Aurora Global Database Active-Active* e *Route 53 ARC* quando o enunciado solicitava uma solução econômica com RTO aceitável de 4 horas. |
+| **3. A Sobrecarga Operacional Oculta** *(Overhead Trap)* | A arquitetura atinge o objetivo técnico, mas requer código customizado, scripts Lambda, agentes ou intervenção manual quando há funcionalidade nativa gerenciada. | É viável e comum em ambientes legados, mas perde para serviços nativos no critério "MENOR sobrecarga operacional". | Cria funções Lambda customizadas para consultar CloudWatch e atualizar rotas de DNS, em vez de usar *Route 53 Application Recovery Controller (ARC)* ou *DNS Failover* nativo. |
+| **4. A Falha de Requisito Específico / Scope Gap** *(Compliance/Scope Gap)* | Resolve a infraestrutura principal com maestria, mas deixa de atender a um requisito secundário essencial mencionado no enunciado. | O candidato foca no problema principal e esquece da restrição secundária. | Configura tráfego privado via *VPC Peering*, mas não resolve o requisito de **blocos CIDR sobrepostos** (que exige *AWS PrivateLink*). |
+
+---
+
+### 6.4. Comparativo: Distrator Ruim/Óbvio vs. Distrator Profissional de Alta Fidelidade
+
+#### Cenário de Exemplo:
+*Empresa precisa inspecionar e filtrar tráfego de saída para a internet de 200 VPCs sem permitir bypass e com a menor sobrecarga de manutenção.*
+
+- ❌ **Distrator Ruim / Óbvio (NÃO FAZER)**:
+  > *"Instale instâncias EC2 com proxy Squid em cada uma das 200 VPCs e configure scripts de inicialização para atualizar as regras de iptables manualmente."*  
+  *(Motivo do erro: Óbvio demais. Qualquer pessoa elimina imediatamente por ser anti-padrão absurdo).*
+
+- ✅ **Distrator Profissional de Alta Fidelidade (FAZER)**:
+  > *"Crie uma VPC de egresso centralizada contendo endpoints do AWS Network Firewall em sub-redes dedicadas em cada Availability Zone. Crie um AWS Transit Gateway e anexe todas as 200 VPCs de aplicação e a VPC de egresso. Atualize as tabelas de rotas das VPCs de aplicação para direcionar a rota padrão 0.0.0.0/0 para o Transit Gateway. Na VPC de egresso, configure o roteamento para o Network Firewall e depois para os NAT Gateways. Não habilite o Appliance Mode no attachment do Transit Gateway."*  
+  *(Motivo da excelência: A arquitetura inteira está correta, usa os serviços enterprise exatos, mas a omissão do Appliance Mode causa assimetria no tráfego de retorno, quebrando conexões TCP com estado).*
 
 ---
 
@@ -89,11 +132,11 @@ Crie distratores autênticos seguindo estas 4 categorias clássicas de armadilha
 
 ### Tipo Single Choice (Escolha Única)
 - **4 alternativas (A, B, C, D)**.
-- **Exatamente 1 alternativa correta** (distribuída aleatoriamente entre A, B, C ou D).
+- **Exatamente 1 alternativa correta** (distribuída pseudo-aleatoriamente entre A, B, C ou D ~25% cada).
 - `type: "single"`, `requiredChoices: 1`.
 
 ### Tipo Multiple Choice (Múltipla Escolha)
 - **5 alternativas (A, B, C, D, E)** com **2 corretas**, OU **6 alternativas (A, B, C, D, E, F)** com **3 corretas**.
 - `type: "multiple"`, `requiredChoices: 2` ou `3`.
 - No enunciado, inclua em negrito: `**Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)**` ou `(Escolha três.)`.
-- Letras corretas distribuídas aleatoriamente (ex: `["B", "D"]`, `["A", "E"]`).
+- Letras corretas distribuídas aleatoriamente (ex: `["B", "D"]`, `["A", "E"]`, `["C", "E"]`).
