@@ -110,7 +110,7 @@ export function ExamPauseModal({
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
             </span>
-            <span>Simulador Pausado</span>
+            <span>Simulator Paused</span>
           </div>
         </div>
 
@@ -120,10 +120,10 @@ export function ExamPauseModal({
             <PauseCircle className="h-9 w-9" />
           </div>
           <h2 className="text-2xl font-black text-white mb-2 tracking-tight">
-            Exame Pausado
+            Exam Paused
           </h2>
           <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-            O cronômetro e a questão estão pausados. Suas respostas e progresso estão salvos com segurança.
+            The timer and question view are paused. Your answers and progress have been saved safely.
           </p>
         </div>
 
@@ -133,10 +133,10 @@ export function ExamPauseModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <Clock className="h-3 w-3 text-amber-400" />
-              <span>Tempo</span>
+              <span>Time</span>
             </div>
             <p className="font-mono font-bold text-sm text-amber-300">
-              {mode === 'real' ? formattedTime : 'Sem limite'}
+              {mode === 'real' ? formattedTime : 'No limit'}
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export function ExamPauseModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <Layers className="h-3 w-3 text-blue-400" />
-              <span>Questão</span>
+              <span>Question</span>
             </div>
             <p className="font-bold text-sm text-white">
               {currentIndex + 1} / {totalQuestions}
@@ -155,7 +155,7 @@ export function ExamPauseModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-              <span>Respondidas</span>
+              <span>Answered</span>
             </div>
             <p className="font-bold text-sm text-emerald-400">
               {stats.answeredCount} ({stats.percentage}%)
@@ -166,7 +166,7 @@ export function ExamPauseModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <Flag className="h-3 w-3 text-amber-400" />
-              <span>Marcadas</span>
+              <span>Flagged</span>
             </div>
             <p className="font-bold text-sm text-amber-400">
               {stats.flaggedCount}
@@ -177,8 +177,8 @@ export function ExamPauseModal({
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex items-center justify-between text-xs text-slate-400 mb-1.5 font-medium">
-            <span>Progresso Geral</span>
-            <span>{stats.answeredCount} de {totalQuestions} respondidas</span>
+            <span>Overall Progress</span>
+            <span>{stats.answeredCount} of {totalQuestions} answered</span>
           </div>
           <div className="w-full h-2 rounded-full bg-slate-950 border border-slate-800 overflow-hidden">
             <div
@@ -192,7 +192,7 @@ export function ExamPauseModal({
         <div className="mb-6 p-3.5 rounded-2xl bg-slate-950/40 border border-slate-800/70 text-xs text-slate-400 flex items-start gap-2.5">
           <Sparkles className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            Você pode retomar agora ou salvar e sair para a tela inicial. Sua sessão continuará de onde você parou.
+            You can resume now or save and exit to the catalog. Your session will continue from where you left off.
           </p>
         </div>
 
@@ -209,7 +209,7 @@ export function ExamPauseModal({
             }`}
           >
             <Play className="h-4 w-4 fill-current" />
-            <span>Retomar Simulador (Pressione P ou Enter)</span>
+            <span>Resume Exam (Press P or Enter)</span>
           </button>
 
           {/* Secondary Actions Row */}
@@ -220,7 +220,7 @@ export function ExamPauseModal({
                 className="flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors"
               >
                 <HelpCircle className="h-4 w-4 text-blue-400" />
-                <span>Revisar Respostas</span>
+                <span>Review Answers</span>
               </button>
             )}
 
@@ -231,7 +231,7 @@ export function ExamPauseModal({
               } border-slate-700/80 bg-slate-800/40 hover:bg-slate-800 text-slate-300 hover:text-white`}
             >
               <Home className="h-4 w-4 text-slate-400" />
-              <span>Salvar e Voltar ao Início</span>
+              <span>Save & Return to Home</span>
             </button>
           </div>
         </div>
