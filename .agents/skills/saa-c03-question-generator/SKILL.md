@@ -96,6 +96,7 @@ For each option (both correct and incorrect):
   - `generalExplanation`: Comprehensive summary explanation.
   - `referenceUrl`: Valid AWS documentation link.
   - `difficulty`: `"medium"` or `"hard"`.
+  - `translations`: Complete and independent localized content for `"en"`, `"pt"` (PT-BR), and `"es"` (ES) with zero mixed/hybrid text. Each locale must contain `domainName`, `statement`, `options` (with `id`, `text`, `explanation`), and `generalExplanation`.
 
 ---
 

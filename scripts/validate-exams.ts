@@ -177,16 +177,24 @@ function validateExamFile(filePath: string): { isValid: boolean; errors: string[
       }
 
       // Multi-language translation validation
-      if (q.translations && typeof q.translations === 'object') {
-        const allowedLanguages = ['en', 'pt', 'es'];
+      if (!q.translations || typeof q.translations !== 'object') {
+        errors.push(`${qPrefix} Missing 'translations' object.`);
+      } else {
+        const requiredLanguages = ['en', 'pt', 'es'];
         const baseOptionIds = (q.options || []).map((o) => o.id);
 
+        for (const reqLang of requiredLanguages) {
+          if (!q.translations[reqLang]) {
+            errors.push(`${qPrefix} Missing required translation for '${reqLang}'.`);
+          }
+        }
+
         for (const [lang, trans] of Object.entries(q.translations)) {
-          if (!allowedLanguages.includes(lang)) {
-            errors.push(`${qPrefix} Unsupported translation language '${lang}'. Allowed: ${allowedLanguages.join(', ')}.`);
+          if (!requiredLanguages.includes(lang)) {
+            errors.push(`${qPrefix} Unsupported translation language '${lang}'. Allowed: ${requiredLanguages.join(', ')}.`);
           }
           if (trans && typeof trans === 'object') {
-            const t = trans as { statement?: string; options?: { id: string; text: string }[]; generalExplanation?: string };
+            const t = trans as { statement?: string; options?: { id: string; text: string; explanation?: string }[]; generalExplanation?: string };
             if (!t.statement || t.statement.trim().length === 0) {
               errors.push(`${qPrefix} Translation [${lang}] has empty 'statement'.`);
             }
@@ -199,6 +207,9 @@ function validateExamFile(filePath: string): { isValid: boolean; errors: string[
                 }
                 if (!tOpt.text || tOpt.text.trim().length === 0) {
                   errors.push(`${qPrefix} Translation [${lang}] option '${tOpt.id}' has empty text.`);
+                }
+                if (!tOpt.explanation || tOpt.explanation.trim().length === 0) {
+                  errors.push(`${qPrefix} Translation [${lang}] option '${tOpt.id}' has empty explanation.`);
                 }
               });
             }

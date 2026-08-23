@@ -37,7 +37,42 @@
     ],
     "generalExplanation": "O pilar Confiabilidade (Reliability) do AWS Well-Architected Framework é projetado para garantir que as cargas de trabalho executem suas funções pretendidas de forma correta e consistente, recuperando-se automaticamente de falhas de infraestrutura ou serviços.",
     "referenceUrl": "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
-    "difficulty": "easy"
+    "difficulty": "easy",
+    "translations": {
+      "en": {
+        "domainName": "Domain 1: Cloud Concepts",
+        "statement": "Which pillar of the AWS Well-Architected Framework emphasizes the ability of a system to recover from infrastructure or service disruptions and dynamically acquire computing resources to meet demand?",
+        "options": [
+          { "id": "A", "text": "Operational Excellence", "explanation": "Incorrect: Operational Excellence focuses on running and monitoring systems and continually improving processes." },
+          { "id": "B", "text": "Performance Efficiency", "explanation": "Incorrect: Performance Efficiency focuses on using computing resources efficiently and evolving technology." },
+          { "id": "C", "text": "Reliability", "explanation": "Correct: The Reliability pillar encompasses the ability of a workload to perform its intended function correctly and consistently." },
+          { "id": "D", "text": "Cost Optimization", "explanation": "Incorrect: Cost Optimization focuses on avoiding unnecessary costs." }
+        ],
+        "generalExplanation": "The Reliability pillar of the AWS Well-Architected Framework is designed to ensure workloads perform intended functions and automatically recover from disruptions."
+      },
+      "pt": {
+        "domainName": "Domínio 1: Conceitos de Nuvem",
+        "statement": "Qual pilar do AWS Well-Architected Framework enfatiza a capacidade de recuperar sistemas diante de interrupções de infraestrutura ou falhas de serviço e adquirir dinamicamente recursos computacionais para atender à demanda?",
+        "options": [
+          { "id": "A", "text": "Excelência Operacional", "explanation": "Incorreto: A Excelência Operacional foca em executar e monitorar sistemas e aprimorar processos de negócios continuamente." },
+          { "id": "B", "text": "Eficiência de Performance", "explanation": "Incorreto: A Eficiência de Performance foca no uso estruturado e eficiente de recursos de TI e na evolução tecnológica contínua." },
+          { "id": "C", "text": "Confiabilidade (Reliability)", "explanation": "Correto: O pilar Confiabilidade abrange a capacidade de um sistema se recuperar de falhas de componentes, mitigar interrupções e adquirir recursos computacionais dinamicamente para atender à demanda." },
+          { "id": "D", "text": "Otimização de Custos", "explanation": "Incorreto: A Otimização de Custos foca em evitar gastos desnecessários e maximizar o retorno financeiro do investimento em nuvem." }
+        ],
+        "generalExplanation": "O pilar Confiabilidade (Reliability) do AWS Well-Architected Framework é projetado para garantir que as cargas de trabalho executem suas funções pretendidas de forma correta e consistente, recuperando-se automaticamente de falhas de infraestrutura ou serviços."
+      },
+      "es": {
+        "domainName": "Dominio 1: Conceptos de Nube",
+        "statement": "¿Qué pilar del AWS Well-Architected Framework enfatiza la capacidad de recuperar sistemas ante interrupciones de infraestructura o fallas de servicio y adquirir dinámicamente recursos informáticos para satisfacer la demanda?",
+        "options": [
+          { "id": "A", "text": "Excelencia Operativa", "explanation": "Incorrecto: La Excelencia Operativa se enfoca en ejecutar y monitorear sistemas y mejorar procesos continuamente." },
+          { "id": "B", "text": "Eficiencia del Rendimiento", "explanation": "Incorrecto: La Eficiencia del Rendimiento se enfoca en el uso eficiente de recursos de TI." },
+          { "id": "C", "text": "Fiabilidad (Reliability)", "explanation": "Correcto: El pilar de Fiabilidad abarca la capacidad de recuperarse de fallas de componentes y adquirir recursos informáticos dinámicamente." },
+          { "id": "D", "text": "Optimización de Costos", "explanation": "Incorrecto: La Optimización de Costos se enfoca en evitar gastos innecesarios." }
+        ],
+        "generalExplanation": "El pilar de Fiabilidad del AWS Well-Architected Framework está diseñado para garantizar que las cargas de trabajo ejecuten sus funciones y se recuperen de interrupciones."
+      }
+    }
   },
   "multipleChoiceExample": {
     "id": "clf-q071",

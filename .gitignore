@@ -32,8 +32,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# AWS/CI local artifacts
-.zone_id
-.acm_arn
-.ns_records
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
 
