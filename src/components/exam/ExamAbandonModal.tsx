@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { AlertTriangle, LogOut, ArrowLeft, Layers, CheckCircle2, Clock } from 'lucide-react';
-import { ExamMode, ExamLanguage } from '@/types/exam';
+import { ExamMode } from '@/types/exam';
 import { ExamTheme } from '@/lib/storage/examStorage';
 
 interface ExamAbandonModalProps {
@@ -21,69 +21,9 @@ interface ExamAbandonModalProps {
     percentage: number;
   };
   theme: ExamTheme;
-  language?: ExamLanguage;
   onClose: () => void;
   onConfirmAbandon: () => void;
 }
-
-const TEXTS: Record<
-  ExamLanguage,
-  {
-    badge: string;
-    title: string;
-    description: string;
-    warningNote: string;
-    timeLabel: string;
-    questionLabel: string;
-    answeredLabel: string;
-    progressLabel: string;
-    cancelBtn: string;
-    confirmBtn: string;
-  }
-> = {
-  pt: {
-    badge: 'Confirmação',
-    title: 'Abandonar o Exame?',
-    description:
-      'Tem certeza de que deseja abandonar este exame? Todo o seu progresso, respostas e tempo gasto nesta tentativa serão descartados e não poderão ser recuperados.',
-    warningNote:
-      'Esta ação não salvará o histórico desta tentativa e removerá a sessão ativa salva no navegador.',
-    timeLabel: 'Tempo',
-    questionLabel: 'Questão',
-    answeredLabel: 'Respondidas',
-    progressLabel: 'Progresso Geral',
-    cancelBtn: 'Continuar no Exame',
-    confirmBtn: 'Sim, Abandonar Exame',
-  },
-  es: {
-    badge: 'Confirmación',
-    title: '¿Abandonar el Examen?',
-    description:
-      '¿Estás seguro de que deseas abandonar este examen? Todo tu progreso, respuestas y tiempo transcurrido en este intento se descartarán permanentemente.',
-    warningNote:
-      'Esta acción no guardará el historial de este intento y eliminará la sesión activa guardada en el navegador.',
-    timeLabel: 'Tiempo',
-    questionLabel: 'Pregunta',
-    answeredLabel: 'Respondidas',
-    progressLabel: 'Progreso General',
-    cancelBtn: 'Continuar en el Examen',
-    confirmBtn: 'Sí, Abandonar Examen',
-  },
-  en: {
-    badge: 'Confirmation',
-    title: 'Abandon Exam?',
-    description:
-      'Are you sure you want to abandon this exam? All your progress, answers, and time spent on this attempt will be discarded and cannot be recovered.',
-    warningNote:
-      'This action will not save this attempt to your history and will remove any saved in-progress session.',
-    timeLabel: 'Time',
-    questionLabel: 'Question',
-    answeredLabel: 'Answered',
-    progressLabel: 'Overall Progress',
-    cancelBtn: 'Keep Taking Exam',
-    confirmBtn: 'Yes, Abandon Exam',
-  },
-};
 
 export function ExamAbandonModal({
   isOpen,
@@ -95,14 +35,12 @@ export function ExamAbandonModal({
   formattedTime,
   stats,
   theme,
-  language = 'pt',
   onClose,
   onConfirmAbandon,
 }: ExamAbandonModalProps) {
   const isPearson = theme === 'pearson-vue';
-  const t = TEXTS[language] || TEXTS.pt;
 
-  // Atalho de teclado: Escape fecha / cancela o abandono
+  // Keyboard shortcut: Escape closes / cancels abandon modal
   useEffect(() => {
     if (!isOpen) return;
 
@@ -157,7 +95,7 @@ export function ExamAbandonModal({
 
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-bold">
             <AlertTriangle className="h-3.5 w-3.5 text-rose-400" />
-            <span>{t.badge}</span>
+            <span>Confirmation</span>
           </div>
         </div>
 
@@ -167,10 +105,10 @@ export function ExamAbandonModal({
             <LogOut className="h-8 w-8" />
           </div>
           <h2 className="text-2xl font-black text-white mb-2 tracking-tight">
-            {t.title}
+            Abandon Exam?
           </h2>
           <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-            {t.description}
+            Are you sure you want to abandon this exam? All your progress, answers, and time spent on this attempt will be discarded and cannot be recovered.
           </p>
         </div>
 
@@ -179,7 +117,7 @@ export function ExamAbandonModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <Clock className="h-3 w-3 text-amber-400" />
-              <span>{t.timeLabel}</span>
+              <span>Time</span>
             </div>
             <p className="font-mono font-bold text-xs sm:text-sm text-amber-300">
               {mode === 'real' ? formattedTime : 'No limit'}
@@ -189,7 +127,7 @@ export function ExamAbandonModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <Layers className="h-3 w-3 text-blue-400" />
-              <span>{t.questionLabel}</span>
+              <span>Question</span>
             </div>
             <p className="font-bold text-xs sm:text-sm text-white">
               {currentIndex + 1} / {totalQuestions}
@@ -199,7 +137,7 @@ export function ExamAbandonModal({
           <div className="p-3 rounded-2xl bg-slate-950/60 border border-slate-800/90 text-center">
             <div className="flex items-center justify-center gap-1 text-slate-400 text-[11px] font-semibold mb-1">
               <CheckCircle2 className="h-3 w-3 text-emerald-400" />
-              <span>{t.answeredLabel}</span>
+              <span>Answered</span>
             </div>
             <p className="font-bold text-xs sm:text-sm text-emerald-400">
               {stats.answeredCount} ({stats.percentage}%)
@@ -210,7 +148,9 @@ export function ExamAbandonModal({
         {/* Warning Note */}
         <div className="mb-6 p-3.5 rounded-2xl bg-rose-950/30 border border-rose-900/50 text-xs text-rose-200/90 flex items-start gap-2.5">
           <AlertTriangle className="h-4 w-4 text-rose-400 shrink-0 mt-0.5" />
-          <p className="leading-relaxed">{t.warningNote}</p>
+          <p className="leading-relaxed">
+            This action will not save this attempt to your history and will remove any saved in-progress session.
+          </p>
         </div>
 
         {/* Action Buttons */}
@@ -223,7 +163,7 @@ export function ExamAbandonModal({
             className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs sm:text-sm font-bold transition-all cursor-pointer"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>{t.cancelBtn}</span>
+            <span>Keep Taking Exam</span>
           </button>
 
           {/* Confirm Abandon Button */}
@@ -233,7 +173,7 @@ export function ExamAbandonModal({
             className="w-full sm:flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-xs sm:text-sm transition-all shadow-lg bg-rose-600 hover:bg-rose-500 text-white shadow-rose-900/40 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
-            <span>{t.confirmBtn}</span>
+            <span>Yes, Abandon Exam</span>
           </button>
         </div>
       </div>

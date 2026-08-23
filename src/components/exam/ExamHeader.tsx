@@ -117,19 +117,7 @@ export function ExamHeader({
           {mode === 'real' ? (
             <button
               onClick={onTogglePause}
-              title={
-                isPaused
-                  ? language === 'pt'
-                    ? 'Simulado pausado. Clique para retomar (P)'
-                    : language === 'es'
-                    ? 'Simulador pausado. Clic para reanudar (P)'
-                    : 'Exam paused. Click to resume (P)'
-                  : language === 'pt'
-                  ? 'Pausar simulado (P)'
-                  : language === 'es'
-                  ? 'Pausar simulador (P)'
-                  : 'Pause exam (P)'
-              }
+              title={isPaused ? 'Exam paused. Click to resume (P)' : 'Pause exam (P)'}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-mono text-sm font-bold transition-all cursor-pointer ${
                 isPaused
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/60 shadow-sm'
@@ -150,7 +138,7 @@ export function ExamHeader({
               <span>{formattedTime}</span>
               {isPaused && (
                 <span className="text-[10px] uppercase font-sans font-black px-1.5 py-0.2 rounded bg-amber-500 text-slate-950">
-                  {language === 'pt' ? 'Pausa' : language === 'es' ? 'Pausa' : 'Paused'}
+                  Paused
                 </span>
               )}
             </button>
@@ -170,19 +158,7 @@ export function ExamHeader({
           {onTogglePause && (
             <button
               onClick={onTogglePause}
-              title={
-                isPaused
-                  ? language === 'pt'
-                    ? 'Retomar simulado (P)'
-                    : language === 'es'
-                    ? 'Reanudar simulador (P)'
-                    : 'Resume exam (P)'
-                  : language === 'pt'
-                  ? 'Pausar simulado (P)'
-                  : language === 'es'
-                  ? 'Pausar simulador (P)'
-                  : 'Pause exam (P)'
-              }
+              title={isPaused ? 'Resume exam (P)' : 'Pause exam (P)'}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all border cursor-pointer ${
                 isPaused
                   ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 border-amber-400 font-black shadow-md shadow-amber-500/25 ring-2 ring-amber-400/40'
@@ -194,13 +170,13 @@ export function ExamHeader({
               {isPaused ? (
                 <>
                   <Play className="h-3.5 w-3.5 fill-current" />
-                  <span>{language === 'pt' ? 'Retomar' : language === 'es' ? 'Reanudar' : 'Resume'}</span>
+                  <span>Resume</span>
                 </>
               ) : (
                 <>
                   <Pause className="h-3.5 w-3.5" />
                   <span className="hidden xs:inline sm:inline">
-                    {language === 'pt' ? 'Pausar' : language === 'es' ? 'Pausar' : 'Pause'}
+                    Pause
                   </span>
                 </>
               )}
@@ -318,13 +294,7 @@ export function ExamHeader({
             <button
               type="button"
               onClick={onSaveAndExit}
-              title={
-                language === 'pt'
-                  ? 'Salvar progresso e voltar ao catálogo'
-                  : language === 'es'
-                  ? 'Guardar progreso e ir al inicio'
-                  : 'Save progress and exit to home'
-              }
+              title="Save progress and exit to home"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border cursor-pointer ${
                 isPearson
                   ? 'bg-blue-900/60 border-blue-700 text-blue-100 hover:bg-blue-800 hover:text-white'
@@ -332,9 +302,7 @@ export function ExamHeader({
               }`}
             >
               <Home className="h-3.5 w-3.5 text-slate-400" />
-              <span className="hidden sm:inline">
-                {language === 'pt' ? 'Salvar e Sair' : language === 'es' ? 'Guardar y Salir' : 'Save & Exit'}
-              </span>
+              <span className="hidden sm:inline">Save & Exit</span>
             </button>
           )}
 
@@ -343,13 +311,7 @@ export function ExamHeader({
             <button
               type="button"
               onClick={onOpenAbandonModal}
-              title={
-                language === 'pt'
-                  ? 'Abandonar Exame'
-                  : language === 'es'
-                  ? 'Abandonar Examen'
-                  : 'Abandon Exam'
-              }
+              title="Abandon Exam"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md font-semibold transition-all border cursor-pointer ${
                 isPearson
                   ? 'bg-rose-950/40 border-rose-900/60 text-rose-200 hover:bg-rose-900/70 hover:text-white'
@@ -357,9 +319,7 @@ export function ExamHeader({
               }`}
             >
               <LogOut className="h-3.5 w-3.5 text-rose-400" />
-              <span className="hidden xs:inline">
-                {language === 'pt' ? 'Abandonar' : language === 'es' ? 'Abandonar' : 'Abandon'}
-              </span>
+              <span className="hidden xs:inline">Abandon</span>
             </button>
           )}
 

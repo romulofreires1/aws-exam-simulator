@@ -186,7 +186,6 @@ function ExamRunnerContent({ examId }: { examId: string }) {
         formattedTime={engine.formattedTime}
         stats={engine.stats}
         theme={theme}
-        language={engine.language}
         onClose={() => engine.setIsAbandonModalOpen(false)}
         onConfirmAbandon={handleConfirmAbandon}
       />

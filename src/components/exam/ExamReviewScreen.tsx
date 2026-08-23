@@ -166,13 +166,7 @@ export function ExamReviewScreen({
           className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-sm transition-colors cursor-pointer"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>
-            {language === 'pt'
-              ? 'Voltar às Questões'
-              : language === 'es'
-              ? 'Volver a las Preguntas'
-              : 'Back to Questions'}
-          </span>
+          <span>Back to Questions</span>
         </button>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
@@ -183,13 +177,7 @@ export function ExamReviewScreen({
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-rose-900/60 bg-rose-950/20 hover:bg-rose-950/40 text-rose-300 hover:text-rose-200 font-semibold text-sm transition-colors cursor-pointer"
             >
               <LogOut className="h-4 w-4 text-rose-400" />
-              <span>
-                {language === 'pt'
-                  ? 'Abandonar Exame'
-                  : language === 'es'
-                  ? 'Abandonar Examen'
-                  : 'Abandon Exam'}
-              </span>
+              <span>Abandon Exam</span>
             </button>
           )}
 
@@ -198,13 +186,7 @@ export function ExamReviewScreen({
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-900/30 transition-all hover:scale-[1.02] cursor-pointer"
           >
             <Send className="h-4 w-4" />
-            <span>
-              {language === 'pt'
-                ? 'Finalizar e Enviar Exame'
-                : language === 'es'
-                ? 'Finalizar y Enviar Examen'
-                : 'Submit & Finish Exam'}
-            </span>
+            <span>Submit & Finish Exam</span>
           </button>
         </div>
       </div>
