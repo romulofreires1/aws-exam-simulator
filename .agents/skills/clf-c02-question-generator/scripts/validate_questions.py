@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
 Validador de Questões CLF-C02 para o AWS Exam Simulator.
-Verifica integridade de schema, ids únicos, paridade de gabarito, regras de distratores
-e distribuição equilibrada/embaralhada de respostas (sem vícios em A ou A,B).
+Verifica integridade de schema, ids únicos, paridade de gabarito, regras de distratores,
+contagem exata de alternativas (4 para single, 5 para select 2),
+traduções completas (EN, PT, ES) e distribuição equilibrada de respostas.
 """
 
 import sys
@@ -42,11 +43,18 @@ def validate_question(q, index=0, strict=False):
     if q_type not in ["single", "multiple"]:
         errors.append(f"{prefix}: 'type' deve ser 'single' ou 'multiple'.")
 
-    if q_type == "single" and req_choices != 1:
-        errors.append(f"{prefix}: Questões do tipo 'single' devem ter requiredChoices = 1.")
+    if q_type == "single":
+        if req_choices != 1:
+            errors.append(f"{prefix}: Questões 'single' devem ter requiredChoices = 1.")
+        if len(options) != 4:
+            errors.append(f"{prefix}: Questões 'single' DEVEM ter exatamente 4 opções (A, B, C, D). Encontrado: {len(options)}.")
 
-    if q_type == "multiple" and req_choices < 2:
-        errors.append(f"{prefix}: Questões do tipo 'multiple' devem ter requiredChoices >= 2.")
+    if q_type == "multiple":
+        if req_choices == 2:
+            if len(options) != 5:
+                errors.append(f"{prefix}: Questões de múltipla escolha (Select TWO) DEVEM ter exatamente 5 opções (A, B, C, D, E). Encontrado: {len(options)}.")
+        elif req_choices < 2:
+            errors.append(f"{prefix}: Questões 'multiple' devem ter requiredChoices >= 2.")
 
     if len(correct_ans) != req_choices:
         errors.append(f"{prefix}: Quantidade de correctAnswers ({len(correct_ans)}) diferente de requiredChoices ({req_choices}).")
@@ -68,9 +76,11 @@ def validate_question(q, index=0, strict=False):
             if not text:
                 errors.append(f"{prefix} Opção '{opt_id}': Texto da opção vazio.")
             else:
+                words = text.split()
                 option_lengths.append(len(text))
-                if len(text.split()) < 1:
-                    msg = f"{prefix} Opção '{opt_id}': Texto muito curto."
+                min_words = 1
+                if len(words) < min_words:
+                    msg = f"{prefix} Opção '{opt_id}': Texto muito curto ({len(words)} palavras). Distratores CLF-C02 devem representar conceitos claros da AWS."
                     if strict:
                         errors.append(msg)
                     else:
@@ -93,16 +103,34 @@ def validate_question(q, index=0, strict=False):
     if not q.get("generalExplanation", "").strip():
         errors.append(f"{prefix}: 'generalExplanation' não pode ser vazio.")
 
+    # Validate translations if present
+    translations = q.get("translations", {})
+    if translations:
+        for lang in ["en", "pt", "es"]:
+            if lang not in translations:
+                msg = f"{prefix}: Tradução ausente para o idioma '{lang}'."
+                if strict:
+                    errors.append(msg)
+                else:
+                    warnings.append(msg)
+            else:
+                t_obj = translations[lang]
+                if not t_obj.get("statement", "").strip():
+                    errors.append(f"{prefix} [{lang}]: 'statement' traduzido está vazio.")
+                t_options = t_obj.get("options", [])
+                if len(t_options) != len(options):
+                    errors.append(f"{prefix} [{lang}]: Quantidade de opções traduzidas ({len(t_options)}) difere da raiz ({len(options)}).")
+                for t_opt in t_options:
+                    if not t_opt.get("text", "").strip():
+                        errors.append(f"{prefix} [{lang}] Opção '{t_opt.get('id')}': texto traduzido vazio.")
+
     return errors, warnings
 
-def check_answer_distribution(questions):
-    """
-    Verifica se as respostas não estão viciadas em A ou A, B.
-    Em um simulado com >= 10 questões, nenhuma opção individual deve concentrar mais de 45% dos gabaritos.
-    """
+def check_answer_distribution(questions, strict=False):
     warnings = []
+    errors = []
     if len(questions) < 10:
-        return warnings
+        return errors, warnings
 
     single_answers = []
     multiple_answer_sets = []
@@ -126,11 +154,13 @@ def check_answer_distribution(questions):
     if multiple_answer_sets:
         all_ab = all(s == ("A", "B") for s in multiple_answer_sets)
         if len(multiple_answer_sets) >= 3 and all_ab:
-            warnings.append(
-                "⚠️ Vício de gabarito múltiplo: 100% das questões de múltipla escolha têm gabarito ['A', 'B']. Embaralhe as posições das alternativas corretas."
-            )
+            msg = "❌ Vício de gabarito múltiplo: 100% das questões de múltipla escolha têm gabarito ['A', 'B']. Embaralhe as posições das alternativas corretas."
+            if strict:
+                errors.append(msg)
+            else:
+                warnings.append(msg)
 
-    return warnings
+    return errors, warnings
 
 def main():
     if len(sys.argv) < 2:
@@ -181,7 +211,8 @@ def main():
         all_warnings.extend(warns)
 
     # Check distribution
-    dist_warnings = check_answer_distribution(questions_to_validate)
+    dist_errors, dist_warnings = check_answer_distribution(questions_to_validate, strict=strict_mode)
+    all_errors.extend(dist_errors)
     all_warnings.extend(dist_warnings)
 
     if all_errors:
@@ -200,3 +231,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

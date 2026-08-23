@@ -906,118 +906,139 @@
         "AWS Migration Strategies",
         "AWS Application Migration Service"
       ],
-      "type": "single",
-      "requiredChoices": 1,
-      "statement": "An enterprise plans to migrate an on-premises web application to AWS by moving virtual machines directly to Amazon EC2 without modifying the application code or core architecture. Which migration strategy (from the 7 Rs of migration) does this describe?",
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "Which of the following are recognized advantages of cloud computing according to AWS? (Choose two.)",
       "options": [
         {
           "id": "A",
-          "text": "Rehost ('Lift and shift')",
-          "explanation": "Correct: Rehosting moves applications to AWS as-is without any code or architectural changes."
+          "text": "AWS assumes full responsibility for all application configuration and user access policies.",
+          "explanation": "Incorrect: Under the Shared Responsibility Model, the customer is responsible for application configuration and IAM user access."
         },
         {
           "id": "B",
-          "text": "Refactor / Re-architect",
-          "explanation": "Incorrect: Refactoring involves rewriting code into cloud-native microservices or serverless architectures."
+          "text": "Trade upfront capital expense for variable operational expense.",
+          "explanation": "Correct: Instead of investing heavily in data centers and physical servers before using them, customers pay only when computing resources are consumed."
         },
         {
           "id": "C",
-          "text": "Replatform ('Lift, tinker, and shift')",
-          "explanation": "Incorrect: Replatforming involves making minor cloud optimizations (like switching to a managed database) without changing core code."
+          "text": "Eliminate the need to hire security engineers or perform software updates.",
+          "explanation": "Incorrect: Customers remain responsible for managing user access, identity, and application-level software security in the cloud."
         },
         {
           "id": "D",
-          "text": "Repurchase ('Drop and shop')",
-          "explanation": "Incorrect: Repurchasing means abandoning existing software for a commercial SaaS product."
+          "text": "Increase speed and agility to deploy global applications in minutes.",
+          "explanation": "Correct: In a cloud computing environment, new IT resources are only a click away, drastically reducing development and deployment time."
+        },
+        {
+          "id": "E",
+          "text": "Guaranteed 100% zero downtime regardless of application architecture.",
+          "explanation": "Incorrect: High availability and fault tolerance require well-architected multi-AZ or multi-region designs implemented by the customer."
         }
       ],
       "correctAnswers": [
-        "A"
+        "B",
+        "D"
       ],
-      "generalExplanation": "Rehosting (lift-and-shift) is a migration approach where applications are migrated to the cloud without code modifications, often automated using AWS Application Migration Service (MGN).",
+      "generalExplanation": "Trading upfront capital expense (CapEx) for variable operational expense (OpEx) and increasing speed and agility by provisioning resources in minutes are two core advantages of cloud computing on AWS.",
       "referenceUrl": "https://aws.amazon.com/blogs/enterprise-strategy/6-strategies-for-migrating-applications-to-the-cloud/",
       "difficulty": "easy",
       "translations": {
         "en": {
-          "statement": "An enterprise plans to migrate an on-premises web application to AWS by moving virtual machines directly to Amazon EC2 without modifying the application code or core architecture. Which migration strategy (from the 7 Rs of migration) does this describe?",
+          "statement": "Which of the following are recognized advantages of cloud computing according to AWS? (Choose two.)",
           "domainName": "Domain 1: Cloud Concepts",
           "options": [
             {
               "id": "A",
-              "text": "Rehost ('Lift and shift')",
-              "explanation": "Correct: Rehosting moves applications to AWS as-is without any code or architectural changes."
+              "text": "AWS assumes full responsibility for all application configuration and user access policies.",
+              "explanation": "Incorrect: Under the Shared Responsibility Model, the customer is responsible for application configuration and IAM user access."
             },
             {
               "id": "B",
-              "text": "Refactor / Re-architect",
-              "explanation": "Incorrect: Refactoring involves rewriting code into cloud-native microservices or serverless architectures."
+              "text": "Trade upfront capital expense for variable operational expense.",
+              "explanation": "Correct: Instead of investing heavily in data centers and physical servers before using them, customers pay only when computing resources are consumed."
             },
             {
               "id": "C",
-              "text": "Replatform ('Lift, tinker, and shift')",
-              "explanation": "Incorrect: Replatforming involves making minor cloud optimizations (like switching to a managed database) without changing core code."
+              "text": "Eliminate the need to hire security engineers or perform software updates.",
+              "explanation": "Incorrect: Customers remain responsible for managing user access, identity, and application-level software security in the cloud."
             },
             {
               "id": "D",
-              "text": "Repurchase ('Drop and shop')",
-              "explanation": "Incorrect: Repurchasing means abandoning existing software for a commercial SaaS product."
+              "text": "Increase speed and agility to deploy global applications in minutes.",
+              "explanation": "Correct: In a cloud computing environment, new IT resources are only a click away, drastically reducing development and deployment time."
+            },
+            {
+              "id": "E",
+              "text": "Guaranteed 100% zero downtime regardless of application architecture.",
+              "explanation": "Incorrect: High availability and fault tolerance require well-architected multi-AZ or multi-region designs implemented by the customer."
             }
           ],
-          "generalExplanation": "Rehosting (lift-and-shift) is a migration approach where applications are migrated to the cloud without code modifications, often automated using AWS Application Migration Service (MGN)."
+          "generalExplanation": "Trading upfront capital expense (CapEx) for variable operational expense (OpEx) and increasing speed and agility by provisioning resources in minutes are two core advantages of cloud computing on AWS."
         },
         "pt": {
           "domainName": "Domínio 1: Conceitos de Nuvem",
-          "statement": "Uma empresa planeja migrar uma aplicação web on-premises para a AWS movendo máquinas virtuais diretamente para o Amazon EC2 sem modificar o código da aplicação ou a arquitetura principal. Qual estratégia de migração (dos 7 Rs de migração) isso descreve?",
+          "statement": "Quais das seguintes opções são vantagens reconhecidas da computação em nuvem de acordo com a AWS? (Escolha duas.)",
           "options": [
             {
               "id": "A",
-              "text": "Rehost ('Lift and shift')",
-              "explanation": "Correto: O Rehosting (hospedagem nova ou 'lift and shift') move as aplicações para a AWS no estado em que se encontram, sem qualquer alteração de código ou arquitetura."
+              "text": "A AWS assume total responsabilidade por todas as configurações de aplicações e políticas de acesso dos usuários.",
+              "explanation": "Incorreto: No Modelo de Responsabilidade Compartilhada, o cliente é responsável pela configuração das aplicações e gerenciamento do IAM."
             },
             {
               "id": "B",
-              "text": "Refactor / Re-architect (Refatorar / Rearquitetar)",
-              "explanation": "Incorreto: A refatoração envolve reescrever o código em microsserviços nativos da nuvem ou arquiteturas serverless."
+              "text": "Trocar despesas de capital antecipadas por despesas operacionais variáveis.",
+              "explanation": "Correto: Em vez de investir pesado em data centers e servidores antes de usá-los, os clientes pagam apenas quando consomem recursos."
             },
             {
               "id": "C",
-              "text": "Replatform ('Lift, tinker, and shift')",
-              "explanation": "Incorreto: O Replatforming envolve realizar pequenas otimizações na nuvem (como mudar para um banco de dados gerenciado) sem alterar o código principal."
+              "text": "Eliminar a necessidade de contratar engenheiros de segurança ou aplicar atualizações de software.",
+              "explanation": "Incorreto: O cliente permanece responsável pela gestão de acessos, identidades e segurança do software da aplicação na nuvem."
             },
             {
               "id": "D",
-              "text": "Repurchase ('Drop and shop')",
-              "explanation": "Incorreto: O Repurchasing significa abandonar o software existente em favor de um produto comercial SaaS."
+              "text": "Aumentar a velocidade e a agilidade para implantar aplicações globais em minutos.",
+              "explanation": "Correto: Na computação em nuvem, novos recursos de TI estão a um clique de distância, reduzindo o tempo de desenvolvimento."
+            },
+            {
+              "id": "E",
+              "text": "Garantia de 100% de tempo de atividade ininterrupto independentemente da arquitetura da aplicação.",
+              "explanation": "Incorreto: Alta disponibilidade e tolerância a falhas dependem de projetos bem arquitetados com Multi-AZ implementados pelo cliente."
             }
           ],
-          "generalExplanation": "O Rehosting (lift-and-shift) é uma abordagem de migração em que as aplicações são migradas para a nuvem sem modificações no código, frequentemente automatizada usando o AWS Application Migration Service (MGN)."
+          "generalExplanation": "Trocar despesas de capital fixas (CapEx) por despesas operacionais variáveis (OpEx) e aumentar a velocidade e agilidade para provisionar recursos em minutos são duas das principais vantagens da nuvem AWS."
         },
         "es": {
           "domainName": "Dominio 1: Conceptos de la Nube",
-          "statement": "Una empresa planea migrar una aplicación web local (on-premises) a AWS trasladando máquinas virtuales directamente a Amazon EC2 sin modificar el código de la aplicación ni la arquitectura principal. ¿Qué estrategia de migración (de las 7 R de migración) describe esto?",
+          "statement": "¿Cuáles de las siguientes son ventajas reconocidas de la computación en la nube según AWS? (Elija dos.)",
           "options": [
             {
               "id": "A",
-              "text": "Rehost ('Lift and shift')",
-              "explanation": "Correcto: El Rehosting ('lift and shift') traslada las aplicaciones a AWS tal como están, sin ningún cambio de código ni de arquitectura."
+              "text": "AWS asume la responsabilidad total de las configuraciones y políticas de acceso.",
+              "explanation": "Incorrecto: Según el Modelo de Responsabilidad Compartida, el cliente es responsable de configurar aplicaciones y accesos."
             },
             {
               "id": "B",
-              "text": "Refactor / Re-architect (Refactorizar / Rediseñar)",
-              "explanation": "Incorrecto: La refactorización implica reescribir el código en microservicios nativos de la nube o arquitecturas serverless."
+              "text": "Cambiar gastos de capital iniciales por gastos operativos variables.",
+              "explanation": "Correcto: Permite pagar solo por los recursos consumidos en lugar de invertir en infraestructura física."
             },
             {
               "id": "C",
-              "text": "Replatform ('Lift, tinker, and shift')",
-              "explanation": "Incorrecto: El Replatforming implica realizar optimizaciones menores en la nube (como cambiar a una base de datos administrada) sin modificar el código principal."
+              "text": "Eliminar la necesidad de ingenieros de seguridad o mantenimiento de software.",
+              "explanation": "Incorrecto: Los clientes siguen siendo responsables de gestionar la seguridad de las aplicaciones y accesos."
             },
             {
               "id": "D",
-              "text": "Repurchase ('Drop and shop')",
-              "explanation": "Incorrecto: El Repurchasing significa reemplazar el software existente por un producto comercial SaaS."
+              "text": "Aumentar la velocidad y la agilidad para desplegar aplicaciones en minutos.",
+              "explanation": "Correcto: Permite aprovisionar recursos casi instantáneamente reduciendo los tiempos de entrega."
+            },
+            {
+              "id": "E",
+              "text": "Garantía de 100% de disponibilidad sin importar la arquitectura utilizada.",
+              "explanation": "Incorrecto: La alta disponibilidad requiere diseños bien estructurados en múltiples Zonas de Disponibilidad."
             }
           ],
-          "generalExplanation": "El Rehosting (lift-and-shift) es un enfoque de migración en el que las aplicaciones se trasladan a la nube sin modificaciones en el código, a menudo automatizado mediante AWS Application Migration Service (MGN)."
+          "generalExplanation": "Cambiar gastos de capital fijos por gastos operativos variables y aumentar la velocidad y agilidad son dos beneficios fundamentales de la nube de AWS."
         }
       }
     },
@@ -2409,118 +2430,139 @@
         "AWS Account Management",
         "AWS Root User"
       ],
-      "type": "single",
-      "requiredChoices": 1,
-      "statement": "Which of the following is a recommended best practice for securing the AWS account root user?",
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "According to the AWS Shared Responsibility Model, which of the following security tasks are the responsibility of the customer when running an Amazon EC2 instance? (Choose two.)",
       "options": [
         {
           "id": "A",
-          "text": "Generate an access key and secret access key for the root user and share them with the development team.",
-          "explanation": "Incorrect: Access keys should never be generated for the root user."
+          "text": "Installing security patches and updates on the guest operating system.",
+          "explanation": "Correct: The customer is responsible for maintaining and patching the operating system installed on Amazon EC2 instances."
         },
         {
           "id": "B",
-          "text": "Enable Multi-Factor Authentication (MFA) on the root user and avoid using the root user for daily administrative tasks.",
-          "explanation": "Correct: Securing the root user requires enabling a strong MFA device and using dedicated IAM admin users/roles for daily tasks."
+          "text": "Replacing failing physical hard drives inside the AWS data center racks.",
+          "explanation": "Incorrect: AWS is responsible for physical hardware maintenance, data center security, and infrastructure facility management."
         },
         {
           "id": "C",
-          "text": "Disable password complexity requirements on the root account for easier access.",
-          "explanation": "Incorrect: Weak passwords compromise account security."
+          "text": "Configuring network firewall rules in Amazon EC2 Security Groups.",
+          "explanation": "Correct: The customer controls which network ports and protocols are permitted into EC2 instances by configuring Security Groups."
         },
         {
           "id": "D",
-          "text": "Attach an inline administrator policy to the root account.",
-          "explanation": "Incorrect: The root account inherently has unrestricted access to all resources and does not use IAM policies."
+          "text": "Patching the underlying Xen or Nitro virtualization hypervisor.",
+          "explanation": "Incorrect: AWS is solely responsible for managing and patching the virtualization hypervisor software."
+        },
+        {
+          "id": "E",
+          "text": "Disposing of decommissioned physical memory chips in accordance with DoD standards.",
+          "explanation": "Incorrect: AWS manages physical asset decommissioning and disk sanitation in all AWS global data centers."
         }
       ],
       "correctAnswers": [
-        "B"
+        "A",
+        "C"
       ],
-      "generalExplanation": "AWS strongly recommends locking down the root user by enabling MFA, deleting root access keys, and creating dedicated IAM users for day-to-day administrative tasks.",
+      "generalExplanation": "Patching the guest operating system and configuring EC2 Security Group inbound/outbound firewall rules are customer responsibilities (Security IN the cloud). Maintaining hypervisor virtualization software and physical data center hardware are AWS responsibilities (Security OF the cloud).",
       "referenceUrl": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html",
       "difficulty": "easy",
       "translations": {
         "en": {
-          "statement": "Which of the following is a recommended best practice for securing the AWS account root user?",
+          "statement": "According to the AWS Shared Responsibility Model, which of the following security tasks are the responsibility of the customer when running an Amazon EC2 instance? (Choose two.)",
           "domainName": "Domain 2: Security and Compliance",
           "options": [
             {
               "id": "A",
-              "text": "Generate an access key and secret access key for the root user and share them with the development team.",
-              "explanation": "Incorrect: Access keys should never be generated for the root user."
+              "text": "Installing security patches and updates on the guest operating system.",
+              "explanation": "Correct: The customer is responsible for maintaining and patching the operating system installed on Amazon EC2 instances."
             },
             {
               "id": "B",
-              "text": "Enable Multi-Factor Authentication (MFA) on the root user and avoid using the root user for daily administrative tasks.",
-              "explanation": "Correct: Securing the root user requires enabling a strong MFA device and using dedicated IAM admin users/roles for daily tasks."
+              "text": "Replacing failing physical hard drives inside the AWS data center racks.",
+              "explanation": "Incorrect: AWS is responsible for physical hardware maintenance, data center security, and infrastructure facility management."
             },
             {
               "id": "C",
-              "text": "Disable password complexity requirements on the root account for easier access.",
-              "explanation": "Incorrect: Weak passwords compromise account security."
+              "text": "Configuring network firewall rules in Amazon EC2 Security Groups.",
+              "explanation": "Correct: The customer controls which network ports and protocols are permitted into EC2 instances by configuring Security Groups."
             },
             {
               "id": "D",
-              "text": "Attach an inline administrator policy to the root account.",
-              "explanation": "Incorrect: The root account inherently has unrestricted access to all resources and does not use IAM policies."
+              "text": "Patching the underlying Xen or Nitro virtualization hypervisor.",
+              "explanation": "Incorrect: AWS is solely responsible for managing and patching the virtualization hypervisor software."
+            },
+            {
+              "id": "E",
+              "text": "Disposing of decommissioned physical memory chips in accordance with DoD standards.",
+              "explanation": "Incorrect: AWS manages physical asset decommissioning and disk sanitation in all AWS global data centers."
             }
           ],
-          "generalExplanation": "AWS strongly recommends locking down the root user by enabling MFA, deleting root access keys, and creating dedicated IAM users for day-to-day administrative tasks."
+          "generalExplanation": "Patching the guest operating system and configuring EC2 Security Group inbound/outbound firewall rules are customer responsibilities (Security IN the cloud). Maintaining hypervisor virtualization software and physical data center hardware are AWS responsibilities (Security OF the cloud)."
         },
         "pt": {
           "domainName": "Domínio 2: Segurança e Conformidade",
-          "statement": "Qual das seguintes opções é uma prática recomendada para proteger o usuário root da conta da AWS?",
+          "statement": "De acordo com o Modelo de Responsabilidade Compartilhada da AWS, quais das seguintes tarefas de segurança são de responsabilidade do cliente ao executar uma instância Amazon EC2? (Escolha duas.)",
           "options": [
             {
               "id": "A",
-              "text": "Gerar uma chave de acesso e uma chave de acesso secreta para o usuário root e compartilhá-las com a equipe de desenvolvimento.",
-              "explanation": "Incorreto: Chaves de acesso nunca devem ser geradas para o usuário root."
+              "text": "Instalação de patches de segurança e atualizações no sistema operacional convidado.",
+              "explanation": "Correto: O cliente é responsável por manter e aplicar atualizações no sistema operacional instalado nas instâncias EC2."
             },
             {
               "id": "B",
-              "text": "Habilitar a Autenticação Multifator (MFA) no usuário root e evitar o uso do usuário root para tarefas administrativas diárias.",
-              "explanation": "Correto: Proteger o usuário root requer habilitar um dispositivo MFA robusto e usar usuários/roles de administrador do IAM dedicados para as tarefas diárias."
+              "text": "Substituição de discos rígidos físicos com falha nos racks de data centers da AWS.",
+              "explanation": "Incorreto: A AWS é responsável pela manutenção física de hardware, segurança física de data centers e instalações."
             },
             {
               "id": "C",
-              "text": "Desabilitar requisitos de complexidade de senha na conta root para facilitar o acesso.",
-              "explanation": "Incorreto: Senhas fracas comprometem a segurança da conta."
+              "text": "Configuração de regras de firewall de rede nos Security Groups do Amazon EC2.",
+              "explanation": "Correto: O cliente define quais portas de rede e protocolos de tráfego têm permissão de acesso através dos Security Groups."
             },
             {
               "id": "D",
-              "text": "Anexar uma política em linha de administrador à conta root.",
-              "explanation": "Incorreto: A conta root possui intrinsecamente acesso irrestrito a todos os recursos e não utiliza políticas do IAM."
+              "text": "Aplicação de patches no hipervisor de virtualização subjacente (Xen ou Nitro).",
+              "explanation": "Incorreto: A AWS é a única responsável por gerenciar e manter a camada de virtualização do hipervisor."
+            },
+            {
+              "id": "E",
+              "text": "Descarte de chips de memória física obsoletos de acordo com padrões de conformidade.",
+              "explanation": "Incorreto: A AWS gerencia o descarte e desativação segura de ativos físicos em todos os data centers."
             }
           ],
-          "generalExplanation": "A AWS recomenda fortemente restringir o usuário root habilitando o MFA, excluindo chaves de acesso root e criando usuários do IAM dedicados para tarefas administrativas do dia a dia."
+          "generalExplanation": "A aplicação de patches no sistema operacional convidado e a configuração das regras de firewall nos Security Groups são responsabilidades do cliente (Segurança NA nuvem). A manutenção do hipervisor e do hardware físico são responsabilidades da AWS (Segurança DA nuvem)."
         },
         "es": {
           "domainName": "Dominio 2: Seguridad y Cumplimiento",
-          "statement": "¿Cuál de las siguientes es una práctica recomendada para proteger al usuario root de la cuenta de AWS?",
+          "statement": "Según el Modelo de Responsabilidad Compartida de AWS, ¿cuáles de las siguientes tareas son responsabilidad del cliente al usar una instancia Amazon EC2? (Elija dos.)",
           "options": [
             {
               "id": "A",
-              "text": "Generar una clave de acceso y una clave de acceso secreta para el usuario root y compartirlas con el equipo de desarrollo.",
-              "explanation": "Incorrecto: Nunca se deben generar claves de acceso para el usuario root."
+              "text": "Instalar parches de seguridad y actualizaciones en el sistema operativo huésped.",
+              "explanation": "Correcto: El cliente debe actualizar y asegurar el sistema operativo de sus instancias EC2."
             },
             {
               "id": "B",
-              "text": "Habilitar la autenticación multifactor (MFA) en el usuario root y evitar usar el usuario root para las tareas administrativas diarias.",
-              "explanation": "Correcto: Proteger al usuario root requiere habilitar un dispositivo MFA seguro y usar usuarios/roles de administración de IAM dedicados para las tareas cotidianas."
+              "text": "Reemplazar discos duros físicos dañados en los centros de datos de AWS.",
+              "explanation": "Incorrecto: AWS gestiona el mantenimiento físico del hardware y la infraestructura de los centros de datos."
             },
             {
               "id": "C",
-              "text": "Deshabilitar los requisitos de complejidad de contraseñas en la cuenta root para facilitar el acceso.",
-              "explanation": "Incorrecto: Las contraseñas débiles comprometen la seguridad de la cuenta."
+              "text": "Configurar reglas de firewall de red en los Security Groups de Amazon EC2.",
+              "explanation": "Correcto: El cliente controla los puertos y protocolos permitidos mediante los Security Groups."
             },
             {
               "id": "D",
-              "text": "Adjuntar una política en línea de administrador a la cuenta root.",
-              "explanation": "Incorrecto: La cuenta root posee intrínsecamente acceso sin restricciones a todos los recursos y no utiliza políticas de IAM."
+              "text": "Aplicar parches en el hipervisor de virtualización subyacente.",
+              "explanation": "Incorrecto: AWS administra y aplica parches a la capa del hipervisor."
+            },
+            {
+              "id": "E",
+              "text": "Destruir físicamente componentes de hardware obsoletos según normativas.",
+              "explanation": "Incorrecto: AWS es responsable del desmantelamiento físico y la seguridad de sus instalaciones."
             }
           ],
-          "generalExplanation": "AWS recomienda encarecidamente proteger al usuario root habilitando MFA, eliminando las claves de acceso root y creando usuarios de IAM dedicados para las tareas administrativas del día a día."
+          "generalExplanation": "Aplicar parches al sistema operativo y configurar Security Groups son responsabilidades del cliente. El mantenimiento físico del hardware y del hipervisor corresponde a AWS."
         }
       }
     },
@@ -4413,118 +4455,139 @@
         "AWS Global Infrastructure",
         "AWS Regions"
       ],
-      "type": "single",
-      "requiredChoices": 1,
-      "statement": "What is an AWS Region?",
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "A developer wants to build a serverless event-driven architecture on AWS without provisioning or managing underlying operating system servers. Which AWS services provide serverless compute and workflow orchestration? (Choose two.)",
       "options": [
         {
           "id": "A",
-          "text": "A logical grouping of IAM users within a single corporate department.",
-          "explanation": "Incorrect: That describes an IAM User Group."
+          "text": "AWS Lambda",
+          "explanation": "Correct: AWS Lambda is a serverless compute service that executes application code automatically in response to events without server management."
         },
         {
           "id": "B",
-          "text": "A separate geographic area in the world that contains multiple isolated and physically separated Availability Zones.",
-          "explanation": "Correct: An AWS Region is a physical geographic location in the world with multiple (at least 3) isolated and physically separated Availability Zones."
+          "text": "Amazon EC2",
+          "explanation": "Incorrect: Amazon EC2 provides virtual machines where users must configure operating systems, patches, and instance sizes."
         },
         {
           "id": "C",
-          "text": "A physical data center building containing compute racks.",
-          "explanation": "Incorrect: A single data center building is part of an Availability Zone, not an entire Region."
+          "text": "AWS Direct Connect",
+          "explanation": "Incorrect: AWS Direct Connect is a networking service establishing private dedicated connectivity from on-premises to AWS."
         },
         {
           "id": "D",
-          "text": "A global edge location used exclusively for caching static website images.",
-          "explanation": "Incorrect: That describes an Edge Location / Point of Presence (PoP)."
+          "text": "AWS Step Functions",
+          "explanation": "Correct: AWS Step Functions is a serverless visual orchestration service that coordinates distributed microservices and Lambda functions."
+        },
+        {
+          "id": "E",
+          "text": "Amazon Elastic Block Store (Amazon EBS)",
+          "explanation": "Incorrect: Amazon EBS provides persistent block storage volumes attached to EC2 instances, not serverless compute or workflow orchestration."
         }
       ],
       "correctAnswers": [
-        "B"
+        "A",
+        "D"
       ],
-      "generalExplanation": "An AWS Region is a separate geographic area consisting of multiple physically isolated Availability Zones connected via low-latency redundant fiber.",
+      "generalExplanation": "AWS Lambda provides serverless compute by executing code in response to events without managing servers, and AWS Step Functions provides visual serverless workflow orchestration.",
       "referenceUrl": "https://aws.amazon.com/about-aws/global-infrastructure/regions_az/",
       "difficulty": "easy",
       "translations": {
         "en": {
-          "statement": "What is an AWS Region?",
+          "statement": "A developer wants to build a serverless event-driven architecture on AWS without provisioning or managing underlying operating system servers. Which AWS services provide serverless compute and workflow orchestration? (Choose two.)",
           "domainName": "Domain 3: Cloud Technology and Services",
           "options": [
             {
               "id": "A",
-              "text": "A logical grouping of IAM users within a single corporate department.",
-              "explanation": "Incorrect: That describes an IAM User Group."
+              "text": "AWS Lambda",
+              "explanation": "Correct: AWS Lambda is a serverless compute service that executes application code automatically in response to events without server management."
             },
             {
               "id": "B",
-              "text": "A separate geographic area in the world that contains multiple isolated and physically separated Availability Zones.",
-              "explanation": "Correct: An AWS Region is a physical geographic location in the world with multiple (at least 3) isolated and physically separated Availability Zones."
+              "text": "Amazon EC2",
+              "explanation": "Incorrect: Amazon EC2 provides virtual machines where users must configure operating systems, patches, and instance sizes."
             },
             {
               "id": "C",
-              "text": "A physical data center building containing compute racks.",
-              "explanation": "Incorrect: A single data center building is part of an Availability Zone, not an entire Region."
+              "text": "AWS Direct Connect",
+              "explanation": "Incorrect: AWS Direct Connect is a networking service establishing private dedicated connectivity from on-premises to AWS."
             },
             {
               "id": "D",
-              "text": "A global edge location used exclusively for caching static website images.",
-              "explanation": "Incorrect: That describes an Edge Location / Point of Presence (PoP)."
+              "text": "AWS Step Functions",
+              "explanation": "Correct: AWS Step Functions is a serverless visual orchestration service that coordinates distributed microservices and Lambda functions."
+            },
+            {
+              "id": "E",
+              "text": "Amazon Elastic Block Store (Amazon EBS)",
+              "explanation": "Incorrect: Amazon EBS provides persistent block storage volumes attached to EC2 instances, not serverless compute or workflow orchestration."
             }
           ],
-          "generalExplanation": "An AWS Region is a separate geographic area consisting of multiple physically isolated Availability Zones connected via low-latency redundant fiber."
+          "generalExplanation": "AWS Lambda provides serverless compute by executing code in response to events without managing servers, and AWS Step Functions provides visual serverless workflow orchestration."
         },
         "pt": {
           "domainName": "Domínio 3: Tecnologia e Serviços em Nuvem",
-          "statement": "O que é uma Região AWS (AWS Region)?",
+          "statement": "Um desenvolvedor deseja construir uma arquitetura orientada a eventos serverless na AWS sem provisionar ou gerenciar servidores de sistema operacional. Quais serviços da AWS fornecem computação e orquestração de fluxos serverless? (Escolha dois.)",
           "options": [
             {
               "id": "A",
-              "text": "Um agrupamento lógico de usuários do IAM dentro de um único departamento corporativo.",
-              "explanation": "Incorreto: Isso descreve um Grupo de Usuários do IAM (IAM User Group)."
+              "text": "AWS Lambda",
+              "explanation": "Correto: O AWS Lambda é um serviço de computação serverless que executa código de aplicação automaticamente em resposta a eventos."
             },
             {
               "id": "B",
-              "text": "Uma área geográfica separada no mundo que contém múltiplas Zonas de Disponibilidade isoladas e fisicamente separadas.",
-              "explanation": "Correto: Uma Região AWS é uma localização geográfica física no mundo contendo múltiplas (no mínimo 3) Zonas de Disponibilidade isoladas e fisicamente separadas."
+              "text": "Amazon EC2",
+              "explanation": "Incorreto: O Amazon EC2 fornece máquinas virtuais onde o usuário precisa gerenciar o sistema operacional, atualizações e instâncias."
             },
             {
               "id": "C",
-              "text": "Um edifício físico de data center contendo racks de computação.",
-              "explanation": "Incorreto: Um único edifício de data center faz parte de uma Zona de Disponibilidade, e não de uma Região inteira."
+              "text": "AWS Direct Connect",
+              "explanation": "Incorreto: O AWS Direct Connect é um serviço de conectividade de rede dedicada entre data centers locais e a AWS."
             },
             {
               "id": "D",
-              "text": "Um local de borda global usado exclusivamente para armazenar em cache imagens de sites estáticos.",
-              "explanation": "Incorreto: Isso descreve um Local de Borda / Ponto de Presença (Edge Location / PoP)."
+              "text": "AWS Step Functions",
+              "explanation": "Correto: O AWS Step Functions é um serviço de orquestração visual serverless que coordena fluxos de trabalho e microsserviços."
+            },
+            {
+              "id": "E",
+              "text": "Amazon Elastic Block Store (Amazon EBS)",
+              "explanation": "Incorreto: O Amazon EBS é um serviço de armazenamento de blocos persistente para instâncias EC2, não computação serverless."
             }
           ],
-          "generalExplanation": "Uma Região AWS é uma área geográfica separada composta por múltiplas Zonas de Disponibilidade fisicamente isoladas, interconectadas por meio de links de fibra redundantes de baixa latência."
+          "generalExplanation": "O AWS Lambda fornece computação serverless executando código em resposta a eventos sem servidores, e o AWS Step Functions fornece orquestração visual serverless de fluxos de trabalho."
         },
         "es": {
           "domainName": "Dominio 3: Tecnología y Servicios en la Nube",
-          "statement": "¿Qué es una Región de AWS (AWS Region)?",
+          "statement": "Un desarrollador desea crear una arquitectura serverless orientada a eventos en AWS sin administrar servidores físicos o virtuales. ¿Qué servicios de AWS proporcionan cómputo y orquestación serverless? (Elija dos.)",
           "options": [
             {
               "id": "A",
-              "text": "Una agrupación lógica de usuarios de IAM dentro de un solo departamento corporativo.",
-              "explanation": "Incorrecto: Eso describe un Grupo de Usuarios de IAM (IAM User Group)."
+              "text": "AWS Lambda",
+              "explanation": "Correcto: AWS Lambda ejecuta código automáticamente en respuesta a eventos sin aprovisionar ni gestionar servidores."
             },
             {
               "id": "B",
-              "text": "Un área geográfica independiente en el mundo que contiene múltiples Zonas de Disponibilidad aisladas y físicamente separadas.",
-              "explanation": "Correcto: Una Región de AWS es una ubicación geográfica física en el mundo que contiene múltiples (al menos 3) Zonas de Disponibilidad aisladas y físicamente separadas."
+              "text": "Amazon EC2",
+              "explanation": "Incorrecto: Amazon EC2 proporciona máquinas virtuales que requieren administración del sistema operativo."
             },
             {
               "id": "C",
-              "text": "Un edificio físico de centro de datos que contiene racks de servidores.",
-              "explanation": "Incorrecto: Un edificio individual de centro de datos forma parte de una Zona de Disponibilidad, no de una Región completa."
+              "text": "AWS Direct Connect",
+              "explanation": "Incorrecto: Direct Connect es un servicio de red dedicada entre centros de datos locales y AWS."
             },
             {
               "id": "D",
-              "text": "Una ubicación de borde global utilizada exclusivamente para almacenar en caché imágenes de sitios web estáticos.",
-              "explanation": "Incorrecto: Eso describe una Ubicación de Borde / Punto de Presencia (Edge Location / PoP)."
+              "text": "AWS Step Functions",
+              "explanation": "Correcto: AWS Step Functions es un orquestador visual serverless para coordinar microservicios y funciones Lambda."
+            },
+            {
+              "id": "E",
+              "text": "Amazon Elastic Block Store (Amazon EBS)",
+              "explanation": "Incorrecto: EBS proporciona almacenamiento en bloque para instancias EC2 y no es un servicio de cómputo serverless."
             }
           ],
-          "generalExplanation": "Una Región de AWS es un área geográfica independiente que consta de múltiples Zonas de Disponibilidad físicamente aisladas y conectadas mediante fibra redundante de baja latencia."
+          "generalExplanation": "AWS Lambda ofrece cómputo serverless y AWS Step Functions ofrece orquestación visual de flujos de trabajo sin administrar servidores."
         }
       }
     },
@@ -6398,118 +6461,139 @@
         "Amazon SageMaker",
         "AWS Machine Learning"
       ],
-      "type": "single",
-      "requiredChoices": 1,
-      "statement": "Which comprehensive, fully managed AWS service provides data scientists and developers with all the tools needed to build, train, tune, and deploy machine learning (ML) models at scale?",
+      "type": "multiple",
+      "requiredChoices": 2,
+      "statement": "A finance manager wants to monitor AWS cloud spending, set custom budget thresholds that send email notifications when forecasted costs exceed limits, and visualize historical spending patterns by AWS service. Which two AWS tools should the manager use? (Choose two.)",
       "options": [
         {
           "id": "A",
-          "text": "AWS CloudFormation",
-          "explanation": "Incorrect: CloudFormation is an Infrastructure as Code (IaC) provisioning service."
+          "text": "AWS Artifact",
+          "explanation": "Incorrect: AWS Artifact provides on-demand access to AWS security and compliance documentation and SOC/PCI reports."
         },
         {
           "id": "B",
-          "text": "Amazon SageMaker",
-          "explanation": "Correct: Amazon SageMaker is a fully managed machine learning platform that helps data scientists and developers prepare, build, train, and deploy high-quality ML models quickly."
+          "text": "AWS Budgets",
+          "explanation": "Correct: AWS Budgets allows customers to set custom cost and usage limits and receive automated email alerts when actual or forecasted limits are exceeded."
         },
         {
           "id": "C",
-          "text": "AWS Glue",
-          "explanation": "Incorrect: Glue is a serverless data integration (ETL) service."
+          "text": "AWS Shield",
+          "explanation": "Incorrect: AWS Shield is a managed Distributed Denial of Service (DDoS) protection service for web applications."
         },
         {
           "id": "D",
-          "text": "Amazon Transcribe",
-          "explanation": "Incorrect: Transcribe is a specialized speech-to-text service."
+          "text": "AWS Cost Explorer",
+          "explanation": "Correct: AWS Cost Explorer provides interactive graphical dashboards to analyze historical costs, identify spending patterns, and forecast future cloud usage."
+        },
+        {
+          "id": "E",
+          "text": "AWS CloudHSM",
+          "explanation": "Incorrect: AWS CloudHSM is a dedicated hardware security module service for generating and storing cryptographic keys."
         }
       ],
       "correctAnswers": [
-        "B"
+        "B",
+        "D"
       ],
-      "generalExplanation": "Amazon SageMaker provides end-to-end tools to build, train, and deploy machine learning models with fully managed infrastructure and workflows.",
+      "generalExplanation": "AWS Budgets allows setting custom spending budgets with automated threshold alert notifications, while AWS Cost Explorer provides interactive charts to visualize, understand, and forecast AWS costs.",
       "referenceUrl": "https://aws.amazon.com/sagemaker/",
       "difficulty": "easy",
       "translations": {
         "en": {
-          "statement": "Which comprehensive, fully managed AWS service provides data scientists and developers with all the tools needed to build, train, tune, and deploy machine learning (ML) models at scale?",
+          "statement": "A finance manager wants to monitor AWS cloud spending, set custom budget thresholds that send email notifications when forecasted costs exceed limits, and visualize historical spending patterns by AWS service. Which two AWS tools should the manager use? (Choose two.)",
           "domainName": "Domain 3: Cloud Technology and Services",
           "options": [
             {
               "id": "A",
-              "text": "AWS CloudFormation",
-              "explanation": "Incorrect: CloudFormation is an Infrastructure as Code (IaC) provisioning service."
+              "text": "AWS Artifact",
+              "explanation": "Incorrect: AWS Artifact provides on-demand access to AWS security and compliance documentation and SOC/PCI reports."
             },
             {
               "id": "B",
-              "text": "Amazon SageMaker",
-              "explanation": "Correct: Amazon SageMaker is a fully managed machine learning platform that helps data scientists and developers prepare, build, train, and deploy high-quality ML models quickly."
+              "text": "AWS Budgets",
+              "explanation": "Correct: AWS Budgets allows customers to set custom cost and usage limits and receive automated email alerts when actual or forecasted limits are exceeded."
             },
             {
               "id": "C",
-              "text": "AWS Glue",
-              "explanation": "Incorrect: Glue is a serverless data integration (ETL) service."
+              "text": "AWS Shield",
+              "explanation": "Incorrect: AWS Shield is a managed Distributed Denial of Service (DDoS) protection service for web applications."
             },
             {
               "id": "D",
-              "text": "Amazon Transcribe",
-              "explanation": "Incorrect: Transcribe is a specialized speech-to-text service."
+              "text": "AWS Cost Explorer",
+              "explanation": "Correct: AWS Cost Explorer provides interactive graphical dashboards to analyze historical costs, identify spending patterns, and forecast future cloud usage."
+            },
+            {
+              "id": "E",
+              "text": "AWS CloudHSM",
+              "explanation": "Incorrect: AWS CloudHSM is a dedicated hardware security module service for generating and storing cryptographic keys."
             }
           ],
-          "generalExplanation": "Amazon SageMaker provides end-to-end tools to build, train, and deploy machine learning models with fully managed infrastructure and workflows."
+          "generalExplanation": "AWS Budgets allows setting custom spending budgets with automated threshold alert notifications, while AWS Cost Explorer provides interactive charts to visualize, understand, and forecast AWS costs."
         },
         "pt": {
           "domainName": "Domínio 3: Tecnologia e Serviços em Nuvem",
-          "statement": "Qual serviço abrangente e totalmente gerenciado da AWS fornece a cientistas de dados e desenvolvedores todas as ferramentas necessárias para criar, treinar, ajustar e implantar modelos de machine learning (ML) em escala?",
+          "statement": "Um gerente financeiro deseja monitorar os gastos na nuvem AWS, definir limites de orçamento que enviam alertas por e-mail quando custos previstos excederem tetos e visualizar padrões históricos de gastos por serviço. Quais duas ferramentas da AWS o gerente deve usar? (Escolha duas.)",
           "options": [
             {
               "id": "A",
-              "text": "AWS CloudFormation",
-              "explanation": "Incorreto: O CloudFormation é um serviço de provisionamento de infraestrutura como código (IaC)."
+              "text": "AWS Artifact",
+              "explanation": "Incorreto: O AWS Artifact é um portal para baixar relatórios de conformidade e segurança da AWS (SOC, PCI, ISO)."
             },
             {
               "id": "B",
-              "text": "Amazon SageMaker",
-              "explanation": "Correto: O Amazon SageMaker é uma plataforma de machine learning totalmente gerenciada que ajuda cientistas de dados e desenvolvedores a preparar, construir, treinar e implantar rapidamente modelos de ML de alta qualidade."
+              "text": "AWS Budgets",
+              "explanation": "Correto: O AWS Budgets permite criar orçamentos personalizados e receber notificações por e-mail quando os gastos reais ou previstos ultrapassarem limites."
             },
             {
               "id": "C",
-              "text": "AWS Glue",
-              "explanation": "Incorreto: O Glue é um serviço de integração de dados (ETL) sem servidor."
+              "text": "AWS Shield",
+              "explanation": "Incorreto: O AWS Shield é um serviço de proteção contra ataques de negação de serviço distribuída (DDoS)."
             },
             {
               "id": "D",
-              "text": "Amazon Transcribe",
-              "explanation": "Incorreto: O Transcribe é um serviço especializado de conversão de fala em texto."
+              "text": "AWS Cost Explorer",
+              "explanation": "Correto: O AWS Cost Explorer fornece relatórios visuais e gráficos interativos para analisar o histórico de despesas e fazer projeções financeiras."
+            },
+            {
+              "id": "E",
+              "text": "AWS CloudHSM",
+              "explanation": "Incorreto: O AWS CloudHSM é um módulo de segurança em hardware dedicado para geração e armazenamento de chaves criptográficas."
             }
           ],
-          "generalExplanation": "O Amazon SageMaker oferece ferramentas completas de ponta a ponta para criar, treinar e implantar modelos de machine learning com fluxos de trabalho e infraestrutura totalmente gerenciados."
+          "generalExplanation": "O AWS Budgets permite configurar limites personalizados de orçamento com alertas automatizados, enquanto o AWS Cost Explorer fornece gráficos interativos para visualizar, analisar e projetar custos da AWS."
         },
         "es": {
           "domainName": "Dominio 3: Tecnología y Servicios en la Nube",
-          "statement": "¿Qué servicio integral y totalmente administrado de AWS proporciona a científicos de datos y desarrolladores todas las herramientas necesarias para crear, entrenar, ajustar e implementar modelos de machine learning (ML) a escala?",
+          "statement": "Un responsable financiero desea monitorizar el gasto en AWS, recibir alertas por correo cuando se superen umbrales de presupuesto y analizar patrones históricos de consumo por servicio. ¿Qué dos herramientas de AWS debe utilizar? (Elija dos.)",
           "options": [
             {
               "id": "A",
-              "text": "AWS CloudFormation",
-              "explanation": "Incorrecto: CloudFormation es un servicio de aprovisionamiento de infraestructura como código (IaC)."
+              "text": "AWS Artifact",
+              "explanation": "Incorrecto: AWS Artifact proporciona informes de cumplimiento y seguridad de AWS."
             },
             {
               "id": "B",
-              "text": "Amazon SageMaker",
-              "explanation": "Correcto: Amazon SageMaker es una plataforma de aprendizaje automático (ML) totalmente administrada que ayuda a científicos de datos y desarrolladores a preparar, crear, entrenar e implementar rápidamente modelos de ML de alta calidad."
+              "text": "AWS Budgets",
+              "explanation": "Correcto: AWS Budgets permite crear presupuestos personalizados y recibir notificaciones cuando se superan los límites."
             },
             {
               "id": "C",
-              "text": "AWS Glue",
-              "explanation": "Incorrecto: Glue es un servicio de integración de datos (ETL) sin servidor."
+              "text": "AWS Shield",
+              "explanation": "Incorrecto: AWS Shield protege contra ataques DDoS en aplicaciones web."
             },
             {
               "id": "D",
-              "text": "Amazon Transcribe",
-              "explanation": "Incorrecto: Transcribe es un servicio especializado de voz a texto."
+              "text": "AWS Cost Explorer",
+              "explanation": "Correcto: AWS Cost Explorer proporciona gráficos para analizar el historial de costos e identificar tendencias de gasto."
+            },
+            {
+              "id": "E",
+              "text": "AWS CloudHSM",
+              "explanation": "Incorrecto: CloudHSM es un módulo de hardware dedicado para claves criptográficas."
             }
           ],
-          "generalExplanation": "Amazon SageMaker proporciona herramientas integrales de extremo a extremo para crear, entrenar e implementar modelos de aprendizaje automático con infraestructura y flujos de trabajo totalmente administrados."
+          "generalExplanation": "AWS Budgets permite fijar límites de gasto con alertas automáticas y AWS Cost Explorer permite analizar y proyectar costos históricamente."
         }
       }
     },

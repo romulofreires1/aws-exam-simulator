@@ -13,18 +13,28 @@ This skill guides the creation and validation of exam-grade questions for the **
 
 ---
 
+## 🤖 Recommended LLM Model
+* **Model**: **`Model: "pro"` (Gemini 3.1 Pro / Gemini 3.7 Thinking)** ou **`Model: "inherit"`**
+* **Rationale**: CLF-C02 requires absolute precision regarding AWS definitions, official Shared Responsibility Model boundaries, and authentic service terminology without hallucinating fictitious service names.
+
+---
+
 ## 🎯 Scope & Core Principles
 
 1. **Broad & Unrestricted Exam Coverage**:
    - The generator covers **ANY topic, service, definition, or concept** on the official CLF-C02 blueprint across all 4 domains.
-   - It explores core cloud computing advantages, the AWS Shared Responsibility Model, IAM fundamentals, basic security tools (Artifact, Shield, WAF, KMS), global infrastructure (Regions, AZs, Edge Locations), core AWS services (EC2, S3, RDS, DynamoDB, VPC, CloudWatch, CloudTrail), the 6 pillars of the Well-Architected Framework, pricing models, and AWS Support plans.
+   - It explores core cloud computing advantages, the AWS Shared Responsibility Model, IAM fundamentals, basic security tools (Artifact, Shield, WAF, KMS, Inspector, GuardDuty), global infrastructure (Regions, AZs, Edge Locations), core AWS services (EC2, S3, RDS, DynamoDB, VPC, CloudWatch, CloudTrail), the 6 pillars of the Well-Architected Framework, pricing models, and AWS Support plans.
 2. **100% Inéditas (Original Foundational Questions)**:
    - Fresh, realistic foundational scenarios and direct conceptual inquiries mirroring the official AWS CLF-C02 exam.
 3. **Engenharia de Distratores Plausíveis (ZERO Alternativas Absurdas)**:
    - **PROIBIDO**: Distratores inventados, termos inexistentes no ecossistema AWS ou respostas ambíguas.
    - **OBRIGATÓRIO**: Todas as 4 alternativas (ou 5 em múltipla escolha) **DEVEM representar termos, serviços ou conceitos reais da AWS**, mas apenas a correta responde perfeitamente à definição ou requisito da questão.
-   - **Simetria Estrutural e de Extensão**: Todas as opções devem ter extensão e formato semelhantes (1 a 3 frases claras).
-4. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
+   - **Simetria Estrutural e de Extensão**: Todas as opções devem ter extensão e formato semelhantes (1 a 2 frases claras, entre 6 e 25 palavras).
+4. **Regras Estritas de Quantidade de Alternativas e Múltipla Escolha**:
+   - **Single Choice (`type: "single"`)**: Exatamente **4 opções** (`A`, `B`, `C`, `D`) e `requiredChoices: 1`.
+   - **Select TWO (`type: "multiple"`)**: Exatamente **5 opções** (`A`, `B`, `C`, `D`, `E`) e `requiredChoices: 2`.
+   - Em simulados completos, mantenha uma quota de **10% a 15%** de questões de múltipla escolha.
+5. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
    - **NUNCA** posicione a resposta correta sempre na opção `A` ou nas opções `A` e `B`.
    - As respostas corretas **DEVEM** ser distribuídas de forma balanceada e pseudo-aleatória entre todas as opções (`A`, `B`, `C`, `D` para escolha única; pares variados como `["B", "D"]`, `["A", "C"]`, `["C", "E"]`, `["A", "D"]`, `["B", "E"]` para múltipla escolha).
    - Em um lote ou simulado completo, a distribuição de gabaritos individuais deve ser equilibrada (~25% para cada letra).
@@ -86,7 +96,7 @@ For each option (both correct and incorrect):
   - `examId`: `"CLF-C02"` (or specific mock code).
   - `domainId`: One of `domain-1-cloud-concepts`, `domain-2-security-compliance`, `domain-3-cloud-technology-services`, `domain-4-billing-pricing-support`.
   - `services`: Array of 1-3 AWS services involved.
-  - `type`: `"single"` (1 choice) or `"multiple"` (2 choices).
+  - `type`: `"single"` (1 choice, exactly 4 options) or `"multiple"` (2 choices, exactly 5 options).
   - `requiredChoices`: Must match length of `correctAnswers`.
   - `correctAnswers`: Array of option IDs with shuffled letters (e.g. `["C"]` or `["A", "D"]`).
   - All options have `id`, `text`, and non-empty `explanation`.
@@ -99,9 +109,9 @@ For each option (both correct and incorrect):
 
 ## 🛠️ Helper Scripts & Validation
 
-Run the Python validation script to verify questions and answer distribution:
+Run the Python validation script in strict mode to verify questions and answer distribution:
 ```bash
-python3 .agents/skills/clf-c02-question-generator/scripts/validate_questions.py <path_to_json_file>
+python3 .agents/skills/clf-c02-question-generator/scripts/validate_questions.py <path_to_json_file> --strict
 ```
 Or test the entire exam simulator bank:
 ```bash

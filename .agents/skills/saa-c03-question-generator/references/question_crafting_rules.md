@@ -8,10 +8,10 @@ O exame **AWS Certified Solutions Architect - Associate (SAA-C03)** avalia o con
 
 | Dimensão | CLF-C02 (Foundational) | SAA-C03 (Associate) | SAP-C02 (Professional) |
 | :--- | :--- | :--- | :--- |
-| **Escopo** | Conceitos fundamentais, definição de serviços, modelo de responsabilidade compartilhada e faturamento | **Arquitetura de Aplicações e Soluções (1 a 4 serviços principais integrados em 1 ou 2 contas/VPCs)** | Arquitetura Enterprise End-to-End complexa (5 a 8+ serviços em centenas de contas/regiões) |
-| **Enunciado** | 1 a 2 frases diretas | **2 a 3 frases estruturadas** com cenário de workload real, requisitos técnicos e restrições claras | 3 a 5 frases longas com histórico de legado, compliance e restrições cruzadas |
-| **Opções** | 1 frase curta com nomes de serviços ou conceitos | **2 a 4 linhas por opção**, detalhando os passos técnicos de configuração na AWS | 3 a 6 linhas por opção com passos profundos e parametrizações complexas |
-| **Distratores** | Serviços com propósitos diferentes (ex: CloudWatch vs CloudTrail) | **Opções tecnicamente plausíveis**, mas que violam uma restrição (ex: custo excessivo, sobrecarga de scripts manuais, failover imperfeito) | Arquiteturas completas válidas onde apenas nuances sutis ou limites não-transitivos desqualificam a opção |
+| **Escopo** | Conceitos fundamentais, definição de serviços, modelo de responsabilidade compartilhada e faturamento | **Arquitetura de Soluções Aplicada (1 a 4 serviços principais integrados em 1 ou 2 VPCs/contas)** | Arquitetura Enterprise End-to-End complexa (5 a 8+ serviços em centenas de contas/regiões) |
+| **Enunciado** | 1 a 2 frases diretas | **2 a 4 frases estruturadas** com cenário de workload real, requisitos técnicos e restrições claras | 3 a 5 frases longas com histórico de legado, compliance e restrições cruzadas |
+| **Opções** | 1 frase curta com nomes de serviços ou conceitos | **15 a 35 palavras por opção**, detalhando os passos técnicos de configuração na AWS | 25 a 50+ palavras por opção com passos profundos e parametrizações complexas |
+| **Distratores** | Serviços com propósitos diferentes (ex: CloudWatch vs CloudTrail) | **Opções tecnicamente plausíveis (Matriz 2x2)**, onde distratores falham por restrições finas de custo, overhead ou protocolo | Arquiteturas completas válidas onde apenas nuances sutis ou limites não-transitivos desqualificam a opção |
 | **Tempo / Questão** | ~1 min 23 s (90 min / 65 q) | **2 min (120 s)** (130 min / 65 q) | **2 min 56 s (176 s)** (220 min / 75 q) |
 
 ---
@@ -41,11 +41,13 @@ Toda questão deve ser composta por 4 elementos:
 + [4. DIRETIVA DE DECISÃO FINAL (GATILHO EM NEGRITO)]
 ```
 
-### Exemplo de Estrutura:
-1. **Contexto:** Uma empresa hospeda uma aplicação web de 3 camadas no Amazon EC2 atrás de um Application Load Balancer, persistindo transações em uma instância de banco de dados Amazon RDS PostgreSQL Single-AZ.
-2. **Problema/Requisito:** A equipe de produtos necessita que a base de dados suporte failover de alta disponibilidade automático sem intervenção manual e com perda zero de dados em caso de falha de hardware ou indisponibilidade de zona.
-3. **Restrição:** A solução deve minimizar a sobrecarga de manutenção e não exigir alterações no código de conexão da aplicação.
-4. **Gatilho de Decisão:** *Qual solução atenderá a esses requisitos de forma MAIS eficiente?*
+### Exemplo "Padrão Ouro" (Single Choice - Matriz 2x2 Micro-Diff):
+* **Enunciado**: Uma empresa de comércio eletrônico hospeda uma aplicação web de 3 camadas no Amazon EC2 em uma VPC privada atrás de um Application Load Balancer. As instâncias EC2 processam uploads de imagens de clientes e gravam os arquivos em um bucket Amazon S3. Durante campanhas promocionais, o tráfego de saída das instâncias para o Amazon S3 através dos NAT Gateways gera custos elevados de processamento de dados por gigabyte. Um arquiteto de soluções deve eliminar os custos de processamento do NAT Gateway para o tráfego do S3 sem modificar o código da aplicação e sem expor as instâncias à internet pública. Qual solução atenderá a esses requisitos com o MENOR custo?
+* **Opções (A–D com Micro-Diff)**:
+  * `A`: Configurar um Gateway VPC Endpoint para o Amazon S3 e associá-lo a todas as tabelas de rotas das sub-redes privadas da VPC. *(Correta)*
+  * `B`: Configurar um Interface VPC Endpoint (AWS PrivateLink) para o Amazon S3 em cada sub-rede privada da VPC. *(Incorreta: Interface Endpoints cobram taxa horária e tarifa por GB transferido).*
+  * `C`: Mover as instâncias EC2 para sub-redes públicas e associar endereços IP Elásticos a cada instância. *(Incorreta: expõe servidores à internet pública).*
+  * `D`: Criar uma conexão AWS Direct Connect dedicada entre a VPC privada e o bucket Amazon S3. *(Incorreta: Direct Connect conecta data centers on-premises à AWS, não VPC ao S3).*
 
 ---
 
@@ -53,7 +55,7 @@ Toda questão deve ser composta por 4 elementos:
 
 | Gatilho no Enunciado | Favorece Soluções Com... | Desqualifica Soluções Com... |
 | :--- | :--- | :--- |
-| **"MENOR sobrecarga operacional"** / **"MAIS eficiente operacionalmente"** | Serviços totalmente gerenciados / Serverless (ex: S3 Intelligent-Tiering, Secrets Manager, Aurora Serverless, EventBridge, Lambda, SSM Parameter Store) | Scripts customizados em instâncias EC2, cron jobs manuais, servidores de banco auto-hospedados em EC2. |
+| **"MENOR sobrecarga operacional"** | Serviços totalmente gerenciados / Serverless (ex: S3 Intelligent-Tiering, Secrets Manager, Aurora Serverless, EventBridge, Lambda, SSM Parameter Store) | Scripts customizados em instâncias EC2, cron jobs manuais, servidores de banco auto-hospedados em EC2. |
 | **"MENOR custo"** / **"MAIS econômica"** | S3 Standard-IA / Glacier, VPC Gateway Endpoints para S3/DynamoDB (sem custo de NAT), Spot Instances (batch/tolerante a falha), Compute Savings Plans, Auto Scaling scale-in | NAT Gateways intermediando petabytes para S3, instâncias superdimensionadas, volumes Provisioned IOPS (io2) desnecessários. |
 | **"SEM alterar o código da aplicação"** | Configurações no nível de infraestrutura (ex: RDS Multi-AZ, CloudFront com S3 OAC, AWS Systems Manager, Application Load Balancer Path-based routing) | Refatoração para DynamoDB, reescrita para arquitetura de microsserviços orientada a eventos. |
 | **"MAIOR disponibilidade / Resiliência"** | Implantações Multi-AZ, Route 53 Failover com Health Checks, S3 Cross-Region Replication, filas SQS para desacoplar picos | Arquiteturas Single-AZ, instâncias EC2 individuais sem Auto Scaling, gravações síncronas sem fila de buffer. |
@@ -61,25 +63,15 @@ Toda questão deve ser composta por 4 elementos:
 
 ---
 
-## 5. Engenharia de Distratores Plausíveis (Matriz 2x2)
-
-Em questões SAA-C03, não crie opções absurdas. Utilize o modelo de pares:
-- **Abordagem A (2 opções: ex. A e B)**: Usa o serviço correto ou padrão recomendado (ex: *Amazon S3 + CloudFront + Origin Access Control*).
-  - Uma acerta a configuração precisa (habilita OAC e restringe a política do bucket S3).
-  - A outra comete um erro técnico comum (configura uma política pública no S3 ou usa o legado Origin Access Identity - OAI incorretamente).
-- **Abordagem B (2 opções: ex. C e D)**: Usa uma abordagem arquitetural alternativa que não é a mais indicada para o caso de uso.
-  - Ex: Tenta colocar o S3 dentro de uma VPC privada com NAT Gateway, ou cria instâncias EC2 para fazer proxy de arquivos estáticos.
-
----
-
-## 6. Regras de Formato
+## 5. Regras Estritas de Formato de Opções
 
 ### Single Choice (Escolha Única)
-- **4 opções (A, B, C, D)**.
+- **Exatamente 4 opções (A, B, C, D)**.
 - **1 alternativa correta** (`requiredChoices: 1`).
-- Letra correta embaralhada de forma balanceada.
+- Letra correta balanceada entre A, B, C e D.
 
 ### Multiple Choice (Múltipla Escolha)
-- **5 opções (A, B, C, D, E)** com **2 respostas corretas** (`requiredChoices: 2`).
-- No enunciado: `**Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)**`
+- **Select TWO (`requiredChoices: 2`)**: **Exatamente 5 opções (A, B, C, D, E)** com **2 respostas corretas**.
+- **Select THREE (`requiredChoices: 3`)**: **Exatamente 6 opções (A, B, C, D, E, F)** com **3 respostas corretas**.
+- No enunciado: `Qual combinação de ações atenderá a esses requisitos? (Escolha duas.)` ou `(Escolha três.)`.
 - Gabaritos variados (`["A", "C"]`, `["B", "D"]`, `["C", "E"]`, `["A", "D"]`, `["B", "E"]`).

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Validador de Questões SAP-C02 para o AWS Exam Simulator.
-Verifica integridade de schema, ids únicos, paridade de gabarito, regras de distratores
-e distribuição equilibrada/embaralhada de respostas (sem vícios em A ou A,B).
+Verifica integridade de schema, ids únicos, paridade de gabarito, regras de distratores,
+distribuição equilibrada/embaralhada de respostas e cotas de tipos de questão.
 """
 
 import sys
@@ -44,9 +44,19 @@ def validate_question(q, index=0, strict=False):
 
     if q_type == "single" and req_choices != 1:
         errors.append(f"{prefix}: Questões do tipo 'single' devem ter requiredChoices = 1.")
+        
+    if q_type == "single" and len(options) != 4:
+        errors.append(f"{prefix}: Questões do tipo 'single' devem ter exatamente 4 opções de resposta.")
 
-    if q_type == "multiple" and req_choices < 2:
-        errors.append(f"{prefix}: Questões do tipo 'multiple' devem ter requiredChoices >= 2.")
+    if q_type == "multiple":
+        if req_choices < 2:
+            errors.append(f"{prefix}: Questões do tipo 'multiple' devem ter requiredChoices >= 2.")
+        
+        # Enforce options count for multiple choice
+        if req_choices == 2 and len(options) != 5:
+            errors.append(f"{prefix}: Questões do tipo 'multiple' com 2 respostas devem ter exatamente 5 opções (A-E).")
+        if req_choices == 3 and len(options) != 6:
+            errors.append(f"{prefix}: Questões do tipo 'multiple' com 3 respostas devem ter exatamente 6 opções (A-F).")
 
     if len(correct_ans) != req_choices:
         errors.append(f"{prefix}: Quantidade de correctAnswers ({len(correct_ans)}) diferente de requiredChoices ({req_choices}).")
@@ -69,8 +79,9 @@ def validate_question(q, index=0, strict=False):
                 errors.append(f"{prefix} Opção '{opt_id}': Texto da opção vazio.")
             else:
                 option_lengths.append(len(text))
-                if len(text.split()) < 8:
-                    msg = f"{prefix} Opção '{opt_id}': Texto muito curto ({len(text.split())} palavras). Distratores SAP-C02 devem ser detalhados e plausíveis."
+                words_count = len(text.split())
+                if words_count < 20:
+                    msg = f"{prefix} Opção '{opt_id}': Texto muito curto ({words_count} palavras). Distratores SAP-C02 devem ter ao menos 20 a 25 palavras."
                     if strict:
                         errors.append(msg)
                     else:
@@ -79,7 +90,7 @@ def validate_question(q, index=0, strict=False):
             explanation = opt.get("explanation", "").strip()
             if not explanation:
                 errors.append(f"{prefix} Opção '{opt_id}': Explicação da opção vazia.")
-            elif len(explanation.split()) < 6:
+            elif len(explanation.split()) < 10:
                 msg = f"{prefix} Opção '{opt_id}': Explicação muito rasa ({len(explanation.split())} palavras). Deve justificar tecnicamente o acerto ou erro."
                 if strict:
                     errors.append(msg)
@@ -112,8 +123,10 @@ def check_answer_distribution(questions):
     Em um simulado com >= 10 questões, nenhuma opção individual deve concentrar mais de 45% dos gabaritos.
     """
     warnings = []
-    if len(questions) < 10:
-        return warnings
+    errors = []
+    
+    if len(questions) == 0:
+        return errors, warnings
 
     single_answers = []
     multiple_answer_sets = []
@@ -124,7 +137,14 @@ def check_answer_distribution(questions):
         elif q.get("type") == "multiple" and q.get("correctAnswers"):
             multiple_answer_sets.append(tuple(sorted(q["correctAnswers"])))
 
-    if single_answers:
+    total_qs = len(questions)
+    mult_count = len(multiple_answer_sets)
+    mult_pct = (mult_count / total_qs) * 100
+    
+    if total_qs >= 10 and mult_pct < 15:
+         errors.append(f"Cota de Múltipla Escolha violada: O arquivo tem {mult_pct:.1f}% de questões multiple. Exigido: pelo menos 20%.")
+
+    if single_answers and len(questions) >= 10:
         counts = Counter(single_answers)
         total = len(single_answers)
         for opt, cnt in counts.items():
@@ -141,7 +161,7 @@ def check_answer_distribution(questions):
                 "⚠️ Vício de gabarito múltiplo: 100% das questões de múltipla escolha têm gabarito ['A', 'B']. Embaralhe as posições das alternativas corretas."
             )
 
-    return warnings
+    return errors, warnings
 
 def main():
     if len(sys.argv) < 2:
@@ -193,7 +213,8 @@ def main():
         all_warnings.extend(warns)
 
     # Check distribution
-    dist_warnings = check_answer_distribution(questions_to_validate)
+    dist_errors, dist_warnings = check_answer_distribution(questions_to_validate)
+    all_errors.extend(dist_errors)
     all_warnings.extend(dist_warnings)
 
     if all_errors:

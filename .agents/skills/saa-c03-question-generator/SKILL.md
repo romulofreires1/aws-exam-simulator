@@ -13,6 +13,12 @@ This skill guides the creation and validation of exam-grade questions for the **
 
 ---
 
+## 🤖 Recommended LLM Model
+* **Model**: **`Model: "pro"` (Gemini 3.1 Pro / Gemini 3.7 Thinking)**
+* **Rationale**: SAA-C03 requires evaluating multi-service trade-offs (operational overhead vs cost vs latency) and constructing realistic 2x2 distractor matrices where options must differ by subtle configuration parameters without introducing hallucinations.
+
+---
+
 ## 🎯 Scope & Core Principles
 
 1. **Broad & Unrestricted Exam Coverage**:
@@ -24,8 +30,13 @@ This skill guides the creation and validation of exam-grade questions for the **
    - **PROIBIDO**: Distratores obviamente errados, ingênuos, curtos ou contendo serviços/conceitos inventados.
    - **OBRIGATÓRIO**: Todas as 4 alternativas (ou 5 em múltipla escolha) **DEVEM parecer soluções viáveis tecnicamente**.
    - **Matriz de Decisão 2x2**: Estruture opções em pares conceituais (ex: 2 opções usam Abordagem A e 2 usam Abordagem B; a correta atende exatamente à restrição de menor sobrecarga operacional ou menor custo, enquanto os distratores falham por sutilezas como complexidade desnecessária ou escolha incorreta de serviço).
-   - **Simetria Estrutural e de Extensão**: Todas as alternativas devem ter comprimento similar (2 a 4 linhas cada) e mesmo nível de clareza técnica.
-4. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
+   - **Simetria Estrutural e de Extensão**: Todas as alternativas devem ter comprimento similar (15 a 35 palavras cada) e mesmo nível de clareza técnica.
+4. **Regras Estritas de Quantidade de Alternativas e Múltipla Escolha**:
+   - **Single Choice (`type: "single"`)**: Exatamente **4 opções** (`A`, `B`, `C`, `D`) e `requiredChoices: 1`.
+   - **Select TWO (`type: "multiple"`)**: Exatamente **5 opções** (`A`, `B`, `C`, `D`, `E`) e `requiredChoices: 2`.
+   - **Select THREE (`type: "multiple"`)**: Exatamente **6 opções** (`A`, `B`, `C`, `D`, `E`, `F`) e `requiredChoices: 3`.
+   - Em simulados completos, mantenha uma quota de **15% a 20%** de questões de múltipla escolha.
+5. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
    - **NUNCA** posicione a resposta correta sempre na opção `A` ou nas opções `A` e `B`.
    - As respostas corretas **DEVEM** ser distribuídas de forma balanceada e pseudo-aleatória entre todas as opções (`A`, `B`, `C`, `D` para escolha única; combinações variadas como `["B", "D"]`, `["A", "C"]`, `["C", "E"]`, `["A", "D"]`, `["B", "E"]` para múltipla escolha).
    - Em um lote ou simulado completo, a distribuição de gabaritos individuais deve ser equilibrada (~25% para cada letra).
@@ -89,7 +100,7 @@ For each option (both correct and incorrect):
   - `examId`: `"SAA-C03"` (or specific mock code).
   - `domainId`: One of `domain-1-secure-architectures`, `domain-2-resilient-architectures`, `domain-3-high-performing-architectures`, `domain-4-cost-optimized-architectures`.
   - `services`: Array of 2-4 AWS services involved.
-  - `type`: `"single"` (1 choice) or `"multiple"` (2-3 choices).
+  - `type`: `"single"` (1 choice, exactly 4 options) or `"multiple"` (2 choices = 5 options, 3 choices = 6 options).
   - `requiredChoices`: Must match length of `correctAnswers`.
   - `correctAnswers`: Array of option IDs with shuffled letters (e.g. `["C"]` or `["B", "D"]`).
   - All options have `id`, `text`, and non-empty `explanation`.
@@ -102,9 +113,9 @@ For each option (both correct and incorrect):
 
 ## 🛠️ Helper Scripts & Validation
 
-Run the Python validation script to verify questions and answer distribution:
+Run the Python validation script in strict mode to verify questions and answer distribution:
 ```bash
-python3 .agents/skills/saa-c03-question-generator/scripts/validate_questions.py <path_to_json_file>
+python3 .agents/skills/saa-c03-question-generator/scripts/validate_questions.py <path_to_json_file> --strict
 ```
 Or test the entire exam simulator bank:
 ```bash
