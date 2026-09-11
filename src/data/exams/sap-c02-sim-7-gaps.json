@@ -1,0 +1,2054 @@
+{
+  "id": "sap-c02-sim-7-gaps",
+  "name": "AWS Certified Solutions Architect - Professional (Mock 7 - Gap Analysis)",
+  "description": "Simulado focado nos gaps identificados: Governança, Cost Optimization, Advanced Analytics, Security e Advanced Hybrid Networking.",
+  "passingScore": 75,
+  "timeLimitMinutes": 180,
+  "questions": [
+    {
+      "id": "sap-c02-sec-adv-001",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "Amazon GuardDuty",
+        "AWS Security Hub",
+        "Amazon EventBridge",
+        "AWS Step Functions"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "text": "A company uses AWS Organizations to manage hundreds of AWS accounts. They require an automated incident response solution when Amazon GuardDuty detects compromised EC2 instances (such as unauthorized access or cryptocurrency mining). The response must isolate the instance using security groups, notify the security team via Slack, and create a forensic snapshot of the EBS volumes. All findings must be aggregated in a central security account. How can a Solutions Architect achieve this with the LEAST operational overhead?",
+          "options": [
+            "A) Use AWS Security Hub in a delegated administrator account to aggregate GuardDuty findings. Create an Amazon EventBridge rule in the central account that triggers an AWS Step Functions state machine to isolate the instance, take snapshots, and send Slack notifications using AWS Chatbot.",
+            "B) Use AWS Security Hub in a delegated administrator account. In each member account, create EventBridge rules for GuardDuty findings that trigger AWS Systems Manager Automation runbooks to isolate instances and take snapshots, and an SNS topic to notify the security team.",
+            "C) Use AWS Security Hub custom actions in the central account. When a finding is selected, trigger a Lambda function that assumes a cross-account IAM role in the member account to perform isolation and snapshots. Use SNS for Slack notifications.",
+            "D) Configure GuardDuty to send findings directly to Amazon SNS in the central account. Use an AWS Lambda function subscribed to the SNS topic to evaluate the finding, use cross-account roles to take snapshots and isolate the instance, and send a message to Slack."
+          ],
+          "explanation": "Option A is correct. AWS Security Hub natively centralizes findings from GuardDuty across all member accounts into the delegated administrator account. In this central account, EventBridge can capture these findings and trigger a Step Functions state machine (which can execute cross-account tasks using IAM roles) and integrate with AWS Chatbot for Slack notifications. Option B creates high operational overhead by deploying resources in every account. Option C requires manual intervention (custom actions are manually triggered). Option D bypasses Security Hub, missing the native cross-account aggregation capabilities."
+        },
+        "pt": {
+          "text": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?",
+          "options": [
+            "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
+            "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
+            "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
+            "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
+          ],
+          "explanation": "A opção A está correta. O AWS Security Hub centraliza nativamente as descobertas do GuardDuty em todas as contas membros na conta de administrador delegado. Nesta conta central, o EventBridge pode capturar essas descobertas e acionar uma máquina de estado do Step Functions (que pode executar tarefas entre contas) e integrar-se ao AWS Chatbot para Slack. A opção B cria alta sobrecarga ao exigir recursos em cada conta. A opção C exige intervenção manual. A opção D ignora o Security Hub e seus recursos nativos de agregação."
+        },
+        "es": {
+          "text": "Una empresa utiliza AWS Organizations para gestionar cientos de cuentas de AWS. Requieren una solución de respuesta automatizada a incidentes cuando Amazon GuardDuty detecta instancias EC2 comprometidas. La respuesta debe aislar la instancia usando security groups, notificar al equipo de seguridad vía Slack y crear un snapshot forense de los volúmenes EBS. Todos los hallazgos deben agregarse en una cuenta de seguridad central. ¿Cómo puede lograr esto un Arquitecto de Soluciones con la MENOR sobrecarga operativa?",
+          "options": [
+            "A) Utilizar AWS Security Hub en una cuenta de administrador delegado para agregar hallazgos de GuardDuty. Crear una regla de Amazon EventBridge en la cuenta central que active una máquina de estado de AWS Step Functions para aislar la instancia, tomar snapshots y enviar notificaciones de Slack con AWS Chatbot.",
+            "B) Utilizar AWS Security Hub en una cuenta de administrador delegado. En cada cuenta miembro, crear reglas de EventBridge que activen runbooks de AWS Systems Manager para aislar instancias y tomar snapshots, y un tema de SNS para notificar al equipo.",
+            "C) Utilizar acciones personalizadas de AWS Security Hub en la cuenta central. Al seleccionar un hallazgo, activar una función Lambda que asuma un rol de IAM entre cuentas en la cuenta miembro para realizar el aislamiento y snapshots. Utilizar SNS para notificaciones de Slack.",
+            "D) Configurar GuardDuty para enviar hallazgos directamente a Amazon SNS en la cuenta central. Utilizar una función AWS Lambda suscrita al tema de SNS para evaluar el hallazgo, usar roles entre cuentas para tomar snapshots y aislar la instancia, y enviar un mensaje a Slack."
+          ],
+          "explanation": "La opción A es correcta. AWS Security Hub centraliza de forma nativa los hallazgos de GuardDuty de todas las cuentas miembro en la cuenta del administrador delegado. En esta cuenta central, EventBridge puede capturar los hallazgos y activar Step Functions y AWS Chatbot para la respuesta. La opción B requiere administrar recursos en cada cuenta. La opción C requiere intervención manual. La opción D omite las capacidades nativas de agregación de Security Hub."
+        }
+      },
+      "correctAnswers": [
+        "A"
+      ]
+    },
+    {
+      "id": "sap-c02-sec-adv-002",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS WAF",
+        "AWS Shield Advanced",
+        "Amazon CloudFront",
+        "Amazon Route 53"
+      ],
+      "type": "multiple-responses",
+      "requiredChoices": 2,
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "text": "A global financial company hosts a latency-sensitive web application on AWS using Amazon CloudFront, an Application Load Balancer (ALB), and EC2 instances. They are frequently targeted by sophisticated Layer 7 DDoS attacks and application-layer vulnerabilities. They have subscribed to AWS Shield Advanced. They need to automatically block malicious IP addresses that exhibit unusual request rates or attempt SQL injection, while ensuring legitimate traffic is unaffected. They also need 24/7 access to the AWS DDoS Response Team (DRT) and proactive engagement. Which combination of steps must the Solutions Architect take? (Select TWO)",
+          "options": [
+            "A) Enable AWS WAF on the CloudFront distribution and create a web ACL with AWS Managed Rules for SQL injection. Configure rate-based rules in AWS WAF to block IPs that exceed the request threshold.",
+            "B) Associate the AWS WAF web ACL with the ALB. Configure the ALB to send access logs to an Amazon S3 bucket, and grant the DRT access to the S3 bucket.",
+            "C) Associate the AWS WAF web ACL with the CloudFront distribution. Grant the DRT access to the WAF web ACL and CloudFront access logs directly through IAM roles.",
+            "D) Deploy AWS Network Firewall in the VPC to filter malicious Layer 7 traffic before it reaches the ALB, and share the firewall logs with the DRT.",
+            "E) Create an Amazon Route 53 health check for the web application and associate it with the Shield Advanced protected resource. Provide contact details and enable proactive engagement."
+          ],
+          "explanation": "Options A and E are correct. A is required to mitigate Layer 7 application attacks (SQLi) and high-rate requests (rate-based rules) using AWS WAF associated with CloudFront. E is strictly required to enable Shield Advanced Proactive Engagement, as the DRT relies on Route 53 health checks associated with the protected resource to determine application health and initiate contact. B and D do not fulfill the proactive engagement requirements and WAF is best deployed at the edge (CloudFront). C is incorrect because proactive engagement is enabled via Route 53 health checks, not just by granting IAM log access."
+        },
+        "pt": {
+          "text": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)",
+          "options": [
+            "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
+            "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
+            "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
+            "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
+            "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
+          ],
+          "explanation": "As opções A e E estão corretas. O WAF no CloudFront mitiga ataques de camada 7 e abusos de taxa (A). Para habilitar o Engajamento Proativo do Shield Advanced, é obrigatório criar health checks do Route 53 e associá-los ao recurso protegido, para que o DRT seja notificado em caso de degradação da aplicação (E)."
+        },
+        "es": {
+          "text": "Una empresa financiera global aloja una aplicación web sensible a la latencia en AWS mediante Amazon CloudFront, un ALB y EC2. Son objeto de ataques DDoS sofisticados de Capa 7 y vulnerabilidades de aplicación. Han contratado AWS Shield Advanced. Necesitan bloquear automáticamente las IP maliciosas con tasas de solicitud inusuales o intentos de inyección SQL. También necesitan acceso 24/7 al Equipo de Respuesta a DDoS de AWS (DRT) e involucración proactiva (proactive engagement). ¿Qué combinación de pasos debe realizar el Arquitecto de Soluciones? (Seleccione DOS)",
+          "options": [
+            "A) Habilitar AWS WAF en la distribución CloudFront y crear una web ACL con reglas administradas para inyección SQL. Configurar reglas basadas en tasa en WAF para bloquear IPs que excedan el límite.",
+            "B) Asociar la web ACL de AWS WAF al ALB. Configurar el ALB para enviar registros a Amazon S3 y otorgar al DRT acceso al bucket.",
+            "C) Asociar la web ACL de WAF a CloudFront. Otorgar al DRT acceso a la web ACL y los registros de CloudFront mediante roles IAM.",
+            "D) Implementar AWS Network Firewall en la VPC para filtrar tráfico malicioso de Capa 7 antes del ALB.",
+            "E) Crear un health check de Amazon Route 53 para la aplicación web y asociarlo al recurso protegido por Shield Advanced. Proporcionar contactos y habilitar el proactive engagement."
+          ],
+          "explanation": "Las opciones A y E son correctas. WAF en CloudFront mitiga ataques de capa 7 (A). Para habilitar el Involucramiento Proactivo (Proactive Engagement) de Shield Advanced, es estrictamente necesario configurar health checks de Route 53 y asociarlos al recurso protegido (E)."
+        }
+      },
+      "correctAnswers": [
+        "A",
+        "E"
+      ]
+    },
+    {
+      "id": "sap-c02-sec-adv-003",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "Amazon Macie",
+        "AWS Security Hub",
+        "Amazon EventBridge"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "text": "A healthcare company stores highly sensitive Protected Health Information (PHI) in multiple Amazon S3 buckets across dozens of AWS accounts in an AWS Organization. A Solutions Architect must design a solution to continuously monitor the buckets for public access and automatically discover any unencrypted PHI data. All findings must be routed to a central security account, and critical findings must automatically open a Jira ticket. Which architecture meets these requirements MOST efficiently?",
+          "options": [
+            "A) Enable Amazon Macie in the central security account and add member accounts via AWS Organizations. Configure Macie automated data discovery. Enable AWS Security Hub in the central account and integrate it with Macie. Create an EventBridge rule in the central account to capture Security Hub findings with a 'CRITICAL' severity and trigger a Lambda function to create a Jira ticket.",
+            "B) Deploy AWS Config rules in all member accounts using AWS CloudFormation StackSets to detect public S3 buckets. Enable Macie in each account independently and send findings to a central S3 bucket. Use Athena to query the bucket and trigger a Lambda function via a scheduled EventBridge rule to open Jira tickets.",
+            "C) Use AWS IAM Access Analyzer in the central account to detect public S3 buckets. Enable Amazon GuardDuty in the central account to scan S3 object contents for PHI. Route GuardDuty findings to Security Hub, and use a Security Hub custom action to trigger a Jira API integration.",
+            "D) Enable AWS Systems Manager Incident Manager. Configure Macie in the central account to send findings directly to Incident Manager. Create an Incident Manager response plan that uses AWS Chatbot to open Jira tickets for any public S3 bucket or unencrypted PHI finding."
+          ],
+          "explanation": "Option A is correct. Amazon Macie is specifically designed to discover sensitive data like PHI and detect public buckets. Macie integrates natively with AWS Organizations for multi-account management and sends findings to AWS Security Hub. Security Hub acts as the central pane of glass, generating EventBridge events for findings, which can then invoke a Lambda function to create Jira tickets automatically. B requires complex manual aggregations. C is incorrect as GuardDuty does not scan S3 object contents for PHI (Macie does). D is not the standard or efficient way to aggregate cross-account findings."
+        },
+        "pt": {
+          "text": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?",
+          "options": [
+            "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
+            "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
+            "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
+            "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
+          ],
+          "explanation": "A opção A está correta. O Amazon Macie é a ferramenta ideal para descobrir dados confidenciais (PHI) no S3. O Macie integra-se ao AWS Organizations e ao AWS Security Hub para centralização de descobertas. O Security Hub envia eventos para o EventBridge, acionando o Lambda para automação no Jira de maneira eficiente. GuardDuty (C) não analisa conteúdo S3 para encontrar PHI. A opção B é excessivamente complexa e ineficiente."
+        },
+        "es": {
+          "text": "Una empresa de salud almacena datos sensibles (PHI) en varios buckets S3 en docenas de cuentas en una AWS Organization. Un Arquitecto de Soluciones debe diseñar una solución para monitorear continuamente el acceso público a los buckets y descubrir automáticamente datos PHI sin cifrar. Todos los hallazgos deben enviarse a una cuenta central, y los hallazgos críticos deben abrir automáticamente un ticket en Jira. ¿Qué arquitectura cumple esto de manera MÁS eficiente?",
+          "options": [
+            "A) Habilitar Amazon Macie en la cuenta de seguridad central y agregar las cuentas miembro. Configurar el descubrimiento de datos de Macie. Habilitar AWS Security Hub en la cuenta central e integrarlo con Macie. Crear una regla de EventBridge para capturar hallazgos CRÍTICOS y activar una función Lambda para crear el ticket en Jira.",
+            "B) Implementar reglas de AWS Config mediante CloudFormation StackSets. Habilitar Macie de forma independiente y enviar hallazgos a un bucket S3 central. Usar Athena y EventBridge programado para activar Lambda.",
+            "C) Usar IAM Access Analyzer para detectar buckets públicos y GuardDuty para escanear el contenido S3 en busca de PHI. Enviar al Security Hub y usar una acción personalizada.",
+            "D) Habilitar Systems Manager Incident Manager y configurar Macie para enviar hallazgos directamente. Usar AWS Chatbot en el plan de respuesta para abrir tickets."
+          ],
+          "explanation": "La opción A es correcta. Amazon Macie está diseñado para clasificar y descubrir datos sensibles en S3 (PHI). Se integra nativamente con Organizations y Security Hub. Security Hub centraliza los eventos en EventBridge, lo que permite activar Lambda de forma automatizada. GuardDuty (C) no examina el interior de los objetos S3 en busca de PHI. La opción B es ineficiente y difícil de mantener."
+        }
+      },
+      "correctAnswers": [
+        "A"
+      ]
+    },
+    {
+      "id": "sap-c02-sec-adv-004",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS WAF",
+        "Amazon API Gateway",
+        "Amazon Cognito"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "text": "An enterprise provides a public-facing API hosted on Amazon API Gateway and AWS Lambda. The API handles user logins and is authenticated via Amazon Cognito. Recently, the API has experienced credential stuffing attacks where attackers try to use leaked usernames and passwords to gain unauthorized access. The company wants to automatically block these login requests. They also want to ensure that any API requests coming from anonymizing proxies and Tor networks are blocked. What is the MOST operationally efficient solution?",
+          "options": [
+            "A) Deploy AWS WAF on the API Gateway. Add the AWS Managed Rules for Anonymous IP list to block Tor and proxies. Enable AWS WAF Account Takeover Prevention (ATP) to monitor and block credential stuffing attacks by inspecting the login requests.",
+            "B) Deploy AWS Network Firewall and configure Suricata rules to detect Tor exit nodes and credential stuffing patterns. Route API Gateway traffic through the Network Firewall using a VPC Endpoint.",
+            "C) Modify the Lambda functions to inspect the source IP address against a frequently updated, downloaded list of Tor exit nodes. Integrate Amazon Macie to detect credential stuffing payloads in the API requests.",
+            "D) Configure AWS Shield Advanced on the API Gateway. Enable the Shield Advanced automatic application layer DDoS mitigation. Create an EventBridge rule to invoke a Lambda function that updates an API Gateway resource policy to block malicious IPs."
+          ],
+          "explanation": "Option A is correct. AWS WAF natively integrates with Amazon API Gateway. To block Tor nodes and proxies, the AWS Managed Rules for Anonymous IP is the exact feature needed. Furthermore, AWS WAF Account Takeover Prevention (ATP) is explicitly designed to stop credential stuffing attacks by evaluating login attempts against stolen credential databases and behavioral anomalies. Options B, C, and D introduce massive operational complexity and do not possess out-of-the-box credential stuffing mitigation like WAF ATP."
+        },
+        "pt": {
+          "text": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?",
+          "options": [
+            "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
+            "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
+            "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
+            "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
+          ],
+          "explanation": "A opção A está correta. O AWS WAF integra-se nativamente ao API Gateway. O bloqueio de redes Tor e proxies é perfeitamente atendido pelas Regras Gerenciadas da AWS para IPs Anônimos. O WAF Account Takeover Prevention (ATP) foi projetado exatamente para mitigar ataques de credential stuffing de forma automatizada, inspecionando endpoints de login. As opções alternativas exigem muito esforço manual ou não atendem aos requisitos (como o Macie, que não detecta ataques em trânsito)."
+        },
+        "es": {
+          "text": "Una empresa ofrece una API pública alojada en Amazon API Gateway y AWS Lambda. La API maneja inicios de sesión autenticados mediante Amazon Cognito. Recientemente, la API ha sufrido ataques de relleno de credenciales (credential stuffing). La empresa desea bloquear estas solicitudes automáticamente. También quieren asegurar que se bloqueen las solicitudes de proxies anónimos y redes Tor. ¿Cuál es la solución MÁS eficiente a nivel operativo?",
+          "options": [
+            "A) Implementar AWS WAF en el API Gateway. Agregar las Reglas Administradas de AWS para IPs Anónimas para bloquear Tor y proxies. Habilitar AWS WAF Account Takeover Prevention (ATP) para monitorear y bloquear ataques de credential stuffing inspeccionando las solicitudes de inicio de sesión.",
+            "B) Implementar AWS Network Firewall y configurar reglas Suricata para detectar nodos de Tor y patrones de credential stuffing. Enrutar el tráfico de API Gateway a través del Network Firewall.",
+            "C) Modificar las funciones Lambda para inspeccionar las IPs contra una lista descargada de nodos de Tor. Integrar Amazon Macie para detectar ataques de credential stuffing.",
+            "D) Configurar AWS Shield Advanced en API Gateway. Habilitar la mitigación automática de DDoS en capa de aplicación y actualizar una política de recursos vía Lambda."
+          ],
+          "explanation": "La opción A es correcta. AWS WAF se integra fácilmente con API Gateway. Para bloquear nodos Tor y proxies, la regla administrada para IPs Anónimas es ideal. Además, WAF Account Takeover Prevention (ATP) está diseñado específicamente para detener ataques de credential stuffing al evaluar intentos de inicio de sesión contra bases de datos comprometidas y anomalías. Las otras opciones requieren gran esfuerzo y no ofrecen protección nativa contra credential stuffing."
+        }
+      },
+      "correctAnswers": [
+        "A"
+      ]
+    },
+    {
+      "id": "sap-c02-sec-adv-005",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Security Hub",
+        "Amazon GuardDuty"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "text": "A global company has deployed workloads in 5 AWS Regions across 50 accounts in an AWS Organization. They use Amazon GuardDuty for threat detection in all accounts and Regions. The Chief Information Security Officer (CISO) requires a single, consolidated dashboard in the 'us-east-1' Region of the dedicated security tooling account. This dashboard must display all GuardDuty findings from all 5 Regions and all 50 accounts. Which approach requires the LEAST custom development?",
+          "options": [
+            "A) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. In each of the other 4 Regions, configure GuardDuty to export findings to an Amazon S3 bucket in 'us-east-1'. Use Amazon QuickSight to visualize the findings.",
+            "B) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. Enable AWS Security Hub in all 5 Regions and designate the security tooling account as the Security Hub delegated administrator. Use Security Hub cross-Region aggregation in the 'us-east-1' security tooling account to consolidate all findings.",
+            "C) Enable Amazon Detective in the security tooling account in 'us-east-1'. Integrate GuardDuty from all 50 accounts and all 5 Regions directly into the Amazon Detective graph in 'us-east-1' to provide a unified dashboard.",
+            "D) Create an EventBridge rule in each account and Region to capture GuardDuty findings. Set the target to an EventBridge event bus in the security tooling account in 'us-east-1'. Use AWS Step Functions to format the findings and store them in Amazon DynamoDB for visualization."
+          ],
+          "explanation": "Option B is correct. AWS Security Hub natively supports cross-Region aggregation of findings. By setting the security tooling account as the delegated administrator for both GuardDuty and Security Hub, GuardDuty findings are routed to Security Hub in each Region. Security Hub then securely aggregates these findings cross-Region into the designated aggregation Region ('us-east-1'), providing a unified dashboard without any custom coding or complex data pipelines. Options A and D require managing data pipelines and custom visualization. Option C is incorrect because Amazon Detective is used for root cause analysis and investigation, not as a primary aggregation dashboard for all global alerts."
+        },
+        "pt": {
+          "text": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?",
+          "options": [
+            "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
+            "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
+            "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
+            "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
+          ],
+          "explanation": "A opção B está correta. O AWS Security Hub oferece suporte nativo à agregação de descobertas entre regiões. Configurando a conta de segurança como administrador delegado do GuardDuty e do Security Hub, as descobertas são enviadas para o Security Hub e agregadas nativamente na região designada (us-east-1). Isso cria um painel único sem necessidade de codificação personalizada (como as opções A e D exigiriam). O Detective (C) é focado em investigação de causa raiz, não agregação global em painel."
+        },
+        "es": {
+          "text": "Una empresa global ha implementado cargas de trabajo en 5 regiones de AWS en 50 cuentas de una AWS Organization. Utilizan Amazon GuardDuty en todas las cuentas y regiones. El CISO requiere un panel único y consolidado en la región 'us-east-1' de la cuenta de seguridad, que muestre todos los hallazgos de GuardDuty de las 5 regiones y 50 cuentas. ¿Qué enfoque requiere la MENOR cantidad de desarrollo personalizado?",
+          "options": [
+            "A) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Configurar GuardDuty para exportar hallazgos a un bucket S3 en us-east-1. Usar Amazon QuickSight para visualizarlos.",
+            "B) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Habilitar AWS Security Hub en las 5 regiones y designar la cuenta de seguridad como administrador delegado de Security Hub. Utilizar la agregación entre regiones de Security Hub en us-east-1 para consolidar todos los hallazgos.",
+            "C) Habilitar Amazon Detective en la cuenta de seguridad en us-east-1. Integrar GuardDuty de todas las cuentas y regiones directamente en el gráfico de Amazon Detective en us-east-1.",
+            "D) Crear una regla de EventBridge en cada cuenta y región para capturar hallazgos. Enviarlos a un bus de eventos central en us-east-1 y usar Step Functions para guardarlos en Amazon DynamoDB."
+          ],
+          "explanation": "La opción B es correcta. AWS Security Hub admite de forma nativa la agregación de hallazgos entre regiones. Al establecer la cuenta de seguridad como administrador delegado para GuardDuty y Security Hub, los hallazgos se consolidan de forma nativa y segura en la región de agregación ('us-east-1') sin requerir tuberías de datos o código personalizado (a diferencia de A y D). Amazon Detective (C) se utiliza para análisis forense e investigaciones, no como panel de alertas global."
+        }
+      },
+      "correctAnswers": [
+        "B"
+      ]
+    },
+    {
+      "id": "sap-c02-cost-001",
+      "examId": "SAP-C02",
+      "domainId": "domain-4",
+      "services": [
+        "Compute Optimizer",
+        "Savings Plans",
+        "AWS Organizations"
+      ],
+      "type": "single-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "B"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "scenario": "A global enterprise has hundreds of AWS accounts managed by AWS Organizations. They have a mix of predictable, steady-state EC2 workloads and highly variable auto-scaling containerized workloads on Fargate. The FinOps team wants to maximize discount coverage without risking underutilization of commitments. They also need to optimize the sizing of EC2 instances and EBS volumes before committing to any new Savings Plans. The company mandates that individual business units should be accountable for their own Savings Plan commitments, but any unutilized commitment should float to other accounts in the organization.",
+          "question": "How should the Solutions Architect design this cost optimization strategy?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Enable AWS Compute Optimizer at the organization level. Apply the recommended right-sizing. Purchase Compute Savings Plans in the management account and disable Savings Plan discount sharing to enforce business unit accountability."
+            },
+            {
+              "id": "B",
+              "text": "Enable AWS Compute Optimizer at the organization level. Apply right-sizing recommendations. Have each business unit (member account) purchase Compute Savings Plans. Enable Savings Plan discount sharing in the management account."
+            },
+            {
+              "id": "C",
+              "text": "Purchase EC2 Instance Savings Plans in each member account for steady workloads and Compute Savings Plans in the management account for Fargate. Enable AWS Compute Optimizer."
+            },
+            {
+              "id": "D",
+              "text": "Enable AWS Compute Optimizer at the organization level. Purchase EC2 Instance Savings Plans in the management account for predictable workloads. Disable discount sharing."
+            }
+          ],
+          "explanation": "Option B is correct. Right-sizing should always be performed before purchasing commitments. Enabling Compute Optimizer at the org level provides visibility. To make business units accountable for their commitments but allow floating of unused discounts, member accounts should purchase the Savings Plans and the management account should enable discount sharing. Compute Savings Plans provide the flexibility needed for both EC2 and Fargate."
+        },
+        "pt": {
+          "scenario": "Uma empresa global possui centenas de contas AWS gerenciadas pelo AWS Organizations. Eles têm uma mistura de cargas de trabalho EC2 previsíveis e estáveis e cargas de trabalho em contêineres altamente variáveis no Fargate. A equipe de FinOps quer maximizar a cobertura de descontos sem o risco de subutilização dos compromissos. Eles também precisam otimizar o tamanho das instâncias EC2 e volumes EBS antes de se comprometerem com novos Savings Plans. A empresa exige que as unidades de negócios individuais sejam responsáveis por seus próprios Savings Plans, mas qualquer compromisso não utilizado deve flutuar para outras contas na organização.",
+          "question": "Como o Arquiteto de Soluções deve projetar esta estratégia de otimização de custos?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar o AWS Compute Optimizer no nível da organização. Aplicar o dimensionamento recomendado. Comprar Compute Savings Plans na conta de gerenciamento e desabilitar o compartilhamento de descontos para impor a responsabilidade da unidade de negócios."
+            },
+            {
+              "id": "B",
+              "text": "Habilitar o AWS Compute Optimizer no nível da organização. Aplicar recomendações de dimensionamento correto. Fazer com que cada unidade de negócios (conta membro) compre Compute Savings Plans. Habilitar o compartilhamento de descontos na conta de gerenciamento."
+            },
+            {
+              "id": "C",
+              "text": "Comprar EC2 Instance Savings Plans em cada conta membro para cargas de trabalho estáveis e Compute Savings Plans na conta de gerenciamento para o Fargate. Habilitar o AWS Compute Optimizer."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar o AWS Compute Optimizer no nível da organização. Comprar EC2 Instance Savings Plans na conta de gerenciamento para cargas previsíveis. Desabilitar o compartilhamento de descontos."
+            }
+          ],
+          "explanation": "A opção B está correta. O dimensionamento correto deve sempre ser realizado antes da compra de compromissos. Habilitar o Compute Optimizer fornece visibilidade. Para responsabilizar as unidades pelos compromissos, mas permitir a flutuação de descontos não utilizados, as contas membros devem comprar os planos e a conta de gerenciamento deve habilitar o compartilhamento."
+        },
+        "es": {
+          "scenario": "Una empresa global tiene cientos de cuentas de AWS administradas por AWS Organizations. Tienen una combinación de cargas de trabajo de EC2 predecibles y estables y cargas de trabajo en contenedores altamente variables en Fargate. El equipo de FinOps desea maximizar la cobertura de descuentos sin correr el riesgo de subutilizar los compromisos. También necesitan optimizar el tamaño de las instancias EC2 y los volúmenes de EBS antes de comprometerse con nuevos Savings Plans. La empresa exige que las unidades de negocio individuales rindan cuentas de sus propios compromisos, pero cualquier compromiso no utilizado debe flotar hacia otras cuentas.",
+          "question": "¿Cómo debería diseñar el Arquitecto de Soluciones esta estrategia de optimización de costos?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar AWS Compute Optimizer a nivel de la organización. Aplicar el dimensionamiento recomendado. Comprar Compute Savings Plans en la cuenta de administración y deshabilitar el uso compartido de descuentos."
+            },
+            {
+              "id": "B",
+              "text": "Habilitar AWS Compute Optimizer a nivel de la organización. Aplicar las recomendaciones de dimensionamiento. Hacer que cada unidad de negocio (cuenta miembro) compre Compute Savings Plans. Habilitar el uso compartido de descuentos en la cuenta de administración."
+            },
+            {
+              "id": "C",
+              "text": "Comprar EC2 Instance Savings Plans en cada cuenta miembro para cargas estables y Compute Savings Plans en la cuenta de administración para Fargate. Habilitar AWS Compute Optimizer."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar AWS Compute Optimizer a nivel de la organización. Comprar EC2 Instance Savings Plans en la cuenta de administración para cargas predecibles. Deshabilitar el uso compartido de descuentos."
+            }
+          ],
+          "explanation": "La opción B es correcta. El ajuste de tamaño siempre debe realizarse antes de comprar compromisos. Habilitar el Compute Optimizer proporciona visibilidad. Para que las unidades rindan cuentas de sus compromisos pero permitir que floten los descuentos no utilizados, las cuentas miembros deben comprar los Savings Plans y la cuenta de administración debe habilitar el uso compartido de descuentos."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-cost-002",
+      "examId": "SAP-C02",
+      "domainId": "domain-4",
+      "services": [
+        "Cost and Usage Report (CUR)",
+        "Cost Categories",
+        "Amazon QuickSight"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 2,
+      "correctAnswers": [
+        "A",
+        "C"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "scenario": "An enterprise uses AWS Organizations with consolidated billing. They need a customized cost allocation strategy that maps AWS spending to internal business units, projects, and environments (Dev, Test, Prod). Many resources do not have tags, and tagging policies were only recently enforced. The FinOps team wants a daily updated dashboard in Amazon QuickSight that categorizes costs according to these dimensions, even for historical untagged resources (using account IDs as a fallback).",
+          "question": "Which combination of actions will meet these requirements with the LEAST operational overhead? (Select TWO)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create AWS Cost Categories using rules that map Account IDs to business units and environments. Use tag-based rules for resources that are tagged."
+            },
+            {
+              "id": "B",
+              "text": "Write an AWS Lambda function that triggers daily to query AWS Cost Explorer API, map costs, and write to an Amazon S3 bucket."
+            },
+            {
+              "id": "C",
+              "text": "Create an AWS Cost and Usage Report (CUR) and configure it to deliver to an Amazon S3 bucket with Amazon Athena integration enabled."
+            },
+            {
+              "id": "D",
+              "text": "Build an AWS Glue ETL job to process the CUR files, apply the mapping logic for untagged resources, and load the data into Amazon Redshift."
+            },
+            {
+              "id": "E",
+              "text": "Use AWS Budgets to map untagged resources to business units and export the reports to QuickSight."
+            }
+          ],
+          "explanation": "Options A and C are correct. AWS Cost Categories allow you to create custom rules to categorize costs based on tags, accounts, and other dimensions, automatically solving the untagged resources issue by falling back to account ID mappings. Creating a CUR with Athena integration allows QuickSight to easily ingest and visualize the detailed, categorized billing data without managing custom ETL pipelines."
+        },
+        "pt": {
+          "scenario": "Uma empresa usa o AWS Organizations com faturamento consolidado. Eles precisam de uma estratégia personalizada de alocação de custos que mapeie os gastos da AWS para unidades de negócios internas, projetos e ambientes (Dev, Test, Prod). Muitos recursos não possuem tags, e as políticas de tags foram aplicadas apenas recentemente. A equipe de FinOps quer um painel atualizado diariamente no Amazon QuickSight que categorize os custos de acordo com essas dimensões, mesmo para recursos sem tags históricos (usando IDs de conta como contingência).",
+          "question": "Qual combinação de ações atenderá a esses requisitos com a MENOR sobrecarga operacional? (Selecione DUAS)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar AWS Cost Categories usando regras que mapeiam IDs de Conta para unidades de negócios e ambientes. Usar regras baseadas em tags para recursos que possuem tags."
+            },
+            {
+              "id": "B",
+              "text": "Escrever uma função AWS Lambda que é acionada diariamente para consultar a API do AWS Cost Explorer, mapear custos e gravar em um bucket do Amazon S3."
+            },
+            {
+              "id": "C",
+              "text": "Criar um AWS Cost and Usage Report (CUR) e configurá-lo para entregar em um bucket do Amazon S3 com integração ao Amazon Athena habilitada."
+            },
+            {
+              "id": "D",
+              "text": "Construir um trabalho ETL do AWS Glue para processar os arquivos CUR, aplicar a lógica de mapeamento para recursos sem tags e carregar os dados no Amazon Redshift."
+            },
+            {
+              "id": "E",
+              "text": "Usar o AWS Budgets para mapear recursos sem tags para unidades de negócios e exportar os relatórios para o QuickSight."
+            }
+          ],
+          "explanation": "As opções A e C estão corretas. O AWS Cost Categories permite mapear e categorizar custos via regras sem precisar de scripts. O CUR com Athena permite que o QuickSight consuma facilmente os dados."
+        },
+        "es": {
+          "scenario": "Una empresa usa AWS Organizations con facturación consolidada. Necesitan una estrategia de asignación de costos personalizada que asigne el gasto a unidades de negocio internas, proyectos y entornos (Dev, Test, Prod). Muchos recursos no tienen etiquetas, y las políticas de etiquetas se aplicaron recientemente. El equipo de FinOps desea un panel actualizado diariamente en Amazon QuickSight que categorice los costos, incluso para recursos históricos sin etiquetas (usando IDs de cuenta como respaldo).",
+          "question": "¿Qué combinación de acciones cumplirá con estos requisitos con la MENOR sobrecarga operativa? (Seleccione DOS)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear AWS Cost Categories usando reglas que asignen IDs de cuenta a unidades de negocio y entornos. Usar reglas basadas en etiquetas para los recursos que tienen etiquetas."
+            },
+            {
+              "id": "B",
+              "text": "Escribir una función AWS Lambda que se ejecute diariamente para consultar la API de AWS Cost Explorer, mapear los costos y escribirlos en un bucket de Amazon S3."
+            },
+            {
+              "id": "C",
+              "text": "Crear un AWS Cost and Usage Report (CUR) y configurarlo para que se entregue en un bucket de Amazon S3 con la integración de Amazon Athena habilitada."
+            },
+            {
+              "id": "D",
+              "text": "Crear un trabajo ETL de AWS Glue para procesar los archivos CUR, aplicar la lógica de mapeo para los recursos sin etiquetas y cargar los datos en Amazon Redshift."
+            },
+            {
+              "id": "E",
+              "text": "Usar AWS Budgets para asignar recursos sin etiquetas a las unidades de negocio y exportar los informes a QuickSight."
+            }
+          ],
+          "explanation": "Las opciones A y C son correctas. AWS Cost Categories agrupa costos automáticamente basado en reglas. CUR con integración Athena permite a QuickSight consultar la información rápidamente sin desarrollo adicional de ETL."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-cost-003",
+      "examId": "SAP-C02",
+      "domainId": "domain-4",
+      "services": [
+        "Amazon EC2",
+        "Spot Instances",
+        "Auto Scaling"
+      ],
+      "type": "single-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "B"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "scenario": "A big data analytics company runs a massive parallel processing workload using a custom application on Amazon EC2. The workload is fault-tolerant, interruptible, and can be paused and resumed without data loss. The application requires at least 1000 vCPUs and 4000 GiB of memory to complete processing within the required timeframe. The company wants to minimize costs by using Amazon EC2 Spot Instances but has experienced significant delays in processing due to mass interruptions when a single instance type is reclaimed.",
+          "question": "What is the MOST cost-effective and resilient architectural approach for this workload?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create an Auto Scaling group with a mixed instances policy. Define a base capacity of On-Demand instances and use Spot Instances for the rest. Select the capacity-optimized allocation strategy."
+            },
+            {
+              "id": "B",
+              "text": "Create an EC2 Spot Fleet request with a target capacity defined in vCPUs. Configure multiple instance pools across different instance families and sizes that meet the memory-to-vCPU ratio. Use the price-capacity-optimized allocation strategy."
+            },
+            {
+              "id": "C",
+              "text": "Use AWS Batch with managed compute environments configured for Spot Instances. Set the allocation strategy to BEST_FIT to ensure the lowest possible cost."
+            },
+            {
+              "id": "D",
+              "text": "Create an Auto Scaling group using only Spot Instances. Use the lowest-price allocation strategy to ensure minimum cost and configure Spot Instance interruptions to hibernate the instances."
+            }
+          ],
+          "explanation": "Option B is correct. Spot Fleet with the `price-capacity-optimized` strategy provides the best balance of cost and lower interruption rates by selecting pools with the highest capacity and lowest price. Defining target capacity in vCPUs and mixing instance families and sizes greatly reduces the risk of mass interruptions."
+        },
+        "pt": {
+          "scenario": "Uma empresa de análise de big data executa uma enorme carga de trabalho de processamento paralelo usando um aplicativo personalizado no Amazon EC2. A carga de trabalho é tolerante a falhas, interrompível e pode ser pausada e retomada sem perda de dados. O aplicativo requer pelo menos 1000 vCPUs e 4000 GiB de memória para concluir o processamento dentro do prazo. A empresa quer minimizar os custos usando Instâncias Spot, mas experimentou atrasos significativos devido a interrupções em massa quando um único tipo de instância é recuperado.",
+          "question": "Qual é a abordagem arquitetônica MAIS econômica e resiliente para esta carga de trabalho?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar um Auto Scaling group com uma política de instâncias mistas. Definir uma capacidade base de instâncias Sob Demanda e usar Instâncias Spot para o resto. Selecionar a estratégia de alocação capacity-optimized."
+            },
+            {
+              "id": "B",
+              "text": "Criar uma solicitação de Spot Fleet do EC2 com uma capacidade alvo definida em vCPUs. Configurar vários pools de instâncias em diferentes famílias e tamanhos que atendam à proporção de memória para vCPU. Usar a estratégia de alocação price-capacity-optimized."
+            },
+            {
+              "id": "C",
+              "text": "Usar o AWS Batch com ambientes de computação gerenciados configurados para Instâncias Spot. Definir a estratégia de alocação como BEST_FIT para garantir o menor custo."
+            },
+            {
+              "id": "D",
+              "text": "Criar um Auto Scaling group usando apenas Instâncias Spot. Usar a estratégia lowest-price para garantir custo mínimo e configurar interrupções de Spot para hibernar as instâncias."
+            }
+          ],
+          "explanation": "A opção B é a correta. Spot Fleet com `price-capacity-optimized` equilibra o preço com a resiliência à interrupção. Diversificar famílias e tamanhos reduz o risco de desligamento simultâneo."
+        },
+        "es": {
+          "scenario": "Una empresa de análisis de big data ejecuta una carga de trabajo de procesamiento masivo en paralelo en Amazon EC2. La carga de trabajo es tolerante a fallas, interrumpible y se puede pausar sin pérdida de datos. La aplicación requiere al menos 1000 vCPUs y 4000 GiB de memoria. La empresa desea minimizar costos usando Instancias Spot, pero ha experimentado retrasos significativos debido a interrupciones masivas cuando se reclama un tipo de instancia único.",
+          "question": "¿Cuál es el enfoque arquitectónico MÁS rentable y resiliente para esta carga de trabajo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear un Auto Scaling group con una política de instancias mixtas. Definir una capacidad base de instancias On-Demand y usar Instancias Spot para el resto. Seleccionar la estrategia capacity-optimized."
+            },
+            {
+              "id": "B",
+              "text": "Crear una solicitud de EC2 Spot Fleet con una capacidad objetivo definida en vCPUs. Configurar múltiples grupos de instancias en diferentes familias y tamaños que cumplan con la proporción de memoria/vCPU. Usar la estrategia price-capacity-optimized."
+            },
+            {
+              "id": "C",
+              "text": "Usar AWS Batch con entornos de cómputo administrados para Instancias Spot. Configurar la estrategia de asignación en BEST_FIT para el costo más bajo."
+            },
+            {
+              "id": "D",
+              "text": "Crear un Auto Scaling group usando solo Instancias Spot. Usar la estrategia lowest-price para el costo mínimo y configurar las interrupciones para hibernar las instancias."
+            }
+          ],
+          "explanation": "La opción B es correcta. El Spot Fleet configurado con `price-capacity-optimized` y diversificando tipos/familias es la forma óptima de protegerse de interrupciones mientras se reduce el costo."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-cost-004",
+      "examId": "SAP-C02",
+      "domainId": "domain-4",
+      "services": [
+        "AWS Budgets",
+        "Amazon EC2 Auto Scaling"
+      ],
+      "type": "single-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "B"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "scenario": "A company hosts a multi-tier web application using Amazon EC2 Auto Scaling groups for the web and application tiers. The FinOps team has defined a strict monthly budget for the AWS account. If the forecasted cost exceeds the monthly budget by 10%, the company wants to automatically restrict the Auto Scaling groups from scaling out any further, while maintaining the current capacity.",
+          "question": "How can a Solutions Architect automate this requirement?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create an AWS Budget with a forecasted cost threshold of 110%. Configure a Budget Action to apply a custom IAM policy to the Auto Scaling service role that denies autoscaling:SetDesiredCapacity."
+            },
+            {
+              "id": "B",
+              "text": "Create an AWS Budget with a forecasted cost threshold of 110%. Configure a Budget Action that targets the specific Auto Scaling groups and sets the MaxSize to the current DesiredCapacity."
+            },
+            {
+              "id": "C",
+              "text": "Create an Amazon CloudWatch alarm based on the EstimatedCharges metric. Trigger an AWS Lambda function that modifies the Auto Scaling groups to suspend the Launch process."
+            },
+            {
+              "id": "D",
+              "text": "Use AWS Cost Anomaly Detection to trigger an Amazon SNS topic when costs spike. Subscribe an AWS Systems Manager Automation runbook to the SNS topic to reduce the Auto Scaling group max size."
+            }
+          ],
+          "explanation": "Option B is correct. AWS Budgets allows configuring Budget Actions that directly integrate with resources like IAM, RDS, and EC2 Auto Scaling. Configuring an action to set the MaxSize to the current DesiredCapacity perfectly meets the requirement to prevent further scale-out while maintaining the currently running instances."
+        },
+        "pt": {
+          "scenario": "Uma empresa hospeda uma aplicação web em várias camadas usando grupos do Amazon EC2 Auto Scaling. A equipe de FinOps definiu um orçamento mensal rigoroso para a conta AWS. Se o custo previsto exceder o orçamento mensal em 10%, a empresa deseja restringir automaticamente o escalonamento adicional dos grupos de Auto Scaling, mantendo a capacidade atual.",
+          "question": "Como um Arquiteto de Soluções pode automatizar esse requisito?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar um AWS Budget com um limite de custo previsto de 110%. Configurar uma Budget Action para aplicar uma política IAM personalizada à role de serviço do Auto Scaling que negue autoscaling:SetDesiredCapacity."
+            },
+            {
+              "id": "B",
+              "text": "Criar um AWS Budget com um limite de custo previsto de 110%. Configurar uma Budget Action que tenha como alvo os grupos de Auto Scaling específicos e defina o MaxSize para o DesiredCapacity atual."
+            },
+            {
+              "id": "C",
+              "text": "Criar um alarme do Amazon CloudWatch baseado na métrica EstimatedCharges. Acionar uma função AWS Lambda que modifique os grupos de Auto Scaling para suspender o processo Launch."
+            },
+            {
+              "id": "D",
+              "text": "Usar a Detecção de Anomalias de Custo da AWS para acionar um tópico do Amazon SNS. Assinar um runbook de Automação do AWS Systems Manager no tópico SNS para reduzir o tamanho máximo do Auto Scaling."
+            }
+          ],
+          "explanation": "A opção B está correta. As Ações de Orçamento da AWS integram-se nativamente com o Auto Scaling para controlar atributos como o MaxSize, sem a necessidade de código personalizado ou Lambdas."
+        },
+        "es": {
+          "scenario": "Una empresa aloja una aplicación web de varios niveles usando grupos de Auto Scaling de Amazon EC2. El equipo de FinOps ha definido un presupuesto mensual estricto. Si el costo previsto excede el presupuesto mensual en un 10%, la empresa desea restringir automáticamente el escalado horizontal de los grupos de Auto Scaling, mientras se mantiene la capacidad actual.",
+          "question": "¿Cómo puede automatizar este requisito un Arquitecto de Soluciones?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear un AWS Budget con un umbral de costo previsto del 110%. Configurar una Budget Action para aplicar una política IAM que deniegue autoscaling:SetDesiredCapacity."
+            },
+            {
+              "id": "B",
+              "text": "Crear un AWS Budget con un umbral de costo previsto del 110%. Configurar una Budget Action que apunte a los grupos de Auto Scaling y establezca el MaxSize en el DesiredCapacity actual."
+            },
+            {
+              "id": "C",
+              "text": "Crear una alarma de Amazon CloudWatch basada en la métrica EstimatedCharges. Invocar una función AWS Lambda que suspenda el proceso Launch."
+            },
+            {
+              "id": "D",
+              "text": "Usar AWS Cost Anomaly Detection para activar un tema de Amazon SNS. Suscribir un runbook de AWS Systems Manager Automation al tema SNS."
+            }
+          ],
+          "explanation": "La opción B es correcta. Las Acciones de Presupuesto de AWS admiten el control directo de los grupos de Auto Scaling, permitiendo fijar el MaxSize a la capacidad deseada actual para detener futuras expansiones automáticamente."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-cost-005",
+      "examId": "SAP-C02",
+      "domainId": "domain-4",
+      "services": [
+        "Compute Optimizer",
+        "Amazon EBS",
+        "AWS Systems Manager"
+      ],
+      "type": "single-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "C"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "scenario": "A company migrated thousands of EC2 instances and attached EBS volumes to AWS over the last year. They are using general purpose SSD (gp2) and provisioned IOPS SSD (io1) volumes. A recent FinOps audit revealed that storage costs are significantly higher than expected. The Solutions Architect must implement a strategy to analyze EBS volume usage, identify underutilized volumes, and automate the optimization of volume types and IOPS settings without impacting application performance.",
+          "question": "Which solution requires the LEAST operational effort?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Enable AWS Compute Optimizer for EBS volumes. Use the recommendations to manually modify the volume types from gp2 to gp3 and adjust io1 IOPS."
+            },
+            {
+              "id": "B",
+              "text": "Create an AWS Systems Manager Automation runbook to query CloudWatch metrics for all EBS volumes. Identify volumes with low IOPS and use the EC2 ModifyVolume API to change them to sc1."
+            },
+            {
+              "id": "C",
+              "text": "Enable AWS Compute Optimizer. Use AWS Systems Manager Quick Setup to configure and deploy an Automation runbook that automatically implements Compute Optimizer recommendations for EBS volumes across the organization."
+            },
+            {
+              "id": "D",
+              "text": "Use AWS Trusted Advisor to identify underutilized EBS volumes. Create an Amazon EventBridge rule to trigger an AWS Lambda function that converts underutilized gp2 volumes to cold HDD (sc1)."
+            }
+          ],
+          "explanation": "Option C is correct. AWS Systems Manager provides out-of-the-box integration with AWS Compute Optimizer via runbooks to automatically apply storage and compute optimization recommendations across accounts and regions. This minimizes custom scripting and operational overhead while safely transitioning volumes (e.g., from gp2 to gp3 or adjusting io1/io2)."
+        },
+        "pt": {
+          "scenario": "Uma empresa migrou milhares de instâncias EC2 e volumes EBS anexados para a AWS no último ano. Eles estão usando volumes SSD de uso geral (gp2) e IOPS provisionadas (io1). Uma auditoria recente de FinOps revelou que os custos de armazenamento são maiores que o esperado. O Arquiteto de Soluções deve implementar uma estratégia para analisar o uso do volume EBS, identificar volumes subutilizados e automatizar a otimização de tipos de volume e IOPS sem impactar o desempenho do aplicativo.",
+          "question": "Qual solução requer o MENOR esforço operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar o AWS Compute Optimizer para volumes EBS. Usar as recomendações para modificar manualmente os tipos de volume de gp2 para gp3 e ajustar IOPS de io1."
+            },
+            {
+              "id": "B",
+              "text": "Criar um runbook de Automação do AWS Systems Manager para consultar métricas do CloudWatch. Identificar volumes com baixas IOPS e usar a API EC2 ModifyVolume para alterá-los para sc1."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar o AWS Compute Optimizer. Usar o AWS Systems Manager Quick Setup para configurar e implantar um runbook de Automação que implementa automaticamente as recomendações do Compute Optimizer para volumes EBS em toda a organização."
+            },
+            {
+              "id": "D",
+              "text": "Usar o AWS Trusted Advisor para identificar volumes EBS subutilizados. Criar uma regra do Amazon EventBridge para acionar uma função Lambda que converta volumes gp2 subutilizados em HDD frio (sc1)."
+            }
+          ],
+          "explanation": "A opção C está correta. O Systems Manager se integra nativamente ao Compute Optimizer para aplicar recomendações automaticamente (como conversões de gp2 para gp3), exigindo o menor esforço operacional."
+        },
+        "es": {
+          "scenario": "Una empresa migró miles de instancias EC2 y volúmenes EBS a AWS el último año. Utilizan volúmenes de SSD de uso general (gp2) y de IOPS provisionadas (io1). Una auditoría de FinOps reciente reveló que los costos de almacenamiento son más altos de lo esperado. El Arquitecto de Soluciones debe implementar una estrategia para analizar el uso del volumen de EBS, identificar volúmenes subutilizados y automatizar la optimización de los tipos de volumen sin afectar el rendimiento.",
+          "question": "¿Qué solución requiere el MENOR esfuerzo operativo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar AWS Compute Optimizer para volúmenes de EBS. Usar las recomendaciones para modificar manualmente los tipos de volumen de gp2 a gp3."
+            },
+            {
+              "id": "B",
+              "text": "Crear un runbook de AWS Systems Manager Automation para consultar métricas de CloudWatch y cambiar los volúmenes de bajas IOPS a sc1."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar AWS Compute Optimizer. Usar AWS Systems Manager Quick Setup para configurar e implementar un runbook de automatización que aplique automáticamente las recomendaciones a los volúmenes de EBS en toda la organización."
+            },
+            {
+              "id": "D",
+              "text": "Usar AWS Trusted Advisor para identificar volúmenes EBS subutilizados y convertirlos a sc1 usando una regla de EventBridge y Lambda."
+            }
+          ],
+          "explanation": "La opción C es correcta. Systems Manager Quick Setup proporciona integraciones preconstruidas con Compute Optimizer para aplicar sus recomendaciones a gran escala de forma automática."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-gov-001",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Organizations",
+        "AWS IAM"
+      ],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "correctAnswers": [
+        "A",
+        "D"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A company has a multi-account AWS environment managed by AWS Organizations. The cloud center of excellence wants to enforce a Service Control Policy (SCP) that denies the creation of any resources outside of `us-east-1` and `us-west-2`. However, the policy must not impact the functionality of AWS global services such as AWS IAM, Amazon CloudFront, and Amazon Route 53. Additionally, an IAM role named `GlobalAdminRole` deployed in all member accounts must be exempt from this restriction so it can deploy global infrastructure.\n\nWhich combination of elements within the SCP statement will meet these requirements? (Select TWO.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use an `Effect: Deny` statement with a `NotAction` element listing the actions of the global services to exclude them from the region restriction."
+            },
+            {
+              "id": "B",
+              "text": "Use an `Effect: Deny` statement with an `Action: *` element, and rely on AWS Organizations' default exemptions for all AWS global services."
+            },
+            {
+              "id": "C",
+              "text": "Use the `StringEquals` condition key for `aws:RequestedRegion` with values `us-east-1` and `us-west-2`."
+            },
+            {
+              "id": "D",
+              "text": "Include a condition using the `ArnNotLike` condition operator for the `aws:PrincipalArn` key with the value `arn:aws:iam::*:role/GlobalAdminRole`."
+            },
+            {
+              "id": "E",
+              "text": "Include a condition using the `StringNotLike` condition operator for the `aws:PrincipalArn` key with the value `GlobalAdminRole`."
+            }
+          ],
+          "explanation": "To restrict regions while allowing global services and specific roles, you must use a `Deny` policy. The `NotAction` element (Option A) is used to exempt global services from the `Deny` rule, as AWS Organizations does not automatically exempt them all by default if `Action: *` is used. The `ArnNotLike` condition (Option D) is used with `aws:PrincipalArn` to exempt the specific IAM role from the `Deny` effect by matching its ARN pattern across all accounts."
+        },
+        "es": {
+          "question": "Una empresa tiene un entorno de AWS con múltiples cuentas gestionado por AWS Organizations. El centro de excelencia en la nube desea aplicar una Service Control Policy (SCP) que deniegue la creación de cualquier recurso fuera de `us-east-1` y `us-west-2`. Sin embargo, la política no debe afectar la funcionalidad de los servicios globales de AWS como AWS IAM, Amazon CloudFront y Amazon Route 53. Además, un rol de IAM llamado `GlobalAdminRole` implementado en todas las cuentas miembro debe estar exento de esta restricción para que pueda implementar infraestructura global.\n\n¿Qué combinación de elementos dentro de la declaración de la SCP cumplirá con estos requisitos? (Seleccione DOS.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Usar una declaración `Effect: Deny` con un elemento `NotAction` que enumere las acciones de los servicios globales para excluirlos de la restricción de región."
+            },
+            {
+              "id": "B",
+              "text": "Usar una declaración `Effect: Deny` con un elemento `Action: *`, y depender de las exenciones predeterminadas de AWS Organizations para todos los servicios globales de AWS."
+            },
+            {
+              "id": "C",
+              "text": "Usar la clave de condición `StringEquals` para `aws:RequestedRegion` con los valores `us-east-1` y `us-west-2`."
+            },
+            {
+              "id": "D",
+              "text": "Incluir una condición usando el operador `ArnNotLike` para la clave `aws:PrincipalArn` con el valor `arn:aws:iam::*:role/GlobalAdminRole`."
+            },
+            {
+              "id": "E",
+              "text": "Incluir una condición usando el operador `StringNotLike` para la clave `aws:PrincipalArn` con el valor `GlobalAdminRole`."
+            }
+          ],
+          "explanation": "Para restringir las regiones permitiendo al mismo tiempo los servicios globales y roles específicos, debe utilizar una política `Deny`. El elemento `NotAction` (Opción A) se usa para eximir a los servicios globales de la regla `Deny`, ya que AWS Organizations no los exime automáticamente por defecto si se usa `Action: *`. La condición `ArnNotLike` (Opción D) se usa con `aws:PrincipalArn` para eximir al rol de IAM específico del efecto `Deny` al coincidir con el patrón de su ARN en todas las cuentas."
+        },
+        "pt": {
+          "question": "Uma empresa possui um ambiente AWS com várias contas gerenciado pelo AWS Organizations. O centro de excelência em nuvem deseja aplicar uma Service Control Policy (SCP) que negue a criação de quaisquer recursos fora de `us-east-1` e `us-west-2`. No entanto, a política não deve impactar a funcionalidade de serviços globais da AWS, como AWS IAM, Amazon CloudFront e Amazon Route 53. Além disso, uma role do IAM chamada `GlobalAdminRole` implantada em todas as contas membro deve ser isenta dessa restrição para poder implantar infraestrutura global.\n\nQual combinação de elementos dentro da declaração da SCP atenderá a esses requisitos? (Selecione DUAS.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região."
+            },
+            {
+              "id": "B",
+              "text": "Usar uma declaração `Effect: Deny` com um elemento `Action: *` e depender das isenções padrão do AWS Organizations para todos os serviços globais da AWS."
+            },
+            {
+              "id": "C",
+              "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`."
+            },
+            {
+              "id": "D",
+              "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`."
+            },
+            {
+              "id": "E",
+              "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`."
+            }
+          ],
+          "explanation": "Para restringir regiões enquanto permite serviços globais e roles específicas, você deve usar uma política de `Deny`. O elemento `NotAction` (Opção A) é usado para isentar serviços globais da regra de `Deny`, pois o AWS Organizations não os isenta automaticamente por padrão se `Action: *` for usado. A condição `ArnNotLike` (Opção D) é usada com `aws:PrincipalArn` para isentar a role do IAM específica do efeito de `Deny`, correspondendo ao seu padrão de ARN em todas as contas."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-gov-002",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Control Tower",
+        "AWS Config"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "B"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A company is setting up a landing zone using AWS Control Tower. They have a strict compliance requirement that every Amazon S3 bucket created in any account must have an object lock configuration enabled. AWS Control Tower does not natively provide a mandatory guardrail for this specific requirement. \n\nHow can a Solutions Architect automate the enforcement of this rule across all new and existing accounts within the Control Tower environment with the LEAST operational overhead?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create an AWS CloudFormation StackSet at the organization level that deploys an AWS Config managed rule `s3-bucket-object-lock-enabled` and a remediation action using AWS Systems Manager Automation to all accounts."
+            },
+            {
+              "id": "B",
+              "text": "Use the Customizations for AWS Control Tower (CfCT) pipeline to deploy a custom AWS Config rule and a corresponding AWS Systems Manager Automation document for remediation to all accounts using AWS CloudFormation templates."
+            },
+            {
+              "id": "C",
+              "text": "Enable AWS Security Hub and use its automated response and remediation capabilities to enforce S3 object lock across all Control Tower managed accounts."
+            },
+            {
+              "id": "D",
+              "text": "Modify the AWS Control Tower landing zone configuration directly to include a custom SCP that denies `s3:CreateBucket` unless the `x-amz-bucket-object-lock-enabled` header is set to true."
+            }
+          ],
+          "explanation": "Customizations for AWS Control Tower (CfCT) is the recommended framework for deploying custom guardrails, AWS Config rules, and resources (like CloudFormation templates) to accounts governed by Control Tower. It automates deployment to existing and newly vended accounts automatically via a CI/CD pipeline, minimizing operational overhead."
+        },
+        "es": {
+          "question": "Una empresa está configurando una landing zone utilizando AWS Control Tower. Tienen un estricto requisito de cumplimiento de que cada bucket de Amazon S3 creado en cualquier cuenta debe tener habilitada una configuración de object lock. AWS Control Tower no proporciona de forma nativa un guardrail obligatorio para este requisito específico.\n\n¿Cómo puede un Arquitecto de Soluciones automatizar la aplicación de esta regla en todas las cuentas nuevas y existentes dentro del entorno de Control Tower con la MENOR carga operativa?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear un AWS CloudFormation StackSet a nivel de organización que implemente una regla administrada de AWS Config `s3-bucket-object-lock-enabled` y una acción de remediación usando AWS Systems Manager Automation en todas las cuentas."
+            },
+            {
+              "id": "B",
+              "text": "Usar la canalización de Customizations for AWS Control Tower (CfCT) para implementar una regla personalizada de AWS Config y un documento correspondiente de AWS Systems Manager Automation para la remediación en todas las cuentas usando plantillas de AWS CloudFormation."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar AWS Security Hub y usar sus capacidades de respuesta automatizada y remediación para imponer el object lock de S3 en todas las cuentas administradas por Control Tower."
+            },
+            {
+              "id": "D",
+              "text": "Modificar la configuración de la landing zone de AWS Control Tower directamente para incluir una SCP personalizada que deniegue `s3:CreateBucket` a menos que el encabezado `x-amz-bucket-object-lock-enabled` esté configurado en true."
+            }
+          ],
+          "explanation": "Customizations for AWS Control Tower (CfCT) es el marco recomendado para implementar guardrails personalizados, reglas de AWS Config y recursos (como plantillas de CloudFormation) en cuentas regidas por Control Tower. Automatiza la implementación en cuentas existentes y recién creadas automáticamente a través de una canalización CI/CD, minimizando la carga operativa."
+        },
+        "pt": {
+          "question": "Uma empresa está configurando uma landing zone usando o AWS Control Tower. Eles têm um requisito estrito de conformidade de que cada bucket do Amazon S3 criado em qualquer conta deve ter uma configuração de object lock ativada. O AWS Control Tower não fornece nativamente um guardrail obrigatório para esse requisito específico.\n\nComo um Arquiteto de Soluções pode automatizar a aplicação dessa regra em todas as contas novas e existentes dentro do ambiente do Control Tower com a MENOR sobrecarga operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar um AWS CloudFormation StackSet no nível da organização que implante uma regra gerenciada do AWS Config `s3-bucket-object-lock-enabled` e uma ação de remediação usando o AWS Systems Manager Automation em todas as contas."
+            },
+            {
+              "id": "B",
+              "text": "Usar o pipeline Customizations for AWS Control Tower (CfCT) para implantar uma regra personalizada do AWS Config e um documento correspondente do AWS Systems Manager Automation para remediação em todas as contas usando modelos do AWS CloudFormation."
+            },
+            {
+              "id": "C",
+              "text": "Ativar o AWS Security Hub e usar seus recursos de resposta automatizada e remediação para impor o object lock do S3 em todas as contas gerenciadas pelo Control Tower."
+            },
+            {
+              "id": "D",
+              "text": "Modificar a configuração da landing zone do AWS Control Tower diretamente para incluir uma SCP personalizada que negue `s3:CreateBucket` a menos que o cabeçalho `x-amz-bucket-object-lock-enabled` seja definido como true."
+            }
+          ],
+          "explanation": "O Customizations for AWS Control Tower (CfCT) é a estrutura recomendada para implantar guardrails personalizados, regras do AWS Config e recursos (como modelos do CloudFormation) em contas governadas pelo Control Tower. Ele automatiza a implantação para contas existentes e recém-criadas automaticamente por meio de um pipeline CI/CD, minimizando a sobrecarga operacional."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-gov-003",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Service Catalog",
+        "AWS Organizations"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A large enterprise uses AWS Organizations and AWS Service Catalog to distribute standardized IT services. The central IT team operates from a shared services account and creates Service Catalog portfolios. They want to share these portfolios with all member accounts in a specific Organizational Unit (OU) without having to manually manage the sharing when new accounts are added or removed from the OU. They also want to ensure that IAM principals in the member accounts can only provision products if they have the appropriate local IAM permissions matching the product's launch constraints.\n\nWhich approach satisfies these requirements with the LEAST operational overhead?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Enable AWS Service Catalog organization sharing. Share the portfolio with the target OU. Enable Principal Name Sharing so that local IAM roles with the same name can access the portfolio automatically."
+            },
+            {
+              "id": "B",
+              "text": "Use an AWS Lambda function triggered by AWS CloudTrail `CreateAccount` events to automatically share the portfolio to new member accounts and import it."
+            },
+            {
+              "id": "C",
+              "text": "Share the portfolio to the entire organization. Create an SCP applied to the OU that allows `servicecatalog:ProvisionProduct`, and apply another SCP to other OUs denying it."
+            },
+            {
+              "id": "D",
+              "text": "Enable AWS Service Catalog organization sharing. Share the portfolio with the target OU. Use AWS CloudFormation StackSets to deploy local IAM roles in the member accounts and map them to the portfolio using a local Portfolio Share."
+            }
+          ],
+          "explanation": "AWS Service Catalog supports Organizational Unit (OU) sharing, which automatically grants access to existing and new accounts within the OU. By enabling Principal Name Sharing, the central account can associate principals (like roles or groups) to the portfolio by name, and when shared to member accounts, any local principal with the exact matching name will automatically have access, eliminating the need to manually map roles in each child account."
+        },
+        "es": {
+          "question": "Una gran empresa utiliza AWS Organizations y AWS Service Catalog para distribuir servicios de TI estandarizados. El equipo central de TI opera desde una cuenta de servicios compartidos y crea portafolios de Service Catalog. Desean compartir estos portafolios con todas las cuentas miembro en una Unidad Organizativa (OU) específica sin tener que gestionar manualmente el uso compartido cuando se agregan o eliminan nuevas cuentas de la OU. También quieren asegurarse de que los principales de IAM en las cuentas miembro solo puedan aprovisionar productos si tienen los permisos de IAM locales adecuados que coincidan con las restricciones de lanzamiento del producto.\n\n¿Qué enfoque satisface estos requisitos con la MENOR carga operativa?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Habilitar el uso compartido de la organización de AWS Service Catalog. Compartir el portafolio con la OU de destino. Habilitar Principal Name Sharing para que los roles de IAM locales con el mismo nombre puedan acceder al portafolio automáticamente."
+            },
+            {
+              "id": "B",
+              "text": "Usar una función de AWS Lambda activada por eventos `CreateAccount` de AWS CloudTrail para compartir automáticamente el portafolio a nuevas cuentas miembro e importarlo."
+            },
+            {
+              "id": "C",
+              "text": "Compartir el portafolio con toda la organización. Crear una SCP aplicada a la OU que permita `servicecatalog:ProvisionProduct`, y aplicar otra SCP a otras OUs denegándolo."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar el uso compartido de la organización de AWS Service Catalog. Compartir el portafolio con la OU de destino. Usar AWS CloudFormation StackSets para implementar roles de IAM locales en las cuentas miembro y asignarlos al portafolio usando un Portfolio Share local."
+            }
+          ],
+          "explanation": "AWS Service Catalog admite el uso compartido por Unidad Organizativa (OU), lo que otorga acceso automáticamente a las cuentas nuevas y existentes dentro de la OU. Al habilitar Principal Name Sharing, la cuenta central puede asociar principales (como roles o grupos) al portafolio por nombre, y cuando se comparte con las cuentas miembro, cualquier principal local con el nombre exacto coincidente tendrá acceso automáticamente, eliminando la necesidad de asignar roles manualmente en cada cuenta secundaria."
+        },
+        "pt": {
+          "question": "Uma grande empresa usa o AWS Organizations e o AWS Service Catalog para distribuir serviços de TI padronizados. A equipe central de TI opera a partir de uma conta de serviços compartilhados e cria portfólios do Service Catalog. Eles desejam compartilhar esses portfólios com todas as contas membro em uma Unidade Organizacional (OU) específica sem precisar gerenciar manualmente o compartilhamento quando novas contas são adicionadas ou removidas da OU. Eles também desejam garantir que os principais do IAM nas contas membro só possam provisionar produtos se tiverem as permissões locais do IAM apropriadas correspondentes às restrições de inicialização do produto.\n\nQual abordagem atende a esses requisitos com a MENOR sobrecarga operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Ativar o Principal Name Sharing para que as roles locais do IAM com o mesmo nome possam acessar o portfólio automaticamente."
+            },
+            {
+              "id": "B",
+              "text": "Usar uma função do AWS Lambda acionada por eventos `CreateAccount` do AWS CloudTrail para compartilhar automaticamente o portfólio para novas contas membro e importá-lo."
+            },
+            {
+              "id": "C",
+              "text": "Compartilhar o portfólio para toda a organização. Criar uma SCP aplicada à OU que permita `servicecatalog:ProvisionProduct` e aplicar outra SCP a outras OUs negando isso."
+            },
+            {
+              "id": "D",
+              "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Usar o AWS CloudFormation StackSets para implantar roles locais do IAM nas contas membro e mapeá-las para o portfólio usando um Portfolio Share local."
+            }
+          ],
+          "explanation": "O AWS Service Catalog oferece suporte ao compartilhamento de Unidade Organizacional (OU), que concede acesso automaticamente a contas novas e existentes dentro da OU. Ao ativar o Principal Name Sharing, a conta central pode associar principais (como roles ou grupos) ao portfólio por nome, e quando compartilhado com contas membro, qualquer principal local com o nome exato correspondente terá acesso automaticamente, eliminando a necessidade de mapear roles manualmente em cada conta filha."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-gov-004",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Config",
+        "AWS Organizations"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "D"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A multinational corporation has hundreds of AWS accounts managed via AWS Organizations. The central governance team needs a consolidated view of compliance against the CIS AWS Foundations Benchmark across all accounts. They also need the ability to deploy organizational-wide custom compliance rules that are not part of the standard CIS framework, and they want these rules to automatically apply to any newly created account.\n\nWhat is the MOST operationally efficient solution?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy an AWS Config Aggregator in a central governance account. Use AWS Systems Manager Quick Setup to deploy AWS Config and the CIS conformance pack to all accounts. Deploy custom rules via CloudFormation StackSets targeting the root of the organization."
+            },
+            {
+              "id": "B",
+              "text": "Enable AWS Security Hub in the central account and integrate it with AWS Organizations to view CIS compliance. Deploy an organization-level conformance pack containing the custom AWS Config rules from the master account."
+            },
+            {
+              "id": "C",
+              "text": "Create a multi-account multi-region AWS Config Aggregator in the central account. Use AWS Lambda triggered by EventBridge to deploy the CIS conformance pack and custom rules to new accounts via AWS API calls."
+            },
+            {
+              "id": "D",
+              "text": "Deploy an organization-level conformance pack that includes both the CIS rules and the custom rules from the AWS Organizations management account or a delegated administrator account. Use an AWS Config Aggregator in the delegated administrator account to visualize compliance."
+            }
+          ],
+          "explanation": "Organization-level conformance packs allow you to deploy a collection of AWS Config rules and remediation actions across an entire AWS Organization or specific OUs. By packaging both the CIS rules and the custom rules into a single conformance pack deployed at the organization level, new accounts automatically receive these rules. Using an AWS Config Aggregator in a delegated administrator account provides the required consolidated view of compliance."
+        },
+        "es": {
+          "question": "Una corporación multinacional tiene cientos de cuentas de AWS gestionadas a través de AWS Organizations. El equipo central de gobernanza necesita una vista consolidada del cumplimiento frente al CIS AWS Foundations Benchmark en todas las cuentas. También necesitan la capacidad de implementar reglas de cumplimiento personalizadas a nivel de organización que no forman parte del marco CIS estándar, y quieren que estas reglas se apliquen automáticamente a cualquier cuenta de nueva creación.\n\n¿Cuál es la solución MÁS eficiente desde el punto de vista operativo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar un Agregador de AWS Config en una cuenta central de gobernanza. Usar AWS Systems Manager Quick Setup para implementar AWS Config y el conformance pack CIS en todas las cuentas. Implementar reglas personalizadas a través de CloudFormation StackSets dirigidas a la raíz de la organización."
+            },
+            {
+              "id": "B",
+              "text": "Habilitar AWS Security Hub en la cuenta central e integrarlo con AWS Organizations para ver el cumplimiento de CIS. Implementar un conformance pack a nivel de organización que contenga las reglas personalizadas de AWS Config desde la cuenta maestra."
+            },
+            {
+              "id": "C",
+              "text": "Crear un Agregador de AWS Config de múltiples cuentas y múltiples regiones en la cuenta central. Usar AWS Lambda activado por EventBridge para implementar el conformance pack CIS y las reglas personalizadas en las cuentas nuevas a través de llamadas a la API de AWS."
+            },
+            {
+              "id": "D",
+              "text": "Implementar un conformance pack a nivel de organización que incluya tanto las reglas CIS como las reglas personalizadas desde la cuenta de administración de AWS Organizations o una cuenta de administrador delegada. Usar un Agregador de AWS Config en la cuenta de administrador delegada para visualizar el cumplimiento."
+            }
+          ],
+          "explanation": "Los conformance packs a nivel de organización le permiten implementar una colección de reglas de AWS Config y acciones de remediación en toda una organización de AWS u OUs específicas. Al empaquetar tanto las reglas CIS como las reglas personalizadas en un solo conformance pack implementado a nivel de organización, las nuevas cuentas reciben automáticamente estas reglas. El uso de un Agregador de AWS Config en una cuenta de administrador delegada proporciona la vista consolidada requerida del cumplimiento."
+        },
+        "pt": {
+          "question": "Uma corporação multinacional tem centenas de contas da AWS gerenciadas pelo AWS Organizations. A equipe central de governança precisa de uma visão consolidada da conformidade com o CIS AWS Foundations Benchmark em todas as contas. Eles também precisam da capacidade de implantar regras de conformidade personalizadas em toda a organização que não fazem parte da estrutura padrão do CIS, e desejam que essas regras se apliquem automaticamente a qualquer conta recém-criada.\n\nQual é a solução MAIS eficiente operacionalmente?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar um AWS Config Aggregator em uma conta central de governança. Usar o AWS Systems Manager Quick Setup para implantar o AWS Config e o conformance pack do CIS em todas as contas. Implantar regras personalizadas por meio do CloudFormation StackSets visando a raiz da organização."
+            },
+            {
+              "id": "B",
+              "text": "Ativar o AWS Security Hub na conta central e integrá-lo ao AWS Organizations para visualizar a conformidade com o CIS. Implantar um conformance pack de nível organizacional contendo as regras personalizadas do AWS Config a partir da conta mestre."
+            },
+            {
+              "id": "C",
+              "text": "Criar um AWS Config Aggregator para várias contas e várias regiões na conta central. Usar o AWS Lambda acionado pelo EventBridge para implantar o conformance pack do CIS e regras personalizadas em novas contas por meio de chamadas de API da AWS."
+            },
+            {
+              "id": "D",
+              "text": "Implantar um conformance pack de nível organizacional que inclua as regras do CIS e as regras personalizadas da conta de gerenciamento do AWS Organizations ou de uma conta de administrador delegada. Usar um AWS Config Aggregator na conta de administrador delegada para visualizar a conformidade."
+            }
+          ],
+          "explanation": "Os conformance packs em nível de organização permitem que você implante uma coleção de regras do AWS Config e ações de remediação em toda uma Organização da AWS ou em OUs específicas. Ao empacotar tanto as regras do CIS quanto as regras personalizadas em um único conformance pack implantado em nível de organização, novas contas recebem automaticamente essas regras. O uso de um AWS Config Aggregator em uma conta de administrador delegada fornece a visualização consolidada necessária de conformidade."
+        }
+      }
+    },
+    {
+      "id": "sap-c02-gov-005",
+      "examId": "SAP-C02",
+      "domainId": "domain-1",
+      "services": [
+        "AWS Organizations",
+        "AWS IAM"
+      ],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "correctAnswers": [
+        "A",
+        "D"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A company is implementing Attribute-Based Access Control (ABAC) across its AWS Organizations environment. The central security team wants to strictly enforce that developers can only start or stop Amazon EC2 instances if the instance's `Project` tag exactly matches the `Project` tag on the developer's IAM role. Furthermore, they want to ensure that no one can modify or remove the `Project` tag on any existing EC2 instance, except for an administrative IAM role named `TagAdmin`.\n\nWhich combination of Service Control Policy (SCP) statements will globally enforce these security constraints? (Select TWO.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Add an SCP statement with `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, and `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`."
+            },
+            {
+              "id": "B",
+              "text": "Add an SCP statement with `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "C",
+              "text": "Attach an IAM policy to the developers' roles with `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "D",
+              "text": "Add an SCP statement with `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "E",
+              "text": "Add an SCP statement with `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`."
+            }
+          ],
+          "explanation": "SCPs are used to enforce maximum available permissions globally across accounts. Option D enforces the ABAC rule globally: it explicitly denies starting/stopping instances if the `Project` tag on the resource does not match the `Project` tag on the IAM principal. Option A correctly prevents anyone except the `TagAdmin` role from altering tags on instances that already have the `Project` tag present (`Null: false`). Option C is an IAM policy, not an SCP, and B is an SCP but `Allow` in SCPs only establishes bounds, it does not grant permissions directly or override overly permissive local IAM policies."
+        },
+        "es": {
+          "question": "Una empresa está implementando el Control de Acceso Basado en Atributos (ABAC) en todo su entorno de AWS Organizations. El equipo central de seguridad quiere imponer estrictamente que los desarrolladores solo puedan iniciar o detener instancias de Amazon EC2 si la etiqueta `Project` de la instancia coincide exactamente con la etiqueta `Project` en el rol de IAM del desarrollador. Además, quieren asegurarse de que nadie pueda modificar o eliminar la etiqueta `Project` en ninguna instancia de EC2 existente, a excepción de un rol de IAM administrativo llamado `TagAdmin`.\n\n¿Qué combinación de declaraciones de la Service Control Policy (SCP) aplicará globalmente estas restricciones de seguridad? (Seleccione DOS.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, y `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`."
+            },
+            {
+              "id": "B",
+              "text": "Añadir una declaración SCP con `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "C",
+              "text": "Adjuntar una política de IAM a los roles de los desarrolladores con `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "D",
+              "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "E",
+              "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`."
+            }
+          ],
+          "explanation": "Las SCP se utilizan para hacer cumplir los permisos máximos disponibles de forma global en todas las cuentas. La opción D aplica la regla ABAC globalmente: deniega explícitamente el inicio/detención de instancias si la etiqueta `Project` en el recurso no coincide con la etiqueta `Project` en el principal de IAM. La opción A evita correctamente que cualquier persona que no sea el rol `TagAdmin` altere las etiquetas en instancias que ya tienen la etiqueta `Project` presente (`Null: false`). La opción C es una política de IAM, no una SCP, y B es una SCP pero el `Allow` en las SCP solo establece límites, no otorga permisos directamente ni anula políticas locales de IAM excesivamente permisivas."
+        },
+        "pt": {
+          "question": "Uma empresa está implementando o Controle de Acesso Baseado em Atributos (ABAC) em todo o seu ambiente do AWS Organizations. A equipe central de segurança deseja impor estritamente que os desenvolvedores só possam iniciar ou parar instâncias do Amazon EC2 se a tag `Project` da instância corresponder exatamente à tag `Project` na role do IAM do desenvolvedor. Além disso, eles desejam garantir que ninguém possa modificar ou remover a tag `Project` em nenhuma instância do EC2 existente, exceto uma role do IAM administrativa chamada `TagAdmin`.\n\nQual combinação de declarações da Service Control Policy (SCP) aplicará globalmente essas restrições de segurança? (Selecione DUAS.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, e `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`."
+            },
+            {
+              "id": "B",
+              "text": "Adicionar uma declaração SCP com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "C",
+              "text": "Anexar uma política do IAM às roles dos desenvolvedores com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "D",
+              "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+            },
+            {
+              "id": "E",
+              "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`."
+            }
+          ],
+          "explanation": "As SCPs são usadas para impor permissões máximas disponíveis globalmente em todas as contas. A Opção D impõe a regra ABAC globalmente: ela nega explicitamente o início/parada de instâncias se a tag `Project` no recurso não corresponder à tag `Project` no principal do IAM. A Opção A impede corretamente que qualquer pessoa, exceto a role `TagAdmin`, altere as tags em instâncias que já têm a tag `Project` presente (`Null: false`). A Opção C é uma política do IAM, não uma SCP, e B é uma SCP, mas `Allow` em SCPs apenas estabelece limites, ele não concede permissões diretamente ou substitui políticas locais do IAM excessivamente permissivas."
+        }
+      }
+    },
+    {
+      "id": "sap-q-adv-net-01",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "services": [
+        "Amazon Route 53",
+        "AWS Transit Gateway"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "C"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "An enterprise is migrating to a multi-account AWS architecture with over 150 VPCs connected via AWS Transit Gateway to an on-premises data center over AWS Direct Connect. The enterprise needs to establish bidirectional DNS resolution. EC2 instances in AWS must resolve the 'onprem.internal' domain, and on-premises servers must resolve the 'aws.internal' domain hosted on Route 53 Private Hosted Zones. Which architecture satisfies these requirements with the LOWEST operational overhead?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create Route 53 Resolver Inbound and Outbound endpoints in every VPC. Configure on-premises DNS servers to forward queries to the Inbound endpoints of each VPC, and associate a Route 53 Resolver rule to forward queries to on-premises DNS.",
+              "explanation": "Incorrect: Deploying endpoints in 150 VPCs introduces massive operational overhead and unnecessary costs. Endpoints are charged hourly per ENI."
+            },
+            {
+              "id": "B",
+              "text": "Create Route 53 Resolver Inbound and Outbound endpoints in a central Shared Services VPC. Configure the on-premises DNS to forward 'aws.internal' queries to the Outbound endpoint IPs. Share a Resolver rule for 'onprem.internal' to all VPCs.",
+              "explanation": "Incorrect: On-premises DNS servers must forward queries to the INBOUND endpoint, not the Outbound endpoint. The Outbound endpoint is used to forward queries FROM AWS TO on-premises."
+            },
+            {
+              "id": "C",
+              "text": "Create Route 53 Resolver Inbound and Outbound endpoints in a central Shared Services VPC attached to the Transit Gateway. Use AWS Resource Access Manager (RAM) to share a Route 53 Resolver forwarding rule for 'onprem.internal' with all AWS accounts. Configure on-premises DNS to forward 'aws.internal' queries to the Inbound endpoint IPs.",
+              "explanation": "Correct: Centralizing the endpoints in a Shared Services VPC minimizes cost and overhead. Sharing the Resolver rule via AWS RAM allows all 150 VPCs to seamlessly resolve on-premises domains using the central Outbound endpoint. On-premises servers correctly query the Inbound endpoint."
+            },
+            {
+              "id": "D",
+              "text": "Deploy highly available Amazon EC2 instances running BIND DNS in the Shared Services VPC. Configure all VPC DHCP Options Sets to point to the EC2 instances, and configure BIND to forward queries conditionally to the Route 53 default VPC resolver or on-premises DNS.",
+              "explanation": "Incorrect: Managing custom EC2 BIND servers introduces significant administrative overhead for patching, scaling, and high availability, which is unnecessary when managed Route 53 Resolver endpoints exist."
+            }
+          ],
+          "generalExplanation": "Centralizing Route 53 Resolver Endpoints in a Shared Services VPC and using AWS RAM to share Resolver rules across an AWS Organization is the Well-Architected approach for hybrid DNS. It avoids the exorbitant costs of deploying endpoints per VPC and simplifies DNS management globally."
+        },
+        "pt": {
+          "question": "Uma empresa está migrando para uma arquitetura AWS multi-account com mais de 150 VPCs conectadas via AWS Transit Gateway a um data center on-premises através do AWS Direct Connect. A empresa precisa estabelecer uma resolução de DNS bidirecional. As instâncias EC2 na AWS devem resolver o domínio 'onprem.internal', e os servidores on-premises devem resolver o domínio 'aws.internal' hospedado em Zonas Hospedadas Privadas do Route 53. Qual arquitetura atende a esses requisitos com a MENOR sobrecarga operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em todas as VPCs. Configurar os servidores DNS on-premises para encaminhar consultas para os endpoints Inbound de cada VPC e associar uma regra para encaminhar consultas ao on-premises.",
+              "explanation": "Incorreto: Implantar endpoints em 150 VPCs introduz custos maciços e extrema sobrecarga operacional. Os endpoints são cobrados por hora por ENI provisionada."
+            },
+            {
+              "id": "B",
+              "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em uma VPC central de Shared Services. Configurar o DNS on-premises para encaminhar consultas 'aws.internal' para os IPs do endpoint Outbound. Compartilhar a regra para todas as VPCs.",
+              "explanation": "Incorreto: Os servidores DNS on-premises devem encaminhar as consultas para o endpoint INBOUND, não para o Outbound. O Outbound é estritamente usado para encaminhar da AWS para o on-premises."
+            },
+            {
+              "id": "C",
+              "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em uma VPC central de Shared Services conectada ao Transit Gateway. Usar o AWS Resource Access Manager (RAM) para compartilhar a regra de encaminhamento para 'onprem.internal' com as contas. Configurar o DNS on-premises para encaminhar para os IPs Inbound.",
+              "explanation": "Correto: Centralizar os endpoints em uma VPC minimiza custos e esforço. Compartilhar a regra do Resolver via AWS RAM permite que as 150 VPCs usem o endpoint Outbound central, enquanto o on-premises consulta o Inbound central."
+            },
+            {
+              "id": "D",
+              "text": "Implantar instâncias EC2 altamente disponíveis executando BIND DNS na VPC de Shared Services. Configurar todos os DHCP Options Sets das VPCs para apontar para o BIND, realizando o forward condicional nativo para o Route 53.",
+              "explanation": "Incorreto: Gerenciar servidores DNS customizados em instâncias EC2 introduz carga administrativa de patching, HA e escalabilidade, contrariando o princípio de menor sobrecarga."
+            }
+          ],
+          "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS."
+        },
+        "es": {
+          "question": "Una empresa global está migrando a una arquitectura AWS multi-cuenta con más de 150 VPCs conectadas vía AWS Transit Gateway a un centro de datos local a través de AWS Direct Connect. La empresa necesita establecer resolución de DNS bidireccional. Las instancias EC2 en AWS deben resolver el dominio 'onprem.internal', y los servidores locales deben resolver el dominio 'aws.internal' alojado en Zonas Alojadas Privadas de Route 53. ¿Qué arquitectura cumple con estos requisitos con la MENOR sobrecarga operativa?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear endpoints Inbound y Outbound de Route 53 Resolver en todas las VPCs. Configurar los servidores DNS locales para reenviar consultas a los endpoints Inbound de cada VPC y asociar una regla de Route 53.",
+              "explanation": "Incorrecto: Implementar endpoints en 150 VPCs introduce costos masivos y gastos operativos innecesarios."
+            },
+            {
+              "id": "B",
+              "text": "Crear endpoints Inbound y Outbound de Route 53 Resolver en una VPC central de Shared Services. Configurar el DNS local para reenviar consultas de 'aws.internal' a las IPs del endpoint Outbound.",
+              "explanation": "Incorrecto: Los servidores DNS locales deben reenviar consultas al endpoint INBOUND, no al Outbound."
+            },
+            {
+              "id": "C",
+              "text": "Crear endpoints Inbound y Outbound de Route 53 Resolver en una VPC central de Shared Services conectada al Transit Gateway. Usar AWS Resource Access Manager (RAM) para compartir una regla de reenvío de Route 53 para todas las cuentas. Configurar el DNS local para reenviar consultas a las IPs Inbound.",
+              "explanation": "Correcto: Centralizar los endpoints minimiza el costo y la sobrecarga. Compartir la regla a través de AWS RAM permite a todas las VPCs resolver dominios sin administrar recursos de red individuales."
+            },
+            {
+              "id": "D",
+              "text": "Implementar instancias Amazon EC2 de alta disponibilidad ejecutando BIND DNS en la VPC de Shared Services. Configurar todos los DHCP Options Sets de las VPCs para apuntar a las instancias EC2.",
+              "explanation": "Incorrecto: Administrar servidores BIND en EC2 introduce una carga administrativa significativa para parches, escalabilidad y alta disponibilidad."
+            }
+          ],
+          "generalExplanation": "Centralizar los endpoints del solucionador de Route 53 en una VPC de servicios compartidos y usar AWS RAM para compartir las reglas es el enfoque recomendado por AWS."
+        }
+      }
+    },
+    {
+      "id": "sap-q-adv-net-02",
+      "examId": "SAP-C02",
+      "domainId": "domain-1-org-complexity",
+      "services": [
+        "AWS Cloud WAN",
+        "AWS Transit Gateway"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A global enterprise operates across 5 AWS Regions and 3 on-premises data centers. They currently use AWS Transit Gateway in each region with a full mesh of inter-region peering connections. The network team needs to segment the global network into three isolated environments: Production, Non-Production, and Shared Services. Shared Services must be globally accessible from both Production and Non-Production, but Production and Non-Production must remain strictly isolated from each other. What is the MOST operationally efficient solution to achieve this global routing segmentation?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implement AWS Cloud WAN by creating a global core network. Define three segments: Production, Non-Production, and Shared Services. Configure segment actions to share routes from the Shared Services segment to the Production and Non-Production segments. Use attachment policies to automatically map VPCs to the correct segment based on AWS tags.",
+              "explanation": "Correct: AWS Cloud WAN is specifically designed to build, manage, and monitor global networks with centralized policy control. It natively supports global segments and route sharing between segments, eliminating the complex manual routing updates required by a full mesh of Transit Gateways."
+            },
+            {
+              "id": "B",
+              "text": "Maintain the existing Transit Gateways. In each of the 5 regions, create three separate Transit Gateway route tables. Update the inter-region peering attachments to propagate routes only between the matching route tables and the Shared Services route table across regions. Manage all route table associations manually.",
+              "explanation": "Incorrect: While technically possible, maintaining 15 route tables and configuring complex static routes across a full mesh of peering connections in 5 regions introduces severe operational overhead and significant risk of configuration drift."
+            },
+            {
+              "id": "C",
+              "text": "Replace the Transit Gateways with a single AWS Direct Connect Gateway associated with all VPCs globally. Use AWS Network Firewall in each region to inspect and drop traffic between Production and Non-Production VPCs based on IP address ranges.",
+              "explanation": "Incorrect: AWS Direct Connect Gateway cannot be used to route traffic directly between VPCs (VPC-to-VPC routing is not supported). It is designed exclusively for connectivity between AWS and on-premises networks."
+            },
+            {
+              "id": "D",
+              "text": "Implement AWS Cloud WAN by creating three separate global core networks, one for each environment. Connect the three core networks using Core Network Peering and configure security groups to block traffic between Production and Non-Production.",
+              "explanation": "Incorrect: Cloud WAN uses segments within a single core network to isolate traffic globally. Creating multiple core networks defeats the purpose of centralized global network management and adds unnecessary complexity."
+            }
+          ],
+          "generalExplanation": "AWS Cloud WAN provides a centralized dashboard to create global network policies. Segments act like VRFs across the global network, natively providing isolation. Segment actions effortlessly enable route sharing (e.g., for Shared Services)."
+        },
+        "pt": {
+          "question": "Uma empresa global opera em 5 Regiões AWS e 3 data centers on-premises. Atualmente, usam AWS Transit Gateway em cada região com uma malha completa de peering inter-região. A equipe de redes precisa segmentar a rede global em três ambientes isolados: Produção, Não-Produção e Shared Services. O Shared Services deve ser acessível globalmente, mas Produção e Não-Produção devem permanecer estritamente isolados. Qual é a solução mais eficiente do ponto de vista operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar o AWS Cloud WAN criando uma rede central (core network) global. Definir três segmentos: Produção, Não-Produção e Shared Services. Configurar ações de segmento para compartilhar rotas do Shared Services para os demais. Mapear as VPCs com políticas baseadas em tags.",
+              "explanation": "Correto: O AWS Cloud WAN foi projetado para construir redes globais nativamente com segmentação (VRFs). Ele elimina o trabalho manual em dezenas de tabelas de rotas e peerings."
+            },
+            {
+              "id": "B",
+              "text": "Manter os Transit Gateways existentes. Em cada uma das 5 regiões, criar três tabelas de rotas separadas. Atualizar as conexões de peering para propagar rotas apenas entre as tabelas correspondentes através das regiões.",
+              "explanation": "Incorreto: Manter 15 tabelas de rotas e malhas de peering introduz extrema sobrecarga, complexidade de troubleshooting e risco de erros humanos."
+            },
+            {
+              "id": "C",
+              "text": "Substituir os Transit Gateways por um único AWS Direct Connect Gateway associado a todas as VPCs globais. Usar o AWS Network Firewall em cada região para descartar o tráfego de forma centralizada.",
+              "explanation": "Incorreto: O Direct Connect Gateway não roteia tráfego diretamente entre VPCs. É restrito a tráfego on-premises para a AWS."
+            },
+            {
+              "id": "D",
+              "text": "Implementar o AWS Cloud WAN criando três core networks separadas. Conectar as redes usando Peering e usar Security Groups para bloquear tráfego entre os ambientes.",
+              "explanation": "Incorreto: O Cloud WAN usa segmentos dentro de um único core network para atingir esse objetivo nativamente, criar vários core networks aumenta a sobrecarga."
+            }
+          ],
+          "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente."
+        },
+        "es": {
+          "question": "Una empresa global opera en 5 Regiones de AWS y 3 centros de datos locales. Actualmente usan AWS Transit Gateway en cada región con una malla completa de peering entre regiones. El equipo de redes necesita segmentar la red en tres entornos: Producción, No-Producción y Shared Services. Shared Services debe ser accesible globalmente, pero Producción y No-Producción deben permanecer aislados. ¿Cuál es la solución MÁS eficiente operativamente?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar AWS Cloud WAN creando una red central global. Definir tres segmentos, configurar acciones para compartir rutas de Shared Services a los demás y mapear VPCs usando políticas de adjuntos por tags.",
+              "explanation": "Correcto: AWS Cloud WAN centraliza el enrutamiento y la segmentación, eliminando la complejidad de los peerings manuales de TGW."
+            },
+            {
+              "id": "B",
+              "text": "Mantener los Transit Gateways. En cada región, crear tres tablas de rutas y actualizar las conexiones de peering para propagar rutas manualmente entre ellas.",
+              "explanation": "Incorrecto: Genera un gasto administrativo altísimo con alto riesgo de configuración errónea en una arquitectura global."
+            },
+            {
+              "id": "C",
+              "text": "Reemplazar los Transit Gateways por un AWS Direct Connect Gateway asociado a todas las VPCs y usar AWS Network Firewall para el control de tráfico.",
+              "explanation": "Incorrecto: Direct Connect Gateway no soporta enrutamiento de VPC a VPC."
+            },
+            {
+              "id": "D",
+              "text": "Implementar AWS Cloud WAN creando tres core networks separados y conectarlos mediante Peering, controlando el tráfico con Security Groups.",
+              "explanation": "Incorrecto: El propósito principal de Cloud WAN es usar segmentos dentro de una sola core network. Multiples redes centrales complican el diseño."
+            }
+          ],
+          "generalExplanation": "AWS Cloud WAN simplifica drásticamente el diseño de redes WAN híbridas a escala global mediante su documento de políticas unificado."
+        }
+      }
+    },
+    {
+      "id": "sap-q-adv-net-03",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-imp",
+      "services": [
+        "AWS Direct Connect",
+        "AWS VPN"
+      ],
+      "type": "multiple",
+      "requiredChoices": 2,
+      "correctAnswers": [
+        "B",
+        "D"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A financial institution requires IPsec encryption for all traffic traversing their 10 Gbps AWS Direct Connect connection due to stringent regulatory compliance. The connection links their on-premises data center to a central AWS Transit Gateway spanning dozens of VPCs. The on-premises routers do not support MACsec natively. The network architect decides to implement an AWS Site-to-Site VPN over a Direct Connect Public Virtual Interface (VIF) to meet the encryption requirement without buying new hardware. Which combination of steps is required to implement this architecture? (Select TWO.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create an AWS Direct Connect Private VIF. Provision a Customer Gateway using the private IP address of the on-premises VPN device to establish the tunnel directly over the private backbone.",
+              "explanation": "Incorrect: A Private VIF connects to a Direct Connect Gateway or VGW, but the scenario specifies using a Public VIF to establish the VPN over Direct Connect (Public IP VPN over DX)."
+            },
+            {
+              "id": "B",
+              "text": "Create an AWS Direct Connect Public VIF. Establish a BGP session over the Public VIF to receive the AWS public IP prefixes, including the AWS public IP endpoints for the AWS Site-to-Site VPN.",
+              "explanation": "Correct: To route VPN traffic over Direct Connect using a Public VIF, the on-premises router must receive the AWS public IP ranges via BGP on the Public VIF. This ensures the IPsec tunnel endpoints are reachable over the dedicated DX link instead of the open Internet."
+            },
+            {
+              "id": "C",
+              "text": "Enable the 'IPsec Encryption' parameter on the Direct Connect connection object in the AWS Management Console and associate an AWS KMS key.",
+              "explanation": "Incorrect: There is no simple 'IPsec Encryption' parameter for Direct Connect connections. Encryption must be actively implemented by establishing a VPN tunnel or using MACsec at the hardware layer."
+            },
+            {
+              "id": "D",
+              "text": "Create an AWS Site-to-Site VPN connection terminating on the AWS Transit Gateway. Configure the Customer Gateway with the public IP address of the on-premises router.",
+              "explanation": "Correct: The VPN connection must be configured to terminate on the Transit Gateway, which provides access to all attached VPCs. The Customer Gateway must be defined using the public IP of the on-premises router, and the IPsec tunnel establishes over the public IP space."
+            },
+            {
+              "id": "E",
+              "text": "Deploy an AWS Network Firewall on the Transit Gateway attachment to natively encrypt all Direct Connect traffic without requiring standard IPsec configurations.",
+              "explanation": "Incorrect: AWS Network Firewall performs deep packet inspection, IDS, and IPS capabilities; it does not provide physical or transport-layer encryption like IPsec for Direct Connect links."
+            }
+          ],
+          "generalExplanation": "To run a standard AWS Site-to-Site VPN over AWS Direct Connect, you configure a Public VIF to receive AWS public IPs. The on-premises router establishes the IPsec VPN to the AWS endpoints over the DX link instead of the Internet."
+        },
+        "pt": {
+          "question": "Uma instituição financeira exige criptografia IPsec para todo o tráfego que atravessa sua conexão AWS Direct Connect de 10 Gbps devido à conformidade regulatória. A conexão liga seu data center on-premises a um AWS Transit Gateway com dezenas de VPCs. Os roteadores locais não suportam MACsec. O arquiteto de rede decide implementar uma AWS Site-to-Site VPN sobre uma Virtual Interface (VIF) Pública do Direct Connect para atender ao requisito sem comprar hardware novo. Qual combinação de etapas é necessária para implementar essa arquitetura? (Escolha duas.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar uma AWS Direct Connect Private VIF. Provisionar o Customer Gateway usando o endereço IP privado do dispositivo VPN on-premises.",
+              "explanation": "Incorreto: A VIF Privada conecta-se a um Direct Connect Gateway, e o cenário estipula o uso explícito de uma Public VIF."
+            },
+            {
+              "id": "B",
+              "text": "Criar uma Public VIF do AWS Direct Connect. Estabelecer uma sessão BGP sobre a Public VIF para receber os prefixos IP públicos da AWS, incluindo os endpoints IP da VPN.",
+              "explanation": "Correto: Para rotear tráfego VPN sobre DX público, o roteador precisa aprender os IPs públicos da AWS (onde a VPN termina) via BGP na Public VIF."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar o parâmetro de criptografia IPsec diretamente no console do AWS Direct Connect, informando a chave KMS.",
+              "explanation": "Incorreto: Não existe esse parâmetro nativo simples no DX. A criptografia requer sobreposição com VPN ou suporte de hardware MACsec."
+            },
+            {
+              "id": "D",
+              "text": "Criar uma conexão AWS Site-to-Site VPN terminando no AWS Transit Gateway. Configurar o Customer Gateway com o IP público do roteador on-premises.",
+              "explanation": "Correto: A VPN termina no TGW, fornecendo acesso a todas as VPCs anexadas. A configuração requer o registro do IP público do equipamento on-premises no Customer Gateway."
+            },
+            {
+              "id": "E",
+              "text": "Implantar um AWS Network Firewall no Transit Gateway para criptografar o tráfego nativamente sem configurações IPsec.",
+              "explanation": "Incorreto: O Network Firewall faz inspeção de pacotes e regras stateful, não provê túnel IPsec na camada de rede/transporte."
+            }
+          ],
+          "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet."
+        },
+        "es": {
+          "question": "Una institución financiera requiere cifrado IPsec para todo el tráfico que atraviesa su conexión AWS Direct Connect de 10 Gbps debido a normativas. La conexión llega a un Transit Gateway central en AWS. Los enrutadores locales no admiten MACsec. El arquitecto decide implementar una VPN de sitio a sitio de AWS sobre una VIF Pública de Direct Connect. ¿Qué combinación de pasos es necesaria para esta arquitectura? (Seleccione DOS.)",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear una Private VIF de Direct Connect y usar IPs privadas para el Customer Gateway.",
+              "explanation": "Incorrecto: El escenario especifica el uso de una VIF Pública."
+            },
+            {
+              "id": "B",
+              "text": "Crear una Public VIF de Direct Connect y establecer una sesión BGP para recibir los prefijos IP públicos de AWS, incluidos los de la VPN.",
+              "explanation": "Correcto: El enrutador local necesita conocer las IPs públicas de AWS a través de la VIF Pública para establecer el túnel por el enlace dedicado."
+            },
+            {
+              "id": "C",
+              "text": "Habilitar el cifrado IPsec directamente en la consola de Direct Connect usando AWS KMS.",
+              "explanation": "Incorrecto: Esta funcionalidad no existe de forma nativa como un simple botón."
+            },
+            {
+              "id": "D",
+              "text": "Crear una conexión VPN que termine en el AWS Transit Gateway, configurando el Customer Gateway con la IP pública del enrutador local.",
+              "explanation": "Correcto: La VPN debe conectarse al TGW para enrutar a las VPCs, requiriendo la IP pública del extremo local."
+            },
+            {
+              "id": "E",
+              "text": "Implementar AWS Network Firewall en el Transit Gateway para cifrar el tráfico.",
+              "explanation": "Incorrecto: Network Firewall no proporciona túneles IPsec de capa de red."
+            }
+          ],
+          "generalExplanation": "Para enviar tráfico de VPN sobre un Direct Connect, es indispensable usar una VIF Pública para anunciar los rangos IP públicos de AWS."
+        }
+      }
+    },
+    {
+      "id": "sap-q-adv-net-04",
+      "examId": "SAP-C02",
+      "domainId": "domain-2-new-solutions",
+      "services": [
+        "AWS Client VPN",
+        "AWS Transit Gateway"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "B"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "A technology company needs to provide secure remote access for 500 developers globally. The developers need to access internal resources across dozens of VPCs connected via an AWS Transit Gateway. The company requires SAML 2.0-based authentication integrating directly with their existing Okta Identity Provider (IdP). Additionally, network access must be segmented: developers in the 'DBA' group should only reach the Database VPC, while the 'Frontend' group should only reach the Frontend VPC. Which architecture satisfies these requirements with the LEAST administrative overhead?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create multiple AWS Client VPN endpoints, one for each developer group. Connect each endpoint to its respective target VPC. Integrate each endpoint with the SAML 2.0 IdP and restrict access using standard VPC Security Groups.",
+              "explanation": "Incorrect: Deploying and managing multiple separate Client VPN endpoints for different organizational groups increases costs unnecessarily and adds severe operational overhead. A single endpoint can handle authorization natively."
+            },
+            {
+              "id": "B",
+              "text": "Create a single AWS Client VPN endpoint and associate it with a Shared Services VPC attached to the Transit Gateway. Integrate the endpoint with the SAML 2.0 IdP. Create Client VPN authorization rules that map the SAML IdP groups to the specific CIDR blocks of the destination VPCs.",
+              "explanation": "Correct: A single Client VPN endpoint minimizes overhead and cost. Associating it with a VPC connected to the TGW allows routing access to all VPCs. Client VPN natively supports SAML 2.0 and allows fine-grained authorization rules based on IdP attributes (groups), ensuring users only reach authorized network segments."
+            },
+            {
+              "id": "C",
+              "text": "Implement an AWS Site-to-Site VPN terminating on the Transit Gateway. Deploy a FreeRADIUS server on Amazon EC2 to handle SAML authentication. Use AWS Network Firewall rules to filter network traffic based on user group attributes dynamically.",
+              "explanation": "Incorrect: Site-to-Site VPN is designed for permanent network-to-network connectivity, not end-user remote dial-in access. Client VPN is the appropriate managed service for remote developer connectivity."
+            },
+            {
+              "id": "D",
+              "text": "Create an AWS Client VPN endpoint integrated with AWS IAM Identity Center. Attach IAM policies to the Identity Center permission sets to explicitly allow or deny `ec2:Connect` actions to VPCs based on user tags.",
+              "explanation": "Incorrect: Network-level access control over Client VPN is enforced using Client VPN Authorization Rules and VPC Security Groups, not IAM policies. IAM policies control AWS API control-plane actions, not the data-plane IP connectivity."
+            }
+          ],
+          "generalExplanation": "AWS Client VPN natively supports SAML 2.0 federation and allows administrators to define authorization rules based on active directory or IdP groups, controlling exactly which network CIDR blocks each group can reach over a single endpoint."
+        },
+        "pt": {
+          "question": "Uma empresa de tecnologia precisa fornecer acesso remoto seguro para 500 desenvolvedores globalmente. Os desenvolvedores precisam acessar recursos internos em dezenas de VPCs conectadas via AWS Transit Gateway. A empresa requer autenticação baseada em SAML 2.0 integrada ao provedor de identidade (IdP) Okta. Além disso, o acesso à rede deve ser segmentado: desenvolvedores no grupo 'DBA' só devem alcançar a VPC de Banco de Dados, enquanto o grupo 'Frontend' só deve alcançar a VPC de Frontend. Qual arquitetura atende com MENOR esforço administrativo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar múltiplos endpoints do AWS Client VPN, um para cada grupo. Conectar cada endpoint à respectiva VPC. Integrar com SAML 2.0 e usar Security Groups.",
+              "explanation": "Incorreto: Múltiplos endpoints aumentam os custos de provisionamento e o esforço administrativo consideravelmente."
+            },
+            {
+              "id": "B",
+              "text": "Criar um único endpoint do AWS Client VPN associado a uma VPC de Shared Services conectada ao Transit Gateway. Integrar com o IdP SAML 2.0. Criar regras de autorização do Client VPN mapeando os grupos do IdP para os blocos CIDR específicos das VPCs de destino.",
+              "explanation": "Correto: Um único endpoint centraliza a gerência. As regras de autorização do Client VPN permitem restringir o tráfego de rede para CIDRs específicos com base na adesão do usuário ao grupo do provedor de identidade SAML."
+            },
+            {
+              "id": "C",
+              "text": "Implementar uma AWS Site-to-Site VPN terminando no Transit Gateway. Implantar um servidor Radius em EC2 para SAML. Usar o AWS Network Firewall para filtrar pacotes por grupos de usuários.",
+              "explanation": "Incorreto: AWS Site-to-Site VPN não é adequado para acesso discado de clientes remotos. O Client VPN é a solução gerenciada correta."
+            },
+            {
+              "id": "D",
+              "text": "Criar um endpoint AWS Client VPN integrado ao IAM Identity Center. Anexar políticas IAM para permitir explicitamente ações 'ec2:Connect' com base em tags de usuário.",
+              "explanation": "Incorreto: O controle de acesso a redes IP dentro da VPC no Client VPN não é gerido por permissões de plano de controle da API do IAM."
+            }
+          ],
+          "generalExplanation": "A funcionalidade de Authorization Rules do AWS Client VPN integrada com SAML 2.0 IdP permite a segmentação de rede baseada em grupos, garantindo segurança zero-trust com mínimo overhead."
+        },
+        "es": {
+          "question": "Una empresa de tecnología necesita proporcionar acceso remoto seguro para 500 desarrolladores. Deben acceder a recursos internos en docenas de VPCs a través de AWS Transit Gateway. Requieren autenticación SAML 2.0 integrada con Okta. Además, el acceso debe segmentarse: el grupo 'DBA' solo debe llegar a la VPC de base de datos, y el grupo 'Frontend' solo a la VPC de Frontend. ¿Qué arquitectura cumple con estos requisitos con el MENOR esfuerzo administrativo?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear múltiples endpoints de AWS Client VPN, uno por grupo, y conectar cada uno a su VPC correspondiente.",
+              "explanation": "Incorrecto: Multiplica los costos y la administración de manera innecesaria."
+            },
+            {
+              "id": "B",
+              "text": "Crear un solo endpoint de AWS Client VPN asociado a una VPC de Shared Services conectada al Transit Gateway. Integrarlo con el IdP SAML 2.0 y crear reglas de autorización mapeando los grupos a los bloques CIDR de las VPCs.",
+              "explanation": "Correcto: Un único endpoint reduce la sobrecarga operativa, y las reglas de autorización del Client VPN manejan el filtrado de red por grupo SAML nativamente."
+            },
+            {
+              "id": "C",
+              "text": "Implementar un AWS Site-to-Site VPN terminado en el Transit Gateway con un servidor Radius para autenticar.",
+              "explanation": "Incorrecto: Site-to-Site VPN es para redes enteras, no para dispositivos de usuario final remoto."
+            },
+            {
+              "id": "D",
+              "text": "Crear un endpoint AWS Client VPN integrado con IAM Identity Center y usar políticas IAM para restringir acceso.",
+              "explanation": "Incorrecto: Las políticas IAM controlan acceso a las APIs de AWS, no el enrutamiento y acceso de paquetes de datos de red."
+            }
+          ],
+          "generalExplanation": "AWS Client VPN proporciona capacidades robustas para mapear atributos de grupos SAML directamente a reglas de enrutamiento y autorización de red."
+        }
+      }
+    },
+    {
+      "id": "sap-q-adv-net-05",
+      "examId": "SAP-C02",
+      "domainId": "domain-3-continuous-imp",
+      "services": [
+        "AWS Direct Connect",
+        "Amazon Route 53"
+      ],
+      "type": "single",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "C"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "question": "An enterprise connects its on-premises data center to AWS using two AWS Direct Connect connections located in different physical geographic facilities (Location A and Location B). Both connections terminate on a single Direct Connect Gateway (DXGW) associated with a global AWS Transit Gateway. The network engineering team wants to ensure that all traffic originating from AWS destined to the on-premises network strictly prefers the Direct Connect connection at Location A. The connection at Location B should act exclusively as an active-standby failover. How can this outbound AWS routing preference be achieved MOST efficiently without deploying extra appliances?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configure the on-premises router at Location A to advertise its routes to AWS with a higher BGP Local Preference value than the router at Location B.",
+              "explanation": "Incorrect: BGP Local Preference is a non-transitive attribute that stays within the originating autonomous system (AS). Setting it on the on-premises router influences outbound traffic flowing FROM on-premises TO AWS, but it does NOT affect how AWS routes traffic back to on-premises."
+            },
+            {
+              "id": "B",
+              "text": "Configure the AWS Transit Gateway route table with a static route for the on-premises CIDR block pointing to the Direct Connect Gateway. Assign a lower route metric to Location A using the Transit Gateway attachment settings.",
+              "explanation": "Incorrect: Transit Gateway attachments to Direct Connect Gateways rely on dynamic BGP routing learned via the DXGW. You cannot configure static route metrics on a single DXGW attachment to manually prefer one physical DX connection over another."
+            },
+            {
+              "id": "C",
+              "text": "Configure the on-premises router at Location A to advertise its routes to AWS with the BGP community tag `7224:7300` (High Preference), and configure the router at Location B to use the BGP community tag `7224:7100` (Low Preference).",
+              "explanation": "Correct: AWS Direct Connect explicitly supports AWS-specific BGP communities to control the routing preference of traffic originating from AWS to on-premises. Applying the community `7224:7300` to routes from Location A ensures AWS evaluates those routes with the highest local preference."
+            },
+            {
+              "id": "D",
+              "text": "Enable asymmetric routing optimization on the Transit Gateway and configure AWS Global Accelerator to assign a 100% traffic dial weight to the Direct Connect Virtual Interface at Location A.",
+              "explanation": "Incorrect: AWS Global Accelerator is designed for internet-facing edge routing optimization using Anycast IPs. It has no integration with internal BGP routing over AWS Direct Connect private connections."
+            }
+          ],
+          "generalExplanation": "To control the path of traffic from AWS to your on-premises network across multiple Direct Connect links, you must use BGP community tags provided by AWS (7224:7100, 7224:7200, 7224:7300) to influence the AWS-side local preference."
+        },
+        "pt": {
+          "question": "Uma empresa conecta seu data center on-premises à AWS usando duas conexões AWS Direct Connect em locais geográficos físicos diferentes (Location A e Location B). Ambas as conexões terminam em um único Direct Connect Gateway (DXGW) associado a um Transit Gateway. A equipe de rede quer garantir que todo tráfego originado na AWS para a rede on-premises prefira estritamente a conexão no Location A. O Location B deve agir exclusivamente como failover (active-standby). Como essa preferência de roteamento de saída da AWS pode ser alcançada de forma mais eficiente?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar o roteador on-premises no Location A para anunciar suas rotas para a AWS com um valor de BGP Local Preference maior que o roteador no Location B.",
+              "explanation": "Incorreto: BGP Local Preference é um atributo que afeta apenas o tráfego de saída do seu próprio Autonomous System (on-premises para AWS). Não afeta a decisão de rota de volta tomada pela AWS."
+            },
+            {
+              "id": "B",
+              "text": "Configurar a tabela de rotas do Transit Gateway com uma rota estática para o bloco CIDR on-premises apontando para o DXGW, assinalando uma métrica menor para o Location A.",
+              "explanation": "Incorreto: O TGW confia nas rotas dinâmicas BGP do DXGW. Não é possível usar métricas estáticas em um único anexo de DXGW para preferir um link DX específico subjacente."
+            },
+            {
+              "id": "C",
+              "text": "Configurar o roteador on-premises no Location A para anunciar suas rotas com a BGP community `7224:7300` (High Preference), e o roteador no Location B com `7224:7100` (Low Preference).",
+              "explanation": "Correto: A AWS suporta BGP communities específicas do AWS Direct Connect para que os clientes controlem a preferência local dentro da infraestrutura da AWS, priorizando o caminho de retorno de tráfego (da AWS para on-premises)."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar roteamento assimétrico no Transit Gateway e usar o AWS Global Accelerator com um 'traffic dial weight' de 100% para o Location A.",
+              "explanation": "Incorreto: Global Accelerator não roteia tráfego em conexões privadas Direct Connect, sendo focado em IPs Anycast para a internet pública."
+            }
+          ],
+          "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect."
+        },
+        "es": {
+          "question": "Una corporación conecta su centro de datos a AWS usando dos conexiones AWS Direct Connect en diferentes ubicaciones (Location A y Location B). Ambas conexiones terminan en un único Direct Connect Gateway asociado a un Transit Gateway. El equipo de redes quiere asegurar que todo el tráfico desde AWS hacia la red local prefiera estrictamente la conexión en Location A. Location B debe actuar solo como respaldo (active-standby). ¿Cómo se puede lograr esta preferencia de enrutamiento desde AWS de manera más eficiente?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Configurar el enrutador local en Location A para anunciar rutas a AWS con un valor de BGP Local Preference mayor.",
+              "explanation": "Incorrecto: BGP Local Preference influye en el tráfico de salida desde las instalaciones locales a AWS, pero no afecta cómo AWS devuelve el tráfico a las instalaciones locales."
+            },
+            {
+              "id": "B",
+              "text": "Configurar una ruta estática en el Transit Gateway con una métrica de enrutamiento menor para Location A en los ajustes del adjunto.",
+              "explanation": "Incorrecto: No se pueden configurar métricas estáticas en un único adjunto de DXGW para discriminar entre enlaces físicos dinámicos."
+            },
+            {
+              "id": "C",
+              "text": "Configurar el enrutador local en Location A para anunciar rutas con el BGP community tag `7224:7300` (Alta Preferencia), y Location B con `7224:7100` (Baja Preferencia).",
+              "explanation": "Correcto: El uso de las etiquetas BGP de AWS permite a los enrutadores locales instruir a los enrutadores de AWS sobre qué enlace Direct Connect priorizar para el tráfico saliente desde AWS."
+            },
+            {
+              "id": "D",
+              "text": "Habilitar el enrutamiento asimétrico en el Transit Gateway y configurar AWS Global Accelerator para dirigir el tráfico.",
+              "explanation": "Incorrecto: AWS Global Accelerator está diseñado para optimizar el tráfico de Internet, no el enrutamiento BGP interno sobre conexiones Direct Connect."
+            }
+          ],
+          "generalExplanation": "Las comunidades BGP son el mecanismo soportado por AWS para influir en el Local Preference dentro del sistema autónomo de AWS para el tráfico saliente sobre Direct Connect."
+        }
+      }
+    },
+    {
+      "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345671",
+      "examId": "SAP-C02",
+      "domainId": "Domain 3: Design for Organizational Complexity",
+      "services": [
+        "Amazon EMR",
+        "AWS Lake Formation",
+        "Amazon S3"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "prompt": "A company is migrating its massive Hadoop cluster to Amazon EMR. They need to implement fine-grained access control (column-level and row-level) for their Apache Spark workloads on EMR, pulling data from Amazon S3. The security team mandates that AWS Lake Formation must manage the permissions centrally. Which architecture meets these requirements with the LEAST operational overhead?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy an EMR cluster with Amazon EMR integration for AWS Lake Formation. Use IAM Identity Center (AWS SSO) for user authentication. Configure Lake Formation permissions and use the EMR runtime for Spark."
+            },
+            {
+              "id": "B",
+              "text": "Deploy an EMR cluster and install Apache Ranger. Sync Lake Formation policies to Apache Ranger using a custom AWS Lambda function. Configure Spark to use the Ranger plugin for access control."
+            },
+            {
+              "id": "C",
+              "text": "Use Amazon EMR Serverless and attach an execution role that dynamically assumes IAM roles based on tags. Use AWS Glue Data Catalog resource policies to enforce column-level security."
+            },
+            {
+              "id": "D",
+              "text": "Deploy an EMR cluster with IAM roles for Amazon EC2 instance profiles. Create custom AWS KMS keys for each table and grant KMS key access only to specific users to enforce column-level encryption."
+            }
+          ],
+          "explanation": "Amazon EMR provides native integration with AWS Lake Formation, allowing you to define row-level and column-level security for Apache Spark workloads. When integrated with IAM Identity Center, it authenticates users and passes their identities to Lake Formation, evaluating fine-grained access controls centrally without the operational overhead of third-party tools like Apache Ranger."
+        },
+        "pt": {
+          "prompt": "Uma empresa está migrando seu enorme cluster Hadoop para o Amazon EMR. Eles precisam implementar controle de acesso granular (em nível de coluna e linha) para suas cargas de trabalho do Apache Spark no EMR, extraindo dados do Amazon S3. A equipe de segurança exige que o AWS Lake Formation gerencie as permissões de forma centralizada. Qual arquitetura atende a esses requisitos com a MENOR sobrecarga operacional?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implante um cluster EMR com integração do Amazon EMR para o AWS Lake Formation. Use o IAM Identity Center (AWS SSO) para autenticação de usuários. Configure as permissões do Lake Formation e use o tempo de execução do EMR para Spark."
+            },
+            {
+              "id": "B",
+              "text": "Implante um cluster EMR e instale o Apache Ranger. Sincronize as políticas do Lake Formation com o Apache Ranger usando uma função AWS Lambda personalizada. Configure o Spark para usar o plugin do Ranger para controle de acesso."
+            },
+            {
+              "id": "C",
+              "text": "Use o Amazon EMR Serverless e anexe uma função de execução que assume funções do IAM dinamicamente com base em tags. Use as políticas de recurso do AWS Glue Data Catalog para impor segurança em nível de coluna."
+            },
+            {
+              "id": "D",
+              "text": "Implante um cluster EMR com funções do IAM para perfis de instância do Amazon EC2. Crie chaves AWS KMS personalizadas para cada tabela e conceda acesso à chave KMS apenas para usuários específicos para impor criptografia em nível de coluna."
+            }
+          ],
+          "explanation": "O Amazon EMR oferece integração nativa com o AWS Lake Formation, permitindo definir segurança em nível de linha e coluna para cargas de trabalho do Apache Spark. Quando integrado ao IAM Identity Center, ele autentica os usuários e repassa suas identidades ao Lake Formation, avaliando os controles de acesso granulares de forma centralizada sem a sobrecarga de ferramentas de terceiros."
+        },
+        "es": {
+          "prompt": "Una empresa está migrando su enorme clúster de Hadoop a Amazon EMR. Necesitan implementar un control de acceso detallado (a nivel de columna y fila) para sus cargas de trabajo de Apache Spark en EMR, extrayendo datos de Amazon S3. El equipo de seguridad exige que AWS Lake Formation administre los permisos de forma centralizada. ¿Qué arquitectura cumple con estos requisitos con la MENOR sobrecarga operativa?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implemente un clúster EMR con integración de Amazon EMR para AWS Lake Formation. Use IAM Identity Center (AWS SSO) para la autenticación de usuarios. Configure los permisos de Lake Formation y use el entorno de ejecución de EMR para Spark."
+            },
+            {
+              "id": "B",
+              "text": "Implemente un clúster EMR e instale Apache Ranger. Sincronice las políticas de Lake Formation con Apache Ranger mediante una función AWS Lambda personalizada. Configure Spark para usar el complemento Ranger para el control de acceso."
+            },
+            {
+              "id": "C",
+              "text": "Utilice Amazon EMR Serverless y asocie un rol de ejecución que asuma dinámicamente roles de IAM en función de etiquetas. Use las políticas de recursos del AWS Glue Data Catalog para aplicar la seguridad a nivel de columna."
+            },
+            {
+              "id": "D",
+              "text": "Implemente un clúster de EMR con roles de IAM para perfiles de instancia de Amazon EC2. Cree claves administradas por AWS KMS personalizadas para cada tabla y conceda acceso solo a usuarios específicos para aplicar el cifrado a nivel de columna."
+            }
+          ],
+          "explanation": "Amazon EMR proporciona integración nativa con AWS Lake Formation, lo que le permite definir la seguridad a nivel de fila y columna para las cargas de trabajo de Apache Spark. Cuando se integra con IAM Identity Center, autentica a los usuarios y transmite sus identidades a Lake Formation, evaluando los controles de acceso detallados de forma centralizada sin la sobrecarga de herramientas de terceros."
+        }
+      }
+    },
+    {
+      "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345672",
+      "examId": "SAP-C02",
+      "domainId": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "Amazon MSK",
+        "Amazon Managed Service for Apache Flink",
+        "Amazon Redshift",
+        "Amazon QuickSight"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "prompt": "A global financial institution streams millions of transactions per second into Amazon MSK. They require real-time fraud detection utilizing complex windowing and stateful processing. Aggregated results must be stored in Amazon Redshift to power near real-time dashboards in Amazon QuickSight. Which solution is the MOST resilient and scalable while minimizing infrastructure management?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use Amazon Managed Service for Apache Flink to read from MSK, perform stateful aggregations, and output to an Amazon Kinesis Data Firehose delivery stream configured to load into Amazon Redshift. Connect QuickSight directly to Redshift using Direct Query."
+            },
+            {
+              "id": "B",
+              "text": "Use an AWS Lambda function triggered by MSK to perform stateful processing, storing state in Amazon ElastiCache for Redis. Have Lambda write directly to Redshift using the Redshift Data API. Use SPICE in QuickSight."
+            },
+            {
+              "id": "C",
+              "text": "Deploy an Amazon EMR cluster with Apache Kafka Connect to read from MSK. Use Spark Streaming for stateful processing and write to Amazon S3. Use Amazon Redshift Spectrum to query S3 directly from QuickSight."
+            },
+            {
+              "id": "D",
+              "text": "Replace MSK with Amazon Kinesis Data Streams. Use Kinesis Data Analytics for SQL Applications for windowing, and write the output directly to Redshift using a custom AWS Lambda function."
+            }
+          ],
+          "explanation": "Amazon Managed Service for Apache Flink is ideal for complex, stateful streaming applications including windowing, natively integrating with Amazon MSK. Outputting to Kinesis Data Firehose handles the micro-batching required for efficiently loading data into Amazon Redshift. Direct Query in QuickSight enables near real-time dashboards."
+        },
+        "pt": {
+          "prompt": "Uma instituição financeira global transmite milhões de transações por segundo para o Amazon MSK. Eles exigem detecção de fraude em tempo real utilizando janelas complexas e processamento com estado (stateful). Os resultados agregados devem ser armazenados no Amazon Redshift para alimentar painéis quase em tempo real no Amazon QuickSight. Qual solução é a MAIS resiliente e escalável enquanto minimiza o gerenciamento de infraestrutura?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use o Amazon Managed Service for Apache Flink para ler do MSK, realizar agregações com estado e enviar a saída para um fluxo de entrega do Amazon Kinesis Data Firehose configurado para carregar no Amazon Redshift. Conecte o QuickSight diretamente ao Redshift usando Direct Query."
+            },
+            {
+              "id": "B",
+              "text": "Use uma função AWS Lambda acionada pelo MSK para realizar processamento com estado, armazenando o estado no Amazon ElastiCache for Redis. Faça o Lambda gravar diretamente no Redshift usando a API de Dados do Redshift. Use o SPICE no QuickSight."
+            },
+            {
+              "id": "C",
+              "text": "Implante um cluster Amazon EMR com Apache Kafka Connect para ler do MSK. Use Spark Streaming para processamento com estado e grave no Amazon S3. Use o Amazon Redshift Spectrum para consultar o S3 diretamente do QuickSight."
+            },
+            {
+              "id": "D",
+              "text": "Substitua o MSK pelo Amazon Kinesis Data Streams. Use o Kinesis Data Analytics for SQL Applications para janelamento e grave a saída diretamente no Redshift usando uma função AWS Lambda personalizada."
+            }
+          ],
+          "explanation": "O Amazon Managed Service for Apache Flink é ideal para aplicativos de streaming complexos e com estado, integrando-se nativamente ao Amazon MSK. A saída para o Kinesis Data Firehose lida com o micro-batching necessário para carregar dados de forma eficiente no Amazon Redshift. O Direct Query no QuickSight permite painéis quase em tempo real."
+        },
+        "es": {
+          "prompt": "Una institución financiera global transmite millones de transacciones por segundo a Amazon MSK. Requieren la detección de fraude en tiempo real utilizando ventanas complejas y procesamiento con estado. Los resultados agregados deben almacenarse en Amazon Redshift para alimentar paneles casi en tiempo real en Amazon QuickSight. ¿Qué solución es la MÁS resistente y escalable al tiempo que minimiza la gestión de la infraestructura?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilice Amazon Managed Service for Apache Flink para leer de MSK, realizar agregaciones con estado y generar una transmisión de entrega de Amazon Kinesis Data Firehose configurada para cargarse en Amazon Redshift. Conecte QuickSight directamente a Redshift usando Direct Query."
+            },
+            {
+              "id": "B",
+              "text": "Utilice una función AWS Lambda desencadenada por MSK para realizar el procesamiento con estado, almacenando el estado en Amazon ElastiCache for Redis. Haga que Lambda escriba directamente en Redshift usando la API de datos de Redshift. Utilice SPICE en QuickSight."
+            },
+            {
+              "id": "C",
+              "text": "Implemente un clúster de Amazon EMR con Apache Kafka Connect para leer desde MSK. Utilice Spark Streaming para el procesamiento con estado y escriba en Amazon S3. Utilice Amazon Redshift Spectrum para consultar S3 directamente desde QuickSight."
+            },
+            {
+              "id": "D",
+              "text": "Reemplace MSK con Amazon Kinesis Data Streams. Utilice Kinesis Data Analytics for SQL Applications para la creación de ventanas y escriba la salida directamente en Redshift mediante una función AWS Lambda personalizada."
+            }
+          ],
+          "explanation": "Amazon Managed Service for Apache Flink es ideal para aplicaciones de transmisión complejas y con estado, integrándose de forma nativa con Amazon MSK. La salida a Kinesis Data Firehose maneja el micro-lote requerido para cargar datos de manera eficiente en Amazon Redshift. Direct Query en QuickSight permite paneles casi en tiempo real."
+        }
+      }
+    },
+    {
+      "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345673",
+      "examId": "SAP-C02",
+      "domainId": "Domain 3: Design for Organizational Complexity",
+      "services": [
+        "Amazon Redshift",
+        "AWS Lake Formation"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "prompt": "An enterprise maintains a central Amazon Redshift cluster (Enterprise Data Warehouse) in Account A. Business units in Accounts B, C, and D need to analyze subsets of this data using their own Redshift clusters to isolate compute resources. The data governance team demands centralized tracking of data permissions via AWS Lake Formation, and strictly prohibits data duplication. How can a Solutions Architect meet these requirements?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilize Redshift datashares managed by AWS Lake Formation. Register the central Redshift cluster's datashare as a Lake Formation resource, and grant cross-account permissions via Lake Formation to Accounts B, C, and D."
+            },
+            {
+              "id": "B",
+              "text": "Periodically UNLOAD the data to a central S3 bucket. Register the bucket with Lake Formation. Have Accounts B, C, and D use Redshift Spectrum to query the S3 bucket data via Lake Formation cross-account grants."
+            },
+            {
+              "id": "C",
+              "text": "Create Redshift datashares directly in the Redshift console. Establish cross-account IAM roles in Accounts B, C, and D with sts:AssumeRole permissions mapped to internal Redshift database users."
+            },
+            {
+              "id": "D",
+              "text": "Use AWS Data Exchange to publish the Redshift tables as data products. Subscribe Accounts B, C, and D to these products and use Lake Formation to manage the subscription entitlements."
+            }
+          ],
+          "explanation": "AWS Lake Formation natively integrates with Amazon Redshift datashares. By registering a datashare in Lake Formation, you can manage and grant access to the datashare centrally across different AWS accounts, meeting the governance requirements without duplicating data or writing custom export jobs."
+        },
+        "pt": {
+          "prompt": "Uma empresa mantém um cluster central do Amazon Redshift (Data Warehouse Corporativo) na Conta A. As unidades de negócios nas Contas B, C e D precisam analisar subconjuntos desses dados usando seus próprios clusters Redshift para isolar recursos computacionais. A equipe de governança de dados exige o rastreamento centralizado de permissões via AWS Lake Formation e proíbe estritamente a duplicação de dados. Como um Arquiteto de Soluções pode atender a esses requisitos?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilize datashares do Redshift gerenciados pelo AWS Lake Formation. Registre o datashare do cluster Redshift central como um recurso do Lake Formation e conceda permissões entre contas via Lake Formation para as Contas B, C e D."
+            },
+            {
+              "id": "B",
+              "text": "Faça o UNLOAD periodicamente dos dados para um bucket S3 central. Registre o bucket no Lake Formation. Faça com que as Contas B, C e D usem o Redshift Spectrum para consultar os dados do bucket S3 via concessões entre contas do Lake Formation."
+            },
+            {
+              "id": "C",
+              "text": "Crie datashares do Redshift diretamente no console do Redshift. Estabeleça funções IAM entre contas nas Contas B, C e D com permissões sts:AssumeRole mapeadas para usuários internos do banco de dados Redshift."
+            },
+            {
+              "id": "D",
+              "text": "Use o AWS Data Exchange para publicar as tabelas do Redshift como produtos de dados. Inscreva as Contas B, C e D nesses produtos e use o Lake Formation para gerenciar os direitos de assinatura."
+            }
+          ],
+          "explanation": "O AWS Lake Formation se integra nativamente aos datashares do Amazon Redshift. Ao registrar um datashare no Lake Formation, você pode gerenciar e conceder acesso a ele de forma centralizada em diferentes contas da AWS, atendendo aos requisitos de governança sem duplicar dados ou criar trabalhos de exportação."
+        },
+        "es": {
+          "prompt": "Una empresa mantiene un clúster central de Amazon Redshift (Enterprise Data Warehouse) en la Cuenta A. Las unidades de negocio en las Cuentas B, C y D necesitan analizar subconjuntos de estos datos usando sus propios clústeres de Redshift para aislar los recursos informáticos. El equipo de gobierno de datos exige el seguimiento centralizado de los permisos a través de AWS Lake Formation y prohíbe estrictamente la duplicación de datos. ¿Cómo puede un arquitecto de soluciones cumplir con estos requisitos?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilice datashares de Redshift administrados por AWS Lake Formation. Registre el datashare del clúster de Redshift central como un recurso de Lake Formation y otorgue permisos entre cuentas a través de Lake Formation a las Cuentas B, C y D."
+            },
+            {
+              "id": "B",
+              "text": "Ejecute UNLOAD periódicamente para enviar los datos a un bucket de S3 central. Registre el bucket con Lake Formation. Haga que las Cuentas B, C y D usen Redshift Spectrum para consultar los datos del bucket de S3 a través de concesiones entre cuentas de Lake Formation."
+            },
+            {
+              "id": "C",
+              "text": "Cree datashares de Redshift directamente en la consola de Redshift. Establezca roles de IAM entre cuentas en las Cuentas B, C y D con permisos sts:AssumeRole asignados a usuarios internos de la base de datos de Redshift."
+            },
+            {
+              "id": "D",
+              "text": "Utilice AWS Data Exchange para publicar las tablas de Redshift como productos de datos. Suscriba a las Cuentas B, C y D a estos productos y utilice Lake Formation para administrar los derechos de suscripción."
+            }
+          ],
+          "explanation": "AWS Lake Formation se integra de forma nativa con los datashares de Amazon Redshift. Al registrar un datashare en Lake Formation, puede administrar y otorgar acceso de forma centralizada en diferentes cuentas de AWS, cumpliendo con los requisitos de gobernanza sin duplicar datos ni escribir trabajos de exportación personalizados."
+        }
+      }
+    },
+    {
+      "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345674",
+      "examId": "SAP-C02",
+      "domainId": "Domain 2: Design for New Solutions",
+      "services": [
+        "Amazon QuickSight",
+        "Amazon Athena",
+        "Amazon S3"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "A"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "prompt": "A company possesses a petabyte-scale data lake on Amazon S3 processed by Amazon EMR, with metadata stored in the AWS Glue Data Catalog. They must provide interactive dashboards to 10,000 global users spanning the US and Europe using Amazon QuickSight. Dashboard load times must remain under 2 seconds, and data should refresh hourly. What is the BEST architectural approach?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use Amazon Athena to query the S3 data lake via the Glue Data Catalog. Connect QuickSight to Athena and configure SPICE with an hourly refresh schedule. Deploy QuickSight in both us-east-1 and eu-west-1, allowing users to access SPICE datasets in their local region."
+            },
+            {
+              "id": "B",
+              "text": "Connect QuickSight directly to the Amazon EMR clusters using Presto. Scale out the Presto cluster to handle 10,000 concurrent connections. Deploy QuickSight in us-east-1 and use Amazon CloudFront for low latency in Europe."
+            },
+            {
+              "id": "C",
+              "text": "Load processed data from S3 into Amazon Redshift Serverless. Connect QuickSight to Redshift using Direct Query. Configure Redshift Cross-Region snapshots to a European region and deploy QuickSight in both regions."
+            },
+            {
+              "id": "D",
+              "text": "Configure QuickSight with a direct connection to Amazon S3 using a JSON manifest file. Enable SPICE with an hourly refresh. Use Route 53 latency-based routing to direct users to a globally distributed QuickSight deployment."
+            }
+          ],
+          "explanation": "Connecting QuickSight to Athena using SPICE ensures high-performance dashboards (under 2 seconds load time) regardless of the backend data size, as SPICE is an in-memory calculation engine. SPICE can easily handle hourly refreshes. Deploying QuickSight across multiple regions allows localized access for users in the US and Europe."
+        },
+        "pt": {
+          "prompt": "Uma empresa possui um data lake em escala de petabytes no Amazon S3 processado pelo Amazon EMR, com metadados armazenados no AWS Glue Data Catalog. Eles devem fornecer painéis interativos para 10.000 usuários globais espalhados pelos EUA e Europa usando o Amazon QuickSight. Os tempos de carregamento do painel devem permanecer abaixo de 2 segundos, e os dados devem ser atualizados a cada hora. Qual é a MELHOR abordagem arquitetônica?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use o Amazon Athena para consultar o data lake do S3 via Glue Data Catalog. Conecte o QuickSight ao Athena e configure o SPICE com uma programação de atualização a cada hora. Implante o QuickSight no us-east-1 e no eu-west-1, permitindo que os usuários acessem os conjuntos de dados SPICE em sua região local."
+            },
+            {
+              "id": "B",
+              "text": "Conecte o QuickSight diretamente aos clusters do Amazon EMR usando Presto. Escale o cluster Presto para lidar com 10.000 conexões simultâneas. Implante o QuickSight em us-east-1 e use o Amazon CloudFront para baixa latência na Europa."
+            },
+            {
+              "id": "C",
+              "text": "Carregue os dados processados do S3 no Amazon Redshift Serverless. Conecte o QuickSight ao Redshift usando Direct Query. Configure snapshots entre regiões do Redshift para uma região europeia e implante o QuickSight em ambas as regiões."
+            },
+            {
+              "id": "D",
+              "text": "Configure o QuickSight com uma conexão direta ao Amazon S3 usando um arquivo de manifesto JSON. Habilite o SPICE com uma atualização a cada hora. Use o roteamento baseado em latência do Route 53 para direcionar os usuários para uma implantação do QuickSight distribuída globalmente."
+            }
+          ],
+          "explanation": "Conectar o QuickSight ao Athena usando o SPICE garante painéis de alto desempenho (tempo de carregamento inferior a 2 segundos) independentemente do tamanho dos dados no back-end, pois o SPICE é um mecanismo de cálculo em memória. O SPICE suporta atualizações a cada hora. A implantação do QuickSight em várias regiões permite acesso localizado."
+        },
+        "es": {
+          "prompt": "Una empresa posee un lago de datos a escala de petabytes en Amazon S3 procesado por Amazon EMR, con metadados almacenados en AWS Glue Data Catalog. Deben proporcionar paneles interactivos a 10,000 usuarios globales que abarcan los EE. UU. y Europa mediante Amazon QuickSight. Los tiempos de carga del tablero deben permanecer por debajo de los 2 segundos, y los datos deben actualizarse cada hora. ¿Cuál es el MEJOR enfoque arquitectónico?",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilice Amazon Athena para consultar el lago de datos de S3 a través del Glue Data Catalog. Conecte QuickSight a Athena y configure SPICE con un programa de actualización cada hora. Implemente QuickSight en us-east-1 y eu-west-1, permitiendo a los usuarios acceder a conjuntos de datos de SPICE en su región local."
+            },
+            {
+              "id": "B",
+              "text": "Conecte QuickSight directamente a los clústeres de Amazon EMR utilizando Presto. Escale el clúster de Presto para manejar 10,000 conexiones simultáneas. Implemente QuickSight en us-east-1 y use Amazon CloudFront para baja latencia en Europa."
+            },
+            {
+              "id": "C",
+              "text": "Cargue los datos procesados desde S3 en Amazon Redshift Serverless. Conecte QuickSight a Redshift mediante Direct Query. Configure instantáneas de Redshift entre regiones a una región europea e implemente QuickSight en ambas regiones."
+            },
+            {
+              "id": "D",
+              "text": "Configure QuickSight con una conexión directa a Amazon S3 utilizando un archivo de manifiesto JSON. Habilite SPICE con una actualización cada hora. Utilice el enrutamiento basado en latencia de Route 53 para dirigir a los usuarios a una implementación de QuickSight distribuida a nivel mundial."
+            }
+          ],
+          "explanation": "La conexión de QuickSight a Athena a través de SPICE garantiza tableros de alto rendimiento (menos de 2 segundos de tiempo de carga) independientemente del tamaño de los datos del backend, ya que SPICE es un motor de cálculo en memoria. SPICE puede manejar actualizaciones cada hora. La implementación de QuickSight en varias regiones permite el acceso localizado."
+        }
+      }
+    },
+    {
+      "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345675",
+      "examId": "SAP-C02",
+      "domainId": "Domain 1: Design Solutions for Organizational Complexity",
+      "services": [
+        "Amazon MSK",
+        "Amazon S3",
+        "AWS Glue",
+        "Amazon Athena"
+      ],
+      "type": "multiple-choice",
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "C"
+      ],
+      "difficulty": "hard",
+      "translations": {
+        "en": {
+          "prompt": "A media company captures clickstream events using Amazon MSK. They need to ingest this streaming data into a governed data lake on Amazon S3. The architecture must partition the data by time, support schema evolution, and automatically perform file compaction to optimize query performance in Amazon Athena. The solution should require minimal custom development and operational overhead.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use Amazon Kinesis Data Firehose with the MSK cluster as the source. Enable dynamic partitioning to convert data to Parquet format. Use AWS Lake Formation governed tables and AWS Glue DataBrew to compact files."
+            },
+            {
+              "id": "B",
+              "text": "Run a Spark Streaming job on Amazon EMR to read from MSK and write to Amazon S3 in Apache Hudi format. Register the S3 location with Lake Formation and enable Hudi clustering for file compaction."
+            },
+            {
+              "id": "C",
+              "text": "Use Amazon Managed Service for Apache Flink to read from MSK and output the stream to Amazon S3 in Apache Iceberg format. Register the tables in the AWS Glue Data Catalog and enable AWS Glue automatic compaction for Iceberg."
+            },
+            {
+              "id": "D",
+              "text": "Create an AWS Lambda function triggered by MSK. Write events to an Amazon DynamoDB table. Use DynamoDB Streams to trigger another Lambda to write aggregated Parquet files to Amazon S3."
+            }
+          ],
+          "explanation": "Apache Iceberg is a modern open table format that natively supports schema evolution and time-travel queries. Amazon Managed Service for Apache Flink can easily write streaming data to S3 in Iceberg format. AWS Glue Data Catalog supports automatic compaction for Iceberg tables, effectively optimizing small files for Athena queries without writing custom compaction jobs or managing complex Spark clusters."
+        },
+        "pt": {
+          "prompt": "Uma empresa de mídia captura eventos de clickstream usando o Amazon MSK. Eles precisam ingerir esses dados de streaming em um data lake governado no Amazon S3. A arquitetura deve particionar os dados por tempo, oferecer suporte à evolução de esquema e executar compactação automática de arquivos para otimizar o desempenho das consultas no Amazon Athena. A solução deve exigir o mínimo de desenvolvimento personalizado e sobrecarga operacional.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use o Amazon Kinesis Data Firehose com o cluster MSK como fonte. Habilite o particionamento dinâmico para converter dados para o formato Parquet. Use tabelas governadas do AWS Lake Formation e o AWS Glue DataBrew para compactar arquivos."
+            },
+            {
+              "id": "B",
+              "text": "Execute um trabalho de Spark Streaming no Amazon EMR para ler do MSK e gravar no Amazon S3 no formato Apache Hudi. Registre o local do S3 no Lake Formation e ative o clustering Hudi para compactação de arquivos."
+            },
+            {
+              "id": "C",
+              "text": "Use o Amazon Managed Service for Apache Flink para ler do MSK e enviar o fluxo para o Amazon S3 no formato Apache Iceberg. Registre as tabelas no AWS Glue Data Catalog e habilite a compactação automática do AWS Glue para Iceberg."
+            },
+            {
+              "id": "D",
+              "text": "Crie uma função AWS Lambda acionada pelo MSK. Grave eventos em uma tabela do Amazon DynamoDB. Use o DynamoDB Streams para acionar outro Lambda para gravar arquivos Parquet agregados no Amazon S3."
+            }
+          ],
+          "explanation": "O Apache Iceberg é um formato de tabela aberta moderno que oferece suporte nativo à evolução de esquema e consultas de viagem no tempo. O Amazon Managed Service for Apache Flink pode gravar facilmente dados de streaming no S3 no formato Iceberg. O AWS Glue Data Catalog oferece suporte à compactação automática para tabelas Iceberg, otimizando pequenos arquivos para consultas do Athena sem gravar trabalhos de compactação personalizados ou gerenciar clusters Spark complexos."
+        },
+        "es": {
+          "prompt": "Una empresa de medios captura eventos de secuencias de clics (clickstream) utilizando Amazon MSK. Necesitan ingerir estos datos de transmisión en un lago de datos gobernado en Amazon S3. La arquitectura debe particionar los datos por tiempo, admitir la evolución del esquema y realizar automáticamente la compactación de archivos para optimizar el rendimiento de las consultas en Amazon Athena. La solución debe requerir un desarrollo personalizado mínimo y una baja sobrecarga operativa.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilice Amazon Kinesis Data Firehose con el clúster de MSK como origen. Habilite la partición dinámica para convertir datos a formato Parquet. Utilice tablas administradas de AWS Lake Formation y AWS Glue DataBrew para compactar archivos."
+            },
+            {
+              "id": "B",
+              "text": "Ejecute un trabajo de Spark Streaming en Amazon EMR para leer desde MSK y escribir en Amazon S3 en formato Apache Hudi. Registre la ubicación de S3 en Lake Formation y habilite la agrupación de Hudi para la compactación de archivos."
+            },
+            {
+              "id": "C",
+              "text": "Utilice Amazon Managed Service for Apache Flink para leer desde MSK y enviar la transmisión a Amazon S3 en formato Apache Iceberg. Registre las tablas en AWS Glue Data Catalog y habilite la compactación automática de AWS Glue para Iceberg."
+            },
+            {
+              "id": "D",
+              "text": "Cree una función de AWS Lambda activada por MSK. Escriba eventos en una tabla de Amazon DynamoDB. Use DynamoDB Streams para activar otra Lambda que escriba archivos Parquet agregados en Amazon S3."
+            }
+          ],
+          "explanation": "Apache Iceberg es un formato de tabla abierta moderno que admite de forma nativa la evolución del esquema y las consultas de viaje en el tiempo. Amazon Managed Service for Apache Flink puede escribir fácilmente datos de transmisión en S3 en formato Iceberg. AWS Glue Data Catalog admite la compactación automática de tablas de Iceberg, lo que optimiza archivos pequeños para consultas de Athena sin necesidad de escribir trabajos de compactación personalizados ni administrar clústeres de Spark complejos."
+        }
+      }
+    }
+  ]
+}
