@@ -82,8 +82,9 @@ For each option (both correct and incorrect):
   - `examId`: `"SAP-C02"` (or specific mock code).
   - `type`: `"single"` (4 choices) or `"multiple"` (5 or 6 choices).
   - `requiredChoices`: Must match length of `correctAnswers`.
+  - `statement`, `options`, `domainName`, `generalExplanation`: **MUST be present at the root level** (e.g., in English or Portuguese) as the base fallback.
   - `options`: Ensure options are long and detailed. No short obvious statements.
-  - `translations`: Complete and independent localized content for `"en"`, `"pt"` (PT-BR), and `"es"` (ES) with zero mixed/hybrid text.
+  - `translations`: Complete and independent localized content for `"en"`, `"pt"` (PT-BR), and `"es"` (ES) with zero mixed/hybrid text. Provide translated `statement`, `options`, `domainName`, and `generalExplanation` inside each language key.
 
 ---
 
