@@ -716,6 +716,12 @@
           },
           "explanation": "La opción A es correcta porque AWS Lake Formation admite de forma nativa el control de acceso centralizado y detallado (nivel de fila y columna) para datos en Amazon S3, lo que minimiza tanto la duplicación de datos como la sobrecarga operativa. La opción B es incorrecta porque las políticas de bucket y de IAM no pueden aplicar de forma nativa seguridad a nivel de fila o columna. La opción C duplica datos e introduce sobrecarga en la administración de EMR. La opción D es menos eficiente y requiere una gran administración de roles de IAM."
         }
+      },
+      "options": {
+        "A": "Implante o AWS Lake Formation em uma conta de dados centralizada e registre os buckets do S3 de todas as 50 contas como locais do data lake. Configure um AWS Glue Data Catalog central e compartilhe-o com as 50 contas consumidoras usando o AWS Resource Access Manager (AWS RAM). Defina as políticas de acesso em nível de linha e de coluna centralmente no Lake Formation. Instrua os analistas a consultar os dados usando o Athena a partir de suas respectivas contas.",
+        "B": "Configure os AWS Glue Crawlers em cada uma das 50 contas para criar Glue Data Catalogs locais. Estabeleça funções (roles) do IAM entre contas para permitir que o Amazon Athena de uma conta central consulte os buckets distribuídos. Implemente políticas de bucket do S3 com condições para aplicar segurança em nível de linha e coluna. Use o AWS RAM para compartilhar os endpoints do S3.",
+        "C": "Provisione um cluster Amazon EMR central com o Apache Ranger ativado. Use trabalhos de ETL do AWS Glue para extrair continuamente dados das 50 contas e carregá-los em um bucket S3 central no formato Apache Parquet. Configure o Ranger para aplicar a segurança em nível de linha e coluna. Os analistas se conectam ao EMR via JDBC para executar consultas.",
+        "D": "Crie um cluster do Amazon Redshift em uma conta central. Use o Redshift Spectrum para consultar os dados do S3 diretamente nas 50 contas assumindo roles do IAM entre contas. Implemente políticas de segurança em nível de linha (RLS) do Redshift e concessões em nível de coluna."
       }
     },
     {
@@ -759,6 +765,12 @@
           },
           "explanation": "La opción C es correcta. Amazon Transcribe tiene una función integrada para la redacción de PII que no requiere código adicional. Amazon Comprehend se encarga de manera nativa del análisis de sentimientos. La opción A es incorrecta porque Lex es para crear chatbots. La opción B introduce una gran sobrecarga operativa mediante código regex. La opción D utiliza incorrectamente Rekognition, que es para visión por computadora."
         }
+      },
+      "options": {
+        "A": "Configure uma notificação de evento do S3 para acionar uma função do AWS Lambda no upload do arquivo de áudio. O Lambda chama o Amazon Transcribe para gerar uma transcrição, depois chama o Amazon Comprehend Medical para redigir PHI/PII e, finalmente, usa o Amazon Lex para analisar o sentimento antes de salvar no Amazon DynamoDB.",
+        "B": "Use o Amazon Transcribe para converter os arquivos de áudio em texto. Configure um trabalho do AWS Glue para processar os arquivos de saída, usando um script Python personalizado com expressões regulares para redigir PII/PHI. Por fim, use o Amazon Comprehend para analisar sentimentos no texto redigido, armazenando no S3.",
+        "C": "Configure uma Notificação de Evento do S3 para acionar uma máquina de estado do AWS Step Functions. Use a integração nativa do Amazon Transcribe para transcrever o áudio e ative seu recurso integrado de Redação de Conteúdo para PII. Passe a transcrição redigida para o Amazon Comprehend extrair o sentimento e frases-chave. Armazene o JSON final no Amazon S3.",
+        "D": "Processe os arquivos de áudio usando o Amazon Rekognition para extrair texto e analisar sentimentos. Transmita a saída por meio do Amazon Kinesis Data Firehose, aplicando uma função Lambda inline que usa o Amazon Macie para redigir PII antes de entregar ao Amazon OpenSearch Service."
       }
     },
     {
@@ -806,6 +818,13 @@
           },
           "explanation": "Las opciones A y C son correctas. La réplica de lectura (A) cumple con el RPO de 5 minutos ya que replica en tiempo casi real. El Warm Standby (C) satisface el RTO de 15 minutos al tener instancias reducidas ya en ejecución. La opción B viola el RPO de 5 minutos. La opción D puede demorar más de 15 minutos en lanzar instancias desde cero. La opción E requeriría una refactorización masiva y sería excesivamente costosa."
         }
+      },
+      "options": {
+        "A": "Configurar uma réplica de leitura de região cruzada do Amazon RDS em us-west-2. Em caso de desastre, promova a réplica de leitura para uma instância de banco de dados autônoma e atualize as strings de conexão.",
+        "B": "Ativar o AWS Backup para tirar snapshots por hora da instância de banco de dados RDS e copiá-los para us-west-2. No caso de um desastre, restaure o banco de dados do snapshot mais recente.",
+        "C": "Implantar uma arquitetura de Warm Standby em us-west-2 executando um Auto Scaling group reduzido com capacidade mínima. Configurar o Amazon Route 53 com uma política de roteamento de failover para o ALB em us-west-2.",
+        "D": "Implantar uma arquitetura Pilot Light em us-west-2 mantendo a capacidade do Auto Scaling group do EC2 em zero. Depender de uma função AWS Lambda acionada por alarmes do CloudWatch para escalar as instâncias durante um desastre.",
+        "E": "Migrar o banco de dados para o Amazon DynamoDB Global Tables para garantir replicação síncrona de região cruzada. Modificar o aplicativo para usar o DynamoDB em vez do PostgreSQL."
       }
     },
     {
@@ -849,6 +868,12 @@
           },
           "explanation": "La opción B es correcta. Amazon Kendra es un servicio de búsqueda empresarial impulsado por aprendizaje automático (ML) que admite preguntas en lenguaje natural de forma nativa. Proporciona conectores para SharePoint y S3 y admite ACLs de manera nativa mediante tokens de usuario. Las otras opciones requieren desarrollo de código personalizado complejo (A), están diseñadas para metadatos estructurados (C) o introducen una gran sobrecarga operativa de servidores (D)."
         }
+      },
+      "options": {
+        "A": "Ingerir todos os documentos no Amazon OpenSearch Service. Desenvolver um pipeline personalizado de PLN usando o Amazon Comprehend para extrair entidades e criar um índice pesquisável. Sincronizar as ACLs com um cron job do AWS Lambda personalizado.",
+        "B": "Usar o Amazon Kendra para criar um índice de pesquisa corporativo. Configurar os conectores nativos do Kendra para o Amazon S3 e Microsoft SharePoint para sincronizar os documentos continuamente. Ativar o recurso de controle de acesso do usuário no Kendra passando tokens de contexto de usuário para aplicar ACLs.",
+        "C": "Usar rastreadores do AWS Glue para catalogar os metadados de todos os documentos. Usar o Amazon Athena para consultar os metadados usando SQL padrão. Criar um aplicativo frontend que traduza consultas em linguagem natural para SQL usando o Amazon Lex.",
+        "D": "Provisionar uma frota do Amazon EC2 executando Apache Solr. Usar o AWS DataSync para replicar os dados do SharePoint para o Amazon EFS. Implementar um AD Connector para lidar com a autenticação de usuários e filtragem em nível de linha no Solr."
       }
     },
     {
@@ -892,6 +917,12 @@
           },
           "explanation": "La opción B es correcta. Los Gateway VPC Endpoints para Amazon S3 son gratuitos. Al colocar el Endpoint directamente en la VPC de la Cuenta A, el tráfico de S3 evita el Transit Gateway, eliminando los costos de procesamiento de datos del TGW. La opción A utiliza puntos de enlace de Interfaz, que incurren en tarifas de procesamiento. La opción C es incorrecta porque los buckets de S3 no residen en VPC, por lo que el peering de VPC no optimiza el tráfico hacia S3. La opción D genera cargos adicionales por transferencia."
         }
+      },
+      "options": {
+        "A": "Criar um AWS PrivateLink (Interface VPC Endpoint) para o Amazon S3 na conta de rede do Transit Gateway. Atualizar as regras do Route 53 Resolver para rotear consultas DNS do S3 através do TGW para o endpoint de interface.",
+        "B": "Criar um Gateway VPC Endpoint para o Amazon S3 diretamente na VPC na Conta A. Atualizar as tabelas de roteamento da VPC na Conta A para rotear o tráfego destinado ao S3 para o Gateway Endpoint em vez do Transit Gateway.",
+        "C": "Configurar uma conexão de emparelhamento de VPC (VPC Peering) diretamente entre a VPC na Conta A e a VPC na Conta B. Rotear todo o tráfego entre essas duas contas pela conexão de emparelhamento em vez do Transit Gateway.",
+        "D": "Ativar o Amazon S3 Transfer Acceleration no bucket na Conta B. Modificar os aplicativos na Conta A para usar o endpoint de aceleração de transferência."
       }
     },
     {
@@ -1943,7 +1974,33 @@
             }
           ]
         }
-      }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Implementar uma arquitetura Multi-Site Ativo-Ativo em duas regiões.",
+          "isCorrect": false,
+          "explanation": "Embora isso atenda aos requisitos de RTO/RPO, é a opção mais cara e não otimiza os custos."
+        },
+        {
+          "id": "b",
+          "text": "Implementar uma arquitetura Warm Standby usando uma região secundária.",
+          "isCorrect": true,
+          "explanation": "O Warm Standby fornece um RTO de poucos minutos e um RPO de segundos, o que atende perfeitamente aos requisitos de RTO de 5 minutos e RPO de 15 segundos, sendo significativamente mais barato do que uma configuração Ativo-Ativo."
+        },
+        {
+          "id": "c",
+          "text": "Implementar uma arquitetura Pilot Light em várias regiões.",
+          "isCorrect": false,
+          "explanation": "Pilot Light normalmente tem um RTO de dezenas de minutos, o que não atende ao rigoroso requisito de 5 minutos."
+        },
+        {
+          "id": "d",
+          "text": "Implementar uma estratégia de Backup e Restauração com snapshots frequentes do EBS.",
+          "isCorrect": false,
+          "explanation": "Backup e Restauração tem um RTO de horas, falhando completamente no requisito de 5 minutos."
+        }
+      ]
     },
     {
       "id": "2a3b4c5d-2345-4b1c-8d9e-5f6g7a8b9c0e",
@@ -2043,7 +2100,33 @@
             }
           ]
         }
-      }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Usar o AWS Database Migration Service (AWS DMS) para replicar dados continuamente para o Amazon RDS. Usar o AWS Server Migration Service (AWS SMS) para criar AMIs diariamente.",
+          "isCorrect": false,
+          "explanation": "A criação de AMIs diárias não atende ao requisito de RPO contínuo."
+        },
+        {
+          "id": "b",
+          "text": "Instalar o agente do AWS Elastic Disaster Recovery (DRS) nos servidores de origem. Replicar os dados para uma área de staging de baixo custo na AWS. Iniciar instâncias de recuperação nativamente na AWS durante um evento de DR.",
+          "isCorrect": true,
+          "explanation": "O AWS DRS é projetado especificamente para isso. Ele replica dados para uma área de staging de baixo custo e pode iniciar instâncias em minutos para atender ao RTO de 15 minutos."
+        },
+        {
+          "id": "c",
+          "text": "Configurar o AWS Storage Gateway Volume Gateway no modo em cache. Tirar snapshots por hora dos volumes e armazená-los no Amazon S3.",
+          "isCorrect": false,
+          "explanation": "Snapshots por hora não atendem ao requisito de RPO de replicação contínua."
+        },
+        {
+          "id": "d",
+          "text": "Usar o VMware Cloud on AWS para criar um cluster estendido entre o data center on-premises e a região da AWS.",
+          "isCorrect": false,
+          "explanation": "Isso seria muito caro e não minimiza os custos operacionais normais."
+        }
+      ]
     },
     {
       "id": "3b4c5d6e-3456-4c1d-8e9f-5g6h7b8c9d0f",
@@ -2143,7 +2226,33 @@
             }
           ]
         }
-      }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Amazon RDS for PostgreSQL com Cross-Region Read Replicas nos outros dois continentes.",
+          "isCorrect": false,
+          "explanation": "As réplicas de leitura não fornecem gravações ativo-ativo de baixa latência em várias regiões."
+        },
+        {
+          "id": "b",
+          "text": "Amazon Aurora Global Database com o cluster primário em uma região e clusters secundários nas outras.",
+          "isCorrect": false,
+          "explanation": "O Aurora Global Database roteia gravações para a região primária, adicionando latência para gravações de outros continentes. Não é uma solução de gravação ativo-ativo em todas as regiões."
+        },
+        {
+          "id": "c",
+          "text": "Amazon DynamoDB com Global Tables ativadas nas três regiões necessárias.",
+          "isCorrect": true,
+          "explanation": "O DynamoDB Global Tables fornece replicação multi-master e ativo-ativo, permitindo desempenho rápido e local de leitura e gravação em várias regiões simultaneamente."
+        },
+        {
+          "id": "d",
+          "text": "Amazon ElastiCache for Redis com Global Datastore.",
+          "isCorrect": false,
+          "explanation": "O ElastiCache Global Datastore opera em um modelo primário/réplica. Não fornece gravações multi-master em todas as regiões."
+        }
+      ]
     },
     {
       "id": "4c5d6e7f-4567-4d1e-8f9g-5h6i7c8d9e0g",
@@ -2243,7 +2352,33 @@
             }
           ]
         }
-      }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Usar o AWS Fault Injection Simulator (FIS) para criar um experimento direcionado às instâncias EC2 específicas e ao banco de dados RDS, simulando uma falha na AZ.",
+          "isCorrect": true,
+          "explanation": "O AWS FIS é um serviço de engenharia de caos totalmente gerenciado, projetado especificamente para executar experimentos controlados de injeção de falhas, como simular falhas de AZ."
+        },
+        {
+          "id": "b",
+          "text": "Usar o AWS Systems Manager Run Command para executar um script bash que desabilita temporariamente as interfaces de rede de todas as instâncias em uma AZ.",
+          "isCorrect": false,
+          "explanation": "O cenário afirma especificamente para evitar escrever scripts personalizados."
+        },
+        {
+          "id": "c",
+          "text": "Modificar temporariamente o Auto Scaling group para usar apenas duas AZs e observar como o aplicativo lida com a carga.",
+          "isCorrect": false,
+          "explanation": "Isso não simula uma falha inesperada e não testa o processo de failover do RDS Multi-AZ."
+        },
+        {
+          "id": "d",
+          "text": "Usar o Amazon CloudWatch Synthetics para criar um canary que intencionalmente falhe as verificações de integridade em uma AZ específica.",
+          "isCorrect": false,
+          "explanation": "O CloudWatch Synthetics serve para monitoramento e testes sintéticos, não para injetar falhas na infraestrutura subjacente."
+        }
+      ]
     },
     {
       "id": "5d6e7f8g-5678-4e1f-8g9h-5i6j7d8e9f0h",
@@ -2361,7 +2496,39 @@
             }
           ]
         }
-      }
+      },
+      "options": [
+        {
+          "id": "a",
+          "text": "Habilitar a Replicação Entre Regiões (CRR) do Amazon S3 no bucket de origem para replicar objetos para um bucket na região secundária.",
+          "isCorrect": true,
+          "explanation": "O S3 CRR replica de forma automática e contínua os objetos entre regiões, satisfazendo o requisito de RPO de 15 minutos."
+        },
+        {
+          "id": "b",
+          "text": "Configurar a replicação do Amazon EFS para replicar continuamente o sistema de arquivos para um sistema de arquivos EFS na região secundária.",
+          "isCorrect": true,
+          "explanation": "A replicação do EFS sincroniza automática e continuamente os dados para uma região secundária, atendendo facilmente ao RPO de 15 minutos."
+        },
+        {
+          "id": "c",
+          "text": "Agendar uma regra do AWS Backup para criar snapshots de hora em hora do sistema de arquivos EFS e copiá-los para a região secundária.",
+          "isCorrect": false,
+          "explanation": "Snapshots de hora em hora não atendem ao rigoroso requisito de RPO de 15 minutos."
+        },
+        {
+          "id": "d",
+          "text": "Usar comandos S3 Sync acionados pelo Amazon EventBridge a cada 15 minutos para copiar dados para a região secundária.",
+          "isCorrect": false,
+          "explanation": "Embora possível, o S3 CRR nativo é mais confiável, eficiente e garante a replicação contínua em comparação com um script em lote agendado."
+        },
+        {
+          "id": "e",
+          "text": "Converter o sistema de arquivos EFS em Amazon FSx for Windows File Server e usar a Replicação DFS entre as regiões.",
+          "isCorrect": false,
+          "explanation": "Isso requer alterar o mecanismo de armazenamento desnecessariamente e é excessivamente complexo quando existe a replicação nativa do EFS."
+        }
+      ]
     }
   ]
 }

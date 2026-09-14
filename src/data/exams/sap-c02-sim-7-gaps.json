@@ -78,6 +78,12 @@
       },
       "correctAnswers": [
         "A"
+      ],
+      "options": [
+        "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
+        "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
+        "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
+        "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
       ]
     },
     {
@@ -131,6 +137,13 @@
       "correctAnswers": [
         "A",
         "E"
+      ],
+      "options": [
+        "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
+        "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
+        "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
+        "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
+        "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
       ]
     },
     {
@@ -179,6 +192,12 @@
       },
       "correctAnswers": [
         "A"
+      ],
+      "options": [
+        "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
+        "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
+        "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
+        "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
       ]
     },
     {
@@ -227,6 +246,12 @@
       },
       "correctAnswers": [
         "A"
+      ],
+      "options": [
+        "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
+        "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
+        "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
+        "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
       ]
     },
     {
@@ -274,6 +299,12 @@
       },
       "correctAnswers": [
         "B"
+      ],
+      "options": [
+        "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
+        "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
+        "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
+        "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
       ]
     },
     {
@@ -361,7 +392,25 @@
           ],
           "explanation": "La opción B es correcta. El ajuste de tamaño siempre debe realizarse antes de comprar compromisos. Habilitar el Compute Optimizer proporciona visibilidad. Para que las unidades rindan cuentas de sus compromisos pero permitir que floten los descuentos no utilizados, las cuentas miembros deben comprar los Savings Plans y la cuenta de administración debe habilitar el uso compartido de descuentos."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar o AWS Compute Optimizer no nível da organização. Aplicar o dimensionamento recomendado. Comprar Compute Savings Plans na conta de gerenciamento e desabilitar o compartilhamento de descontos para impor a responsabilidade da unidade de negócios."
+        },
+        {
+          "id": "B",
+          "text": "Habilitar o AWS Compute Optimizer no nível da organização. Aplicar recomendações de dimensionamento correto. Fazer com que cada unidade de negócios (conta membro) compre Compute Savings Plans. Habilitar o compartilhamento de descontos na conta de gerenciamento."
+        },
+        {
+          "id": "C",
+          "text": "Comprar EC2 Instance Savings Plans em cada conta membro para cargas de trabalho estáveis e Compute Savings Plans na conta de gerenciamento para o Fargate. Habilitar o AWS Compute Optimizer."
+        },
+        {
+          "id": "D",
+          "text": "Habilitar o AWS Compute Optimizer no nível da organização. Comprar EC2 Instance Savings Plans na conta de gerenciamento para cargas previsíveis. Desabilitar o compartilhamento de descontos."
+        }
+      ]
     },
     {
       "id": "sap-c02-cost-002",
@@ -461,7 +510,29 @@
           ],
           "explanation": "Las opciones A y C son correctas. AWS Cost Categories agrupa costos automáticamente basado en reglas. CUR con integración Athena permite a QuickSight consultar la información rápidamente sin desarrollo adicional de ETL."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar AWS Cost Categories usando regras que mapeiam IDs de Conta para unidades de negócios e ambientes. Usar regras baseadas em tags para recursos que possuem tags."
+        },
+        {
+          "id": "B",
+          "text": "Escrever uma função AWS Lambda que é acionada diariamente para consultar a API do AWS Cost Explorer, mapear custos e gravar em um bucket do Amazon S3."
+        },
+        {
+          "id": "C",
+          "text": "Criar um AWS Cost and Usage Report (CUR) e configurá-lo para entregar em um bucket do Amazon S3 com integração ao Amazon Athena habilitada."
+        },
+        {
+          "id": "D",
+          "text": "Construir um trabalho ETL do AWS Glue para processar os arquivos CUR, aplicar a lógica de mapeamento para recursos sem tags e carregar os dados no Amazon Redshift."
+        },
+        {
+          "id": "E",
+          "text": "Usar o AWS Budgets para mapear recursos sem tags para unidades de negócios e exportar os relatórios para o QuickSight."
+        }
+      ]
     },
     {
       "id": "sap-c02-cost-003",
@@ -548,7 +619,25 @@
           ],
           "explanation": "La opción B es correcta. El Spot Fleet configurado con `price-capacity-optimized` y diversificando tipos/familias es la forma óptima de protegerse de interrupciones mientras se reduce el costo."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar um Auto Scaling group com uma política de instâncias mistas. Definir uma capacidade base de instâncias Sob Demanda e usar Instâncias Spot para o resto. Selecionar a estratégia de alocação capacity-optimized."
+        },
+        {
+          "id": "B",
+          "text": "Criar uma solicitação de Spot Fleet do EC2 com uma capacidade alvo definida em vCPUs. Configurar vários pools de instâncias em diferentes famílias e tamanhos que atendam à proporção de memória para vCPU. Usar a estratégia de alocação price-capacity-optimized."
+        },
+        {
+          "id": "C",
+          "text": "Usar o AWS Batch com ambientes de computação gerenciados configurados para Instâncias Spot. Definir a estratégia de alocação como BEST_FIT para garantir o menor custo."
+        },
+        {
+          "id": "D",
+          "text": "Criar um Auto Scaling group usando apenas Instâncias Spot. Usar a estratégia lowest-price para garantir custo mínimo e configurar interrupções de Spot para hibernar as instâncias."
+        }
+      ]
     },
     {
       "id": "sap-c02-cost-004",
@@ -634,7 +723,25 @@
           ],
           "explanation": "La opción B es correcta. Las Acciones de Presupuesto de AWS admiten el control directo de los grupos de Auto Scaling, permitiendo fijar el MaxSize a la capacidad deseada actual para detener futuras expansiones automáticamente."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar um AWS Budget com um limite de custo previsto de 110%. Configurar uma Budget Action para aplicar uma política IAM personalizada à role de serviço do Auto Scaling que negue autoscaling:SetDesiredCapacity."
+        },
+        {
+          "id": "B",
+          "text": "Criar um AWS Budget com um limite de custo previsto de 110%. Configurar uma Budget Action que tenha como alvo os grupos de Auto Scaling específicos e defina o MaxSize para o DesiredCapacity atual."
+        },
+        {
+          "id": "C",
+          "text": "Criar um alarme do Amazon CloudWatch baseado na métrica EstimatedCharges. Acionar uma função AWS Lambda que modifique os grupos de Auto Scaling para suspender o processo Launch."
+        },
+        {
+          "id": "D",
+          "text": "Usar a Detecção de Anomalias de Custo da AWS para acionar um tópico do Amazon SNS. Assinar um runbook de Automação do AWS Systems Manager no tópico SNS para reduzir o tamanho máximo do Auto Scaling."
+        }
+      ]
     },
     {
       "id": "sap-c02-cost-005",
@@ -721,7 +828,25 @@
           ],
           "explanation": "La opción C es correcta. Systems Manager Quick Setup proporciona integraciones preconstruidas con Compute Optimizer para aplicar sus recomendaciones a gran escala de forma automática."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar o AWS Compute Optimizer para volumes EBS. Usar as recomendações para modificar manualmente os tipos de volume de gp2 para gp3 e ajustar IOPS de io1."
+        },
+        {
+          "id": "B",
+          "text": "Criar um runbook de Automação do AWS Systems Manager para consultar métricas do CloudWatch. Identificar volumes com baixas IOPS e usar a API EC2 ModifyVolume para alterá-los para sc1."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar o AWS Compute Optimizer. Usar o AWS Systems Manager Quick Setup para configurar e implantar um runbook de Automação que implementa automaticamente as recomendações do Compute Optimizer para volumes EBS em toda a organização."
+        },
+        {
+          "id": "D",
+          "text": "Usar o AWS Trusted Advisor para identificar volumes EBS subutilizados. Criar uma regra do Amazon EventBridge para acionar uma função Lambda que converta volumes gp2 subutilizados em HDD frio (sc1)."
+        }
+      ]
     },
     {
       "id": "sap-c02-gov-001",
@@ -817,7 +942,29 @@
           ],
           "explanation": "Para restringir regiões enquanto permite serviços globais e roles específicas, você deve usar uma política de `Deny`. O elemento `NotAction` (Opção A) é usado para isentar serviços globais da regra de `Deny`, pois o AWS Organizations não os isenta automaticamente por padrão se `Action: *` for usado. A condição `ArnNotLike` (Opção D) é usada com `aws:PrincipalArn` para isentar a role do IAM específica do efeito de `Deny`, correspondendo ao seu padrão de ARN em todas as contas."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região."
+        },
+        {
+          "id": "B",
+          "text": "Usar uma declaração `Effect: Deny` com um elemento `Action: *` e depender das isenções padrão do AWS Organizations para todos os serviços globais da AWS."
+        },
+        {
+          "id": "C",
+          "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`."
+        },
+        {
+          "id": "D",
+          "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`."
+        },
+        {
+          "id": "E",
+          "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`."
+        }
+      ]
     },
     {
       "id": "sap-c02-gov-002",
@@ -900,7 +1047,25 @@
           ],
           "explanation": "O Customizations for AWS Control Tower (CfCT) é a estrutura recomendada para implantar guardrails personalizados, regras do AWS Config e recursos (como modelos do CloudFormation) em contas governadas pelo Control Tower. Ele automatiza a implantação para contas existentes e recém-criadas automaticamente por meio de um pipeline CI/CD, minimizando a sobrecarga operacional."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar um AWS CloudFormation StackSet no nível da organização que implante uma regra gerenciada do AWS Config `s3-bucket-object-lock-enabled` e uma ação de remediação usando o AWS Systems Manager Automation em todas as contas."
+        },
+        {
+          "id": "B",
+          "text": "Usar o pipeline Customizations for AWS Control Tower (CfCT) para implantar uma regra personalizada do AWS Config e um documento correspondente do AWS Systems Manager Automation para remediação em todas as contas usando modelos do AWS CloudFormation."
+        },
+        {
+          "id": "C",
+          "text": "Ativar o AWS Security Hub e usar seus recursos de resposta automatizada e remediação para impor o object lock do S3 em todas as contas gerenciadas pelo Control Tower."
+        },
+        {
+          "id": "D",
+          "text": "Modificar a configuração da landing zone do AWS Control Tower diretamente para incluir uma SCP personalizada que negue `s3:CreateBucket` a menos que o cabeçalho `x-amz-bucket-object-lock-enabled` seja definido como true."
+        }
+      ]
     },
     {
       "id": "sap-c02-gov-003",
@@ -983,7 +1148,25 @@
           ],
           "explanation": "O AWS Service Catalog oferece suporte ao compartilhamento de Unidade Organizacional (OU), que concede acesso automaticamente a contas novas e existentes dentro da OU. Ao ativar o Principal Name Sharing, a conta central pode associar principais (como roles ou grupos) ao portfólio por nome, e quando compartilhado com contas membro, qualquer principal local com o nome exato correspondente terá acesso automaticamente, eliminando a necessidade de mapear roles manualmente em cada conta filha."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Ativar o Principal Name Sharing para que as roles locais do IAM com o mesmo nome possam acessar o portfólio automaticamente."
+        },
+        {
+          "id": "B",
+          "text": "Usar uma função do AWS Lambda acionada por eventos `CreateAccount` do AWS CloudTrail para compartilhar automaticamente o portfólio para novas contas membro e importá-lo."
+        },
+        {
+          "id": "C",
+          "text": "Compartilhar o portfólio para toda a organização. Criar uma SCP aplicada à OU que permita `servicecatalog:ProvisionProduct` e aplicar outra SCP a outras OUs negando isso."
+        },
+        {
+          "id": "D",
+          "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Usar o AWS CloudFormation StackSets para implantar roles locais do IAM nas contas membro e mapeá-las para o portfólio usando um Portfolio Share local."
+        }
+      ]
     },
     {
       "id": "sap-c02-gov-004",
@@ -1066,7 +1249,25 @@
           ],
           "explanation": "Os conformance packs em nível de organização permitem que você implante uma coleção de regras do AWS Config e ações de remediação em toda uma Organização da AWS ou em OUs específicas. Ao empacotar tanto as regras do CIS quanto as regras personalizadas em um único conformance pack implantado em nível de organização, novas contas recebem automaticamente essas regras. O uso de um AWS Config Aggregator em uma conta de administrador delegada fornece a visualização consolidada necessária de conformidade."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar um AWS Config Aggregator em uma conta central de governança. Usar o AWS Systems Manager Quick Setup para implantar o AWS Config e o conformance pack do CIS em todas as contas. Implantar regras personalizadas por meio do CloudFormation StackSets visando a raiz da organização."
+        },
+        {
+          "id": "B",
+          "text": "Ativar o AWS Security Hub na conta central e integrá-lo ao AWS Organizations para visualizar a conformidade com o CIS. Implantar um conformance pack de nível organizacional contendo as regras personalizadas do AWS Config a partir da conta mestre."
+        },
+        {
+          "id": "C",
+          "text": "Criar um AWS Config Aggregator para várias contas e várias regiões na conta central. Usar o AWS Lambda acionado pelo EventBridge para implantar o conformance pack do CIS e regras personalizadas em novas contas por meio de chamadas de API da AWS."
+        },
+        {
+          "id": "D",
+          "text": "Implantar um conformance pack de nível organizacional que inclua as regras do CIS e as regras personalizadas da conta de gerenciamento do AWS Organizations ou de uma conta de administrador delegada. Usar um AWS Config Aggregator na conta de administrador delegada para visualizar a conformidade."
+        }
+      ]
     },
     {
       "id": "sap-c02-gov-005",
@@ -1162,7 +1363,29 @@
           ],
           "explanation": "As SCPs são usadas para impor permissões máximas disponíveis globalmente em todas as contas. A Opção D impõe a regra ABAC globalmente: ela nega explicitamente o início/parada de instâncias se a tag `Project` no recurso não corresponder à tag `Project` no principal do IAM. A Opção A impede corretamente que qualquer pessoa, exceto a role `TagAdmin`, altere as tags em instâncias que já têm a tag `Project` presente (`Null: false`). A Opção C é uma política do IAM, não uma SCP, e B é uma SCP, mas `Allow` em SCPs apenas estabelece limites, ele não concede permissões diretamente ou substitui políticas locais do IAM excessivamente permissivas."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, e `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`."
+        },
+        {
+          "id": "B",
+          "text": "Adicionar uma declaração SCP com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+        },
+        {
+          "id": "C",
+          "text": "Anexar uma política do IAM às roles dos desenvolvedores com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+        },
+        {
+          "id": "D",
+          "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`."
+        },
+        {
+          "id": "E",
+          "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`."
+        }
+      ]
     },
     {
       "id": "sap-q-adv-net-01",
@@ -1257,7 +1480,30 @@
           ],
           "generalExplanation": "Centralizar los endpoints del solucionador de Route 53 en una VPC de servicios compartidos y usar AWS RAM para compartir las reglas es el enfoque recomendado por AWS."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em todas as VPCs. Configurar os servidores DNS on-premises para encaminhar consultas para os endpoints Inbound de cada VPC e associar uma regra para encaminhar consultas ao on-premises.",
+          "explanation": "Incorreto: Implantar endpoints em 150 VPCs introduz custos maciços e extrema sobrecarga operacional. Os endpoints são cobrados por hora por ENI provisionada."
+        },
+        {
+          "id": "B",
+          "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em uma VPC central de Shared Services. Configurar o DNS on-premises para encaminhar consultas 'aws.internal' para os IPs do endpoint Outbound. Compartilhar a regra para todas as VPCs.",
+          "explanation": "Incorreto: Os servidores DNS on-premises devem encaminhar as consultas para o endpoint INBOUND, não para o Outbound. O Outbound é estritamente usado para encaminhar da AWS para o on-premises."
+        },
+        {
+          "id": "C",
+          "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em uma VPC central de Shared Services conectada ao Transit Gateway. Usar o AWS Resource Access Manager (RAM) para compartilhar a regra de encaminhamento para 'onprem.internal' com as contas. Configurar o DNS on-premises para encaminhar para os IPs Inbound.",
+          "explanation": "Correto: Centralizar os endpoints em uma VPC minimiza custos e esforço. Compartilhar a regra do Resolver via AWS RAM permite que as 150 VPCs usem o endpoint Outbound central, enquanto o on-premises consulta o Inbound central."
+        },
+        {
+          "id": "D",
+          "text": "Implantar instâncias EC2 altamente disponíveis executando BIND DNS na VPC de Shared Services. Configurar todos os DHCP Options Sets das VPCs para apontar para o BIND, realizando o forward condicional nativo para o Route 53.",
+          "explanation": "Incorreto: Gerenciar servidores DNS customizados em instâncias EC2 introduz carga administrativa de patching, HA e escalabilidade, contrariando o princípio de menor sobrecarga."
+        }
+      ],
+      "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS."
     },
     {
       "id": "sap-q-adv-net-02",
@@ -1352,7 +1598,30 @@
           ],
           "generalExplanation": "AWS Cloud WAN simplifica drásticamente el diseño de redes WAN híbridas a escala global mediante su documento de políticas unificado."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Implementar o AWS Cloud WAN criando uma rede central (core network) global. Definir três segmentos: Produção, Não-Produção e Shared Services. Configurar ações de segmento para compartilhar rotas do Shared Services para os demais. Mapear as VPCs com políticas baseadas em tags.",
+          "explanation": "Correto: O AWS Cloud WAN foi projetado para construir redes globais nativamente com segmentação (VRFs). Ele elimina o trabalho manual em dezenas de tabelas de rotas e peerings."
+        },
+        {
+          "id": "B",
+          "text": "Manter os Transit Gateways existentes. Em cada uma das 5 regiões, criar três tabelas de rotas separadas. Atualizar as conexões de peering para propagar rotas apenas entre as tabelas correspondentes através das regiões.",
+          "explanation": "Incorreto: Manter 15 tabelas de rotas e malhas de peering introduz extrema sobrecarga, complexidade de troubleshooting e risco de erros humanos."
+        },
+        {
+          "id": "C",
+          "text": "Substituir os Transit Gateways por um único AWS Direct Connect Gateway associado a todas as VPCs globais. Usar o AWS Network Firewall em cada região para descartar o tráfego de forma centralizada.",
+          "explanation": "Incorreto: O Direct Connect Gateway não roteia tráfego diretamente entre VPCs. É restrito a tráfego on-premises para a AWS."
+        },
+        {
+          "id": "D",
+          "text": "Implementar o AWS Cloud WAN criando três core networks separadas. Conectar as redes usando Peering e usar Security Groups para bloquear tráfego entre os ambientes.",
+          "explanation": "Incorreto: O Cloud WAN usa segmentos dentro de um único core network para atingir esse objetivo nativamente, criar vários core networks aumenta a sobrecarga."
+        }
+      ],
+      "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente."
     },
     {
       "id": "sap-q-adv-net-03",
@@ -1463,7 +1732,35 @@
           ],
           "generalExplanation": "Para enviar tráfico de VPN sobre un Direct Connect, es indispensable usar una VIF Pública para anunciar los rangos IP públicos de AWS."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar uma AWS Direct Connect Private VIF. Provisionar o Customer Gateway usando o endereço IP privado do dispositivo VPN on-premises.",
+          "explanation": "Incorreto: A VIF Privada conecta-se a um Direct Connect Gateway, e o cenário estipula o uso explícito de uma Public VIF."
+        },
+        {
+          "id": "B",
+          "text": "Criar uma Public VIF do AWS Direct Connect. Estabelecer uma sessão BGP sobre a Public VIF para receber os prefixos IP públicos da AWS, incluindo os endpoints IP da VPN.",
+          "explanation": "Correto: Para rotear tráfego VPN sobre DX público, o roteador precisa aprender os IPs públicos da AWS (onde a VPN termina) via BGP na Public VIF."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar o parâmetro de criptografia IPsec diretamente no console do AWS Direct Connect, informando a chave KMS.",
+          "explanation": "Incorreto: Não existe esse parâmetro nativo simples no DX. A criptografia requer sobreposição com VPN ou suporte de hardware MACsec."
+        },
+        {
+          "id": "D",
+          "text": "Criar uma conexão AWS Site-to-Site VPN terminando no AWS Transit Gateway. Configurar o Customer Gateway com o IP público do roteador on-premises.",
+          "explanation": "Correto: A VPN termina no TGW, fornecendo acesso a todas as VPCs anexadas. A configuração requer o registro do IP público do equipamento on-premises no Customer Gateway."
+        },
+        {
+          "id": "E",
+          "text": "Implantar um AWS Network Firewall no Transit Gateway para criptografar o tráfego nativamente sem configurações IPsec.",
+          "explanation": "Incorreto: O Network Firewall faz inspeção de pacotes e regras stateful, não provê túnel IPsec na camada de rede/transporte."
+        }
+      ],
+      "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet."
     },
     {
       "id": "sap-q-adv-net-04",
@@ -1558,7 +1855,30 @@
           ],
           "generalExplanation": "AWS Client VPN proporciona capacidades robustas para mapear atributos de grupos SAML directamente a reglas de enrutamiento y autorización de red."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar múltiplos endpoints do AWS Client VPN, um para cada grupo. Conectar cada endpoint à respectiva VPC. Integrar com SAML 2.0 e usar Security Groups.",
+          "explanation": "Incorreto: Múltiplos endpoints aumentam os custos de provisionamento e o esforço administrativo consideravelmente."
+        },
+        {
+          "id": "B",
+          "text": "Criar um único endpoint do AWS Client VPN associado a uma VPC de Shared Services conectada ao Transit Gateway. Integrar com o IdP SAML 2.0. Criar regras de autorização do Client VPN mapeando os grupos do IdP para os blocos CIDR específicos das VPCs de destino.",
+          "explanation": "Correto: Um único endpoint centraliza a gerência. As regras de autorização do Client VPN permitem restringir o tráfego de rede para CIDRs específicos com base na adesão do usuário ao grupo do provedor de identidade SAML."
+        },
+        {
+          "id": "C",
+          "text": "Implementar uma AWS Site-to-Site VPN terminando no Transit Gateway. Implantar um servidor Radius em EC2 para SAML. Usar o AWS Network Firewall para filtrar pacotes por grupos de usuários.",
+          "explanation": "Incorreto: AWS Site-to-Site VPN não é adequado para acesso discado de clientes remotos. O Client VPN é a solução gerenciada correta."
+        },
+        {
+          "id": "D",
+          "text": "Criar um endpoint AWS Client VPN integrado ao IAM Identity Center. Anexar políticas IAM para permitir explicitamente ações 'ec2:Connect' com base em tags de usuário.",
+          "explanation": "Incorreto: O controle de acesso a redes IP dentro da VPC no Client VPN não é gerido por permissões de plano de controle da API do IAM."
+        }
+      ],
+      "generalExplanation": "A funcionalidade de Authorization Rules do AWS Client VPN integrada com SAML 2.0 IdP permite a segmentação de rede baseada em grupos, garantindo segurança zero-trust com mínimo overhead."
     },
     {
       "id": "sap-q-adv-net-05",
@@ -1653,7 +1973,30 @@
           ],
           "generalExplanation": "Las comunidades BGP son el mecanismo soportado por AWS para influir en el Local Preference dentro del sistema autónomo de AWS para el tráfico saliente sobre Direct Connect."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar o roteador on-premises no Location A para anunciar suas rotas para a AWS com um valor de BGP Local Preference maior que o roteador no Location B.",
+          "explanation": "Incorreto: BGP Local Preference é um atributo que afeta apenas o tráfego de saída do seu próprio Autonomous System (on-premises para AWS). Não afeta a decisão de rota de volta tomada pela AWS."
+        },
+        {
+          "id": "B",
+          "text": "Configurar a tabela de rotas do Transit Gateway com uma rota estática para o bloco CIDR on-premises apontando para o DXGW, assinalando uma métrica menor para o Location A.",
+          "explanation": "Incorreto: O TGW confia nas rotas dinâmicas BGP do DXGW. Não é possível usar métricas estáticas em um único anexo de DXGW para preferir um link DX específico subjacente."
+        },
+        {
+          "id": "C",
+          "text": "Configurar o roteador on-premises no Location A para anunciar suas rotas com a BGP community `7224:7300` (High Preference), e o roteador no Location B com `7224:7100` (Low Preference).",
+          "explanation": "Correto: A AWS suporta BGP communities específicas do AWS Direct Connect para que os clientes controlem a preferência local dentro da infraestrutura da AWS, priorizando o caminho de retorno de tráfego (da AWS para on-premises)."
+        },
+        {
+          "id": "D",
+          "text": "Habilitar roteamento assimétrico no Transit Gateway e usar o AWS Global Accelerator com um 'traffic dial weight' de 100% para o Location A.",
+          "explanation": "Incorreto: Global Accelerator não roteia tráfego em conexões privadas Direct Connect, sendo focado em IPs Anycast para a internet pública."
+        }
+      ],
+      "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect."
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345671",
@@ -1737,7 +2080,25 @@
           ],
           "explanation": "Amazon EMR proporciona integración nativa con AWS Lake Formation, lo que le permite definir la seguridad a nivel de fila y columna para las cargas de trabajo de Apache Spark. Cuando se integra con IAM Identity Center, autentica a los usuarios y transmite sus identidades a Lake Formation, evaluando los controles de acceso detallados de forma centralizada sin la sobrecarga de herramientas de terceros."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Implante um cluster EMR com integração do Amazon EMR para o AWS Lake Formation. Use o IAM Identity Center (AWS SSO) para autenticação de usuários. Configure as permissões do Lake Formation e use o tempo de execução do EMR para Spark."
+        },
+        {
+          "id": "B",
+          "text": "Implante um cluster EMR e instale o Apache Ranger. Sincronize as políticas do Lake Formation com o Apache Ranger usando uma função AWS Lambda personalizada. Configure o Spark para usar o plugin do Ranger para controle de acesso."
+        },
+        {
+          "id": "C",
+          "text": "Use o Amazon EMR Serverless e anexe uma função de execução que assume funções do IAM dinamicamente com base em tags. Use as políticas de recurso do AWS Glue Data Catalog para impor segurança em nível de coluna."
+        },
+        {
+          "id": "D",
+          "text": "Implante um cluster EMR com funções do IAM para perfis de instância do Amazon EC2. Crie chaves AWS KMS personalizadas para cada tabela e conceda acesso à chave KMS apenas para usuários específicos para impor criptografia em nível de coluna."
+        }
+      ]
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345672",
@@ -1822,7 +2183,25 @@
           ],
           "explanation": "Amazon Managed Service for Apache Flink es ideal para aplicaciones de transmisión complejas y con estado, integrándose de forma nativa con Amazon MSK. La salida a Kinesis Data Firehose maneja el micro-lote requerido para cargar datos de manera eficiente en Amazon Redshift. Direct Query en QuickSight permite paneles casi en tiempo real."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Use o Amazon Managed Service for Apache Flink para ler do MSK, realizar agregações com estado e enviar a saída para um fluxo de entrega do Amazon Kinesis Data Firehose configurado para carregar no Amazon Redshift. Conecte o QuickSight diretamente ao Redshift usando Direct Query."
+        },
+        {
+          "id": "B",
+          "text": "Use uma função AWS Lambda acionada pelo MSK para realizar processamento com estado, armazenando o estado no Amazon ElastiCache for Redis. Faça o Lambda gravar diretamente no Redshift usando a API de Dados do Redshift. Use o SPICE no QuickSight."
+        },
+        {
+          "id": "C",
+          "text": "Implante um cluster Amazon EMR com Apache Kafka Connect para ler do MSK. Use Spark Streaming para processamento com estado e grave no Amazon S3. Use o Amazon Redshift Spectrum para consultar o S3 diretamente do QuickSight."
+        },
+        {
+          "id": "D",
+          "text": "Substitua o MSK pelo Amazon Kinesis Data Streams. Use o Kinesis Data Analytics for SQL Applications para janelamento e grave a saída diretamente no Redshift usando uma função AWS Lambda personalizada."
+        }
+      ]
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345673",
@@ -1905,7 +2284,25 @@
           ],
           "explanation": "AWS Lake Formation se integra de forma nativa con los datashares de Amazon Redshift. Al registrar un datashare en Lake Formation, puede administrar y otorgar acceso de forma centralizada en diferentes cuentas de AWS, cumpliendo con los requisitos de gobernanza sin duplicar datos ni escribir trabajos de exportación personalizados."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Utilize datashares do Redshift gerenciados pelo AWS Lake Formation. Registre o datashare do cluster Redshift central como um recurso do Lake Formation e conceda permissões entre contas via Lake Formation para as Contas B, C e D."
+        },
+        {
+          "id": "B",
+          "text": "Faça o UNLOAD periodicamente dos dados para um bucket S3 central. Registre o bucket no Lake Formation. Faça com que as Contas B, C e D usem o Redshift Spectrum para consultar os dados do bucket S3 via concessões entre contas do Lake Formation."
+        },
+        {
+          "id": "C",
+          "text": "Crie datashares do Redshift diretamente no console do Redshift. Estabeleça funções IAM entre contas nas Contas B, C e D com permissões sts:AssumeRole mapeadas para usuários internos do banco de dados Redshift."
+        },
+        {
+          "id": "D",
+          "text": "Use o AWS Data Exchange para publicar as tabelas do Redshift como produtos de dados. Inscreva as Contas B, C e D nesses produtos e use o Lake Formation para gerenciar os direitos de assinatura."
+        }
+      ]
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345674",
@@ -1989,7 +2386,25 @@
           ],
           "explanation": "La conexión de QuickSight a Athena a través de SPICE garantiza tableros de alto rendimiento (menos de 2 segundos de tiempo de carga) independientemente del tamaño de los datos del backend, ya que SPICE es un motor de cálculo en memoria. SPICE puede manejar actualizaciones cada hora. La implementación de QuickSight en varias regiones permite el acceso localizado."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Use o Amazon Athena para consultar o data lake do S3 via Glue Data Catalog. Conecte o QuickSight ao Athena e configure o SPICE com uma programação de atualização a cada hora. Implante o QuickSight no us-east-1 e no eu-west-1, permitindo que os usuários acessem os conjuntos de dados SPICE em sua região local."
+        },
+        {
+          "id": "B",
+          "text": "Conecte o QuickSight diretamente aos clusters do Amazon EMR usando Presto. Escale o cluster Presto para lidar com 10.000 conexões simultâneas. Implante o QuickSight em us-east-1 e use o Amazon CloudFront para baixa latência na Europa."
+        },
+        {
+          "id": "C",
+          "text": "Carregue os dados processados do S3 no Amazon Redshift Serverless. Conecte o QuickSight ao Redshift usando Direct Query. Configure snapshots entre regiões do Redshift para uma região europeia e implante o QuickSight em ambas as regiões."
+        },
+        {
+          "id": "D",
+          "text": "Configure o QuickSight com uma conexão direta ao Amazon S3 usando um arquivo de manifesto JSON. Habilite o SPICE com uma atualização a cada hora. Use o roteamento baseado em latência do Route 53 para direcionar os usuários para uma implantação do QuickSight distribuída globalmente."
+        }
+      ]
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345675",
@@ -2074,7 +2489,25 @@
           ],
           "explanation": "Apache Iceberg es un formato de tabla abierta moderno que admite de forma nativa la evolución del esquema y las consultas de viaje en el tiempo. Amazon Managed Service for Apache Flink puede escribir fácilmente datos de transmisión en S3 en formato Iceberg. AWS Glue Data Catalog admite la compactación automática de tablas de Iceberg, lo que optimiza archivos pequeños para consultas de Athena sin necesidad de escribir trabajos de compactación personalizados ni administrar clústeres de Spark complejos."
         }
-      }
+      },
+      "options": [
+        {
+          "id": "A",
+          "text": "Use o Amazon Kinesis Data Firehose com o cluster MSK como fonte. Habilite o particionamento dinâmico para converter dados para o formato Parquet. Use tabelas governadas do AWS Lake Formation e o AWS Glue DataBrew para compactar arquivos."
+        },
+        {
+          "id": "B",
+          "text": "Execute um trabalho de Spark Streaming no Amazon EMR para ler do MSK e gravar no Amazon S3 no formato Apache Hudi. Registre o local do S3 no Lake Formation e ative o clustering Hudi para compactação de arquivos."
+        },
+        {
+          "id": "C",
+          "text": "Use o Amazon Managed Service for Apache Flink para ler do MSK e enviar o fluxo para o Amazon S3 no formato Apache Iceberg. Registre as tabelas no AWS Glue Data Catalog e habilite a compactação automática do AWS Glue para Iceberg."
+        },
+        {
+          "id": "D",
+          "text": "Crie uma função AWS Lambda acionada pelo MSK. Grave eventos em uma tabela do Amazon DynamoDB. Use o DynamoDB Streams para acionar outro Lambda para gravar arquivos Parquet agregados no Amazon S3."
+        }
+      ]
     }
   ]
 }

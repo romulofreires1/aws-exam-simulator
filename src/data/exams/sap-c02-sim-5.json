@@ -1974,7 +1974,32 @@
           ],
           "generalExplanation": "Las Signed URLs de CloudFront y el OAC de S3 son el estándar arquitectónico de AWS para la distribución segura de contenido premium en CDN."
         }
-      }
+      },
+      "statement": "Uma empresa de mídia distribui vídeos premium globalmente usando S3 e CloudFront. A equipe de segurança exige que apenas usuários assinantes acessem os vídeos, com expiração em 1 hora por arquivo. Além disso, o bucket S3 de origem deve bloquear todo o acesso direto da internet. Qual solução atende aos requisitos com a MENOR sobrecarga?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar CloudFront Signed Cookies para o acesso. Atualizar a bucket policy do S3 para permitir acesso apenas aos IPs dos Edge locations do CloudFront.",
+          "explanation": "Incorreto: Restringir por IP do CloudFront é um antipadrão frágil. Deve-se usar Origin Access Control (OAC)."
+        },
+        {
+          "id": "B",
+          "text": "Gerar S3 pre-signed URLs e entregá-las diretamente aos usuários. Configurar OAI no CloudFront.",
+          "explanation": "Incorreto: O uso de pre-signed URLs do S3 faz com que o usuário acesse o S3 diretamente, ignorando o cache do CloudFront e a CDN."
+        },
+        {
+          "id": "C",
+          "text": "Configurar CloudFront Signed URLs geradas para cada arquivo solicitado por usuário autenticado. Restringir o acesso ao S3 usando Origin Access Control (OAC) apontando para a distribuição do CloudFront.",
+          "explanation": "Correto: Signed URLs controlam acesso granular a arquivos individuais. OAC é o padrão moderno e seguro para proteger a origem S3 do CloudFront."
+        },
+        {
+          "id": "D",
+          "text": "Usar AWS WAF no CloudFront inspecionando tokens JWT. Proteger o bucket S3 com VPC Gateway Endpoints.",
+          "explanation": "Incorreto: O CloudFront não pode acessar um bucket S3 através de um VPC Gateway Endpoint, pois ele não reside dentro da VPC."
+        }
+      ],
+      "generalExplanation": "CloudFront Signed URLs são ideais para restringir acesso granular a arquivos individuais (vídeos premium). Origin Access Control (OAC) garante que o S3 só seja acessado pela distribuição autorizada do CloudFront.",
+      "domainName": "Domínio 2: Design para Novas Soluções"
     },
     {
       "id": "sap-q002-caching-1789130955",
@@ -2072,7 +2097,32 @@
           ],
           "generalExplanation": "ElastiCache for Redis Multi-AZ con Automatic Failover es la solución nativa para proporcionar tolerancia a fallos a nivel de clúster entre Zonas de Disponibilidad."
         }
-      }
+      },
+      "statement": "Uma plataforma de e-commerce depende de um banco de dados Amazon RDS PostgreSQL. Durante promoções relâmpago, consultas de leitura sobrecarregam o banco. A equipe implantou Amazon ElastiCache for Redis em Cluster Mode para armazenar o catálogo de produtos. Recentemente, a camada de cache sofreu uma falha completa de Zona de Disponibilidade (AZ), o cluster Redis travou e perdeu todos os dados, derrubando a aplicação. Qual alteração arquitetural garantirá alta disponibilidade e persistência contra falhas de AZ para o cache?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Migrar do ElastiCache for Redis para ElastiCache for Memcached, utilizando sua arquitetura multi-thread para abranger múltiplas AZs.",
+          "explanation": "Incorreto: Memcached não suporta replicação, failover ou persistência. É puramente efêmero."
+        },
+        {
+          "id": "B",
+          "text": "Configurar Redis Global Datastores para replicar o cache para uma Região secundária para proteger contra falhas de AZ.",
+          "explanation": "Incorreto: Global Datastores são para DR entre regiões. É uma solução cara e exagerada para uma simples falha de AZ local."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar Auto Scaling no cluster Redis para provisionar instantaneamente novos nós em AZs saudáveis durante a interrupção.",
+          "explanation": "Incorreto: Auto Scaling trata capacidade (escala horizontal/vertical), não trata failover imediato para retenção de dados."
+        },
+        {
+          "id": "D",
+          "text": "Habilitar Multi-AZ com Automatic Failover no cluster ElastiCache for Redis, e configurar pelo menos uma réplica de leitura em uma AZ diferente.",
+          "explanation": "Correto: Multi-AZ com Automatic Failover detecta falhas na AZ primária e promove automaticamente a réplica em standby para primária, mantendo o cluster no ar sem perda massiva de cache."
+        }
+      ],
+      "generalExplanation": "Para garantir alta disponibilidade no ElastiCache for Redis, é mandatório habilitar o Multi-AZ com Automatic Failover e possuir réplicas de leitura distribuídas nas Zonas de Disponibilidade.",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     },
     {
       "id": "sap-q003-caching-1789130955",
@@ -2170,7 +2220,32 @@
           ],
           "generalExplanation": "Lambda@Edge ejecutado en Origin Response es el patrón óptimo para la manipulación dinámica de imágenes, ya que procesa el objeto una vez y permite que CloudFront almacene el resultado en caché."
         }
-      }
+      },
+      "statement": "Uma agência de notícias atende imagens redimensionadas dinamicamente com base no dispositivo do usuário (desktop, mobile, tablet). Eles usam CloudFront e S3. O arquiteto deve garantir que a lógica de redimensionamento rode globalmente nas bordas (edge locations) e que as imagens redimensionadas sejam armazenadas no cache do CloudFront para usuários subsequentes com o mesmo dispositivo. Qual solução atinge esse objetivo?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar uma CloudFront Function no evento Origin Request para inspecionar o User-Agent e redimensionar a imagem.",
+          "explanation": "Incorreto: CloudFront Functions são para execuções leves (<1ms) e não suportam bibliotecas complexas ou manipulação pesada de imagens."
+        },
+        {
+          "id": "B",
+          "text": "Implantar uma função Lambda@Edge no evento Origin Response. A função redimensiona a imagem caso ela não exista e retorna a imagem modificada para o CloudFront fazer o cache.",
+          "explanation": "Correto: O evento Origin Response no Lambda@Edge permite modificar a resposta que vem da origem (S3) ANTES de ser salva no cache do CloudFront."
+        },
+        {
+          "id": "C",
+          "text": "Implantar uma função Lambda@Edge no evento Viewer Response para redimensionar a imagem.",
+          "explanation": "Incorreto: Funções no Viewer Response rodam após a verificação de cache e seu retorno NÃO é armazenado no cache, o que executaria o redimensionamento em toda requisição."
+        },
+        {
+          "id": "D",
+          "text": "Configurar o AWS WAF para adicionar cabeçalhos de tipo de dispositivo e forçar o redimensionamento via S3 Object Lambda.",
+          "explanation": "Incorreto: O WAF não manipula imagens."
+        }
+      ],
+      "generalExplanation": "Para manipulação pesada de carga e cache eficiente no edge, o evento Origin Response no Lambda@Edge é usado. Ele executa apenas em cache misses e seu output é armazenado na borda.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-q004-caching-1789130955",
@@ -2284,7 +2359,37 @@
           ],
           "generalExplanation": "Las políticas de cumplimiento exigen reconstruir el clúster con cifrado nativo habilitado. Posteriormente, habilitar la Autenticación IAM proporciona el control de acceso granular (RBAC) requerido por el CISO."
         }
-      }
+      },
+      "statement": "Uma empresa de análise financeira usa o Amazon ElastiCache for Redis para métricas em tempo real. O CISO exige que todos os dados em trânsito e em repouso sejam criptografados, e que todos os clientes Redis se autentiquem usando identidades detalhadas baseadas em suas roles (IAM). Quais ações o Arquiteto de Soluções DEVE realizar para atender a esses requisitos? (Escolha DUAS)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar criptografia por meio das configurações padrão de parameter group do ElastiCache.",
+          "explanation": "Incorreto: Criptografia não pode ser ativada via parameter group em um cluster existente."
+        },
+        {
+          "id": "B",
+          "text": "Provisionar um novo cluster ElastiCache for Redis com as flags `TransitEncryptionEnabled` e `AtRestEncryptionEnabled` definidas como true.",
+          "explanation": "Correto: A criptografia em repouso e em trânsito deve ser habilitada no momento da criação do cluster Redis."
+        },
+        {
+          "id": "C",
+          "text": "Configurar uma política IAM com a ação `elasticache:Connect` no EC2.",
+          "explanation": "Incorreto: A integração do Redis usa RBAC e Auth nativo atrelado a grupos de usuários, não a simples permissão Connect do EC2."
+        },
+        {
+          "id": "D",
+          "text": "Configurar Redis AUTH com integração AWS IAM (IAM Auth) e atribuir roles específicas mapeadas para grupos de usuários do ElastiCache.",
+          "explanation": "Correto: O IAM Auth para Redis permite usar credenciais do IAM para autenticar clientes no nível de RBAC do Redis de forma granular."
+        },
+        {
+          "id": "E",
+          "text": "Usar AWS KMS para gerar chaves e injetá-las dinamicamente no código da aplicação.",
+          "explanation": "Incorreto: A aplicação não gerencia a criptografia KMS diretamente nas transações do Redis."
+        }
+      ],
+      "generalExplanation": "A criptografia no ElastiCache deve ser habilitada na criação do cluster. Além disso, o ElastiCache for Redis suporta IAM Authentication, substituindo senhas estáticas por credenciais granulares baseadas em funções IAM do RBAC.",
+      "domainName": "Domínio 2: Design para Novas Soluções"
     },
     {
       "id": "sap-q005-caching-1789130955",
@@ -2382,7 +2487,32 @@
           ],
           "generalExplanation": "La Cache Policy de CloudFront debe diseñarse meticulosamente para incluir cualquier atributo que altere dinámicamente la respuesta HTTP (Headers, Query Strings, Cookies) dentro de la Cache Key."
         }
-      }
+      },
+      "statement": "Uma API REST serverless no API Gateway está atrás de uma distribuição do CloudFront. A API retorna conteúdo personalizado que varia estritamente com base no cabeçalho `Authorization` e na localização geográfica (`Country`). Os custos do API Gateway estão muito altos porque o CloudFront está buscando repetidamente o mesmo conteúdo para usuários do mesmo país com a mesma autorização. Como o arquiteto pode melhorar a taxa de acertos no cache (cache hit) do CloudFront?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar endpoints Edge-Optimized no API Gateway, descartando o CloudFront externo.",
+          "explanation": "Incorreto: Endpoints Edge-Optimized usam distribuições CloudFront ocultas que não permitem customização avançada de Cache Keys baseadas em cabeçalhos do cliente."
+        },
+        {
+          "id": "B",
+          "text": "Criar uma CloudFront Cache Policy que inclua o cabeçalho `Authorization` e o cabeçalho `CloudFront-Viewer-Country` na Chave de Cache (Cache Key).",
+          "explanation": "Correto: Adicionar esses cabeçalhos à Chave de Cache faz com que o CloudFront armazene em cache variações baseadas nesses valores exatos, diminuindo enormemente os hits na origem."
+        },
+        {
+          "id": "C",
+          "text": "Configurar uma Origin Request Policy no CloudFront para encaminhar os cabeçalhos para a origem, mas excluí-los da Cache Key.",
+          "explanation": "Incorreto: Se não estiverem na Cache Key, o CloudFront retornará a mesma página para usuários diferentes (vazamento de dados cruzados)."
+        },
+        {
+          "id": "D",
+          "text": "Implementar o AWS WAF para fazer cache dependendo da assinatura JWT.",
+          "explanation": "Incorreto: O AWS WAF não faz cache de payloads."
+        }
+      ],
+      "generalExplanation": "A manipulação de Cache Keys no CloudFront permite que conteúdo dinâmico (dependente de Autenticação e País) seja cacheado de forma segura e fragmentada, salvando acessos à origem (API Gateway).",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     }
   ]
 }

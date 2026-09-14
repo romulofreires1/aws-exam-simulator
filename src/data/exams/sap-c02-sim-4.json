@@ -127,7 +127,32 @@
           ],
           "generalExplanation": "El enrutamiento aislado en TGW requiere múltiples tablas de rutas. Además, las conexiones de peering entre TGWs interregionales no soportan propagación dinámica de rutas; requieren rutas estáticas."
         }
-      }
+      },
+      "statement": "Uma empresa global está reestruturando sua arquitetura de rede AWS em duas regiões (us-east-1 e eu-west-1). Cada região possui um AWS Transit Gateway dedicado conectando centenas de VPCs e um data center local via AWS Direct Connect com um Transit VIF. A equipe de segurança exige isolamento estrito de rede: VPCs de produção não devem se comunicar com VPCs de desenvolvimento na mesma região, mas as VPCs de produção devem poder se comunicar com as VPCs de produção na outra região. Além disso, o tráfego deve ser roteado da forma mais eficiente possível pela rede global da AWS. Qual solução atende a esses requisitos com a MENOR sobrecarga operacional?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Criar um anexo de peering de Transit Gateway entre regiões. Configurar todas as VPCs para se associarem à tabela de rotas padrão do Transit Gateway. Aplicar políticas do AWS Network Firewall em cada anexo para descartar o tráfego entre CIDRs de desenvolvimento e produção, permitindo o tráfego de produção entre regiões.",
+          "explanation": "Incorreto: Usar a tabela de rotas padrão e depender do Network Firewall adiciona sobrecarga operacional e custos significativos de inspeção de pacotes apenas para alcançar isolamento lógico de roteamento."
+        },
+        {
+          "id": "B",
+          "text": "Estabelecer um Direct Connect Gateway para cada região e anexá-los a ambos os Transit Gateways. Usar o BGP para anunciar as rotas de produção globalmente. Implantar Transit Gateways separados para desenvolvimento e produção para alcançar isolamento físico de rede dentro de cada região.",
+          "explanation": "Incorreto: Implantar Transit Gateways separados por ambiente (Dev/Prod) multiplica custos e complexidade desnecessariamente. Um único TGW suporta roteamento isolado."
+        },
+        {
+          "id": "C",
+          "text": "Criar um anexo de peering entre os dois Transit Gateways. Em cada região, criar tabelas de rotas separadas no Transit Gateway para produção e desenvolvimento. Associar os respectivos anexos de VPC às suas tabelas de rotas específicas. Adicionar uma rota estática nas tabelas de produção apontando para o anexo de peering para os CIDRs de produção da outra região.",
+          "explanation": "Correto: O roteamento isolado no Transit Gateway é feito criando múltiplas tabelas de rotas. Associar anexos de Dev e Prod a tabelas diferentes garante o isolamento. O peering de TGWs entre regiões requer rotas estáticas (não há propagação), o que satisfaz o requisito de Prod-para-Prod de forma eficiente."
+        },
+        {
+          "id": "D",
+          "text": "Criar uma conexão de peering de VPC inter-região para cada VPC de produção. Em cada Transit Gateway, configurar a propagação de rotas das VPCs de desenvolvimento para uma tabela de rotas blackhole. Ativar a propagação de rotas BGP sobre o anexo de peering do Transit Gateway para compartilhar rotas de produção automaticamente.",
+          "explanation": "Incorreto: Anexos de peering de Transit Gateway NÃO suportam propagação automática de rotas; eles exigem rotas estáticas. Criar conexões de peering de VPC individuais anula o propósito hub-and-spoke do TGW."
+        }
+      ],
+      "generalExplanation": "O roteamento isolado no Transit Gateway é alcançado criando múltiplas Tabelas de Rotas do TGW e associando anexos específicos a elas. Além disso, os anexos de peering do TGW entre regiões não suportam a propagação dinâmica de rotas; rotas estáticas devem ser configuradas explicitamente para direcionar o tráfego pela conexão de peering.",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     },
     {
       "id": "sap-q002-sim4-1789125093",
@@ -225,7 +250,32 @@
           ],
           "generalExplanation": "Las Service Control Policies (SCPs) no afectan a la Cuenta de Administración, lo que permite imponer restricciones estrictas en la Raíz que protegen las cuentas miembro sin afectar la administración global."
         }
-      }
+      },
+      "statement": "Uma empresa ativou 'Todos os Recursos' no AWS Organizations com centenas de contas-membro e uma única Conta de Gerenciamento. As políticas de conformidade exigem que nenhum usuário ou administrador — incluindo o usuário root de qualquer conta-membro — possa provisionar recursos fora das regiões `us-east-1` e `eu-central-1`. Além disso, o AWS CloudTrail nunca deve ser desativado. No entanto, a Conta de Gerenciamento da organização deve reter acesso global irrestrito para realizar agregações de faturamento e provisionamento de ferramentas de segurança globais. Qual abordagem atende a esses requisitos com a MENOR sobrecarga operacional?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Anexar uma Service Control Policy (SCP) ao contêiner Raiz (Root) da Organização contendo um Deny explícito para ações onde `aws:RequestedRegion` não são as regiões aprovadas (usando `NotAction` para excluir serviços globais) e um Deny explícito para `cloudtrail:StopLogging`.",
+          "explanation": "Correto: SCPs anexadas à Raiz afetam todas as contas-membro (e seus usuários root). A Conta de Gerenciamento é inerentemente imune a SCPs, o que satisfaz a exigência de acesso global irrestrito para essa conta sem necessidade de exclusões complexas."
+        },
+        {
+          "id": "B",
+          "text": "Anexar uma Service Control Policy (SCP) ao contêiner Raiz com as declarações Deny. Incluir uma condição na SCP usando `StringNotEquals` com `aws:PrincipalAccount` correspondendo ao ID da Conta de Gerenciamento para excluí-la das restrições.",
+          "explanation": "Incorreto: Embora pareça lógico, é desnecessário. A Conta de Gerenciamento já é imune a SCPs por design na AWS. Adicionar exclusões de conta principal para a conta de gerenciamento em uma SCP é um anti-padrão."
+        },
+        {
+          "id": "C",
+          "text": "Implantar um IAM Permission Boundary com as restrições em todos os usuários e roles IAM em toda a organização usando AWS CloudFormation StackSets, excluindo a Conta de Gerenciamento.",
+          "explanation": "Incorreto: Permission Boundaries não restringem o usuário root da conta-membro e exigem manutenção contínua e complexa em centenas de contas em comparação com uma única SCP."
+        },
+        {
+          "id": "D",
+          "text": "Configurar Permission Sets no AWS IAM Identity Center (AWS SSO) com políticas inline de negação para regiões não aprovadas. Atribuir esses Permission Sets a todos os grupos de trabalho nas contas-membro.",
+          "explanation": "Incorreto: Restringe apenas usuários federados via SSO, deixando usuários locais, roles de serviço e o usuário root de cada conta-membro totalmente livres para burlar a política."
+        }
+      ],
+      "generalExplanation": "As SCPs não afetam a Conta de Gerenciamento (Management Account), garantindo que políticas aplicadas na Raiz (Root) protejam as contas-membro sem bloquear funções administrativas globais centralizadas.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-q001-id-batch1",
@@ -324,7 +374,32 @@
           ],
           "generalExplanation": "AWS Control Tower proporciona guardrails Preventivos (SCPs) para bloquear acciones y Detectivos (AWS Config) para identificar y remediar recursos no conformes existentes."
         }
-      }
+      },
+      "statement": "Uma grande empresa gerencia um ambiente multi-contas usando o AWS Control Tower. O CISO exige uma política rigorosa de conformidade: nenhuma entidade (principal) em qualquer conta-membro (incluindo o usuário root) deve ser capaz de tornar um bucket do Amazon S3 público. Além disso, a equipe de segurança precisa de um mecanismo para identificar continuamente e remediar automaticamente quaisquer buckets S3 existentes que tenham sido tornados públicos antes da aplicação da política. Qual combinação de guardrails do AWS Control Tower atenderá a esses requisitos com a MENOR sobrecarga operacional?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar um Guardrail Preventivo Mandatório para bloquear o acesso público do S3 usando regras do AWS Config, e um Guardrail Detetivo Eletivo para remediar buckets existentes usando integrações do AWS CloudTrail.",
+          "explanation": "Incorreto: Guardrails preventivos no Control Tower são implementados usando Service Control Policies (SCPs), não AWS Config. O AWS Config é usado para guardrails Detetivos."
+        },
+        {
+          "id": "B",
+          "text": "Implementar IAM Permission Boundaries em todas as roles de todas as contas para impedir s3:PutBucketPublicAccessBlock, e usar AWS Systems Manager Automation para verificar e remediar buckets existentes.",
+          "explanation": "Incorreto: Permission Boundaries não restringem o usuário root das contas-membro e introduzem uma sobrecarga operacional significativa em comparação com os guardrails nativos do Control Tower."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar um Guardrail Preventivo (implementado via SCP) para negar operações que desativem o S3 Block Public Access, e habilitar um Guardrail Detetivo (implementado via AWS Config e Lambda) para detectar e remediar buckets existentes não conformes.",
+          "explanation": "Correto: No Control Tower, guardrails Preventivos usam SCPs para bloquear ações no nível da API (prevenindo novas violações), enquanto guardrails Detetivos usam regras do AWS Config para identificar violações existentes e podem acionar remediações automáticas."
+        },
+        {
+          "id": "D",
+          "text": "Implantar uma política do AWS Network Firewall em todas as VPCs para inspecionar o tráfego do S3 e bloquear requisições de acesso público, combinado com o Amazon Macie para descoberta contínua de buckets públicos.",
+          "explanation": "Incorreto: O Network Firewall não pode impedir alterações na política de buckets do S3 via API da AWS. O Amazon Macie descobre dados sensíveis, mas não remedia public buckets de forma nativa e automática como o Config."
+        }
+      ],
+      "generalExplanation": "O AWS Control Tower fornece dois tipos principais de guardrails: Preventivos (usando Service Control Policies - SCPs) para impedir ações não conformes na origem, e Detetivos (usando AWS Config) para detectar e remediar recursos não conformes já existentes.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-q002-id-batch1",
@@ -422,7 +497,32 @@
           ],
           "generalExplanation": "AWS IAM Identity Center es compatible con el protocolo SCIM, lo que permite la sincronización automática de identidades desde proveedores externos como Entra ID, eliminando la gestión manual."
         }
-      }
+      },
+      "statement": "Uma empresa está migrando de um modelo tradicional de federação IAM baseado em SAML 2.0 para o AWS IAM Identity Center para gerenciar centralmente o acesso da força de trabalho em 150 contas AWS. A corporação usa o Microsoft Entra ID (antigo Azure AD) como seu provedor de identidade externo (IdP). A equipe de segurança exige que, quando um novo desenvolvedor for integrado ou desligado no Entra ID, seu acesso às contas AWS seja concedido ou revogado automaticamente, sem exigir que os administradores da AWS criem ou excluam manualmente usuários no IAM Identity Center. Qual solução atende a esses requisitos com o MAIOR nível de automação?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar uma função AWS Lambda acionada por eventos do AWS CloudTrail para consultar periodicamente a API do Microsoft Graph, detectar alterações no Entra ID e atualizar usuários no IAM Identity Center.",
+          "explanation": "Incorreto: Construir lógica de sincronização personalizada com Lambda introduz sobrecarga operacional desnecessária, já que existe um protocolo nativo para este propósito exato."
+        },
+        {
+          "id": "B",
+          "text": "Implantar o AWS Directory Service AD Connector em uma VPC e apontá-lo para os controladores de domínio do Entra ID por meio de uma VPN AWS Site-to-Site para sincronizar as identidades.",
+          "explanation": "Incorreto: O Microsoft Entra ID é um IdP baseado em nuvem (SAML/OIDC), não um diretório LDAP local. O AD Connector foi projetado para Microsoft Active Directory local, não para o Entra ID."
+        },
+        {
+          "id": "C",
+          "text": "Estabelecer uma relação de confiança SAML 2.0 entre o IAM Identity Center e o Entra ID, confiando no provisionamento Just-In-Time (JIT) através de asserções SAML durante o login do usuário.",
+          "explanation": "Incorreto: O provisionamento JIT cria usuários apenas em seu primeiro login. Ele não pode provisionar usuários proativamente antes do login ou desprovisionar usuários automaticamente quando eles saem da empresa."
+        },
+        {
+          "id": "D",
+          "text": "Habilitar o provisionamento automático no IAM Identity Center usando o protocolo System for Cross-domain Identity Management (SCIM) v2.0, e configurar o endpoint SCIM e o token de acesso no aplicativo corporativo do Entra ID.",
+          "explanation": "Correto: SCIM é o protocolo padrão da indústria para provisionamento automatizado de usuários. A configuração do SCIM garante que os ciclos de vida da identidade (criação, atualização, exclusão) sejam contínua e automaticamente sincronizados sem intervenção manual."
+        }
+      ],
+      "generalExplanation": "O AWS IAM Identity Center suporta o protocolo SCIM (System for Cross-domain Identity Management), que permite que provedores de identidade externos sincronizem automaticamente metadados de usuários e grupos na AWS, garantindo integração e desligamento automáticos.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-q003-id-batch1",
@@ -537,7 +637,37 @@
           ],
           "generalExplanation": "Amazon Cognito User Pools manejan la autenticación de usuarios y devuelven JWTs. Luego, Cognito Identity Pools toma esos JWTs y los intercambia por credenciais temporales de AWS STS, permitiendo la carga directa a Amazon S3."
         }
-      }
+      },
+      "statement": "Uma empresa de mídia está desenvolvendo um novo aplicativo móvel que permite aos usuários fazer login usando suas contas do Google, Apple ou Facebook. Uma vez autenticado, o aplicativo deve permitir que o usuário faça o upload seguro de arquivos de mídia grandes diretamente para um bucket do Amazon S3 sem rotear o tráfego pelos servidores de backend da empresa. O backend deve permanecer completamente desacoplado do caminho de upload de dados. Qual combinação de etapas atenderá a esses requisitos? (Escolha duas.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Configurar o Amazon Cognito User Pools para gerar credenciais temporárias do AWS STS após a autenticação social bem-sucedida.",
+          "explanation": "Incorreto: Cognito User Pools fornecem apenas JSON Web Tokens (JWT) para autenticação; eles não emitem diretamente credenciais temporárias da AWS para acessar serviços."
+        },
+        {
+          "id": "B",
+          "text": "Configurar um Amazon Cognito User Pool com provedores de identidade do Google, Apple e Facebook para autenticar usuários e gerar JSON Web Tokens (JWT).",
+          "explanation": "Correto: O User Pool atua como o diretório central lidando com a integração OIDC/SAML com provedores sociais e autenticando o usuário via JWTs."
+        },
+        {
+          "id": "C",
+          "text": "Configurar o Amazon API Gateway com um autorizador personalizado AWS Lambda para interceptar tokens de provedores sociais e fazer proxy das solicitações de upload para o S3.",
+          "explanation": "Incorreto: Rotear uploads grandes via API Gateway e Lambda introduz um gargalo no backend e viola o requisito de upload direto para o S3."
+        },
+        {
+          "id": "D",
+          "text": "Configurar o AWS IAM Identity Center (AWS SSO) e mapear os IdPs sociais externos para Permission Sets concedendo acesso s3:PutObject.",
+          "explanation": "Incorreto: O IAM Identity Center é projetado para federação corporativa B2B, não para aplicativos móveis voltados para o consumidor (B2C) com login social."
+        },
+        {
+          "id": "E",
+          "text": "Configurar um Amazon Cognito Identity Pool vinculado ao User Pool para trocar os JWTs por credenciais temporárias da AWS mapeadas para uma role do IAM com permissões s3:PutObject.",
+          "explanation": "Correto: Cognito Identity Pools são projetados especificamente para trocar tokens de autenticação por credenciais temporárias da AWS via STS, permitindo acesso direto e seguro a recursos como o S3."
+        }
+      ],
+      "generalExplanation": "No Amazon Cognito, os User Pools lidam com a autenticação e retornam JWTs. Os Identity Pools pegam esses JWTs e os trocam por credenciais temporárias da AWS, permitindo que o aplicativo acesse o Amazon S3 diretamente.",
+      "domainName": "Domínio 2: Projetar para Novas Soluções"
     },
     {
       "id": "sap-q004-id-batch1",
@@ -635,7 +765,32 @@
           ],
           "generalExplanation": "AWS Directory Service AD Connector actúa únicamente como una puerta de enlace (proxy). Redirige todas las solicitudes de autenticación al Active Directory local sin almacenar contraseñas en AWS."
         }
-      }
+      },
+      "statement": "Uma empresa está adotando o Amazon WorkSpaces para sua força de trabalho remota e precisa autenticar os usuários em seu Microsoft Active Directory local existente. As rigorosas políticas de segurança e conformidade da empresa proíbem explicitamente qualquer sincronização, replicação ou armazenamento em cache de credenciais de usuário do Active Directory (como hashes de senha) fora do data center local. A VPC da AWS está conectada à rede local por meio de uma configuração altamente disponível do AWS Direct Connect. Qual abordagem arquitetônica atende a esses rigorosos requisitos de conformidade?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar um AWS Managed Microsoft AD na VPC e estabelecer uma relação de confiança unidirecional onde o domínio da AWS confia no domínio local.",
+          "explanation": "Incorreto: Embora uma confiança unidirecional evite a replicação de credenciais, implantar um domínio inteiro do AWS Managed Microsoft AD introduz complexidade desnecessária quando soluções de proxy mais simples existem."
+        },
+        {
+          "id": "B",
+          "text": "Implementar o AWS IAM Identity Center com o diretório integrado e usar o SCIM para provisionar usuários do Active Directory local.",
+          "explanation": "Incorreto: O diretório integrado do IAM Identity Center armazena uma cópia das identidades na AWS, o que viola a política estrita contra o armazenamento de credenciais fora do data center."
+        },
+        {
+          "id": "C",
+          "text": "Implantar o AWS Directory Service AD Connector na VPC, configurado para fazer proxy das solicitações de autenticação diretamente para os controladores de domínio do Active Directory local.",
+          "explanation": "Correto: O AD Connector é um gateway de diretório que simplesmente redireciona as solicitações para o Active Directory local sem armazenar em cache nenhuma credencial na nuvem, satisfazendo perfeitamente o requisito de conformidade."
+        },
+        {
+          "id": "D",
+          "text": "Implantar uma instância Amazon EC2 executando Active Directory Domain Services como um Read-Only Domain Controller (RODC) na VPC e conectar o WorkSpaces a ele.",
+          "explanation": "Incorreto: Um RODC armazena credenciais (ou parte dos dados do diretório) em cache na nuvem AWS, o que viola explicitamente a política contra o cache de credenciais."
+        }
+      ],
+      "generalExplanation": "O AD Connector atua puramente como um proxy para solicitações de autenticação. Ele encaminha todas as solicitações para o Active Directory local via Direct Connect sem armazenar credenciais na nuvem AWS, sendo ideal para cenários de conformidade restrita.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-q005-id-batch1",
@@ -733,7 +888,32 @@
           ],
           "generalExplanation": "AWS IAM Identity Center simplifica las políticas de confianza. En lugar de incluir cada usuario o grupo en la política de confianza del rol IAM, el rol simplemente confía en el Identity Center. El Identity Center se encarga de autorizar qué usuario o grupo asume cada rol."
         }
-      }
+      },
+      "statement": "Um Arquiteto de Soluções está solucionando problemas de acesso em um ambiente AWS gerenciado pelo AWS IAM Identity Center (antigo AWS SSO). Um funcionário no grupo 'DataEngineers' do Active Directory está tentando acessar um cluster Amazon Redshift na conta AWS 'DataLake', mas recebe um erro de 'Acesso Negado'. O arquiteto verifica que o grupo 'DataEngineers' está atribuído ao Permission Set 'RedshiftAdmin' no IAM Identity Center. No entanto, ao analisar as roles do IAM provisionadas automaticamente na conta 'DataLake', a política de confiança (trust policy) da role criada pelo IAM Identity Center lista apenas o provedor SAML, e não o funcionário específico ou o grupo do AD. Qual é a razão arquitetônica para esse comportamento?",
+      "options": [
+        {
+          "id": "A",
+          "text": "O Permission Set foi implantado, mas a propagação automatizada falhou devido à falta de uma Service Linked Role na conta de destino, impedindo que a política de confiança fosse atualizada com o SID do grupo AD.",
+          "explanation": "Incorreto: As políticas de confiança de role do IAM Identity Center não contêm referências a usuários específicos ou grupos AD. A federação lida com o mapeamento."
+        },
+        {
+          "id": "B",
+          "text": "Este é o comportamento esperado. O IAM Identity Center cria uma role IAM na conta de destino onde a política de confiança confia no provedor SAML do Identity Center. O acesso é mapeado centralmente pelo Identity Center durante o fluxo de autenticação, não pelas políticas de confiança (trust policies) da role.",
+          "explanation": "Correto: Nas arquiteturas do IAM Identity Center, a política de confiança da role provisionada confia simplesmente no provedor SAML. O Identity Center gerencia o mapeamento de autorização (quem pode assumir qual role) centralmente, isolando a role IAM de identidades específicas de usuários."
+        },
+        {
+          "id": "C",
+          "text": "Falta um elemento Principal na política inline do Permission Set 'RedshiftAdmin' especificando o ARN do grupo 'DataEngineers'.",
+          "explanation": "Incorreto: Permission Sets (e políticas do IAM em geral) definem permissões (o que pode ser feito), não o Principal (quem está fazendo). O Principal é implicitamente a role assumida."
+        },
+        {
+          "id": "D",
+          "text": "A conta AWS onde o Redshift reside não estava corretamente anexada à raiz do AWS Organizations, fazendo com que o IAM Identity Center recuasse para uma confiança genérica de SAML.",
+          "explanation": "Incorreto: O IAM Identity Center sempre usa uma confiança de provedor SAML nas roles provisionadas. Ele não mapeia grupos AD diretamente nas políticas de confiança das roles."
+        }
+      ],
+      "generalExplanation": "O AWS IAM Identity Center abstrai a complexidade do AssumeRole. A política de confiança (Trust Policy) da role provisionada simplesmente confia no IdP SAML do Identity Center. O próprio Identity Center impõe quais usuários/grupos têm permissão para assumir essa role durante o SSO, mantendo as definições das roles do IAM limpas e desacopladas do diretório corporativo.",
+      "domainName": "Domínio 1: Projetar Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-comp-001",
@@ -1132,7 +1312,32 @@
           ],
           "generalExplanation": "Para garantizar la integridad de los registros de CloudTrail, AWS proporciona la validación de integridad de archivos de registro, generando archivos digest con hashes SHA-256 y firmas digitales."
         }
-      }
+      },
+      "statement": "Uma empresa financeira exige rastreamento estrito de conformidade para todas as chamadas de API feitas em suas contas da AWS. Auditores precisam de prova matemática de que os arquivos de log do CloudTrail armazenados em um bucket do Amazon S3 não foram modificados, excluídos ou forjados após a entrega. Qual recurso o Arquiteto de Soluções deve habilitar para atender a esse requisito?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Habilitar o Amazon S3 Object Lock em modo de conformidade para o bucket que armazena os logs.",
+          "explanation": "Incorreto: S3 Object Lock previne a exclusão ou modificação, mas não fornece prova matemática de integridade para os logs gerados pelo CloudTrail."
+        },
+        {
+          "id": "B",
+          "text": "Habilitar a validação de integridade de arquivo de log do CloudTrail para gerar arquivos digest com hashes SHA-256 e assinaturas digitais RSA.",
+          "explanation": "Correto: A validação de integridade de log do CloudTrail cria um arquivo digest assinado contendo os hashes SHA-256 dos logs entregues, permitindo prova matemática de sua integridade."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar chaves gerenciadas pelo cliente (CMKs) do AWS KMS para criptografar os logs do CloudTrail e habilitar o CloudTrail Insights.",
+          "explanation": "Incorreto: Criptografia protege dados em repouso, mas não fornece prova matemática de integridade. Insights é para detecção de anomalias."
+        },
+        {
+          "id": "D",
+          "text": "Usar a integração do AWS CloudTrail com EventBridge para encaminhar eventos para um SIEM de terceiros que faz o hash dos logs no recebimento.",
+          "explanation": "Incorreto: Isso gera sobrecarga desnecessária e não utiliza recursos nativos da AWS para prova matemática."
+        }
+      ],
+      "generalExplanation": "Para garantir a integridade dos logs do CloudTrail, a AWS fornece a validação de integridade de arquivos de log, gerando arquivos digest com hashes SHA-256 e assinaturas digitais.",
+      "domainName": "Domínio 2: Projetar para Novas Soluções"
     },
     {
       "id": "sap-q002-batch4",
@@ -1230,7 +1435,32 @@
           ],
           "generalExplanation": "CloudTrail Insights es la solución para monitorear anomalías en el volumen de llamadas API, mientras que GuardDuty se especializa en la detección de instancias comprometidas."
         }
-      }
+      },
+      "statement": "Uma empresa global deseja melhorar seu monitoramento operacional e de segurança. A equipe de operações precisa ser alertada quando houver picos incomuns nas chamadas de API de provisionamento de recursos. A equipe de segurança precisa de alertas para instâncias EC2 potencialmente comprometidas que se comuniquem com endereços IP maliciosos conhecidos. Qual combinação de serviços da AWS um Arquiteto de Soluções deve usar para atender a esses requisitos distintos com a MENOR sobrecarga operacional?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Usar Amazon GuardDuty para anomalias em chamadas de API operacionais e detecção de ameaças de segurança.",
+          "explanation": "Incorreto: GuardDuty foca em ameaças de segurança, não em baselines operacionais de volume de chamadas de API."
+        },
+        {
+          "id": "B",
+          "text": "Usar AWS CloudTrail Insights para anomalias em APIs operacionais e detecção de instâncias comprometidas.",
+          "explanation": "Incorreto: CloudTrail Insights analisa volume de chamadas API, mas não analisa VPC Flow Logs para encontrar IPs maliciosos."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar AWS CloudTrail Insights para detectar picos incomuns em chamadas de API de gerenciamento, e habilitar Amazon GuardDuty para detectar instâncias comprometidas usando feeds de inteligência de ameaças.",
+          "explanation": "Correto: CloudTrail Insights detecta anomalias operacionais baseadas no histórico de APIs, enquanto GuardDuty usa ML e inteligência de ameaças para identificar ameaças de segurança."
+        },
+        {
+          "id": "D",
+          "text": "Configurar regras do AWS Config para monitorar volumes de chamadas de API e usar Amazon Macie para detectar instâncias EC2 comprometidas.",
+          "explanation": "Incorreto: Config rastreia estado de recursos. Macie classifica dados no S3, não detecta instâncias EC2 comprometidas."
+        }
+      ],
+      "generalExplanation": "O CloudTrail Insights é ideal para picos anômalos em chamadas de API, enquanto o GuardDuty analisa logs de rede (VPC Flow Logs, DNS) e CloudTrail para detectar instâncias comprometidas.",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     },
     {
       "id": "sap-q003-batch4",
@@ -1344,7 +1574,37 @@
           ],
           "generalExplanation": "CloudWatch Logs Insights resuelve la necesidad de buscar en logs interactivos, mientras que Metric Streams facilita la transmisión en tiempo real de métricas a plataformas de terceros."
         }
-      }
+      },
+      "statement": "Uma empresa está projetando uma plataforma de observabilidade centralizada para seus microsserviços implantados na AWS. A arquitetura deve suportar dois requisitos principais: 1) A equipe de operações precisa de uma linguagem de consulta interativa e específica para pesquisar e agregar centenas de gigabytes de dados de log em tempo real. 2) As métricas do sistema devem ser transmitidas continuamente com baixa latência para um parceiro externo de observabilidade terceirizado. Quais soluções o Arquiteto de Soluções deve implementar? (Escolha DUAS.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Usar o Amazon CloudWatch Logs Insights para pesquisar interativamente e agregar os fluxos de log centralizados.",
+          "explanation": "Correto: CloudWatch Logs Insights fornece uma linguagem de consulta interativa e rápida para logs."
+        },
+        {
+          "id": "B",
+          "text": "Usar o Amazon Athena para transmitir métricas continuamente ao parceiro terceirizado via Amazon Kinesis Data Firehose.",
+          "explanation": "Incorreto: Athena é um serviço de consulta interativa no S3, não um mecanismo de streaming de métricas."
+        },
+        {
+          "id": "C",
+          "text": "Configurar uma tarefa de Exportação do CloudWatch Logs para enviar métricas para o Amazon S3 a cada hora, e fazer com que o parceiro consulte do S3.",
+          "explanation": "Incorreto: Não atende ao requisito de baixa latência; exportações do S3 podem demorar até 12 horas."
+        },
+        {
+          "id": "D",
+          "text": "Habilitar o Amazon CloudWatch Metric Streams para entregar métricas continuamente com baixa latência diretamente para a plataforma de observabilidade terceirizada usando o Amazon Kinesis Data Firehose.",
+          "explanation": "Correto: Metric Streams entrega métricas de forma contínua e com baixa latência a parceiros suportados via Kinesis."
+        },
+        {
+          "id": "E",
+          "text": "Usar o AWS Trusted Advisor para consultar fluxos de logs e agregar métricas para a plataforma de terceiros.",
+          "explanation": "Incorreto: Trusted Advisor não faz consultas de logs nem streaming de métricas."
+        }
+      ],
+      "generalExplanation": "CloudWatch Logs Insights é usado para consulta interativa de logs. CloudWatch Metric Streams foi projetado especificamente para streaming de métricas de baixa latência para parceiros terceirizados.",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     },
     {
       "id": "sap-q004-batch4",
@@ -1442,7 +1702,32 @@
           ],
           "generalExplanation": "Para obtener visibilidad granular de las llamadas downstream dentro de una función, los desarrolladores deben instrumentar su código utilizando el SDK de AWS X-Ray para crear subsegmentos."
         }
-      }
+      },
+      "statement": "Uma plataforma de e-commerce depende de uma arquitetura de microsserviços distribuída usando Amazon API Gateway, AWS Lambda e Amazon DynamoDB. A equipe de desenvolvimento está usando o AWS X-Ray para rastrear solicitações de ponta a ponta e identificar gargalos de latência. Eles notam que, embora possam ver o tempo total gasto na função Lambda, não possuem detalhes de tempo granulares sobre as chamadas downstream específicas que a função Lambda faz para o DynamoDB e para uma API de pagamento externa. O que o desenvolvedor deve fazer para capturar esses tempos downstream granulares no X-Ray?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Instrumentar o código da função Lambda usando o AWS X-Ray SDK para criar subsegmentos personalizados para o DynamoDB e chamadas de API externas.",
+          "explanation": "Correto: Subsegmentos fornecem tempo granular e detalhes para chamadas downstream feitas do código da aplicação."
+        },
+        {
+          "id": "B",
+          "text": "Habilitar a opção de 'Rastreamento ativo' no API Gateway para gerar automaticamente subsegmentos para todas as chamadas downstream do Lambda e DynamoDB.",
+          "explanation": "Incorreto: Isso não instrumenta automaticamente o código interno da função Lambda."
+        },
+        {
+          "id": "C",
+          "text": "Instalar o daemon do AWS X-Ray nas instâncias Amazon EC2 subjacentes da função Lambda para capturar o tráfego de rede para o DynamoDB.",
+          "explanation": "Incorreto: Não é possível acessar ou instalar daemons nas instâncias subjacentes do Lambda."
+        },
+        {
+          "id": "D",
+          "text": "Modificar o cabeçalho de rastreamento do X-Ray no aplicativo cliente para solicitar um service graph de maior resolução.",
+          "explanation": "Incorreto: O cabeçalho determina a amostragem, mas não detalha chamadas downstream no código."
+        }
+      ],
+      "generalExplanation": "Para visibilidade granular de chamadas downstream dentro de uma função, o AWS X-Ray SDK deve ser usado para criar subsegmentos no código.",
+      "domainName": "Domínio 2: Projetar para Novas Soluções"
     },
     {
       "id": "sap-q001-storage-batch2",
@@ -1540,7 +1825,32 @@
           ],
           "generalExplanation": "La Replicación entre Regiones (CRR) de S3 admite la replicación de objetos cifrados con KMS. Por defecto, S3 no replica marcadores de eliminación, lo que protege el destino de eliminaciones maliciosas."
         }
-      }
+      },
+      "statement": "Uma empresa global de saúde precisa replicar dados críticos de pacientes de um bucket do Amazon S3 em us-east-1 para eu-west-1 para recuperação de desastres. Os dados são criptografados usando chaves gerenciadas pelo cliente (CMKs) do AWS KMS. A replicação deve ocorrer automaticamente entre contas da AWS diferentes, e a réplica em eu-west-1 deve ser criptografada com uma CMK do KMS residente na região eu-west-1. Além disso, a exclusão maliciosa de objetos no bucket de origem não deve se propagar para o bucket de destino. Qual solução atende a esses requisitos com segurança?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Usar a Replicação entre Regiões do S3 (CRR). Criar uma nova CMK do KMS em eu-west-1. Atualizar a role do IAM usada pela replicação para ter kms:Decrypt na chave de origem e kms:Encrypt na chave de destino. Ativar a replicação de marcadores de exclusão para evitar exclusões maliciosas.",
+          "explanation": "Incorreto: Ativar a replicação de marcadores de exclusão faria com que as exclusões na origem fossem replicadas para o destino, violando o requisito."
+        },
+        {
+          "id": "B",
+          "text": "Usar S3 CRR. Criar uma chave do KMS multirregião. Habilitar o S3 Object Lock no modo Governance. Configurar a replicação do S3 para usar a chave multirregião.",
+          "explanation": "Incorreto: O modo Governance permite que usuários com permissões especiais ignorem o bloqueio e excluam dados. Além disso, as chaves multirregião não são estritamente necessárias se chaves regionais podem ser usadas nativamente no CRR."
+        },
+        {
+          "id": "C",
+          "text": "Usar S3 CRR. Criar uma nova CMK do KMS em eu-west-1. Atualizar a role do IAM para a replicação com kms:Decrypt na chave de origem e kms:Encrypt na chave de destino. NÃO habilitar a replicação de marcadores de exclusão. Habilitar o S3 Object Lock no modo Compliance no bucket de destino.",
+          "explanation": "Correto: O S3 CRR suporta replicação entre contas com criptografia KMS concedendo permissões explícitas para as CMKs regionais. Não replicar marcadores de exclusão isola o bucket de destino de apagamentos. O Object Lock em modo Compliance garante imutabilidade estrita."
+        },
+        {
+          "id": "D",
+          "text": "Usar o AWS DataSync para agendar transferências por hora entre os buckets. Usar roles entre contas e especificar a chave do KMS de destino na configuração da tarefa do DataSync. Habilitar o Versionamento do S3 em ambos os buckets.",
+          "explanation": "Incorreto: DataSync não é a solução nativa nem a mais eficiente para replicação contínua S3-para-S3, que deve ser feita via CRR."
+        }
+      ],
+      "generalExplanation": "A Replicação entre Regiões do S3 (CRR) suporta replicação de objetos criptografados pelo KMS e entre contas diferentes. Por padrão, o S3 não replica marcadores de exclusão, protegendo o destino contra exclusões maliciosas na origem.",
+      "domainName": "Domínio 2: Design para Novas Soluções"
     },
     {
       "id": "sap-q002-storage-batch2",
@@ -1654,7 +1964,37 @@
           ],
           "generalExplanation": "Amazon FSx for Lustre es ideal para cargas de trabajo de Machine Learning que requieren acceso POSIX ultrarrápido y permite la integración bidireccional con Amazon S3 mediante tareas de repositorio de datos."
         }
-      }
+      },
+      "statement": "Uma empresa de processamento de mídia possui um conjunto de dados massivo de 500 TB armazenado no Amazon S3. Eles precisam executar cargas de trabalho de machine learning usando instâncias Amazon EC2 que requerem acesso compatível com POSIX e latência inferior a um milissegundo a esses dados. O processamento de dados ocorre em picos (bursts) e os clusters de computação são efêmeros. Quaisquer novos dados gerados pelas instâncias devem ser automaticamente persistidos de volta no bucket do S3. Eles desejam a solução de armazenamento de melhor desempenho e custo-benefício. Qual combinação de etapas eles devem realizar? (Escolha DUAS.)",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar o Amazon EFS no modo Max I/O. Anexar o EFS às instâncias EC2. Usar o AWS DataSync para copiar dados do S3 para o EFS antes do job e do EFS para o S3 depois.",
+          "explanation": "Incorreto: O EFS não é otimizado para cargas HPC com latência submilisegundo como o FSx for Lustre, e o DataSync adiciona sobrecarga para 500 TB."
+        },
+        {
+          "id": "B",
+          "text": "Implantar um sistema de arquivos Amazon FSx for Lustre vinculado ao bucket do Amazon S3.",
+          "explanation": "Correto: O FSx for Lustre é projetado para HPC e pode ser vinculado nativamente a um bucket do S3, apresentando objetos como arquivos."
+        },
+        {
+          "id": "C",
+          "text": "Montar o FSx for Lustre no cluster EC2. Usar a API do FSx ou AWS CLI para executar tarefas de repositório de dados (data repository tasks) para exportar novos arquivos de volta ao S3.",
+          "explanation": "Correto: Tarefas de repositório de dados no FSx for Lustre permitem sincronizar facilmente as alterações de volta para o S3 vinculado."
+        },
+        {
+          "id": "D",
+          "text": "Implantar o Amazon EFS e usar o AWS Storage Gateway File Gateway para fornecer uma montagem NFS sobre o bucket do S3.",
+          "explanation": "Incorreto: File Gateway não fornece latência submilisegundo e desempenho HPC POSIX massivo necessário para machine learning escalável."
+        },
+        {
+          "id": "E",
+          "text": "Usar volumes io2 do Amazon EBS com Multi-Attach, inicializá-los a partir de snapshots do S3 e anexá-los ao cluster EC2.",
+          "explanation": "Incorreto: Multi-Attach é limitado a 16 instâncias e requer um sistema de arquivos em cluster gerenciado pelo cliente, além de não sincronizar arquivos com S3 automaticamente."
+        }
+      ],
+      "generalExplanation": "O Amazon FSx for Lustre é a solução de armazenamento de alto desempenho da AWS ideal para cargas de trabalho de Machine Learning. Ele pode ser integrado diretamente a um bucket S3 (Data Repository), e o recurso 'Data Repository Tasks' permite transferir dados modificados de volta para o S3.",
+      "domainName": "Domínio 4: Acelerar a Migração e Modernização"
     },
     {
       "id": "sap-q003-storage-batch2",
@@ -1751,7 +2091,32 @@
           ],
           "generalExplanation": "AWS Storage Gateway en modo Stored Volume almacena todos sus datos primarios localmente y realiza copias de seguridad asincrónicas de esos datos en AWS como instantáneas de Amazon EBS."
         }
-      }
+      },
+      "statement": "Uma empresa está migrando uma aplicação legada local (on-premises) para a AWS. A aplicação depende de armazenamento em bloco iSCSI e usa hardware SAN caro. A empresa quer migrar o backend de armazenamento para a AWS para reduzir custos, mas manterá os servidores de aplicação locais por mais 2 anos devido a restrições de latência com equipamentos locais. Os dados da aplicação são acessados frequentemente e exigem desempenho estrito de baixa latência de leitura/gravação. Um backup completo dos dados deve ser armazenado de forma econômica na AWS. Qual solução atende a esses requisitos com alterações mínimas na aplicação?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Implantar o AWS Storage Gateway como um Tape Gateway. Mapear os targets iSCSI para os servidores e fazer backup das fitas virtuais no Amazon S3 Glacier Flexible Retrieval.",
+          "explanation": "Incorreto: O Tape Gateway substitui bibliotecas de fitas para backup e arquivamento, não serve como armazenamento primário em bloco para aplicações ativas."
+        },
+        {
+          "id": "B",
+          "text": "Implantar o AWS Storage Gateway como um File Gateway. Mapear os compartilhamentos NFS/SMB para os servidores de aplicação e usar o AWS Backup.",
+          "explanation": "Incorreto: A aplicação usa blocos iSCSI, não arquivos (NFS/SMB). Mudar isso exigiria refatoração da aplicação."
+        },
+        {
+          "id": "C",
+          "text": "Implantar o AWS Storage Gateway como um Cached Volume Gateway. Configurar a aplicação para conectar via iSCSI. O gateway manterá um cache local e armazenará os dados primários no Amazon S3.",
+          "explanation": "Incorreto: Volumes em cache mantêm os dados primários no S3. Uma falha de cache (cache miss) resultaria em alta latência, violando o requisito estrito de baixa latência."
+        },
+        {
+          "id": "D",
+          "text": "Implantar o AWS Storage Gateway como um Stored Volume Gateway. Configurar a aplicação para conectar via iSCSI. O gateway armazenará todos os dados primários localmente e fará backup assíncrono para o Amazon EBS.",
+          "explanation": "Correto: O Stored Volume Gateway mantém o conjunto de dados inteiro localmente garantindo latência ultrabaixa para acesso total, enquanto cria snapshots assíncronos no EBS para backup na AWS."
+        }
+      ],
+      "generalExplanation": "O Stored Volume Gateway é projetado para cenários onde você precisa de acesso local de baixa latência para TODO o seu conjunto de dados, usando a AWS apenas para backups externos duráveis (como snapshots do EBS).",
+      "domainName": "Domínio 4: Acelerar a Migração e Modernização"
     },
     {
       "id": "sap-q004-storage-batch2",
@@ -1848,7 +2213,32 @@
           ],
           "generalExplanation": "Amazon EFS Lifecycle Management mueve datos transparentemente a clases de almacenamiento más baratas. EFS Replication es la solución nativa para cumplir con RPOs agresivos de DR interregional sin cambiar la arquitectura."
         }
-      }
+      },
+      "statement": "Uma empresa usa um sistema de arquivos Amazon EFS para armazenar documentos de usuários em centenas de instâncias EC2. O sistema contém petabytes de dados, mas a análise mostra que 90% dos documentos nunca são acessados após 30 dias. A empresa precisa otimizar os custos sem alterar a lógica da aplicação ou os pontos de montagem. Eles também exigem recuperação de desastres em uma região secundária da AWS com um RPO (Recovery Point Objective) de 15 minutos. Qual é a solução mais econômica?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Ativar o EFS Lifecycle Management para fazer a transição de arquivos não acessados em 30 dias para a classe de armazenamento EFS Infrequent Access (EFS IA). Configurar o EFS Replication para um sistema de arquivos de destino na região secundária.",
+          "explanation": "Correto: O EFS Lifecycle Management move nativamente dados para o IA de forma transparente, sem alterar os pontos de montagem. O EFS Replication atinge facilmente um RPO de minutos contínuos para DR."
+        },
+        {
+          "id": "B",
+          "text": "Criar uma função AWS Lambda acionada pelo EventBridge para mover arquivos com mais de 30 dias para o Amazon S3 Standard-IA. Montar o bucket S3 usando S3 File Gateway. Configurar a Replicação do EFS para os dados restantes.",
+          "explanation": "Incorreto: Mover arquivos para o S3 altera a estrutura de montagem e a lógica de acesso da aplicação, violando os requisitos."
+        },
+        {
+          "id": "C",
+          "text": "Habilitar o EFS Lifecycle Management para transição para EFS Archive após 30 dias. Usar o AWS Backup para criar cofres de backup entre regiões de hora em hora.",
+          "explanation": "Incorreto: Backups de hora em hora do AWS Backup resultariam em um RPO de 60 minutos, não atendendo ao RPO exigido de 15 minutos."
+        },
+        {
+          "id": "D",
+          "text": "Usar o AWS DataSync para copiar arquivos mais antigos que 30 dias para um bucket do Amazon S3 Glacier Instant Retrieval. Ativar a replicação entre regiões no bucket do S3.",
+          "explanation": "Incorreto: Usar o DataSync para migrar dados para o S3 removeria os arquivos do EFS, quebrando o sistema de arquivos POSIX exigido pelas instâncias."
+        }
+      ],
+      "generalExplanation": "O Amazon EFS Lifecycle Management oferece otimização de custo nativa e transparente. A replicação EFS fornece sincronização entre regiões gerenciada pela AWS com um RPO muito agressivo, tipicamente na casa dos minutos, ideal para planos de DR exigentes.",
+      "domainName": "Domínio 3: Melhoria Contínua para Soluções Existentes"
     },
     {
       "id": "sap-q005-storage-batch2",
@@ -1946,7 +2336,32 @@
           ],
           "generalExplanation": "AWS Backup integrado con AWS Organizations permite aplicar políticas de copia de seguridad (Backup Policies) a toda la organización, consolidando los backups en una bóveda centralizada de forma segura."
         }
-      }
+      },
+      "statement": "Uma grande empresa usa o AWS Organizations com centenas de contas. Eles precisam de uma solução de backup centralizada para instâncias EC2 e bancos de dados RDS. Os backups devem ser armazenados em uma conta de backup centralizada dedicada. Para recuperação de desastres, os backups devem ser replicados para uma região secundária dentro da mesma conta de backup central. Todo o processo deve ser automatizado e usuários das contas-membro não devem conseguir excluir os backups. Qual é a solução MAIS eficiente em termos operacionais?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Na conta centralizada, criar um plano do AWS Backup e compartilhá-lo usando o AWS RAM. Configurar o plano para copiar backups para a região secundária. Usar Service Control Policies (SCPs) para negar backup:DeleteRecoveryPoint.",
+          "explanation": "Incorreto: Planos do AWS Backup não são distribuídos via AWS RAM dessa forma. É necessário usar Políticas de Backup (Backup Policies) a partir da conta de gerenciamento do Organizations."
+        },
+        {
+          "id": "B",
+          "text": "Usar o AWS Backup para criar uma política de backup (Backup Policy) na conta de gerenciamento do AWS Organizations. Configurar a política para fazer backup em um cofre central na conta de backup. Ativar a cópia entre regiões dentro da política para a região secundária. Aplicar a política à organização.",
+          "explanation": "Correto: A integração do AWS Backup com o AWS Organizations permite criar Políticas de Backup que direcionam os backups diretamente para um cofre centralizado (em outra conta) e configuram cópias entre regiões automaticamente."
+        },
+        {
+          "id": "C",
+          "text": "Implantar AWS CloudFormation StackSets para criar funções Lambda em todas as contas. O Lambda gera snapshots de AMI e RDS, os compartilha com a conta de backup central e aciona outro Lambda para a região secundária.",
+          "explanation": "Incorreto: A automação via scripts Lambda em centenas de contas gera uma sobrecarga operacional enorme e desnecessária quando o AWS Backup já oferece esse recurso nativamente."
+        },
+        {
+          "id": "D",
+          "text": "Configurar o AWS DataSync em cada conta para copiar dados continuamente para um bucket do S3 na conta de backup. Usar S3 CRR para replicar os dados para a região secundária.",
+          "explanation": "Incorreto: O DataSync não é a ferramenta adequada para fazer snapshots de instâncias EC2 ativas ou bancos de dados RDS."
+        }
+      ],
+      "generalExplanation": "As Políticas de Backup (Backup Policies) do AWS Backup no AWS Organizations fornecem a maneira mais escalável e nativa de centralizar backups, evitando scripts personalizados. O uso de um cofre (vault) em uma conta centralizada protege naturalmente os backups de exclusões por parte de usuários de contas-membro.",
+      "domainName": "Domínio 1: Design de Soluções para Complexidade Organizacional"
     },
     {
       "id": "sap-batch5-q1",
