@@ -1,9 +1,35 @@
 {
-  "id": "sap-c02-sim-6",
-  "name": "AWS Certified Solutions Architect - Professional (Simulado 6)",
-  "description": "Simulado gerado progressivamente.",
-  "passingScore": 75,
+  "id": "SAP-C02-SIM-6",
+  "title": "AWS Certified Solutions Architect - Professional - Mock Exam 6",
+  "code": "SAP-C02",
+  "category": "Professional",
+  "description": "Comprehensive enterprise-level mock exam for AWS SAP-C02 featuring complex multi-account, hybrid networking, disaster recovery, and modernization scenarios.",
+  "totalQuestions": 25,
   "timeLimitMinutes": 180,
+  "passingScore": 750,
+  "icon": "shield-check",
+  "domains": [
+    {
+      "id": "domain-1-org-complexity",
+      "name": "Domain 1: Design Solutions for Organizational Complexity",
+      "weightPercentage": 26
+    },
+    {
+      "id": "domain-2-new-solutions",
+      "name": "Domain 2: Design for New Solutions",
+      "weightPercentage": 29
+    },
+    {
+      "id": "domain-3-continuous-improvement",
+      "name": "Domain 3: Continuous Improvement for Existing Solutions",
+      "weightPercentage": 25
+    },
+    {
+      "id": "domain-4-cost-control",
+      "name": "Domain 4: Accelerate Workload Migration and Modernization",
+      "weightPercentage": 20
+    }
+  ],
   "questions": [
     {
       "id": "sap-deploy-q001",
