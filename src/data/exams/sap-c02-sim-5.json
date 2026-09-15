@@ -700,9 +700,6 @@
           "text": "Repurchasing"
         }
       ],
-      "correctOptions": [
-        "c"
-      ],
       "translations": {
         "en": {
           "domainName": "Domain 1: Design Solutions for Organizational Complexity",
@@ -780,7 +777,10 @@
       "domainId": "domain-2-new-solutions",
       "examId": "SAP-C02",
       "services": [],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "c"
+      ]
     },
     {
       "id": "q2-dms-sct",
@@ -806,9 +806,6 @@
           "id": "d",
           "text": "Use o AWS Application Migration Service (MGN) para migrar a instância do banco de dados bloco por bloco com replicação contínua."
         }
-      ],
-      "correctOptions": [
-        "b"
       ],
       "translations": {
         "en": {
@@ -887,7 +884,10 @@
       "domainId": "domain-2-new-solutions",
       "examId": "SAP-C02",
       "services": [],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "b"
+      ]
     },
     {
       "id": "q3-storage-gateway",
@@ -912,9 +912,6 @@
           "id": "d",
           "text": "Tape Gateway"
         }
-      ],
-      "correctOptions": [
-        "c"
       ],
       "translations": {
         "en": {
@@ -993,7 +990,10 @@
       "domainId": "domain-2-new-solutions",
       "examId": "SAP-C02",
       "services": [],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "c"
+      ]
     },
     {
       "id": "q4-mgn-vs-sms",
@@ -1019,9 +1019,6 @@
           "id": "d",
           "text": "AWS Application Discovery Service (ADS)"
         }
-      ],
-      "correctOptions": [
-        "b"
       ],
       "translations": {
         "en": {
@@ -1100,7 +1097,10 @@
       "domainId": "domain-2-new-solutions",
       "examId": "SAP-C02",
       "services": [],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "b"
+      ]
     },
     {
       "id": "q5-snowball-datasync",
@@ -1126,9 +1126,6 @@
           "id": "d",
           "text": "Use o AWS Application Migration Service (MGN) para sincronizar alterações em nível de bloco dos servidores de armazenamento para a AWS por uma conexão VPN."
         }
-      ],
-      "correctOptions": [
-        "b"
       ],
       "translations": {
         "en": {
@@ -1207,7 +1204,10 @@
       "domainId": "domain-2-new-solutions",
       "examId": "SAP-C02",
       "services": [],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "b"
+      ]
     },
     {
       "id": "sap-sec-001",
