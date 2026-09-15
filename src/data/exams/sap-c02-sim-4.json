@@ -917,304 +917,562 @@
     },
     {
       "id": "sap-comp-001",
-      "domain": "Domain 2: Design for New Solutions",
-      "tags": [
-        "EC2",
-        "Spot Fleet",
-        "Capacity Reservation"
-      ],
       "difficulty": "hard",
-      "question": {
-        "en": "A media rendering company has a hybrid architecture. They are migrating a massive video rendering batch workload to AWS. To maintain profitability, they must minimize compute costs. However, a small portion of the rendering tasks requires ultra-low latency access to an AWS Outpost rack deployed in a specific on-premises location, meaning these specific instances MUST run in a targeted Availability Zone with absolute capacity guarantee. Which combination of actions will meet these requirements MOST cost-effectively? (Select TWO.)",
-        "pt": "Uma empresa de renderização de mídia possui uma arquitetura híbrida. Eles estão migrando uma enorme carga de trabalho em lote de renderização de vídeo para a AWS. Para manter a lucratividade, eles devem minimizar os custos de computação. No entanto, uma pequena parte das tarefas de renderização exige acesso de latência ultrabaixa a um rack do AWS Outposts implantado em um local específico on-premises, o que significa que essas instâncias específicas DEVEM ser executadas em uma Zona de Disponibilidade direcionada com garantia absoluta de capacidade. Qual combinação de ações atenderá a esses requisitos de forma MAIS econômica? (Escolha DUAS.)",
-        "es": "Una empresa de renderizado de medios tiene una arquitectura híbrida. Están migrando una carga de trabajo por lotes masiva de renderizado de video a AWS. Para mantener la rentabilidad, deben minimizar los costos de cómputo. Sin embargo, una pequeña parte de las tareas de renderizado requiere acceso de latencia ultrabaja a un rack de AWS Outposts implementado en una ubicación específica en las instalaciones, lo que significa que estas instancias específicas DEBEN ejecutarse en una Zona de Disponibilidad objetivo con garantía absoluta de capacidad. ¿Qué combinación de acciones cumplirá con estos requisitos de la manera MÁS rentable? (Seleccione DOS.)"
-      },
       "type": "multiple",
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Purchase a Regional Reserved Instance to guarantee capacity for the critical instances in the specific Availability Zone.",
-            "pt": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica.",
-            "es": "Compre una Instancia Reservada Regional para garantizar la capacidad de las instancias críticas en la Zona de Disponibilidad específica."
-          }
+          "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Create an On-Demand Zonal Capacity Reservation in the specific Availability Zone to guarantee compute capacity for the critical tasks.",
-            "pt": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas.",
-            "es": "Cree una Reserva de Capacidad Zonal Bajo Demanda en la Zona de Disponibilidad específica para garantizar la capacidad de cómputo para las tareas críticas."
-          }
+          "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Use a Spot Fleet configured with the 'lowestPrice' allocation strategy for all other rendering instances to maximize savings, ignoring interruption frequency.",
-            "pt": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção.",
-            "es": "Utilice una Flota Spot configurada con la estrategia de asignación 'lowestPrice' para todas las demás instancias de renderizado para maximizar los ahorros, ignorando la frecuencia de interrupción."
-          }
+          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Use a Spot Fleet configured with the 'capacityOptimized' allocation strategy for the non-critical rendering instances to reduce the likelihood of interruptions while still saving costs.",
-            "pt": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos.",
-            "es": "Utilice una Flota Spot configurada con la estrategia de asignación 'capacityOptimized' para las instancias de renderizado no críticas para reducir la probabilidad de interrupciones y al mismo tiempo ahorrar costos."
-          }
+          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos."
         },
         {
           "id": "E",
-          "text": {
-            "en": "Deploy the critical instances into a Spread Placement Group across multiple Availability Zones to ensure high availability and guaranteed capacity.",
-            "pt": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida.",
-            "es": "Implemente las instancias críticas en un Grupo de Ubicación de Dispersión (Spread) a través de múltiples Zonas de Disponibilidad para garantizar alta disponibilidad y capacidad garantizada."
-          }
+          "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida."
         }
       ],
       "correctAnswers": [
         "B",
         "D"
       ],
-      "explanation": {
-        "en": "To guarantee capacity in a specific AZ, an On-Demand Zonal Capacity Reservation is required (Regional RIs provide billing discounts but NO capacity guarantee). For the batch workloads, Spot Fleet with 'capacityOptimized' strategy launches instances from the most available pools, significantly reducing interruptions compared to 'lowestPrice', which is critical for maintaining rendering performance without constant restarts.",
-        "pt": "Para garantir a capacidade em uma AZ específica, é necessária uma Reserva de Capacidade Zonal Sob Demanda (RIs Regionais oferecem descontos, mas NENHUMA garantia de capacidade). Para as cargas de trabalho em lote, a Frota Spot com a estratégia 'capacityOptimized' inicia instâncias a partir dos pools com maior disponibilidade, reduzindo as interrupções de forma significativa comparado ao 'lowestPrice', o que é crítico para manter o desempenho de renderização sem reinicializações constantes.",
-        "es": "Para garantizar la capacidad en una AZ específica, se requiere una Reserva de Capacidad Zonal Bajo Demanda (las RI Regionales proporcionan descuentos de facturación pero NINGUNA garantía de capacidad). Para las cargas de trabajo por lotes, Spot Fleet con la estrategia 'capacityOptimized' lanza instancias desde los grupos más disponibles, reduciendo significativamente las interrupciones en comparación con 'lowestPrice', lo que es crítico para mantener el rendimiento de renderizado sin reinicios constantes."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "A media rendering company has a hybrid architecture. They are migrating a massive video rendering batch workload to AWS. To maintain profitability, they must minimize compute costs. However, a small portion of the rendering tasks requires ultra-low latency access to an AWS Outpost rack deployed in a specific on-premises location, meaning these specific instances MUST run in a targeted Availability Zone with absolute capacity guarantee. Which combination of actions will meet these requirements MOST cost-effectively? (Select TWO.)",
+          "generalExplanation": "To guarantee capacity in a specific AZ, an On-Demand Zonal Capacity Reservation is required (Regional RIs provide billing discounts but NO capacity guarantee). For the batch workloads, Spot Fleet with 'capacityOptimized' strategy launches instances from the most available pools, significantly reducing interruptions compared to 'lowestPrice', which is critical for maintaining rendering performance without constant restarts.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Purchase a Regional Reserved Instance to guarantee capacity for the critical instances in the specific Availability Zone."
+            },
+            {
+              "id": "B",
+              "text": "Create an On-Demand Zonal Capacity Reservation in the specific Availability Zone to guarantee compute capacity for the critical tasks."
+            },
+            {
+              "id": "C",
+              "text": "Use a Spot Fleet configured with the 'lowestPrice' allocation strategy for all other rendering instances to maximize savings, ignoring interruption frequency."
+            },
+            {
+              "id": "D",
+              "text": "Use a Spot Fleet configured with the 'capacityOptimized' allocation strategy for the non-critical rendering instances to reduce the likelihood of interruptions while still saving costs."
+            },
+            {
+              "id": "E",
+              "text": "Deploy the critical instances into a Spread Placement Group across multiple Availability Zones to ensure high availability and guaranteed capacity."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Uma empresa de renderização de mídia possui uma arquitetura híbrida. Eles estão migrando uma enorme carga de trabalho em lote de renderização de vídeo para a AWS. Para manter a lucratividade, eles devem minimizar os custos de computação. No entanto, uma pequena parte das tarefas de renderização exige acesso de latência ultrabaixa a um rack do AWS Outposts implantado em um local específico on-premises, o que significa que essas instâncias específicas DEVEM ser executadas em uma Zona de Disponibilidade direcionada com garantia absoluta de capacidade. Qual combinação de ações atenderá a esses requisitos de forma MAIS econômica? (Escolha DUAS.)",
+          "generalExplanation": "Para garantir a capacidade em uma AZ específica, é necessária uma Reserva de Capacidade Zonal Sob Demanda (RIs Regionais oferecem descontos, mas NENHUMA garantia de capacidade). Para as cargas de trabalho em lote, a Frota Spot com a estratégia 'capacityOptimized' inicia instâncias a partir dos pools com maior disponibilidade, reduzindo as interrupções de forma significativa comparado ao 'lowestPrice', o que é crítico para manter o desempenho de renderização sem reinicializações constantes.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica."
+            },
+            {
+              "id": "B",
+              "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas."
+            },
+            {
+              "id": "C",
+              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção."
+            },
+            {
+              "id": "D",
+              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos."
+            },
+            {
+              "id": "E",
+              "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Una empresa de renderizado de medios tiene una arquitectura híbrida. Están migrando una carga de trabajo por lotes masiva de renderizado de video a AWS. Para mantener la rentabilidad, deben minimizar los costos de cómputo. Sin embargo, una pequeña parte de las tareas de renderizado requiere acceso de latencia ultrabaja a un rack de AWS Outposts implementado en una ubicación específica en las instalaciones, lo que significa que estas instancias específicas DEBEN ejecutarse en una Zona de Disponibilidad objetivo con garantía absoluta de capacidad. ¿Qué combinación de acciones cumplirá con estos requisitos de la manera MÁS rentable? (Seleccione DOS.)",
+          "generalExplanation": "Para garantizar la capacidad en una AZ específica, se requiere una Reserva de Capacidad Zonal Bajo Demanda (las RI Regionales proporcionan descuentos de facturación pero NINGUNA garantía de capacidad). Para las cargas de trabajo por lotes, Spot Fleet con la estrategia 'capacityOptimized' lanza instancias desde los grupos más disponibles, reduciendo significativamente las interrupciones en comparación con 'lowestPrice', lo que es crítico para mantener el rendimiento de renderizado sin reinicios constantes.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Compre una Instancia Reservada Regional para garantizar la capacidad de las instancias críticas en la Zona de Disponibilidad específica."
+            },
+            {
+              "id": "B",
+              "text": "Cree una Reserva de Capacidad Zonal Bajo Demanda en la Zona de Disponibilidad específica para garantizar la capacidad de cómputo para las tareas críticas."
+            },
+            {
+              "id": "C",
+              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'lowestPrice' para todas las demás instancias de renderizado para maximizar los ahorros, ignorando la frecuencia de interrupción."
+            },
+            {
+              "id": "D",
+              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'capacityOptimized' para las instancias de renderizado no críticas para reducir la probabilidad de interrupciones y al mismo tiempo ahorrar costos."
+            },
+            {
+              "id": "E",
+              "text": "Implemente las instancias críticas en un Grupo de Ubicación de Dispersión (Spread) a través de múltiples Zonas de Disponibilidad para garantizar alta disponibilidad y capacidad garantizada."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa de renderização de mídia possui uma arquitetura híbrida. Eles estão migrando uma enorme carga de trabalho em lote de renderização de vídeo para a AWS. Para manter a lucratividade, eles devem minimizar os custos de computação. No entanto, uma pequena parte das tarefas de renderização exige acesso de latência ultrabaixa a um rack do AWS Outposts implantado em um local específico on-premises, o que significa que essas instâncias específicas DEVEM ser executadas em uma Zona de Disponibilidade direcionada com garantia absoluta de capacidade. Qual combinação de ações atenderá a esses requisitos de forma MAIS econômica? (Escolha DUAS.)",
+      "generalExplanation": "Para garantir a capacidade em uma AZ específica, é necessária uma Reserva de Capacidade Zonal Sob Demanda (RIs Regionais oferecem descontos, mas NENHUMA garantia de capacidade). Para as cargas de trabalho em lote, a Frota Spot com a estratégia 'capacityOptimized' inicia instâncias a partir dos pools com maior disponibilidade, reduzindo as interrupções de forma significativa comparado ao 'lowestPrice', o que é crítico para manter o desempenho de renderização sem reinicializações constantes.",
+      "domainName": "Domain 2: Design for New Solutions",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [
+        "EC2",
+        "Spot Fleet",
+        "Capacity Reservation"
+      ],
+      "requiredChoices": 2
     },
     {
       "id": "sap-comp-002",
-      "domain": "Domain 2: Design for New Solutions",
-      "tags": [
+      "difficulty": "hard",
+      "type": "single",
+      "options": [
+        {
+          "id": "A",
+          "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread)."
+        },
+        {
+          "id": "B",
+          "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster."
+        },
+        {
+          "id": "C",
+          "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade."
+        },
+        {
+          "id": "D",
+          "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs."
+        }
+      ],
+      "correctAnswers": [
+        "B"
+      ],
+      "translations": {
+        "en": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "A global research organization is running a highly distributed Computational Fluid Dynamics (CFD) simulation on AWS. The application relies heavily on Message Passing Interface (MPI) and requires strictly under 15 microseconds of node-to-node latency and up to 100 Gbps network bandwidth. A Solutions Architect attempted to deploy the architecture across multiple subnets to ensure high availability, but the application is suffering from high latency and packet drops. What is the MOST likely cause, and how should the architecture be corrected?",
+          "generalExplanation": "Cluster Placement Groups are designed for HPC workloads needing extreme low latency and high bandwidth (up to 100 Gbps). However, they cannot span multiple Availability Zones. Launching instances across subnets in different AZs breaks the cluster's physical proximity. The only valid solution is to restrict the Cluster Placement Group to a single AZ and launch instances simultaneously to ensure they are on the same or nearest hardware racks.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The instances were placed in a Partition Placement Group which spread them across logical partitions, increasing latency. They should be redeployed into a Spread Placement Group."
+            },
+            {
+              "id": "B",
+              "text": "Cluster Placement Groups cannot span multiple Availability Zones. The Architect must launch all instances simultaneously into a single Availability Zone using the same instance type in a Cluster Placement Group."
+            },
+            {
+              "id": "C",
+              "text": "The instances are missing Elastic Fabric Adapter (EFA) attachments. EFA should be added to the instances in the existing Cluster Placement Group while keeping the multi-AZ setup for high availability."
+            },
+            {
+              "id": "D",
+              "text": "The VPC peering connection between the subnets is bottlenecking the MPI traffic. A Transit Gateway must be deployed to handle the 100 Gbps single-stream traffic between the AZs."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Uma organização de pesquisa global está executando uma simulação de Dinâmica de Fluidos Computacional (CFD) altamente distribuída na AWS. A aplicação depende fortemente da Message Passing Interface (MPI) e requer estritamente menos de 15 microssegundos de latência nó a nó e até 100 Gbps de largura de banda de rede. Um Arquiteto de Soluções tentou implantar a arquitetura em várias sub-redes para garantir alta disponibilidade, mas a aplicação está sofrendo com alta latência e perda de pacotes. Qual é a causa MAIS provável e como a arquitetura deve ser corrigida?",
+          "generalExplanation": "Grupos de Posicionamento de Cluster são projetados para cargas de trabalho de HPC que precisam de latência extremamente baixa e alta largura de banda (até 100 Gbps). No entanto, eles não podem abranger várias Zonas de Disponibilidade. Iniciar instâncias em sub-redes de AZs diferentes quebra a proximidade física do cluster. A única solução válida é restringir o Grupo de Posicionamento de Cluster a uma única AZ e iniciar as instâncias simultaneamente para garantir que elas fiquem nos mesmos racks de hardware ou nos mais próximos.",
+          "options": [
+            {
+              "id": "A",
+              "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread)."
+            },
+            {
+              "id": "B",
+              "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster."
+            },
+            {
+              "id": "C",
+              "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade."
+            },
+            {
+              "id": "D",
+              "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Una organización de investigación global está ejecutando una simulación de Dinámica de Fluidos Computacional (CFD) altamente distribuida en AWS. La aplicación depende en gran medida de Message Passing Interface (MPI) y requiere estrictamente menos de 15 microsegundos de latencia de nodo a nodo y hasta 100 Gbps de ancho de banda de red. Un Arquitecto de Soluciones intentó implementar la arquitectura en múltiples subredes para garantizar una alta disponibilidad, pero la aplicación sufre una alta latencia y pérdida de paquetes. ¿Cuál es la causa MÁS probable y cómo debería corregirse la arquitectura?",
+          "generalExplanation": "Los Grupos de Ubicación de Clúster están diseñados para cargas de trabajo de HPC que necesitan una latencia extremadamente baja y un gran ancho de banda (hasta 100 Gbps). Sin embargo, no pueden abarcar múltiples Zonas de Disponibilidad. Lanzar instancias a través de subredes en diferentes AZ rompe la proximidad física del clúster. La única solución válida es restringir el Grupo de Ubicación de Clúster a una sola AZ y lanzar instancias simultáneamente para garantizar que estén en los mismos racks de hardware o en los más cercanos.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Las instancias se colocaron en un Grupo de Ubicación de Partición que las distribuyó en particiones lógicas, aumentando la latencia. Deberían reimplementarse en un Grupo de Ubicación de Dispersión (Spread)."
+            },
+            {
+              "id": "B",
+              "text": "Los Grupos de Ubicación de Clúster no pueden abarcar múltiples Zonas de Disponibilidad. El Arquitecto debe lanzar todas las instancias simultáneamente en una sola Zona de Disponibilidad utilizando el mismo tipo de instancia en un Grupo de Ubicación de Clúster."
+            },
+            {
+              "id": "C",
+              "text": "A las instancias les faltan conexiones de Elastic Fabric Adapter (EFA). El EFA debe agregarse a las instancias en el Grupo de Ubicación de Clúster existente manteniendo la configuración multi-AZ para alta disponibilidad."
+            },
+            {
+              "id": "D",
+              "text": "La conexión de peering de VPC entre las subredes está estrangulando el tráfico MPI. Se debe implementar un Transit Gateway para manejar el tráfico de flujo único de 100 Gbps entre las AZs."
+            }
+          ]
+        }
+      },
+      "statement": "Uma organização de pesquisa global está executando uma simulação de Dinâmica de Fluidos Computacional (CFD) altamente distribuída na AWS. A aplicação depende fortemente da Message Passing Interface (MPI) e requer estritamente menos de 15 microssegundos de latência nó a nó e até 100 Gbps de largura de banda de rede. Um Arquiteto de Soluções tentou implantar a arquitetura em várias sub-redes para garantir alta disponibilidade, mas a aplicação está sofrendo com alta latência e perda de pacotes. Qual é a causa MAIS provável e como a arquitetura deve ser corrigida?",
+      "generalExplanation": "Grupos de Posicionamento de Cluster são projetados para cargas de trabalho de HPC que precisam de latência extremamente baixa e alta largura de banda (até 100 Gbps). No entanto, eles não podem abranger várias Zonas de Disponibilidade. Iniciar instâncias em sub-redes de AZs diferentes quebra a proximidade física do cluster. A única solução válida é restringir o Grupo de Posicionamento de Cluster a uma única AZ e iniciar as instâncias simultaneamente para garantir que elas fiquem nos mesmos racks de hardware ou nos mais próximos.",
+      "domainName": "Domain 2: Design for New Solutions",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [
         "EC2",
         "Placement Groups",
         "Networking",
         "HPC"
       ],
+      "requiredChoices": 1
+    },
+    {
+      "id": "sap-comp-003",
       "difficulty": "hard",
-      "question": {
-        "en": "A global research organization is running a highly distributed Computational Fluid Dynamics (CFD) simulation on AWS. The application relies heavily on Message Passing Interface (MPI) and requires strictly under 15 microseconds of node-to-node latency and up to 100 Gbps network bandwidth. A Solutions Architect attempted to deploy the architecture across multiple subnets to ensure high availability, but the application is suffering from high latency and packet drops. What is the MOST likely cause, and how should the architecture be corrected?",
-        "pt": "Uma organização de pesquisa global está executando uma simulação de Dinâmica de Fluidos Computacional (CFD) altamente distribuída na AWS. A aplicação depende fortemente da Message Passing Interface (MPI) e requer estritamente menos de 15 microssegundos de latência nó a nó e até 100 Gbps de largura de banda de rede. Um Arquiteto de Soluções tentou implantar a arquitetura em várias sub-redes para garantir alta disponibilidade, mas a aplicação está sofrendo com alta latência e perda de pacotes. Qual é a causa MAIS provável e como a arquitetura deve ser corrigida?",
-        "es": "Una organización de investigación global está ejecutando una simulación de Dinámica de Fluidos Computacional (CFD) altamente distribuida en AWS. La aplicación depende en gran medida de Message Passing Interface (MPI) y requiere estrictamente menos de 15 microsegundos de latencia de nodo a nodo y hasta 100 Gbps de ancho de banda de red. Un Arquitecto de Soluciones intentó implementar la arquitectura en múltiples subredes para garantizar una alta disponibilidad, pero la aplicación sufre una alta latencia y pérdida de paquetes. ¿Cuál es la causa MÁS probable y cómo debería corregirse la arquitectura?"
-      },
       "type": "single",
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "The instances were placed in a Partition Placement Group which spread them across logical partitions, increasing latency. They should be redeployed into a Spread Placement Group.",
-            "pt": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread).",
-            "es": "Las instancias se colocaron en un Grupo de Ubicación de Partición que las distribuyó en particiones lógicas, aumentando la latencia. Deberían reimplementarse en un Grupo de Ubicación de Dispersión (Spread)."
-          }
+          "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Cluster Placement Groups cannot span multiple Availability Zones. The Architect must launch all instances simultaneously into a single Availability Zone using the same instance type in a Cluster Placement Group.",
-            "pt": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster.",
-            "es": "Los Grupos de Ubicación de Clúster no pueden abarcar múltiples Zonas de Disponibilidad. El Arquitecto debe lanzar todas las instancias simultáneamente en una sola Zona de Disponibilidad utilizando el mismo tipo de instancia en un Grupo de Ubicación de Clúster."
-          }
+          "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis."
         },
         {
           "id": "C",
-          "text": {
-            "en": "The instances are missing Elastic Fabric Adapter (EFA) attachments. EFA should be added to the instances in the existing Cluster Placement Group while keeping the multi-AZ setup for high availability.",
-            "pt": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade.",
-            "es": "A las instancias les faltan conexiones de Elastic Fabric Adapter (EFA). El EFA debe agregarse a las instancias en el Grupo de Ubicación de Clúster existente manteniendo la configuración multi-AZ para alta disponibilidad."
-          }
+          "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar."
         },
         {
           "id": "D",
-          "text": {
-            "en": "The VPC peering connection between the subnets is bottlenecking the MPI traffic. A Transit Gateway must be deployed to handle the 100 Gbps single-stream traffic between the AZs.",
-            "pt": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs.",
-            "es": "La conexión de peering de VPC entre las subredes está estrangulando el tráfico MPI. Se debe implementar un Transit Gateway para manejar el tráfico de flujo único de 100 Gbps entre las AZs."
-          }
+          "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos."
         }
       ],
       "correctAnswers": [
         "B"
       ],
-      "explanation": {
-        "en": "Cluster Placement Groups are designed for HPC workloads needing extreme low latency and high bandwidth (up to 100 Gbps). However, they cannot span multiple Availability Zones. Launching instances across subnets in different AZs breaks the cluster's physical proximity. The only valid solution is to restrict the Cluster Placement Group to a single AZ and launch instances simultaneously to ensure they are on the same or nearest hardware racks.",
-        "pt": "Grupos de Posicionamento de Cluster são projetados para cargas de trabalho de HPC que precisam de latência extremamente baixa e alta largura de banda (até 100 Gbps). No entanto, eles não podem abranger várias Zonas de Disponibilidade. Iniciar instâncias em sub-redes de AZs diferentes quebra a proximidade física do cluster. A única solução válida é restringir o Grupo de Posicionamento de Cluster a uma única AZ e iniciar as instâncias simultaneamente para garantir que elas fiquem nos mesmos racks de hardware ou nos mais próximos.",
-        "es": "Los Grupos de Ubicación de Clúster están diseñados para cargas de trabajo de HPC que necesitan una latencia extremadamente baja y un gran ancho de banda (hasta 100 Gbps). Sin embargo, no pueden abarcar múltiples Zonas de Disponibilidad. Lanzar instancias a través de subredes en diferentes AZ rompe la proximidad física del clúster. La única solución válida es restringir el Grupo de Ubicación de Clúster a una sola AZ y lanzar instancias simultáneamente para garantizar que estén en los mismos racks de hardware o en los más cercanos."
-      }
-    },
-    {
-      "id": "sap-comp-003",
-      "domain": "Domain 3: Continuous Improvement for Existing Solutions",
-      "tags": [
+      "translations": {
+        "en": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "A prominent e-commerce platform relies on an Auto Scaling group (ASG) of EC2 instances. The platform experiences a massive, predictable traffic spike every morning at 9:00 AM due to daily flash sales, as well as unpredictable, sharp traffic bursts throughout the day. The ASG currently uses a Simple Scaling policy based on CPU utilization with a standard 300-second cooldown. Instances take approximately 4 minutes to fully bootstrap. During the 9:00 AM sale, the ASG fails to scale out fast enough, resulting in 502 Bad Gateway errors for early users. How can a Solutions Architect resolve this issue with the LEAST operational overhead?",
+          "generalExplanation": "Predictive Scaling leverages machine learning to anticipate predictable load changes (like the 9:00 AM flash sale) and scales out ahead of time, completely mitigating the 4-minute boot delay. For unpredictable spikes, Step Scaling is highly recommended over Simple Scaling because it adjusts capacity proportionally to the alarm breach size and uses an 'Instance Warm-up' period instead of a rigid cooldown, allowing subsequent scaling actions to occur immediately if the metrics continue to worsen.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Pre-bake the application into a custom AMI to reduce boot time to seconds. Maintain the Simple Scaling policy but reduce the cooldown period to 60 seconds to allow faster subsequent scale-out actions."
+            },
+            {
+              "id": "B",
+              "text": "Implement Predictive Scaling to proactively provision capacity ahead of the daily 9:00 AM spikes. Replace the Simple Scaling policy with a Step Scaling policy utilizing an instance warm-up period to handle unpredictable bursts dynamically."
+            },
+            {
+              "id": "C",
+              "text": "Configure a Target Tracking scaling policy targeting 40% CPU utilization. Disable the ASG cooldown period entirely so that the ASG can rapidly spawn instances without waiting."
+            },
+            {
+              "id": "D",
+              "text": "Use Scheduled Scaling actions to scale out at 8:55 AM. For the rest of the day, use the existing Simple Scaling policy paired with an Application Load Balancer health check grace period of 300 seconds."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "Uma plataforma de comércio eletrônico proeminente depende de um Auto Scaling Group (ASG) de instâncias EC2. A plataforma experimenta um pico de tráfego massivo e previsível todas as manhãs às 9:00 devido a vendas relâmpago diárias, além de surtos de tráfego agudos e imprevisíveis ao longo do dia. O ASG atualmente usa uma política de Escalonamento Simples (Simple Scaling) baseada na utilização da CPU com um período de resfriamento (cooldown) padrão de 300 segundos. As instâncias levam cerca de 4 minutos para inicializar completamente (bootstrapping). Durante a venda das 9:00, o ASG não consegue escalar rápido o suficiente, resultando em erros 502 Bad Gateway para os primeiros usuários. Como um Arquiteto de Soluções pode resolver esse problema com a MENOR sobrecarga operacional?",
+          "generalExplanation": "O Escalonamento Preditivo aproveita o aprendizado de máquina para antecipar mudanças de carga previsíveis (como a venda das 9:00) e escala com antecedência, mitigando completamente o atraso de inicialização de 4 minutos. Para picos imprevisíveis, o Step Scaling é altamente recomendado em vez do Simple Scaling, porque ele ajusta a capacidade proporcionalmente ao tamanho da violação do alarme e usa um período de 'Aquecimento da Instância' (Instance Warm-up) em vez de um cooldown rígido, permitindo que as ações de escalonamento ocorram imediatamente se as métricas continuarem a piorar.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas."
+            },
+            {
+              "id": "B",
+              "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis."
+            },
+            {
+              "id": "C",
+              "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar."
+            },
+            {
+              "id": "D",
+              "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "Una plataforma de comercio electrónico destacada depende de un Auto Scaling group (ASG) de instancias EC2. La plataforma experimenta un aumento de tráfico masivo y predecible cada mañana a las 9:00 AM debido a las ventas flash diarias, así como ráfagas de tráfico agudas e impredecibles durante todo el día. Actualmente, el ASG utiliza una política de Escalamiento Simple (Simple Scaling) basada en la utilización de la CPU con un período de enfriamiento (cooldown) estándar de 300 segundos. Las instancias tardan aproximadamente 4 minutos en arrancar por completo (bootstrapping). Durante la venta de las 9:00 AM, el ASG no logra escalar lo suficientemente rápido, lo que resulta en errores 502 Bad Gateway para los primeros usuarios. ¿Cómo puede un Arquitecto de Soluciones resolver este problema con la MENOR sobrecarga operativa?",
+          "generalExplanation": "El Escalamiento Predictivo aprovecha el aprendizaje automático para anticipar cambios de carga predecibles (como la venta flash de las 9:00 AM) y escala con anticipación, mitigando completamente el retraso de arranque de 4 minutos. Para picos impredecibles, se recomienda encarecidamente Step Scaling sobre Simple Scaling porque ajusta la capacidad proporcionalmente al tamaño de la infracción de la alarma y utiliza un período de 'Calentamiento de Instancia' en lugar de un enfriamiento rígido, lo que permite que las acciones de escalamiento ocurran inmediatamente si las métricas continúan empeorando.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Realice un pre-bake de la aplicación en una AMI personalizada para reducir el tiempo de arranque a segundos. Mantenga la política de Escalamiento Simple pero reduzca el período de enfriamiento a 60 segundos para permitir acciones de escalamiento posteriores más rápidas."
+            },
+            {
+              "id": "B",
+              "text": "Implemente el Escalamiento Predictivo (Predictive Scaling) para aprovisionar proactivamente la capacidad antes de los picos diarios de las 9:00 AM. Reemplace la política de Escalamiento Simple con una política de Step Scaling utilizando un período de calentamiento de instancia (warm-up) para manejar dinámicamente ráfagas impredecibles."
+            },
+            {
+              "id": "C",
+              "text": "Configure una política de escalamiento de Target Tracking apuntando a un 40% de utilización de CPU. Desactive por completo el período de enfriamiento del ASG para que pueda generar instancias rápidamente sin esperar."
+            },
+            {
+              "id": "D",
+              "text": "Utilice acciones de Escalamiento Programado (Scheduled Scaling) para escalar a las 8:55 AM. Durante el resto del día, utilice la política de Escalamiento Simple existente combinada con un período de gracia de verificación de estado del Application Load Balancer de 300 segundos."
+            }
+          ]
+        }
+      },
+      "statement": "Uma plataforma de comércio eletrônico proeminente depende de um Auto Scaling Group (ASG) de instâncias EC2. A plataforma experimenta um pico de tráfego massivo e previsível todas as manhãs às 9:00 devido a vendas relâmpago diárias, além de surtos de tráfego agudos e imprevisíveis ao longo do dia. O ASG atualmente usa uma política de Escalonamento Simples (Simple Scaling) baseada na utilização da CPU com um período de resfriamento (cooldown) padrão de 300 segundos. As instâncias levam cerca de 4 minutos para inicializar completamente (bootstrapping). Durante a venda das 9:00, o ASG não consegue escalar rápido o suficiente, resultando em erros 502 Bad Gateway para os primeiros usuários. Como um Arquiteto de Soluções pode resolver esse problema com a MENOR sobrecarga operacional?",
+      "generalExplanation": "O Escalonamento Preditivo aproveita o aprendizado de máquina para antecipar mudanças de carga previsíveis (como a venda das 9:00) e escala com antecedência, mitigando completamente o atraso de inicialização de 4 minutos. Para picos imprevisíveis, o Step Scaling é altamente recomendado em vez do Simple Scaling, porque ele ajusta a capacidade proporcionalmente ao tamanho da violação do alarme e usa um período de 'Aquecimento da Instância' (Instance Warm-up) em vez de um cooldown rígido, permitindo que as ações de escalonamento ocorram imediatamente se as métricas continuarem a piorar.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [
         "Auto Scaling",
         "Predictive Scaling",
         "Step Scaling"
       ],
+      "requiredChoices": 1
+    },
+    {
+      "id": "sap-comp-004",
       "difficulty": "hard",
-      "question": {
-        "en": "A prominent e-commerce platform relies on an Auto Scaling group (ASG) of EC2 instances. The platform experiences a massive, predictable traffic spike every morning at 9:00 AM due to daily flash sales, as well as unpredictable, sharp traffic bursts throughout the day. The ASG currently uses a Simple Scaling policy based on CPU utilization with a standard 300-second cooldown. Instances take approximately 4 minutes to fully bootstrap. During the 9:00 AM sale, the ASG fails to scale out fast enough, resulting in 502 Bad Gateway errors for early users. How can a Solutions Architect resolve this issue with the LEAST operational overhead?",
-        "pt": "Uma plataforma de comércio eletrônico proeminente depende de um Auto Scaling Group (ASG) de instâncias EC2. A plataforma experimenta um pico de tráfego massivo e previsível todas as manhãs às 9:00 devido a vendas relâmpago diárias, além de surtos de tráfego agudos e imprevisíveis ao longo do dia. O ASG atualmente usa uma política de Escalonamento Simples (Simple Scaling) baseada na utilização da CPU com um período de resfriamento (cooldown) padrão de 300 segundos. As instâncias levam cerca de 4 minutos para inicializar completamente (bootstrapping). Durante a venda das 9:00, o ASG não consegue escalar rápido o suficiente, resultando em erros 502 Bad Gateway para os primeiros usuários. Como um Arquiteto de Soluções pode resolver esse problema com a MENOR sobrecarga operacional?",
-        "es": "Una plataforma de comercio electrónico destacada depende de un Auto Scaling group (ASG) de instancias EC2. La plataforma experimenta un aumento de tráfico masivo y predecible cada mañana a las 9:00 AM debido a las ventas flash diarias, así como ráfagas de tráfico agudas e impredecibles durante todo el día. Actualmente, el ASG utiliza una política de Escalamiento Simple (Simple Scaling) basada en la utilización de la CPU con un período de enfriamiento (cooldown) estándar de 300 segundos. Las instancias tardan aproximadamente 4 minutos en arrancar por completo (bootstrapping). Durante la venta de las 9:00 AM, el ASG no logra escalar lo suficientemente rápido, lo que resulta en errores 502 Bad Gateway para los primeros usuarios. ¿Cómo puede un Arquitecto de Soluciones resolver este problema con la MENOR sobrecarga operativa?"
-      },
       "type": "single",
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Pre-bake the application into a custom AMI to reduce boot time to seconds. Maintain the Simple Scaling policy but reduce the cooldown period to 60 seconds to allow faster subsequent scale-out actions.",
-            "pt": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas.",
-            "es": "Realice un pre-bake de la aplicación en una AMI personalizada para reducir el tiempo de arranque a segundos. Mantenga la política de Escalamiento Simple pero reduzca el período de enfriamiento a 60 segundos para permitir acciones de escalamiento posteriores más rápidas."
-          }
+          "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Implement Predictive Scaling to proactively provision capacity ahead of the daily 9:00 AM spikes. Replace the Simple Scaling policy with a Step Scaling policy utilizing an instance warm-up period to handle unpredictable bursts dynamically.",
-            "pt": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis.",
-            "es": "Implemente el Escalamiento Predictivo (Predictive Scaling) para aprovisionar proactivamente la capacidad antes de los picos diarios de las 9:00 AM. Reemplace la política de Escalamiento Simple con una política de Step Scaling utilizando un período de calentamiento de instancia (warm-up) para manejar dinámicamente ráfagas impredecibles."
-          }
+          "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Configure a Target Tracking scaling policy targeting 40% CPU utilization. Disable the ASG cooldown period entirely so that the ASG can rapidly spawn instances without waiting.",
-            "pt": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar.",
-            "es": "Configure una política de escalamiento de Target Tracking apuntando a un 40% de utilización de CPU. Desactive por completo el período de enfriamiento del ASG para que pueda generar instancias rápidamente sin esperar."
-          }
+          "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Use Scheduled Scaling actions to scale out at 8:55 AM. For the rest of the day, use the existing Simple Scaling policy paired with an Application Load Balancer health check grace period of 300 seconds.",
-            "pt": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos.",
-            "es": "Utilice acciones de Escalamiento Programado (Scheduled Scaling) para escalar a las 8:55 AM. Durante el resto del día, utilice la política de Escalamiento Simple existente combinada con un período de gracia de verificación de estado del Application Load Balancer de 300 segundos."
-          }
+          "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade."
         }
       ],
       "correctAnswers": [
         "B"
       ],
-      "explanation": {
-        "en": "Predictive Scaling leverages machine learning to anticipate predictable load changes (like the 9:00 AM flash sale) and scales out ahead of time, completely mitigating the 4-minute boot delay. For unpredictable spikes, Step Scaling is highly recommended over Simple Scaling because it adjusts capacity proportionally to the alarm breach size and uses an 'Instance Warm-up' period instead of a rigid cooldown, allowing subsequent scaling actions to occur immediately if the metrics continue to worsen.",
-        "pt": "O Escalonamento Preditivo aproveita o aprendizado de máquina para antecipar mudanças de carga previsíveis (como a venda das 9:00) e escala com antecedência, mitigando completamente o atraso de inicialização de 4 minutos. Para picos imprevisíveis, o Step Scaling é altamente recomendado em vez do Simple Scaling, porque ele ajusta a capacidade proporcionalmente ao tamanho da violação do alarme e usa um período de 'Aquecimento da Instância' (Instance Warm-up) em vez de um cooldown rígido, permitindo que as ações de escalonamento ocorram imediatamente se as métricas continuarem a piorar.",
-        "es": "El Escalamiento Predictivo aprovecha el aprendizaje automático para anticipar cambios de carga predecibles (como la venta flash de las 9:00 AM) y escala con anticipación, mitigando completamente el retraso de arranque de 4 minutos. Para picos impredecibles, se recomienda encarecidamente Step Scaling sobre Simple Scaling porque ajusta la capacidad proporcionalmente al tamaño de la infracción de la alarma y utiliza un período de 'Calentamiento de Instancia' en lugar de un enfriamiento rígido, lo que permite que las acciones de escalamiento ocurran inmediatamente si las métricas continúan empeorando."
-      }
-    },
-    {
-      "id": "sap-comp-004",
-      "domain": "Domain 1: Design Solutions for Organizational Complexity",
-      "tags": [
+      "translations": {
+        "en": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "An enterprise is migrating a mission-critical Microsoft SQL Server farm to AWS. The company possesses strict Bring Your Own License (BYOL) agreements that bind software licenses directly to physical CPU sockets and cores. Compliance requirements strictly dictate physical hardware isolation; no other customer workloads can share the same physical server. The architecture must support auto-scaling capabilities to handle dynamic traffic loads while remaining legally compliant. Which approach satisfies these conditions?",
+          "generalExplanation": "BYOL models tied to physical sockets/cores require EC2 Dedicated Hosts, as Dedicated Instances do not provide visibility into the underlying hardware required for this licensing model. Auto Scaling groups cannot natively launch instances onto individual Dedicated Host IDs. Instead, you must use AWS License Manager to create a Host Resource Group, which manages a pool of Dedicated Hosts and automatically allocates new hosts as needed. The ASG is then configured to target this Host Resource Group.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Launch EC2 Dedicated Instances. Configure AWS License Manager to track core utilization and ensure the Auto Scaling group dynamically adjusts the count of Dedicated Instances across multiple Availability Zones."
+            },
+            {
+              "id": "B",
+              "text": "Allocate EC2 Dedicated Hosts. Create a host resource group using AWS License Manager to manage the hosts. Configure the Auto Scaling group to launch instances directly into the license-managed host resource group."
+            },
+            {
+              "id": "C",
+              "text": "Use On-Demand instances with Default tenancy. Apply a Host Affinity rule in the EC2 Launch Template to bind instances to specific MAC addresses, and use AWS Config to audit licensing compliance."
+            },
+            {
+              "id": "D",
+              "text": "Allocate EC2 Dedicated Hosts and configure the Auto Scaling group to target the specific Dedicated Host IDs in the Launch Template for dynamically expanding capacity."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Uma empresa está migrando uma farm de servidor Microsoft SQL de missão crítica para a AWS. A empresa possui contratos estritos de Bring Your Own License (BYOL) que vinculam licenças de software diretamente a soquetes de CPU e núcleos físicos. Os requisitos de conformidade ditam rigorosamente o isolamento físico de hardware; nenhuma carga de trabalho de outro cliente pode compartilhar o mesmo servidor físico. A arquitetura deve suportar capacidades de auto-escalonamento para lidar com cargas de tráfego dinâmicas, mantendo-se legalmente em conformidade. Qual abordagem satisfaz essas condições?",
+          "generalExplanation": "Modelos BYOL vinculados a soquetes/núcleos físicos exigem Hosts Dedicados (Dedicated Hosts) do EC2, já que as Instâncias Dedicadas (Dedicated Instances) não fornecem visibilidade sobre o hardware subjacente necessário para este modelo de licenciamento. Grupos de Auto Scaling não podem iniciar instâncias nativamente em IDs de Host Dedicado individuais. Em vez disso, você deve usar o AWS License Manager para criar um Host Resource Group, que gerencia um pool de Hosts Dedicados e aloca novos hosts automaticamente conforme a necessidade. O ASG é então configurado para ter esse Host Resource Group como destino.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade."
+            },
+            {
+              "id": "B",
+              "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença."
+            },
+            {
+              "id": "C",
+              "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento."
+            },
+            {
+              "id": "D",
+              "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Una empresa está migrando una granja de Microsoft SQL Server de misión crítica a AWS. La empresa posee estrictos acuerdos de Bring Your Own License (BYOL) que vinculan las licencias de software directamente a los sockets y núcleos físicos de la CPU. Los requisitos de cumplimiento dictan estrictamente el aislamiento físico del hardware; ninguna carga de trabajo de otro cliente puede compartir el mismo servidor físico. La arquitectura debe soportar capacidades de autoescalado para manejar cargas de tráfico dinámicas manteniéndose legalmente en cumplimiento. ¿Qué enfoque satisface estas condiciones?",
+          "generalExplanation": "Los modelos BYOL vinculados a sockets/núcleos físicos requieren EC2 Dedicated Hosts, ya que las Dedicated Instances no proporcionan visibilidad del hardware subyacente requerido para este modelo de licencia. Los grupos de Auto Scaling no pueden lanzar instancias de forma nativa en ID de Host Dedicado individuales. En su lugar, debe utilizar AWS License Manager para crear un Host Resource Group, que administra un grupo de Dedicated Hosts y asigna automáticamente nuevos hosts según sea necesario. Luego, el ASG se configura para apuntar a este Host Resource Group.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Lance Instancias Dedicadas de EC2. Configure AWS License Manager para rastrear la utilización de núcleos y asegúrese de que el grupo de Auto Scaling ajuste dinámicamente el recuento de Instancias Dedicadas a través de múltiples Zonas de Disponibilidad."
+            },
+            {
+              "id": "B",
+              "text": "Asigne Hosts Dedicados de EC2. Cree un grupo de recursos de host utilizando AWS License Manager para administrar los hosts. Configure el grupo de Auto Scaling para lanzar instancias directamente en el grupo de recursos de host administrado por licencias."
+            },
+            {
+              "id": "C",
+              "text": "Utilice instancias On-Demand con tenencia Predeterminada (Default). Aplique una regla de Afinidad de Host en la Plantilla de Lanzamiento de EC2 para vincular instancias a direcciones MAC específicas, y utilice AWS Config para auditar el cumplimiento de licencias."
+            },
+            {
+              "id": "D",
+              "text": "Asigne Hosts Dedicados de EC2 y configure el grupo de Auto Scaling para apuntar a los ID de Host Dedicado específicos en la Plantilla de Lanzamiento para expandir dinámicamente la capacidad."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa está migrando uma farm de servidor Microsoft SQL de missão crítica para a AWS. A empresa possui contratos estritos de Bring Your Own License (BYOL) que vinculam licenças de software diretamente a soquetes de CPU e núcleos físicos. Os requisitos de conformidade ditam rigorosamente o isolamento físico de hardware; nenhuma carga de trabalho de outro cliente pode compartilhar o mesmo servidor físico. A arquitetura deve suportar capacidades de auto-escalonamento para lidar com cargas de tráfego dinâmicas, mantendo-se legalmente em conformidade. Qual abordagem satisfaz essas condições?",
+      "generalExplanation": "Modelos BYOL vinculados a soquetes/núcleos físicos exigem Hosts Dedicados (Dedicated Hosts) do EC2, já que as Instâncias Dedicadas (Dedicated Instances) não fornecem visibilidade sobre o hardware subjacente necessário para este modelo de licenciamento. Grupos de Auto Scaling não podem iniciar instâncias nativamente em IDs de Host Dedicado individuais. Em vez disso, você deve usar o AWS License Manager para criar um Host Resource Group, que gerencia um pool de Hosts Dedicados e aloca novos hosts automaticamente conforme a necessidade. O ASG é então configurado para ter esse Host Resource Group como destino.",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [
         "EC2",
         "Dedicated Hosts",
         "License Manager",
         "BYOL"
       ],
+      "requiredChoices": 1
+    },
+    {
+      "id": "sap-comp-005",
       "difficulty": "hard",
-      "question": {
-        "en": "An enterprise is migrating a mission-critical Microsoft SQL Server farm to AWS. The company possesses strict Bring Your Own License (BYOL) agreements that bind software licenses directly to physical CPU sockets and cores. Compliance requirements strictly dictate physical hardware isolation; no other customer workloads can share the same physical server. The architecture must support auto-scaling capabilities to handle dynamic traffic loads while remaining legally compliant. Which approach satisfies these conditions?",
-        "pt": "Uma empresa está migrando uma farm de servidor Microsoft SQL de missão crítica para a AWS. A empresa possui contratos estritos de Bring Your Own License (BYOL) que vinculam licenças de software diretamente a soquetes de CPU e núcleos físicos. Os requisitos de conformidade ditam rigorosamente o isolamento físico de hardware; nenhuma carga de trabalho de outro cliente pode compartilhar o mesmo servidor físico. A arquitetura deve suportar capacidades de auto-escalonamento para lidar com cargas de tráfego dinâmicas, mantendo-se legalmente em conformidade. Qual abordagem satisfaz essas condições?",
-        "es": "Una empresa está migrando una granja de Microsoft SQL Server de misión crítica a AWS. La empresa posee estrictos acuerdos de Bring Your Own License (BYOL) que vinculan las licencias de software directamente a los sockets y núcleos físicos de la CPU. Los requisitos de cumplimiento dictan estrictamente el aislamiento físico del hardware; ninguna carga de trabajo de otro cliente puede compartir el mismo servidor físico. La arquitectura debe soportar capacidades de autoescalado para manejar cargas de tráfico dinámicas manteniéndose legalmente en cumplimiento. ¿Qué enfoque satisface estas condiciones?"
-      },
       "type": "single",
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Launch EC2 Dedicated Instances. Configure AWS License Manager to track core utilization and ensure the Auto Scaling group dynamically adjusts the count of Dedicated Instances across multiple Availability Zones.",
-            "pt": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade.",
-            "es": "Lance Instancias Dedicadas de EC2. Configure AWS License Manager para rastrear la utilización de núcleos y asegúrese de que el grupo de Auto Scaling ajuste dinámicamente el recuento de Instancias Dedicadas a través de múltiples Zonas de Disponibilidad."
-          }
+          "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Allocate EC2 Dedicated Hosts. Create a host resource group using AWS License Manager to manage the hosts. Configure the Auto Scaling group to launch instances directly into the license-managed host resource group.",
-            "pt": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença.",
-            "es": "Asigne Hosts Dedicados de EC2. Cree un grupo de recursos de host utilizando AWS License Manager para administrar los hosts. Configure el grupo de Auto Scaling para lanzar instancias directamente en el grupo de recursos de host administrado por licencias."
-          }
+          "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Use On-Demand instances with Default tenancy. Apply a Host Affinity rule in the EC2 Launch Template to bind instances to specific MAC addresses, and use AWS Config to audit licensing compliance.",
-            "pt": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento.",
-            "es": "Utilice instancias On-Demand con tenencia Predeterminada (Default). Aplique una regla de Afinidad de Host en la Plantilla de Lanzamiento de EC2 para vincular instancias a direcciones MAC específicas, y utilice AWS Config para auditar el cumplimiento de licencias."
-          }
+          "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Allocate EC2 Dedicated Hosts and configure the Auto Scaling group to target the specific Dedicated Host IDs in the Launch Template for dynamically expanding capacity.",
-            "pt": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade.",
-            "es": "Asigne Hosts Dedicados de EC2 y configure el grupo de Auto Scaling para apuntar a los ID de Host Dedicado específicos en la Plantilla de Lanzamiento para expandir dinámicamente la capacidad."
-          }
+          "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo."
         }
       ],
       "correctAnswers": [
         "B"
       ],
-      "explanation": {
-        "en": "BYOL models tied to physical sockets/cores require EC2 Dedicated Hosts, as Dedicated Instances do not provide visibility into the underlying hardware required for this licensing model. Auto Scaling groups cannot natively launch instances onto individual Dedicated Host IDs. Instead, you must use AWS License Manager to create a Host Resource Group, which manages a pool of Dedicated Hosts and automatically allocates new hosts as needed. The ASG is then configured to target this Host Resource Group.",
-        "pt": "Modelos BYOL vinculados a soquetes/núcleos físicos exigem Hosts Dedicados (Dedicated Hosts) do EC2, já que as Instâncias Dedicadas (Dedicated Instances) não fornecem visibilidade sobre o hardware subjacente necessário para este modelo de licenciamento. Grupos de Auto Scaling não podem iniciar instâncias nativamente em IDs de Host Dedicado individuais. Em vez disso, você deve usar o AWS License Manager para criar um Host Resource Group, que gerencia um pool de Hosts Dedicados e aloca novos hosts automaticamente conforme a necessidade. O ASG é então configurado para ter esse Host Resource Group como destino.",
-        "es": "Los modelos BYOL vinculados a sockets/núcleos físicos requieren EC2 Dedicated Hosts, ya que las Dedicated Instances no proporcionan visibilidad del hardware subyacente requerido para este modelo de licencia. Los grupos de Auto Scaling no pueden lanzar instancias de forma nativa en ID de Host Dedicado individuales. En su lugar, debe utilizar AWS License Manager para crear un Host Resource Group, que administra un grupo de Dedicated Hosts y asigna automáticamente nuevos hosts según sea necesario. Luego, el ASG se configura para apuntar a este Host Resource Group."
-      }
-    },
-    {
-      "id": "sap-comp-005",
-      "domain": "Domain 3: Continuous Improvement for Existing Solutions",
-      "tags": [
+      "translations": {
+        "en": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "A critical legacy EC2 instance is completely unresponsive via SSH. An administrator accidentally executed a script that deleted the `authorized_keys` file for the `ec2-user`. The instance has strict security groups preventing any inbound traffic other than SSH. Additionally, the instance is NOT managed by AWS Systems Manager (SSM) because the SSM agent was uninstalled years ago. The architecture team needs to recover SSH access immediately without losing the persistent data on the root volume. What is the correct sequence of steps to restore access?",
+          "generalExplanation": "Because the SSM agent is uninstalled, `AWSSupport-ResetAccess` cannot be executed. EC2 Instance Connect also requires an agent installed on the instance to function. User Data only runs on the very first boot of an instance by default, so creating an AMI and launching it will not execute the User Data script to fix the key unless `cloud-init` was configured to run on every boot. The only guaranteed manual recovery method is to stop the instance, detach the root volume, mount it on a rescue instance, modify the authorized_keys file natively, and reattach it.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use the AWS Systems Manager Automation document `AWSSupport-ResetAccess` to inject a new SSH key into the instance dynamically. Reboot the instance using the AWS Management Console."
+            },
+            {
+              "id": "B",
+              "text": "Stop the EC2 instance. Detach the root EBS volume and attach it as a secondary data volume to a temporary rescue instance in the same Availability Zone. Mount the volume, append the new SSH public key to `/home/ec2-user/.ssh/authorized_keys`, unmount, reattach it to the original instance as `/dev/xvda`, and start the instance."
+            },
+            {
+              "id": "C",
+              "text": "Create an Amazon Machine Image (AMI) from the running instance. Modify the User Data script in the EC2 Launch Template to append the new SSH key. Launch a new replacement instance from the AMI."
+            },
+            {
+              "id": "D",
+              "text": "Use EC2 Instance Connect via the AWS CLI to temporarily push an ephemeral SSH public key to the instance metadata service, allowing connection for 60 seconds to fix the file."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "Uma instância EC2 legada crítica está completamente sem resposta via SSH. Um administrador executou acidentalmente um script que excluiu o arquivo `authorized_keys` do usuário `ec2-user`. A instância possui grupos de segurança estritos impedindo qualquer tráfego de entrada além de SSH. Além disso, a instância NÃO é gerenciada pelo AWS Systems Manager (SSM) porque o agente SSM foi desinstalado anos atrás. A equipe de arquitetura precisa recuperar o acesso SSH imediatamente sem perder os dados persistentes no volume raiz. Qual é a sequência correta de passos para restaurar o acesso?",
+          "generalExplanation": "Como o agente SSM está desinstalado, o `AWSSupport-ResetAccess` não pode ser executado. O EC2 Instance Connect também exige um agente instalado na instância para funcionar. O User Data só é executado na primeira inicialização de uma instância por padrão, então criar uma AMI e iniciá-la não executará o script de User Data para consertar a chave, a menos que o `cloud-init` tenha sido configurado para executar em cada boot. O único método de recuperação manual garantido é parar a instância, desanexar o volume raiz, montá-lo em uma instância de resgate, modificar o arquivo authorized_keys nativamente e reanexá-lo.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console."
+            },
+            {
+              "id": "B",
+              "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância."
+            },
+            {
+              "id": "C",
+              "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI."
+            },
+            {
+              "id": "D",
+              "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+          "statement": "Una instancia EC2 heredada crítica no responde en absoluto a través de SSH. Un administrador ejecutó accidentalmente un script que eliminó el archivo `authorized_keys` del usuario `ec2-user`. La instancia tiene estrictos grupos de seguridad que impiden cualquier tráfico entrante que no sea SSH. Además, la instancia NO está administrada por AWS Systems Manager (SSM) porque el agente SSM se desinstaló hace años. El equipo de arquitectura necesita recuperar el acceso SSH inmediatamente sin perder los datos persistentes en el volumen raíz. ¿Cuál es la secuencia correcta de pasos para restaurar el acceso?",
+          "generalExplanation": "Debido a que el agente SSM está desinstalado, `AWSSupport-ResetAccess` no se puede ejecutar. EC2 Instance Connect también requiere un agente instalado en la instancia para funcionar. User Data solo se ejecuta en el primer arranque de una instancia de forma predeterminada, por lo que crear una AMI y lanzarla no ejecutará el script de User Data para reparar la clave a menos que `cloud-init` estuviera configurado para ejecutarse en cada arranque. El único método de recuperación manual garantizado es detener la instancia, desconectar el volumen raíz, montarlo en una instancia de rescate, modificar el archivo authorized_keys de forma nativa y volver a conectarlo.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Utilice el documento de Automatización de AWS Systems Manager `AWSSupport-ResetAccess` para inyectar dinámicamente una nueva clave SSH en la instancia. Reinicie la instancia mediante la AWS Management Console."
+            },
+            {
+              "id": "B",
+              "text": "Detenga la instancia EC2. Desconecte el volumen EBS raíz y conéctelo como un volumen de datos secundario a una instancia de rescate temporal en la misma Zona de Disponibilidad. Monte el volumen, agregue la nueva clave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, vuelva a conectarlo a la instancia original como `/dev/xvda` y encienda la instancia."
+            },
+            {
+              "id": "C",
+              "text": "Cree una Imagen de Máquina de Amazon (AMI) a partir de la instancia en ejecución. Modifique el script de User Data en la Plantilla de Lanzamiento de EC2 para agregar la nueva clave SSH. Lance una nueva instancia de reemplazo desde la AMI."
+            },
+            {
+              "id": "D",
+              "text": "Utilice EC2 Instance Connect a través de la AWS CLI para enviar temporalmente una clave pública SSH efímera al servicio de metadatos de la instancia, permitiendo la conexión durante 60 segundos para reparar el archivo."
+            }
+          ]
+        }
+      },
+      "statement": "Uma instância EC2 legada crítica está completamente sem resposta via SSH. Um administrador executou acidentalmente um script que excluiu o arquivo `authorized_keys` do usuário `ec2-user`. A instância possui grupos de segurança estritos impedindo qualquer tráfego de entrada além de SSH. Além disso, a instância NÃO é gerenciada pelo AWS Systems Manager (SSM) porque o agente SSM foi desinstalado anos atrás. A equipe de arquitetura precisa recuperar o acesso SSH imediatamente sem perder os dados persistentes no volume raiz. Qual é a sequência correta de passos para restaurar o acesso?",
+      "generalExplanation": "Como o agente SSM está desinstalado, o `AWSSupport-ResetAccess` não pode ser executado. O EC2 Instance Connect também exige um agente instalado na instância para funcionar. O User Data só é executado na primeira inicialização de uma instância por padrão, então criar uma AMI e iniciá-la não executará o script de User Data para consertar a chave, a menos que o `cloud-init` tenha sido configurado para executar em cada boot. O único método de recuperação manual garantido é parar a instância, desanexar o volume raiz, montá-lo em uma instância de resgate, modificar o arquivo authorized_keys nativamente e reanexá-lo.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [
         "EC2",
         "Troubleshooting",
         "EBS"
       ],
-      "difficulty": "hard",
-      "question": {
-        "en": "A critical legacy EC2 instance is completely unresponsive via SSH. An administrator accidentally executed a script that deleted the `authorized_keys` file for the `ec2-user`. The instance has strict security groups preventing any inbound traffic other than SSH. Additionally, the instance is NOT managed by AWS Systems Manager (SSM) because the SSM agent was uninstalled years ago. The architecture team needs to recover SSH access immediately without losing the persistent data on the root volume. What is the correct sequence of steps to restore access?",
-        "pt": "Uma instância EC2 legada crítica está completamente sem resposta via SSH. Um administrador executou acidentalmente um script que excluiu o arquivo `authorized_keys` do usuário `ec2-user`. A instância possui grupos de segurança estritos impedindo qualquer tráfego de entrada além de SSH. Além disso, a instância NÃO é gerenciada pelo AWS Systems Manager (SSM) porque o agente SSM foi desinstalado anos atrás. A equipe de arquitetura precisa recuperar o acesso SSH imediatamente sem perder os dados persistentes no volume raiz. Qual é a sequência correta de passos para restaurar o acesso?",
-        "es": "Una instancia EC2 heredada crítica no responde en absoluto a través de SSH. Un administrador ejecutó accidentalmente un script que eliminó el archivo `authorized_keys` del usuario `ec2-user`. La instancia tiene estrictos grupos de seguridad que impiden cualquier tráfico entrante que no sea SSH. Además, la instancia NO está administrada por AWS Systems Manager (SSM) porque el agente SSM se desinstaló hace años. El equipo de arquitectura necesita recuperar el acceso SSH inmediatamente sin perder los datos persistentes en el volumen raíz. ¿Cuál es la secuencia correcta de pasos para restaurar el acceso?"
-      },
-      "type": "single",
-      "options": [
-        {
-          "id": "A",
-          "text": {
-            "en": "Use the AWS Systems Manager Automation document `AWSSupport-ResetAccess` to inject a new SSH key into the instance dynamically. Reboot the instance using the AWS Management Console.",
-            "pt": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console.",
-            "es": "Utilice el documento de Automatización de AWS Systems Manager `AWSSupport-ResetAccess` para inyectar dinámicamente una nueva clave SSH en la instancia. Reinicie la instancia mediante la AWS Management Console."
-          }
-        },
-        {
-          "id": "B",
-          "text": {
-            "en": "Stop the EC2 instance. Detach the root EBS volume and attach it as a secondary data volume to a temporary rescue instance in the same Availability Zone. Mount the volume, append the new SSH public key to `/home/ec2-user/.ssh/authorized_keys`, unmount, reattach it to the original instance as `/dev/xvda`, and start the instance.",
-            "pt": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância.",
-            "es": "Detenga la instancia EC2. Desconecte el volumen EBS raíz y conéctelo como un volumen de datos secundario a una instancia de rescate temporal en la misma Zona de Disponibilidad. Monte el volumen, agregue la nueva clave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, vuelva a conectarlo a la instancia original como `/dev/xvda` y encienda la instancia."
-          }
-        },
-        {
-          "id": "C",
-          "text": {
-            "en": "Create an Amazon Machine Image (AMI) from the running instance. Modify the User Data script in the EC2 Launch Template to append the new SSH key. Launch a new replacement instance from the AMI.",
-            "pt": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI.",
-            "es": "Cree una Imagen de Máquina de Amazon (AMI) a partir de la instancia en ejecución. Modifique el script de User Data en la Plantilla de Lanzamiento de EC2 para agregar la nueva clave SSH. Lance una nueva instancia de reemplazo desde la AMI."
-          }
-        },
-        {
-          "id": "D",
-          "text": {
-            "en": "Use EC2 Instance Connect via the AWS CLI to temporarily push an ephemeral SSH public key to the instance metadata service, allowing connection for 60 seconds to fix the file.",
-            "pt": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo.",
-            "es": "Utilice EC2 Instance Connect a través de la AWS CLI para enviar temporalmente una clave pública SSH efímera al servicio de metadatos de la instancia, permitiendo la conexión durante 60 segundos para reparar el archivo."
-          }
-        }
-      ],
-      "correctAnswers": [
-        "B"
-      ],
-      "explanation": {
-        "en": "Because the SSM agent is uninstalled, `AWSSupport-ResetAccess` cannot be executed. EC2 Instance Connect also requires an agent installed on the instance to function. User Data only runs on the very first boot of an instance by default, so creating an AMI and launching it will not execute the User Data script to fix the key unless `cloud-init` was configured to run on every boot. The only guaranteed manual recovery method is to stop the instance, detach the root volume, mount it on a rescue instance, modify the authorized_keys file natively, and reattach it.",
-        "pt": "Como o agente SSM está desinstalado, o `AWSSupport-ResetAccess` não pode ser executado. O EC2 Instance Connect também exige um agente instalado na instância para funcionar. O User Data só é executado na primeira inicialização de uma instância por padrão, então criar uma AMI e iniciá-la não executará o script de User Data para consertar a chave, a menos que o `cloud-init` tenha sido configurado para executar em cada boot. O único método de recuperação manual garantido é parar a instância, desanexar o volume raiz, montá-lo em uma instância de resgate, modificar o arquivo authorized_keys nativamente e reanexá-lo.",
-        "es": "Debido a que el agente SSM está desinstalado, `AWSSupport-ResetAccess` no se puede ejecutar. EC2 Instance Connect también requiere un agente instalado en la instancia para funcionar. User Data solo se ejecuta en el primer arranque de una instancia de forma predeterminada, por lo que crear una AMI y lanzarla no ejecutará el script de User Data para reparar la clave a menos que `cloud-init` estuviera configurado para ejecutarse en cada arranque. El único método de recuperación manual garantizado es detener la instancia, desconectar el volumen raíz, montarlo en una instancia de rescate, modificar el archivo authorized_keys de forma nativa y volver a conectarlo."
-      }
+      "requiredChoices": 1
     },
     {
       "id": "sap-q001-batch4",

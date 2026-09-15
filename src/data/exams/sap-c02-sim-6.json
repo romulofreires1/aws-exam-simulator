@@ -927,124 +927,153 @@
     },
     {
       "id": "sap-net-001",
-      "domain": "Domain 1: Design Solutions for Organizational Complexity",
       "difficulty": "hard",
       "type": "multiple",
-      "question": {
-        "en": "A company has an active Direct Connect (DX) connection and an AWS Site-to-Site VPN connection as a backup, both attached to a Transit Gateway (TGW). The on-premises router advertises the prefix 10.10.0.0/16 over DX and 10.10.0.0/24 over VPN. The company notices that traffic from AWS to on-premises is sometimes taking the VPN path instead of the preferred DX path. They want to ensure traffic always prefers the DX path, falling back to VPN only if DX goes down. Which actions will effectively ensure AWS routes traffic to on-premises via DX instead of VPN? (Select TWO.)",
-        "pt": "Uma empresa tem uma conexão Direct Connect (DX) ativa e uma conexão AWS Site-to-Site VPN como backup, ambas anexadas a um Transit Gateway (TGW). O roteador on-premises anuncia o prefixo 10.10.0.0/16 sobre o DX e 10.10.0.0/24 sobre a VPN. A empresa percebe que o tráfego da AWS para on-premises às vezes está seguindo o caminho da VPN em vez do caminho preferencial do DX. Eles querem garantir que o tráfego sempre prefira o caminho do DX, usando a VPN apenas como fallback caso o DX caia. Quais ações garantirão efetivamente que a AWS roteie o tráfego para on-premises via DX em vez da VPN? (Selecione DUAS.)",
-        "es": "Una empresa tiene una conexión Direct Connect (DX) activa y una conexión AWS Site-to-Site VPN como respaldo, ambas conectadas a un Transit Gateway (TGW). El enrutador local anuncia el prefijo 10.10.0.0/16 a través de DX y 10.10.0.0/24 a través de VPN. La empresa nota que el tráfico de AWS hacia las instalaciones locales a veces toma la ruta de la VPN en lugar de la ruta preferida de DX. Quieren asegurarse de que el tráfico siempre prefiera la ruta de DX, utilizando la VPN como respaldo solo si DX falla. ¿Qué acciones garantizarán efectivamente que AWS enrute el tráfico hacia las instalaciones locales a través de DX en lugar de VPN? (Seleccione DOS.)"
-      },
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Advertise the same 10.10.0.0/24 prefix over the DX connection. TGW automatically prefers the DX path over the VPN path when prefixes are identical.",
-            "pt": "Anunciar o mesmo prefixo 10.10.0.0/24 sobre a conexão DX. O TGW prefere automaticamente o caminho do DX em vez da VPN quando os prefixos são idênticos.",
-            "es": "Anunciar el mismo prefijo 10.10.0.0/24 a través de la conexión DX. El TGW prefiere automáticamente la ruta de DX sobre la de VPN cuando los prefijos son idénticos."
-          }
+          "text": "Anunciar o mesmo prefixo 10.10.0.0/24 sobre a conexão DX. O TGW prefere automaticamente o caminho do DX em vez da VPN quando os prefixos são idênticos."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Summarize the VPN advertisement to 10.10.0.0/16. TGW evaluates identical prefixes by prioritizing Direct Connect attachments over VPN attachments.",
-            "pt": "Resumir o anúncio da VPN para 10.10.0.0/16. O TGW avalia prefixos idênticos priorizando anexos do Direct Connect em vez de anexos de VPN.",
-            "es": "Resumir el anuncio de VPN a 10.10.0.0/16. El TGW evalúa prefijos idénticos priorizando las conexiones de Direct Connect sobre las de VPN."
-          }
+          "text": "Resumir o anúncio da VPN para 10.10.0.0/16. O TGW avalia prefixos idênticos priorizando anexos do Direct Connect em vez de anexos de VPN."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Configure AS PATH prepending on the DX connection to make the path shorter than the VPN connection.",
-            "pt": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho mais curto que a conexão VPN.",
-            "es": "Configurar 'AS PATH prepending' en la conexión DX para hacer que la ruta sea más corta que la conexión VPN."
-          }
+          "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho mais curto que a conexão VPN."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Configure Local Preference to a higher value on the on-premises router for the DX connection.",
-            "pt": "Configurar a Preferência Local (Local Preference) para um valor mais alto no roteador on-premises para a conexão DX.",
-            "es": "Configurar la Preferencia Local (Local Preference) a un valor más alto en el enrutador local para la conexión DX."
-          }
+          "text": "Configurar a Preferência Local (Local Preference) para um valor mais alto no roteador on-premises para a conexão DX."
         },
         {
           "id": "E",
-          "text": {
-            "en": "Modify the TGW route table to statically route 10.10.0.0/16 to the DX attachment, as static routes supersede BGP propagated routes.",
-            "pt": "Modificar a tabela de rotas do TGW para rotear estaticamente 10.10.0.0/16 para o anexo do DX, pois as rotas estáticas substituem as rotas propagadas pelo BGP.",
-            "es": "Modificar la tabla de rutas del TGW para enrutar estáticamente 10.10.0.0/16 al archivo adjunto de DX, ya que las rutas estáticas reemplazan las rutas propagadas por BGP."
-          }
+          "text": "Modificar a tabela de rotas do TGW para rotear estaticamente 10.10.0.0/16 para o anexo do DX, pois as rotas estáticas substituem as rotas propagadas pelo BGP."
         }
       ],
       "correctAnswers": [
         "A",
         "B"
       ],
-      "explanation": {
-        "en": "AWS Transit Gateway routing strictly follows longest prefix match. Since the VPN was advertising a more specific prefix (/24) than DX (/16), traffic would traverse the VPN. To fix this, you must either make the DX prefix equally specific or make the VPN prefix less specific. When prefixes are identical, Transit Gateway inherently prefers Direct Connect paths over Site-to-Site VPN paths. AS PATH and Local Preference do not override longest prefix match rules.",
-        "pt": "O roteamento do AWS Transit Gateway segue estritamente a correspondência de prefixo mais longo (longest prefix match). Como a VPN estava anunciando um prefixo mais específico (/24) do que o DX (/16), o tráfego atravessava a VPN. Para corrigir isso, você deve tornar o prefixo do DX igualmente específico ou tornar o prefixo da VPN menos específico. Quando os prefixos são idênticos, o Transit Gateway prefere inerentemente caminhos do Direct Connect em relação aos caminhos da Site-to-Site VPN. AS PATH e Local Preference não substituem as regras de correspondência de prefixo mais longo.",
-        "es": "El enrutamiento de AWS Transit Gateway sigue estrictamente la coincidencia de prefijo más largo. Como la VPN anunciaba un prefijo más específico (/24) que DX (/16), el tráfico pasaba por la VPN. Para solucionarlo, debe hacer que el prefijo de DX sea igualmente específico o hacer que el prefijo de la VPN sea menos específico. Cuando los prefijos son idénticos, Transit Gateway prefiere intrínsecamente las rutas de Direct Connect sobre las de Site-to-Site VPN. AS PATH y Local Preference no anulan las reglas de coincidencia de prefijo más largo."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "A company has an active Direct Connect (DX) connection and an AWS Site-to-Site VPN connection as a backup, both attached to a Transit Gateway (TGW). The on-premises router advertises the prefix 10.10.0.0/16 over DX and 10.10.0.0/24 over VPN. The company notices that traffic from AWS to on-premises is sometimes taking the VPN path instead of the preferred DX path. They want to ensure traffic always prefers the DX path, falling back to VPN only if DX goes down. Which actions will effectively ensure AWS routes traffic to on-premises via DX instead of VPN? (Select TWO.)",
+          "generalExplanation": "AWS Transit Gateway routing strictly follows longest prefix match. Since the VPN was advertising a more specific prefix (/24) than DX (/16), traffic would traverse the VPN. To fix this, you must either make the DX prefix equally specific or make the VPN prefix less specific. When prefixes are identical, Transit Gateway inherently prefers Direct Connect paths over Site-to-Site VPN paths. AS PATH and Local Preference do not override longest prefix match rules.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Advertise the same 10.10.0.0/24 prefix over the DX connection. TGW automatically prefers the DX path over the VPN path when prefixes are identical."
+            },
+            {
+              "id": "B",
+              "text": "Summarize the VPN advertisement to 10.10.0.0/16. TGW evaluates identical prefixes by prioritizing Direct Connect attachments over VPN attachments."
+            },
+            {
+              "id": "C",
+              "text": "Configure AS PATH prepending on the DX connection to make the path shorter than the VPN connection."
+            },
+            {
+              "id": "D",
+              "text": "Configure Local Preference to a higher value on the on-premises router for the DX connection."
+            },
+            {
+              "id": "E",
+              "text": "Modify the TGW route table to statically route 10.10.0.0/16 to the DX attachment, as static routes supersede BGP propagated routes."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Uma empresa tem uma conexão Direct Connect (DX) ativa e uma conexão AWS Site-to-Site VPN como backup, ambas anexadas a um Transit Gateway (TGW). O roteador on-premises anuncia o prefixo 10.10.0.0/16 sobre o DX e 10.10.0.0/24 sobre a VPN. A empresa percebe que o tráfego da AWS para on-premises às vezes está seguindo o caminho da VPN em vez do caminho preferencial do DX. Eles querem garantir que o tráfego sempre prefira o caminho do DX, usando a VPN apenas como fallback caso o DX caia. Quais ações garantirão efetivamente que a AWS roteie o tráfego para on-premises via DX em vez da VPN? (Selecione DUAS.)",
+          "generalExplanation": "O roteamento do AWS Transit Gateway segue estritamente a correspondência de prefixo mais longo (longest prefix match). Como a VPN estava anunciando um prefixo mais específico (/24) do que o DX (/16), o tráfego atravessava a VPN. Para corrigir isso, você deve tornar o prefixo do DX igualmente específico ou tornar o prefixo da VPN menos específico. Quando os prefixos são idênticos, o Transit Gateway prefere inerentemente caminhos do Direct Connect em relação aos caminhos da Site-to-Site VPN. AS PATH e Local Preference não substituem as regras de correspondência de prefixo mais longo.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Anunciar o mesmo prefixo 10.10.0.0/24 sobre a conexão DX. O TGW prefere automaticamente o caminho do DX em vez da VPN quando os prefixos são idênticos."
+            },
+            {
+              "id": "B",
+              "text": "Resumir o anúncio da VPN para 10.10.0.0/16. O TGW avalia prefixos idênticos priorizando anexos do Direct Connect em vez de anexos de VPN."
+            },
+            {
+              "id": "C",
+              "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho mais curto que a conexão VPN."
+            },
+            {
+              "id": "D",
+              "text": "Configurar a Preferência Local (Local Preference) para um valor mais alto no roteador on-premises para a conexão DX."
+            },
+            {
+              "id": "E",
+              "text": "Modificar a tabela de rotas do TGW para rotear estaticamente 10.10.0.0/16 para o anexo do DX, pois as rotas estáticas substituem as rotas propagadas pelo BGP."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Una empresa tiene una conexión Direct Connect (DX) activa y una conexión AWS Site-to-Site VPN como respaldo, ambas conectadas a un Transit Gateway (TGW). El enrutador local anuncia el prefijo 10.10.0.0/16 a través de DX y 10.10.0.0/24 a través de VPN. La empresa nota que el tráfico de AWS hacia las instalaciones locales a veces toma la ruta de la VPN en lugar de la ruta preferida de DX. Quieren asegurarse de que el tráfico siempre prefiera la ruta de DX, utilizando la VPN como respaldo solo si DX falla. ¿Qué acciones garantizarán efectivamente que AWS enrute el tráfico hacia las instalaciones locales a través de DX en lugar de VPN? (Seleccione DOS.)",
+          "generalExplanation": "El enrutamiento de AWS Transit Gateway sigue estrictamente la coincidencia de prefijo más largo. Como la VPN anunciaba un prefijo más específico (/24) que DX (/16), el tráfico pasaba por la VPN. Para solucionarlo, debe hacer que el prefijo de DX sea igualmente específico o hacer que el prefijo de la VPN sea menos específico. Cuando los prefijos son idénticos, Transit Gateway prefiere intrínsecamente las rutas de Direct Connect sobre las de Site-to-Site VPN. AS PATH y Local Preference no anulan las reglas de coincidencia de prefijo más largo.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Anunciar el mismo prefijo 10.10.0.0/24 a través de la conexión DX. El TGW prefiere automáticamente la ruta de DX sobre la de VPN cuando los prefijos son idénticos."
+            },
+            {
+              "id": "B",
+              "text": "Resumir el anuncio de VPN a 10.10.0.0/16. El TGW evalúa prefijos idénticos priorizando las conexiones de Direct Connect sobre las de VPN."
+            },
+            {
+              "id": "C",
+              "text": "Configurar 'AS PATH prepending' en la conexión DX para hacer que la ruta sea más corta que la conexión VPN."
+            },
+            {
+              "id": "D",
+              "text": "Configurar la Preferencia Local (Local Preference) a un valor más alto en el enrutador local para la conexión DX."
+            },
+            {
+              "id": "E",
+              "text": "Modificar la tabla de rutas del TGW para enrutar estáticamente 10.10.0.0/16 al archivo adjunto de DX, ya que las rutas estáticas reemplazan las rutas propagadas por BGP."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa tem uma conexão Direct Connect (DX) ativa e uma conexão AWS Site-to-Site VPN como backup, ambas anexadas a um Transit Gateway (TGW). O roteador on-premises anuncia o prefixo 10.10.0.0/16 sobre o DX e 10.10.0.0/24 sobre a VPN. A empresa percebe que o tráfego da AWS para on-premises às vezes está seguindo o caminho da VPN em vez do caminho preferencial do DX. Eles querem garantir que o tráfego sempre prefira o caminho do DX, usando a VPN apenas como fallback caso o DX caia. Quais ações garantirão efetivamente que a AWS roteie o tráfego para on-premises via DX em vez da VPN? (Selecione DUAS.)",
+      "generalExplanation": "O roteamento do AWS Transit Gateway segue estritamente a correspondência de prefixo mais longo (longest prefix match). Como a VPN estava anunciando um prefixo mais específico (/24) do que o DX (/16), o tráfego atravessava a VPN. Para corrigir isso, você deve tornar o prefixo do DX igualmente específico ou tornar o prefixo da VPN menos específico. Quando os prefixos são idênticos, o Transit Gateway prefere inerentemente caminhos do Direct Connect em relação aos caminhos da Site-to-Site VPN. AS PATH e Local Preference não substituem as regras de correspondência de prefixo mais longo.",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [],
+      "requiredChoices": 2
     },
     {
       "id": "sap-net-002",
-      "domain": "Domain 1: Design Solutions for Organizational Complexity",
       "difficulty": "hard",
       "type": "multiple",
-      "question": {
-        "en": "An enterprise has a shared services VPC in the us-east-1 region connected to an AWS Transit Gateway (TGW). A Route 53 Inbound Resolver endpoint and an Outbound Resolver endpoint reside in this VPC. On-premises DNS servers are connected via a Direct Connect connection terminating on a Direct Connect Gateway associated with the TGW. The on-premises servers need to resolve *.amazonaws.com domains (e.g., interface endpoints) in the VPCs, and the EC2 instances in all AWS VPCs need to resolve *.corp.local domains hosted on-premises. What must the Solutions Architect configure to enable this bi-directional DNS resolution? (Select THREE.)",
-        "pt": "Uma empresa possui uma VPC de serviços compartilhados na região us-east-1 conectada a um AWS Transit Gateway (TGW). Um endpoint Inbound e um Outbound do Route 53 Resolver residem nesta VPC. Servidores DNS on-premises estão conectados via Direct Connect terminando em um Direct Connect Gateway associado ao TGW. Os servidores on-premises precisam resolver domínios *.amazonaws.com nas VPCs, e as instâncias EC2 em todas as VPCs da AWS precisam resolver domínios *.corp.local hospedados on-premises. O que o Arquiteto de Soluções deve configurar para habilitar essa resolução de DNS bidirecional? (Selecione TRÊS.)",
-        "es": "Una empresa tiene una VPC de servicios compartidos en la región us-east-1 conectada a un AWS Transit Gateway (TGW). Un endpoint Inbound y un Outbound de Route 53 Resolver residen en esta VPC. Los servidores DNS locales están conectados a través de Direct Connect que termina en un Direct Connect Gateway asociado al TGW. Los servidores locales necesitan resolver dominios *.amazonaws.com en las VPC, y las instancias EC2 en todas las VPC de AWS necesitan resolver dominios *.corp.local alojados de forma local. ¿Qué debe configurar el Arquitecto de Soluciones para habilitar esta resolución de DNS bidireccional? (Seleccione TRES.)"
-      },
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Create a Route 53 Resolver forwarding rule for corp.local that points to the on-premises DNS server IPs using the Outbound Resolver endpoint. Associate this rule with all applicable VPCs.",
-            "pt": "Criar uma regra de encaminhamento do Route 53 Resolver para corp.local que aponte para os IPs dos servidores DNS on-premises usando o endpoint Outbound. Associar esta regra a todas as VPCs aplicáveis.",
-            "es": "Crear una regla de reenvío de Route 53 Resolver para corp.local que apunte a las IP de los servidores DNS locales mediante el endpoint Outbound. Asociar esta regla con todas las VPC aplicables."
-          }
+          "text": "Criar uma regra de encaminhamento do Route 53 Resolver para corp.local que aponte para os IPs dos servidores DNS on-premises usando o endpoint Outbound. Associar esta regra a todas as VPCs aplicáveis."
         },
         {
           "id": "B",
-          "text": {
-            "en": "On the on-premises DNS servers, configure a conditional forwarder for amazonaws.com pointing to the IP addresses of the Route 53 Inbound Resolver endpoint.",
-            "pt": "Nos servidores DNS on-premises, configurar um encaminhador condicional (conditional forwarder) para amazonaws.com apontando para os endereços IP do endpoint Inbound do Route 53 Resolver.",
-            "es": "En los servidores DNS locales, configurar un reenviador condicional para amazonaws.com que apunte a las direcciones IP del endpoint Inbound de Route 53 Resolver."
-          }
+          "text": "Nos servidores DNS on-premises, configurar um encaminhador condicional (conditional forwarder) para amazonaws.com apontando para os endereços IP do endpoint Inbound do Route 53 Resolver."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Configure the on-premises router to advertise the on-premises DNS server IP subnets over the DX connection so the Outbound Resolver can reach them via the TGW.",
-            "pt": "Configurar o roteador on-premises para anunciar as sub-redes IP dos servidores DNS on-premises através da conexão DX, para que o Outbound Resolver possa alcançá-los via TGW.",
-            "es": "Configurar el enrutador local para que anuncie las subredes IP de los servidores DNS locales a través de la conexión DX para que el Outbound Resolver pueda acceder a ellos a través del TGW."
-          }
+          "text": "Configurar o roteador on-premises para anunciar as sub-redes IP dos servidores DNS on-premises através da conexão DX, para que o Outbound Resolver possa alcançá-los via TGW."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Create a Route 53 Private Hosted Zone for corp.local and associate it with the shared services VPC to cache on-premises records.",
-            "pt": "Criar uma Hosted Zone privada no Route 53 para corp.local e associá-la à VPC de serviços compartilhados para armazenar registros on-premises em cache.",
-            "es": "Crear una Hosted Zone privada en Route 53 para corp.local y asociarla con la VPC de servicios compartidos para almacenar en caché los registros locales."
-          }
+          "text": "Criar uma Hosted Zone privada no Route 53 para corp.local e associá-la à VPC de serviços compartilhados para armazenar registros on-premises em cache."
         },
         {
           "id": "E",
-          "text": {
-            "en": "Enable DNS Hostnames and DNS Resolution on the Direct Connect Gateway.",
-            "pt": "Habilitar Nomes de Host DNS e Resolução DNS no Direct Connect Gateway.",
-            "es": "Habilitar Nombres de Host DNS y Resolución DNS en el Direct Connect Gateway."
-          }
+          "text": "Habilitar Nomes de Host DNS e Resolução DNS no Direct Connect Gateway."
         },
         {
           "id": "F",
-          "text": {
-            "en": "Create a Route 53 Resolver rule for amazonaws.com and associate it with the on-premises network CIDR.",
-            "pt": "Criar uma regra do Route 53 Resolver para amazonaws.com e associá-la ao CIDR da rede on-premises.",
-            "es": "Crear una regla de Route 53 Resolver para amazonaws.com y asociarla con el CIDR de la red local."
-          }
+          "text": "Criar uma regra do Route 53 Resolver para amazonaws.com e associá-la ao CIDR da rede on-premises."
         }
       ],
       "correctAnswers": [
@@ -1052,188 +1081,454 @@
         "B",
         "C"
       ],
-      "explanation": {
-        "en": "To resolve on-premises domains from AWS, a Route 53 Outbound Resolver endpoint is used alongside a forwarding rule targeting the on-premises DNS servers. The on-premises network must also be reachable, requiring proper BGP advertisement of the DNS server subnets over DX. To resolve AWS domains from on-premises, a conditional forwarder is created on the on-premises DNS servers pointing to the Inbound Resolver endpoint IPs. DX Gateways do not have DNS attributes to toggle.",
-        "pt": "Para resolver domínios on-premises a partir da AWS, um endpoint Outbound do Route 53 Resolver é usado com uma regra de encaminhamento para os servidores DNS on-premises. A rede on-premises deve ser acessível, exigindo o anúncio BGP adequado via DX. Para resolver domínios da AWS do on-premises, um encaminhador condicional é criado nos servidores DNS apontando para os IPs do endpoint Inbound. DX Gateways não possuem atributos DNS para alternar.",
-        "es": "Para resolver dominios locales desde AWS, se utiliza un endpoint Outbound de Route 53 Resolver junto con una regla de reenvío dirigida a los servidores DNS locales. La red local también debe ser accesible, lo que requiere un anuncio BGP adecuado a través de DX. Para resolver dominios de AWS desde las instalaciones locales, se crea un reenviador condicional en los servidores DNS locales que apunta a las direcciones IP del endpoint Inbound. Los Gateways DX no tienen atributos de DNS."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "An enterprise has a shared services VPC in the us-east-1 region connected to an AWS Transit Gateway (TGW). A Route 53 Inbound Resolver endpoint and an Outbound Resolver endpoint reside in this VPC. On-premises DNS servers are connected via a Direct Connect connection terminating on a Direct Connect Gateway associated with the TGW. The on-premises servers need to resolve *.amazonaws.com domains (e.g., interface endpoints) in the VPCs, and the EC2 instances in all AWS VPCs need to resolve *.corp.local domains hosted on-premises. What must the Solutions Architect configure to enable this bi-directional DNS resolution? (Select THREE.)",
+          "generalExplanation": "To resolve on-premises domains from AWS, a Route 53 Outbound Resolver endpoint is used alongside a forwarding rule targeting the on-premises DNS servers. The on-premises network must also be reachable, requiring proper BGP advertisement of the DNS server subnets over DX. To resolve AWS domains from on-premises, a conditional forwarder is created on the on-premises DNS servers pointing to the Inbound Resolver endpoint IPs. DX Gateways do not have DNS attributes to toggle.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Create a Route 53 Resolver forwarding rule for corp.local that points to the on-premises DNS server IPs using the Outbound Resolver endpoint. Associate this rule with all applicable VPCs."
+            },
+            {
+              "id": "B",
+              "text": "On the on-premises DNS servers, configure a conditional forwarder for amazonaws.com pointing to the IP addresses of the Route 53 Inbound Resolver endpoint."
+            },
+            {
+              "id": "C",
+              "text": "Configure the on-premises router to advertise the on-premises DNS server IP subnets over the DX connection so the Outbound Resolver can reach them via the TGW."
+            },
+            {
+              "id": "D",
+              "text": "Create a Route 53 Private Hosted Zone for corp.local and associate it with the shared services VPC to cache on-premises records."
+            },
+            {
+              "id": "E",
+              "text": "Enable DNS Hostnames and DNS Resolution on the Direct Connect Gateway."
+            },
+            {
+              "id": "F",
+              "text": "Create a Route 53 Resolver rule for amazonaws.com and associate it with the on-premises network CIDR."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Uma empresa possui uma VPC de serviços compartilhados na região us-east-1 conectada a um AWS Transit Gateway (TGW). Um endpoint Inbound e um Outbound do Route 53 Resolver residem nesta VPC. Servidores DNS on-premises estão conectados via Direct Connect terminando em um Direct Connect Gateway associado ao TGW. Os servidores on-premises precisam resolver domínios *.amazonaws.com nas VPCs, e as instâncias EC2 em todas as VPCs da AWS precisam resolver domínios *.corp.local hospedados on-premises. O que o Arquiteto de Soluções deve configurar para habilitar essa resolução de DNS bidirecional? (Selecione TRÊS.)",
+          "generalExplanation": "Para resolver domínios on-premises a partir da AWS, um endpoint Outbound do Route 53 Resolver é usado com uma regra de encaminhamento para os servidores DNS on-premises. A rede on-premises deve ser acessível, exigindo o anúncio BGP adequado via DX. Para resolver domínios da AWS do on-premises, um encaminhador condicional é criado nos servidores DNS apontando para os IPs do endpoint Inbound. DX Gateways não possuem atributos DNS para alternar.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Criar uma regra de encaminhamento do Route 53 Resolver para corp.local que aponte para os IPs dos servidores DNS on-premises usando o endpoint Outbound. Associar esta regra a todas as VPCs aplicáveis."
+            },
+            {
+              "id": "B",
+              "text": "Nos servidores DNS on-premises, configurar um encaminhador condicional (conditional forwarder) para amazonaws.com apontando para os endereços IP do endpoint Inbound do Route 53 Resolver."
+            },
+            {
+              "id": "C",
+              "text": "Configurar o roteador on-premises para anunciar as sub-redes IP dos servidores DNS on-premises através da conexão DX, para que o Outbound Resolver possa alcançá-los via TGW."
+            },
+            {
+              "id": "D",
+              "text": "Criar uma Hosted Zone privada no Route 53 para corp.local e associá-la à VPC de serviços compartilhados para armazenar registros on-premises em cache."
+            },
+            {
+              "id": "E",
+              "text": "Habilitar Nomes de Host DNS e Resolução DNS no Direct Connect Gateway."
+            },
+            {
+              "id": "F",
+              "text": "Criar uma regra do Route 53 Resolver para amazonaws.com e associá-la ao CIDR da rede on-premises."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Una empresa tiene una VPC de servicios compartidos en la región us-east-1 conectada a un AWS Transit Gateway (TGW). Un endpoint Inbound y un Outbound de Route 53 Resolver residen en esta VPC. Los servidores DNS locales están conectados a través de Direct Connect que termina en un Direct Connect Gateway asociado al TGW. Los servidores locales necesitan resolver dominios *.amazonaws.com en las VPC, y las instancias EC2 en todas las VPC de AWS necesitan resolver dominios *.corp.local alojados de forma local. ¿Qué debe configurar el Arquitecto de Soluciones para habilitar esta resolución de DNS bidireccional? (Seleccione TRES.)",
+          "generalExplanation": "Para resolver dominios locales desde AWS, se utiliza un endpoint Outbound de Route 53 Resolver junto con una regla de reenvío dirigida a los servidores DNS locales. La red local también debe ser accesible, lo que requiere un anuncio BGP adecuado a través de DX. Para resolver dominios de AWS desde las instalaciones locales, se crea un reenviador condicional en los servidores DNS locales que apunta a las direcciones IP del endpoint Inbound. Los Gateways DX no tienen atributos de DNS.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Crear una regla de reenvío de Route 53 Resolver para corp.local que apunte a las IP de los servidores DNS locales mediante el endpoint Outbound. Asociar esta regla con todas las VPC aplicables."
+            },
+            {
+              "id": "B",
+              "text": "En los servidores DNS locales, configurar un reenviador condicional para amazonaws.com que apunte a las direcciones IP del endpoint Inbound de Route 53 Resolver."
+            },
+            {
+              "id": "C",
+              "text": "Configurar el enrutador local para que anuncie las subredes IP de los servidores DNS locales a través de la conexión DX para que el Outbound Resolver pueda acceder a ellos a través del TGW."
+            },
+            {
+              "id": "D",
+              "text": "Crear una Hosted Zone privada en Route 53 para corp.local y asociarla con la VPC de servicios compartidos para almacenar en caché los registros locales."
+            },
+            {
+              "id": "E",
+              "text": "Habilitar Nombres de Host DNS y Resolución DNS en el Direct Connect Gateway."
+            },
+            {
+              "id": "F",
+              "text": "Crear una regla de Route 53 Resolver para amazonaws.com y asociarla con el CIDR de la red local."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa possui uma VPC de serviços compartilhados na região us-east-1 conectada a um AWS Transit Gateway (TGW). Um endpoint Inbound e um Outbound do Route 53 Resolver residem nesta VPC. Servidores DNS on-premises estão conectados via Direct Connect terminando em um Direct Connect Gateway associado ao TGW. Os servidores on-premises precisam resolver domínios *.amazonaws.com nas VPCs, e as instâncias EC2 em todas as VPCs da AWS precisam resolver domínios *.corp.local hospedados on-premises. O que o Arquiteto de Soluções deve configurar para habilitar essa resolução de DNS bidirecional? (Selecione TRÊS.)",
+      "generalExplanation": "Para resolver domínios on-premises a partir da AWS, um endpoint Outbound do Route 53 Resolver é usado com uma regra de encaminhamento para os servidores DNS on-premises. A rede on-premises deve ser acessível, exigindo o anúncio BGP adequado via DX. Para resolver domínios da AWS do on-premises, um encaminhador condicional é criado nos servidores DNS apontando para os IPs do endpoint Inbound. DX Gateways não possuem atributos DNS para alternar.",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [],
+      "requiredChoices": 3
     },
     {
       "id": "sap-net-003",
-      "domain": "Domain 3: Design Resilient Architectures",
       "difficulty": "hard",
       "type": "single",
-      "question": {
-        "en": "A gaming company deployed a multiplayer game server fleet in two AWS Regions (us-west-2 and eu-central-1) behind Network Load Balancers (NLBs). The game uses a custom UDP protocol for real-time game state synchronization and a TCP protocol for authentication. The company wants to minimize global latency, ensure extremely fast failover if a region degrades, and retain the clients' source IP addresses on the game servers. Which solution meets these requirements? (Select ONE.)",
-        "pt": "Uma empresa de jogos implantou uma frota de servidores de jogos multiplayer em duas regiões da AWS (us-west-2 e eu-central-1) atrás de Network Load Balancers (NLBs). O jogo usa um protocolo UDP personalizado para sincronização e um protocolo TCP para autenticação. A empresa deseja minimizar a latência global, garantir um failover extremamente rápido se uma região degradar e reter os endereços IP de origem dos clientes nos servidores de jogos. Qual solução atende a esses requisitos? (Selecione UMA.)",
-        "es": "Una empresa de juegos implementó una flota de servidores en dos regiones de AWS (us-west-2 y eu-central-1) detrás de Network Load Balancers (NLBs). El juego utiliza un protocolo UDP personalizado para sincronización y un protocolo TCP para autenticación. La empresa desea minimizar la latencia global, garantizar una conmutación por error extremadamente rápida si una región se degrada y retener las IP de origen de los clientes en los servidores. ¿Qué solución cumple con estos requisitos? (Seleccione UNA.)"
-      },
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Use AWS Global Accelerator with the two NLBs as endpoint groups. Configure listeners for both UDP and TCP. The client IPs are preserved by default when NLBs are the endpoints.",
-            "pt": "Usar o AWS Global Accelerator com os dois NLBs como grupos de endpoints. Configurar listeners para UDP e TCP. Os IPs dos clientes são preservados por padrão quando os NLBs são os endpoints.",
-            "es": "Usar AWS Global Accelerator con los dos NLB como grupos de endpoints. Configurar listeners para UDP y TCP. Las IP de los clientes se conservan de forma predeterminada cuando los NLB son los endpoints."
-          }
+          "text": "Usar o AWS Global Accelerator com os dois NLBs como grupos de endpoints. Configurar listeners para UDP e TCP. Os IPs dos clientes são preservados por padrão quando os NLBs são os endpoints."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Use Amazon CloudFront with the two NLBs as custom origins. CloudFront will pass the client IP in the X-Forwarded-For header for TCP, and use a custom UDP behavior for the game state.",
-            "pt": "Usar o Amazon CloudFront com os dois NLBs como origens personalizadas. O CloudFront passará o IP do cliente no cabeçalho X-Forwarded-For para TCP e usará um comportamento UDP personalizado.",
-            "es": "Usar Amazon CloudFront con los dos NLB como orígenes personalizados. CloudFront pasará la IP del cliente en el encabezado X-Forwarded-For para TCP, y usará un comportamiento UDP personalizado."
-          }
+          "text": "Usar o Amazon CloudFront com os dois NLBs como origens personalizadas. O CloudFront passará o IP do cliente no cabeçalho X-Forwarded-For para TCP e usará um comportamento UDP personalizado."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Use Amazon Route 53 latency-based routing to direct clients to the closest NLB. Enable cross-zone load balancing on the NLBs to preserve client IP.",
-            "pt": "Usar o roteamento baseado em latência do Amazon Route 53 para direcionar clientes ao NLB mais próximo. Habilitar o balanceamento de carga cross-zone nos NLBs para preservar o IP do cliente.",
-            "es": "Usar el enrutamiento basado en latencia de Amazon Route 53 para dirigir a los clientes al NLB más cercano. Habilitar el balanceo de carga cross-zone en los NLB para preservar la IP del cliente."
-          }
+          "text": "Usar o roteamento baseado em latência do Amazon Route 53 para direcionar clientes ao NLB mais próximo. Habilitar o balanceamento de carga cross-zone nos NLBs para preservar o IP do cliente."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Use AWS Global Accelerator with Application Load Balancers (ALBs) instead of NLBs. Enable the preserve client IP option in Global Accelerator.",
-            "pt": "Usar o AWS Global Accelerator com Application Load Balancers (ALBs) em vez de NLBs. Habilitar a opção de preservar IP do cliente no Global Accelerator.",
-            "es": "Usar AWS Global Accelerator con Application Load Balancers (ALB) en lugar de NLB. Habilitar la opción de conservar IP de cliente en Global Accelerator."
-          }
+          "text": "Usar o AWS Global Accelerator com Application Load Balancers (ALBs) em vez de NLBs. Habilitar a opção de preservar IP do cliente no Global Accelerator."
         }
       ],
       "correctAnswers": [
         "A"
       ],
-      "explanation": {
-        "en": "AWS Global Accelerator uses the AWS global network to route traffic to the optimal region based on performance, bypassing the public internet's congestion. It natively supports both TCP and UDP protocols, which is critical for the custom game state protocol. When targeting Network Load Balancers (NLBs), Global Accelerator preserves the client's source IP address without requiring extra headers. CloudFront and ALBs do not support arbitrary UDP protocols. Route 53 failover relies on DNS TTLs, which is slower than Global Accelerator's Anycast IP failover.",
-        "pt": "O AWS Global Accelerator usa a rede global da AWS para rotear o tráfego para a região ideal com base no desempenho, contornando o congestionamento da internet pública. Ele suporta nativamente os protocolos TCP e UDP, o que é fundamental para o protocolo de jogo personalizado. Ao usar NLBs como alvo, o Global Accelerator preserva o endereço IP de origem do cliente sem exigir cabeçalhos extras. CloudFront e ALBs não suportam protocolos UDP arbitrários. O failover do Route 53 depende de DNS TTLs, que é mais lento que o Anycast do Global Accelerator.",
-        "es": "AWS Global Accelerator utiliza la red global de AWS para enrutar el tráfico a la región óptima según el rendimiento, evitando la congestión de Internet público. Admite de forma nativa los protocolos TCP y UDP, lo cual es fundamental para el protocolo de juego. Al dirigirse a los NLB, Global Accelerator conserva la dirección IP de origen del cliente sin requerir encabezados adicionales. CloudFront y ALB no admiten protocolos UDP arbitrarios. La conmutación por error de Route 53 depende de los DNS TTL, que es más lento que Anycast de Global Accelerator."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 3: Design Resilient Architectures",
+          "statement": "A gaming company deployed a multiplayer game server fleet in two AWS Regions (us-west-2 and eu-central-1) behind Network Load Balancers (NLBs). The game uses a custom UDP protocol for real-time game state synchronization and a TCP protocol for authentication. The company wants to minimize global latency, ensure extremely fast failover if a region degrades, and retain the clients' source IP addresses on the game servers. Which solution meets these requirements? (Select ONE.)",
+          "generalExplanation": "AWS Global Accelerator uses the AWS global network to route traffic to the optimal region based on performance, bypassing the public internet's congestion. It natively supports both TCP and UDP protocols, which is critical for the custom game state protocol. When targeting Network Load Balancers (NLBs), Global Accelerator preserves the client's source IP address without requiring extra headers. CloudFront and ALBs do not support arbitrary UDP protocols. Route 53 failover relies on DNS TTLs, which is slower than Global Accelerator's Anycast IP failover.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Use AWS Global Accelerator with the two NLBs as endpoint groups. Configure listeners for both UDP and TCP. The client IPs are preserved by default when NLBs are the endpoints."
+            },
+            {
+              "id": "B",
+              "text": "Use Amazon CloudFront with the two NLBs as custom origins. CloudFront will pass the client IP in the X-Forwarded-For header for TCP, and use a custom UDP behavior for the game state."
+            },
+            {
+              "id": "C",
+              "text": "Use Amazon Route 53 latency-based routing to direct clients to the closest NLB. Enable cross-zone load balancing on the NLBs to preserve client IP."
+            },
+            {
+              "id": "D",
+              "text": "Use AWS Global Accelerator with Application Load Balancers (ALBs) instead of NLBs. Enable the preserve client IP option in Global Accelerator."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 3: Design Resilient Architectures",
+          "statement": "Uma empresa de jogos implantou uma frota de servidores de jogos multiplayer em duas regiões da AWS (us-west-2 e eu-central-1) atrás de Network Load Balancers (NLBs). O jogo usa um protocolo UDP personalizado para sincronização e um protocolo TCP para autenticação. A empresa deseja minimizar a latência global, garantir um failover extremamente rápido se uma região degradar e reter os endereços IP de origem dos clientes nos servidores de jogos. Qual solução atende a esses requisitos? (Selecione UMA.)",
+          "generalExplanation": "O AWS Global Accelerator usa a rede global da AWS para rotear o tráfego para a região ideal com base no desempenho, contornando o congestionamento da internet pública. Ele suporta nativamente os protocolos TCP e UDP, o que é fundamental para o protocolo de jogo personalizado. Ao usar NLBs como alvo, o Global Accelerator preserva o endereço IP de origem do cliente sem exigir cabeçalhos extras. CloudFront e ALBs não suportam protocolos UDP arbitrários. O failover do Route 53 depende de DNS TTLs, que é mais lento que o Anycast do Global Accelerator.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Usar o AWS Global Accelerator com os dois NLBs como grupos de endpoints. Configurar listeners para UDP e TCP. Os IPs dos clientes são preservados por padrão quando os NLBs são os endpoints."
+            },
+            {
+              "id": "B",
+              "text": "Usar o Amazon CloudFront com os dois NLBs como origens personalizadas. O CloudFront passará o IP do cliente no cabeçalho X-Forwarded-For para TCP e usará um comportamento UDP personalizado."
+            },
+            {
+              "id": "C",
+              "text": "Usar o roteamento baseado em latência do Amazon Route 53 para direcionar clientes ao NLB mais próximo. Habilitar o balanceamento de carga cross-zone nos NLBs para preservar o IP do cliente."
+            },
+            {
+              "id": "D",
+              "text": "Usar o AWS Global Accelerator com Application Load Balancers (ALBs) em vez de NLBs. Habilitar a opção de preservar IP do cliente no Global Accelerator."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 3: Design Resilient Architectures",
+          "statement": "Una empresa de juegos implementó una flota de servidores en dos regiones de AWS (us-west-2 y eu-central-1) detrás de Network Load Balancers (NLBs). El juego utiliza un protocolo UDP personalizado para sincronización y un protocolo TCP para autenticación. La empresa desea minimizar la latencia global, garantizar una conmutación por error extremadamente rápida si una región se degrada y retener las IP de origen de los clientes en los servidores. ¿Qué solución cumple con estos requisitos? (Seleccione UNA.)",
+          "generalExplanation": "AWS Global Accelerator utiliza la red global de AWS para enrutar el tráfico a la región óptima según el rendimiento, evitando la congestión de Internet público. Admite de forma nativa los protocolos TCP y UDP, lo cual es fundamental para el protocolo de juego. Al dirigirse a los NLB, Global Accelerator conserva la dirección IP de origen del cliente sin requerir encabezados adicionales. CloudFront y ALB no admiten protocolos UDP arbitrarios. La conmutación por error de Route 53 depende de los DNS TTL, que es más lento que Anycast de Global Accelerator.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Usar AWS Global Accelerator con los dos NLB como grupos de endpoints. Configurar listeners para UDP y TCP. Las IP de los clientes se conservan de forma predeterminada cuando los NLB son los endpoints."
+            },
+            {
+              "id": "B",
+              "text": "Usar Amazon CloudFront con los dos NLB como orígenes personalizados. CloudFront pasará la IP del cliente en el encabezado X-Forwarded-For para TCP, y usará un comportamiento UDP personalizado."
+            },
+            {
+              "id": "C",
+              "text": "Usar el enrutamiento basado en latencia de Amazon Route 53 para dirigir a los clientes al NLB más cercano. Habilitar el balanceo de carga cross-zone en los NLB para preservar la IP del cliente."
+            },
+            {
+              "id": "D",
+              "text": "Usar AWS Global Accelerator con Application Load Balancers (ALB) en lugar de NLB. Habilitar la opción de conservar IP de cliente en Global Accelerator."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa de jogos implantou uma frota de servidores de jogos multiplayer em duas regiões da AWS (us-west-2 e eu-central-1) atrás de Network Load Balancers (NLBs). O jogo usa um protocolo UDP personalizado para sincronização e um protocolo TCP para autenticação. A empresa deseja minimizar a latência global, garantir um failover extremamente rápido se uma região degradar e reter os endereços IP de origem dos clientes nos servidores de jogos. Qual solução atende a esses requisitos? (Selecione UMA.)",
+      "generalExplanation": "O AWS Global Accelerator usa a rede global da AWS para rotear o tráfego para a região ideal com base no desempenho, contornando o congestionamento da internet pública. Ele suporta nativamente os protocolos TCP e UDP, o que é fundamental para o protocolo de jogo personalizado. Ao usar NLBs como alvo, o Global Accelerator preserva o endereço IP de origem do cliente sem exigir cabeçalhos extras. CloudFront e ALBs não suportam protocolos UDP arbitrários. O failover do Route 53 depende de DNS TTLs, que é mais lento que o Anycast do Global Accelerator.",
+      "domainName": "Domain 3: Design Resilient Architectures",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [],
+      "requiredChoices": 1
     },
     {
       "id": "sap-net-004",
-      "domain": "Domain 1: Design Solutions for Organizational Complexity",
       "difficulty": "hard",
       "type": "multiple",
-      "question": {
-        "en": "A SaaS provider exposes a secure data processing application using AWS PrivateLink (VPC Endpoint Service) in the us-east-1 region. An enterprise customer wants to consume this service directly from their on-premises data center. The customer has a Direct Connect (DX) connection terminating at a Direct Connect Gateway, which is attached to a Transit Gateway (TGW). The TGW is routed to the customer's VPC in us-east-1. How can the customer securely access the SaaS application using private IP addresses from on-premises? (Select TWO.)",
-        "pt": "Um provedor de SaaS expõe um aplicativo seguro de processamento de dados usando AWS PrivateLink (VPC Endpoint Service) na região us-east-1. Um cliente corporativo deseja consumir este serviço diretamente de seu data center on-premises. O cliente possui uma conexão Direct Connect (DX) terminando em um Direct Connect Gateway, anexado a um Transit Gateway (TGW). O TGW está roteado para a VPC do cliente em us-east-1. Como o cliente pode acessar o aplicativo SaaS com segurança usando IPs privados on-premises? (Selecione DUAS.)",
-        "es": "Un proveedor de SaaS expone una aplicación segura de procesamiento de datos utilizando AWS PrivateLink (VPC Endpoint Service) en la región us-east-1. Un cliente corporativo desea consumir este servicio directamente desde su centro de datos local. El cliente tiene una conexión Direct Connect (DX) que termina en un Direct Connect Gateway conectado a un Transit Gateway (TGW). El TGW está enrutado a la VPC del cliente en us-east-1. ¿Cómo puede el cliente acceder de forma segura a la aplicación SaaS utilizando IP privadas locales? (Seleccione DOS.)"
-      },
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "The customer creates a VPC Interface Endpoint for the SaaS provider's Endpoint Service inside their us-east-1 VPC.",
-            "pt": "O cliente cria um VPC Interface Endpoint para o Endpoint Service do provedor SaaS dentro de sua VPC em us-east-1.",
-            "es": "El cliente crea un VPC Interface Endpoint para el Endpoint Service del proveedor SaaS dentro de su VPC en us-east-1."
-          }
+          "text": "O cliente cria um VPC Interface Endpoint para o Endpoint Service do provedor SaaS dentro de sua VPC em us-east-1."
         },
         {
           "id": "B",
-          "text": {
-            "en": "The customer routes traffic from on-premises over a Private VIF to the Direct Connect Gateway, then through the TGW to the VPC where the Interface Endpoint is located.",
-            "pt": "O cliente roteia o tráfego do on-premises por um Private VIF para o Direct Connect Gateway, depois pelo TGW até a VPC onde o Interface Endpoint está localizado.",
-            "es": "El cliente enruta el tráfico desde las instalaciones locales a través de un Private VIF al Direct Connect Gateway, luego a través del TGW a la VPC donde se encuentra el Interface Endpoint."
-          }
+          "text": "O cliente roteia o tráfego do on-premises por um Private VIF para o Direct Connect Gateway, depois pelo TGW até a VPC onde o Interface Endpoint está localizado."
         },
         {
           "id": "C",
-          "text": {
-            "en": "The customer creates a Public VIF on their DX connection to directly access the SaaS provider's AWS PrivateLink endpoint over the AWS backbone.",
-            "pt": "O cliente cria um Public VIF em sua conexão DX para acessar diretamente o endpoint AWS PrivateLink do provedor SaaS pelo backbone da AWS.",
-            "es": "El cliente crea un Public VIF en su conexión DX para acceder directamente al endpoint de AWS PrivateLink del proveedor SaaS a través de la red troncal de AWS."
-          }
+          "text": "O cliente cria um Public VIF em sua conexão DX para acessar diretamente o endpoint AWS PrivateLink do provedor SaaS pelo backbone da AWS."
         },
         {
           "id": "D",
-          "text": {
-            "en": "The SaaS provider configures the Endpoint Service to add the customer's on-premises IP CIDR range to the allowed principals list.",
-            "pt": "O provedor SaaS configura o Endpoint Service para adicionar a faixa de IP CIDR do on-premises do cliente à lista de principais permitidos.",
-            "es": "El proveedor de SaaS configura el Endpoint Service para agregar el rango CIDR IP local del cliente a la lista de entidades principales permitidas."
-          }
+          "text": "O provedor SaaS configura o Endpoint Service para adicionar a faixa de IP CIDR do on-premises do cliente à lista de principais permitidos."
         },
         {
           "id": "E",
-          "text": {
-            "en": "The customer configures an AWS Site-to-Site VPN connection over the DX connection because AWS PrivateLink traffic originating from on-premises mandates IPsec encryption.",
-            "pt": "O cliente configura uma conexão AWS Site-to-Site VPN sobre a conexão DX porque o tráfego do AWS PrivateLink originado do on-premises exige criptografia IPsec.",
-            "es": "El cliente configura una conexión AWS Site-to-Site VPN sobre la conexión DX porque el tráfico de AWS PrivateLink originado localmente requiere cifrado IPsec."
-          }
+          "text": "O cliente configura uma conexão AWS Site-to-Site VPN sobre a conexão DX porque o tráfego do AWS PrivateLink originado do on-premises exige criptografia IPsec."
         }
       ],
       "correctAnswers": [
         "A",
         "B"
       ],
-      "explanation": {
-        "en": "AWS PrivateLink enables consumption of services securely over private IPs by deploying an Interface Endpoint in a customer VPC. On-premises environments can access these Interface Endpoints by routing traffic over an AWS Direct Connect connection (using a Private VIF or Transit VIF) or an AWS VPN connection to the VPC containing the endpoint. The allowed principals for PrivateLink are IAM ARNs, not IP ranges. Public VIFs are for reaching AWS public endpoints (like Amazon S3 public IPs), not PrivateLink endpoints.",
-        "pt": "O AWS PrivateLink permite o consumo de serviços de forma segura por IPs privados ao implantar um Interface Endpoint em uma VPC do cliente. Ambientes on-premises podem acessar esses Interface Endpoints roteando o tráfego por uma conexão AWS Direct Connect (usando um Private VIF ou Transit VIF) ou uma conexão VPN para a VPC que contém o endpoint. Os principais permitidos (allowed principals) para o PrivateLink são ARNs do IAM, não faixas de IP. Public VIFs são para alcançar endpoints públicos da AWS, não endpoints do PrivateLink.",
-        "es": "AWS PrivateLink permite el consumo seguro de servicios a través de IP privadas mediante la implementación de un Interface Endpoint en una VPC del cliente. Los entornos locales pueden acceder a estos endpoints de interfaz enrutando el tráfico a través de una conexión AWS Direct Connect (usando un Private VIF o Transit VIF) o una conexión VPN a la VPC que contiene el endpoint. Las entidades principales permitidas para PrivateLink son ARN de IAM, no rangos de IP. Los Public VIF son para llegar a endpoints públicos de AWS."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "A SaaS provider exposes a secure data processing application using AWS PrivateLink (VPC Endpoint Service) in the us-east-1 region. An enterprise customer wants to consume this service directly from their on-premises data center. The customer has a Direct Connect (DX) connection terminating at a Direct Connect Gateway, which is attached to a Transit Gateway (TGW). The TGW is routed to the customer's VPC in us-east-1. How can the customer securely access the SaaS application using private IP addresses from on-premises? (Select TWO.)",
+          "generalExplanation": "AWS PrivateLink enables consumption of services securely over private IPs by deploying an Interface Endpoint in a customer VPC. On-premises environments can access these Interface Endpoints by routing traffic over an AWS Direct Connect connection (using a Private VIF or Transit VIF) or an AWS VPN connection to the VPC containing the endpoint. The allowed principals for PrivateLink are IAM ARNs, not IP ranges. Public VIFs are for reaching AWS public endpoints (like Amazon S3 public IPs), not PrivateLink endpoints.",
+          "options": [
+            {
+              "id": "A",
+              "text": "The customer creates a VPC Interface Endpoint for the SaaS provider's Endpoint Service inside their us-east-1 VPC."
+            },
+            {
+              "id": "B",
+              "text": "The customer routes traffic from on-premises over a Private VIF to the Direct Connect Gateway, then through the TGW to the VPC where the Interface Endpoint is located."
+            },
+            {
+              "id": "C",
+              "text": "The customer creates a Public VIF on their DX connection to directly access the SaaS provider's AWS PrivateLink endpoint over the AWS backbone."
+            },
+            {
+              "id": "D",
+              "text": "The SaaS provider configures the Endpoint Service to add the customer's on-premises IP CIDR range to the allowed principals list."
+            },
+            {
+              "id": "E",
+              "text": "The customer configures an AWS Site-to-Site VPN connection over the DX connection because AWS PrivateLink traffic originating from on-premises mandates IPsec encryption."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Um provedor de SaaS expõe um aplicativo seguro de processamento de dados usando AWS PrivateLink (VPC Endpoint Service) na região us-east-1. Um cliente corporativo deseja consumir este serviço diretamente de seu data center on-premises. O cliente possui uma conexão Direct Connect (DX) terminando em um Direct Connect Gateway, anexado a um Transit Gateway (TGW). O TGW está roteado para a VPC do cliente em us-east-1. Como o cliente pode acessar o aplicativo SaaS com segurança usando IPs privados on-premises? (Selecione DUAS.)",
+          "generalExplanation": "O AWS PrivateLink permite o consumo de serviços de forma segura por IPs privados ao implantar um Interface Endpoint em uma VPC do cliente. Ambientes on-premises podem acessar esses Interface Endpoints roteando o tráfego por uma conexão AWS Direct Connect (usando um Private VIF ou Transit VIF) ou uma conexão VPN para a VPC que contém o endpoint. Os principais permitidos (allowed principals) para o PrivateLink são ARNs do IAM, não faixas de IP. Public VIFs são para alcançar endpoints públicos da AWS, não endpoints do PrivateLink.",
+          "options": [
+            {
+              "id": "A",
+              "text": "O cliente cria um VPC Interface Endpoint para o Endpoint Service do provedor SaaS dentro de sua VPC em us-east-1."
+            },
+            {
+              "id": "B",
+              "text": "O cliente roteia o tráfego do on-premises por um Private VIF para o Direct Connect Gateway, depois pelo TGW até a VPC onde o Interface Endpoint está localizado."
+            },
+            {
+              "id": "C",
+              "text": "O cliente cria um Public VIF em sua conexão DX para acessar diretamente o endpoint AWS PrivateLink do provedor SaaS pelo backbone da AWS."
+            },
+            {
+              "id": "D",
+              "text": "O provedor SaaS configura o Endpoint Service para adicionar a faixa de IP CIDR do on-premises do cliente à lista de principais permitidos."
+            },
+            {
+              "id": "E",
+              "text": "O cliente configura uma conexão AWS Site-to-Site VPN sobre a conexão DX porque o tráfego do AWS PrivateLink originado do on-premises exige criptografia IPsec."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+          "statement": "Un proveedor de SaaS expone una aplicación segura de procesamiento de datos utilizando AWS PrivateLink (VPC Endpoint Service) en la región us-east-1. Un cliente corporativo desea consumir este servicio directamente desde su centro de datos local. El cliente tiene una conexión Direct Connect (DX) que termina en un Direct Connect Gateway conectado a un Transit Gateway (TGW). El TGW está enrutado a la VPC del cliente en us-east-1. ¿Cómo puede el cliente acceder de forma segura a la aplicación SaaS utilizando IP privadas locales? (Seleccione DOS.)",
+          "generalExplanation": "AWS PrivateLink permite el consumo seguro de servicios a través de IP privadas mediante la implementación de un Interface Endpoint en una VPC del cliente. Los entornos locales pueden acceder a estos endpoints de interfaz enrutando el tráfico a través de una conexión AWS Direct Connect (usando un Private VIF o Transit VIF) o una conexión VPN a la VPC que contiene el endpoint. Las entidades principales permitidas para PrivateLink son ARN de IAM, no rangos de IP. Los Public VIF son para llegar a endpoints públicos de AWS.",
+          "options": [
+            {
+              "id": "A",
+              "text": "El cliente crea un VPC Interface Endpoint para el Endpoint Service del proveedor SaaS dentro de su VPC en us-east-1."
+            },
+            {
+              "id": "B",
+              "text": "El cliente enruta el tráfico desde las instalaciones locales a través de un Private VIF al Direct Connect Gateway, luego a través del TGW a la VPC donde se encuentra el Interface Endpoint."
+            },
+            {
+              "id": "C",
+              "text": "El cliente crea un Public VIF en su conexión DX para acceder directamente al endpoint de AWS PrivateLink del proveedor SaaS a través de la red troncal de AWS."
+            },
+            {
+              "id": "D",
+              "text": "El proveedor de SaaS configura el Endpoint Service para agregar el rango CIDR IP local del cliente a la lista de entidades principales permitidas."
+            },
+            {
+              "id": "E",
+              "text": "El cliente configura una conexión AWS Site-to-Site VPN sobre la conexión DX porque el tráfico de AWS PrivateLink originado localmente requiere cifrado IPsec."
+            }
+          ]
+        }
+      },
+      "statement": "Um provedor de SaaS expõe um aplicativo seguro de processamento de dados usando AWS PrivateLink (VPC Endpoint Service) na região us-east-1. Um cliente corporativo deseja consumir este serviço diretamente de seu data center on-premises. O cliente possui uma conexão Direct Connect (DX) terminando em um Direct Connect Gateway, anexado a um Transit Gateway (TGW). O TGW está roteado para a VPC do cliente em us-east-1. Como o cliente pode acessar o aplicativo SaaS com segurança usando IPs privados on-premises? (Selecione DUAS.)",
+      "generalExplanation": "O AWS PrivateLink permite o consumo de serviços de forma segura por IPs privados ao implantar um Interface Endpoint em uma VPC do cliente. Ambientes on-premises podem acessar esses Interface Endpoints roteando o tráfego por uma conexão AWS Direct Connect (usando um Private VIF ou Transit VIF) ou uma conexão VPN para a VPC que contém o endpoint. Os principais permitidos (allowed principals) para o PrivateLink são ARNs do IAM, não faixas de IP. Public VIFs são para alcançar endpoints públicos da AWS, não endpoints do PrivateLink.",
+      "domainName": "Domain 1: Design Solutions for Organizational Complexity",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [],
+      "requiredChoices": 2
     },
     {
       "id": "sap-net-005",
-      "domain": "Domain 2: Design for New Solutions",
       "difficulty": "hard",
       "type": "multiple",
-      "question": {
-        "en": "A company has a dual-stack VPC with private and public subnets. The EC2 instances in the private subnets have both IPv4 and IPv6 addresses assigned. The company wants these instances to be able to initiate outbound connections to the internet for software updates, but strictly prevent any inbound internet connections. They must also preserve IPv4 connectivity to some legacy internet services. Which combination of components is required to meet these requirements securely? (Select TWO.)",
-        "pt": "Uma empresa possui uma VPC dual-stack com sub-redes privadas e públicas. As instâncias EC2 nas sub-redes privadas têm endereços IPv4 e IPv6 atribuídos. A empresa deseja que essas instâncias possam iniciar conexões de saída para a internet para atualizações de software, mas impedir estritamente quaisquer conexões de entrada da internet. Eles também devem preservar a conectividade IPv4 para alguns serviços legados. Qual combinação de componentes é necessária para atender a esses requisitos de forma segura? (Selecione DUAS.)",
-        "es": "Una empresa tiene una VPC de doble pila (dual-stack) con subredes públicas y privadas. Las instancias EC2 en las subredes privadas tienen asignadas direcciones IPv4 e IPv6. La empresa quiere que estas instancias puedan iniciar conexiones salientes a Internet para actualizaciones, pero impedir estrictamente cualquier conexión entrante desde Internet. También deben preservar la conectividad IPv4 para algunos servicios heredados. ¿Qué combinación de componentes se requiere para cumplir con estos requisitos? (Seleccione DOS.)"
-      },
       "options": [
         {
           "id": "A",
-          "text": {
-            "en": "Deploy a NAT Gateway in the public subnet and configure a route in the private subnet's route table pointing 0.0.0.0/0 to the NAT Gateway.",
-            "pt": "Implantar um NAT Gateway na sub-rede pública e configurar uma rota na tabela de rotas da sub-rede privada apontando 0.0.0.0/0 para o NAT Gateway.",
-            "es": "Implementar un NAT Gateway en la subred pública y configurar una ruta en la tabla de enrutamiento de la subred privada que apunte 0.0.0.0/0 al NAT Gateway."
-          }
+          "text": "Implantar um NAT Gateway na sub-rede pública e configurar uma rota na tabela de rotas da sub-rede privada apontando 0.0.0.0/0 para o NAT Gateway."
         },
         {
           "id": "B",
-          "text": {
-            "en": "Deploy an Egress-Only Internet Gateway and configure a route in the private subnet's route table pointing ::/0 to the Egress-Only Internet Gateway.",
-            "pt": "Implantar um Egress-Only Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Egress-Only Internet Gateway.",
-            "es": "Implementar un Egress-Only Internet Gateway y configurar una ruta en la tabla de enrutamiento de la subred privada apuntando ::/0 al Egress-Only Internet Gateway."
-          }
+          "text": "Implantar um Egress-Only Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Egress-Only Internet Gateway."
         },
         {
           "id": "C",
-          "text": {
-            "en": "Deploy an Internet Gateway and configure a route in the private subnet's route table pointing ::/0 to the Internet Gateway.",
-            "pt": "Implantar um Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Internet Gateway.",
-            "es": "Implementar un Internet Gateway y configurar una ruta en la tabla de enrutamiento de la subred privada apuntando ::/0 al Internet Gateway."
-          }
+          "text": "Implantar um Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Internet Gateway."
         },
         {
           "id": "D",
-          "text": {
-            "en": "Deploy a NAT Gateway in the public subnet and configure routes for both 0.0.0.0/0 and ::/0 to point to the NAT Gateway.",
-            "pt": "Implantar um NAT Gateway na sub-rede pública e configurar rotas para 0.0.0.0/0 e ::/0 apontando para o NAT Gateway.",
-            "es": "Implementar un NAT Gateway en la subred pública y configurar rutas para 0.0.0.0/0 y ::/0 apuntando al NAT Gateway."
-          }
+          "text": "Implantar um NAT Gateway na sub-rede pública e configurar rotas para 0.0.0.0/0 e ::/0 apontando para o NAT Gateway."
         },
         {
           "id": "E",
-          "text": {
-            "en": "Configure VPC Peering to a dedicated outbound proxy VPC and route both IPv4 and IPv6 traffic to a fleet of proxy EC2 instances.",
-            "pt": "Configurar VPC Peering para uma VPC de proxy de saída dedicada e rotear o tráfego IPv4 e IPv6 para uma frota de instâncias EC2 de proxy.",
-            "es": "Configurar VPC Peering en una VPC de proxy de salida dedicada y enrutar el tráfico IPv4 e IPv6 a una flota de instancias EC2 de proxy."
-          }
+          "text": "Configurar VPC Peering para uma VPC de proxy de saída dedicada e rotear o tráfego IPv4 e IPv6 para uma frota de instâncias EC2 de proxy."
         }
       ],
       "correctAnswers": [
         "A",
         "B"
       ],
-      "explanation": {
-        "en": "In a dual-stack VPC, IPv4 and IPv6 traffic are handled independently. For IPv4 instances in private subnets to access the internet securely (outbound only), a NAT Gateway is deployed in a public subnet. For IPv6, the architecture is different because all IPv6 addresses are globally routable. Instead of NAT, AWS provides an Egress-Only Internet Gateway, which allows outbound IPv6 traffic to the internet but inherently blocks any inbound IPv6 traffic initiated from the internet. Using an Internet Gateway (IGW) for IPv6 in a private subnet would technically allow inbound traffic if not perfectly restricted by Security Groups and NACLs, violating the strict requirement.",
-        "pt": "Em uma VPC dual-stack, o tráfego IPv4 e IPv6 é tratado de forma independente. Para que instâncias IPv4 em sub-redes privadas acessem a internet de forma segura (apenas saída), um NAT Gateway é implantado em uma sub-rede pública. Para IPv6, a arquitetura é diferente porque todos os endereços IPv6 são roteáveis globalmente. Em vez de NAT, a AWS fornece um Egress-Only Internet Gateway, que permite o tráfego IPv6 de saída, mas bloqueia inerentemente o tráfego IPv6 de entrada. Usar um Internet Gateway (IGW) para IPv6 violaria o requisito estrito de impedir tráfego de entrada por padrão.",
-        "es": "En una VPC dual-stack, el tráfico IPv4 e IPv6 se maneja de forma independiente. Para que las instancias IPv4 en subredes privadas accedan a Internet de forma segura (solo de salida), se implementa un NAT Gateway en una subred pública. Para IPv6, la arquitectura es diferente porque todas las direcciones IPv6 son enrutables globalmente. En lugar de NAT, AWS proporciona un Egress-Only Internet Gateway, que permite el tráfico de salida IPv6, pero bloquea inherentemente cualquier tráfico entrante. El uso de un Internet Gateway (IGW) para IPv6 en una subred privada permitiría técnicamente el tráfico entrante, violando el requisito estricto."
-      }
+      "translations": {
+        "en": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "A company has a dual-stack VPC with private and public subnets. The EC2 instances in the private subnets have both IPv4 and IPv6 addresses assigned. The company wants these instances to be able to initiate outbound connections to the internet for software updates, but strictly prevent any inbound internet connections. They must also preserve IPv4 connectivity to some legacy internet services. Which combination of components is required to meet these requirements securely? (Select TWO.)",
+          "generalExplanation": "In a dual-stack VPC, IPv4 and IPv6 traffic are handled independently. For IPv4 instances in private subnets to access the internet securely (outbound only), a NAT Gateway is deployed in a public subnet. For IPv6, the architecture is different because all IPv6 addresses are globally routable. Instead of NAT, AWS provides an Egress-Only Internet Gateway, which allows outbound IPv6 traffic to the internet but inherently blocks any inbound IPv6 traffic initiated from the internet. Using an Internet Gateway (IGW) for IPv6 in a private subnet would technically allow inbound traffic if not perfectly restricted by Security Groups and NACLs, violating the strict requirement.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Deploy a NAT Gateway in the public subnet and configure a route in the private subnet's route table pointing 0.0.0.0/0 to the NAT Gateway."
+            },
+            {
+              "id": "B",
+              "text": "Deploy an Egress-Only Internet Gateway and configure a route in the private subnet's route table pointing ::/0 to the Egress-Only Internet Gateway."
+            },
+            {
+              "id": "C",
+              "text": "Deploy an Internet Gateway and configure a route in the private subnet's route table pointing ::/0 to the Internet Gateway."
+            },
+            {
+              "id": "D",
+              "text": "Deploy a NAT Gateway in the public subnet and configure routes for both 0.0.0.0/0 and ::/0 to point to the NAT Gateway."
+            },
+            {
+              "id": "E",
+              "text": "Configure VPC Peering to a dedicated outbound proxy VPC and route both IPv4 and IPv6 traffic to a fleet of proxy EC2 instances."
+            }
+          ]
+        },
+        "pt": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Uma empresa possui uma VPC dual-stack com sub-redes privadas e públicas. As instâncias EC2 nas sub-redes privadas têm endereços IPv4 e IPv6 atribuídos. A empresa deseja que essas instâncias possam iniciar conexões de saída para a internet para atualizações de software, mas impedir estritamente quaisquer conexões de entrada da internet. Eles também devem preservar a conectividade IPv4 para alguns serviços legados. Qual combinação de componentes é necessária para atender a esses requisitos de forma segura? (Selecione DUAS.)",
+          "generalExplanation": "Em uma VPC dual-stack, o tráfego IPv4 e IPv6 é tratado de forma independente. Para que instâncias IPv4 em sub-redes privadas acessem a internet de forma segura (apenas saída), um NAT Gateway é implantado em uma sub-rede pública. Para IPv6, a arquitetura é diferente porque todos os endereços IPv6 são roteáveis globalmente. Em vez de NAT, a AWS fornece um Egress-Only Internet Gateway, que permite o tráfego IPv6 de saída, mas bloqueia inerentemente o tráfego IPv6 de entrada. Usar um Internet Gateway (IGW) para IPv6 violaria o requisito estrito de impedir tráfego de entrada por padrão.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implantar um NAT Gateway na sub-rede pública e configurar uma rota na tabela de rotas da sub-rede privada apontando 0.0.0.0/0 para o NAT Gateway."
+            },
+            {
+              "id": "B",
+              "text": "Implantar um Egress-Only Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Egress-Only Internet Gateway."
+            },
+            {
+              "id": "C",
+              "text": "Implantar um Internet Gateway e configurar uma rota na tabela de rotas da sub-rede privada apontando ::/0 para o Internet Gateway."
+            },
+            {
+              "id": "D",
+              "text": "Implantar um NAT Gateway na sub-rede pública e configurar rotas para 0.0.0.0/0 e ::/0 apontando para o NAT Gateway."
+            },
+            {
+              "id": "E",
+              "text": "Configurar VPC Peering para uma VPC de proxy de saída dedicada e rotear o tráfego IPv4 e IPv6 para uma frota de instâncias EC2 de proxy."
+            }
+          ]
+        },
+        "es": {
+          "domainName": "Domain 2: Design for New Solutions",
+          "statement": "Una empresa tiene una VPC de doble pila (dual-stack) con subredes públicas y privadas. Las instancias EC2 en las subredes privadas tienen asignadas direcciones IPv4 e IPv6. La empresa quiere que estas instancias puedan iniciar conexiones salientes a Internet para actualizaciones, pero impedir estrictamente cualquier conexión entrante desde Internet. También deben preservar la conectividad IPv4 para algunos servicios heredados. ¿Qué combinación de componentes se requiere para cumplir con estos requisitos? (Seleccione DOS.)",
+          "generalExplanation": "En una VPC dual-stack, el tráfico IPv4 e IPv6 se maneja de forma independiente. Para que las instancias IPv4 en subredes privadas accedan a Internet de forma segura (solo de salida), se implementa un NAT Gateway en una subred pública. Para IPv6, la arquitectura es diferente porque todas las direcciones IPv6 son enrutables globalmente. En lugar de NAT, AWS proporciona un Egress-Only Internet Gateway, que permite el tráfico de salida IPv6, pero bloquea inherentemente cualquier tráfico entrante. El uso de un Internet Gateway (IGW) para IPv6 en una subred privada permitiría técnicamente el tráfico entrante, violando el requisito estricto.",
+          "options": [
+            {
+              "id": "A",
+              "text": "Implementar un NAT Gateway en la subred pública y configurar una ruta en la tabla de enrutamiento de la subred privada que apunte 0.0.0.0/0 al NAT Gateway."
+            },
+            {
+              "id": "B",
+              "text": "Implementar un Egress-Only Internet Gateway y configurar una ruta en la tabla de enrutamiento de la subred privada apuntando ::/0 al Egress-Only Internet Gateway."
+            },
+            {
+              "id": "C",
+              "text": "Implementar un Internet Gateway y configurar una ruta en la tabla de enrutamiento de la subred privada apuntando ::/0 al Internet Gateway."
+            },
+            {
+              "id": "D",
+              "text": "Implementar un NAT Gateway en la subred pública y configurar rutas para 0.0.0.0/0 y ::/0 apuntando al NAT Gateway."
+            },
+            {
+              "id": "E",
+              "text": "Configurar VPC Peering en una VPC de proxy de salida dedicada y enrutar el tráfico IPv4 e IPv6 a una flota de instancias EC2 de proxy."
+            }
+          ]
+        }
+      },
+      "statement": "Uma empresa possui uma VPC dual-stack com sub-redes privadas e públicas. As instâncias EC2 nas sub-redes privadas têm endereços IPv4 e IPv6 atribuídos. A empresa deseja que essas instâncias possam iniciar conexões de saída para a internet para atualizações de software, mas impedir estritamente quaisquer conexões de entrada da internet. Eles também devem preservar a conectividade IPv4 para alguns serviços legados. Qual combinação de componentes é necessária para atender a esses requisitos de forma segura? (Selecione DUAS.)",
+      "generalExplanation": "Em uma VPC dual-stack, o tráfego IPv4 e IPv6 é tratado de forma independente. Para que instâncias IPv4 em sub-redes privadas acessem a internet de forma segura (apenas saída), um NAT Gateway é implantado em uma sub-rede pública. Para IPv6, a arquitetura é diferente porque todos os endereços IPv6 são roteáveis globalmente. Em vez de NAT, a AWS fornece um Egress-Only Internet Gateway, que permite o tráfego IPv6 de saída, mas bloqueia inerentemente o tráfego IPv6 de entrada. Usar um Internet Gateway (IGW) para IPv6 violaria o requisito estrito de impedir tráfego de entrada por padrão.",
+      "domainName": "Domain 2: Design for New Solutions",
+      "domainId": "domain-2-new-solutions",
+      "examId": "SAP-C02",
+      "services": [],
+      "requiredChoices": 2
     },
     {
       "id": "sap-iac-q001",
