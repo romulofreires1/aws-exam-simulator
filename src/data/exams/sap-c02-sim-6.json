@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Comprehensive enterprise-level mock exam for AWS SAP-C02 featuring complex multi-account, hybrid networking, disaster recovery, and modernization scenarios.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 180,
+  "timeLimitMinutes": 73,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [

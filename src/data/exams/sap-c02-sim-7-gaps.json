@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Comprehensive enterprise-level mock exam for AWS SAP-C02 focused on gap analysis: Governance, Cost Optimization, Advanced Analytics, Security and Advanced Hybrid Networking.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 180,
+  "timeLimitMinutes": 73,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [
