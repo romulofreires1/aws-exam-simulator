@@ -1230,7 +1230,6 @@
           "text": "Crie uma chave KMS simétrica em us-east-1. Crie uma função AWS Lambda para replicar os dados criptografados e a DEK em texto simples (Plaintext) para eu-west-1. Armazene a DEK em texto simples no AWS Secrets Manager em eu-west-1."
         }
       ],
-      "correctOptionId": "a",
       "translations": {
         "en": {
           "domainName": "Domain 1: Design Solutions for Organizational Complexity",
@@ -1313,7 +1312,10 @@
         "Disaster Recovery",
         "IAM"
       ],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "a"
+      ]
     },
     {
       "id": "sap-sec-002",
@@ -1336,7 +1338,6 @@
           "text": "Configure um Amazon API Gateway em uma conta de segurança central para rotear todo o tráfego para os ALBs. Anexe um único AWS WAF Web ACL ao API Gateway e habilite o AWS Shield Advanced nele."
         }
       ],
-      "correctOptionId": "a",
       "translations": {
         "en": {
           "domainName": "Domain 2: Design for New Solutions",
@@ -1419,7 +1420,10 @@
         "Shield Advanced",
         "Organizations"
       ],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "a"
+      ]
     },
     {
       "id": "sap-sec-003",
@@ -1442,7 +1446,6 @@
           "text": "O tráfego é TCP (protocolo 1) e, como a porta de origem é 0, significa que é uma conexão FTP passiva. O engenheiro deve verificar o <log-status> para confirmar a transferência de dados."
         }
       ],
-      "correctOptionId": "a",
       "translations": {
         "en": {
           "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
@@ -1524,7 +1527,10 @@
         "Incident Response",
         "Networking"
       ],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "a"
+      ]
     },
     {
       "id": "sap-sec-004",
@@ -1547,7 +1553,6 @@
           "text": "Use o AWS Firewall Manager para impor as regras do AWS Config em toda a organização. Habilite o grupo de regras do benchmark CIS no Firewall Manager para agregar as descobertas de conformidade."
         }
       ],
-      "correctOptionId": "a",
       "translations": {
         "en": {
           "domainName": "Domain 1: Design Solutions for Organizational Complexity",
@@ -1630,7 +1635,10 @@
         "Organizations",
         "Compliance"
       ],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "a"
+      ]
     },
     {
       "id": "sap-sec-005",
@@ -1653,7 +1661,6 @@
           "text": "Crie vários Web ACLs e associe todos eles à mesma distribuição CloudFront para dobrar efetivamente a capacidade de WCU para 3000."
         }
       ],
-      "correctOptionId": "a",
       "translations": {
         "en": {
           "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
@@ -1736,7 +1743,10 @@
         "WCU",
         "Optimization"
       ],
-      "requiredChoices": 1
+      "requiredChoices": 1,
+      "correctAnswers": [
+        "a"
+      ]
     },
     {
       "id": "sap-q-svls-001",
