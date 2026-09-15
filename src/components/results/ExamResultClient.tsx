@@ -11,6 +11,7 @@ import { DomainBreakdownList } from '@/components/results/DomainBreakdownList';
 import { QuestionReviewList } from '@/components/results/QuestionReviewList';
 import { RotateCcw, History, AlertCircle, ArrowLeft } from 'lucide-react';
 
+import { calculateExamScore } from '@/lib/scoreCalculator';
 import { getExamAvailableLanguages } from '@/lib/localization';
 
 function ExamResultContent({ examId }: { examId: string }) {
@@ -37,6 +38,11 @@ function ExamResultContent({ examId }: { examId: string }) {
     }
     setIsLoaded(true);
   }, [attemptId, examId]);
+
+  const scoreResult = useMemo(() => {
+    if (!exam || !attempt) return null;
+    return calculateExamScore(exam, attempt.responses);
+  }, [exam, attempt]);
 
   if (!isLoaded) {
     return (
@@ -103,11 +109,13 @@ function ExamResultContent({ examId }: { examId: string }) {
         </div>
 
         {/* 1. Main Score Card */}
-        <ScoreCard attempt={attempt} passingScore={exam.passingScore} />
+        {scoreResult && (
+          <ScoreCard attempt={{ ...attempt, score: scoreResult }} passingScore={exam.passingScore} />
+        )}
 
         {/* 2. Official Domain Breakdown */}
-        {attempt.score?.domainBreakdown && (
-          <DomainBreakdownList domains={attempt.score.domainBreakdown} />
+        {scoreResult?.domainBreakdown && (
+          <DomainBreakdownList domains={scoreResult.domainBreakdown} />
         )}
 
         {/* 3. Detailed Question Review */}
