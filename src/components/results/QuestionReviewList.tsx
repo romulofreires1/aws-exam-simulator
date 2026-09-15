@@ -227,7 +227,7 @@ export function QuestionReviewList({
                       <Layers className="h-3 w-3 text-amber-400" />
                       {q.domainName}
                     </span>
-                    {q.services &&
+                    {Array.isArray(q.services) &&
                       q.services.map((s) => (
                         <span
                           key={s}
@@ -246,8 +246,9 @@ export function QuestionReviewList({
 
                 {/* Options Breakdown */}
                 <div className="space-y-2.5 mb-6">
-                  {q.options.map((opt) => {
-                    const isThisCorrect = q.correctAnswers.includes(opt.id);
+                  {q.options?.map((opt) => {
+                    const correctAnswers = q.correctAnswers || [];
+                    const isThisCorrect = correctAnswers.includes(opt.id);
                     const wasSelected = selectedOptions.includes(opt.id);
 
                     return (

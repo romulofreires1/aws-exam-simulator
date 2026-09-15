@@ -41,7 +41,7 @@ export function getLocalizedQuestion(question: Question, language: ExamLanguage)
       ...question,
       domainName: t.domainName || question.domainName,
       statement: t.statement || question.statement,
-      options: question.options.map((opt) => {
+      options: (question.options || []).map((opt) => {
         const transOpt = t.options?.find((o) => o.id === opt.id);
         return {
           id: opt.id,
