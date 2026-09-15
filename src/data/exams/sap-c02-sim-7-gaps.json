@@ -46,45 +46,96 @@
       "difficulty": "hard",
       "translations": {
         "en": {
-          "text": "A company uses AWS Organizations to manage hundreds of AWS accounts. They require an automated incident response solution when Amazon GuardDuty detects compromised EC2 instances (such as unauthorized access or cryptocurrency mining). The response must isolate the instance using security groups, notify the security team via Slack, and create a forensic snapshot of the EBS volumes. All findings must be aggregated in a central security account. How can a Solutions Architect achieve this with the LEAST operational overhead?",
           "options": [
-            "A) Use AWS Security Hub in a delegated administrator account to aggregate GuardDuty findings. Create an Amazon EventBridge rule in the central account that triggers an AWS Step Functions state machine to isolate the instance, take snapshots, and send Slack notifications using AWS Chatbot.",
-            "B) Use AWS Security Hub in a delegated administrator account. In each member account, create EventBridge rules for GuardDuty findings that trigger AWS Systems Manager Automation runbooks to isolate instances and take snapshots, and an SNS topic to notify the security team.",
-            "C) Use AWS Security Hub custom actions in the central account. When a finding is selected, trigger a Lambda function that assumes a cross-account IAM role in the member account to perform isolation and snapshots. Use SNS for Slack notifications.",
-            "D) Configure GuardDuty to send findings directly to Amazon SNS in the central account. Use an AWS Lambda function subscribed to the SNS topic to evaluate the finding, use cross-account roles to take snapshots and isolate the instance, and send a message to Slack."
+            {
+              "id": "a",
+              "text": "A) Use AWS Security Hub in a delegated administrator account to aggregate GuardDuty findings. Create an Amazon EventBridge rule in the central account that triggers an AWS Step Functions state machine to isolate the instance, take snapshots, and send Slack notifications using AWS Chatbot."
+            },
+            {
+              "id": "b",
+              "text": "B) Use AWS Security Hub in a delegated administrator account. In each member account, create EventBridge rules for GuardDuty findings that trigger AWS Systems Manager Automation runbooks to isolate instances and take snapshots, and an SNS topic to notify the security team."
+            },
+            {
+              "id": "c",
+              "text": "C) Use AWS Security Hub custom actions in the central account. When a finding is selected, trigger a Lambda function that assumes a cross-account IAM role in the member account to perform isolation and snapshots. Use SNS for Slack notifications."
+            },
+            {
+              "id": "d",
+              "text": "D) Configure GuardDuty to send findings directly to Amazon SNS in the central account. Use an AWS Lambda function subscribed to the SNS topic to evaluate the finding, use cross-account roles to take snapshots and isolate the instance, and send a message to Slack."
+            }
           ],
-          "explanation": "Option A is correct. AWS Security Hub natively centralizes findings from GuardDuty across all member accounts into the delegated administrator account. In this central account, EventBridge can capture these findings and trigger a Step Functions state machine (which can execute cross-account tasks using IAM roles) and integrate with AWS Chatbot for Slack notifications. Option B creates high operational overhead by deploying resources in every account. Option C requires manual intervention (custom actions are manually triggered). Option D bypasses Security Hub, missing the native cross-account aggregation capabilities."
+          "explanation": "Option A is correct. AWS Security Hub natively centralizes findings from GuardDuty across all member accounts into the delegated administrator account. In this central account, EventBridge can capture these findings and trigger a Step Functions state machine (which can execute cross-account tasks using IAM roles) and integrate with AWS Chatbot for Slack notifications. Option B creates high operational overhead by deploying resources in every account. Option C requires manual intervention (custom actions are manually triggered). Option D bypasses Security Hub, missing the native cross-account aggregation capabilities.",
+          "statement": "A company uses AWS Organizations to manage hundreds of AWS accounts. They require an automated incident response solution when Amazon GuardDuty detects compromised EC2 instances (such as unauthorized access or cryptocurrency mining). The response must isolate the instance using security groups, notify the security team via Slack, and create a forensic snapshot of the EBS volumes. All findings must be aggregated in a central security account. How can a Solutions Architect achieve this with the LEAST operational overhead?"
         },
         "pt": {
-          "text": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?",
           "options": [
-            "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
-            "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
-            "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
-            "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
+            {
+              "id": "a",
+              "text": "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot."
+            },
+            {
+              "id": "b",
+              "text": "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe."
+            },
+            {
+              "id": "c",
+              "text": "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack."
+            },
+            {
+              "id": "d",
+              "text": "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
+            }
           ],
-          "explanation": "A opção A está correta. O AWS Security Hub centraliza nativamente as descobertas do GuardDuty em todas as contas membros na conta de administrador delegado. Nesta conta central, o EventBridge pode capturar essas descobertas e acionar uma máquina de estado do Step Functions (que pode executar tarefas entre contas) e integrar-se ao AWS Chatbot para Slack. A opção B cria alta sobrecarga ao exigir recursos em cada conta. A opção C exige intervenção manual. A opção D ignora o Security Hub e seus recursos nativos de agregação."
+          "explanation": "A opção A está correta. O AWS Security Hub centraliza nativamente as descobertas do GuardDuty em todas as contas membros na conta de administrador delegado. Nesta conta central, o EventBridge pode capturar essas descobertas e acionar uma máquina de estado do Step Functions (que pode executar tarefas entre contas) e integrar-se ao AWS Chatbot para Slack. A opção B cria alta sobrecarga ao exigir recursos em cada conta. A opção C exige intervenção manual. A opção D ignora o Security Hub e seus recursos nativos de agregação.",
+          "statement": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?"
         },
         "es": {
-          "text": "Una empresa utiliza AWS Organizations para gestionar cientos de cuentas de AWS. Requieren una solución de respuesta automatizada a incidentes cuando Amazon GuardDuty detecta instancias EC2 comprometidas. La respuesta debe aislar la instancia usando security groups, notificar al equipo de seguridad vía Slack y crear un snapshot forense de los volúmenes EBS. Todos los hallazgos deben agregarse en una cuenta de seguridad central. ¿Cómo puede lograr esto un Arquitecto de Soluciones con la MENOR sobrecarga operativa?",
           "options": [
-            "A) Utilizar AWS Security Hub en una cuenta de administrador delegado para agregar hallazgos de GuardDuty. Crear una regla de Amazon EventBridge en la cuenta central que active una máquina de estado de AWS Step Functions para aislar la instancia, tomar snapshots y enviar notificaciones de Slack con AWS Chatbot.",
-            "B) Utilizar AWS Security Hub en una cuenta de administrador delegado. En cada cuenta miembro, crear reglas de EventBridge que activen runbooks de AWS Systems Manager para aislar instancias y tomar snapshots, y un tema de SNS para notificar al equipo.",
-            "C) Utilizar acciones personalizadas de AWS Security Hub en la cuenta central. Al seleccionar un hallazgo, activar una función Lambda que asuma un rol de IAM entre cuentas en la cuenta miembro para realizar el aislamiento y snapshots. Utilizar SNS para notificaciones de Slack.",
-            "D) Configurar GuardDuty para enviar hallazgos directamente a Amazon SNS en la cuenta central. Utilizar una función AWS Lambda suscrita al tema de SNS para evaluar el hallazgo, usar roles entre cuentas para tomar snapshots y aislar la instancia, y enviar un mensaje a Slack."
+            {
+              "id": "a",
+              "text": "A) Utilizar AWS Security Hub en una cuenta de administrador delegado para agregar hallazgos de GuardDuty. Crear una regla de Amazon EventBridge en la cuenta central que active una máquina de estado de AWS Step Functions para aislar la instancia, tomar snapshots y enviar notificaciones de Slack con AWS Chatbot."
+            },
+            {
+              "id": "b",
+              "text": "B) Utilizar AWS Security Hub en una cuenta de administrador delegado. En cada cuenta miembro, crear reglas de EventBridge que activen runbooks de AWS Systems Manager para aislar instancias y tomar snapshots, y un tema de SNS para notificar al equipo."
+            },
+            {
+              "id": "c",
+              "text": "C) Utilizar acciones personalizadas de AWS Security Hub en la cuenta central. Al seleccionar un hallazgo, activar una función Lambda que asuma un rol de IAM entre cuentas en la cuenta miembro para realizar el aislamiento y snapshots. Utilizar SNS para notificaciones de Slack."
+            },
+            {
+              "id": "d",
+              "text": "D) Configurar GuardDuty para enviar hallazgos directamente a Amazon SNS en la cuenta central. Utilizar una función AWS Lambda suscrita al tema de SNS para evaluar el hallazgo, usar roles entre cuentas para tomar snapshots y aislar la instancia, y enviar un mensaje a Slack."
+            }
           ],
-          "explanation": "La opción A es correcta. AWS Security Hub centraliza de forma nativa los hallazgos de GuardDuty de todas las cuentas miembro en la cuenta del administrador delegado. En esta cuenta central, EventBridge puede capturar los hallazgos y activar Step Functions y AWS Chatbot para la respuesta. La opción B requiere administrar recursos en cada cuenta. La opción C requiere intervención manual. La opción D omite las capacidades nativas de agregación de Security Hub."
+          "explanation": "La opción A es correcta. AWS Security Hub centraliza de forma nativa los hallazgos de GuardDuty de todas las cuentas miembro en la cuenta del administrador delegado. En esta cuenta central, EventBridge puede capturar los hallazgos y activar Step Functions y AWS Chatbot para la respuesta. La opción B requiere administrar recursos en cada cuenta. La opción C requiere intervención manual. La opción D omite las capacidades nativas de agregación de Security Hub.",
+          "statement": "Una empresa utiliza AWS Organizations para gestionar cientos de cuentas de AWS. Requieren una solución de respuesta automatizada a incidentes cuando Amazon GuardDuty detecta instancias EC2 comprometidas. La respuesta debe aislar la instancia usando security groups, notificar al equipo de seguridad vía Slack y crear un snapshot forense de los volúmenes EBS. Todos los hallazgos deben agregarse en una cuenta de seguridad central. ¿Cómo puede lograr esto un Arquitecto de Soluciones con la MENOR sobrecarga operativa?"
         }
       },
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "options": [
-        "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
-        "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
-        "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
-        "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
-      ]
+        {
+          "id": "a",
+          "text": "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot."
+        },
+        {
+          "id": "b",
+          "text": "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe."
+        },
+        {
+          "id": "c",
+          "text": "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack."
+        },
+        {
+          "id": "d",
+          "text": "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack."
+        }
+      ],
+      "statement": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?",
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-sec-adv-002",
@@ -101,50 +152,113 @@
       "difficulty": "hard",
       "translations": {
         "en": {
-          "text": "A global financial company hosts a latency-sensitive web application on AWS using Amazon CloudFront, an Application Load Balancer (ALB), and EC2 instances. They are frequently targeted by sophisticated Layer 7 DDoS attacks and application-layer vulnerabilities. They have subscribed to AWS Shield Advanced. They need to automatically block malicious IP addresses that exhibit unusual request rates or attempt SQL injection, while ensuring legitimate traffic is unaffected. They also need 24/7 access to the AWS DDoS Response Team (DRT) and proactive engagement. Which combination of steps must the Solutions Architect take? (Select TWO)",
           "options": [
-            "A) Enable AWS WAF on the CloudFront distribution and create a web ACL with AWS Managed Rules for SQL injection. Configure rate-based rules in AWS WAF to block IPs that exceed the request threshold.",
-            "B) Associate the AWS WAF web ACL with the ALB. Configure the ALB to send access logs to an Amazon S3 bucket, and grant the DRT access to the S3 bucket.",
-            "C) Associate the AWS WAF web ACL with the CloudFront distribution. Grant the DRT access to the WAF web ACL and CloudFront access logs directly through IAM roles.",
-            "D) Deploy AWS Network Firewall in the VPC to filter malicious Layer 7 traffic before it reaches the ALB, and share the firewall logs with the DRT.",
-            "E) Create an Amazon Route 53 health check for the web application and associate it with the Shield Advanced protected resource. Provide contact details and enable proactive engagement."
+            {
+              "id": "a",
+              "text": "A) Enable AWS WAF on the CloudFront distribution and create a web ACL with AWS Managed Rules for SQL injection. Configure rate-based rules in AWS WAF to block IPs that exceed the request threshold."
+            },
+            {
+              "id": "b",
+              "text": "B) Associate the AWS WAF web ACL with the ALB. Configure the ALB to send access logs to an Amazon S3 bucket, and grant the DRT access to the S3 bucket."
+            },
+            {
+              "id": "c",
+              "text": "C) Associate the AWS WAF web ACL with the CloudFront distribution. Grant the DRT access to the WAF web ACL and CloudFront access logs directly through IAM roles."
+            },
+            {
+              "id": "d",
+              "text": "D) Deploy AWS Network Firewall in the VPC to filter malicious Layer 7 traffic before it reaches the ALB, and share the firewall logs with the DRT."
+            },
+            {
+              "id": "e",
+              "text": "E) Create an Amazon Route 53 health check for the web application and associate it with the Shield Advanced protected resource. Provide contact details and enable proactive engagement."
+            }
           ],
-          "explanation": "Options A and E are correct. A is required to mitigate Layer 7 application attacks (SQLi) and high-rate requests (rate-based rules) using AWS WAF associated with CloudFront. E is strictly required to enable Shield Advanced Proactive Engagement, as the DRT relies on Route 53 health checks associated with the protected resource to determine application health and initiate contact. B and D do not fulfill the proactive engagement requirements and WAF is best deployed at the edge (CloudFront). C is incorrect because proactive engagement is enabled via Route 53 health checks, not just by granting IAM log access."
+          "explanation": "Options A and E are correct. A is required to mitigate Layer 7 application attacks (SQLi) and high-rate requests (rate-based rules) using AWS WAF associated with CloudFront. E is strictly required to enable Shield Advanced Proactive Engagement, as the DRT relies on Route 53 health checks associated with the protected resource to determine application health and initiate contact. B and D do not fulfill the proactive engagement requirements and WAF is best deployed at the edge (CloudFront). C is incorrect because proactive engagement is enabled via Route 53 health checks, not just by granting IAM log access.",
+          "statement": "A global financial company hosts a latency-sensitive web application on AWS using Amazon CloudFront, an Application Load Balancer (ALB), and EC2 instances. They are frequently targeted by sophisticated Layer 7 DDoS attacks and application-layer vulnerabilities. They have subscribed to AWS Shield Advanced. They need to automatically block malicious IP addresses that exhibit unusual request rates or attempt SQL injection, while ensuring legitimate traffic is unaffected. They also need 24/7 access to the AWS DDoS Response Team (DRT) and proactive engagement. Which combination of steps must the Solutions Architect take? (Select TWO)"
         },
         "pt": {
-          "text": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)",
           "options": [
-            "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
-            "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
-            "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
-            "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
-            "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
+            {
+              "id": "a",
+              "text": "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite."
+            },
+            {
+              "id": "b",
+              "text": "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket."
+            },
+            {
+              "id": "c",
+              "text": "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM."
+            },
+            {
+              "id": "d",
+              "text": "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT."
+            },
+            {
+              "id": "e",
+              "text": "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
+            }
           ],
-          "explanation": "As opções A e E estão corretas. O WAF no CloudFront mitiga ataques de camada 7 e abusos de taxa (A). Para habilitar o Engajamento Proativo do Shield Advanced, é obrigatório criar health checks do Route 53 e associá-los ao recurso protegido, para que o DRT seja notificado em caso de degradação da aplicação (E)."
+          "explanation": "As opções A e E estão corretas. O WAF no CloudFront mitiga ataques de camada 7 e abusos de taxa (A). Para habilitar o Engajamento Proativo do Shield Advanced, é obrigatório criar health checks do Route 53 e associá-los ao recurso protegido, para que o DRT seja notificado em caso de degradação da aplicação (E).",
+          "statement": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)"
         },
         "es": {
-          "text": "Una empresa financiera global aloja una aplicación web sensible a la latencia en AWS mediante Amazon CloudFront, un ALB y EC2. Son objeto de ataques DDoS sofisticados de Capa 7 y vulnerabilidades de aplicación. Han contratado AWS Shield Advanced. Necesitan bloquear automáticamente las IP maliciosas con tasas de solicitud inusuales o intentos de inyección SQL. También necesitan acceso 24/7 al Equipo de Respuesta a DDoS de AWS (DRT) e involucración proactiva (proactive engagement). ¿Qué combinación de pasos debe realizar el Arquitecto de Soluciones? (Seleccione DOS)",
           "options": [
-            "A) Habilitar AWS WAF en la distribución CloudFront y crear una web ACL con reglas administradas para inyección SQL. Configurar reglas basadas en tasa en WAF para bloquear IPs que excedan el límite.",
-            "B) Asociar la web ACL de AWS WAF al ALB. Configurar el ALB para enviar registros a Amazon S3 y otorgar al DRT acceso al bucket.",
-            "C) Asociar la web ACL de WAF a CloudFront. Otorgar al DRT acceso a la web ACL y los registros de CloudFront mediante roles IAM.",
-            "D) Implementar AWS Network Firewall en la VPC para filtrar tráfico malicioso de Capa 7 antes del ALB.",
-            "E) Crear un health check de Amazon Route 53 para la aplicación web y asociarlo al recurso protegido por Shield Advanced. Proporcionar contactos y habilitar el proactive engagement."
+            {
+              "id": "a",
+              "text": "A) Habilitar AWS WAF en la distribución CloudFront y crear una web ACL con reglas administradas para inyección SQL. Configurar reglas basadas en tasa en WAF para bloquear IPs que excedan el límite."
+            },
+            {
+              "id": "b",
+              "text": "B) Asociar la web ACL de AWS WAF al ALB. Configurar el ALB para enviar registros a Amazon S3 y otorgar al DRT acceso al bucket."
+            },
+            {
+              "id": "c",
+              "text": "C) Asociar la web ACL de WAF a CloudFront. Otorgar al DRT acceso a la web ACL y los registros de CloudFront mediante roles IAM."
+            },
+            {
+              "id": "d",
+              "text": "D) Implementar AWS Network Firewall en la VPC para filtrar tráfico malicioso de Capa 7 antes del ALB."
+            },
+            {
+              "id": "e",
+              "text": "E) Crear un health check de Amazon Route 53 para la aplicación web y asociarlo al recurso protegido por Shield Advanced. Proporcionar contactos y habilitar el proactive engagement."
+            }
           ],
-          "explanation": "Las opciones A y E son correctas. WAF en CloudFront mitiga ataques de capa 7 (A). Para habilitar el Involucramiento Proactivo (Proactive Engagement) de Shield Advanced, es estrictamente necesario configurar health checks de Route 53 y asociarlos al recurso protegido (E)."
+          "explanation": "Las opciones A y E son correctas. WAF en CloudFront mitiga ataques de capa 7 (A). Para habilitar el Involucramiento Proactivo (Proactive Engagement) de Shield Advanced, es estrictamente necesario configurar health checks de Route 53 y asociarlos al recurso protegido (E).",
+          "statement": "Una empresa financiera global aloja una aplicación web sensible a la latencia en AWS mediante Amazon CloudFront, un ALB y EC2. Son objeto de ataques DDoS sofisticados de Capa 7 y vulnerabilidades de aplicación. Han contratado AWS Shield Advanced. Necesitan bloquear automáticamente las IP maliciosas con tasas de solicitud inusuales o intentos de inyección SQL. También necesitan acceso 24/7 al Equipo de Respuesta a DDoS de AWS (DRT) e involucración proactiva (proactive engagement). ¿Qué combinación de pasos debe realizar el Arquitecto de Soluciones? (Seleccione DOS)"
         }
       },
       "correctAnswers": [
-        "A",
-        "E"
+        "a",
+        "e"
       ],
       "options": [
-        "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
-        "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
-        "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
-        "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
-        "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
-      ]
+        {
+          "id": "a",
+          "text": "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite."
+        },
+        {
+          "id": "b",
+          "text": "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket."
+        },
+        {
+          "id": "c",
+          "text": "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM."
+        },
+        {
+          "id": "d",
+          "text": "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT."
+        },
+        {
+          "id": "e",
+          "text": "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo."
+        }
+      ],
+      "statement": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)",
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-sec-adv-003",
@@ -160,45 +274,96 @@
       "difficulty": "hard",
       "translations": {
         "en": {
-          "text": "A healthcare company stores highly sensitive Protected Health Information (PHI) in multiple Amazon S3 buckets across dozens of AWS accounts in an AWS Organization. A Solutions Architect must design a solution to continuously monitor the buckets for public access and automatically discover any unencrypted PHI data. All findings must be routed to a central security account, and critical findings must automatically open a Jira ticket. Which architecture meets these requirements MOST efficiently?",
           "options": [
-            "A) Enable Amazon Macie in the central security account and add member accounts via AWS Organizations. Configure Macie automated data discovery. Enable AWS Security Hub in the central account and integrate it with Macie. Create an EventBridge rule in the central account to capture Security Hub findings with a 'CRITICAL' severity and trigger a Lambda function to create a Jira ticket.",
-            "B) Deploy AWS Config rules in all member accounts using AWS CloudFormation StackSets to detect public S3 buckets. Enable Macie in each account independently and send findings to a central S3 bucket. Use Athena to query the bucket and trigger a Lambda function via a scheduled EventBridge rule to open Jira tickets.",
-            "C) Use AWS IAM Access Analyzer in the central account to detect public S3 buckets. Enable Amazon GuardDuty in the central account to scan S3 object contents for PHI. Route GuardDuty findings to Security Hub, and use a Security Hub custom action to trigger a Jira API integration.",
-            "D) Enable AWS Systems Manager Incident Manager. Configure Macie in the central account to send findings directly to Incident Manager. Create an Incident Manager response plan that uses AWS Chatbot to open Jira tickets for any public S3 bucket or unencrypted PHI finding."
+            {
+              "id": "a",
+              "text": "A) Enable Amazon Macie in the central security account and add member accounts via AWS Organizations. Configure Macie automated data discovery. Enable AWS Security Hub in the central account and integrate it with Macie. Create an EventBridge rule in the central account to capture Security Hub findings with a 'CRITICAL' severity and trigger a Lambda function to create a Jira ticket."
+            },
+            {
+              "id": "b",
+              "text": "B) Deploy AWS Config rules in all member accounts using AWS CloudFormation StackSets to detect public S3 buckets. Enable Macie in each account independently and send findings to a central S3 bucket. Use Athena to query the bucket and trigger a Lambda function via a scheduled EventBridge rule to open Jira tickets."
+            },
+            {
+              "id": "c",
+              "text": "C) Use AWS IAM Access Analyzer in the central account to detect public S3 buckets. Enable Amazon GuardDuty in the central account to scan S3 object contents for PHI. Route GuardDuty findings to Security Hub, and use a Security Hub custom action to trigger a Jira API integration."
+            },
+            {
+              "id": "d",
+              "text": "D) Enable AWS Systems Manager Incident Manager. Configure Macie in the central account to send findings directly to Incident Manager. Create an Incident Manager response plan that uses AWS Chatbot to open Jira tickets for any public S3 bucket or unencrypted PHI finding."
+            }
           ],
-          "explanation": "Option A is correct. Amazon Macie is specifically designed to discover sensitive data like PHI and detect public buckets. Macie integrates natively with AWS Organizations for multi-account management and sends findings to AWS Security Hub. Security Hub acts as the central pane of glass, generating EventBridge events for findings, which can then invoke a Lambda function to create Jira tickets automatically. B requires complex manual aggregations. C is incorrect as GuardDuty does not scan S3 object contents for PHI (Macie does). D is not the standard or efficient way to aggregate cross-account findings."
+          "explanation": "Option A is correct. Amazon Macie is specifically designed to discover sensitive data like PHI and detect public buckets. Macie integrates natively with AWS Organizations for multi-account management and sends findings to AWS Security Hub. Security Hub acts as the central pane of glass, generating EventBridge events for findings, which can then invoke a Lambda function to create Jira tickets automatically. B requires complex manual aggregations. C is incorrect as GuardDuty does not scan S3 object contents for PHI (Macie does). D is not the standard or efficient way to aggregate cross-account findings.",
+          "statement": "A healthcare company stores highly sensitive Protected Health Information (PHI) in multiple Amazon S3 buckets across dozens of AWS accounts in an AWS Organization. A Solutions Architect must design a solution to continuously monitor the buckets for public access and automatically discover any unencrypted PHI data. All findings must be routed to a central security account, and critical findings must automatically open a Jira ticket. Which architecture meets these requirements MOST efficiently?"
         },
         "pt": {
-          "text": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?",
           "options": [
-            "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
-            "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
-            "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
-            "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
+            {
+              "id": "a",
+              "text": "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira."
+            },
+            {
+              "id": "b",
+              "text": "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda."
+            },
+            {
+              "id": "c",
+              "text": "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira."
+            },
+            {
+              "id": "d",
+              "text": "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
+            }
           ],
-          "explanation": "A opção A está correta. O Amazon Macie é a ferramenta ideal para descobrir dados confidenciais (PHI) no S3. O Macie integra-se ao AWS Organizations e ao AWS Security Hub para centralização de descobertas. O Security Hub envia eventos para o EventBridge, acionando o Lambda para automação no Jira de maneira eficiente. GuardDuty (C) não analisa conteúdo S3 para encontrar PHI. A opção B é excessivamente complexa e ineficiente."
+          "explanation": "A opção A está correta. O Amazon Macie é a ferramenta ideal para descobrir dados confidenciais (PHI) no S3. O Macie integra-se ao AWS Organizations e ao AWS Security Hub para centralização de descobertas. O Security Hub envia eventos para o EventBridge, acionando o Lambda para automação no Jira de maneira eficiente. GuardDuty (C) não analisa conteúdo S3 para encontrar PHI. A opção B é excessivamente complexa e ineficiente.",
+          "statement": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?"
         },
         "es": {
-          "text": "Una empresa de salud almacena datos sensibles (PHI) en varios buckets S3 en docenas de cuentas en una AWS Organization. Un Arquitecto de Soluciones debe diseñar una solución para monitorear continuamente el acceso público a los buckets y descubrir automáticamente datos PHI sin cifrar. Todos los hallazgos deben enviarse a una cuenta central, y los hallazgos críticos deben abrir automáticamente un ticket en Jira. ¿Qué arquitectura cumple esto de manera MÁS eficiente?",
           "options": [
-            "A) Habilitar Amazon Macie en la cuenta de seguridad central y agregar las cuentas miembro. Configurar el descubrimiento de datos de Macie. Habilitar AWS Security Hub en la cuenta central e integrarlo con Macie. Crear una regla de EventBridge para capturar hallazgos CRÍTICOS y activar una función Lambda para crear el ticket en Jira.",
-            "B) Implementar reglas de AWS Config mediante CloudFormation StackSets. Habilitar Macie de forma independiente y enviar hallazgos a un bucket S3 central. Usar Athena y EventBridge programado para activar Lambda.",
-            "C) Usar IAM Access Analyzer para detectar buckets públicos y GuardDuty para escanear el contenido S3 en busca de PHI. Enviar al Security Hub y usar una acción personalizada.",
-            "D) Habilitar Systems Manager Incident Manager y configurar Macie para enviar hallazgos directamente. Usar AWS Chatbot en el plan de respuesta para abrir tickets."
+            {
+              "id": "a",
+              "text": "A) Habilitar Amazon Macie en la cuenta de seguridad central y agregar las cuentas miembro. Configurar el descubrimiento de datos de Macie. Habilitar AWS Security Hub en la cuenta central e integrarlo con Macie. Crear una regla de EventBridge para capturar hallazgos CRÍTICOS y activar una función Lambda para crear el ticket en Jira."
+            },
+            {
+              "id": "b",
+              "text": "B) Implementar reglas de AWS Config mediante CloudFormation StackSets. Habilitar Macie de forma independiente y enviar hallazgos a un bucket S3 central. Usar Athena y EventBridge programado para activar Lambda."
+            },
+            {
+              "id": "c",
+              "text": "C) Usar IAM Access Analyzer para detectar buckets públicos y GuardDuty para escanear el contenido S3 en busca de PHI. Enviar al Security Hub y usar una acción personalizada."
+            },
+            {
+              "id": "d",
+              "text": "D) Habilitar Systems Manager Incident Manager y configurar Macie para enviar hallazgos directamente. Usar AWS Chatbot en el plan de respuesta para abrir tickets."
+            }
           ],
-          "explanation": "La opción A es correcta. Amazon Macie está diseñado para clasificar y descubrir datos sensibles en S3 (PHI). Se integra nativamente con Organizations y Security Hub. Security Hub centraliza los eventos en EventBridge, lo que permite activar Lambda de forma automatizada. GuardDuty (C) no examina el interior de los objetos S3 en busca de PHI. La opción B es ineficiente y difícil de mantener."
+          "explanation": "La opción A es correcta. Amazon Macie está diseñado para clasificar y descubrir datos sensibles en S3 (PHI). Se integra nativamente con Organizations y Security Hub. Security Hub centraliza los eventos en EventBridge, lo que permite activar Lambda de forma automatizada. GuardDuty (C) no examina el interior de los objetos S3 en busca de PHI. La opción B es ineficiente y difícil de mantener.",
+          "statement": "Una empresa de salud almacena datos sensibles (PHI) en varios buckets S3 en docenas de cuentas en una AWS Organization. Un Arquitecto de Soluciones debe diseñar una solución para monitorear continuamente el acceso público a los buckets y descubrir automáticamente datos PHI sin cifrar. Todos los hallazgos deben enviarse a una cuenta central, y los hallazgos críticos deben abrir automáticamente un ticket en Jira. ¿Qué arquitectura cumple esto de manera MÁS eficiente?"
         }
       },
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "options": [
-        "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
-        "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
-        "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
-        "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
-      ]
+        {
+          "id": "a",
+          "text": "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira."
+        },
+        {
+          "id": "b",
+          "text": "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda."
+        },
+        {
+          "id": "c",
+          "text": "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira."
+        },
+        {
+          "id": "d",
+          "text": "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets."
+        }
+      ],
+      "statement": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?",
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-sec-adv-004",
@@ -214,45 +379,96 @@
       "difficulty": "hard",
       "translations": {
         "en": {
-          "text": "An enterprise provides a public-facing API hosted on Amazon API Gateway and AWS Lambda. The API handles user logins and is authenticated via Amazon Cognito. Recently, the API has experienced credential stuffing attacks where attackers try to use leaked usernames and passwords to gain unauthorized access. The company wants to automatically block these login requests. They also want to ensure that any API requests coming from anonymizing proxies and Tor networks are blocked. What is the MOST operationally efficient solution?",
           "options": [
-            "A) Deploy AWS WAF on the API Gateway. Add the AWS Managed Rules for Anonymous IP list to block Tor and proxies. Enable AWS WAF Account Takeover Prevention (ATP) to monitor and block credential stuffing attacks by inspecting the login requests.",
-            "B) Deploy AWS Network Firewall and configure Suricata rules to detect Tor exit nodes and credential stuffing patterns. Route API Gateway traffic through the Network Firewall using a VPC Endpoint.",
-            "C) Modify the Lambda functions to inspect the source IP address against a frequently updated, downloaded list of Tor exit nodes. Integrate Amazon Macie to detect credential stuffing payloads in the API requests.",
-            "D) Configure AWS Shield Advanced on the API Gateway. Enable the Shield Advanced automatic application layer DDoS mitigation. Create an EventBridge rule to invoke a Lambda function that updates an API Gateway resource policy to block malicious IPs."
+            {
+              "id": "a",
+              "text": "A) Deploy AWS WAF on the API Gateway. Add the AWS Managed Rules for Anonymous IP list to block Tor and proxies. Enable AWS WAF Account Takeover Prevention (ATP) to monitor and block credential stuffing attacks by inspecting the login requests."
+            },
+            {
+              "id": "b",
+              "text": "B) Deploy AWS Network Firewall and configure Suricata rules to detect Tor exit nodes and credential stuffing patterns. Route API Gateway traffic through the Network Firewall using a VPC Endpoint."
+            },
+            {
+              "id": "c",
+              "text": "C) Modify the Lambda functions to inspect the source IP address against a frequently updated, downloaded list of Tor exit nodes. Integrate Amazon Macie to detect credential stuffing payloads in the API requests."
+            },
+            {
+              "id": "d",
+              "text": "D) Configure AWS Shield Advanced on the API Gateway. Enable the Shield Advanced automatic application layer DDoS mitigation. Create an EventBridge rule to invoke a Lambda function that updates an API Gateway resource policy to block malicious IPs."
+            }
           ],
-          "explanation": "Option A is correct. AWS WAF natively integrates with Amazon API Gateway. To block Tor nodes and proxies, the AWS Managed Rules for Anonymous IP is the exact feature needed. Furthermore, AWS WAF Account Takeover Prevention (ATP) is explicitly designed to stop credential stuffing attacks by evaluating login attempts against stolen credential databases and behavioral anomalies. Options B, C, and D introduce massive operational complexity and do not possess out-of-the-box credential stuffing mitigation like WAF ATP."
+          "explanation": "Option A is correct. AWS WAF natively integrates with Amazon API Gateway. To block Tor nodes and proxies, the AWS Managed Rules for Anonymous IP is the exact feature needed. Furthermore, AWS WAF Account Takeover Prevention (ATP) is explicitly designed to stop credential stuffing attacks by evaluating login attempts against stolen credential databases and behavioral anomalies. Options B, C, and D introduce massive operational complexity and do not possess out-of-the-box credential stuffing mitigation like WAF ATP.",
+          "statement": "An enterprise provides a public-facing API hosted on Amazon API Gateway and AWS Lambda. The API handles user logins and is authenticated via Amazon Cognito. Recently, the API has experienced credential stuffing attacks where attackers try to use leaked usernames and passwords to gain unauthorized access. The company wants to automatically block these login requests. They also want to ensure that any API requests coming from anonymizing proxies and Tor networks are blocked. What is the MOST operationally efficient solution?"
         },
         "pt": {
-          "text": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?",
           "options": [
-            "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
-            "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
-            "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
-            "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
+            {
+              "id": "a",
+              "text": "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login."
+            },
+            {
+              "id": "b",
+              "text": "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall."
+            },
+            {
+              "id": "c",
+              "text": "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing."
+            },
+            {
+              "id": "d",
+              "text": "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
+            }
           ],
-          "explanation": "A opção A está correta. O AWS WAF integra-se nativamente ao API Gateway. O bloqueio de redes Tor e proxies é perfeitamente atendido pelas Regras Gerenciadas da AWS para IPs Anônimos. O WAF Account Takeover Prevention (ATP) foi projetado exatamente para mitigar ataques de credential stuffing de forma automatizada, inspecionando endpoints de login. As opções alternativas exigem muito esforço manual ou não atendem aos requisitos (como o Macie, que não detecta ataques em trânsito)."
+          "explanation": "A opção A está correta. O AWS WAF integra-se nativamente ao API Gateway. O bloqueio de redes Tor e proxies é perfeitamente atendido pelas Regras Gerenciadas da AWS para IPs Anônimos. O WAF Account Takeover Prevention (ATP) foi projetado exatamente para mitigar ataques de credential stuffing de forma automatizada, inspecionando endpoints de login. As opções alternativas exigem muito esforço manual ou não atendem aos requisitos (como o Macie, que não detecta ataques em trânsito).",
+          "statement": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?"
         },
         "es": {
-          "text": "Una empresa ofrece una API pública alojada en Amazon API Gateway y AWS Lambda. La API maneja inicios de sesión autenticados mediante Amazon Cognito. Recientemente, la API ha sufrido ataques de relleno de credenciales (credential stuffing). La empresa desea bloquear estas solicitudes automáticamente. También quieren asegurar que se bloqueen las solicitudes de proxies anónimos y redes Tor. ¿Cuál es la solución MÁS eficiente a nivel operativo?",
           "options": [
-            "A) Implementar AWS WAF en el API Gateway. Agregar las Reglas Administradas de AWS para IPs Anónimas para bloquear Tor y proxies. Habilitar AWS WAF Account Takeover Prevention (ATP) para monitorear y bloquear ataques de credential stuffing inspeccionando las solicitudes de inicio de sesión.",
-            "B) Implementar AWS Network Firewall y configurar reglas Suricata para detectar nodos de Tor y patrones de credential stuffing. Enrutar el tráfico de API Gateway a través del Network Firewall.",
-            "C) Modificar las funciones Lambda para inspeccionar las IPs contra una lista descargada de nodos de Tor. Integrar Amazon Macie para detectar ataques de credential stuffing.",
-            "D) Configurar AWS Shield Advanced en API Gateway. Habilitar la mitigación automática de DDoS en capa de aplicación y actualizar una política de recursos vía Lambda."
+            {
+              "id": "a",
+              "text": "A) Implementar AWS WAF en el API Gateway. Agregar las Reglas Administradas de AWS para IPs Anónimas para bloquear Tor y proxies. Habilitar AWS WAF Account Takeover Prevention (ATP) para monitorear y bloquear ataques de credential stuffing inspeccionando las solicitudes de inicio de sesión."
+            },
+            {
+              "id": "b",
+              "text": "B) Implementar AWS Network Firewall y configurar reglas Suricata para detectar nodos de Tor y patrones de credential stuffing. Enrutar el tráfico de API Gateway a través del Network Firewall."
+            },
+            {
+              "id": "c",
+              "text": "C) Modificar las funciones Lambda para inspeccionar las IPs contra una lista descargada de nodos de Tor. Integrar Amazon Macie para detectar ataques de credential stuffing."
+            },
+            {
+              "id": "d",
+              "text": "D) Configurar AWS Shield Advanced en API Gateway. Habilitar la mitigación automática de DDoS en capa de aplicación y actualizar una política de recursos vía Lambda."
+            }
           ],
-          "explanation": "La opción A es correcta. AWS WAF se integra fácilmente con API Gateway. Para bloquear nodos Tor y proxies, la regla administrada para IPs Anónimas es ideal. Además, WAF Account Takeover Prevention (ATP) está diseñado específicamente para detener ataques de credential stuffing al evaluar intentos de inicio de sesión contra bases de datos comprometidas y anomalías. Las otras opciones requieren gran esfuerzo y no ofrecen protección nativa contra credential stuffing."
+          "explanation": "La opción A es correcta. AWS WAF se integra fácilmente con API Gateway. Para bloquear nodos Tor y proxies, la regla administrada para IPs Anónimas es ideal. Además, WAF Account Takeover Prevention (ATP) está diseñado específicamente para detener ataques de credential stuffing al evaluar intentos de inicio de sesión contra bases de datos comprometidas y anomalías. Las otras opciones requieren gran esfuerzo y no ofrecen protección nativa contra credential stuffing.",
+          "statement": "Una empresa ofrece una API pública alojada en Amazon API Gateway y AWS Lambda. La API maneja inicios de sesión autenticados mediante Amazon Cognito. Recientemente, la API ha sufrido ataques de relleno de credenciales (credential stuffing). La empresa desea bloquear estas solicitudes automáticamente. También quieren asegurar que se bloqueen las solicitudes de proxies anónimos y redes Tor. ¿Cuál es la solución MÁS eficiente a nivel operativo?"
         }
       },
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "options": [
-        "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
-        "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
-        "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
-        "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
-      ]
+        {
+          "id": "a",
+          "text": "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login."
+        },
+        {
+          "id": "b",
+          "text": "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall."
+        },
+        {
+          "id": "c",
+          "text": "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing."
+        },
+        {
+          "id": "d",
+          "text": "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos."
+        }
+      ],
+      "statement": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?",
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-sec-adv-005",
@@ -267,45 +483,96 @@
       "difficulty": "hard",
       "translations": {
         "en": {
-          "text": "A global company has deployed workloads in 5 AWS Regions across 50 accounts in an AWS Organization. They use Amazon GuardDuty for threat detection in all accounts and Regions. The Chief Information Security Officer (CISO) requires a single, consolidated dashboard in the 'us-east-1' Region of the dedicated security tooling account. This dashboard must display all GuardDuty findings from all 5 Regions and all 50 accounts. Which approach requires the LEAST custom development?",
           "options": [
-            "A) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. In each of the other 4 Regions, configure GuardDuty to export findings to an Amazon S3 bucket in 'us-east-1'. Use Amazon QuickSight to visualize the findings.",
-            "B) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. Enable AWS Security Hub in all 5 Regions and designate the security tooling account as the Security Hub delegated administrator. Use Security Hub cross-Region aggregation in the 'us-east-1' security tooling account to consolidate all findings.",
-            "C) Enable Amazon Detective in the security tooling account in 'us-east-1'. Integrate GuardDuty from all 50 accounts and all 5 Regions directly into the Amazon Detective graph in 'us-east-1' to provide a unified dashboard.",
-            "D) Create an EventBridge rule in each account and Region to capture GuardDuty findings. Set the target to an EventBridge event bus in the security tooling account in 'us-east-1'. Use AWS Step Functions to format the findings and store them in Amazon DynamoDB for visualization."
+            {
+              "id": "a",
+              "text": "A) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. In each of the other 4 Regions, configure GuardDuty to export findings to an Amazon S3 bucket in 'us-east-1'. Use Amazon QuickSight to visualize the findings."
+            },
+            {
+              "id": "b",
+              "text": "B) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. Enable AWS Security Hub in all 5 Regions and designate the security tooling account as the Security Hub delegated administrator. Use Security Hub cross-Region aggregation in the 'us-east-1' security tooling account to consolidate all findings."
+            },
+            {
+              "id": "c",
+              "text": "C) Enable Amazon Detective in the security tooling account in 'us-east-1'. Integrate GuardDuty from all 50 accounts and all 5 Regions directly into the Amazon Detective graph in 'us-east-1' to provide a unified dashboard."
+            },
+            {
+              "id": "d",
+              "text": "D) Create an EventBridge rule in each account and Region to capture GuardDuty findings. Set the target to an EventBridge event bus in the security tooling account in 'us-east-1'. Use AWS Step Functions to format the findings and store them in Amazon DynamoDB for visualization."
+            }
           ],
-          "explanation": "Option B is correct. AWS Security Hub natively supports cross-Region aggregation of findings. By setting the security tooling account as the delegated administrator for both GuardDuty and Security Hub, GuardDuty findings are routed to Security Hub in each Region. Security Hub then securely aggregates these findings cross-Region into the designated aggregation Region ('us-east-1'), providing a unified dashboard without any custom coding or complex data pipelines. Options A and D require managing data pipelines and custom visualization. Option C is incorrect because Amazon Detective is used for root cause analysis and investigation, not as a primary aggregation dashboard for all global alerts."
+          "explanation": "Option B is correct. AWS Security Hub natively supports cross-Region aggregation of findings. By setting the security tooling account as the delegated administrator for both GuardDuty and Security Hub, GuardDuty findings are routed to Security Hub in each Region. Security Hub then securely aggregates these findings cross-Region into the designated aggregation Region ('us-east-1'), providing a unified dashboard without any custom coding or complex data pipelines. Options A and D require managing data pipelines and custom visualization. Option C is incorrect because Amazon Detective is used for root cause analysis and investigation, not as a primary aggregation dashboard for all global alerts.",
+          "statement": "A global company has deployed workloads in 5 AWS Regions across 50 accounts in an AWS Organization. They use Amazon GuardDuty for threat detection in all accounts and Regions. The Chief Information Security Officer (CISO) requires a single, consolidated dashboard in the 'us-east-1' Region of the dedicated security tooling account. This dashboard must display all GuardDuty findings from all 5 Regions and all 50 accounts. Which approach requires the LEAST custom development?"
         },
         "pt": {
-          "text": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?",
           "options": [
-            "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
-            "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
-            "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
-            "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
+            {
+              "id": "a",
+              "text": "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas."
+            },
+            {
+              "id": "b",
+              "text": "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas."
+            },
+            {
+              "id": "c",
+              "text": "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado."
+            },
+            {
+              "id": "d",
+              "text": "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
+            }
           ],
-          "explanation": "A opção B está correta. O AWS Security Hub oferece suporte nativo à agregação de descobertas entre regiões. Configurando a conta de segurança como administrador delegado do GuardDuty e do Security Hub, as descobertas são enviadas para o Security Hub e agregadas nativamente na região designada (us-east-1). Isso cria um painel único sem necessidade de codificação personalizada (como as opções A e D exigiriam). O Detective (C) é focado em investigação de causa raiz, não agregação global em painel."
+          "explanation": "A opção B está correta. O AWS Security Hub oferece suporte nativo à agregação de descobertas entre regiões. Configurando a conta de segurança como administrador delegado do GuardDuty e do Security Hub, as descobertas são enviadas para o Security Hub e agregadas nativamente na região designada (us-east-1). Isso cria um painel único sem necessidade de codificação personalizada (como as opções A e D exigiriam). O Detective (C) é focado em investigação de causa raiz, não agregação global em painel.",
+          "statement": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?"
         },
         "es": {
-          "text": "Una empresa global ha implementado cargas de trabajo en 5 regiones de AWS en 50 cuentas de una AWS Organization. Utilizan Amazon GuardDuty en todas las cuentas y regiones. El CISO requiere un panel único y consolidado en la región 'us-east-1' de la cuenta de seguridad, que muestre todos los hallazgos de GuardDuty de las 5 regiones y 50 cuentas. ¿Qué enfoque requiere la MENOR cantidad de desarrollo personalizado?",
           "options": [
-            "A) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Configurar GuardDuty para exportar hallazgos a un bucket S3 en us-east-1. Usar Amazon QuickSight para visualizarlos.",
-            "B) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Habilitar AWS Security Hub en las 5 regiones y designar la cuenta de seguridad como administrador delegado de Security Hub. Utilizar la agregación entre regiones de Security Hub en us-east-1 para consolidar todos los hallazgos.",
-            "C) Habilitar Amazon Detective en la cuenta de seguridad en us-east-1. Integrar GuardDuty de todas las cuentas y regiones directamente en el gráfico de Amazon Detective en us-east-1.",
-            "D) Crear una regla de EventBridge en cada cuenta y región para capturar hallazgos. Enviarlos a un bus de eventos central en us-east-1 y usar Step Functions para guardarlos en Amazon DynamoDB."
+            {
+              "id": "a",
+              "text": "A) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Configurar GuardDuty para exportar hallazgos a un bucket S3 en us-east-1. Usar Amazon QuickSight para visualizarlos."
+            },
+            {
+              "id": "b",
+              "text": "B) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Habilitar AWS Security Hub en las 5 regiones y designar la cuenta de seguridad como administrador delegado de Security Hub. Utilizar la agregación entre regiones de Security Hub en us-east-1 para consolidar todos los hallazgos."
+            },
+            {
+              "id": "c",
+              "text": "C) Habilitar Amazon Detective en la cuenta de seguridad en us-east-1. Integrar GuardDuty de todas las cuentas y regiones directamente en el gráfico de Amazon Detective en us-east-1."
+            },
+            {
+              "id": "d",
+              "text": "D) Crear una regla de EventBridge en cada cuenta y región para capturar hallazgos. Enviarlos a un bus de eventos central en us-east-1 y usar Step Functions para guardarlos en Amazon DynamoDB."
+            }
           ],
-          "explanation": "La opción B es correcta. AWS Security Hub admite de forma nativa la agregación de hallazgos entre regiones. Al establecer la cuenta de seguridad como administrador delegado para GuardDuty y Security Hub, los hallazgos se consolidan de forma nativa y segura en la región de agregación ('us-east-1') sin requerir tuberías de datos o código personalizado (a diferencia de A y D). Amazon Detective (C) se utiliza para análisis forense e investigaciones, no como panel de alertas global."
+          "explanation": "La opción B es correcta. AWS Security Hub admite de forma nativa la agregación de hallazgos entre regiones. Al establecer la cuenta de seguridad como administrador delegado para GuardDuty y Security Hub, los hallazgos se consolidan de forma nativa y segura en la región de agregación ('us-east-1') sin requerir tuberías de datos o código personalizado (a diferencia de A y D). Amazon Detective (C) se utiliza para análisis forense e investigaciones, no como panel de alertas global.",
+          "statement": "Una empresa global ha implementado cargas de trabajo en 5 regiones de AWS en 50 cuentas de una AWS Organization. Utilizan Amazon GuardDuty en todas las cuentas y regiones. El CISO requiere un panel único y consolidado en la región 'us-east-1' de la cuenta de seguridad, que muestre todos los hallazgos de GuardDuty de las 5 regiones y 50 cuentas. ¿Qué enfoque requiere la MENOR cantidad de desarrollo personalizado?"
         }
       },
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "options": [
-        "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
-        "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
-        "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
-        "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
-      ]
+        {
+          "id": "a",
+          "text": "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas."
+        },
+        {
+          "id": "b",
+          "text": "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas."
+        },
+        {
+          "id": "c",
+          "text": "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado."
+        },
+        {
+          "id": "d",
+          "text": "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB."
+        }
+      ],
+      "statement": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?",
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-cost-001",
@@ -319,7 +586,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -410,7 +677,9 @@
           "id": "D",
           "text": "Habilitar o AWS Compute Optimizer no nível da organização. Comprar EC2 Instance Savings Plans na conta de gerenciamento para cargas previsíveis. Desabilitar o compartilhamento de descontos."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-cost-002",
@@ -424,8 +693,8 @@
       "type": "multiple-choice",
       "requiredChoices": 2,
       "correctAnswers": [
-        "A",
-        "C"
+        "a",
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -532,7 +801,9 @@
           "id": "E",
           "text": "Usar o AWS Budgets para mapear recursos sem tags para unidades de negócios e exportar os relatórios para o QuickSight."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-cost-003",
@@ -546,7 +817,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -637,7 +908,9 @@
           "id": "D",
           "text": "Criar um Auto Scaling group usando apenas Instâncias Spot. Usar a estratégia lowest-price para garantir custo mínimo e configurar interrupções de Spot para hibernar as instâncias."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-cost-004",
@@ -650,7 +923,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -741,7 +1014,9 @@
           "id": "D",
           "text": "Usar a Detecção de Anomalias de Custo da AWS para acionar um tópico do Amazon SNS. Assinar um runbook de Automação do AWS Systems Manager no tópico SNS para reduzir o tamanho máximo do Auto Scaling."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-cost-005",
@@ -755,7 +1030,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -846,7 +1121,9 @@
           "id": "D",
           "text": "Usar o AWS Trusted Advisor para identificar volumes EBS subutilizados. Criar uma regra do Amazon EventBridge para acionar uma função Lambda que converta volumes gp2 subutilizados em HDD frio (sc1)."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-gov-001",
@@ -859,8 +1136,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "A",
-        "D"
+        "a",
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -964,7 +1241,9 @@
           "id": "E",
           "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-gov-002",
@@ -977,7 +1256,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1065,7 +1344,9 @@
           "id": "D",
           "text": "Modificar a configuração da landing zone do AWS Control Tower diretamente para incluir uma SCP personalizada que negue `s3:CreateBucket` a menos que o cabeçalho `x-amz-bucket-object-lock-enabled` seja definido como true."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-gov-003",
@@ -1078,7 +1359,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1166,7 +1447,9 @@
           "id": "D",
           "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Usar o AWS CloudFormation StackSets para implantar roles locais do IAM nas contas membro e mapeá-las para o portfólio usando um Portfolio Share local."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-gov-004",
@@ -1179,7 +1462,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "D"
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1267,7 +1550,9 @@
           "id": "D",
           "text": "Implantar um conformance pack de nível organizacional que inclua as regras do CIS e as regras personalizadas da conta de gerenciamento do AWS Organizations ou de uma conta de administrador delegada. Usar um AWS Config Aggregator na conta de administrador delegada para visualizar a conformidade."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-c02-gov-005",
@@ -1280,8 +1565,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "A",
-        "D"
+        "a",
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1385,7 +1670,9 @@
           "id": "E",
           "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-q-adv-net-01",
@@ -1398,7 +1685,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1503,7 +1790,8 @@
           "explanation": "Incorreto: Gerenciar servidores DNS customizados em instâncias EC2 introduz carga administrativa de patching, HA e escalabilidade, contrariando o princípio de menor sobrecarga."
         }
       ],
-      "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS."
+      "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-q-adv-net-02",
@@ -1516,7 +1804,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1621,7 +1909,8 @@
           "explanation": "Incorreto: O Cloud WAN usa segmentos dentro de um único core network para atingir esse objetivo nativamente, criar vários core networks aumenta a sobrecarga."
         }
       ],
-      "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente."
+      "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-q-adv-net-03",
@@ -1634,8 +1923,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "B",
-        "D"
+        "b",
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1760,7 +2049,8 @@
           "explanation": "Incorreto: O Network Firewall faz inspeção de pacotes e regras stateful, não provê túnel IPsec na camada de rede/transporte."
         }
       ],
-      "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet."
+      "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-q-adv-net-04",
@@ -1773,7 +2063,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1878,7 +2168,8 @@
           "explanation": "Incorreto: O controle de acesso a redes IP dentro da VPC no Client VPN não é gerido por permissões de plano de controle da API do IAM."
         }
       ],
-      "generalExplanation": "A funcionalidade de Authorization Rules do AWS Client VPN integrada com SAML 2.0 IdP permite a segmentação de rede baseada em grupos, garantindo segurança zero-trust com mínimo overhead."
+      "generalExplanation": "A funcionalidade de Authorization Rules do AWS Client VPN integrada com SAML 2.0 IdP permite a segmentação de rede baseada em grupos, garantindo segurança zero-trust com mínimo overhead.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "sap-q-adv-net-05",
@@ -1891,7 +2182,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1996,7 +2287,8 @@
           "explanation": "Incorreto: Global Accelerator não roteia tráfego em conexões privadas Direct Connect, sendo focado em IPs Anycast para a internet pública."
         }
       ],
-      "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect."
+      "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345671",
@@ -2010,7 +2302,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2098,7 +2390,9 @@
           "id": "D",
           "text": "Implante um cluster EMR com funções do IAM para perfis de instância do Amazon EC2. Crie chaves AWS KMS personalizadas para cada tabela e conceda acesso à chave KMS apenas para usuários específicos para impor criptografia em nível de coluna."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345672",
@@ -2113,7 +2407,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2201,7 +2495,9 @@
           "id": "D",
           "text": "Substitua o MSK pelo Amazon Kinesis Data Streams. Use o Kinesis Data Analytics for SQL Applications para janelamento e grave a saída diretamente no Redshift usando uma função AWS Lambda personalizada."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345673",
@@ -2214,7 +2510,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2302,7 +2598,9 @@
           "id": "D",
           "text": "Use o AWS Data Exchange para publicar as tabelas do Redshift como produtos de dados. Inscreva as Contas B, C e D nesses produtos e use o Lake Formation para gerenciar os direitos de assinatura."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345674",
@@ -2316,7 +2614,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2404,7 +2702,9 @@
           "id": "D",
           "text": "Configure o QuickSight com uma conexão direta ao Amazon S3 usando um arquivo de manifesto JSON. Habilite o SPICE com uma atualização a cada hora. Use o roteamento baseado em latência do Route 53 para direcionar os usuários para uma implantação do QuickSight distribuída globalmente."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     },
     {
       "id": "e81f1b6a-939e-4a7b-a2c3-9d1a12345675",
@@ -2419,7 +2719,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2507,7 +2807,9 @@
           "id": "D",
           "text": "Crie uma função AWS Lambda acionada pelo MSK. Grave eventos em uma tabela do Amazon DynamoDB. Use o DynamoDB Streams para acionar outro Lambda para gravar arquivos Parquet agregados no Amazon S3."
         }
-      ]
+      ],
+      "generalExplanation": "No explanation provided.",
+      "domainName": "Domain 3: Continuous Improvement for Existing Solutions"
     }
   ]
 }

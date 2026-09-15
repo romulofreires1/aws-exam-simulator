@@ -42,7 +42,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -165,7 +165,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -289,7 +289,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -412,7 +412,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "D"
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -536,8 +536,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "B",
-        "E"
+        "b",
+        "e"
       ],
       "difficulty": "hard",
       "translations": {
@@ -680,7 +680,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -803,7 +803,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -942,8 +942,8 @@
         }
       ],
       "correctAnswers": [
-        "B",
-        "D"
+        "b",
+        "d"
       ],
       "translations": {
         "en": {
@@ -1063,7 +1063,7 @@
         }
       ],
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "translations": {
         "en": {
@@ -1172,7 +1172,7 @@
         }
       ],
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "translations": {
         "en": {
@@ -1280,7 +1280,7 @@
         }
       ],
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "translations": {
         "en": {
@@ -1389,7 +1389,7 @@
         }
       ],
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "translations": {
         "en": {
@@ -1485,7 +1485,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1608,7 +1608,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1731,8 +1731,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "A",
-        "D"
+        "a",
+        "d"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1875,7 +1875,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1998,7 +1998,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2121,8 +2121,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "B",
-        "C"
+        "b",
+        "c"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2264,7 +2264,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "D"
+        "d"
       ],
       "difficulty": "medium",
       "translations": {
@@ -2386,7 +2386,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "difficulty": "medium",
       "translations": {
@@ -2509,7 +2509,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2656,7 +2656,7 @@
         }
       ],
       "correctAnswers": [
-        "B"
+        "b"
       ],
       "generalExplanation": "Amazon DynamoDB Global Tables provide a fully managed, active-active, multi-region database solution that handles conflict resolution natively using a 'last writer wins' approach. It meets the requirement for simultaneous writes in multiple regions with sub-second replication latency.",
       "referenceUrl": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html",
@@ -2779,7 +2779,7 @@
         }
       ],
       "correctAnswers": [
-        "A"
+        "a"
       ],
       "generalExplanation": "When using a GSI in Provisioned Capacity mode, the index has its own WCU configuration. If writes to the base table require updating the GSI, but the GSI is throttled due to insufficient WCUs, DynamoDB throttles the base table writes to prevent data divergence.",
       "referenceUrl": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
@@ -2902,7 +2902,7 @@
         }
       ],
       "correctAnswers": [
-        "C"
+        "c"
       ],
       "generalExplanation": "Amazon Aurora Serverless uses a warm pool of shared capacity and an internal proxy fleet to scale Aurora Capacity Units (ACUs) instantly and transparently. This design is highly effective for unpredictable workloads because it scales compute automatically without dropping database connections or requiring application-level changes.",
       "referenceUrl": "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html",
@@ -3031,8 +3031,8 @@
         }
       ],
       "correctAnswers": [
-        "B",
-        "D"
+        "b",
+        "d"
       ],
       "generalExplanation": "Amazon DynamoDB Accelerator (DAX) provides microsecond latency but does not support Strongly Consistent reads. Therefore, applications requiring strong consistency must bypass DAX and query DynamoDB directly. For dashboard aggregations, DAX efficiently uses its Query Cache to store results of Query and Scan parameters.",
       "referenceUrl": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html",
