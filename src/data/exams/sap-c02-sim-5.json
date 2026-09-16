@@ -685,19 +685,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Rehosting"
+          "text": "Rehosting (Lift & Shift): Move the application to AWS without any changes, using Amazon EC2 to replicate the on-premises server environment. This minimizes migration risk and time but does not leverage cloud-native capabilities.",
+          "explanation": "Incorrect: Rehosting simply moves the application as-is to EC2. It does not modernize or adopt cloud-native architectures like serverless or event-driven patterns, which are the explicit business requirements."
         },
         {
           "id": "b",
-          "text": "Replatforming"
+          "text": "Replatforming (Lift, Tinker & Shift): Migrate the application to AWS with minor optimizations, such as moving to Amazon RDS instead of a self-managed database, without changing the core application architecture.",
+          "explanation": "Incorrect: Replatforming makes incremental improvements (e.g., managed database) but does not constitute a full architectural redesign to event-driven serverless, which the business explicitly requires."
         },
         {
           "id": "c",
-          "text": "Refactoring / Re-architecting"
+          "text": "Refactoring / Re-architecting: Completely redesign and rewrite the application to adopt cloud-native, event-driven serverless patterns using services like AWS Lambda, Amazon EventBridge, and Amazon SQS.",
+          "explanation": "Correct: Refactoring/Re-architecting is the strategy that involves significant redesign and rewriting to fully exploit cloud-native capabilities like serverless and event-driven patterns. It has the highest initial cost and effort but the greatest long-term benefit."
         },
         {
           "id": "d",
-          "text": "Repurchasing"
+          "text": "Repurchasing: Replace the existing monolithic application with a commercial SaaS product that natively provides similar functionality, such as migrating from a custom CRM to Salesforce.",
+          "explanation": "Incorrect: Repurchasing involves switching to a different commercial product (SaaS), not redesigning the existing application to use serverless event-driven patterns as required."
         }
       ],
       "translations": {
@@ -708,19 +712,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Rehosting"
+              "text": "Rehosting (Lift & Shift): Move the application to AWS without any changes, using Amazon EC2 to replicate the on-premises server environment. This minimizes migration risk and time but does not leverage cloud-native capabilities.",
+              "explanation": "Incorrect: Rehosting simply moves the application as-is to EC2. It does not modernize or adopt cloud-native architectures like serverless or event-driven patterns, which are the explicit business requirements."
             },
             {
               "id": "b",
-              "text": "Replatforming"
+              "text": "Replatforming (Lift, Tinker & Shift): Migrate the application to AWS with minor optimizations, such as moving to Amazon RDS instead of a self-managed database, without changing the core application architecture.",
+              "explanation": "Incorrect: Replatforming makes incremental improvements (e.g., managed database) but does not constitute a full architectural redesign to event-driven serverless, which the business explicitly requires."
             },
             {
               "id": "c",
-              "text": "Refactoring / Re-architecting"
+              "text": "Refactoring / Re-architecting: Completely redesign and rewrite the application to adopt cloud-native, event-driven serverless patterns using services like AWS Lambda, Amazon EventBridge, and Amazon SQS.",
+              "explanation": "Correct: Refactoring/Re-architecting is the strategy that involves significant redesign and rewriting to fully exploit cloud-native capabilities like serverless and event-driven patterns. It has the highest initial cost and effort but the greatest long-term benefit."
             },
             {
               "id": "d",
-              "text": "Repurchasing"
+              "text": "Repurchasing: Replace the existing monolithic application with a commercial SaaS product that natively provides similar functionality, such as migrating from a custom CRM to Salesforce.",
+              "explanation": "Incorrect: Repurchasing involves switching to a different commercial product (SaaS), not redesigning the existing application to use serverless event-driven patterns as required."
             }
           ]
         },
@@ -731,19 +739,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Rehosting"
+              "text": "Rehosting (Lift & Shift): Mover a aplicação para a AWS sem modificações, usando Amazon EC2 para replicar o ambiente de servidores on-premises. Minimiza o risco de migração, mas não aproveita capacidades nativas de nuvem.",
+              "explanation": "Incorreto: O Rehosting apenas move a aplicação como está para o EC2. Não moderniza nem adota arquiteturas nativas de nuvem como serverless ou orientada a eventos, que são requisitos explícitos do negócio."
             },
             {
               "id": "b",
-              "text": "Replatforming"
+              "text": "Replatforming (Lift, Tinker & Shift): Migrar a aplicação para a AWS com otimizações menores, como migrar para Amazon RDS em vez de um banco gerenciado manualmente, sem alterar a arquitetura principal da aplicação.",
+              "explanation": "Incorreto: O Replatforming faz melhorias incrementais (como banco gerenciado), mas não constitui uma redesenho arquitetural completo para serverless orientado a eventos, como o negócio exige explicitamente."
             },
             {
               "id": "c",
-              "text": "Refactoring / Re-architecting"
+              "text": "Refactoring / Re-architecting: Redesenhar e reescrever completamente a aplicação para adotar padrões serverless e orientados a eventos nativos da nuvem usando serviços como AWS Lambda, Amazon EventBridge e Amazon SQS.",
+              "explanation": "Correto: Refactoring/Re-architecting é a estratégia que envolve redesenho e reescrita significativos para aproveitar plenamente capacidades nativas da nuvem como serverless e padrões event-driven. Tem o maior custo inicial, mas os maiores benefícios a longo prazo."
             },
             {
               "id": "d",
-              "text": "Repurchasing"
+              "text": "Repurchasing: Substituir a aplicação monolítica existente por um produto SaaS comercial que forneça funcionalidade similar nativamente, como migrar de um CRM customizado para o Salesforce.",
+              "explanation": "Incorreto: O Repurchasing envolve troca para um produto comercial diferente (SaaS), não o redesenho da aplicação existente para padrões serverless orientados a eventos como exigido."
             }
           ]
         },
@@ -754,19 +766,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Rehosting"
+              "text": "Rehosting (Lift & Shift): Mover la aplicación a AWS sin cambios, usando Amazon EC2 para replicar el entorno local. Minimiza el riesgo de migración pero no aprovecha las capacidades nativas de la nube.",
+              "explanation": "Incorrecto: Rehosting simplemente mueve la aplicación tal cual a EC2. No moderniza ni adopta arquitecturas nativas de la nube como sin servidor o basadas en eventos, que son los requisitos explícitos del negocio."
             },
             {
               "id": "b",
-              "text": "Replatforming"
+              "text": "Replatforming (Lift, Tinker & Shift): Migrar la aplicación a AWS con optimizaciones menores, como pasar a Amazon RDS, sin cambiar la arquitectura principal de la aplicación.",
+              "explanation": "Incorrecto: Replatforming realiza mejoras incrementales (como base de datos gestionada) pero no constituye un rediseño arquitectónico completo a serverless orientado a eventos, que es lo que el negocio requiere explícitamente."
             },
             {
               "id": "c",
-              "text": "Refactoring / Re-architecting"
+              "text": "Refactoring / Re-architecting: Rediseñar y reescribir completamente la aplicación para adoptar patrones nativos de la nube sin servidor y orientados a eventos usando AWS Lambda, Amazon EventBridge y Amazon SQS.",
+              "explanation": "Correcto: Refactoring/Re-architecting es la estrategia que implica un rediseño y reescritura significativos para aprovechar al máximo las capacidades nativas de la nube. Tiene el mayor costo inicial pero los mejores beneficios a largo plazo."
             },
             {
               "id": "d",
-              "text": "Repurchasing"
+              "text": "Repurchasing: Reemplazar la aplicación monolítica existente con un producto SaaS comercial que proporcione funcionalidad similar de forma nativa, como migrar de un CRM personalizado a Salesforce.",
+              "explanation": "Incorrecto: Repurchasing implica cambiar a un producto comercial diferente (SaaS), no rediseñar la aplicación existente para usar patrones serverless orientados a eventos como se requiere."
             }
           ]
         }
@@ -780,7 +796,8 @@
       "requiredChoices": 1,
       "correctAnswers": [
         "c"
-      ]
+      ],
+      "type": "single"
     },
     {
       "id": "q2-dms-sct",
@@ -792,19 +809,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC)."
+          "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC).",
+          "explanation": "Incorrect: AWS DMS is used for data migration, not for schema conversion in heterogeneous migrations. Applying SCT for CDC is also incorrect — SCT handles schema conversion, while DMS handles CDC replication. These roles are reversed."
         },
         {
           "id": "b",
-          "text": "Use o AWS SCT para converter o esquema do banco de dados, visualizações e procedimentos armazenados para PostgreSQL. Em seguida, use o AWS DMS com carga total e Change Data Capture (CDC) para replicar os dados continuamente."
+          "text": "Use o AWS SCT para converter o esquema do banco de dados, visualizações e procedimentos armazenados para PostgreSQL. Em seguida, use o AWS DMS com carga total e Change Data Capture (CDC) para replicar os dados continuamente.",
+          "explanation": "Correct: In a heterogeneous migration (e.g., Oracle to PostgreSQL), AWS SCT converts the schema, stored procedures, and views. AWS DMS then performs the full load followed by CDC to continuously replicate changes, ensuring minimal downtime."
         },
         {
           "id": "c",
-          "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema."
+          "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema.",
+          "explanation": "Incorrect: The roles of DMS and SCT are reversed. SCT is not a data replication tool — it only converts schemas. DMS handles data replication (including CDC), not schema conversion."
         },
         {
           "id": "d",
-          "text": "Use o AWS Application Migration Service (MGN) para migrar a instância do banco de dados bloco por bloco com replicação contínua."
+          "text": "Use o AWS Application Migration Service (MGN) para migrar a instância do banco de dados bloco por bloco com replicação contínua.",
+          "explanation": "Incorrect: AWS Application Migration Service (MGN) is designed for server/OS-level lift-and-shift replication, not for database schema conversion or heterogeneous database migrations. It does not understand SQL or database schemas."
         }
       ],
       "translations": {
@@ -815,19 +836,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use AWS DMS for homogeneous migration and apply AWS SCT for Change Data Capture (CDC)."
+              "text": "Use AWS DMS for homogeneous migration and apply AWS SCT for Change Data Capture (CDC).",
+              "explanation": "Incorrect: AWS DMS is used for data migration, not for schema conversion in heterogeneous migrations. Applying SCT for CDC is also incorrect — SCT handles schema conversion, while DMS handles CDC replication. These roles are reversed."
             },
             {
               "id": "b",
-              "text": "Use AWS SCT to convert the database schema, views, and stored procedures to PostgreSQL. Then use AWS DMS with full load and Change Data Capture (CDC) to replicate the data continuously."
+              "text": "Use AWS SCT to convert the database schema, views, and stored procedures to PostgreSQL. Then use AWS DMS with full load and Change Data Capture (CDC) to replicate the data continuously.",
+              "explanation": "Correct: In a heterogeneous migration (e.g., Oracle to PostgreSQL), AWS SCT converts the schema, stored procedures, and views. AWS DMS then performs the full load followed by CDC to continuously replicate changes, ensuring minimal downtime."
             },
             {
               "id": "c",
-              "text": "Use AWS SCT to replicate the data and AWS DMS for schema conversion."
+              "text": "Use AWS SCT to replicate the data and AWS DMS for schema conversion.",
+              "explanation": "Incorrect: The roles of DMS and SCT are reversed. SCT is not a data replication tool — it only converts schemas. DMS handles data replication (including CDC), not schema conversion."
             },
             {
               "id": "d",
-              "text": "Use AWS Application Migration Service (MGN) to migrate the database instance block-by-block with continuous replication."
+              "text": "Use AWS Application Migration Service (MGN) to migrate the database instance block-by-block with continuous replication.",
+              "explanation": "Incorrect: AWS Application Migration Service (MGN) is designed for server/OS-level lift-and-shift replication, not for database schema conversion or heterogeneous database migrations. It does not understand SQL or database schemas."
             }
           ]
         },
@@ -838,19 +863,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC)."
+              "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC).",
+              "explanation": "Incorreto: O AWS DMS é usado para migração de dados, não para conversão de esquema em migrações heterogêneas. Usar o SCT para CDC também está incorreto — o SCT converte esquemas e o DMS realiza a replicação CDC. Os papéis estão invertidos."
             },
             {
               "id": "b",
-              "text": "Use o AWS SCT para converter o esquema do banco de dados, visualizações e procedimentos armazenados para PostgreSQL. Em seguida, use o AWS DMS com carga total e Change Data Capture (CDC) para replicar os dados continuamente."
+              "text": "Use o AWS SCT para converter o esquema do banco de dados, visualizações e procedimentos armazenados para PostgreSQL. Em seguida, use o AWS DMS com carga total e Change Data Capture (CDC) para replicar os dados continuamente.",
+              "explanation": "Correto: Em uma migração heterogênea (ex.: Oracle para PostgreSQL), o AWS SCT converte o esquema, procedures e views. O AWS DMS realiza a carga completa seguida de CDC para replicar alterações continuamente, garantindo downtime mínimo."
             },
             {
               "id": "c",
-              "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema."
+              "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema.",
+              "explanation": "Incorreto: Os papéis do DMS e SCT estão invertidos. O SCT não é uma ferramenta de replicação de dados — ele apenas converte esquemas. O DMS lida com a replicação de dados (incluindo CDC), não com conversão de esquemas."
             },
             {
               "id": "d",
-              "text": "Use o AWS Application Migration Service (MGN) para migrar a instância do banco de dados bloco por bloco com replicação contínua."
+              "text": "Use o AWS Application Migration Service (MGN) para migrar a instância do banco de dados bloco por bloco com replicação contínua.",
+              "explanation": "Incorreto: O AWS Application Migration Service (MGN) foi projetado para replicação lift-and-shift em nível de servidor/SO, não para conversão de esquemas de banco de dados ou migrações heterogêneas. Ele não entende SQL ou esquemas de banco de dados."
             }
           ]
         },
@@ -861,19 +890,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Utilice AWS DMS para una migración homogénea y aplique AWS SCT para Change Data Capture (CDC)."
+              "text": "Utilice AWS DMS para una migración homogénea y aplique AWS SCT para Change Data Capture (CDC).",
+              "explanation": "Incorrecto: AWS DMS se utiliza para la migración de datos, no para la conversión de esquemas en migraciones heterogéneas. Usar SCT para CDC también es incorrecto: SCT convierte esquemas y DMS gestiona la replicación CDC. Los roles están invertidos."
             },
             {
               "id": "b",
-              "text": "Utilice AWS SCT para convertir el esquema de la base de datos, las vistas y los procedimientos almacenados a PostgreSQL. Luego, utilice AWS DMS con carga completa y Change Data Capture (CDC) para replicar los datos de forma continua."
+              "text": "Utilice AWS SCT para convertir el esquema de la base de datos, las vistas y los procedimientos almacenados a PostgreSQL. Luego, utilice AWS DMS con carga completa y Change Data Capture (CDC) para replicar los datos de forma continua.",
+              "explanation": "Correcto: En una migración heterogénea (p. ej., Oracle a PostgreSQL), AWS SCT convierte el esquema, procedimientos almacenados y vistas. Luego, AWS DMS realiza la carga completa seguida de CDC para replicar cambios continuamente, garantizando un tiempo de inactividad mínimo."
             },
             {
               "id": "c",
-              "text": "Utilice AWS SCT para replicar los datos y AWS DMS para la conversión de esquemas."
+              "text": "Utilice AWS SCT para replicar los datos y AWS DMS para la conversión de esquemas.",
+              "explanation": "Incorrecto: Los roles de DMS y SCT están invertidos. SCT no es una herramienta de replicación de datos: solo convierte esquemas. DMS gestiona la replicación de datos (incluido CDC), no la conversión de esquemas."
             },
             {
               "id": "d",
-              "text": "Utilice AWS Application Migration Service (MGN) para migrar la instancia de la base de datos bloque por bloque con replicación continua."
+              "text": "Utilice AWS Application Migration Service (MGN) para migrar la instancia de la base de datos bloque por bloque con replicación continua.",
+              "explanation": "Incorrecto: AWS Application Migration Service (MGN) está diseñado para la replicación lift-and-shift a nivel de servidor/SO, no para la conversión de esquemas de bases de datos ni para migraciones de bases de datos heterogéneas."
             }
           ]
         }
@@ -887,7 +920,8 @@
       "requiredChoices": 1,
       "correctAnswers": [
         "b"
-      ]
+      ],
+      "type": "single"
     },
     {
       "id": "q3-storage-gateway",
@@ -898,19 +932,23 @@
       "options": [
         {
           "id": "a",
-          "text": "File Gateway"
+          "text": "AWS Storage Gateway – File Gateway: Presents an NFS/SMB interface to on-premises applications and stores files as objects in Amazon S3, making full dataset copies available in the cloud for object-based workloads.",
+          "explanation": "Incorrect: File Gateway provides file-based (NFS/SMB) access to S3 for unstructured data. It is not designed for block-level iSCSI SAN extension, and the primary dataset remains in S3, not accessible via SAN protocols."
         },
         {
           "id": "b",
-          "text": "Volume Gateway - Stored Mode"
+          "text": "AWS Storage Gateway – Volume Gateway (Stored Mode): Stores the complete primary dataset locally on-premises and asynchronously backs up the entire volume as EBS snapshots to Amazon S3, keeping all data on-premises.",
+          "explanation": "Incorrect: Stored Mode keeps the entire primary dataset on-premises and only uploads snapshots to AWS for backup. It does not meet the requirement of keeping only frequently accessed data locally while the full dataset resides in the cloud."
         },
         {
           "id": "c",
-          "text": "Volume Gateway - Cached Mode"
+          "text": "AWS Storage Gateway – Volume Gateway (Cached Mode): Stores the full primary dataset in Amazon S3 while caching only the most recently accessed data locally on-premises via an iSCSI interface to the existing SAN infrastructure.",
+          "explanation": "Correct: Cached Mode is precisely designed for this scenario — it stores all primary data in AWS (Amazon S3/EBS) and uses local on-premises storage only as a cache for frequently accessed data. This minimizes on-premises storage requirements while maintaining low-latency access to hot data."
         },
         {
           "id": "d",
-          "text": "Tape Gateway"
+          "text": "AWS Storage Gateway – Tape Gateway: Emulates physical tape libraries using a VTL interface, allowing backup applications to send data to virtual tapes stored in Amazon S3 and archived to Amazon S3 Glacier.",
+          "explanation": "Incorrect: Tape Gateway is designed for tape-based backup workflows and archival, not for extending block-level SAN storage to the cloud with local caching of frequently accessed data."
         }
       ],
       "translations": {
@@ -921,19 +959,23 @@
           "options": [
             {
               "id": "a",
-              "text": "File Gateway"
+              "text": "AWS Storage Gateway – File Gateway: Presents an NFS/SMB interface to on-premises applications and stores files as objects in Amazon S3, making full dataset copies available in the cloud for object-based workloads.",
+              "explanation": "Incorrect: File Gateway provides file-based (NFS/SMB) access to S3 for unstructured data. It is not designed for block-level iSCSI SAN extension, and the primary dataset remains in S3, not accessible via SAN protocols."
             },
             {
               "id": "b",
-              "text": "Volume Gateway - Stored Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Stored Mode): Stores the complete primary dataset locally on-premises and asynchronously backs up the entire volume as EBS snapshots to Amazon S3, keeping all data on-premises.",
+              "explanation": "Incorrect: Stored Mode keeps the entire primary dataset on-premises and only uploads snapshots to AWS for backup. It does not meet the requirement of keeping only frequently accessed data locally while the full dataset resides in the cloud."
             },
             {
               "id": "c",
-              "text": "Volume Gateway - Cached Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Cached Mode): Stores the full primary dataset in Amazon S3 while caching only the most recently accessed data locally on-premises via an iSCSI interface to the existing SAN infrastructure.",
+              "explanation": "Correct: Cached Mode is precisely designed for this scenario — it stores all primary data in AWS (Amazon S3/EBS) and uses local on-premises storage only as a cache for frequently accessed data. This minimizes on-premises storage requirements while maintaining low-latency access to hot data."
             },
             {
               "id": "d",
-              "text": "Tape Gateway"
+              "text": "AWS Storage Gateway – Tape Gateway: Emulates physical tape libraries using a VTL interface, allowing backup applications to send data to virtual tapes stored in Amazon S3 and archived to Amazon S3 Glacier.",
+              "explanation": "Incorrect: Tape Gateway is designed for tape-based backup workflows and archival, not for extending block-level SAN storage to the cloud with local caching of frequently accessed data."
             }
           ]
         },
@@ -944,19 +986,23 @@
           "options": [
             {
               "id": "a",
-              "text": "File Gateway"
+              "text": "AWS Storage Gateway – File Gateway: Apresenta uma interface NFS/SMB para aplicações on-premises e armazena arquivos como objetos no Amazon S3, disponibilizando cópias completas dos dados na nuvem para workloads baseadas em objetos.",
+              "explanation": "Incorreto: O File Gateway fornece acesso baseado em arquivos (NFS/SMB) ao S3 para dados não estruturados. Não é projetado para extensão de SAN em nível de bloco via iSCSI, e o conjunto de dados primário permanece no S3."
             },
             {
               "id": "b",
-              "text": "Volume Gateway - Stored Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Modo Stored): Armazena o conjunto de dados primário completo localmente on-premises e faz backup assíncrono de todo o volume como snapshots EBS para o Amazon S3.",
+              "explanation": "Incorreto: O Modo Stored mantém todo o conjunto de dados primário on-premises e envia apenas snapshots para a AWS como backup. Não atende ao requisito de manter apenas dados frequentemente acessados localmente enquanto o conjunto completo reside na nuvem."
             },
             {
               "id": "c",
-              "text": "Volume Gateway - Cached Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Modo Cached): Armazena o conjunto de dados primário completo no Amazon S3 e mantém em cache apenas os dados mais recentemente acessados localmente via interface iSCSI para a infraestrutura SAN existente.",
+              "explanation": "Correto: O Modo Cached foi projetado exatamente para este cenário — armazena todos os dados primários na AWS (Amazon S3/EBS) e usa armazenamento local apenas como cache para dados frequentemente acessados, minimizando o armazenamento on-premises."
             },
             {
               "id": "d",
-              "text": "Tape Gateway"
+              "text": "AWS Storage Gateway – Tape Gateway: Emula bibliotecas de fitas físicas usando uma interface VTL, permitindo que aplicações de backup enviem dados para fitas virtuais armazenadas no Amazon S3 e arquivadas no Amazon S3 Glacier.",
+              "explanation": "Incorreto: O Tape Gateway é projetado para fluxos de trabalho de backup em fita e arquivamento, não para estender armazenamento SAN de nível de bloco para a nuvem com cache local de dados frequentemente acessados."
             }
           ]
         },
@@ -967,19 +1013,23 @@
           "options": [
             {
               "id": "a",
-              "text": "File Gateway"
+              "text": "AWS Storage Gateway – File Gateway: Presenta una interfaz NFS/SMB a las aplicaciones locales y almacena archivos como objetos en Amazon S3, poniendo copias completas del conjunto de datos a disposición en la nube.",
+              "explanation": "Incorrecto: File Gateway proporciona acceso basado en archivos (NFS/SMB) a S3 para datos no estructurados. No está diseñado para la extensión de SAN a nivel de bloque iSCSI, y el conjunto de datos principal permanece en S3."
             },
             {
               "id": "b",
-              "text": "Volume Gateway - Stored Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Modo Stored): Almacena el conjunto de datos principal completo localmente en las instalaciones y realiza copias de seguridad asíncronas del volumen completo como instantáneas EBS en Amazon S3.",
+              "explanation": "Incorrecto: El modo Stored mantiene todo el conjunto de datos principal en las instalaciones y solo carga instantáneas a AWS como copia de seguridad. No cumple con el requisito de mantener solo los datos de acceso frecuente localmente mientras el conjunto completo reside en la nube."
             },
             {
               "id": "c",
-              "text": "Volume Gateway - Cached Mode"
+              "text": "AWS Storage Gateway – Volume Gateway (Modo Cached): Almacena el conjunto de datos principal completo en Amazon S3 y almacena en caché solo los datos a los que se accede con mayor frecuencia localmente mediante una interfaz iSCSI a la infraestructura SAN existente.",
+              "explanation": "Correcto: El modo Cached está diseñado precisamente para este escenario: almacena todos los datos primarios en AWS (Amazon S3/EBS) y usa el almacenamiento local solo como caché para los datos de acceso frecuente, minimizando los requisitos de almacenamiento local."
             },
             {
               "id": "d",
-              "text": "Tape Gateway"
+              "text": "AWS Storage Gateway – Tape Gateway: Emula bibliotecas de cintas físicas mediante una interfaz VTL, lo que permite que las aplicaciones de copia de seguridad envíen datos a cintas virtuales almacenadas en Amazon S3 y archivadas en Amazon S3 Glacier.",
+              "explanation": "Incorrecto: Tape Gateway está diseñado para flujos de trabajo de copia de seguridad en cinta y archivado, no para extender el almacenamiento SAN a nivel de bloques a la nube con almacenamiento en caché local de datos de acceso frecuente."
             }
           ]
         }
@@ -993,7 +1043,8 @@
       "requiredChoices": 1,
       "correctAnswers": [
         "c"
-      ]
+      ],
+      "type": "single"
     },
     {
       "id": "q4-mgn-vs-sms",
@@ -1005,19 +1056,23 @@
       "options": [
         {
           "id": "a",
-          "text": "AWS Server Migration Service (SMS)"
+          "text": "AWS Server Migration Service (SMS): An older AWS service that migrates on-premises VMware vSphere or Microsoft Hyper-V VMs to AWS by taking incremental snapshots and replicating them as AMIs.",
+          "explanation": "Incorrect: AWS SMS is a legacy service that has been deprecated in favor of AWS MGN. It supports only VMware and Hyper-V environments, not physical servers, and AWS recommends migrating to MGN for all new replication-based migrations."
         },
         {
           "id": "b",
-          "text": "AWS Application Migration Service (MGN)"
+          "text": "AWS Application Migration Service (MGN): Use the MGN agent to perform continuous block-level replication of physical and virtual servers directly into AWS, with automated machine conversion and non-disruptive testing.",
+          "explanation": "Correct: AWS MGN is the primary AWS migration service for lift-and-shift at scale. It supports physical, VMware, Hyper-V, and other platforms, performs continuous block-level replication minimizing RPO, and allows non-disruptive cutover testing — making it ideal for 500 mixed servers."
         },
         {
           "id": "c",
-          "text": "AWS DataSync"
+          "text": "AWS DataSync: A managed data transfer service that accelerates the movement of large amounts of file and object data between on-premises storage (NFS, SMB, HDFS) and AWS storage services like Amazon S3 and EFS.",
+          "explanation": "Incorrect: AWS DataSync is a file/object data transfer service, not a server migration tool. It cannot replicate operating systems, applications, or block-level server data for lift-and-shift migrations."
         },
         {
           "id": "d",
-          "text": "AWS Application Discovery Service (ADS)"
+          "text": "AWS Application Discovery Service (ADS): Collects data about on-premises servers including configuration, performance metrics, and network dependencies to help plan migrations, but does not perform any actual data replication.",
+          "explanation": "Incorrect: AWS Application Discovery Service is a discovery and planning tool, not a migration execution tool. It gathers metadata about existing servers to inform migration planning but cannot move any workloads to AWS."
         }
       ],
       "translations": {
@@ -1028,19 +1083,23 @@
           "options": [
             {
               "id": "a",
-              "text": "AWS Server Migration Service (SMS)"
+              "text": "AWS Server Migration Service (SMS): An older AWS service that migrates on-premises VMware vSphere or Microsoft Hyper-V VMs to AWS by taking incremental snapshots and replicating them as AMIs.",
+              "explanation": "Incorrect: AWS SMS is a legacy service that has been deprecated in favor of AWS MGN. It supports only VMware and Hyper-V environments, not physical servers, and AWS recommends migrating to MGN for all new replication-based migrations."
             },
             {
               "id": "b",
-              "text": "AWS Application Migration Service (MGN)"
+              "text": "AWS Application Migration Service (MGN): Use the MGN agent to perform continuous block-level replication of physical and virtual servers directly into AWS, with automated machine conversion and non-disruptive testing.",
+              "explanation": "Correct: AWS MGN is the primary AWS migration service for lift-and-shift at scale. It supports physical, VMware, Hyper-V, and other platforms, performs continuous block-level replication minimizing RPO, and allows non-disruptive cutover testing — making it ideal for 500 mixed servers."
             },
             {
               "id": "c",
-              "text": "AWS DataSync"
+              "text": "AWS DataSync: A managed data transfer service that accelerates the movement of large amounts of file and object data between on-premises storage (NFS, SMB, HDFS) and AWS storage services like Amazon S3 and EFS.",
+              "explanation": "Incorrect: AWS DataSync is a file/object data transfer service, not a server migration tool. It cannot replicate operating systems, applications, or block-level server data for lift-and-shift migrations."
             },
             {
               "id": "d",
-              "text": "AWS Application Discovery Service (ADS)"
+              "text": "AWS Application Discovery Service (ADS): Collects data about on-premises servers including configuration, performance metrics, and network dependencies to help plan migrations, but does not perform any actual data replication.",
+              "explanation": "Incorrect: AWS Application Discovery Service is a discovery and planning tool, not a migration execution tool. It gathers metadata about existing servers to inform migration planning but cannot move any workloads to AWS."
             }
           ]
         },
@@ -1051,19 +1110,23 @@
           "options": [
             {
               "id": "a",
-              "text": "AWS Server Migration Service (SMS)"
+              "text": "AWS Server Migration Service (SMS): Um serviço legado da AWS que migra VMs VMware vSphere ou Microsoft Hyper-V on-premises para a AWS criando snapshots incrementais e replicando-os como AMIs.",
+              "explanation": "Incorreto: O AWS SMS é um serviço legado que foi descontinuado em favor do AWS MGN. Ele suporta apenas ambientes VMware e Hyper-V, não servidores físicos. A AWS recomenda migrar para o MGN em todas as novas migrações baseadas em replicação."
             },
             {
               "id": "b",
-              "text": "AWS Application Migration Service (MGN)"
+              "text": "AWS Application Migration Service (MGN): Usar o agente do MGN para realizar replicação contínua em nível de bloco de servidores físicos e virtuais diretamente para a AWS, com conversão automatizada de máquinas e testes sem interrupção.",
+              "explanation": "Correto: O AWS MGN é o principal serviço de migração da AWS para lift-and-shift em escala. Suporta servidores físicos, VMware, Hyper-V e outras plataformas, realiza replicação contínua em nível de bloco minimizando o RPO e permite testes de corte sem interrupção — ideal para 500 servidores mistos."
             },
             {
               "id": "c",
-              "text": "AWS DataSync"
+              "text": "AWS DataSync: Um serviço gerenciado de transferência de dados que acelera o movimento de grandes volumes de dados de arquivos e objetos entre armazenamento on-premises (NFS, SMB, HDFS) e serviços de armazenamento da AWS.",
+              "explanation": "Incorreto: O AWS DataSync é um serviço de transferência de dados de arquivos/objetos, não uma ferramenta de migração de servidores. Ele não pode replicar sistemas operacionais, aplicações ou dados em nível de bloco para migrações lift-and-shift."
             },
             {
               "id": "d",
-              "text": "AWS Application Discovery Service (ADS)"
+              "text": "AWS Application Discovery Service (ADS): Coleta dados sobre servidores on-premises incluindo configuração, métricas de desempenho e dependências de rede para ajudar no planejamento de migrações, mas não realiza qualquer replicação de dados.",
+              "explanation": "Incorreto: O AWS Application Discovery Service é uma ferramenta de descoberta e planejamento, não de execução de migração. Coleta metadados sobre servidores existentes para informar o planejamento de migração, mas não pode mover nenhuma carga de trabalho para a AWS."
             }
           ]
         },
@@ -1074,19 +1137,23 @@
           "options": [
             {
               "id": "a",
-              "text": "AWS Server Migration Service (SMS)"
+              "text": "AWS Server Migration Service (SMS): Un servicio heredado de AWS que migra máquinas virtuales VMware vSphere o Microsoft Hyper-V locales a AWS tomando instantáneas incrementales y replicándolas como AMIs.",
+              "explanation": "Incorrecto: AWS SMS es un servicio heredado que ha quedado obsoleto en favor de AWS MGN. Solo admite entornos VMware e Hyper-V, no servidores físicos. AWS recomienda usar MGN para todas las nuevas migraciones basadas en replicación."
             },
             {
               "id": "b",
-              "text": "AWS Application Migration Service (MGN)"
+              "text": "AWS Application Migration Service (MGN): Usar el agente MGN para realizar la replicación continua a nivel de bloque de servidores físicos y virtuales directamente en AWS, con conversión automatizada de máquinas y pruebas sin interrupciones.",
+              "explanation": "Correcto: AWS MGN es el principal servicio de migración de AWS para lift-and-shift a escala. Admite servidores físicos, VMware, Hyper-V y otras plataformas, realiza replicación continua a nivel de bloque minimizando el RPO y permite pruebas de transición sin interrupciones, lo que lo hace ideal para 500 servidores mixtos."
             },
             {
               "id": "c",
-              "text": "AWS DataSync"
+              "text": "AWS DataSync: Un servicio administrado de transferencia de datos que acelera el movimiento de grandes cantidades de datos de archivos y objetos entre almacenamiento local (NFS, SMB, HDFS) y servicios de almacenamiento de AWS.",
+              "explanation": "Incorrecto: AWS DataSync es un servicio de transferencia de datos de archivos/objetos, no una herramienta de migración de servidores. No puede replicar sistemas operativos, aplicaciones ni datos a nivel de bloque para migraciones lift-and-shift."
             },
             {
               "id": "d",
-              "text": "AWS Application Discovery Service (ADS)"
+              "text": "AWS Application Discovery Service (ADS): Recopila datos sobre servidores locales, incluida la configuración, las métricas de rendimiento y las dependencias de red para ayudar a planificar las migraciones, pero no realiza ninguna replicación de datos.",
+              "explanation": "Incorrecto: AWS Application Discovery Service es una herramienta de descubrimiento y planificación, no de ejecución de migraciones. Recopila metadatos sobre los servidores existentes para informar la planificación de la migración, pero no puede mover cargas de trabajo a AWS."
             }
           ]
         }
@@ -1100,7 +1167,8 @@
       "requiredChoices": 1,
       "correctAnswers": [
         "b"
-      ]
+      ],
+      "type": "single"
     },
     {
       "id": "q5-snowball-datasync",
@@ -1112,19 +1180,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Use o AWS Snowmobile para transferir os 10 PB de dados. Use o AWS DataSync pela internet para transferir alterações incrementais."
+          "text": "Use o AWS Snowmobile para transferir os 10 PB de dados. Use o AWS DataSync pela internet para transferir alterações incrementais.",
+          "explanation": "Incorrect: AWS Snowmobile is designed for exabyte-scale migrations (up to 100 PB per vehicle). For 10 PB, a fleet of Snowball Edge devices is more practical and cost-effective. Additionally, using DataSync over a limited 1 Gbps internet connection for incremental changes after an offline bulk transfer is a valid pattern."
         },
         {
           "id": "b",
-          "text": "Use uma frota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) em paralelo para transferir os 10 PB. Configure o AWS DataSync para sincronizar alterações incrementais."
+          "text": "Use uma frota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) em paralelo para transferir os 10 PB. Configure o AWS DataSync para sincronizar alterações incrementais.",
+          "explanation": "Correct: For 10 PB with a 1 Gbps internet connection, using multiple Snowball Edge Storage Optimized devices in parallel is the fastest offline data transfer method. AWS DataSync is then used over the existing internet connection for ongoing incremental synchronization, providing a complete and practical migration solution."
         },
         {
           "id": "c",
-          "text": "Use o AWS Storage Gateway no File Mode para transmitir os dados continuamente. Use o AWS Direct Connect para aumentar a velocidade de transferência."
+          "text": "Use o AWS Storage Gateway no File Mode para transmitir os dados continuamente. Use o AWS Direct Connect para aumentar a velocidade de transferência.",
+          "explanation": "Incorrect: AWS Storage Gateway in File Mode is designed for hybrid storage access and gradual data migration, not for bulk transfer of 10 PB. Even with Direct Connect, streaming 10 PB over network connections would take an impractically long time compared to physical device shipment."
         },
         {
           "id": "d",
-          "text": "Use o AWS Application Migration Service (MGN) para sincronizar alterações em nível de bloco dos servidores de armazenamento para a AWS por uma conexão VPN."
+          "text": "Use o AWS Application Migration Service (MGN) para sincronizar alterações em nível de bloco dos servidores de armazenamento para a AWS por uma conexão VPN.",
+          "explanation": "Incorrect: AWS Application Migration Service (MGN) is a server replication tool for lift-and-shift migrations of compute workloads, not a storage data transfer service. It cannot be used to transfer 10 PB of storage data from a data center to Amazon S3."
         }
       ],
       "translations": {
@@ -1135,19 +1207,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use AWS Snowmobile to transfer the 10 PB of data. Use AWS DataSync over the internet to transfer incremental changes."
+              "text": "Use AWS Snowmobile to transfer the 10 PB of data. Use AWS DataSync over the internet to transfer incremental changes.",
+              "explanation": "Incorrect: AWS Snowmobile is designed for exabyte-scale migrations (up to 100 PB per vehicle). For 10 PB, a fleet of Snowball Edge devices is more practical and cost-effective. Additionally, using DataSync over a limited 1 Gbps internet connection for incremental changes after an offline bulk transfer is a valid pattern."
             },
             {
               "id": "b",
-              "text": "Use a fleet of AWS Snowball Edge Storage Optimized (210 TB NVMe) devices in parallel to transfer the 10 PB. Set up AWS DataSync to synchronize incremental changes."
+              "text": "Use a fleet of AWS Snowball Edge Storage Optimized (210 TB NVMe) devices in parallel to transfer the 10 PB. Set up AWS DataSync to synchronize incremental changes.",
+              "explanation": "Correct: For 10 PB with a 1 Gbps internet connection, using multiple Snowball Edge Storage Optimized devices in parallel is the fastest offline data transfer method. AWS DataSync is then used over the existing internet connection for ongoing incremental synchronization, providing a complete and practical migration solution."
             },
             {
               "id": "c",
-              "text": "Use AWS Storage Gateway in File Mode to stream the data continuously. Use AWS Direct Connect to increase the transfer speed."
+              "text": "Use AWS Storage Gateway in File Mode to stream the data continuously. Use AWS Direct Connect to increase the transfer speed.",
+              "explanation": "Incorrect: AWS Storage Gateway in File Mode is designed for hybrid storage access and gradual data migration, not for bulk transfer of 10 PB. Even with Direct Connect, streaming 10 PB over network connections would take an impractically long time compared to physical device shipment."
             },
             {
               "id": "d",
-              "text": "Use AWS Application Migration Service (MGN) to sync block-level changes of the storage servers to AWS over a VPN connection."
+              "text": "Use AWS Application Migration Service (MGN) to sync block-level changes of the storage servers to AWS over a VPN connection.",
+              "explanation": "Incorrect: AWS Application Migration Service (MGN) is a server replication tool for lift-and-shift migrations of compute workloads, not a storage data transfer service. It cannot be used to transfer 10 PB of storage data from a data center to Amazon S3."
             }
           ]
         },
@@ -1158,19 +1234,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use o AWS Snowmobile para transferir os 10 PB de dados. Use o AWS DataSync pela internet para transferir alterações incrementais."
+              "text": "Use o AWS Snowmobile para transferir os 10 PB de dados. Use o AWS DataSync pela internet para transferir alterações incrementais.",
+              "explanation": "Incorreto: O AWS Snowmobile foi projetado para migrações em escala de exabytes (até 100 PB por veículo). Para 10 PB, uma frota de dispositivos Snowball Edge é mais prática e econômica. Usar o DataSync via internet de 1 Gbps para alterações incrementais após a transferência offline em massa é um padrão válido."
             },
             {
               "id": "b",
-              "text": "Use uma frota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) em paralelo para transferir os 10 PB. Configure o AWS DataSync para sincronizar alterações incrementais."
+              "text": "Use uma frota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) em paralelo para transferir os 10 PB. Configure o AWS DataSync para sincronizar alterações incrementais.",
+              "explanation": "Correto: Para 10 PB com conexão de internet de 1 Gbps, usar vários dispositivos Snowball Edge Storage Optimized em paralelo é o método de transferência offline mais rápido. O AWS DataSync é então usado pela conexão de internet existente para sincronização incremental contínua, fornecendo uma solução de migração completa e prática."
             },
             {
               "id": "c",
-              "text": "Use o AWS Storage Gateway no File Mode para transmitir os dados continuamente. Use o AWS Direct Connect para aumentar a velocidade de transferência."
+              "text": "Use o AWS Storage Gateway no File Mode para transmitir os dados continuamente. Use o AWS Direct Connect para aumentar a velocidade de transferência.",
+              "explanation": "Incorreto: O AWS Storage Gateway no Modo File é projetado para acesso de armazenamento híbrido e migração gradual de dados, não para transferência em massa de 10 PB. Mesmo com o Direct Connect, transmitir 10 PB via rede levaria um tempo impraticavelmente longo em comparação com o envio físico de dispositivos."
             },
             {
               "id": "d",
-              "text": "Use o AWS Application Migration Service (MGN) para sincronizar alterações em nível de bloco dos servidores de armazenamento para a AWS por uma conexão VPN."
+              "text": "Use o AWS Application Migration Service (MGN) para sincronizar alterações em nível de bloco dos servidores de armazenamento para a AWS por uma conexão VPN.",
+              "explanation": "Incorreto: O AWS Application Migration Service (MGN) é uma ferramenta de replicação de servidores para migrações lift-and-shift de cargas de trabalho computacionais, não um serviço de transferência de dados de armazenamento. Não pode ser usado para transferir 10 PB de dados de armazenamento para o Amazon S3."
             }
           ]
         },
@@ -1181,19 +1261,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use AWS Snowmobile para transferir los 10 PB de datos. Use AWS DataSync por Internet para transferir cambios incrementales."
+              "text": "Use AWS Snowmobile para transferir los 10 PB de datos. Use AWS DataSync por Internet para transferir cambios incrementales.",
+              "explanation": "Incorrecto: AWS Snowmobile está diseñado para migraciones a escala de exabytes (hasta 100 PB por vehículo). Para 10 PB, una flota de dispositivos Snowball Edge es más práctica y económica. Usar DataSync a través de una conexión a internet limitada de 1 Gbps para los cambios incrementales tras una transferencia masiva sin conexión es un patrón válido."
             },
             {
               "id": "b",
-              "text": "Use una flota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) en paralelo para transferir los 10 PB. Configure AWS DataSync para sincronizar cambios incrementales."
+              "text": "Use una flota de dispositivos AWS Snowball Edge Storage Optimized (210 TB NVMe) en paralelo para transferir los 10 PB. Configure AWS DataSync para sincronizar cambios incrementales.",
+              "explanation": "Correcto: Para 10 PB con una conexión a internet de 1 Gbps, usar múltiples dispositivos Snowball Edge Storage Optimized en paralelo es el método de transferencia de datos sin conexión más rápido. AWS DataSync se usa luego a través de la conexión a internet existente para la sincronización incremental continua, proporcionando una solución de migración completa y práctica."
             },
             {
               "id": "c",
-              "text": "Use AWS Storage Gateway en File Mode para transmitir los datos continuamente. Use AWS Direct Connect para aumentar la velocidad de transferencia."
+              "text": "Use AWS Storage Gateway en File Mode para transmitir los datos continuamente. Use AWS Direct Connect para aumentar la velocidad de transferencia.",
+              "explanation": "Incorrecto: AWS Storage Gateway en modo File está diseñado para acceso a almacenamiento híbrido y migración gradual de datos, no para la transferencia masiva de 10 PB. Incluso con Direct Connect, transmitir 10 PB a través de conexiones de red llevaría un tiempo impráctico en comparación con el envío físico de dispositivos."
             },
             {
               "id": "d",
-              "text": "Use AWS Application Migration Service (MGN) para sincronizar cambios a nivel de bloque de los servidores de almacenamiento a AWS a través de una conexión VPN."
+              "text": "Use AWS Application Migration Service (MGN) para sincronizar cambios a nivel de bloque de los servidores de almacenamiento a AWS a través de una conexión VPN.",
+              "explanation": "Incorrecto: AWS Application Migration Service (MGN) es una herramienta de replicación de servidores para migraciones lift-and-shift de cargas de trabajo de computación, no un servicio de transferencia de datos de almacenamiento. No puede utilizarse para transferir 10 PB de datos de almacenamiento desde un centro de datos a Amazon S3."
             }
           ]
         }
@@ -1207,7 +1291,8 @@
       "requiredChoices": 1,
       "correctAnswers": [
         "b"
-      ]
+      ],
+      "type": "single"
     },
     {
       "id": "sap-sec-001",
@@ -1215,19 +1300,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Crie uma chave KMS Multi-Region em us-east-1 e replique-a para eu-west-1. Configure a política de chave da chave KMS para permitir explicitamente que as funções IAM específicas dos aplicativos executem kms:Decrypt, sem delegar ao usuário raiz."
+          "text": "Crie uma chave KMS Multi-Region em us-east-1 e replique-a para eu-west-1. Configure a política de chave da chave KMS para permitir explicitamente que as funções IAM específicas dos aplicativos executem kms:Decrypt, sem delegar ao usuário raiz.",
+          "explanation": "Incorrect: KMS aliases are metadata pointers, not keys themselves — they cannot be replicated to another region. Cross-region key access via IAM policies with aws:RequestedRegion conditions does not allow decryption of data encrypted in another region using the same key material."
         },
         {
           "id": "b",
-          "text": "Crie um alias para a chave KMS em us-east-1. Replique o alias para eu-west-1. Use políticas do IAM para conceder acesso entre regiões à chave KMS, restringindo o acesso usando a chave de condição aws:RequestedRegion."
+          "text": "Crie um alias para a chave KMS em us-east-1. Replique o alias para eu-west-1. Use políticas do IAM para conceder acesso entre regiões à chave KMS, restringindo o acesso usando a chave de condição aws:RequestedRegion.",
+          "explanation": "Incorrect: AWS Managed Keys cannot have their key material exported or copied. The key material for AWS Managed Keys is generated and managed entirely by AWS and is strictly non-exportable, making cross-region replication of the material impossible."
         },
         {
           "id": "c",
-          "text": "Use uma AWS Managed KMS Key em us-east-1 e copie o material de chave de suporte para eu-west-1. Confie na política de chave padrão que inerentemente impede que as políticas do IAM concedam acesso sem permissão explícita no nível do recurso."
+          "text": "Use uma AWS Managed KMS Key em us-east-1 e copie o material de chave de suporte para eu-west-1. Confie na política de chave padrão que inerentemente impede que as políticas do IAM concedam acesso sem permissão explícita no nível do recurso.",
+          "explanation": "Correct: AWS KMS Multi-Region Keys allow the same key material to be replicated to multiple regions under different ARNs but with the same key ID, enabling applications in eu-west-1 to decrypt data encrypted in us-east-1 without cross-region API calls. Restricting the key policy to specific IAM roles (not the root account) follows least-privilege best practices."
         },
         {
           "id": "d",
-          "text": "Crie uma chave KMS simétrica em us-east-1. Crie uma função AWS Lambda para replicar os dados criptografados e a DEK em texto simples (Plaintext) para eu-west-1. Armazene a DEK em texto simples no AWS Secrets Manager em eu-west-1."
+          "text": "Crie uma chave KMS simétrica em us-east-1. Crie uma função AWS Lambda para replicar os dados criptografados e a DEK em texto simples (Plaintext) para eu-west-1. Armazene a DEK em texto simples no AWS Secrets Manager em eu-west-1.",
+          "explanation": "Incorrect: Storing plaintext Data Encryption Keys (DEKs) in AWS Secrets Manager is a critical security anti-pattern. DEKs must never be stored in plaintext; they must always remain encrypted by the KMS Customer Master Key (CMK). This approach fundamentally violates envelope encryption principles."
         }
       ],
       "translations": {
@@ -1238,19 +1327,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Create a Multi-Region KMS key in us-east-1 and replicate it to eu-west-1. Configure the key policy of the KMS key to explicitly allow the specific IAM roles of the applications to perform kms:Decrypt, without delegating to the root user."
+              "text": "Create a Multi-Region KMS key in us-east-1 and replicate it to eu-west-1. Configure the key policy of the KMS key to explicitly allow the specific IAM roles of the applications to perform kms:Decrypt, without delegating to the root user.",
+              "explanation": "Incorrect: KMS aliases are metadata pointers, not keys themselves — they cannot be replicated to another region. Cross-region key access via IAM policies with aws:RequestedRegion conditions does not allow decryption of data encrypted in another region using the same key material."
             },
             {
               "id": "b",
-              "text": "Create an alias for the KMS key in us-east-1. Replicate the alias to eu-west-1. Use IAM policies to grant cross-region access to the KMS key, restricting access using the aws:RequestedRegion condition key."
+              "text": "Create an alias for the KMS key in us-east-1. Replicate the alias to eu-west-1. Use IAM policies to grant cross-region access to the KMS key, restricting access using the aws:RequestedRegion condition key.",
+              "explanation": "Incorrect: AWS Managed Keys cannot have their key material exported or copied. The key material for AWS Managed Keys is generated and managed entirely by AWS and is strictly non-exportable, making cross-region replication of the material impossible."
             },
             {
               "id": "c",
-              "text": "Use an AWS Managed KMS Key in us-east-1 and copy the backing key material to eu-west-1. Rely on the default key policy which inherently prevents IAM policies from granting access without explicit resource-level permission."
+              "text": "Use an AWS Managed KMS Key in us-east-1 and copy the backing key material to eu-west-1. Rely on the default key policy which inherently prevents IAM policies from granting access without explicit resource-level permission.",
+              "explanation": "Correct: AWS KMS Multi-Region Keys allow the same key material to be replicated to multiple regions under different ARNs but with the same key ID, enabling applications in eu-west-1 to decrypt data encrypted in us-east-1 without cross-region API calls. Restricting the key policy to specific IAM roles (not the root account) follows least-privilege best practices."
             },
             {
               "id": "d",
-              "text": "Create a symmetric KMS key in us-east-1. Create an AWS Lambda function to replicate the encrypted data and the Plaintext DEK to eu-west-1. Store the Plaintext DEK in AWS Secrets Manager in eu-west-1."
+              "text": "Create a symmetric KMS key in us-east-1. Create an AWS Lambda function to replicate the encrypted data and the Plaintext DEK to eu-west-1. Store the Plaintext DEK in AWS Secrets Manager in eu-west-1.",
+              "explanation": "Incorrect: Storing plaintext Data Encryption Keys (DEKs) in AWS Secrets Manager is a critical security anti-pattern. DEKs must never be stored in plaintext; they must always remain encrypted by the KMS Customer Master Key (CMK). This approach fundamentally violates envelope encryption principles."
             }
           ]
         },
@@ -1261,19 +1354,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Crie uma chave KMS Multi-Region em us-east-1 e replique-a para eu-west-1. Configure a política de chave da chave KMS para permitir explicitamente que as funções IAM específicas dos aplicativos executem kms:Decrypt, sem delegar ao usuário raiz."
+              "text": "Crie uma chave KMS Multi-Region em us-east-1 e replique-a para eu-west-1. Configure a política de chave da chave KMS para permitir explicitamente que as funções IAM específicas dos aplicativos executem kms:Decrypt, sem delegar ao usuário raiz.",
+              "explanation": "Incorreto: Aliases do KMS são ponteiros de metadados, não chaves — não podem ser replicados para outra região. O acesso entre regiões via políticas do IAM com a condição aws:RequestedRegion não permite descriptografar dados criptografados em outra região com o mesmo material de chave."
             },
             {
               "id": "b",
-              "text": "Crie um alias para a chave KMS em us-east-1. Replique o alias para eu-west-1. Use políticas do IAM para conceder acesso entre regiões à chave KMS, restringindo o acesso usando a chave de condição aws:RequestedRegion."
+              "text": "Crie um alias para a chave KMS em us-east-1. Replique o alias para eu-west-1. Use políticas do IAM para conceder acesso entre regiões à chave KMS, restringindo o acesso usando a chave de condição aws:RequestedRegion.",
+              "explanation": "Incorreto: As Chaves Gerenciadas pela AWS não podem ter seu material de chave exportado ou copiado. O material de chave das AWS Managed Keys é gerado e gerenciado inteiramente pela AWS e é estritamente não exportável, tornando a replicação entre regiões impossível."
             },
             {
               "id": "c",
-              "text": "Use uma AWS Managed KMS Key em us-east-1 e copie o material de chave de suporte para eu-west-1. Confie na política de chave padrão que inerentemente impede que as políticas do IAM concedam acesso sem permissão explícita no nível do recurso."
+              "text": "Use uma AWS Managed KMS Key em us-east-1 e copie o material de chave de suporte para eu-west-1. Confie na política de chave padrão que inerentemente impede que as políticas do IAM concedam acesso sem permissão explícita no nível do recurso.",
+              "explanation": "Correto: As Chaves Multi-Region do AWS KMS permitem que o mesmo material de chave seja replicado para múltiplas regiões com diferentes ARNs mas com o mesmo ID de chave, permitindo que aplicações em eu-west-1 descriptografem dados criptografados em us-east-1 sem chamadas de API entre regiões. Restringir a política de chave a roles IAM específicas segue as melhores práticas de privilégio mínimo."
             },
             {
               "id": "d",
-              "text": "Crie uma chave KMS simétrica em us-east-1. Crie uma função AWS Lambda para replicar os dados criptografados e a DEK em texto simples (Plaintext) para eu-west-1. Armazene a DEK em texto simples no AWS Secrets Manager em eu-west-1."
+              "text": "Crie uma chave KMS simétrica em us-east-1. Crie uma função AWS Lambda para replicar os dados criptografados e a DEK em texto simples (Plaintext) para eu-west-1. Armazene a DEK em texto simples no AWS Secrets Manager em eu-west-1.",
+              "explanation": "Incorreto: Armazenar Data Encryption Keys (DEKs) em texto simples no AWS Secrets Manager é um antipadrão crítico de segurança. As DEKs nunca devem ser armazenadas em texto simples — devem sempre permanecer criptografadas pela Customer Master Key (CMK) do KMS. Essa abordagem viola fundamentalmente os princípios de criptografia de envelope."
             }
           ]
         },
@@ -1284,19 +1381,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Cree una clave KMS de múltiples regiones en us-east-1 y replíquela en eu-west-1. Configure la política de clave de la clave KMS para permitir explícitamente que los roles de IAM específicos de las aplicaciones realicen kms:Decrypt, sin delegar al usuario raíz."
+              "text": "Cree una clave KMS de múltiples regiones en us-east-1 y replíquela en eu-west-1. Configure la política de clave de la clave KMS para permitir explícitamente que los roles de IAM específicos de las aplicaciones realicen kms:Decrypt, sin delegar al usuario raíz.",
+              "explanation": "Incorrecto: Los alias de KMS son punteros de metadatos, no claves en sí: no se pueden replicar a otra región. El acceso a claves entre regiones mediante políticas de IAM con condiciones aws:RequestedRegion no permite descifrar datos cifrados en otra región con el mismo material de clave."
             },
             {
               "id": "b",
-              "text": "Cree un alias para la clave KMS en us-east-1. Replique el alias en eu-west-1. Utilice políticas de IAM para otorgar acceso entre regiones a la clave KMS, restringiendo el acceso mediante la clave de condición aws:RequestedRegion."
+              "text": "Cree un alias para la clave KMS en us-east-1. Replique el alias en eu-west-1. Utilice políticas de IAM para otorgar acceso entre regiones a la clave KMS, restringiendo el acceso mediante la clave de condición aws:RequestedRegion.",
+              "explanation": "Incorrecto: Las claves administradas por AWS no pueden tener su material de clave exportado o copiado. El material de clave de las AWS Managed Keys es generado y gestionado íntegramente por AWS y es estrictamente no exportable, lo que hace imposible la replicación entre regiones."
             },
             {
               "id": "c",
-              "text": "Utilice una AWS Managed KMS Key en us-east-1 y copie el material de la clave de respaldo a eu-west-1. Confíe en la política de clave predeterminada que inherentemente impide que las políticas de IAM otorguen acceso sin permiso explícito a nivel de recurso."
+              "text": "Utilice una AWS Managed KMS Key en us-east-1 y copie el material de la clave de respaldo a eu-west-1. Confíe en la política de clave predeterminada que inherentemente impide que las políticas de IAM otorguen acceso sin permiso explícito a nivel de recurso.",
+              "explanation": "Correcto: Las claves de múltiples regiones de AWS KMS permiten que el mismo material de clave se replique en varias regiones con diferentes ARN pero con el mismo ID de clave, lo que permite a las aplicaciones en eu-west-1 descifrar datos cifrados en us-east-1 sin llamadas de API entre regiones. Restringir la política de claves a roles de IAM específicos sigue las mejores prácticas de privilegio mínimo."
             },
             {
               "id": "d",
-              "text": "Cree una clave KMS simétrica en us-east-1. Cree una función de AWS Lambda para replicar los datos cifrados y la DEK de texto sin formato en eu-west-1. Almacene la DEK de texto sin formato en AWS Secrets Manager en eu-west-1."
+              "text": "Cree una clave KMS simétrica en us-east-1. Cree una función de AWS Lambda para replicar los datos cifrados y la DEK de texto sin formato en eu-west-1. Almacene la DEK de texto sin formato en AWS Secrets Manager en eu-west-1.",
+              "explanation": "Incorrecto: Almacenar claves de cifrado de datos (DEK) en texto sin formato en AWS Secrets Manager es un antipatrón de seguridad crítico. Las DEK nunca deben almacenarse en texto sin formato; siempre deben permanecer cifradas por la clave maestra del cliente (CMK) de KMS. Este enfoque viola fundamentalmente los principios de cifrado de sobre."
             }
           ]
         }
@@ -1314,8 +1415,9 @@
       ],
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
-      ]
+        "c"
+      ],
+      "type": "single"
     },
     {
       "id": "sap-sec-002",
@@ -1323,19 +1425,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Use o AWS Firewall Manager para criar uma política de segurança que associa um AWS WAF Web ACL com AWS Managed Rules para SQLi a todos os ALBs e distribuições do CloudFront. Habilite o AWS Shield Advanced via Firewall Manager."
+          "text": "Use o AWS Firewall Manager para criar uma política de segurança que associa um AWS WAF Web ACL com AWS Managed Rules para SQLi a todos os ALBs e distribuições do CloudFront. Habilite o AWS Shield Advanced via Firewall Manager.",
+          "explanation": "Incorrect: AWS CloudFormation StackSets can deploy WAF Web ACLs across accounts but lacks automated remediation. Additionally, AWS Shield Standard provides only Layer 3/4 DDoS protection (volumetric attacks) — it does NOT protect against Layer 7 SQL injection attacks as implied."
         },
         {
           "id": "b",
-          "text": "Use o AWS CloudFormation StackSets para implantar AWS WAF Web ACLs contendo regras de SQLi em todas as contas. Habilite o AWS Shield Standard em cada ALB, pois fornece proteção automática contra DDoS de camada 7."
+          "text": "Use o AWS CloudFormation StackSets para implantar AWS WAF Web ACLs contendo regras de SQLi em todas as contas. Habilite o AWS Shield Standard em cada ALB, pois fornece proteção automática contra DDoS de camada 7.",
+          "explanation": "Incorrect: A custom AWS Config rule with Systems Manager automation can attach WAF Web ACLs reactively (after a resource is created), not proactively. This introduces a window of vulnerability and creates significant operational complexity without the centralized policy enforcement of Firewall Manager."
         },
         {
           "id": "c",
-          "text": "Crie uma regra personalizada do AWS Config que aciona um documento de automação do AWS Systems Manager para anexar um AWS WAF Web ACL quando um ALB ou distribuição CloudFront é iniciado."
+          "text": "Crie uma regra personalizada do AWS Config que aciona um documento de automação do AWS Systems Manager para anexar um AWS WAF Web ACL quando um ALB ou distribuição CloudFront é iniciado.",
+          "explanation": "Incorrect: Routing all traffic through a central API Gateway to apply WAF is architecturally complex, adds latency, and creates a single point of failure. It is not a scalable or recommended pattern for enforcing WAF policies across hundreds of AWS accounts."
         },
         {
           "id": "d",
-          "text": "Configure um Amazon API Gateway em uma conta de segurança central para rotear todo o tráfego para os ALBs. Anexe um único AWS WAF Web ACL ao API Gateway e habilite o AWS Shield Advanced nele."
+          "text": "Configure um Amazon API Gateway em uma conta de segurança central para rotear todo o tráfego para os ALBs. Anexe um único AWS WAF Web ACL ao API Gateway e habilite o AWS Shield Advanced nele.",
+          "explanation": "Correct: AWS Firewall Manager is purpose-built for centrally defining and enforcing WAF policies, Shield Advanced protections, and security group rules across all accounts in an AWS Organization. It automatically associates WAF Web ACLs to existing and new resources (ALBs, CloudFront), ensures compliance, and remediates non-compliant resources automatically."
         }
       ],
       "translations": {
@@ -1346,19 +1452,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use AWS Firewall Manager to create a security policy that associates an AWS WAF Web ACL with AWS Managed Rules for SQLi to all ALBs and CloudFront distributions. Enable AWS Shield Advanced via Firewall Manager."
+              "text": "Use AWS Firewall Manager to create a security policy that associates an AWS WAF Web ACL with AWS Managed Rules for SQLi to all ALBs and CloudFront distributions. Enable AWS Shield Advanced via Firewall Manager.",
+              "explanation": "Incorrect: AWS CloudFormation StackSets can deploy WAF Web ACLs across accounts but lacks automated remediation. Additionally, AWS Shield Standard provides only Layer 3/4 DDoS protection (volumetric attacks) — it does NOT protect against Layer 7 SQL injection attacks as implied."
             },
             {
               "id": "b",
-              "text": "Use AWS CloudFormation StackSets to deploy AWS WAF Web ACLs containing SQLi rules to all accounts. Enable AWS Shield Standard on each ALB, as it provides automatic layer 7 DDoS protection."
+              "text": "Use AWS CloudFormation StackSets to deploy AWS WAF Web ACLs containing SQLi rules to all accounts. Enable AWS Shield Standard on each ALB, as it provides automatic layer 7 DDoS protection.",
+              "explanation": "Incorrect: A custom AWS Config rule with Systems Manager automation can attach WAF Web ACLs reactively (after a resource is created), not proactively. This introduces a window of vulnerability and creates significant operational complexity without the centralized policy enforcement of Firewall Manager."
             },
             {
               "id": "c",
-              "text": "Create a custom AWS Config rule that triggers an AWS Systems Manager Automation document to attach an AWS WAF Web ACL when an ALB or CloudFront distribution is launched."
+              "text": "Create a custom AWS Config rule that triggers an AWS Systems Manager Automation document to attach an AWS WAF Web ACL when an ALB or CloudFront distribution is launched.",
+              "explanation": "Incorrect: Routing all traffic through a central API Gateway to apply WAF is architecturally complex, adds latency, and creates a single point of failure. It is not a scalable or recommended pattern for enforcing WAF policies across hundreds of AWS accounts."
             },
             {
               "id": "d",
-              "text": "Configure an Amazon API Gateway in a central security account to route all traffic to the ALBs. Attach a single AWS WAF Web ACL to the API Gateway and enable AWS Shield Advanced on it."
+              "text": "Configure an Amazon API Gateway in a central security account to route all traffic to the ALBs. Attach a single AWS WAF Web ACL to the API Gateway and enable AWS Shield Advanced on it.",
+              "explanation": "Correct: AWS Firewall Manager is purpose-built for centrally defining and enforcing WAF policies, Shield Advanced protections, and security group rules across all accounts in an AWS Organization. It automatically associates WAF Web ACLs to existing and new resources (ALBs, CloudFront), ensures compliance, and remediates non-compliant resources automatically."
             }
           ]
         },
@@ -1369,19 +1479,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Use o AWS Firewall Manager para criar uma política de segurança que associa um AWS WAF Web ACL com AWS Managed Rules para SQLi a todos os ALBs e distribuições do CloudFront. Habilite o AWS Shield Advanced via Firewall Manager."
+              "text": "Use o AWS Firewall Manager para criar uma política de segurança que associa um AWS WAF Web ACL com AWS Managed Rules para SQLi a todos os ALBs e distribuições do CloudFront. Habilite o AWS Shield Advanced via Firewall Manager.",
+              "explanation": "Incorreto: O AWS CloudFormation StackSets pode implantar Web ACLs WAF entre contas, mas não tem remediação automatizada. Além disso, o AWS Shield Standard fornece apenas proteção DDoS de Camada 3/4 (ataques volumétricos) — não protege contra ataques de injeção SQL de Camada 7 como implicado."
             },
             {
               "id": "b",
-              "text": "Use o AWS CloudFormation StackSets para implantar AWS WAF Web ACLs contendo regras de SQLi em todas as contas. Habilite o AWS Shield Standard em cada ALB, pois fornece proteção automática contra DDoS de camada 7."
+              "text": "Use o AWS CloudFormation StackSets para implantar AWS WAF Web ACLs contendo regras de SQLi em todas as contas. Habilite o AWS Shield Standard em cada ALB, pois fornece proteção automática contra DDoS de camada 7.",
+              "explanation": "Incorreto: Uma regra personalizada do AWS Config com automação do Systems Manager pode anexar Web ACLs WAF de forma reativa (após a criação de um recurso), não proativa. Isso cria uma janela de vulnerabilidade e gera complexidade operacional significativa sem a aplicação centralizada de políticas do Firewall Manager."
             },
             {
               "id": "c",
-              "text": "Crie uma regra personalizada do AWS Config que aciona um documento de automação do AWS Systems Manager para anexar um AWS WAF Web ACL quando um ALB ou distribuição CloudFront é iniciado."
+              "text": "Crie uma regra personalizada do AWS Config que aciona um documento de automação do AWS Systems Manager para anexar um AWS WAF Web ACL quando um ALB ou distribuição CloudFront é iniciado.",
+              "explanation": "Incorreto: Rotear todo o tráfego por um API Gateway central para aplicar WAF é arquiteturalmente complexo, adiciona latência e cria um único ponto de falha. Não é um padrão escalável ou recomendado para aplicar políticas WAF em centenas de contas AWS."
             },
             {
               "id": "d",
-              "text": "Configure um Amazon API Gateway em uma conta de segurança central para rotear todo o tráfego para os ALBs. Anexe um único AWS WAF Web ACL ao API Gateway e habilite o AWS Shield Advanced nele."
+              "text": "Configure um Amazon API Gateway em uma conta de segurança central para rotear todo o tráfego para os ALBs. Anexe um único AWS WAF Web ACL ao API Gateway e habilite o AWS Shield Advanced nele.",
+              "explanation": "Correto: O AWS Firewall Manager foi criado especificamente para definir e aplicar centralmente políticas WAF, proteções Shield Advanced e regras de grupo de segurança em todas as contas de uma Organização AWS. Ele associa automaticamente Web ACLs WAF a recursos existentes e novos (ALBs, CloudFront), garante conformidade e remedia recursos não conformes automaticamente."
             }
           ]
         },
@@ -1392,19 +1506,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Utilice AWS Firewall Manager para crear una política de seguridad que asocie una AWS WAF Web ACL con reglas administradas de AWS para SQLi a todos los ALB y distribuciones de CloudFront. Habilite AWS Shield Advanced a través de Firewall Manager."
+              "text": "Utilice AWS Firewall Manager para crear una política de seguridad que asocie una AWS WAF Web ACL con reglas administradas de AWS para SQLi a todos los ALB y distribuciones de CloudFront. Habilite AWS Shield Advanced a través de Firewall Manager.",
+              "explanation": "Incorrecto: AWS CloudFormation StackSets puede implementar ACL web de WAF en todas las cuentas, pero carece de corrección automatizada. Además, AWS Shield Standard solo proporciona protección DDoS de capa 3/4 (ataques volumétricos): NO protege contra ataques de inyección SQL de capa 7 como se implica."
             },
             {
               "id": "b",
-              "text": "Utilice AWS CloudFormation StackSets para implementar AWS WAF Web ACL que contengan reglas SQLi en todas las cuentas. Habilite AWS Shield Standard en cada ALB, ya que proporciona protección automática contra DDoS de capa 7."
+              "text": "Utilice AWS CloudFormation StackSets para implementar AWS WAF Web ACL que contengan reglas SQLi en todas las cuentas. Habilite AWS Shield Standard en cada ALB, ya que proporciona protección automática contra DDoS de capa 7.",
+              "explanation": "Incorrecto: Una regla de AWS Config personalizada con automatización de Systems Manager puede adjuntar ACL web de WAF de forma reactiva (después de crear un recurso), no de forma proactiva. Esto introduce una ventana de vulnerabilidad y genera una complejidad operativa significativa sin la aplicación centralizada de políticas de Firewall Manager."
             },
             {
               "id": "c",
-              "text": "Cree una regla personalizada de AWS Config que active un documento de automatización de AWS Systems Manager para adjuntar una AWS WAF Web ACL cuando se lanza un ALB o una distribución de CloudFront."
+              "text": "Cree una regla personalizada de AWS Config que active un documento de automatización de AWS Systems Manager para adjuntar una AWS WAF Web ACL cuando se lanza un ALB o una distribución de CloudFront.",
+              "explanation": "Incorrecto: Enrutar todo el tráfico a través de un API Gateway central para aplicar WAF es arquitectónicamente complejo, añade latencia y crea un único punto de fallo. No es un patrón escalable ni recomendado para aplicar políticas WAF en cientos de cuentas de AWS."
             },
             {
               "id": "d",
-              "text": "Configure un Amazon API Gateway en una cuenta de seguridad central para enrutar todo el tráfico a los ALB. Adjunte una sola AWS WAF Web ACL a API Gateway y habilite AWS Shield Advanced en él."
+              "text": "Configure un Amazon API Gateway en una cuenta de seguridad central para enrutar todo el tráfico a los ALB. Adjunte una sola AWS WAF Web ACL a API Gateway y habilite AWS Shield Advanced en él.",
+              "explanation": "Correcto: AWS Firewall Manager está diseñado específicamente para definir y aplicar de forma centralizada políticas WAF, protecciones Shield Advanced y reglas de grupos de seguridad en todas las cuentas de una organización de AWS. Asocia automáticamente las ACL web de WAF a los recursos existentes y nuevos (ALB, CloudFront), garantiza el cumplimiento y corrige automáticamente los recursos no conformes."
             }
           ]
         }
@@ -1422,8 +1540,9 @@
       ],
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
-      ]
+        "d"
+      ],
+      "type": "single"
     },
     {
       "id": "sap-sec-003",
@@ -1431,19 +1550,23 @@
       "options": [
         {
           "id": "a",
-          "text": "O tráfego com protocolo 1 é tráfego ICMP, provavelmente um ping. O log de fluxo conterá o campo <action> indicando se o tráfego foi ACEITO (ACCEPT) ou REJEITADO (REJECT), e <bytes> para mostrar os dados transferidos."
+          "text": "O tráfego com protocolo 1 é tráfego ICMP, provavelmente um ping. O log de fluxo conterá o campo <action> indicando se o tráfego foi ACEITO (ACCEPT) ou REJEITADO (REJECT), e <bytes> para mostrar os dados transferidos.",
+          "explanation": "Incorrect: Protocol 1 is ICMP. While the <action> field (ACCEPT/REJECT) is indeed in VPC Flow Logs, this answer is partially correct about the action field but misleading. VPC Flow Logs do NOT capture the packet payload — they only log metadata (IPs, ports, protocol, bytes, packets). Therefore, the engineer cannot see the actual exfiltrated data content."
         },
         {
           "id": "b",
-          "text": "O tráfego com protocolo 1 indica uma conexão SSH em uma porta não padrão. O log de fluxo irá capturar todo o payload do pacote, permitindo ao engenheiro ver os dados exfiltrados."
+          "text": "O tráfego com protocolo 1 indica uma conexão SSH em uma porta não padrão. O log de fluxo irá capturar todo o payload do pacote, permitindo ao engenheiro ver os dados exfiltrados.",
+          "explanation": "Correct: Protocol 1 is ICMP (not SSH). The VPC Flow Log <action> field shows whether the traffic was ACCEPT or REJECT, and the <bytes> field shows the volume of data transferred, which can indicate if data exfiltration occurred. VPC Flow Logs capture only network metadata, not the actual packet payload."
         },
         {
           "id": "c",
-          "text": "O tráfego representa comunicação com o serviço de metadados da AWS (169.254.169.254) que usa o protocolo 1 e é totalmente registrado no VPC Flow Logs para auditoria de segurança."
+          "text": "O tráfego representa comunicação com o serviço de metadados da AWS (169.254.169.254) que usa o protocolo 1 e é totalmente registrado no VPC Flow Logs para auditoria de segurança.",
+          "explanation": "Incorrect: The AWS instance metadata service (IMDS) uses IP address 169.254.169.254 but uses HTTP (TCP/UDP), not protocol 1 (ICMP). ICMP to 169.254.169.254 would not be a valid IMDS request. This answer contains a fundamental protocol misidentification."
         },
         {
           "id": "d",
-          "text": "O tráfego é TCP (protocolo 1) e, como a porta de origem é 0, significa que é uma conexão FTP passiva. O engenheiro deve verificar o <log-status> para confirmar a transferência de dados."
+          "text": "O tráfego é TCP (protocolo 1) e, como a porta de origem é 0, significa que é uma conexão FTP passiva. O engenheiro deve verificar o <log-status> para confirmar a transferência de dados.",
+          "explanation": "Incorrect: Protocol 1 is ICMP, not TCP (which is protocol 6). A source port of 0 is valid for ICMP (where the field represents the ICMP type code), not indicative of an FTP passive connection. Passive FTP uses TCP protocol 6 and dynamically negotiated high ports, not protocol 1 with source port 0."
         }
       ],
       "translations": {
@@ -1454,19 +1577,23 @@
           "options": [
             {
               "id": "a",
-              "text": "The traffic with protocol 1 is ICMP traffic, likely a ping. The flow log will contain the <action> field indicating whether the traffic was ACCEPTed or REJECTed, and <bytes> to show the data transferred."
+              "text": "The traffic with protocol 1 is ICMP traffic, likely a ping. The flow log will contain the <action> field indicating whether the traffic was ACCEPTed or REJECTed, and <bytes> to show the data transferred.",
+              "explanation": "Incorrect: Protocol 1 is ICMP. While the <action> field (ACCEPT/REJECT) is indeed in VPC Flow Logs, this answer is partially correct about the action field but misleading. VPC Flow Logs do NOT capture the packet payload — they only log metadata (IPs, ports, protocol, bytes, packets). Therefore, the engineer cannot see the actual exfiltrated data content."
             },
             {
               "id": "b",
-              "text": "The traffic with protocol 1 indicates an SSH connection on a non-standard port. The flow log will capture the full packet payload, allowing the engineer to see the exfiltrated data."
+              "text": "The traffic with protocol 1 indicates an SSH connection on a non-standard port. The flow log will capture the full packet payload, allowing the engineer to see the exfiltrated data.",
+              "explanation": "Correct: Protocol 1 is ICMP (not SSH). The VPC Flow Log <action> field shows whether the traffic was ACCEPT or REJECT, and the <bytes> field shows the volume of data transferred, which can indicate if data exfiltration occurred. VPC Flow Logs capture only network metadata, not the actual packet payload."
             },
             {
               "id": "c",
-              "text": "The traffic represents communication with the AWS metadata service (169.254.169.254) which uses protocol 1 and is fully logged in VPC Flow Logs for security auditing."
+              "text": "The traffic represents communication with the AWS metadata service (169.254.169.254) which uses protocol 1 and is fully logged in VPC Flow Logs for security auditing.",
+              "explanation": "Incorrect: The AWS instance metadata service (IMDS) uses IP address 169.254.169.254 but uses HTTP (TCP/UDP), not protocol 1 (ICMP). ICMP to 169.254.169.254 would not be a valid IMDS request. This answer contains a fundamental protocol misidentification."
             },
             {
               "id": "d",
-              "text": "The traffic is TCP traffic (protocol 1) and since the source port is 0, it means it is a passive FTP connection. The engineer should look at the <log-status> to confirm data transfer."
+              "text": "The traffic is TCP traffic (protocol 1) and since the source port is 0, it means it is a passive FTP connection. The engineer should look at the <log-status> to confirm data transfer.",
+              "explanation": "Incorrect: Protocol 1 is ICMP, not TCP (which is protocol 6). A source port of 0 is valid for ICMP (where the field represents the ICMP type code), not indicative of an FTP passive connection. Passive FTP uses TCP protocol 6 and dynamically negotiated high ports, not protocol 1 with source port 0."
             }
           ]
         },
@@ -1477,19 +1604,23 @@
           "options": [
             {
               "id": "a",
-              "text": "O tráfego com protocolo 1 é tráfego ICMP, provavelmente um ping. O log de fluxo conterá o campo <action> indicando se o tráfego foi ACEITO (ACCEPT) ou REJEITADO (REJECT), e <bytes> para mostrar os dados transferidos."
+              "text": "O tráfego com protocolo 1 é tráfego ICMP, provavelmente um ping. O log de fluxo conterá o campo <action> indicando se o tráfego foi ACEITO (ACCEPT) ou REJEITADO (REJECT), e <bytes> para mostrar os dados transferidos.",
+              "explanation": "Incorreto: O protocolo 1 é ICMP. Embora o campo <action> (ACEITO/REJEITADO) esteja nos VPC Flow Logs, esta resposta é parcialmente correta sobre o campo de ação, mas enganosa. Os VPC Flow Logs NÃO capturam o payload do pacote — eles registram apenas metadados (IPs, portas, protocolo, bytes, pacotes). Portanto, o engenheiro não pode ver o conteúdo real dos dados exfiltrados."
             },
             {
               "id": "b",
-              "text": "O tráfego com protocolo 1 indica uma conexão SSH em uma porta não padrão. O log de fluxo irá capturar todo o payload do pacote, permitindo ao engenheiro ver os dados exfiltrados."
+              "text": "O tráfego com protocolo 1 indica uma conexão SSH em uma porta não padrão. O log de fluxo irá capturar todo o payload do pacote, permitindo ao engenheiro ver os dados exfiltrados.",
+              "explanation": "Correto: O protocolo 1 é ICMP (não SSH). O campo <action> do VPC Flow Log indica se o tráfego foi ACEITO ou REJEITADO, e o campo <bytes> mostra o volume de dados transferidos, o que pode indicar se houve exfiltração. Os VPC Flow Logs capturam apenas metadados de rede, não o payload real do pacote."
             },
             {
               "id": "c",
-              "text": "O tráfego representa comunicação com o serviço de metadados da AWS (169.254.169.254) que usa o protocolo 1 e é totalmente registrado no VPC Flow Logs para auditoria de segurança."
+              "text": "O tráfego representa comunicação com o serviço de metadados da AWS (169.254.169.254) que usa o protocolo 1 e é totalmente registrado no VPC Flow Logs para auditoria de segurança.",
+              "explanation": "Incorreto: O serviço de metadados de instância da AWS (IMDS) usa o endereço IP 169.254.169.254, mas utiliza HTTP (TCP/UDP), não o protocolo 1 (ICMP). ICMP para 169.254.169.254 não seria uma requisição IMDS válida. Esta resposta contém uma identificação incorreta fundamental do protocolo."
             },
             {
               "id": "d",
-              "text": "O tráfego é TCP (protocolo 1) e, como a porta de origem é 0, significa que é uma conexão FTP passiva. O engenheiro deve verificar o <log-status> para confirmar a transferência de dados."
+              "text": "O tráfego é TCP (protocolo 1) e, como a porta de origem é 0, significa que é uma conexão FTP passiva. O engenheiro deve verificar o <log-status> para confirmar a transferência de dados.",
+              "explanation": "Incorreto: O protocolo 1 é ICMP, não TCP (que é o protocolo 6). Uma porta de origem 0 é válida para ICMP (onde o campo representa o código de tipo ICMP), não indicativa de uma conexão FTP passiva. O FTP passivo usa o protocolo TCP 6 com portas altas negociadas dinamicamente, não o protocolo 1 com porta de origem 0."
             }
           ]
         },
@@ -1500,19 +1631,23 @@
           "options": [
             {
               "id": "a",
-              "text": "El tráfico con el protocolo 1 es tráfico ICMP, probablemente un ping. El registro de flujo contendrá el campo <action> indicando si el tráfico fue ACEPTADO (ACCEPT) o RECHAZADO (REJECT), y <bytes> para mostrar los datos transferidos."
+              "text": "El tráfico con el protocolo 1 es tráfico ICMP, probablemente un ping. El registro de flujo contendrá el campo <action> indicando si el tráfico fue ACEPTADO (ACCEPT) o RECHAZADO (REJECT), y <bytes> para mostrar los datos transferidos.",
+              "explanation": "Incorrecto: El protocolo 1 es ICMP. Aunque el campo <action> (ACCEPT/REJECT) sí está en los registros de flujo de VPC, esta respuesta es parcialmente correcta sobre el campo de acción, pero engañosa. Los registros de flujo de VPC NO capturan la carga útil del paquete, solo registran metadatos (IPs, puertos, protocolo, bytes, paquetes). Por lo tanto, el ingeniero no puede ver el contenido real de los datos exfiltrados."
             },
             {
               "id": "b",
-              "text": "El tráfico con el protocolo 1 indica una conexión SSH en un puerto no estándar. El registro de flujo capturará la carga útil completa del paquete (payload), permitiendo al ingeniero ver los datos exfiltrados."
+              "text": "El tráfico con el protocolo 1 indica una conexión SSH en un puerto no estándar. El registro de flujo capturará la carga útil completa del paquete (payload), permitiendo al ingeniero ver los datos exfiltrados.",
+              "explanation": "Correcto: El protocolo 1 es ICMP (no SSH). El campo <action> del registro de flujo de VPC muestra si el tráfico fue ACEPTADO o RECHAZADO, y el campo <bytes> muestra el volumen de datos transferidos, lo que puede indicar si se produjo exfiltración de datos. Los registros de flujo de VPC capturan solo metadatos de red, no la carga útil real del paquete."
             },
             {
               "id": "c",
-              "text": "El tráfico representa la comunicación con el servicio de metadatos de AWS (169.254.169.254) que utiliza el protocolo 1 y se registra completamente en VPC Flow Logs para auditorías de seguridad."
+              "text": "El tráfico representa la comunicación con el servicio de metadatos de AWS (169.254.169.254) que utiliza el protocolo 1 y se registra completamente en VPC Flow Logs para auditorías de seguridad.",
+              "explanation": "Incorrecto: El servicio de metadatos de instancia de AWS (IMDS) utiliza la dirección IP 169.254.169.254, pero usa HTTP (TCP/UDP), no el protocolo 1 (ICMP). ICMP a 169.254.169.254 no sería una solicitud IMDS válida. Esta respuesta contiene una identificación de protocolo fundamentalmente incorrecta."
             },
             {
               "id": "d",
-              "text": "El tráfico es tráfico TCP (protocolo 1) y dado que el puerto de origen es 0, significa que es una conexión FTP pasiva. El ingeniero debe mirar el <log-status> para confirmar la transferencia de datos."
+              "text": "El tráfico es tráfico TCP (protocolo 1) y dado que el puerto de origen es 0, significa que es una conexión FTP pasiva. El ingeniero debe mirar el <log-status> para confirmar la transferencia de datos.",
+              "explanation": "Incorrecto: El protocolo 1 es ICMP, no TCP (que es el protocolo 6). Un puerto de origen 0 es válido para ICMP (donde el campo representa el código de tipo ICMP), no indicativo de una conexión FTP pasiva. El FTP pasivo utiliza el protocolo TCP 6 y puertos altos negociados dinámicamente, no el protocolo 1 con puerto de origen 0."
             }
           ]
         }
@@ -1529,8 +1664,9 @@
       ],
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
-      ]
+        "b"
+      ],
+      "type": "single"
     },
     {
       "id": "sap-sec-004",
@@ -1538,19 +1674,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Habilite o AWS Security Hub e integre-o ao AWS Organizations. Use uma política de configuração central de uma conta de administrador delegada para aplicar padrões de segurança em toda a organização."
+          "text": "Habilite o AWS Security Hub e integre-o ao AWS Organizations. Use uma política de configuração central de uma conta de administrador delegada para aplicar padrões de segurança em toda a organização.",
+          "explanation": "Incorrect: AWS Config Conformance Packs deployed via StackSets can evaluate resources against rules, but they do not provide the centralized, aggregated security posture dashboard and automated cross-account remediation workflows that Security Hub provides. SCPs prevent config changes but do not enable continuous security posture assessment."
         },
         {
           "id": "b",
-          "text": "Implante AWS Config Conformance Packs em toda a organização usando AWS CloudFormation StackSets. Use SCPs para impedir que administradores locais modifiquem as regras do AWS Config."
+          "text": "Implante AWS Config Conformance Packs em toda a organização usando AWS CloudFormation StackSets. Use SCPs para impedir que administradores locais modifiquem as regras do AWS Config.",
+          "explanation": "Incorrect: AWS Audit Manager is designed for compliance auditing and evidence collection for frameworks like PCI DSS, SOC 2, or ISO 27001 — not for real-time infrastructure security posture evaluation. AWS Artifact provides compliance reports and legal agreements, not infrastructure evaluation against security standards like CIS Benchmarks."
         },
         {
           "id": "c",
-          "text": "Habilite o AWS Audit Manager para coletar evidências continuamente e avaliar em relação ao framework CIS. Use o AWS Artifact para gerar relatórios de conformidade para a organização."
+          "text": "Habilite o AWS Audit Manager para coletar evidências continuamente e avaliar em relação ao framework CIS. Use o AWS Artifact para gerar relatórios de conformidade para a organização.",
+          "explanation": "Correct: AWS Security Hub with Organizations integration provides a centralized, automated security posture management solution. A delegated administrator account applies central configuration policies to enable CIS AWS Foundations Benchmark and other security standards across all member accounts, aggregating all findings in a single dashboard with automated remediation workflows."
         },
         {
           "id": "d",
-          "text": "Use o AWS Firewall Manager para impor as regras do AWS Config em toda a organização. Habilite o grupo de regras do benchmark CIS no Firewall Manager para agregar as descobertas de conformidade."
+          "text": "Use o AWS Firewall Manager para impor as regras do AWS Config em toda a organização. Habilite o grupo de regras do benchmark CIS no Firewall Manager para agregar as descobertas de conformidade.",
+          "explanation": "Incorrect: AWS Firewall Manager manages network firewall and WAF policies, not AWS Config compliance rules. The CIS Benchmark is a Security Hub security standard, not a Firewall Manager rule group. Firewall Manager does not aggregate security compliance findings across an organization."
         }
       ],
       "translations": {
@@ -1561,19 +1701,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Enable AWS Security Hub and integrate it with AWS Organizations. Use a central configuration policy from a delegated administrator account to apply security standards across the organization."
+              "text": "Enable AWS Security Hub and integrate it with AWS Organizations. Use a central configuration policy from a delegated administrator account to apply security standards across the organization.",
+              "explanation": "Incorrect: AWS Config Conformance Packs deployed via StackSets can evaluate resources against rules, but they do not provide the centralized, aggregated security posture dashboard and automated cross-account remediation workflows that Security Hub provides. SCPs prevent config changes but do not enable continuous security posture assessment."
             },
             {
               "id": "b",
-              "text": "Deploy AWS Config Conformance Packs across the organization using AWS CloudFormation StackSets. Use SCPs to prevent local administrators from modifying the AWS Config rules."
+              "text": "Deploy AWS Config Conformance Packs across the organization using AWS CloudFormation StackSets. Use SCPs to prevent local administrators from modifying the AWS Config rules.",
+              "explanation": "Incorrect: AWS Audit Manager is designed for compliance auditing and evidence collection for frameworks like PCI DSS, SOC 2, or ISO 27001 — not for real-time infrastructure security posture evaluation. AWS Artifact provides compliance reports and legal agreements, not infrastructure evaluation against security standards like CIS Benchmarks."
             },
             {
               "id": "c",
-              "text": "Enable AWS Audit Manager to continuously collect evidence and evaluate against the CIS framework. Use AWS Artifact to generate compliance reports for the organization."
+              "text": "Enable AWS Audit Manager to continuously collect evidence and evaluate against the CIS framework. Use AWS Artifact to generate compliance reports for the organization.",
+              "explanation": "Correct: AWS Security Hub with Organizations integration provides a centralized, automated security posture management solution. A delegated administrator account applies central configuration policies to enable CIS AWS Foundations Benchmark and other security standards across all member accounts, aggregating all findings in a single dashboard with automated remediation workflows."
             },
             {
               "id": "d",
-              "text": "Use AWS Firewall Manager to enforce AWS Config rules across the organization. Enable the CIS benchmark rule group in Firewall Manager to aggregate compliance findings."
+              "text": "Use AWS Firewall Manager to enforce AWS Config rules across the organization. Enable the CIS benchmark rule group in Firewall Manager to aggregate compliance findings.",
+              "explanation": "Incorrect: AWS Firewall Manager manages network firewall and WAF policies, not AWS Config compliance rules. The CIS Benchmark is a Security Hub security standard, not a Firewall Manager rule group. Firewall Manager does not aggregate security compliance findings across an organization."
             }
           ]
         },
@@ -1584,19 +1728,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Habilite o AWS Security Hub e integre-o ao AWS Organizations. Use uma política de configuração central de uma conta de administrador delegada para aplicar padrões de segurança em toda a organização."
+              "text": "Habilite o AWS Security Hub e integre-o ao AWS Organizations. Use uma política de configuração central de uma conta de administrador delegada para aplicar padrões de segurança em toda a organização.",
+              "explanation": "Incorreto: Os Conformance Packs do AWS Config implantados via StackSets podem avaliar recursos em relação às regras, mas não fornecem o painel centralizado de postura de segurança e os fluxos de trabalho automatizados de remediação entre contas que o Security Hub fornece. SCPs impedem alterações de configuração, mas não habilitam avaliação contínua de postura de segurança."
             },
             {
               "id": "b",
-              "text": "Implante AWS Config Conformance Packs em toda a organização usando AWS CloudFormation StackSets. Use SCPs para impedir que administradores locais modifiquem as regras do AWS Config."
+              "text": "Implante AWS Config Conformance Packs em toda a organização usando AWS CloudFormation StackSets. Use SCPs para impedir que administradores locais modifiquem as regras do AWS Config.",
+              "explanation": "Incorreto: O AWS Audit Manager foi projetado para auditoria de conformidade e coleta de evidências para frameworks como PCI DSS, SOC 2 ou ISO 27001 — não para avaliação de postura de segurança de infraestrutura em tempo real. O AWS Artifact fornece relatórios de conformidade e acordos legais, não avaliação de infraestrutura em relação a padrões de segurança como CIS Benchmarks."
             },
             {
               "id": "c",
-              "text": "Habilite o AWS Audit Manager para coletar evidências continuamente e avaliar em relação ao framework CIS. Use o AWS Artifact para gerar relatórios de conformidade para a organização."
+              "text": "Habilite o AWS Audit Manager para coletar evidências continuamente e avaliar em relação ao framework CIS. Use o AWS Artifact para gerar relatórios de conformidade para a organização.",
+              "explanation": "Correto: O AWS Security Hub com integração ao Organizations fornece uma solução centralizada e automatizada de gerenciamento de postura de segurança. Uma conta de administrador delegada aplica políticas de configuração central para habilitar o CIS AWS Foundations Benchmark e outros padrões de segurança em todas as contas membros, agregando todas as descobertas em um único painel com fluxos de trabalho de remediação automatizados."
             },
             {
               "id": "d",
-              "text": "Use o AWS Firewall Manager para impor as regras do AWS Config em toda a organização. Habilite o grupo de regras do benchmark CIS no Firewall Manager para agregar as descobertas de conformidade."
+              "text": "Use o AWS Firewall Manager para impor as regras do AWS Config em toda a organização. Habilite o grupo de regras do benchmark CIS no Firewall Manager para agregar as descobertas de conformidade.",
+              "explanation": "Incorreto: O AWS Firewall Manager gerencia políticas de firewall de rede e WAF, não regras de conformidade do AWS Config. O CIS Benchmark é um padrão de segurança do Security Hub, não um grupo de regras do Firewall Manager. O Firewall Manager não agrega descobertas de conformidade de segurança em toda a organização."
             }
           ]
         },
@@ -1607,19 +1755,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Habilite AWS Security Hub e intégrelo con AWS Organizations. Utilice una política de configuración central desde una cuenta de administrador delegada para aplicar estándares de seguridad en toda la organización."
+              "text": "Habilite AWS Security Hub e intégrelo con AWS Organizations. Utilice una política de configuración central desde una cuenta de administrador delegada para aplicar estándares de seguridad en toda la organización.",
+              "explanation": "Incorrecto: Los paquetes de conformidad de AWS Config implementados mediante StackSets pueden evaluar los recursos en función de las reglas, pero no proporcionan el panel de postura de seguridad centralizado y agregado ni los flujos de trabajo automatizados de corrección entre cuentas que ofrece Security Hub. Las SCP impiden cambios de configuración, pero no habilitan la evaluación continua de la postura de seguridad."
             },
             {
               "id": "b",
-              "text": "Implemente AWS Config Conformance Packs en toda la organización utilizando AWS CloudFormation StackSets. Utilice SCPs para evitar que los administradores locales modifiquen las reglas de AWS Config."
+              "text": "Implemente AWS Config Conformance Packs en toda la organización utilizando AWS CloudFormation StackSets. Utilice SCPs para evitar que los administradores locales modifiquen las reglas de AWS Config.",
+              "explanation": "Incorrecto: AWS Audit Manager está diseñado para la auditoría de cumplimiento y la recopilación de evidencias para marcos como PCI DSS, SOC 2 o ISO 27001, no para la evaluación en tiempo real de la postura de seguridad de la infraestructura. AWS Artifact proporciona informes de cumplimiento y acuerdos legales, no la evaluación de infraestructura frente a estándares de seguridad como los puntos de referencia CIS."
             },
             {
               "id": "c",
-              "text": "Habilite AWS Audit Manager para recopilar evidencia continuamente y evaluar frente al marco CIS. Utilice AWS Artifact para generar informes de cumplimiento para la organización."
+              "text": "Habilite AWS Audit Manager para recopilar evidencia continuamente y evaluar frente al marco CIS. Utilice AWS Artifact para generar informes de cumplimiento para la organización.",
+              "explanation": "Correcto: AWS Security Hub con la integración de Organizations proporciona una solución centralizada y automatizada de gestión de la postura de seguridad. Una cuenta de administrador delegada aplica políticas de configuración centrales para habilitar el CIS AWS Foundations Benchmark y otros estándares de seguridad en todas las cuentas miembro, agregando todos los hallazgos en un único panel con flujos de trabajo de corrección automatizados."
             },
             {
               "id": "d",
-              "text": "Utilice AWS Firewall Manager para aplicar reglas de AWS Config en toda la organización. Habilite el grupo de reglas de benchmark CIS en Firewall Manager para agregar los hallazgos de cumplimiento."
+              "text": "Utilice AWS Firewall Manager para aplicar reglas de AWS Config en toda la organización. Habilite el grupo de reglas de benchmark CIS en Firewall Manager para agregar los hallazgos de cumplimiento.",
+              "explanation": "Incorrecto: AWS Firewall Manager gestiona las políticas de firewall de red y WAF, no las reglas de cumplimiento de AWS Config. El estándar CIS Benchmark es un estándar de seguridad de Security Hub, no un grupo de reglas de Firewall Manager. Firewall Manager no agrega los hallazgos de cumplimiento de seguridad de toda la organización."
             }
           ]
         }
@@ -1637,8 +1789,9 @@
       ],
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
-      ]
+        "c"
+      ],
+      "type": "single"
     },
     {
       "id": "sap-sec-005",
@@ -1646,19 +1799,23 @@
       "options": [
         {
           "id": "a",
-          "text": "Consolide regras personalizadas usando regras baseadas em taxa (rate-based rules) que bloqueiam o tráfego com base em uma alta taxa de solicitação de um único IP, o que é altamente eficiente. Mova a lista de bloqueio de IP estático para restrições geográficas do CloudFront ou VPC Network ACLs."
+          "text": "Consolide regras personalizadas usando regras baseadas em taxa (rate-based rules) que bloqueiam o tráfego com base em uma alta taxa de solicitação de um único IP, o que é altamente eficiente. Mova a lista de bloqueio de IP estático para restrições geográficas do CloudFront ou VPC Network ACLs.",
+          "explanation": "Incorrect: Migrating the Web ACL from CloudFront (global scope) to an Application Load Balancer (regional scope) does not increase the WCU limit — both have the same default limit of 1500 WCUs. Regional WAF instances have a default of 1500 WCUs, not 3000 as stated. This migration would also break global edge-level protection."
         },
         {
           "id": "b",
-          "text": "Migre a Web ACL para um Application Load Balancer em vez do CloudFront, pois instâncias regionais do WAF têm um limite de WCU padrão mais alto de 3000."
+          "text": "Migre a Web ACL para um Application Load Balancer em vez do CloudFront, pois instâncias regionais do WAF têm um limite de WCU padrão mais alto de 3000.",
+          "explanation": "Incorrect: Converting AWS Managed Rule Groups into custom rule groups requires replicating all managed rules manually, which creates massive operational overhead. You cannot simply remove statements from managed rules — they are immutable. This approach would likely violate the spirit of using managed rulesets and would not effectively reduce WCU usage."
         },
         {
           "id": "c",
-          "text": "Converta todos os AWS Managed Rule Groups em grupos de regras personalizados para remover manualmente as declarações desnecessárias, reduzindo assim o uso de WCU pela metade."
+          "text": "Converta todos os AWS Managed Rule Groups em grupos de regras personalizados para remover manualmente as declarações desnecessárias, reduzindo assim o uso de WCU pela metade.",
+          "explanation": "Correct: Rate-based rules in AWS WAF count requests from a single IP and block traffic that exceeds a configured threshold, consuming far fewer WCUs than equivalent byte-match or regex-based rules. Moving static IP blocklists to CloudFront geo-restrictions or Network ACLs (which operate at Layer 3, outside WAF) significantly reduces WAF WCU consumption without sacrificing security effectiveness."
         },
         {
           "id": "d",
-          "text": "Crie vários Web ACLs e associe todos eles à mesma distribuição CloudFront para dobrar efetivamente a capacidade de WCU para 3000."
+          "text": "Crie vários Web ACLs e associe todos eles à mesma distribuição CloudFront para dobrar efetivamente a capacidade de WCU para 3000.",
+          "explanation": "Incorrect: A single CloudFront distribution can only be associated with one Web ACL. Associating multiple Web ACLs to the same CloudFront distribution is not supported by AWS WAF. This statement describes a non-existent feature and would not resolve the WCU limit issue."
         }
       ],
       "translations": {
@@ -1669,19 +1826,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Consolidate custom rules by using rate-based rules that block traffic based on a high request rate from a single IP, which is highly efficient. Move static IP blacklisting to CloudFront geographic restrictions or VPC Network ACLs."
+              "text": "Consolidate custom rules by using rate-based rules that block traffic based on a high request rate from a single IP, which is highly efficient. Move static IP blacklisting to CloudFront geographic restrictions or VPC Network ACLs.",
+              "explanation": "Incorrect: Migrating the Web ACL from CloudFront (global scope) to an Application Load Balancer (regional scope) does not increase the WCU limit — both have the same default limit of 1500 WCUs. Regional WAF instances have a default of 1500 WCUs, not 3000 as stated. This migration would also break global edge-level protection."
             },
             {
               "id": "b",
-              "text": "Migrate the Web ACL to an Application Load Balancer instead of CloudFront, as regional WAF instances have a higher default WCU limit of 3000."
+              "text": "Migrate the Web ACL to an Application Load Balancer instead of CloudFront, as regional WAF instances have a higher default WCU limit of 3000.",
+              "explanation": "Incorrect: Converting AWS Managed Rule Groups into custom rule groups requires replicating all managed rules manually, which creates massive operational overhead. You cannot simply remove statements from managed rules — they are immutable. This approach would likely violate the spirit of using managed rulesets and would not effectively reduce WCU usage."
             },
             {
               "id": "c",
-              "text": "Convert all AWS Managed Rule Groups into custom rule groups to manually remove unnecessary statements, thereby reducing the WCU footprint by half."
+              "text": "Convert all AWS Managed Rule Groups into custom rule groups to manually remove unnecessary statements, thereby reducing the WCU footprint by half.",
+              "explanation": "Correct: Rate-based rules in AWS WAF count requests from a single IP and block traffic that exceeds a configured threshold, consuming far fewer WCUs than equivalent byte-match or regex-based rules. Moving static IP blocklists to CloudFront geo-restrictions or Network ACLs (which operate at Layer 3, outside WAF) significantly reduces WAF WCU consumption without sacrificing security effectiveness."
             },
             {
               "id": "d",
-              "text": "Create multiple Web ACLs and associate them all to the same CloudFront distribution to effectively double the WCU capacity to 3000."
+              "text": "Create multiple Web ACLs and associate them all to the same CloudFront distribution to effectively double the WCU capacity to 3000.",
+              "explanation": "Incorrect: A single CloudFront distribution can only be associated with one Web ACL. Associating multiple Web ACLs to the same CloudFront distribution is not supported by AWS WAF. This statement describes a non-existent feature and would not resolve the WCU limit issue."
             }
           ]
         },
@@ -1692,19 +1853,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Consolide regras personalizadas usando regras baseadas em taxa (rate-based rules) que bloqueiam o tráfego com base em uma alta taxa de solicitação de um único IP, o que é altamente eficiente. Mova a lista de bloqueio de IP estático para restrições geográficas do CloudFront ou VPC Network ACLs."
+              "text": "Consolide regras personalizadas usando regras baseadas em taxa (rate-based rules) que bloqueiam o tráfego com base em uma alta taxa de solicitação de um único IP, o que é altamente eficiente. Mova a lista de bloqueio de IP estático para restrições geográficas do CloudFront ou VPC Network ACLs.",
+              "explanation": "Incorreto: Migrar a Web ACL do CloudFront (escopo global) para um Application Load Balancer (escopo regional) não aumenta o limite de WCU — ambos têm o mesmo limite padrão de 1500 WCUs. As instâncias regionais do WAF têm um padrão de 1500 WCUs, não 3000 como declarado. Esta migração também quebraria a proteção global no nível de borda."
             },
             {
               "id": "b",
-              "text": "Migre a Web ACL para um Application Load Balancer em vez do CloudFront, pois instâncias regionais do WAF têm um limite de WCU padrão mais alto de 3000."
+              "text": "Migre a Web ACL para um Application Load Balancer em vez do CloudFront, pois instâncias regionais do WAF têm um limite de WCU padrão mais alto de 3000.",
+              "explanation": "Incorreto: Converter os AWS Managed Rule Groups em grupos de regras personalizados requer replicar todas as regras gerenciadas manualmente, o que cria uma enorme sobrecarga operacional. Não é possível simplesmente remover declarações das regras gerenciadas — elas são imutáveis. Essa abordagem violaria o espírito do uso de conjuntos de regras gerenciadas e não reduziria efetivamente o uso de WCU."
             },
             {
               "id": "c",
-              "text": "Converta todos os AWS Managed Rule Groups em grupos de regras personalizados para remover manualmente as declarações desnecessárias, reduzindo assim o uso de WCU pela metade."
+              "text": "Converta todos os AWS Managed Rule Groups em grupos de regras personalizados para remover manualmente as declarações desnecessárias, reduzindo assim o uso de WCU pela metade.",
+              "explanation": "Correto: As regras baseadas em taxa do AWS WAF contam solicitações de um único IP e bloqueiam o tráfego que excede um limite configurado, consumindo muito menos WCUs do que regras equivalentes de correspondência de bytes ou baseadas em regex. Mover listas de bloqueio de IP estático para restrições geográficas do CloudFront ou ACLs de Rede (que operam na Camada 3, fora do WAF) reduz significativamente o consumo de WCU do WAF sem sacrificar a eficácia da segurança."
             },
             {
               "id": "d",
-              "text": "Crie vários Web ACLs e associe todos eles à mesma distribuição CloudFront para dobrar efetivamente a capacidade de WCU para 3000."
+              "text": "Crie vários Web ACLs e associe todos eles à mesma distribuição CloudFront para dobrar efetivamente a capacidade de WCU para 3000.",
+              "explanation": "Incorreto: Uma única distribuição do CloudFront só pode ser associada a uma Web ACL. Associar várias Web ACLs à mesma distribuição do CloudFront não é suportado pelo AWS WAF. Esta afirmação descreve um recurso inexistente e não resolveria o problema de limite de WCU."
             }
           ]
         },
@@ -1715,19 +1880,23 @@
           "options": [
             {
               "id": "a",
-              "text": "Consolide reglas personalizadas utilizando reglas basadas en tasas (rate-based rules) que bloquean el tráfico en función de una alta tasa de solicitudes desde una única IP, lo cual es muy eficiente. Mueva las listas negras de IP estáticas a las restricciones geográficas de CloudFront o a VPC Network ACLs."
+              "text": "Consolide reglas personalizadas utilizando reglas basadas en tasas (rate-based rules) que bloquean el tráfico en función de una alta tasa de solicitudes desde una única IP, lo cual es muy eficiente. Mueva las listas negras de IP estáticas a las restricciones geográficas de CloudFront o a VPC Network ACLs.",
+              "explanation": "Incorrecto: Migrar la Web ACL de CloudFront (ámbito global) a un Application Load Balancer (ámbito regional) no aumenta el límite de WCU: ambos tienen el mismo límite predeterminado de 1500 WCU. Las instancias regionales de WAF tienen un valor predeterminado de 1500 WCU, no de 3000 como se indica. Esta migración también rompería la protección global a nivel de borde."
             },
             {
               "id": "b",
-              "text": "Migre la Web ACL a un Application Load Balancer en lugar de CloudFront, ya que las instancias regionales de WAF tienen un límite de WCU predeterminado más alto de 3000."
+              "text": "Migre la Web ACL a un Application Load Balancer en lugar de CloudFront, ya que las instancias regionales de WAF tienen un límite de WCU predeterminado más alto de 3000.",
+              "explanation": "Incorrecto: Convertir los grupos de reglas administrados de AWS en grupos de reglas personalizados requiere replicar manualmente todas las reglas administradas, lo que genera una enorme sobrecarga operativa. No se pueden simplemente eliminar instrucciones de las reglas administradas: son inmutables. Este enfoque probablemente violaría el espíritu del uso de conjuntos de reglas administradas y no reduciría eficazmente el uso de WCU."
             },
             {
               "id": "c",
-              "text": "Convierta todos los AWS Managed Rule Groups en grupos de reglas personalizados para eliminar manualmente las declaraciones innecesarias, reduciendo así a la mitad la huella de WCU."
+              "text": "Convierta todos los AWS Managed Rule Groups en grupos de reglas personalizados para eliminar manualmente las declaraciones innecesarias, reduciendo así a la mitad la huella de WCU.",
+              "explanation": "Correcto: Las reglas basadas en tasas de AWS WAF cuentan las solicitudes de una única IP y bloquean el tráfico que supera un umbral configurado, consumiendo muchas menos WCU que las reglas equivalentes de coincidencia de bytes o basadas en expresiones regulares. Mover las listas de bloqueo de IP estáticas a las restricciones geográficas de CloudFront o a las ACL de red (que operan en la capa 3, fuera de WAF) reduce significativamente el consumo de WCU de WAF sin sacrificar la eficacia de la seguridad."
             },
             {
               "id": "d",
-              "text": "Cree varias Web ACLs y asócielas todas a la misma distribución de CloudFront para duplicar efectivamente la capacidad de WCU a 3000."
+              "text": "Cree varias Web ACLs y asócielas todas a la misma distribución de CloudFront para duplicar efectivamente la capacidad de WCU a 3000.",
+              "explanation": "Incorrecto: Una única distribución de CloudFront solo puede estar asociada a una Web ACL. No es posible asociar varias Web ACL a la misma distribución de CloudFront con AWS WAF. Esta declaración describe una función inexistente y no resolvería el problema del límite de WCU."
             }
           ]
         }
@@ -1745,8 +1914,9 @@
       ],
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
-      ]
+        "c"
+      ],
+      "type": "single"
     },
     {
       "id": "sap-q-svls-001",

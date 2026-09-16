@@ -77,14 +77,73 @@ For each option (both correct and incorrect):
 - **Incorrect Options**: Explicitly point out *why* each distractor is wrong or sub-optimal with deep technical rigor (e.g., "Incorreto: Embora o AWS Network Firewall seja a escolha correta, a falta do Appliance Mode no TGW attachment causa roteamento assimétrico e descarte de pacotes com estado"). Explanations must be detailed (15+ words).
 
 ### Step 5: Validate Output
-- If generating JSON for the simulator, validate against the JSON schema and ensure:
-  - `id`: Unique string (e.g., `sap-q076`).
-  - `examId`: `"SAP-C02"` (or specific mock code).
-  - `type`: `"single"` (4 choices) or `"multiple"` (5 or 6 choices).
-  - `requiredChoices`: Must match length of `correctAnswers`.
-  - `statement`, `options`, `domainName`, `generalExplanation`: **MUST be present at the root level** (e.g., in English or Portuguese) as the base fallback.
-  - `options`: Ensure options are long and detailed. No short obvious statements.
-  - `translations`: Complete and independent localized content for `"en"`, `"pt"` (PT-BR), and `"es"` (ES) with zero mixed/hybrid text. Provide translated `statement`, `options`, `domainName`, and `generalExplanation` inside each language key.
+
+> [!CAUTION]
+> **NUNCA salve ou integre um arquivo JSON sem antes executar o checklist abaixo. Qualquer item com ❌ é um bloqueador.**
+
+#### ❌ BLOQUEADORES — Cheklist Obrigatório Antes de Salvar
+
+Para cada questão gerada, verifique:
+
+| # | Verificação | Campo |
+|---|-------------|-------|
+| 1 | `type` está presente e é `"single"` ou `"multiple"` | `type` |
+| 2 | `statement` (a pergunta) está presente no root E em todas as translations | `statement` |
+| 3 | `correctAnswers` contém os IDs corretos (maiúscula para `single`, array para `multiple`) | `correctAnswers` |
+| 4 | `requiredChoices` == `len(correctAnswers)` | `requiredChoices` |
+| 5 | **Cada opção no root tem `text` (≥ 25 palavras) E `explanation` (≥ 15 palavras)** | `options[].text`, `options[].explanation` |
+| 6 | **Cada opção em TODAS as translations tem `text` E `explanation` preenchidos** | `translations.*.options[].text`, `translations.*.options[].explanation` |
+| 7 | `generalExplanation` presente no root E em todas as translations | `generalExplanation` |
+| 8 | **Respostas corretas NÃO concentradas em `A` ou `B` para múltiplas questões seguidas** | `correctAnswers` distribution |
+| 9 | Textos de opções NÃO são apenas nomes de serviços (ex.: `"File Gateway"`) — devem descrever a solução completa | `options[].text` |
+
+#### 🔍 Self-Audit Script
+
+Após gerar as questões e **antes de integrar ao simulador**, execute:
+
+```bash
+python3 .agents/skills/sap-c02-question-generator/scripts/validate_questions.py <path_to_json_file> --strict
+```
+
+Ou use este snippet rápido para um audit imediato:
+
+```python
+import json
+with open("path/to/exam.json") as f:
+    data = json.load(f)
+for i, q in enumerate(data["questions"]):
+    issues = []
+    if not q.get("type"): issues.append("NO_TYPE")
+    if not q.get("statement"): issues.append("NO_STATEMENT")
+    if not q.get("generalExplanation"): issues.append("NO_GENERAL_EXPLANATION")
+    for opt in q.get("options", []):
+        if not opt.get("text") or len(opt["text"].split()) < 15: issues.append(f"OPT_{opt['id']}_SHORT_TEXT")
+        if not opt.get("explanation"): issues.append(f"OPT_{opt['id']}_NO_EXPLANATION")
+    for lang in ["en", "pt", "es"]:
+        t = q.get("translations", {}).get(lang, {})
+        if not t.get("statement"): issues.append(f"{lang.upper()}_NO_STATEMENT")
+        for opt in t.get("options", []):
+            if not opt.get("explanation"): issues.append(f"{lang.upper()}_OPT_{opt['id']}_NO_EXPLANATION")
+    if issues:
+        print(f"Q{i+1} [{q.get('id')}]: BLOQUEADO — {', '.join(issues)}")
+    else:
+        print(f"Q{i+1} [{q.get('id')}]: OK")
+```
+
+**Se qualquer questão retornar `BLOQUEADO`, corrija antes de salvar.**
+
+---
+
+#### Schema Completo de Referência
+
+Se generating JSON for the simulator, ensure:
+- `id`: Unique string (e.g., `sap-q076`).
+- `examId`: `"SAP-C02"` (or specific mock code).
+- `type`: `"single"` (4 choices) or `"multiple"` (5 or 6 choices).
+- `requiredChoices`: Must match length of `correctAnswers`.
+- `statement`, `options`, `domainName`, `generalExplanation`: **MUST be present at the root level** (e.g., in English or Portuguese) as the base fallback.
+- `options`: Ensure options are long and detailed. No short obvious statements.
+- `translations`: Complete and independent localized content for `"en"`, `"pt"` (PT-BR), and `"es"` (ES) with zero mixed/hybrid text. Provide translated `statement`, `options`, `domainName`, and `generalExplanation` inside each language key.
 
 ---
 
