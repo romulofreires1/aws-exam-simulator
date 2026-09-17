@@ -66,7 +66,7 @@
         }
       ],
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "generalExplanation": "For Elastic Beanstalk applications requiring zero downtime, 100% capacity, and instant rollback capabilities, the Blue/Green deployment strategy utilizing the CNAME swap feature is the only architecture that fully satisfies all constraints.",
       "referenceUrl": "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html",
@@ -195,8 +195,8 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "c"
+        "A",
+        "C"
       ],
       "generalExplanation": "AWS Systems Manager natively handles hybrid patch management. On-premises servers are onboarded via managed instance activations (SSM Agent), and EC2 instances use IAM instance profiles. Patch Baselines automate critical update approvals, mapped to Patch Groups and executed within Maintenance Windows.",
       "referenceUrl": "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
@@ -336,7 +336,7 @@
         }
       ],
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "generalExplanation": "AWS CodeDeploy for Amazon ECS natively supports Blue/Green, Canary, and Linear deployments. By specifying the `CodeDeployDefault.ECSLinear10PercentEvery5Minutes` configuration and attaching CloudWatch alarms to the CodeDeploy Deployment Group, automatic traffic shifting and rollback are fully managed without custom scripts.",
       "referenceUrl": "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html",
@@ -461,7 +461,7 @@
         }
       ],
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "generalExplanation": "AWS CloudFormation StackSets allows a single AWS CodePipeline to deploy cloud infrastructure across multiple regions and accounts. By configuring the action correctly, the central pipeline orchestrates the rollout sequentially, ensuring that failure in the primary region immediately aborts the pipeline before deploying to secondary regions.",
       "referenceUrl": "https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference-CloudFormationStackInstances.html",
@@ -586,7 +586,7 @@
         }
       ],
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "generalExplanation": "To maintain zero-trust security during CI/CD pipelines, secrets must not be stored in source code or intermediate Docker layers. By defining secrets in the `env:secrets-manager` section of the `buildspec.yml`, AWS CodeBuild safely resolves them. Passing them via Docker BuildKit secret mounts (`--mount=type=secret`) ensures the container process can access them during compilation, but they are never committed to the image layers.",
       "referenceUrl": "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html",
@@ -1318,8 +1318,8 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "b"
+        "A",
+        "B"
       ],
       "translations": {
         "en": {
@@ -1464,9 +1464,9 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "b",
-        "c"
+        "A",
+        "B",
+        "C"
       ],
       "translations": {
         "en": {
@@ -1741,8 +1741,8 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "b"
+        "A",
+        "B"
       ],
       "translations": {
         "en": {
@@ -1882,8 +1882,8 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "b"
+        "A",
+        "B"
       ],
       "translations": {
         "en": {
@@ -2026,7 +2026,7 @@
         }
       ],
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "generalExplanation": "AWS CloudFormation StackSets with service-managed permissions allow you to centrally manage deployments to AWS accounts within AWS Organizations. By enabling automatic deployments, StackSets automatically deploys to any new account added to the target OUs.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-orgs-manage-accounts.html",
@@ -2150,7 +2150,7 @@
         }
       ],
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "generalExplanation": "Cross-stack references let you export values from one stack and import them into another using the Export field and Fn::ImportValue. CloudFormation enforces tight referential integrity: you cannot delete a stack if another stack is importing its exported values.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-crossstackref.html",
@@ -2279,8 +2279,8 @@
         }
       ],
       "correctAnswers": [
-        "a",
-        "b"
+        "A",
+        "B"
       ],
       "generalExplanation": "To delay resource completion during boot, a CreationPolicy coupled with cfn-signal ensures the Auto Scaling group waits until the software is ready. For dynamic in-place updates, defining desired state in AWS::CloudFormation::Init and running the cfn-hup daemon allows instances to detect template metadata changes and apply them without requiring instance termination.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-hup.html",
@@ -2420,7 +2420,7 @@
         }
       ],
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "generalExplanation": "CloudFormation Custom Resources allow you to extend the engine to provision third-party resources or perform unsupported AWS actions (like running DB migrations) using Lambda. Using `DependsOn`, the stack execution will pause, invoke Lambda, wait for the DB schema to be seeded, and only then proceed to deploy the EC2 instances.",
       "referenceUrl": "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html",
@@ -2544,7 +2544,7 @@
         }
       ],
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "generalExplanation": "AWS CDK L3 Constructs (also known as architectural patterns) are designed to help developers deploy complex architectures with minimal code. The 'ApplicationLoadBalancedFargateService' construct automatically provisions a VPC (if needed), an ECS cluster, an Application Load Balancer, Fargate tasks, Security Groups, and IAM roles, fully enforcing AWS best practices out of the box.",
       "referenceUrl": "https://docs.aws.amazon.com/cdk/v2/guide/constructs.html",

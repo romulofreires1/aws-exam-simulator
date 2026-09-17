@@ -586,7 +586,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "difficulty": "hard",
       "translations": {
@@ -693,8 +693,8 @@
       "type": "multiple-choice",
       "requiredChoices": 2,
       "correctAnswers": [
-        "a",
-        "c"
+        "A",
+        "C"
       ],
       "difficulty": "hard",
       "translations": {
@@ -817,7 +817,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "difficulty": "hard",
       "translations": {
@@ -923,7 +923,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1030,7 +1030,7 @@
       "type": "single-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1136,8 +1136,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "a",
-        "d"
+        "A",
+        "D"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1256,7 +1256,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1359,7 +1359,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1462,7 +1462,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "d"
+        "D"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1565,8 +1565,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "a",
-        "d"
+        "A",
+        "D"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1685,7 +1685,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1804,7 +1804,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -1923,8 +1923,8 @@
       "type": "multiple",
       "requiredChoices": 2,
       "correctAnswers": [
-        "b",
-        "d"
+        "B",
+        "D"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2063,7 +2063,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2182,7 +2182,7 @@
       "type": "single",
       "requiredChoices": 1,
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2302,7 +2302,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2407,7 +2407,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2510,7 +2510,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2614,7 +2614,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "difficulty": "hard",
       "translations": {
@@ -2719,7 +2719,7 @@
       "type": "multiple-choice",
       "requiredChoices": 1,
       "correctAnswers": [
-        "c"
+        "C"
       ],
       "difficulty": "hard",
       "translations": {
