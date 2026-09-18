@@ -626,7 +626,7 @@
             },
             {
               "id": "D",
-              "text": "Configurar AWS IAM Identity Center y asignar los IdPs sociales a Permission Sets.",
+              "text": "Configurar AWS IAM Identity Center y asignar los IdPs sociales a Permission Sets. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: IAM Identity Center es para empleados de la fuerza laboral, no para aplicaciones B2C con login social."
             },
             {
@@ -882,7 +882,7 @@
             },
             {
               "id": "D",
-              "text": "La cuenta AWS no estaba adjunta correctamente a la raíz de AWS Organizations.",
+              "text": "La cuenta AWS no estaba adjunta correctamente a la raíz de AWS Organizations. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: IAM Identity Center siempre utiliza un proveedor SAML en la confianza, independientemente de la ubicación en la organización."
             }
           ],
@@ -922,23 +922,28 @@
       "options": [
         {
           "id": "A",
-          "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica."
+          "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "B",
-          "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas."
+          "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção."
+          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "D",
-          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos."
+          "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "E",
-          "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida."
+          "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         }
       ],
       "correctAnswers": [
@@ -953,23 +958,28 @@
           "options": [
             {
               "id": "A",
-              "text": "Purchase a Regional Reserved Instance to guarantee capacity for the critical instances in the specific Availability Zone."
+              "text": "Purchase a Regional Reserved Instance to guarantee capacity for the critical instances in the specific Availability Zone.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "B",
-              "text": "Create an On-Demand Zonal Capacity Reservation in the specific Availability Zone to guarantee compute capacity for the critical tasks."
+              "text": "Create an On-Demand Zonal Capacity Reservation in the specific Availability Zone to guarantee compute capacity for the critical tasks.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "C",
-              "text": "Use a Spot Fleet configured with the 'lowestPrice' allocation strategy for all other rendering instances to maximize savings, ignoring interruption frequency."
+              "text": "Use a Spot Fleet configured with the 'lowestPrice' allocation strategy for all other rendering instances to maximize savings, ignoring interruption frequency.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "D",
-              "text": "Use a Spot Fleet configured with the 'capacityOptimized' allocation strategy for the non-critical rendering instances to reduce the likelihood of interruptions while still saving costs."
+              "text": "Use a Spot Fleet configured with the 'capacityOptimized' allocation strategy for the non-critical rendering instances to reduce the likelihood of interruptions while still saving costs.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "E",
-              "text": "Deploy the critical instances into a Spread Placement Group across multiple Availability Zones to ensure high availability and guaranteed capacity."
+              "text": "Deploy the critical instances into a Spread Placement Group across multiple Availability Zones to ensure high availability and guaranteed capacity.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             }
           ]
         },
@@ -980,23 +990,28 @@
           "options": [
             {
               "id": "A",
-              "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica."
+              "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "B",
-              "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas."
+              "text": "Crie uma Reserva de Capacidade Zonal Sob Demanda na Zona de Disponibilidade específica para garantir capacidade de computação para as tarefas críticas.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção."
+              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'lowestPrice' para todas as outras instâncias de renderização para maximizar a economia, ignorando a frequência de interrupção.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "D",
-              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos."
+              "text": "Use uma Frota Spot configurada com a estratégia de alocação 'capacityOptimized' para as instâncias de renderização não críticas para reduzir a probabilidade de interrupções e ainda economizar custos.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "E",
-              "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida."
+              "text": "Implante as instâncias críticas em um Grupo de Posicionamento Distribuído (Spread) em várias Zonas de Disponibilidade para garantir alta disponibilidade e capacidade garantida.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             }
           ]
         },
@@ -1007,23 +1022,28 @@
           "options": [
             {
               "id": "A",
-              "text": "Compre una Instancia Reservada Regional para garantizar la capacidad de las instancias críticas en la Zona de Disponibilidad específica."
+              "text": "Compre una Instancia Reservada Regional para garantizar la capacidad de las instancias críticas en la Zona de Disponibilidad específica.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "B",
-              "text": "Cree una Reserva de Capacidad Zonal Bajo Demanda en la Zona de Disponibilidad específica para garantizar la capacidad de cómputo para las tareas críticas."
+              "text": "Cree una Reserva de Capacidad Zonal Bajo Demanda en la Zona de Disponibilidad específica para garantizar la capacidad de cómputo para las tareas críticas.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "C",
-              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'lowestPrice' para todas las demás instancias de renderizado para maximizar los ahorros, ignorando la frecuencia de interrupción."
+              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'lowestPrice' para todas las demás instancias de renderizado para maximizar los ahorros, ignorando la frecuencia de interrupción.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "D",
-              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'capacityOptimized' para las instancias de renderizado no críticas para reducir la probabilidad de interrupciones y al mismo tiempo ahorrar costos."
+              "text": "Utilice una Flota Spot configurada con la estrategia de asignación 'capacityOptimized' para las instancias de renderizado no críticas para reducir la probabilidad de interrupciones y al mismo tiempo ahorrar costos.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "E",
-              "text": "Implemente las instancias críticas en un Grupo de Ubicación de Dispersión (Spread) a través de múltiples Zonas de Disponibilidad para garantizar alta disponibilidad y capacidad garantizada."
+              "text": "Implemente las instancias críticas en un Grupo de Ubicación de Dispersión (Spread) a través de múltiples Zonas de Disponibilidad para garantizar alta disponibilidad y capacidad garantizada.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             }
           ]
         }
@@ -1047,19 +1067,23 @@
       "options": [
         {
           "id": "A",
-          "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread)."
+          "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread).",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "B",
-          "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster."
+          "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade."
+          "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "D",
-          "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs."
+          "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         }
       ],
       "correctAnswers": [
@@ -1073,19 +1097,23 @@
           "options": [
             {
               "id": "A",
-              "text": "The instances were placed in a Partition Placement Group which spread them across logical partitions, increasing latency. They should be redeployed into a Spread Placement Group."
+              "text": "The instances were placed in a Partition Placement Group which spread them across logical partitions, increasing latency. They should be redeployed into a Spread Placement Group.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "B",
-              "text": "Cluster Placement Groups cannot span multiple Availability Zones. The Architect must launch all instances simultaneously into a single Availability Zone using the same instance type in a Cluster Placement Group."
+              "text": "Cluster Placement Groups cannot span multiple Availability Zones. The Architect must launch all instances simultaneously into a single Availability Zone using the same instance type in a Cluster Placement Group.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "C",
-              "text": "The instances are missing Elastic Fabric Adapter (EFA) attachments. EFA should be added to the instances in the existing Cluster Placement Group while keeping the multi-AZ setup for high availability."
+              "text": "The instances are missing Elastic Fabric Adapter (EFA) attachments. EFA should be added to the instances in the existing Cluster Placement Group while keeping the multi-AZ setup for high availability.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "D",
-              "text": "The VPC peering connection between the subnets is bottlenecking the MPI traffic. A Transit Gateway must be deployed to handle the 100 Gbps single-stream traffic between the AZs."
+              "text": "The VPC peering connection between the subnets is bottlenecking the MPI traffic. A Transit Gateway must be deployed to handle the 100 Gbps single-stream traffic between the AZs.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             }
           ]
         },
@@ -1096,19 +1124,23 @@
           "options": [
             {
               "id": "A",
-              "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread)."
+              "text": "As instâncias foram colocadas em um Grupo de Posicionamento de Partição que as espalhou por partições lógicas, aumentando a latência. Elas devem ser reimplantadas em um Grupo de Posicionamento Distribuído (Spread).",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "B",
-              "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster."
+              "text": "Grupos de Posicionamento de Cluster não podem abranger várias Zonas de Disponibilidade. O Arquiteto deve iniciar todas as instâncias simultaneamente em uma única Zona de Disponibilidade usando o mesmo tipo de instância em um Grupo de Posicionamento de Cluster.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade."
+              "text": "As instâncias estão sem anexos do Elastic Fabric Adapter (EFA). O EFA deve ser adicionado às instâncias no Grupo de Posicionamento de Cluster existente, mantendo a configuração multi-AZ para alta disponibilidade.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "D",
-              "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs."
+              "text": "A conexão de emparelhamento VPC (peering) entre as sub-redes está gargalando o tráfego MPI. Um Transit Gateway deve ser implantado para lidar com o tráfego de fluxo único de 100 Gbps entre as AZs.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             }
           ]
         },
@@ -1119,19 +1151,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Las instancias se colocaron en un Grupo de Ubicación de Partición que las distribuyó en particiones lógicas, aumentando la latencia. Deberían reimplementarse en un Grupo de Ubicación de Dispersión (Spread)."
+              "text": "Las instancias se colocaron en un Grupo de Ubicación de Partición que las distribuyó en particiones lógicas, aumentando la latencia. Deberían reimplementarse en un Grupo de Ubicación de Dispersión (Spread).",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "B",
-              "text": "Los Grupos de Ubicación de Clúster no pueden abarcar múltiples Zonas de Disponibilidad. El Arquitecto debe lanzar todas las instancias simultáneamente en una sola Zona de Disponibilidad utilizando el mismo tipo de instancia en un Grupo de Ubicación de Clúster."
+              "text": "Los Grupos de Ubicación de Clúster no pueden abarcar múltiples Zonas de Disponibilidad. El Arquitecto debe lanzar todas las instancias simultáneamente en una sola Zona de Disponibilidad utilizando el mismo tipo de instancia en un Grupo de Ubicación de Clúster.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "C",
-              "text": "A las instancias les faltan conexiones de Elastic Fabric Adapter (EFA). El EFA debe agregarse a las instancias en el Grupo de Ubicación de Clúster existente manteniendo la configuración multi-AZ para alta disponibilidad."
+              "text": "A las instancias les faltan conexiones de Elastic Fabric Adapter (EFA). El EFA debe agregarse a las instancias en el Grupo de Ubicación de Clúster existente manteniendo la configuración multi-AZ para alta disponibilidad.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "D",
-              "text": "La conexión de peering de VPC entre las subredes está estrangulando el tráfico MPI. Se debe implementar un Transit Gateway para manejar el tráfico de flujo único de 100 Gbps entre las AZs."
+              "text": "La conexión de peering de VPC entre las subredes está estrangulando el tráfico MPI. Se debe implementar un Transit Gateway para manejar el tráfico de flujo único de 100 Gbps entre las AZs.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             }
           ]
         }
@@ -1156,19 +1192,23 @@
       "options": [
         {
           "id": "A",
-          "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas."
+          "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "B",
-          "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis."
+          "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar."
+          "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "D",
-          "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos."
+          "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         }
       ],
       "correctAnswers": [
@@ -1182,19 +1222,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Pre-bake the application into a custom AMI to reduce boot time to seconds. Maintain the Simple Scaling policy but reduce the cooldown period to 60 seconds to allow faster subsequent scale-out actions."
+              "text": "Pre-bake the application into a custom AMI to reduce boot time to seconds. Maintain the Simple Scaling policy but reduce the cooldown period to 60 seconds to allow faster subsequent scale-out actions.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "B",
-              "text": "Implement Predictive Scaling to proactively provision capacity ahead of the daily 9:00 AM spikes. Replace the Simple Scaling policy with a Step Scaling policy utilizing an instance warm-up period to handle unpredictable bursts dynamically."
+              "text": "Implement Predictive Scaling to proactively provision capacity ahead of the daily 9:00 AM spikes. Replace the Simple Scaling policy with a Step Scaling policy utilizing an instance warm-up period to handle unpredictable bursts dynamically.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "C",
-              "text": "Configure a Target Tracking scaling policy targeting 40% CPU utilization. Disable the ASG cooldown period entirely so that the ASG can rapidly spawn instances without waiting."
+              "text": "Configure a Target Tracking scaling policy targeting 40% CPU utilization. Disable the ASG cooldown period entirely so that the ASG can rapidly spawn instances without waiting.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "D",
-              "text": "Use Scheduled Scaling actions to scale out at 8:55 AM. For the rest of the day, use the existing Simple Scaling policy paired with an Application Load Balancer health check grace period of 300 seconds."
+              "text": "Use Scheduled Scaling actions to scale out at 8:55 AM. For the rest of the day, use the existing Simple Scaling policy paired with an Application Load Balancer health check grace period of 300 seconds.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             }
           ]
         },
@@ -1205,19 +1249,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas."
+              "text": "Faça o pre-bake da aplicação em uma AMI personalizada para reduzir o tempo de inicialização para segundos. Mantenha a política de Escalonamento Simples, mas reduza o período de resfriamento para 60 segundos para permitir ações de escalonamento subsequentes mais rápidas.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "B",
-              "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis."
+              "text": "Implemente o Escalonamento Preditivo (Predictive Scaling) para provisionar capacidade proativamente antes dos picos diários das 9:00. Substitua a política de Escalonamento Simples por uma política de Step Scaling utilizando um período de aquecimento de instância (warm-up) para lidar dinamicamente com surtos imprevisíveis.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar."
+              "text": "Configure uma política de escalonamento de Target Tracking visando 40% de utilização de CPU. Desative totalmente o período de resfriamento (cooldown) do ASG para que ele possa gerar instâncias rapidamente sem esperar.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "D",
-              "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos."
+              "text": "Use ações de Escalonamento Agendado (Scheduled Scaling) para escalar às 8:55 da manhã. Para o resto do dia, use a política de Escalonamento Simples existente combinada com um período de carência de verificação de integridade do Application Load Balancer de 300 segundos.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             }
           ]
         },
@@ -1228,19 +1276,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Realice un pre-bake de la aplicación en una AMI personalizada para reducir el tiempo de arranque a segundos. Mantenga la política de Escalamiento Simple pero reduzca el período de enfriamiento a 60 segundos para permitir acciones de escalamiento posteriores más rápidas."
+              "text": "Realice un pre-bake de la aplicación en una AMI personalizada para reducir el tiempo de arranque a segundos. Mantenga la política de Escalamiento Simple pero reduzca el período de enfriamiento a 60 segundos para permitir acciones de escalamiento posteriores más rápidas.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "B",
-              "text": "Implemente el Escalamiento Predictivo (Predictive Scaling) para aprovisionar proactivamente la capacidad antes de los picos diarios de las 9:00 AM. Reemplace la política de Escalamiento Simple con una política de Step Scaling utilizando un período de calentamiento de instancia (warm-up) para manejar dinámicamente ráfagas impredecibles."
+              "text": "Implemente el Escalamiento Predictivo (Predictive Scaling) para aprovisionar proactivamente la capacidad antes de los picos diarios de las 9:00 AM. Reemplace la política de Escalamiento Simple con una política de Step Scaling utilizando un período de calentamiento de instancia (warm-up) para manejar dinámicamente ráfagas impredecibles.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "C",
-              "text": "Configure una política de escalamiento de Target Tracking apuntando a un 40% de utilización de CPU. Desactive por completo el período de enfriamiento del ASG para que pueda generar instancias rápidamente sin esperar."
+              "text": "Configure una política de escalamiento de Target Tracking apuntando a un 40% de utilización de CPU. Desactive por completo el período de enfriamiento del ASG para que pueda generar instancias rápidamente sin esperar.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "D",
-              "text": "Utilice acciones de Escalamiento Programado (Scheduled Scaling) para escalar a las 8:55 AM. Durante el resto del día, utilice la política de Escalamiento Simple existente combinada con un período de gracia de verificación de estado del Application Load Balancer de 300 segundos."
+              "text": "Utilice acciones de Escalamiento Programado (Scheduled Scaling) para escalar a las 8:55 AM. Durante el resto del día, utilice la política de Escalamiento Simple existente combinada con un período de gracia de verificación de estado del Application Load Balancer de 300 segundos.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             }
           ]
         }
@@ -1264,19 +1316,23 @@
       "options": [
         {
           "id": "A",
-          "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade."
+          "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "B",
-          "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença."
+          "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento."
+          "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "D",
-          "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade."
+          "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         }
       ],
       "correctAnswers": [
@@ -1290,19 +1346,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Launch EC2 Dedicated Instances. Configure AWS License Manager to track core utilization and ensure the Auto Scaling group dynamically adjusts the count of Dedicated Instances across multiple Availability Zones."
+              "text": "Launch EC2 Dedicated Instances. Configure AWS License Manager to track core utilization and ensure the Auto Scaling group dynamically adjusts the count of Dedicated Instances across multiple Availability Zones.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "B",
-              "text": "Allocate EC2 Dedicated Hosts. Create a host resource group using AWS License Manager to manage the hosts. Configure the Auto Scaling group to launch instances directly into the license-managed host resource group."
+              "text": "Allocate EC2 Dedicated Hosts. Create a host resource group using AWS License Manager to manage the hosts. Configure the Auto Scaling group to launch instances directly into the license-managed host resource group.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "C",
-              "text": "Use On-Demand instances with Default tenancy. Apply a Host Affinity rule in the EC2 Launch Template to bind instances to specific MAC addresses, and use AWS Config to audit licensing compliance."
+              "text": "Use On-Demand instances with Default tenancy. Apply a Host Affinity rule in the EC2 Launch Template to bind instances to specific MAC addresses, and use AWS Config to audit licensing compliance.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "D",
-              "text": "Allocate EC2 Dedicated Hosts and configure the Auto Scaling group to target the specific Dedicated Host IDs in the Launch Template for dynamically expanding capacity."
+              "text": "Allocate EC2 Dedicated Hosts and configure the Auto Scaling group to target the specific Dedicated Host IDs in the Launch Template for dynamically expanding capacity.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             }
           ]
         },
@@ -1313,19 +1373,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade."
+              "text": "Inicie Instâncias Dedicadas do EC2 (Dedicated Instances). Configure o AWS License Manager para rastrear a utilização de núcleos e certifique-se de que o grupo de Auto Scaling ajuste dinamicamente a contagem de Instâncias Dedicadas em várias Zonas de Disponibilidade.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "B",
-              "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença."
+              "text": "Aloque Hosts Dedicados do EC2 (Dedicated Hosts). Crie um grupo de recursos de host usando o AWS License Manager para gerenciar os hosts. Configure o grupo de Auto Scaling para iniciar instâncias diretamente no grupo de recursos de host gerenciado por licença.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento."
+              "text": "Use instâncias Sob Demanda (On-Demand) com locação Padrão (Default). Aplique uma regra de Afinidade de Host no Modelo de Execução (Launch Template) do EC2 para vincular instâncias a endereços MAC específicos e use o AWS Config para auditar a conformidade de licenciamento.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "D",
-              "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade."
+              "text": "Aloque Hosts Dedicados do EC2 e configure o grupo de Auto Scaling para direcionar os IDs de Host Dedicado específicos no Modelo de Execução para expandir dinamicamente a capacidade.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             }
           ]
         },
@@ -1336,19 +1400,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Lance Instancias Dedicadas de EC2. Configure AWS License Manager para rastrear la utilización de núcleos y asegúrese de que el grupo de Auto Scaling ajuste dinámicamente el recuento de Instancias Dedicadas a través de múltiples Zonas de Disponibilidad."
+              "text": "Lance Instancias Dedicadas de EC2. Configure AWS License Manager para rastrear la utilización de núcleos y asegúrese de que el grupo de Auto Scaling ajuste dinámicamente el recuento de Instancias Dedicadas a través de múltiples Zonas de Disponibilidad.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "B",
-              "text": "Asigne Hosts Dedicados de EC2. Cree un grupo de recursos de host utilizando AWS License Manager para administrar los hosts. Configure el grupo de Auto Scaling para lanzar instancias directamente en el grupo de recursos de host administrado por licencias."
+              "text": "Asigne Hosts Dedicados de EC2. Cree un grupo de recursos de host utilizando AWS License Manager para administrar los hosts. Configure el grupo de Auto Scaling para lanzar instancias directamente en el grupo de recursos de host administrado por licencias.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "C",
-              "text": "Utilice instancias On-Demand con tenencia Predeterminada (Default). Aplique una regla de Afinidad de Host en la Plantilla de Lanzamiento de EC2 para vincular instancias a direcciones MAC específicas, y utilice AWS Config para auditar el cumplimiento de licencias."
+              "text": "Utilice instancias On-Demand con tenencia Predeterminada (Default). Aplique una regla de Afinidad de Host en la Plantilla de Lanzamiento de EC2 para vincular instancias a direcciones MAC específicas, y utilice AWS Config para auditar el cumplimiento de licencias.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "D",
-              "text": "Asigne Hosts Dedicados de EC2 y configure el grupo de Auto Scaling para apuntar a los ID de Host Dedicado específicos en la Plantilla de Lanzamiento para expandir dinámicamente la capacidad."
+              "text": "Asigne Hosts Dedicados de EC2 y configure el grupo de Auto Scaling para apuntar a los ID de Host Dedicado específicos en la Plantilla de Lanzamiento para expandir dinámicamente la capacidad.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             }
           ]
         }
@@ -1373,19 +1441,23 @@
       "options": [
         {
           "id": "A",
-          "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console."
+          "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "B",
-          "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância."
+          "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância.",
+          "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI."
+          "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         },
         {
           "id": "D",
-          "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo."
+          "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo.",
+          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
         }
       ],
       "correctAnswers": [
@@ -1399,19 +1471,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Use the AWS Systems Manager Automation document `AWSSupport-ResetAccess` to inject a new SSH key into the instance dynamically. Reboot the instance using the AWS Management Console."
+              "text": "Use the AWS Systems Manager Automation document `AWSSupport-ResetAccess` to inject a new SSH key into the instance dynamically. Reboot the instance using the AWS Management Console.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "B",
-              "text": "Stop the EC2 instance. Detach the root EBS volume and attach it as a secondary data volume to a temporary rescue instance in the same Availability Zone. Mount the volume, append the new SSH public key to `/home/ec2-user/.ssh/authorized_keys`, unmount, reattach it to the original instance as `/dev/xvda`, and start the instance."
+              "text": "Stop the EC2 instance. Detach the root EBS volume and attach it as a secondary data volume to a temporary rescue instance in the same Availability Zone. Mount the volume, append the new SSH public key to `/home/ec2-user/.ssh/authorized_keys`, unmount, reattach it to the original instance as `/dev/xvda`, and start the instance.",
+              "explanation": "This is the correct choice because it natively satisfies all of the strict constraints outlined in the scenario while remaining highly cost-effective and strictly following AWS well-architected best practices."
             },
             {
               "id": "C",
-              "text": "Create an Amazon Machine Image (AMI) from the running instance. Modify the User Data script in the EC2 Launch Template to append the new SSH key. Launch a new replacement instance from the AMI."
+              "text": "Create an Amazon Machine Image (AMI) from the running instance. Modify the User Data script in the EC2 Launch Template to append the new SSH key. Launch a new replacement instance from the AMI.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             },
             {
               "id": "D",
-              "text": "Use EC2 Instance Connect via the AWS CLI to temporarily push an ephemeral SSH public key to the instance metadata service, allowing connection for 60 seconds to fix the file."
+              "text": "Use EC2 Instance Connect via the AWS CLI to temporarily push an ephemeral SSH public key to the instance metadata service, allowing connection for 60 seconds to fix the file.",
+              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
             }
           ]
         },
@@ -1422,19 +1498,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console."
+              "text": "Use o documento de Automação do AWS Systems Manager `AWSSupport-ResetAccess` para injetar dinamicamente uma nova chave SSH na instância. Reinicie a instância usando o AWS Management Console.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "B",
-              "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância."
+              "text": "Pare a instância EC2. Desanexe o volume EBS raiz e anexe-o como um volume de dados secundário a uma instância de resgate temporária na mesma Zona de Disponibilidade. Monte o volume, anexe a nova chave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, reanexe-o à instância original como `/dev/xvda` e inicie a instância.",
+              "explanation": "Esta é a escolha correta porque satisfaz nativamente todas as restrições rigorosas descritas no cenário, mantendo-se altamente econômica e seguindo estritamente as práticas recomendadas pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI."
+              "text": "Crie uma Imagem de Máquina da Amazon (AMI) a partir da instância em execução. Modifique o script de Dados do Usuário (User Data) no Modelo de Execução (Launch Template) do EC2 para anexar a nova chave SSH. Inicie uma nova instância de substituição a partir da AMI.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             },
             {
               "id": "D",
-              "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo."
+              "text": "Use o EC2 Instance Connect por meio da AWS CLI para enviar temporariamente uma chave pública SSH efêmera para o serviço de metadados da instância, permitindo a conexão por 60 segundos para consertar o arquivo.",
+              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
             }
           ]
         },
@@ -1445,19 +1525,23 @@
           "options": [
             {
               "id": "A",
-              "text": "Utilice el documento de Automatización de AWS Systems Manager `AWSSupport-ResetAccess` para inyectar dinámicamente una nueva clave SSH en la instancia. Reinicie la instancia mediante la AWS Management Console."
+              "text": "Utilice el documento de Automatización de AWS Systems Manager `AWSSupport-ResetAccess` para inyectar dinámicamente una nueva clave SSH en la instancia. Reinicie la instancia mediante la AWS Management Console.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "B",
-              "text": "Detenga la instancia EC2. Desconecte el volumen EBS raíz y conéctelo como un volumen de datos secundario a una instancia de rescate temporal en la misma Zona de Disponibilidad. Monte el volumen, agregue la nueva clave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, vuelva a conectarlo a la instancia original como `/dev/xvda` y encienda la instancia."
+              "text": "Detenga la instancia EC2. Desconecte el volumen EBS raíz y conéctelo como un volumen de datos secundario a una instancia de rescate temporal en la misma Zona de Disponibilidad. Monte el volumen, agregue la nueva clave pública SSH a `/home/ec2-user/.ssh/authorized_keys`, desmonte, vuelva a conectarlo a la instancia original como `/dev/xvda` y encienda la instancia.",
+              "explanation": "Esta es la elección correcta porque satisface de forma nativa todas las estrictas restricciones descritas en el escenario sin dejar de ser altamente rentable y siguiendo estrictamente las mejores prácticas de AWS."
             },
             {
               "id": "C",
-              "text": "Cree una Imagen de Máquina de Amazon (AMI) a partir de la instancia en ejecución. Modifique el script de User Data en la Plantilla de Lanzamiento de EC2 para agregar la nueva clave SSH. Lance una nueva instancia de reemplazo desde la AMI."
+              "text": "Cree una Imagen de Máquina de Amazon (AMI) a partir de la instancia en ejecución. Modifique el script de User Data en la Plantilla de Lanzamiento de EC2 para agregar la nueva clave SSH. Lance una nueva instancia de reemplazo desde la AMI.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             },
             {
               "id": "D",
-              "text": "Utilice EC2 Instance Connect a través de la AWS CLI para enviar temporalmente una clave pública SSH efímera al servicio de metadatos de la instancia, permitiendo la conexión durante 60 segundos para reparar el archivo."
+              "text": "Utilice EC2 Instance Connect a través de la AWS CLI para enviar temporalmente una clave pública SSH efímera al servicio de metadatos de la instancia, permitiendo la conexión durante 60 segundos para reparar el archivo.",
+              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
             }
           ]
         }
@@ -1495,7 +1579,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Enable Amazon S3 Object Lock in compliance mode for the bucket storing the logs.",
+              "text": "Enable Amazon S3 Object Lock in compliance mode for the bucket storing the logs. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
               "explanation": "Incorrect: While S3 Object Lock prevents deletion or modification, it does not provide mathematical proof of integrity for the logs themselves generated by CloudTrail."
             },
             {
@@ -1618,12 +1702,12 @@
           "options": [
             {
               "id": "A",
-              "text": "Use Amazon GuardDuty for both operational API call anomalies and security threat detection.",
+              "text": "Use Amazon GuardDuty for both operational API call anomalies and security threat detection. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
               "explanation": "Incorrect: GuardDuty focuses on security threats, not operational management API baselines like call volume spikes."
             },
             {
               "id": "B",
-              "text": "Use AWS CloudTrail Insights for both operational API anomalies and compromised instance detection.",
+              "text": "Use AWS CloudTrail Insights for both operational API anomalies and compromised instance detection. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
               "explanation": "Incorrect: CloudTrail Insights analyzes API call volumes and error rates, but does not analyze VPC Flow Logs or DNS logs to find compromised instances communicating with malicious IPs."
             },
             {
@@ -1650,7 +1734,7 @@
             },
             {
               "id": "B",
-              "text": "Usar AWS CloudTrail Insights para anomalias em APIs operacionais e detecção de instâncias comprometidas.",
+              "text": "Usar AWS CloudTrail Insights para anomalias em APIs operacionais e detecção de instâncias comprometidas. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
               "explanation": "Incorreto: CloudTrail Insights analisa volume de chamadas API, mas não analisa VPC Flow Logs para encontrar IPs maliciosos."
             },
             {
@@ -1677,7 +1761,7 @@
             },
             {
               "id": "B",
-              "text": "Usar AWS CloudTrail Insights para anomalías de API operativas y detección de instancias comprometidas.",
+              "text": "Usar AWS CloudTrail Insights para anomalías de API operativas y detección de instancias comprometidas. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: CloudTrail Insights no analiza VPC Flow Logs para encontrar IPs maliciosas."
             },
             {
@@ -1703,7 +1787,7 @@
         },
         {
           "id": "B",
-          "text": "Usar AWS CloudTrail Insights para anomalias em APIs operacionais e detecção de instâncias comprometidas.",
+          "text": "Usar AWS CloudTrail Insights para anomalias em APIs operacionais e detecção de instâncias comprometidas. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
           "explanation": "Incorreto: CloudTrail Insights analisa volume de chamadas API, mas não analisa VPC Flow Logs para encontrar IPs maliciosos."
         },
         {
@@ -1742,7 +1826,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Use Amazon CloudWatch Logs Insights to interactively search and aggregate the centralized log streams.",
+              "text": "Use Amazon CloudWatch Logs Insights to interactively search and aggregate the centralized log streams. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
               "explanation": "Correct: CloudWatch Logs Insights provides a purpose-built query language for fast, interactive log searching and aggregation."
             },
             {
@@ -2137,7 +2221,7 @@
             },
             {
               "id": "B",
-              "text": "Deploy an Amazon FSx for Lustre file system linked to the Amazon S3 bucket.",
+              "text": "Deploy an Amazon FSx for Lustre file system linked to the Amazon S3 bucket. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
               "explanation": "Correct: FSx for Lustre is designed specifically for high-performance computing workloads and can be seamlessly linked to an S3 bucket, presenting S3 objects as files natively."
             },
             {
@@ -2216,7 +2300,7 @@
             },
             {
               "id": "E",
-              "text": "Usar volúmenes io2 de EBS con Multi-Attach y adjuntarlos al clúster EC2.",
+              "text": "Usar volúmenes io2 de EBS con Multi-Attach y adjuntarlos al clúster EC2. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: EBS Multi-Attach está limitado a 16 instancias y no sincroniza archivos con S3."
             }
           ],
@@ -2333,7 +2417,7 @@
             },
             {
               "id": "B",
-              "text": "Implementar AWS Storage Gateway como File Gateway mediante recursos compartidos NFS/SMB.",
+              "text": "Implementar AWS Storage Gateway como File Gateway mediante recursos compartidos NFS/SMB. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: La aplicación depende de bloques iSCSI; cambiar a NFS/SMB requiere modificar la aplicación."
             },
             {
@@ -2588,7 +2672,7 @@
             },
             {
               "id": "D",
-              "text": "Configurar AWS DataSync para copiar los datos a Amazon S3 y usar S3 CRR.",
+              "text": "Configurar AWS DataSync para copiar los datos a Amazon S3 y usar S3 CRR. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: DataSync no se utiliza para hacer instantáneas de bases de datos RDS o volúmenes en bloque EC2 en ejecución."
             }
           ],
@@ -2737,7 +2821,7 @@
             },
             {
               "id": "D",
-              "text": "Implementar Amazon DocumentDB en un clúster global con replicación bidireccional mediante AWS DMS.",
+              "text": "Implementar Amazon DocumentDB en un clúster global con replicación bidireccional mediante AWS DMS. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: DocumentDB global tiene una única región principal para escrituras."
             }
           ],
@@ -3096,7 +3180,7 @@
             },
             {
               "id": "E",
-              "text": "O modo DynamoDB On-Demand deve estar habilitado para escalar os nós DAX horizontalmente.",
+              "text": "O modo DynamoDB On-Demand deve estar habilitado para escalar os nós DAX horizontalmente. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
               "explanation": "Incorreto: O escalonamento do cluster DAX é independente do modo de capacidade da tabela."
             }
           ],
@@ -3108,7 +3192,7 @@
           "options": [
             {
               "id": "A",
-              "text": "DAX opera como una caché write-through y puede cumplir con solicitudes fuertemente consistentes directamente.",
+              "text": "DAX opera como una caché write-through y puede cumplir con solicitudes fuertemente consistentes directamente. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: DAX no atiende lecturas fuertemente consistentes."
             },
             {
@@ -3128,7 +3212,7 @@
             },
             {
               "id": "E",
-              "text": "El modo DynamoDB On-Demand debe estar habilitado para escalar nodos DAX horizontalmente.",
+              "text": "El modo DynamoDB On-Demand debe estar habilitado para escalar nodos DAX horizontalmente. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
               "explanation": "Incorrecto: El escalado del clúster DAX es independiente del modo de capacidad de la tabla."
             }
           ],
