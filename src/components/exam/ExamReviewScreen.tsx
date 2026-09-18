@@ -104,7 +104,10 @@ export function ExamReviewScreen({
               {questions.map((rawQ, idx) => {
                 const q = getLocalizedQuestion(rawQ, language);
                 const resp = responses[rawQ.id];
-                const isRespAnswered = !!(resp?.selectedOptionIds && resp.selectedOptionIds.length > 0);
+                const required = q.type === 'multiple' ? (q.requiredChoices || 1) : 1;
+                const answeredCount = resp?.selectedOptionIds?.length || 0;
+                const isRespFullyAnswered = answeredCount === required;
+                const isRespPartiallyAnswered = answeredCount > 0 && answeredCount < required;
                 const isRespFlagged = !!resp?.isFlagged;
 
                 return (
@@ -117,13 +120,17 @@ export function ExamReviewScreen({
                       Question {idx + 1}
                     </td>
                     <td className="px-6 py-4">
-                      {isRespAnswered ? (
+                      {isRespFullyAnswered ? (
                         <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
                           Answered ({resp.selectedOptionIds.join(', ')})
                         </span>
+                      ) : isRespPartiallyAnswered ? (
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-full">
+                          Incomplete ({answeredCount}/{required})
+                        </span>
                       ) : (
                         <span className="inline-flex items-center gap-1 text-xs font-semibold text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-full">
-                          Incomplete
+                          Unanswered
                         </span>
                       )}
                     </td>

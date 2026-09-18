@@ -87,7 +87,8 @@ Para cada questão gerada, verifique:
 
 | # | Verificação | Campo |
 |---|-------------|-------|
-| 1 | `type` está presente e é `"single"` ou `"multiple"` | `type` |
+| 1 | `type` ESTRITAMENTE `"single"` ou `"multiple"` (NUNCA "single-choice" etc) | `type` |
+| 1.5 | Proibido usar `scenario` e `question` separados, use APENAS `statement` com tudo junto | `statement` |
 | 2 | `statement` (a pergunta) está presente no root E em todas as translations | `statement` |
 | 3 | `correctAnswers` contém os IDs corretos (maiúscula para `single`, array para `multiple`) | `correctAnswers` |
 | 4 | `requiredChoices` == `len(correctAnswers)` | `requiredChoices` |

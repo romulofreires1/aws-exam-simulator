@@ -36,6 +36,20 @@ def validate_question(q, index=0, strict=False):
         errors.append(f"{prefix}: domainId inválido '{q.get('domainId')}'. Valores permitidos: {list(VALID_DOMAINS.keys())}")
 
     q_type = q.get("type")
+
+    # NO_SCENARIO_QUESTION check
+    if "scenario" in q or "question" in q:
+        errors.append(f"{prefix}: Proibido o uso dos campos 'scenario' e 'question'. Use apenas 'statement'.")
+    
+    for lang in ["en", "pt", "es"]:
+        t = q.get("translations", {}).get(lang, {})
+        if "scenario" in t or "question" in t:
+            errors.append(f"{prefix} ({lang}): Proibido o uso de 'scenario' e 'question'. Use apenas 'statement'.")
+
+    # STRICT TYPE check
+    if q_type not in ["single", "multiple"]:
+        errors.append(f"{prefix}: O campo 'type' deve ser ESTRITAMENTE 'single' ou 'multiple'. Valor atual: '{q_type}'.")
+
     req_choices = q.get("requiredChoices", 0)
     correct_ans = q.get("correctAnswers", [])
     options = q.get("options", [])

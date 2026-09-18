@@ -66,7 +66,11 @@ export function QuestionGridModal({
         <div className="p-6 overflow-y-auto grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2.5">
           {questions.map((q, idx) => {
             const resp = responses[q.id];
-            const isAnswered = !!(resp?.selectedOptionIds && resp.selectedOptionIds.length > 0);
+            const required = q.type === 'multiple' ? (q.requiredChoices || 1) : 1;
+            const answeredCount = resp?.selectedOptionIds?.length || 0;
+            const isFullyAnswered = answeredCount === required;
+            const isPartiallyAnswered = answeredCount > 0 && answeredCount < required;
+            const isAnswered = isFullyAnswered;
             const isFlagged = !!resp?.isFlagged;
             const isCurrent = idx === currentIndex;
 
@@ -83,8 +87,10 @@ export function QuestionGridModal({
                 } ${
                   isFlagged
                     ? 'bg-amber-500/20 text-amber-300 border border-amber-500/60'
-                    : isAnswered
+                    : isFullyAnswered
                     ? 'bg-emerald-600 text-white shadow-sm'
+                    : isPartiallyAnswered
+                    ? 'bg-amber-600 text-white shadow-sm'
                     : 'bg-slate-800/80 text-slate-400 border border-slate-700 hover:text-white'
                 }`}
               >
