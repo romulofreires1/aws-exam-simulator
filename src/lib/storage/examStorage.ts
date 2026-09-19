@@ -68,8 +68,16 @@ export function saveCompletedAttempt(attempt: ExamAttempt): void {
   if (!isClient()) return;
   try {
     const attempts = getAllAttempts();
-    // Adiciona no início da lista
-    const updated = [attempt, ...attempts.filter((a) => a.id !== attempt.id)];
+    const existingIndex = attempts.findIndex((a) => a.id === attempt.id);
+    let updated;
+    if (existingIndex >= 0) {
+      // Se já existe, atualiza na mesma posição
+      updated = [...attempts];
+      updated[existingIndex] = attempt;
+    } else {
+      // Adiciona no início da lista
+      updated = [attempt, ...attempts];
+    }
     localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(updated));
     // Limpa a sessão ativa pendente desse exame
     clearActiveSession(attempt.examId);

@@ -4,7 +4,7 @@ import React, { useState, useEffect, Suspense, useMemo } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { getExamById } from '@/data/exams';
-import { getAttemptById, getAllAttempts } from '@/lib/storage/examStorage';
+import { getAttemptById, getAllAttempts, saveCompletedAttempt } from '@/lib/storage/examStorage';
 import { ExamAttempt } from '@/types/exam';
 import { ScoreCard } from '@/components/results/ScoreCard';
 import { DomainBreakdownList } from '@/components/results/DomainBreakdownList';
@@ -43,6 +43,19 @@ function ExamResultContent({ examId }: { examId: string }) {
     if (!exam || !attempt) return null;
     return calculateExamScore(exam, attempt.responses);
   }, [exam, attempt]);
+
+  useEffect(() => {
+    if (attempt && scoreResult) {
+      const needsUpdate =
+        !attempt.score ||
+        attempt.score.scaledScore !== scoreResult.scaledScore ||
+        attempt.score.passed !== scoreResult.passed;
+
+      if (needsUpdate) {
+        saveCompletedAttempt({ ...attempt, score: scoreResult });
+      }
+    }
+  }, [attempt, scoreResult]);
 
   if (!isLoaded) {
     return (
