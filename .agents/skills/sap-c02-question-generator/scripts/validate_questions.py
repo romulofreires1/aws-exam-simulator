@@ -104,12 +104,25 @@ def validate_question(q, index=0, strict=False):
             explanation = opt.get("explanation", "").strip()
             if not explanation:
                 errors.append(f"{prefix} Opção '{opt_id}': Explicação da opção vazia.")
-            elif len(explanation.split()) < 10:
-                msg = f"{prefix} Opção '{opt_id}': Explicação muito rasa ({len(explanation.split())} palavras). Deve justificar tecnicamente o acerto ou erro."
-                if strict:
-                    errors.append(msg)
-                else:
-                    warnings.append(msg)
+            else:
+                word_count = len(explanation.split())
+                if word_count < 25:
+                    msg = f"{prefix} Opção '{opt_id}': Explicação rasa ({word_count} palavras). Aprofunde tecnicamente o porquê da alternativa estar correta ou errada (mínimo de 25 palavras)."
+                    if strict:
+                        errors.append(msg)
+                    else:
+                        warnings.append(msg)
+                
+                # Check for generic boilerplate
+                generic_phrases = [
+                    "Esta escolha é incorreta porque introduz uma sobrecarga operacional",
+                    "Esta é a escolha correta porque satisfaz nativamente todas as restrições",
+                    "This choice is incorrect because it introduces significant operational",
+                    "This is the correct choice because it natively satisfies"
+                ]
+                for phrase in generic_phrases:
+                    if phrase.lower() in explanation.lower():
+                        errors.append(f"{prefix} Opção '{opt_id}': BLOQUEADO - A explicação usa um texto genérico ('{phrase[:30]}...'). Você deve escrever uma justificativa específica baseada na arquitetura da opção.")
 
         # Checagem de assimetria de distratores (evita alternativa correta gigante e erradas minúsculas)
         if option_lengths:
