@@ -811,7 +811,7 @@
             {
               "id": "C",
               "text": "Create an AWS Cost and Usage Report (CUR) and configure it to deliver to an Amazon S3 bucket with Amazon Athena integration enabled.",
-              "explanation": "Incorreta. O Cost and Usage Report (CUR) entrega dados precisos ao S3, mas o Athena e QuickSight exigiriam consultas SQL complexas criadas e mantidas do zero para realizar o mapeamento condicional (Account ID vs Tags) de todas as linhas do faturamento, gerando alta sobrecarga operacional comparado ao Cost Categories."
+              "explanation": "Correta. O AWS Cost Categories (ação 1) estrutura logicamente as regras de mapeamento, mas você precisa de uma fonte de dados massiva para alimentar o QuickSight com precisão de linha de faturamento. Criar o Cost and Usage Report (CUR) entregando no S3 com integração automática ao Amazon Athena (ação 2) é a melhor prática. O Athena consultará o S3 e o QuickSight (via SPICE ou Direct Query) exibirá os dados já logicamente organizados pelas categorias, com mínima sobrecarga."
             },
             {
               "id": "D",
@@ -842,7 +842,7 @@
             {
               "id": "C",
               "text": "Criar um AWS Cost and Usage Report (CUR) e configurá-lo para entregar em um bucket do Amazon S3 com integração ao Amazon Athena habilitada.",
-              "explanation": "Incorreta. O Cost and Usage Report (CUR) entrega dados precisos ao S3, mas o Athena e QuickSight exigiriam consultas SQL complexas criadas e mantidas do zero para realizar o mapeamento condicional (Account ID vs Tags) de todas as linhas do faturamento, gerando alta sobrecarga operacional comparado ao Cost Categories."
+              "explanation": "Correta. O AWS Cost Categories (ação 1) estrutura logicamente as regras de mapeamento, mas você precisa de uma fonte de dados massiva para alimentar o QuickSight com precisão de linha de faturamento. Criar o Cost and Usage Report (CUR) entregando no S3 com integração automática ao Amazon Athena (ação 2) é a melhor prática. O Athena consultará o S3 e o QuickSight (via SPICE ou Direct Query) exibirá os dados já logicamente organizados pelas categorias, com mínima sobrecarga."
             },
             {
               "id": "D",
@@ -873,7 +873,7 @@
             {
               "id": "C",
               "text": "Crear un AWS Cost and Usage Report (CUR) y configurarlo para que se entregue en un bucket de Amazon S3 con la integración de Amazon Athena habilitada.",
-              "explanation": "Incorreta. O Cost and Usage Report (CUR) entrega dados precisos ao S3, mas o Athena e QuickSight exigiriam consultas SQL complexas criadas e mantidas do zero para realizar o mapeamento condicional (Account ID vs Tags) de todas as linhas do faturamento, gerando alta sobrecarga operacional comparado ao Cost Categories."
+              "explanation": "Correta. O AWS Cost Categories (ação 1) estrutura logicamente as regras de mapeamento, mas você precisa de uma fonte de dados massiva para alimentar o QuickSight com precisão de linha de faturamento. Criar o Cost and Usage Report (CUR) entregando no S3 com integração automática ao Amazon Athena (ação 2) é a melhor prática. O Athena consultará o S3 e o QuickSight (via SPICE ou Direct Query) exibirá os dados já logicamente organizados pelas categorias, com mínima sobrecarga."
             },
             {
               "id": "D",
@@ -904,7 +904,7 @@
         {
           "id": "C",
           "text": "Criar um AWS Cost and Usage Report (CUR) e configurá-lo para entregar em um bucket do Amazon S3 com integração ao Amazon Athena habilitada.",
-          "explanation": "Incorreta. O Cost and Usage Report (CUR) entrega dados precisos ao S3, mas o Athena e QuickSight exigiriam consultas SQL complexas criadas e mantidas do zero para realizar o mapeamento condicional (Account ID vs Tags) de todas as linhas do faturamento, gerando alta sobrecarga operacional comparado ao Cost Categories."
+          "explanation": "Correta. O AWS Cost Categories (ação 1) estrutura logicamente as regras de mapeamento, mas você precisa de uma fonte de dados massiva para alimentar o QuickSight com precisão de linha de faturamento. Criar o Cost and Usage Report (CUR) entregando no S3 com integração automática ao Amazon Athena (ação 2) é a melhor prática. O Athena consultará o S3 e o QuickSight (via SPICE ou Direct Query) exibirá os dados já logicamente organizados pelas categorias, com mínima sobrecarga."
         },
         {
           "id": "D",
