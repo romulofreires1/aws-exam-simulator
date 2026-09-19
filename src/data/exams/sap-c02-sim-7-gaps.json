@@ -1304,27 +1304,27 @@
             {
               "id": "A",
               "text": "Use an `Effect: Deny` statement with a `NotAction` element listing the actions of the global services to exclude them from the region restriction.",
-              "explanation": "Incorreta. Habilitar o AWS CloudTrail individualmente em cada conta membro usando CloudFormation exige alta manutenção. A replicação (Cross-Region Replication) do S3 não previne que os administradores da conta central (ou um usuário mal-intencionado) excluam os logs após serem copiados, violando as regras rigorosas de conformidade e imutabilidade do cenário."
+              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
             },
             {
               "id": "B",
               "text": "Use an `Effect: Deny` statement with an `Action: *` element, and rely on AWS Organizations' default exemptions for all AWS global services.",
-              "explanation": "Incorreta. Criar uma trilha na conta de gerenciamento captura as atividades locais dela, mas para contas membro, exige-se uma trilha de nível de Organização (Organizational Trail). O MFA Delete protege contra exclusões acidentais de versões do bucket, mas não impõe os controles rígidos de imutabilidade WORM (Write Once Read Many) que o modo de conformidade do Object Lock oferece."
+              "explanation": "Incorreta. Uma declaração com `Action: *` aplicaria o bloqueio a absolutamente todos os serviços e, embora a AWS possua isenções inerentes para a região us-east-1, os serviços globais necessitam de isenções explícitas (via NotAction) na declaração de SCP para funcionarem corretamente e não perderem tráfego vital."
             },
             {
               "id": "C",
               "text": "Use the `StringEquals` condition key for `aws:RequestedRegion` with values `us-east-1` and `us-west-2`. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
-              "explanation": "Correta. Criar uma trilha de Organização garante que todas as contas tenham o CloudTrail habilitado e impede que administradores membros desativem o registro. Adicionar uma SCP que bloqueie 'cloudtrail:StopLogging' garante que as configurações não sejam alteradas, e o S3 Object Lock no Modo Compliance (WORM) bloqueia absolutamente a modificação/exclusão dos arquivos, cumprindo o requisito legal do CISO."
+              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
             },
             {
               "id": "D",
               "text": "Include a condition using the `ArnNotLike` condition operator for the `aws:PrincipalArn` key with the value `arn:aws:iam::*:role/GlobalAdminRole`.",
-              "explanation": "Incorreta. O AWS Backup oferece cofres de retenção para diversos recursos, mas a arquitetura nativa recomendada pela AWS para trilhas imutáveis e invioláveis do CloudTrail é o uso de buckets S3 protegidos com o Object Lock. O AWS Backup adiciona complexidade e custo e não é o padrão de segurança primário para faturamento de logs do CloudTrail."
+              "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
             },
             {
               "id": "E",
               "text": "Include a condition using the `StringNotLike` condition operator for the `aws:PrincipalArn` key with the value `GlobalAdminRole`.",
-              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
+              "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
             }
           ],
           "explanation": "To restrict regions while allowing global services and specific roles, you must use a `Deny` policy. The `NotAction` element (Option A) is used to exempt global services from the `Deny` rule, as AWS Organizations does not automatically exempt them all by default if `Action: *` is used. The `ArnNotLike` condition (Option D) is used with `aws:PrincipalArn` to exempt the specific IAM role from the `Deny` effect by matching its ARN pattern across all accounts.",
@@ -1335,27 +1335,27 @@
             {
               "id": "A",
               "text": "Usar una declaración `Effect: Deny` con un elemento `NotAction` que enumere las acciones de los servicios globales para excluirlos de la restricción de región.",
-              "explanation": "Incorreta. Habilitar o AWS CloudTrail individualmente em cada conta membro usando CloudFormation exige alta manutenção. A replicação (Cross-Region Replication) do S3 não previne que os administradores da conta central (ou um usuário mal-intencionado) excluam os logs após serem copiados, violando as regras rigorosas de conformidade e imutabilidade do cenário."
+              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
             },
             {
               "id": "B",
               "text": "Usar una declaración `Effect: Deny` con un elemento `Action: *`, y depender de las exenciones predeterminadas de AWS Organizations para todos los servicios globales de AWS.",
-              "explanation": "Incorreta. Criar uma trilha na conta de gerenciamento captura as atividades locais dela, mas para contas membro, exige-se uma trilha de nível de Organização (Organizational Trail). O MFA Delete protege contra exclusões acidentais de versões do bucket, mas não impõe os controles rígidos de imutabilidade WORM (Write Once Read Many) que o modo de conformidade do Object Lock oferece."
+              "explanation": "Incorreta. Uma declaração com `Action: *` aplicaria o bloqueio a absolutamente todos os serviços e, embora a AWS possua isenções inerentes para a região us-east-1, os serviços globais necessitam de isenções explícitas (via NotAction) na declaração de SCP para funcionarem corretamente e não perderem tráfego vital."
             },
             {
               "id": "C",
               "text": "Usar la clave de condición `StringEquals` para `aws:RequestedRegion` con los valores `us-east-1` y `us-west-2`. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
-              "explanation": "Correta. Criar uma trilha de Organização garante que todas as contas tenham o CloudTrail habilitado e impede que administradores membros desativem o registro. Adicionar uma SCP que bloqueie 'cloudtrail:StopLogging' garante que as configurações não sejam alteradas, e o S3 Object Lock no Modo Compliance (WORM) bloqueia absolutamente a modificação/exclusão dos arquivos, cumprindo o requisito legal do CISO."
+              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
             },
             {
               "id": "D",
               "text": "Incluir una condición usando el operador `ArnNotLike` para la clave `aws:PrincipalArn` con el valor `arn:aws:iam::*:role/GlobalAdminRole`.",
-              "explanation": "Incorreta. O AWS Backup oferece cofres de retenção para diversos recursos, mas a arquitetura nativa recomendada pela AWS para trilhas imutáveis e invioláveis do CloudTrail é o uso de buckets S3 protegidos com o Object Lock. O AWS Backup adiciona complexidade e custo e não é o padrão de segurança primário para faturamento de logs do CloudTrail."
+              "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
             },
             {
               "id": "E",
               "text": "Incluir una condición usando el operador `StringNotLike` para la clave `aws:PrincipalArn` con el valor `GlobalAdminRole`.",
-              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
+              "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
             }
           ],
           "explanation": "Para restringir las regiones permitiendo al mismo tiempo los servicios globales y roles específicos, debe utilizar una política `Deny`. El elemento `NotAction` (Opción A) se usa para eximir a los servicios globales de la regla `Deny`, ya que AWS Organizations no los exime automáticamente por defecto si se usa `Action: *`. La condición `ArnNotLike` (Opción D) se usa con `aws:PrincipalArn` para eximir al rol de IAM específico del efecto `Deny` al coincidir con el patrón de su ARN en todas las cuentas.",
@@ -1366,27 +1366,27 @@
             {
               "id": "A",
               "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região.",
-              "explanation": "Incorreta. Habilitar o AWS CloudTrail individualmente em cada conta membro usando CloudFormation exige alta manutenção. A replicação (Cross-Region Replication) do S3 não previne que os administradores da conta central (ou um usuário mal-intencionado) excluam os logs após serem copiados, violando as regras rigorosas de conformidade e imutabilidade do cenário."
+              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
             },
             {
               "id": "B",
               "text": "Usar uma declaração `Effect: Deny` com um elemento `Action: *` e depender das isenções padrão do AWS Organizations para todos os serviços globais da AWS.",
-              "explanation": "Incorreta. Criar uma trilha na conta de gerenciamento captura as atividades locais dela, mas para contas membro, exige-se uma trilha de nível de Organização (Organizational Trail). O MFA Delete protege contra exclusões acidentais de versões do bucket, mas não impõe os controles rígidos de imutabilidade WORM (Write Once Read Many) que o modo de conformidade do Object Lock oferece."
+              "explanation": "Incorreta. Uma declaração com `Action: *` aplicaria o bloqueio a absolutamente todos os serviços e, embora a AWS possua isenções inerentes para a região us-east-1, os serviços globais necessitam de isenções explícitas (via NotAction) na declaração de SCP para funcionarem corretamente e não perderem tráfego vital."
             },
             {
               "id": "C",
               "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
-              "explanation": "Correta. Criar uma trilha de Organização garante que todas as contas tenham o CloudTrail habilitado e impede que administradores membros desativem o registro. Adicionar uma SCP que bloqueie 'cloudtrail:StopLogging' garante que as configurações não sejam alteradas, e o S3 Object Lock no Modo Compliance (WORM) bloqueia absolutamente a modificação/exclusão dos arquivos, cumprindo o requisito legal do CISO."
+              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
             },
             {
               "id": "D",
               "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`.",
-              "explanation": "Incorreta. O AWS Backup oferece cofres de retenção para diversos recursos, mas a arquitetura nativa recomendada pela AWS para trilhas imutáveis e invioláveis do CloudTrail é o uso de buckets S3 protegidos com o Object Lock. O AWS Backup adiciona complexidade e custo e não é o padrão de segurança primário para faturamento de logs do CloudTrail."
+              "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
             },
             {
               "id": "E",
               "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
-              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
+              "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
             }
           ],
           "explanation": "Para restringir regiões enquanto permite serviços globais e roles específicas, você deve usar uma política de `Deny`. O elemento `NotAction` (Opção A) é usado para isentar serviços globais da regra de `Deny`, pois o AWS Organizations não os isenta automaticamente por padrão se `Action: *` for usado. A condição `ArnNotLike` (Opção D) é usada com `aws:PrincipalArn` para isentar a role do IAM específica do efeito de `Deny`, correspondendo ao seu padrão de ARN em todas as contas.",
@@ -1397,27 +1397,27 @@
         {
           "id": "A",
           "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região.",
-          "explanation": "Incorreta. Habilitar o AWS CloudTrail individualmente em cada conta membro usando CloudFormation exige alta manutenção. A replicação (Cross-Region Replication) do S3 não previne que os administradores da conta central (ou um usuário mal-intencionado) excluam os logs após serem copiados, violando as regras rigorosas de conformidade e imutabilidade do cenário."
+          "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
         },
         {
           "id": "B",
           "text": "Usar uma declaração `Effect: Deny` com um elemento `Action: *` e depender das isenções padrão do AWS Organizations para todos os serviços globais da AWS.",
-          "explanation": "Incorreta. Criar uma trilha na conta de gerenciamento captura as atividades locais dela, mas para contas membro, exige-se uma trilha de nível de Organização (Organizational Trail). O MFA Delete protege contra exclusões acidentais de versões do bucket, mas não impõe os controles rígidos de imutabilidade WORM (Write Once Read Many) que o modo de conformidade do Object Lock oferece."
+          "explanation": "Incorreta. Uma declaração com `Action: *` aplicaria o bloqueio a absolutamente todos os serviços e, embora a AWS possua isenções inerentes para a região us-east-1, os serviços globais necessitam de isenções explícitas (via NotAction) na declaração de SCP para funcionarem corretamente e não perderem tráfego vital."
         },
         {
           "id": "C",
           "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
-          "explanation": "Correta. Criar uma trilha de Organização garante que todas as contas tenham o CloudTrail habilitado e impede que administradores membros desativem o registro. Adicionar uma SCP que bloqueie 'cloudtrail:StopLogging' garante que as configurações não sejam alteradas, e o S3 Object Lock no Modo Compliance (WORM) bloqueia absolutamente a modificação/exclusão dos arquivos, cumprindo o requisito legal do CISO."
+          "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
         },
         {
           "id": "D",
           "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`.",
-          "explanation": "Incorreta. O AWS Backup oferece cofres de retenção para diversos recursos, mas a arquitetura nativa recomendada pela AWS para trilhas imutáveis e invioláveis do CloudTrail é o uso de buckets S3 protegidos com o Object Lock. O AWS Backup adiciona complexidade e custo e não é o padrão de segurança primário para faturamento de logs do CloudTrail."
+          "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
         },
         {
           "id": "E",
           "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
-          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
+          "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
         }
       ],
       "generalExplanation": "No explanation provided.",
@@ -1444,22 +1444,22 @@
             {
               "id": "A",
               "text": "Create an AWS CloudFormation StackSet at the organization level that deploys an AWS Config managed rule `s3-bucket-object-lock-enabled` and a remediation action using AWS Systems Manager Automation to all accounts.",
-              "explanation": "Incorreta. Configurar restrições no nível da VPC limitaria quem pode assumir a função IAM e fazer o peering, mas isso não bloqueia a chamada da API (ec2:RunInstances) de criar um recurso não autorizado. Permissões IAM/SCP são focadas no plano de controle, não no plano de rede."
+              "explanation": "Incorreta. Criar um AWS CloudFormation StackSet manual na organização gerencia recursos isoladamente, ignorando a capacidade nativa do Control Tower de aplicar políticas customizadas. A longo prazo, introduz mais sobrecarga operacional de gerenciar o StackSet fora das diretrizes de ciclo de vida da Landing Zone principal."
             },
             {
               "id": "B",
               "text": "Use the Customizations for AWS Control Tower (CfCT) pipeline to deploy a custom AWS Config rule and a corresponding AWS Systems Manager Automation document for remediation to all accounts using AWS CloudFormation templates.",
-              "explanation": "Incorreta. O uso do AWS Config com 'ec2-instance-type-check' atua apenas como um controle DETECTIVO (alerta após a criação não conforme). O cenário exige uma solução PREVENTIVA forte ('deve impedir desenvolvedores... antes da criação')."
+              "explanation": "Correta. O pipeline Customizations for AWS Control Tower (CfCT) é o mecanismo nativo e mais eficiente para estender os controles de Landing Zone. Ele orquestra regras personalizadas do AWS Config (`s3-bucket-object-lock-enabled`) e runbooks do Systems Manager centralizadamente, aplicando-os de forma automática às contas existentes e novas, exigindo a menor sobrecarga."
             },
             {
               "id": "C",
               "text": "Enable AWS Security Hub and use its automated response and remediation capabilities to enforce S3 object lock across all Control Tower managed accounts.",
-              "explanation": "Incorreta. Criar um Lambda acionado pelo CloudTrail para interceptar chamadas da API de RunInstances e terminar as instâncias logo após serem provisionadas pode custar horas fracionadas na fatura, não é instantâneo, e introduz um risco de automação perigoso, falhando em impedir preventivamente a ação."
+              "explanation": "Incorreta. O AWS Security Hub fornece monitoramento consolidado e ações de remediação automatizada (por meio de acionamentos no EventBridge), mas ele não atua como o motor primário de guardrails customizados do ciclo de vida de provisionamento do Control Tower, tornando a integração via CfCT muito mais adequada."
             },
             {
               "id": "D",
               "text": "Modify the AWS Control Tower landing zone configuration directly to include a custom SCP that denies `s3:CreateBucket` unless the `x-amz-bucket-object-lock-enabled` header is set to true.",
-              "explanation": "Correta. As Service Control Policies (SCPs) no AWS Organizations fornecem controle preventivo definitivo (deny overrides all) sobre chamadas de API feitas por qualquer conta sob a UO. Ao negar as permissões ec2:RunInstances quando as instâncias não estão dentro do limite permitido pela empresa, as ações dos desenvolvedores são imediatamente bloqueadas no plano de controle."
+              "explanation": "Incorreta. Modificar as SCPs base da landing zone manualmente para bloquear criação de buckets do S3 impõe um guardrail estritamente preventivo (e de extrema fricção para os usuários), e também falha redondamente ao não aplicar ou remediar retroativamente o Object Lock nos recursos e buckets S3 que já existem nas contas."
             }
           ],
           "explanation": "Customizations for AWS Control Tower (CfCT) is the recommended framework for deploying custom guardrails, AWS Config rules, and resources (like CloudFormation templates) to accounts governed by Control Tower. It automates deployment to existing and newly vended accounts automatically via a CI/CD pipeline, minimizing operational overhead.",
@@ -1470,22 +1470,22 @@
             {
               "id": "A",
               "text": "Crear un AWS CloudFormation StackSet a nivel de organización que implemente una regla administrada de AWS Config `s3-bucket-object-lock-enabled` y una acción de remediación usando AWS Systems Manager Automation en todas las cuentas.",
-              "explanation": "Incorreta. Configurar restrições no nível da VPC limitaria quem pode assumir a função IAM e fazer o peering, mas isso não bloqueia a chamada da API (ec2:RunInstances) de criar um recurso não autorizado. Permissões IAM/SCP são focadas no plano de controle, não no plano de rede."
+              "explanation": "Incorreta. Criar um AWS CloudFormation StackSet manual na organização gerencia recursos isoladamente, ignorando a capacidade nativa do Control Tower de aplicar políticas customizadas. A longo prazo, introduz mais sobrecarga operacional de gerenciar o StackSet fora das diretrizes de ciclo de vida da Landing Zone principal."
             },
             {
               "id": "B",
               "text": "Usar la canalización de Customizations for AWS Control Tower (CfCT) para implementar una regla personalizada de AWS Config y un documento correspondiente de AWS Systems Manager Automation para la remediación en todas las cuentas usando plantillas de AWS CloudFormation.",
-              "explanation": "Incorreta. O uso do AWS Config com 'ec2-instance-type-check' atua apenas como um controle DETECTIVO (alerta após a criação não conforme). O cenário exige uma solução PREVENTIVA forte ('deve impedir desenvolvedores... antes da criação')."
+              "explanation": "Correta. O pipeline Customizations for AWS Control Tower (CfCT) é o mecanismo nativo e mais eficiente para estender os controles de Landing Zone. Ele orquestra regras personalizadas do AWS Config (`s3-bucket-object-lock-enabled`) e runbooks do Systems Manager centralizadamente, aplicando-os de forma automática às contas existentes e novas, exigindo a menor sobrecarga."
             },
             {
               "id": "C",
               "text": "Habilitar AWS Security Hub y usar sus capacidades de respuesta automatizada y remediación para imponer el object lock de S3 en todas las cuentas administradas por Control Tower.",
-              "explanation": "Incorreta. Criar um Lambda acionado pelo CloudTrail para interceptar chamadas da API de RunInstances e terminar as instâncias logo após serem provisionadas pode custar horas fracionadas na fatura, não é instantâneo, e introduz um risco de automação perigoso, falhando em impedir preventivamente a ação."
+              "explanation": "Incorreta. O AWS Security Hub fornece monitoramento consolidado e ações de remediação automatizada (por meio de acionamentos no EventBridge), mas ele não atua como o motor primário de guardrails customizados do ciclo de vida de provisionamento do Control Tower, tornando a integração via CfCT muito mais adequada."
             },
             {
               "id": "D",
               "text": "Modificar la configuración de la landing zone de AWS Control Tower directamente para incluir una SCP personalizada que deniegue `s3:CreateBucket` a menos que el encabezado `x-amz-bucket-object-lock-enabled` esté configurado en true.",
-              "explanation": "Correta. As Service Control Policies (SCPs) no AWS Organizations fornecem controle preventivo definitivo (deny overrides all) sobre chamadas de API feitas por qualquer conta sob a UO. Ao negar as permissões ec2:RunInstances quando as instâncias não estão dentro do limite permitido pela empresa, as ações dos desenvolvedores são imediatamente bloqueadas no plano de controle."
+              "explanation": "Incorreta. Modificar as SCPs base da landing zone manualmente para bloquear criação de buckets do S3 impõe um guardrail estritamente preventivo (e de extrema fricção para os usuários), e também falha redondamente ao não aplicar ou remediar retroativamente o Object Lock nos recursos e buckets S3 que já existem nas contas."
             }
           ],
           "explanation": "Customizations for AWS Control Tower (CfCT) es el marco recomendado para implementar guardrails personalizados, reglas de AWS Config y recursos (como plantillas de CloudFormation) en cuentas regidas por Control Tower. Automatiza la implementación en cuentas existentes y recién creadas automáticamente a través de una canalización CI/CD, minimizando la carga operativa.",
@@ -1496,22 +1496,22 @@
             {
               "id": "A",
               "text": "Criar um AWS CloudFormation StackSet no nível da organização que implante uma regra gerenciada do AWS Config `s3-bucket-object-lock-enabled` e uma ação de remediação usando o AWS Systems Manager Automation em todas as contas.",
-              "explanation": "Incorreta. Configurar restrições no nível da VPC limitaria quem pode assumir a função IAM e fazer o peering, mas isso não bloqueia a chamada da API (ec2:RunInstances) de criar um recurso não autorizado. Permissões IAM/SCP são focadas no plano de controle, não no plano de rede."
+              "explanation": "Incorreta. Criar um AWS CloudFormation StackSet manual na organização gerencia recursos isoladamente, ignorando a capacidade nativa do Control Tower de aplicar políticas customizadas. A longo prazo, introduz mais sobrecarga operacional de gerenciar o StackSet fora das diretrizes de ciclo de vida da Landing Zone principal."
             },
             {
               "id": "B",
               "text": "Usar o pipeline Customizations for AWS Control Tower (CfCT) para implantar uma regra personalizada do AWS Config e um documento correspondente do AWS Systems Manager Automation para remediação em todas as contas usando modelos do AWS CloudFormation.",
-              "explanation": "Incorreta. O uso do AWS Config com 'ec2-instance-type-check' atua apenas como um controle DETECTIVO (alerta após a criação não conforme). O cenário exige uma solução PREVENTIVA forte ('deve impedir desenvolvedores... antes da criação')."
+              "explanation": "Correta. O pipeline Customizations for AWS Control Tower (CfCT) é o mecanismo nativo e mais eficiente para estender os controles de Landing Zone. Ele orquestra regras personalizadas do AWS Config (`s3-bucket-object-lock-enabled`) e runbooks do Systems Manager centralizadamente, aplicando-os de forma automática às contas existentes e novas, exigindo a menor sobrecarga."
             },
             {
               "id": "C",
               "text": "Ativar o AWS Security Hub e usar seus recursos de resposta automatizada e remediação para impor o object lock do S3 em todas as contas gerenciadas pelo Control Tower.",
-              "explanation": "Incorreta. Criar um Lambda acionado pelo CloudTrail para interceptar chamadas da API de RunInstances e terminar as instâncias logo após serem provisionadas pode custar horas fracionadas na fatura, não é instantâneo, e introduz um risco de automação perigoso, falhando em impedir preventivamente a ação."
+              "explanation": "Incorreta. O AWS Security Hub fornece monitoramento consolidado e ações de remediação automatizada (por meio de acionamentos no EventBridge), mas ele não atua como o motor primário de guardrails customizados do ciclo de vida de provisionamento do Control Tower, tornando a integração via CfCT muito mais adequada."
             },
             {
               "id": "D",
               "text": "Modificar a configuração da landing zone do AWS Control Tower diretamente para incluir uma SCP personalizada que negue `s3:CreateBucket` a menos que o cabeçalho `x-amz-bucket-object-lock-enabled` seja definido como true.",
-              "explanation": "Correta. As Service Control Policies (SCPs) no AWS Organizations fornecem controle preventivo definitivo (deny overrides all) sobre chamadas de API feitas por qualquer conta sob a UO. Ao negar as permissões ec2:RunInstances quando as instâncias não estão dentro do limite permitido pela empresa, as ações dos desenvolvedores são imediatamente bloqueadas no plano de controle."
+              "explanation": "Incorreta. Modificar as SCPs base da landing zone manualmente para bloquear criação de buckets do S3 impõe um guardrail estritamente preventivo (e de extrema fricção para os usuários), e também falha redondamente ao não aplicar ou remediar retroativamente o Object Lock nos recursos e buckets S3 que já existem nas contas."
             }
           ],
           "explanation": "O Customizations for AWS Control Tower (CfCT) é a estrutura recomendada para implantar guardrails personalizados, regras do AWS Config e recursos (como modelos do CloudFormation) em contas governadas pelo Control Tower. Ele automatiza a implantação para contas existentes e recém-criadas automaticamente por meio de um pipeline CI/CD, minimizando a sobrecarga operacional.",
@@ -1522,22 +1522,22 @@
         {
           "id": "A",
           "text": "Criar um AWS CloudFormation StackSet no nível da organização que implante uma regra gerenciada do AWS Config `s3-bucket-object-lock-enabled` e uma ação de remediação usando o AWS Systems Manager Automation em todas as contas.",
-          "explanation": "Incorreta. Configurar restrições no nível da VPC limitaria quem pode assumir a função IAM e fazer o peering, mas isso não bloqueia a chamada da API (ec2:RunInstances) de criar um recurso não autorizado. Permissões IAM/SCP são focadas no plano de controle, não no plano de rede."
+          "explanation": "Incorreta. Criar um AWS CloudFormation StackSet manual na organização gerencia recursos isoladamente, ignorando a capacidade nativa do Control Tower de aplicar políticas customizadas. A longo prazo, introduz mais sobrecarga operacional de gerenciar o StackSet fora das diretrizes de ciclo de vida da Landing Zone principal."
         },
         {
           "id": "B",
           "text": "Usar o pipeline Customizations for AWS Control Tower (CfCT) para implantar uma regra personalizada do AWS Config e um documento correspondente do AWS Systems Manager Automation para remediação em todas as contas usando modelos do AWS CloudFormation.",
-          "explanation": "Incorreta. O uso do AWS Config com 'ec2-instance-type-check' atua apenas como um controle DETECTIVO (alerta após a criação não conforme). O cenário exige uma solução PREVENTIVA forte ('deve impedir desenvolvedores... antes da criação')."
+          "explanation": "Correta. O pipeline Customizations for AWS Control Tower (CfCT) é o mecanismo nativo e mais eficiente para estender os controles de Landing Zone. Ele orquestra regras personalizadas do AWS Config (`s3-bucket-object-lock-enabled`) e runbooks do Systems Manager centralizadamente, aplicando-os de forma automática às contas existentes e novas, exigindo a menor sobrecarga."
         },
         {
           "id": "C",
           "text": "Ativar o AWS Security Hub e usar seus recursos de resposta automatizada e remediação para impor o object lock do S3 em todas as contas gerenciadas pelo Control Tower.",
-          "explanation": "Incorreta. Criar um Lambda acionado pelo CloudTrail para interceptar chamadas da API de RunInstances e terminar as instâncias logo após serem provisionadas pode custar horas fracionadas na fatura, não é instantâneo, e introduz um risco de automação perigoso, falhando em impedir preventivamente a ação."
+          "explanation": "Incorreta. O AWS Security Hub fornece monitoramento consolidado e ações de remediação automatizada (por meio de acionamentos no EventBridge), mas ele não atua como o motor primário de guardrails customizados do ciclo de vida de provisionamento do Control Tower, tornando a integração via CfCT muito mais adequada."
         },
         {
           "id": "D",
           "text": "Modificar a configuração da landing zone do AWS Control Tower diretamente para incluir uma SCP personalizada que negue `s3:CreateBucket` a menos que o cabeçalho `x-amz-bucket-object-lock-enabled` seja definido como true.",
-          "explanation": "Correta. As Service Control Policies (SCPs) no AWS Organizations fornecem controle preventivo definitivo (deny overrides all) sobre chamadas de API feitas por qualquer conta sob a UO. Ao negar as permissões ec2:RunInstances quando as instâncias não estão dentro do limite permitido pela empresa, as ações dos desenvolvedores são imediatamente bloqueadas no plano de controle."
+          "explanation": "Incorreta. Modificar as SCPs base da landing zone manualmente para bloquear criação de buckets do S3 impõe um guardrail estritamente preventivo (e de extrema fricção para os usuários), e também falha redondamente ao não aplicar ou remediar retroativamente o Object Lock nos recursos e buckets S3 que já existem nas contas."
         }
       ],
       "generalExplanation": "No explanation provided.",
@@ -1564,22 +1564,22 @@
             {
               "id": "A",
               "text": "Enable AWS Service Catalog organization sharing. Share the portfolio with the target OU. Enable Principal Name Sharing so that local IAM roles with the same name can access the portfolio automatically.",
-              "explanation": "Incorreta. Depender exclusivamente do AWS Security Hub e acionar funções do AWS Lambda personalizadas via Amazon EventBridge exige muita codificação manual, além da constante manutenção dessas respostas sob medida, contrariando o princípio de ter o menor esforço de desenvolvimento."
+              "explanation": "Correta. O AWS Service Catalog suporta o compartilhamento em nível organizacional acoplado ao recurso de 'Principal Name Sharing'. Ao compartilhar com a OU, o portfólio fica imediatamente acessível para contas membros atuais e futuras. O Principal Name Sharing garante que papéis locais com o mesmo nome possam invocar produtos nativamente, reduzindo a sobrecarga a zero."
             },
             {
               "id": "B",
               "text": "Use an AWS Lambda function triggered by AWS CloudTrail `CreateAccount` events to automatically share the portfolio to new member accounts and import it.",
-              "explanation": "Correta. Pacotes de conformidade (Conformance Packs) do AWS Config já contêm modelos prontos aprovados pela indústria para conformidade com o PCI DSS (validando requisitos de criptografia e controles). Sua integração direta com os documentos de Automação do AWS Systems Manager (Runbooks) fornece resposta e remediação corretivas (remediation actions) nativamente configuráveis, sem necessidade de código personalizado."
+              "explanation": "Incorreta. O uso do AWS Lambda customizado sendo acionado agressivamente por eventos `CreateAccount` para compartilhar e importar o portfólio manualmente adiciona uma altíssima sobrecarga de engenharia de software e falhas, ignorando totalmente a funcionalidade corporativa nativa de compartilhamento direto por OU presente no Service Catalog."
             },
             {
               "id": "C",
               "text": "Share the portfolio to the entire organization. Create an SCP applied to the OU that allows `servicecatalog:ProvisionProduct`, and apply another SCP to other OUs denying it.",
-              "explanation": "Incorreta. O AWS Audit Manager automatiza e facilita a coleta contínua de evidências para o compliance (como auditorias PCI DSS), mas ele NÃO atua ativamente para reparar recursos de forma automática. O papel de avaliar falhas específicas da arquitetura de recursos e remediá-los pertence ao AWS Config."
+              "explanation": "Incorreta. Tentar limitar o provisionamento estritamente via SCP (gerenciando `servicecatalog:ProvisionProduct`) limita as chamadas de API genéricas e força um gerenciamento de negações e permissões descentralizado. Isso não endereça a logística real de compartilhar dezenas de portfólios no Console nem os mapeamentos locais vitais."
             },
             {
               "id": "D",
               "text": "Enable AWS Service Catalog organization sharing. Share the portfolio with the target OU. Use AWS CloudFormation StackSets to deploy local IAM roles in the member accounts and map them to the portfolio using a local Portfolio Share.",
-              "explanation": "Incorreta. Executar scripts customizados do AWS CloudFormation em cada detecção do GuardDuty ou Config usando o Step Functions demanda muita complexidade de engenharia. É altamente recomendável confiar nos runbooks gerenciados e nas remediações automáticas acopladas ao Config."
+              "explanation": "Incorreta. Implantar funções ativamente através do AWS CloudFormation StackSets para forçar a criação de roles IAM mapeadas dentro das contas membro impõe gerenciamento desnecessário das pilhas e mapeamento local, um trabalho obsoleto e quebrado já que o próprio 'Principal Name Sharing' realiza essa sincronização local de nomes nativamente."
             }
           ],
           "explanation": "AWS Service Catalog supports Organizational Unit (OU) sharing, which automatically grants access to existing and new accounts within the OU. By enabling Principal Name Sharing, the central account can associate principals (like roles or groups) to the portfolio by name, and when shared to member accounts, any local principal with the exact matching name will automatically have access, eliminating the need to manually map roles in each child account.",
@@ -1590,22 +1590,22 @@
             {
               "id": "A",
               "text": "Habilitar el uso compartido de la organización de AWS Service Catalog. Compartir el portafolio con la OU de destino. Habilitar Principal Name Sharing para que los roles de IAM locales con el mismo nombre puedan acceder al portafolio automáticamente.",
-              "explanation": "Incorreta. Depender exclusivamente do AWS Security Hub e acionar funções do AWS Lambda personalizadas via Amazon EventBridge exige muita codificação manual, além da constante manutenção dessas respostas sob medida, contrariando o princípio de ter o menor esforço de desenvolvimento."
+              "explanation": "Correta. O AWS Service Catalog suporta o compartilhamento em nível organizacional acoplado ao recurso de 'Principal Name Sharing'. Ao compartilhar com a OU, o portfólio fica imediatamente acessível para contas membros atuais e futuras. O Principal Name Sharing garante que papéis locais com o mesmo nome possam invocar produtos nativamente, reduzindo a sobrecarga a zero."
             },
             {
               "id": "B",
               "text": "Usar una función de AWS Lambda activada por eventos `CreateAccount` de AWS CloudTrail para compartir automáticamente el portafolio a nuevas cuentas miembro e importarlo.",
-              "explanation": "Correta. Pacotes de conformidade (Conformance Packs) do AWS Config já contêm modelos prontos aprovados pela indústria para conformidade com o PCI DSS (validando requisitos de criptografia e controles). Sua integração direta com os documentos de Automação do AWS Systems Manager (Runbooks) fornece resposta e remediação corretivas (remediation actions) nativamente configuráveis, sem necessidade de código personalizado."
+              "explanation": "Incorreta. O uso do AWS Lambda customizado sendo acionado agressivamente por eventos `CreateAccount` para compartilhar e importar o portfólio manualmente adiciona uma altíssima sobrecarga de engenharia de software e falhas, ignorando totalmente a funcionalidade corporativa nativa de compartilhamento direto por OU presente no Service Catalog."
             },
             {
               "id": "C",
               "text": "Compartir el portafolio con toda la organización. Crear una SCP aplicada a la OU que permita `servicecatalog:ProvisionProduct`, y aplicar otra SCP a otras OUs denegándolo.",
-              "explanation": "Incorreta. O AWS Audit Manager automatiza e facilita a coleta contínua de evidências para o compliance (como auditorias PCI DSS), mas ele NÃO atua ativamente para reparar recursos de forma automática. O papel de avaliar falhas específicas da arquitetura de recursos e remediá-los pertence ao AWS Config."
+              "explanation": "Incorreta. Tentar limitar o provisionamento estritamente via SCP (gerenciando `servicecatalog:ProvisionProduct`) limita as chamadas de API genéricas e força um gerenciamento de negações e permissões descentralizado. Isso não endereça a logística real de compartilhar dezenas de portfólios no Console nem os mapeamentos locais vitais."
             },
             {
               "id": "D",
               "text": "Habilitar el uso compartido de la organización de AWS Service Catalog. Compartir el portafolio con la OU de destino. Usar AWS CloudFormation StackSets para implementar roles de IAM locales en las cuentas miembro y asignarlos al portafolio usando un Portfolio Share local.",
-              "explanation": "Incorreta. Executar scripts customizados do AWS CloudFormation em cada detecção do GuardDuty ou Config usando o Step Functions demanda muita complexidade de engenharia. É altamente recomendável confiar nos runbooks gerenciados e nas remediações automáticas acopladas ao Config."
+              "explanation": "Incorreta. Implantar funções ativamente através do AWS CloudFormation StackSets para forçar a criação de roles IAM mapeadas dentro das contas membro impõe gerenciamento desnecessário das pilhas e mapeamento local, um trabalho obsoleto e quebrado já que o próprio 'Principal Name Sharing' realiza essa sincronização local de nomes nativamente."
             }
           ],
           "explanation": "AWS Service Catalog admite el uso compartido por Unidad Organizativa (OU), lo que otorga acceso automáticamente a las cuentas nuevas y existentes dentro de la OU. Al habilitar Principal Name Sharing, la cuenta central puede asociar principales (como roles o grupos) al portafolio por nombre, y cuando se comparte con las cuentas miembro, cualquier principal local con el nombre exacto coincidente tendrá acceso automáticamente, eliminando la necesidad de asignar roles manualmente en cada cuenta secundaria.",
@@ -1616,22 +1616,22 @@
             {
               "id": "A",
               "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Ativar o Principal Name Sharing para que as roles locais do IAM com o mesmo nome possam acessar o portfólio automaticamente.",
-              "explanation": "Incorreta. Depender exclusivamente do AWS Security Hub e acionar funções do AWS Lambda personalizadas via Amazon EventBridge exige muita codificação manual, além da constante manutenção dessas respostas sob medida, contrariando o princípio de ter o menor esforço de desenvolvimento."
+              "explanation": "Correta. O AWS Service Catalog suporta o compartilhamento em nível organizacional acoplado ao recurso de 'Principal Name Sharing'. Ao compartilhar com a OU, o portfólio fica imediatamente acessível para contas membros atuais e futuras. O Principal Name Sharing garante que papéis locais com o mesmo nome possam invocar produtos nativamente, reduzindo a sobrecarga a zero."
             },
             {
               "id": "B",
               "text": "Usar uma função do AWS Lambda acionada por eventos `CreateAccount` do AWS CloudTrail para compartilhar automaticamente o portfólio para novas contas membro e importá-lo.",
-              "explanation": "Correta. Pacotes de conformidade (Conformance Packs) do AWS Config já contêm modelos prontos aprovados pela indústria para conformidade com o PCI DSS (validando requisitos de criptografia e controles). Sua integração direta com os documentos de Automação do AWS Systems Manager (Runbooks) fornece resposta e remediação corretivas (remediation actions) nativamente configuráveis, sem necessidade de código personalizado."
+              "explanation": "Incorreta. O uso do AWS Lambda customizado sendo acionado agressivamente por eventos `CreateAccount` para compartilhar e importar o portfólio manualmente adiciona uma altíssima sobrecarga de engenharia de software e falhas, ignorando totalmente a funcionalidade corporativa nativa de compartilhamento direto por OU presente no Service Catalog."
             },
             {
               "id": "C",
               "text": "Compartilhar o portfólio para toda a organização. Criar uma SCP aplicada à OU que permita `servicecatalog:ProvisionProduct` e aplicar outra SCP a outras OUs negando isso.",
-              "explanation": "Incorreta. O AWS Audit Manager automatiza e facilita a coleta contínua de evidências para o compliance (como auditorias PCI DSS), mas ele NÃO atua ativamente para reparar recursos de forma automática. O papel de avaliar falhas específicas da arquitetura de recursos e remediá-los pertence ao AWS Config."
+              "explanation": "Incorreta. Tentar limitar o provisionamento estritamente via SCP (gerenciando `servicecatalog:ProvisionProduct`) limita as chamadas de API genéricas e força um gerenciamento de negações e permissões descentralizado. Isso não endereça a logística real de compartilhar dezenas de portfólios no Console nem os mapeamentos locais vitais."
             },
             {
               "id": "D",
               "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Usar o AWS CloudFormation StackSets para implantar roles locais do IAM nas contas membro e mapeá-las para o portfólio usando um Portfolio Share local.",
-              "explanation": "Incorreta. Executar scripts customizados do AWS CloudFormation em cada detecção do GuardDuty ou Config usando o Step Functions demanda muita complexidade de engenharia. É altamente recomendável confiar nos runbooks gerenciados e nas remediações automáticas acopladas ao Config."
+              "explanation": "Incorreta. Implantar funções ativamente através do AWS CloudFormation StackSets para forçar a criação de roles IAM mapeadas dentro das contas membro impõe gerenciamento desnecessário das pilhas e mapeamento local, um trabalho obsoleto e quebrado já que o próprio 'Principal Name Sharing' realiza essa sincronização local de nomes nativamente."
             }
           ],
           "explanation": "O AWS Service Catalog oferece suporte ao compartilhamento de Unidade Organizacional (OU), que concede acesso automaticamente a contas novas e existentes dentro da OU. Ao ativar o Principal Name Sharing, a conta central pode associar principais (como roles ou grupos) ao portfólio por nome, e quando compartilhado com contas membro, qualquer principal local com o nome exato correspondente terá acesso automaticamente, eliminando a necessidade de mapear roles manualmente em cada conta filha.",
@@ -1642,22 +1642,22 @@
         {
           "id": "A",
           "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Ativar o Principal Name Sharing para que as roles locais do IAM com o mesmo nome possam acessar o portfólio automaticamente.",
-          "explanation": "Incorreta. Depender exclusivamente do AWS Security Hub e acionar funções do AWS Lambda personalizadas via Amazon EventBridge exige muita codificação manual, além da constante manutenção dessas respostas sob medida, contrariando o princípio de ter o menor esforço de desenvolvimento."
+          "explanation": "Correta. O AWS Service Catalog suporta o compartilhamento em nível organizacional acoplado ao recurso de 'Principal Name Sharing'. Ao compartilhar com a OU, o portfólio fica imediatamente acessível para contas membros atuais e futuras. O Principal Name Sharing garante que papéis locais com o mesmo nome possam invocar produtos nativamente, reduzindo a sobrecarga a zero."
         },
         {
           "id": "B",
           "text": "Usar uma função do AWS Lambda acionada por eventos `CreateAccount` do AWS CloudTrail para compartilhar automaticamente o portfólio para novas contas membro e importá-lo.",
-          "explanation": "Correta. Pacotes de conformidade (Conformance Packs) do AWS Config já contêm modelos prontos aprovados pela indústria para conformidade com o PCI DSS (validando requisitos de criptografia e controles). Sua integração direta com os documentos de Automação do AWS Systems Manager (Runbooks) fornece resposta e remediação corretivas (remediation actions) nativamente configuráveis, sem necessidade de código personalizado."
+          "explanation": "Incorreta. O uso do AWS Lambda customizado sendo acionado agressivamente por eventos `CreateAccount` para compartilhar e importar o portfólio manualmente adiciona uma altíssima sobrecarga de engenharia de software e falhas, ignorando totalmente a funcionalidade corporativa nativa de compartilhamento direto por OU presente no Service Catalog."
         },
         {
           "id": "C",
           "text": "Compartilhar o portfólio para toda a organização. Criar uma SCP aplicada à OU que permita `servicecatalog:ProvisionProduct` e aplicar outra SCP a outras OUs negando isso.",
-          "explanation": "Incorreta. O AWS Audit Manager automatiza e facilita a coleta contínua de evidências para o compliance (como auditorias PCI DSS), mas ele NÃO atua ativamente para reparar recursos de forma automática. O papel de avaliar falhas específicas da arquitetura de recursos e remediá-los pertence ao AWS Config."
+          "explanation": "Incorreta. Tentar limitar o provisionamento estritamente via SCP (gerenciando `servicecatalog:ProvisionProduct`) limita as chamadas de API genéricas e força um gerenciamento de negações e permissões descentralizado. Isso não endereça a logística real de compartilhar dezenas de portfólios no Console nem os mapeamentos locais vitais."
         },
         {
           "id": "D",
           "text": "Ativar o compartilhamento de organização do AWS Service Catalog. Compartilhar o portfólio com a OU de destino. Usar o AWS CloudFormation StackSets para implantar roles locais do IAM nas contas membro e mapeá-las para o portfólio usando um Portfolio Share local.",
-          "explanation": "Incorreta. Executar scripts customizados do AWS CloudFormation em cada detecção do GuardDuty ou Config usando o Step Functions demanda muita complexidade de engenharia. É altamente recomendável confiar nos runbooks gerenciados e nas remediações automáticas acopladas ao Config."
+          "explanation": "Incorreta. Implantar funções ativamente através do AWS CloudFormation StackSets para forçar a criação de roles IAM mapeadas dentro das contas membro impõe gerenciamento desnecessário das pilhas e mapeamento local, um trabalho obsoleto e quebrado já que o próprio 'Principal Name Sharing' realiza essa sincronização local de nomes nativamente."
         }
       ],
       "generalExplanation": "No explanation provided.",
@@ -1684,22 +1684,22 @@
             {
               "id": "A",
               "text": "Deploy an AWS Config Aggregator in a central governance account. Use AWS Systems Manager Quick Setup to deploy AWS Config and the CIS conformance pack to all accounts. Deploy custom rules via CloudFormation StackSets targeting the root of the organization.",
-              "explanation": "Correta. O AWS Control Tower é a ferramenta líder para orquestrar contas de sandbox em massa. Combinar tags com ABAC (Attribute-Based Access Control) minimiza a proliferação de IAM roles (as permissões são escalonáveis com base no valor da tag correspondente ao centro de custo). Para finalizar, o EventBridge com System Manager pode limpar (nuke) os recursos no prazo, atingindo máxima eficiência operacional."
+              "explanation": "Incorreta. Implantar o AWS Config de forma autônoma e os conformance packs para lidar com regras personalizadas via CloudFormation StackSets divide desnecessariamente a camada de gerenciamento (metade nativo via Quick Setup, metade manual), aumentando a fragilidade operacional das instâncias corporativas."
             },
             {
               "id": "B",
               "text": "Enable AWS Security Hub in the central account and integrate it with AWS Organizations to view CIS compliance. Deploy an organization-level conformance pack containing the custom AWS Config rules from the master account.",
-              "explanation": "Incorreta. Provisionar contas chamando manualmente o script CloudFormation via CodePipeline pode funcionar, mas quebra o conceito de landing zones governadas de forma central e self-service do Control Tower. Configurar Lambda individual em cada conta exige alto esforço de implantação/manutenção."
+              "explanation": "Incorreta. O AWS Security Hub provê consolidação visual e conformidade com o CIS Foundations Benchmark. Contudo, tentar utilizar o Security Hub como canal de implantação raiz de 'custom AWS Config rules' foge completamente ao seu escopo primário de atuação; conformance packs do Config são projetados e implantados diretamente pelo Config."
             },
             {
               "id": "C",
               "text": "Create a multi-account multi-region AWS Config Aggregator in the central account. Use AWS Lambda triggered by EventBridge to deploy the CIS conformance pack and custom rules to new accounts via AWS API calls.",
-              "explanation": "Incorreta. Limitar ABAC e exigir que cada desenvolvedor atualize permissões de IAM para poder visualizar os sandboxes contradiz o princípio básico do atributo. Um Lambda agendado varrendo tags incorretas tem alto risco de apagar recursos essenciais acidentalmente, diferentemente de fechar sandboxes isolados."
+              "explanation": "Incorreta. Arquitetar uma rede complexa utilizando o AWS Lambda e acionadores do EventBridge para capturar eventos em nível de sistema de criação de contas, a fim de realizar chamadas repetitivas de API e forçar o conformance pack cria uma arquitetura 'do-it-yourself' insustentável de altíssima sobrecarga em manutenções operacionais."
             },
             {
               "id": "D",
               "text": "Deploy an organization-level conformance pack that includes both the CIS rules and the custom rules from the AWS Organizations management account or a delegated administrator account. Use an AWS Config Aggregator in the delegated administrator account to visualize compliance.",
-              "explanation": "Incorreta. Usar o AWS Service Catalog gerencia produtos específicos, não contas sandbox completas em si (gerenciar uma conta inteira como portfólio não é prático se eles precisam de liberdade local). Definir políticas de bucket baseadas em tags lida só com acesso a armazenamento, deixando toda a parte de computação e banco de dados sem cobertura de governança de ciclo de vida."
+              "explanation": "Correta. Implantar pacotes de conformidade (Conformance Packs) org-level permite unificar as regras gerenciadas (como CIS Benchmark) e as regras customizadas sob um único manifesto consolidado nativamente pela AWS. Aplicado via uma conta de administrador delegada, o AWS Config distribui a conformidade automaticamente para todas as contas (mesmo as novas) com facilidade ímpar."
             }
           ],
           "explanation": "Organization-level conformance packs allow you to deploy a collection of AWS Config rules and remediation actions across an entire AWS Organization or specific OUs. By packaging both the CIS rules and the custom rules into a single conformance pack deployed at the organization level, new accounts automatically receive these rules. Using an AWS Config Aggregator in a delegated administrator account provides the required consolidated view of compliance.",
@@ -1710,22 +1710,22 @@
             {
               "id": "A",
               "text": "Implementar un Agregador de AWS Config en una cuenta central de gobernanza. Usar AWS Systems Manager Quick Setup para implementar AWS Config y el conformance pack CIS en todas las cuentas. Implementar reglas personalizadas a través de CloudFormation StackSets dirigidas a la raíz de la organización.",
-              "explanation": "Correta. O AWS Control Tower é a ferramenta líder para orquestrar contas de sandbox em massa. Combinar tags com ABAC (Attribute-Based Access Control) minimiza a proliferação de IAM roles (as permissões são escalonáveis com base no valor da tag correspondente ao centro de custo). Para finalizar, o EventBridge com System Manager pode limpar (nuke) os recursos no prazo, atingindo máxima eficiência operacional."
+              "explanation": "Incorreta. Implantar o AWS Config de forma autônoma e os conformance packs para lidar com regras personalizadas via CloudFormation StackSets divide desnecessariamente a camada de gerenciamento (metade nativo via Quick Setup, metade manual), aumentando a fragilidade operacional das instâncias corporativas."
             },
             {
               "id": "B",
               "text": "Habilitar AWS Security Hub en la cuenta central e integrarlo con AWS Organizations para ver el cumplimiento de CIS. Implementar un conformance pack a nivel de organización que contenga las reglas personalizadas de AWS Config desde la cuenta maestra.",
-              "explanation": "Incorreta. Provisionar contas chamando manualmente o script CloudFormation via CodePipeline pode funcionar, mas quebra o conceito de landing zones governadas de forma central e self-service do Control Tower. Configurar Lambda individual em cada conta exige alto esforço de implantação/manutenção."
+              "explanation": "Incorreta. O AWS Security Hub provê consolidação visual e conformidade com o CIS Foundations Benchmark. Contudo, tentar utilizar o Security Hub como canal de implantação raiz de 'custom AWS Config rules' foge completamente ao seu escopo primário de atuação; conformance packs do Config são projetados e implantados diretamente pelo Config."
             },
             {
               "id": "C",
               "text": "Crear un Agregador de AWS Config de múltiples cuentas y múltiples regiones en la cuenta central. Usar AWS Lambda activado por EventBridge para implementar el conformance pack CIS y las reglas personalizadas en las cuentas nuevas a través de llamadas a la API de AWS.",
-              "explanation": "Incorreta. Limitar ABAC e exigir que cada desenvolvedor atualize permissões de IAM para poder visualizar os sandboxes contradiz o princípio básico do atributo. Um Lambda agendado varrendo tags incorretas tem alto risco de apagar recursos essenciais acidentalmente, diferentemente de fechar sandboxes isolados."
+              "explanation": "Incorreta. Arquitetar uma rede complexa utilizando o AWS Lambda e acionadores do EventBridge para capturar eventos em nível de sistema de criação de contas, a fim de realizar chamadas repetitivas de API e forçar o conformance pack cria uma arquitetura 'do-it-yourself' insustentável de altíssima sobrecarga em manutenções operacionais."
             },
             {
               "id": "D",
               "text": "Implementar un conformance pack a nivel de organización que incluya tanto las reglas CIS como las reglas personalizadas desde la cuenta de administración de AWS Organizations o una cuenta de administrador delegada. Usar un Agregador de AWS Config en la cuenta de administrador delegada para visualizar el cumplimiento.",
-              "explanation": "Incorreta. Usar o AWS Service Catalog gerencia produtos específicos, não contas sandbox completas em si (gerenciar uma conta inteira como portfólio não é prático se eles precisam de liberdade local). Definir políticas de bucket baseadas em tags lida só com acesso a armazenamento, deixando toda a parte de computação e banco de dados sem cobertura de governança de ciclo de vida."
+              "explanation": "Correta. Implantar pacotes de conformidade (Conformance Packs) org-level permite unificar as regras gerenciadas (como CIS Benchmark) e as regras customizadas sob um único manifesto consolidado nativamente pela AWS. Aplicado via uma conta de administrador delegada, o AWS Config distribui a conformidade automaticamente para todas as contas (mesmo as novas) com facilidade ímpar."
             }
           ],
           "explanation": "Los conformance packs a nivel de organización le permiten implementar una colección de reglas de AWS Config y acciones de remediación en toda una organización de AWS u OUs específicas. Al empaquetar tanto las reglas CIS como las reglas personalizadas en un solo conformance pack implementado a nivel de organización, las nuevas cuentas reciben automáticamente estas reglas. El uso de un Agregador de AWS Config en una cuenta de administrador delegada proporciona la vista consolidada requerida del cumplimiento.",
@@ -1736,22 +1736,22 @@
             {
               "id": "A",
               "text": "Implantar um AWS Config Aggregator em uma conta central de governança. Usar o AWS Systems Manager Quick Setup para implantar o AWS Config e o conformance pack do CIS em todas as contas. Implantar regras personalizadas por meio do CloudFormation StackSets visando a raiz da organização.",
-              "explanation": "Correta. O AWS Control Tower é a ferramenta líder para orquestrar contas de sandbox em massa. Combinar tags com ABAC (Attribute-Based Access Control) minimiza a proliferação de IAM roles (as permissões são escalonáveis com base no valor da tag correspondente ao centro de custo). Para finalizar, o EventBridge com System Manager pode limpar (nuke) os recursos no prazo, atingindo máxima eficiência operacional."
+              "explanation": "Incorreta. Implantar o AWS Config de forma autônoma e os conformance packs para lidar com regras personalizadas via CloudFormation StackSets divide desnecessariamente a camada de gerenciamento (metade nativo via Quick Setup, metade manual), aumentando a fragilidade operacional das instâncias corporativas."
             },
             {
               "id": "B",
               "text": "Ativar o AWS Security Hub na conta central e integrá-lo ao AWS Organizations para visualizar a conformidade com o CIS. Implantar um conformance pack de nível organizacional contendo as regras personalizadas do AWS Config a partir da conta mestre.",
-              "explanation": "Incorreta. Provisionar contas chamando manualmente o script CloudFormation via CodePipeline pode funcionar, mas quebra o conceito de landing zones governadas de forma central e self-service do Control Tower. Configurar Lambda individual em cada conta exige alto esforço de implantação/manutenção."
+              "explanation": "Incorreta. O AWS Security Hub provê consolidação visual e conformidade com o CIS Foundations Benchmark. Contudo, tentar utilizar o Security Hub como canal de implantação raiz de 'custom AWS Config rules' foge completamente ao seu escopo primário de atuação; conformance packs do Config são projetados e implantados diretamente pelo Config."
             },
             {
               "id": "C",
               "text": "Criar um AWS Config Aggregator para várias contas e várias regiões na conta central. Usar o AWS Lambda acionado pelo EventBridge para implantar o conformance pack do CIS e regras personalizadas em novas contas por meio de chamadas de API da AWS.",
-              "explanation": "Incorreta. Limitar ABAC e exigir que cada desenvolvedor atualize permissões de IAM para poder visualizar os sandboxes contradiz o princípio básico do atributo. Um Lambda agendado varrendo tags incorretas tem alto risco de apagar recursos essenciais acidentalmente, diferentemente de fechar sandboxes isolados."
+              "explanation": "Incorreta. Arquitetar uma rede complexa utilizando o AWS Lambda e acionadores do EventBridge para capturar eventos em nível de sistema de criação de contas, a fim de realizar chamadas repetitivas de API e forçar o conformance pack cria uma arquitetura 'do-it-yourself' insustentável de altíssima sobrecarga em manutenções operacionais."
             },
             {
               "id": "D",
               "text": "Implantar um conformance pack de nível organizacional que inclua as regras do CIS e as regras personalizadas da conta de gerenciamento do AWS Organizations ou de uma conta de administrador delegada. Usar um AWS Config Aggregator na conta de administrador delegada para visualizar a conformidade.",
-              "explanation": "Incorreta. Usar o AWS Service Catalog gerencia produtos específicos, não contas sandbox completas em si (gerenciar uma conta inteira como portfólio não é prático se eles precisam de liberdade local). Definir políticas de bucket baseadas em tags lida só com acesso a armazenamento, deixando toda a parte de computação e banco de dados sem cobertura de governança de ciclo de vida."
+              "explanation": "Correta. Implantar pacotes de conformidade (Conformance Packs) org-level permite unificar as regras gerenciadas (como CIS Benchmark) e as regras customizadas sob um único manifesto consolidado nativamente pela AWS. Aplicado via uma conta de administrador delegada, o AWS Config distribui a conformidade automaticamente para todas as contas (mesmo as novas) com facilidade ímpar."
             }
           ],
           "explanation": "Os conformance packs em nível de organização permitem que você implante uma coleção de regras do AWS Config e ações de remediação em toda uma Organização da AWS ou em OUs específicas. Ao empacotar tanto as regras do CIS quanto as regras personalizadas em um único conformance pack implantado em nível de organização, novas contas recebem automaticamente essas regras. O uso de um AWS Config Aggregator em uma conta de administrador delegada fornece a visualização consolidada necessária de conformidade.",
@@ -1762,22 +1762,22 @@
         {
           "id": "A",
           "text": "Implantar um AWS Config Aggregator em uma conta central de governança. Usar o AWS Systems Manager Quick Setup para implantar o AWS Config e o conformance pack do CIS em todas as contas. Implantar regras personalizadas por meio do CloudFormation StackSets visando a raiz da organização.",
-          "explanation": "Correta. O AWS Control Tower é a ferramenta líder para orquestrar contas de sandbox em massa. Combinar tags com ABAC (Attribute-Based Access Control) minimiza a proliferação de IAM roles (as permissões são escalonáveis com base no valor da tag correspondente ao centro de custo). Para finalizar, o EventBridge com System Manager pode limpar (nuke) os recursos no prazo, atingindo máxima eficiência operacional."
+          "explanation": "Incorreta. Implantar o AWS Config de forma autônoma e os conformance packs para lidar com regras personalizadas via CloudFormation StackSets divide desnecessariamente a camada de gerenciamento (metade nativo via Quick Setup, metade manual), aumentando a fragilidade operacional das instâncias corporativas."
         },
         {
           "id": "B",
           "text": "Ativar o AWS Security Hub na conta central e integrá-lo ao AWS Organizations para visualizar a conformidade com o CIS. Implantar um conformance pack de nível organizacional contendo as regras personalizadas do AWS Config a partir da conta mestre.",
-          "explanation": "Incorreta. Provisionar contas chamando manualmente o script CloudFormation via CodePipeline pode funcionar, mas quebra o conceito de landing zones governadas de forma central e self-service do Control Tower. Configurar Lambda individual em cada conta exige alto esforço de implantação/manutenção."
+          "explanation": "Incorreta. O AWS Security Hub provê consolidação visual e conformidade com o CIS Foundations Benchmark. Contudo, tentar utilizar o Security Hub como canal de implantação raiz de 'custom AWS Config rules' foge completamente ao seu escopo primário de atuação; conformance packs do Config são projetados e implantados diretamente pelo Config."
         },
         {
           "id": "C",
           "text": "Criar um AWS Config Aggregator para várias contas e várias regiões na conta central. Usar o AWS Lambda acionado pelo EventBridge para implantar o conformance pack do CIS e regras personalizadas em novas contas por meio de chamadas de API da AWS.",
-          "explanation": "Incorreta. Limitar ABAC e exigir que cada desenvolvedor atualize permissões de IAM para poder visualizar os sandboxes contradiz o princípio básico do atributo. Um Lambda agendado varrendo tags incorretas tem alto risco de apagar recursos essenciais acidentalmente, diferentemente de fechar sandboxes isolados."
+          "explanation": "Incorreta. Arquitetar uma rede complexa utilizando o AWS Lambda e acionadores do EventBridge para capturar eventos em nível de sistema de criação de contas, a fim de realizar chamadas repetitivas de API e forçar o conformance pack cria uma arquitetura 'do-it-yourself' insustentável de altíssima sobrecarga em manutenções operacionais."
         },
         {
           "id": "D",
           "text": "Implantar um conformance pack de nível organizacional que inclua as regras do CIS e as regras personalizadas da conta de gerenciamento do AWS Organizations ou de uma conta de administrador delegada. Usar um AWS Config Aggregator na conta de administrador delegada para visualizar a conformidade.",
-          "explanation": "Incorreta. Usar o AWS Service Catalog gerencia produtos específicos, não contas sandbox completas em si (gerenciar uma conta inteira como portfólio não é prático se eles precisam de liberdade local). Definir políticas de bucket baseadas em tags lida só com acesso a armazenamento, deixando toda a parte de computação e banco de dados sem cobertura de governança de ciclo de vida."
+          "explanation": "Correta. Implantar pacotes de conformidade (Conformance Packs) org-level permite unificar as regras gerenciadas (como CIS Benchmark) e as regras customizadas sob um único manifesto consolidado nativamente pela AWS. Aplicado via uma conta de administrador delegada, o AWS Config distribui a conformidade automaticamente para todas as contas (mesmo as novas) com facilidade ímpar."
         }
       ],
       "generalExplanation": "No explanation provided.",
@@ -1805,27 +1805,27 @@
             {
               "id": "A",
               "text": "Add an SCP statement with `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, and `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`.",
-              "explanation": "Incorreta. A regra do AWS Config 'required-tags' é exclusivamente focada na detecção (ela sinaliza a instância como não complacente), mas ela não restringe ou impede a criação do recurso com antecedência, falhando na premissa 'impor' restritivamente valores predefinidos antes do lançamento."
+              "explanation": "Correta. Esta Service Control Policy atende diretamente ao requisito de proteção dos marcadores. Ela impede a modificação (`ec2:CreateTags`) ou exclusão (`ec2:DeleteTags`) restritamente das tags em recursos ativos do Amazon EC2, barrando o acesso de todos os usuários (`ArnNotLike`), concedendo exceção estritamente à função designada `TagAdmin`."
             },
             {
               "id": "B",
               "text": "Add an SCP statement with `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Tentar construir SCPs manuais para negar chamadas ec2:RunInstances com condições 'StringNotLike' para dúzias de pares de chave/valor torna as políticas engessadas, sujeitas aos rígidos limites de tamanho JSON das SCPs e quase impossíveis de manter à medida que novas regras surgirem."
+              "explanation": "Incorreta. As SCPs baseiam-se quase exclusivamente no princípio de delimitação de bloqueio restrito por negação (`Effect: Deny`). A simples inclusão de declarações contendo `Effect: Allow` em nível de Organização não concede poderes irrestritos por si só, nem restringe ou impede ativamente que outras permissões preexistentes contornem as tags de maneira descontrolada."
             },
             {
               "id": "C",
               "text": "Attach an IAM policy to the developers' roles with `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Correta. As Tag Policies (Políticas de Tags) gerenciadas via AWS Organizations são o recurso projetado explicitamente para esse cenário. Elas estipulam padronização de nomenclatura de tags (como camel case ou capitalização), valores aceitáveis e podem ativar a opção de 'Enforcement' (Imposição), prevenindo efetivamente a criação de recursos sem as tags adequadas."
+              "explanation": "Incorreta. Embora a anexação de políticas baseadas no sistema ABAC diretamente na camada das roles IAM (`ec2:ResourceTag/Project`) conceda restrições locais de acesso viáveis, a premissa de negócio era aplicar globalmente os controles a nível de Organização AWS; as SCPs são as únicas garantidoras inquebráveis de políticas corporativas universais."
             },
             {
               "id": "D",
               "text": "Add an SCP statement with `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, and `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Exigir o AWS Service Catalog para que os usuários só possam iniciar os produtos pré-etiquetados pode garantir que a implantação original contenha a tag, mas não impede que os administradores ou usuários avançados adicionem recursos diretamente pelo console e quebrem a governança das tags."
+              "explanation": "Correta. Esta diretiva com um `Effect: Deny` na raiz da estrutura Organizacional (SCP) garante restrição máxima absoluta contra a violação de regras do Attribute-Based Access Control (ABAC). Ela barra imediatamente as chamadas das APIs (`ec2:StartInstances`, `ec2:StopInstances`) no plano de controle sempre que as tags dos recursos em execução divergirem estruturalmente das tags identificadoras presentes no principal (`aws:PrincipalTag`)."
             },
             {
               "id": "E",
               "text": "Add an SCP statement with `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
-              "explanation": "This choice is incorrect because it introduces significant operational overhead, fails to natively fulfill the required architectural constraints mentioned in the scenario, and goes against standard AWS recommended best practices."
+              "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
             }
           ],
           "explanation": "SCPs are used to enforce maximum available permissions globally across accounts. Option D enforces the ABAC rule globally: it explicitly denies starting/stopping instances if the `Project` tag on the resource does not match the `Project` tag on the IAM principal. Option A correctly prevents anyone except the `TagAdmin` role from altering tags on instances that already have the `Project` tag present (`Null: false`). Option C is an IAM policy, not an SCP, and B is an SCP but `Allow` in SCPs only establishes bounds, it does not grant permissions directly or override overly permissive local IAM policies.",
@@ -1836,27 +1836,27 @@
             {
               "id": "A",
               "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, y `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`.",
-              "explanation": "Incorreta. A regra do AWS Config 'required-tags' é exclusivamente focada na detecção (ela sinaliza a instância como não complacente), mas ela não restringe ou impede a criação do recurso com antecedência, falhando na premissa 'impor' restritivamente valores predefinidos antes do lançamento."
+              "explanation": "Correta. Esta Service Control Policy atende diretamente ao requisito de proteção dos marcadores. Ela impede a modificação (`ec2:CreateTags`) ou exclusão (`ec2:DeleteTags`) restritamente das tags em recursos ativos do Amazon EC2, barrando o acesso de todos os usuários (`ArnNotLike`), concedendo exceção estritamente à função designada `TagAdmin`."
             },
             {
               "id": "B",
               "text": "Añadir una declaración SCP con `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Tentar construir SCPs manuais para negar chamadas ec2:RunInstances com condições 'StringNotLike' para dúzias de pares de chave/valor torna as políticas engessadas, sujeitas aos rígidos limites de tamanho JSON das SCPs e quase impossíveis de manter à medida que novas regras surgirem."
+              "explanation": "Incorreta. As SCPs baseiam-se quase exclusivamente no princípio de delimitação de bloqueio restrito por negação (`Effect: Deny`). A simples inclusão de declarações contendo `Effect: Allow` em nível de Organização não concede poderes irrestritos por si só, nem restringe ou impede ativamente que outras permissões preexistentes contornem as tags de maneira descontrolada."
             },
             {
               "id": "C",
               "text": "Adjuntar una política de IAM a los roles de los desarrolladores con `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Correta. As Tag Policies (Políticas de Tags) gerenciadas via AWS Organizations são o recurso projetado explicitamente para esse cenário. Elas estipulam padronização de nomenclatura de tags (como camel case ou capitalização), valores aceitáveis e podem ativar a opção de 'Enforcement' (Imposição), prevenindo efetivamente a criação de recursos sem as tags adequadas."
+              "explanation": "Incorreta. Embora a anexação de políticas baseadas no sistema ABAC diretamente na camada das roles IAM (`ec2:ResourceTag/Project`) conceda restrições locais de acesso viáveis, a premissa de negócio era aplicar globalmente os controles a nível de Organização AWS; as SCPs são as únicas garantidoras inquebráveis de políticas corporativas universais."
             },
             {
               "id": "D",
               "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, y `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Exigir o AWS Service Catalog para que os usuários só possam iniciar os produtos pré-etiquetados pode garantir que a implantação original contenha a tag, mas não impede que os administradores ou usuários avançados adicionem recursos diretamente pelo console e quebrem a governança das tags."
+              "explanation": "Correta. Esta diretiva com um `Effect: Deny` na raiz da estrutura Organizacional (SCP) garante restrição máxima absoluta contra a violação de regras do Attribute-Based Access Control (ABAC). Ela barra imediatamente as chamadas das APIs (`ec2:StartInstances`, `ec2:StopInstances`) no plano de controle sempre que as tags dos recursos em execução divergirem estruturalmente das tags identificadoras presentes no principal (`aws:PrincipalTag`)."
             },
             {
               "id": "E",
               "text": "Añadir una declaración SCP con `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
-              "explanation": "Esta opción es incorrecta porque introduce una sobrecarga operativa significativa, no cumple de forma nativa con las restricciones arquitectónicas requeridas mencionadas en el escenario y va en contra de las mejores prácticas estándar recomendadas por AWS."
+              "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
             }
           ],
           "explanation": "Las SCP se utilizan para hacer cumplir los permisos máximos disponibles de forma global en todas las cuentas. La opción D aplica la regla ABAC globalmente: deniega explícitamente el inicio/detención de instancias si la etiqueta `Project` en el recurso no coincide con la etiqueta `Project` en el principal de IAM. La opción A evita correctamente que cualquier persona que no sea el rol `TagAdmin` altere las etiquetas en instancias que ya tienen la etiqueta `Project` presente (`Null: false`). La opción C es una política de IAM, no una SCP, y B es una SCP pero el `Allow` en las SCP solo establece límites, no otorga permisos directamente ni anula políticas locales de IAM excesivamente permisivas.",
@@ -1867,27 +1867,27 @@
             {
               "id": "A",
               "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, e `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`.",
-              "explanation": "Incorreta. A regra do AWS Config 'required-tags' é exclusivamente focada na detecção (ela sinaliza a instância como não complacente), mas ela não restringe ou impede a criação do recurso com antecedência, falhando na premissa 'impor' restritivamente valores predefinidos antes do lançamento."
+              "explanation": "Correta. Esta Service Control Policy atende diretamente ao requisito de proteção dos marcadores. Ela impede a modificação (`ec2:CreateTags`) ou exclusão (`ec2:DeleteTags`) restritamente das tags em recursos ativos do Amazon EC2, barrando o acesso de todos os usuários (`ArnNotLike`), concedendo exceção estritamente à função designada `TagAdmin`."
             },
             {
               "id": "B",
               "text": "Adicionar uma declaração SCP com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Tentar construir SCPs manuais para negar chamadas ec2:RunInstances com condições 'StringNotLike' para dúzias de pares de chave/valor torna as políticas engessadas, sujeitas aos rígidos limites de tamanho JSON das SCPs e quase impossíveis de manter à medida que novas regras surgirem."
+              "explanation": "Incorreta. As SCPs baseiam-se quase exclusivamente no princípio de delimitação de bloqueio restrito por negação (`Effect: Deny`). A simples inclusão de declarações contendo `Effect: Allow` em nível de Organização não concede poderes irrestritos por si só, nem restringe ou impede ativamente que outras permissões preexistentes contornem as tags de maneira descontrolada."
             },
             {
               "id": "C",
               "text": "Anexar uma política do IAM às roles dos desenvolvedores com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Correta. As Tag Policies (Políticas de Tags) gerenciadas via AWS Organizations são o recurso projetado explicitamente para esse cenário. Elas estipulam padronização de nomenclatura de tags (como camel case ou capitalização), valores aceitáveis e podem ativar a opção de 'Enforcement' (Imposição), prevenindo efetivamente a criação de recursos sem as tags adequadas."
+              "explanation": "Incorreta. Embora a anexação de políticas baseadas no sistema ABAC diretamente na camada das roles IAM (`ec2:ResourceTag/Project`) conceda restrições locais de acesso viáveis, a premissa de negócio era aplicar globalmente os controles a nível de Organização AWS; as SCPs são as únicas garantidoras inquebráveis de políticas corporativas universais."
             },
             {
               "id": "D",
               "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-              "explanation": "Incorreta. Exigir o AWS Service Catalog para que os usuários só possam iniciar os produtos pré-etiquetados pode garantir que a implantação original contenha a tag, mas não impede que os administradores ou usuários avançados adicionem recursos diretamente pelo console e quebrem a governança das tags."
+              "explanation": "Correta. Esta diretiva com um `Effect: Deny` na raiz da estrutura Organizacional (SCP) garante restrição máxima absoluta contra a violação de regras do Attribute-Based Access Control (ABAC). Ela barra imediatamente as chamadas das APIs (`ec2:StartInstances`, `ec2:StopInstances`) no plano de controle sempre que as tags dos recursos em execução divergirem estruturalmente das tags identificadoras presentes no principal (`aws:PrincipalTag`)."
             },
             {
               "id": "E",
               "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
-              "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
+              "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
             }
           ],
           "explanation": "As SCPs são usadas para impor permissões máximas disponíveis globalmente em todas as contas. A Opção D impõe a regra ABAC globalmente: ela nega explicitamente o início/parada de instâncias se a tag `Project` no recurso não corresponder à tag `Project` no principal do IAM. A Opção A impede corretamente que qualquer pessoa, exceto a role `TagAdmin`, altere as tags em instâncias que já têm a tag `Project` presente (`Null: false`). A Opção C é uma política do IAM, não uma SCP, e B é uma SCP, mas `Allow` em SCPs apenas estabelece limites, ele não concede permissões diretamente ou substitui políticas locais do IAM excessivamente permissivas.",
@@ -1898,27 +1898,27 @@
         {
           "id": "A",
           "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:CreateTags\", \"ec2:DeleteTags\" ]`, `Resource: \"arn:aws:ec2:*:*:instance/*\"`, e `Condition: { \"ArnNotLike\": { \"aws:PrincipalArn\": \"arn:aws:iam::*:role/TagAdmin\" }, \"Null\": { \"aws:ResourceTag/Project\": \"false\" } }`.",
-          "explanation": "Incorreta. A regra do AWS Config 'required-tags' é exclusivamente focada na detecção (ela sinaliza a instância como não complacente), mas ela não restringe ou impede a criação do recurso com antecedência, falhando na premissa 'impor' restritivamente valores predefinidos antes do lançamento."
+          "explanation": "Correta. Esta Service Control Policy atende diretamente ao requisito de proteção dos marcadores. Ela impede a modificação (`ec2:CreateTags`) ou exclusão (`ec2:DeleteTags`) restritamente das tags em recursos ativos do Amazon EC2, barrando o acesso de todos os usuários (`ArnNotLike`), concedendo exceção estritamente à função designada `TagAdmin`."
         },
         {
           "id": "B",
           "text": "Adicionar uma declaração SCP com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-          "explanation": "Incorreta. Tentar construir SCPs manuais para negar chamadas ec2:RunInstances com condições 'StringNotLike' para dúzias de pares de chave/valor torna as políticas engessadas, sujeitas aos rígidos limites de tamanho JSON das SCPs e quase impossíveis de manter à medida que novas regras surgirem."
+          "explanation": "Incorreta. As SCPs baseiam-se quase exclusivamente no princípio de delimitação de bloqueio restrito por negação (`Effect: Deny`). A simples inclusão de declarações contendo `Effect: Allow` em nível de Organização não concede poderes irrestritos por si só, nem restringe ou impede ativamente que outras permissões preexistentes contornem as tags de maneira descontrolada."
         },
         {
           "id": "C",
           "text": "Anexar uma política do IAM às roles dos desenvolvedores com `Effect: Allow`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringEquals\": { \"ec2:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-          "explanation": "Correta. As Tag Policies (Políticas de Tags) gerenciadas via AWS Organizations são o recurso projetado explicitamente para esse cenário. Elas estipulam padronização de nomenclatura de tags (como camel case ou capitalização), valores aceitáveis e podem ativar a opção de 'Enforcement' (Imposição), prevenindo efetivamente a criação de recursos sem as tags adequadas."
+          "explanation": "Incorreta. Embora a anexação de políticas baseadas no sistema ABAC diretamente na camada das roles IAM (`ec2:ResourceTag/Project`) conceda restrições locais de acesso viáveis, a premissa de negócio era aplicar globalmente os controles a nível de Organização AWS; as SCPs são as únicas garantidoras inquebráveis de políticas corporativas universais."
         },
         {
           "id": "D",
           "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: [ \"ec2:StartInstances\", \"ec2:StopInstances\" ]`, `Resource: \"*\"`, e `Condition: { \"StringNotEquals\": { \"aws:ResourceTag/Project\": \"${aws:PrincipalTag/Project}\" } }`.",
-          "explanation": "Incorreta. Exigir o AWS Service Catalog para que os usuários só possam iniciar os produtos pré-etiquetados pode garantir que a implantação original contenha a tag, mas não impede que os administradores ou usuários avançados adicionem recursos diretamente pelo console e quebrem a governança das tags."
+          "explanation": "Correta. Esta diretiva com um `Effect: Deny` na raiz da estrutura Organizacional (SCP) garante restrição máxima absoluta contra a violação de regras do Attribute-Based Access Control (ABAC). Ela barra imediatamente as chamadas das APIs (`ec2:StartInstances`, `ec2:StopInstances`) no plano de controle sempre que as tags dos recursos em execução divergirem estruturalmente das tags identificadoras presentes no principal (`aws:PrincipalTag`)."
         },
         {
           "id": "E",
           "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
-          "explanation": "Esta escolha é incorreta porque introduz uma sobrecarga operacional significativa, falha em atender nativamente aos requisitos arquitetônicos exigidos mencionados no cenário e vai contra as práticas recomendadas padrão da AWS."
+          "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
         }
       ],
       "generalExplanation": "No explanation provided.",
