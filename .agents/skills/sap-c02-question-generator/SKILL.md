@@ -154,3 +154,13 @@ Run the Python validation script to verify questions, type quotas, lengths, and 
 ```bash
 python3 .agents/skills/sap-c02-question-generator/scripts/validate_questions.py <path_to_json_file> --strict
 ```
+
+### JSON Schema Hard Constraints (CRITICAL)
+When generating questions in JSON format, you MUST strictly adhere to these internal rules:
+1. **Exact Domain IDs**: You must ONLY use the following strings for `domainId`:
+   - `domain-1-org-complexity`
+   - `domain-2-new-solutions`
+   - `domain-3-continuous-improvement`
+   - `domain-4-migration-modernization`
+2. **Never leave generalExplanation empty**: Every single question MUST have a highly detailed `generalExplanation`. If using the `translations` block, the `generalExplanation` inside each language (`pt`, `en`, `es`) MUST be fully populated.
+3. **Time Calculation**: When creating a full exam file, ensure `timeLimitMinutes` is calculated exactly as `(totalQuestions / 75) * 210`. For 25 questions, it MUST be `70`.

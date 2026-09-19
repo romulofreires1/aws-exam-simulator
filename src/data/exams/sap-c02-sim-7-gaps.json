@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Comprehensive enterprise-level mock exam for AWS SAP-C02 focused on gap analysis: Governance, Cost Optimization, Advanced Analytics, Security and Advanced Hybrid Networking.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 180,
+  "timeLimitMinutes": 70,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [
@@ -25,7 +25,7 @@
       "weightPercentage": 25
     },
     {
-      "id": "domain-4-cost-control",
+      "id": "domain-4-migration-modernization",
       "name": "Domain 4: Accelerate Workload Migration and Modernization",
       "weightPercentage": 20
     }
@@ -69,7 +69,8 @@
             }
           ],
           "explanation": "Option A is correct. AWS Security Hub natively centralizes findings from GuardDuty across all member accounts into the delegated administrator account. In this central account, EventBridge can capture these findings and trigger a Step Functions state machine (which can execute cross-account tasks using IAM roles) and integrate with AWS Chatbot for Slack notifications. Option B creates high operational overhead by deploying resources in every account. Option C requires manual intervention (custom actions are manually triggered). Option D bypasses Security Hub, missing the native cross-account aggregation capabilities.",
-          "statement": "A company uses AWS Organizations to manage hundreds of AWS accounts. They require an automated incident response solution when Amazon GuardDuty detects compromised EC2 instances (such as unauthorized access or cryptocurrency mining). The response must isolate the instance using security groups, notify the security team via Slack, and create a forensic snapshot of the EBS volumes. All findings must be aggregated in a central security account. How can a Solutions Architect achieve this with the LEAST operational overhead?"
+          "statement": "A company uses AWS Organizations to manage hundreds of AWS accounts. They require an automated incident response solution when Amazon GuardDuty detects compromised EC2 instances (such as unauthorized access or cryptocurrency mining). The response must isolate the instance using security groups, notify the security team via Slack, and create a forensic snapshot of the EBS volumes. All findings must be aggregated in a central security account. How can a Solutions Architect achieve this with the LEAST operational overhead?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-001 (en)"
         },
         "pt": {
           "options": [
@@ -95,7 +96,8 @@
             }
           ],
           "explanation": "A opção A está correta. O AWS Security Hub centraliza nativamente as descobertas do GuardDuty em todas as contas membros na conta de administrador delegado. Nesta conta central, o EventBridge pode capturar essas descobertas e acionar uma máquina de estado do Step Functions (que pode executar tarefas entre contas) e integrar-se ao AWS Chatbot para Slack. A opção B cria alta sobrecarga ao exigir recursos em cada conta. A opção C exige intervenção manual. A opção D ignora o Security Hub e seus recursos nativos de agregação.",
-          "statement": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?"
+          "statement": "Uma empresa usa o AWS Organizations para gerenciar centenas de contas da AWS. Eles exigem uma solução de resposta automatizada a incidentes quando o Amazon GuardDuty detecta instâncias do EC2 comprometidas (como acesso não autorizado ou mineração de criptomoedas). A resposta deve isolar a instância usando security groups, notificar a equipe de segurança via Slack e criar um snapshot forense dos volumes do EBS. Todas as descobertas devem ser agregadas em uma conta de segurança central. Como um Arquiteto de Soluções pode conseguir isso com a MENOR sobrecarga operacional?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-001 (pt)"
         },
         "es": {
           "options": [
@@ -121,7 +123,8 @@
             }
           ],
           "explanation": "La opción A es correcta. AWS Security Hub centraliza de forma nativa los hallazgos de GuardDuty de todas las cuentas miembro en la cuenta del administrador delegado. En esta cuenta central, EventBridge puede capturar los hallazgos y activar Step Functions y AWS Chatbot para la respuesta. La opción B requiere administrar recursos en cada cuenta. La opción C requiere intervención manual. La opción D omite las capacidades nativas de agregación de Security Hub.",
-          "statement": "Una empresa utiliza AWS Organizations para gestionar cientos de cuentas de AWS. Requieren una solución de respuesta automatizada a incidentes cuando Amazon GuardDuty detecta instancias EC2 comprometidas. La respuesta debe aislar la instancia usando security groups, notificar al equipo de seguridad vía Slack y crear un snapshot forense de los volúmenes EBS. Todos los hallazgos deben agregarse en una cuenta de seguridad central. ¿Cómo puede lograr esto un Arquitecto de Soluciones con la MENOR sobrecarga operativa?"
+          "statement": "Una empresa utiliza AWS Organizations para gestionar cientos de cuentas de AWS. Requieren una solución de respuesta automatizada a incidentes cuando Amazon GuardDuty detecta instancias EC2 comprometidas. La respuesta debe aislar la instancia usando security groups, notificar al equipo de seguridad vía Slack y crear un snapshot forense de los volúmenes EBS. Todos los hallazgos deben agregarse en una cuenta de seguridad central. ¿Cómo puede lograr esto un Arquitecto de Soluciones con la MENOR sobrecarga operativa?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-001 (es)"
         }
       },
       "correctAnswers": [
@@ -196,7 +199,8 @@
             }
           ],
           "explanation": "Options A and E are correct. A is required to mitigate Layer 7 application attacks (SQLi) and high-rate requests (rate-based rules) using AWS WAF associated with CloudFront. E is strictly required to enable Shield Advanced Proactive Engagement, as the DRT relies on Route 53 health checks associated with the protected resource to determine application health and initiate contact. B and D do not fulfill the proactive engagement requirements and WAF is best deployed at the edge (CloudFront). C is incorrect because proactive engagement is enabled via Route 53 health checks, not just by granting IAM log access.",
-          "statement": "A global financial company hosts a latency-sensitive web application on AWS using Amazon CloudFront, an Application Load Balancer (ALB), and EC2 instances. They are frequently targeted by sophisticated Layer 7 DDoS attacks and application-layer vulnerabilities. They have subscribed to AWS Shield Advanced. They need to automatically block malicious IP addresses that exhibit unusual request rates or attempt SQL injection, while ensuring legitimate traffic is unaffected. They also need 24/7 access to the AWS DDoS Response Team (DRT) and proactive engagement. Which combination of steps must the Solutions Architect take? (Select TWO)"
+          "statement": "A global financial company hosts a latency-sensitive web application on AWS using Amazon CloudFront, an Application Load Balancer (ALB), and EC2 instances. They are frequently targeted by sophisticated Layer 7 DDoS attacks and application-layer vulnerabilities. They have subscribed to AWS Shield Advanced. They need to automatically block malicious IP addresses that exhibit unusual request rates or attempt SQL injection, while ensuring legitimate traffic is unaffected. They also need 24/7 access to the AWS DDoS Response Team (DRT) and proactive engagement. Which combination of steps must the Solutions Architect take? (Select TWO)",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-002 (en)"
         },
         "pt": {
           "options": [
@@ -227,7 +231,8 @@
             }
           ],
           "explanation": "As opções A e E estão corretas. O WAF no CloudFront mitiga ataques de camada 7 e abusos de taxa (A). Para habilitar o Engajamento Proativo do Shield Advanced, é obrigatório criar health checks do Route 53 e associá-los ao recurso protegido, para que o DRT seja notificado em caso de degradação da aplicação (E).",
-          "statement": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)"
+          "statement": "Uma empresa financeira global hospeda uma aplicação web sensível à latência na AWS usando Amazon CloudFront, um ALB e instâncias EC2. Eles são frequentemente alvo de ataques DDoS sofisticados de Camada 7 e vulnerabilidades na camada de aplicação. Eles assinaram o AWS Shield Advanced. Eles precisam bloquear automaticamente IPs maliciosos com taxas de solicitação incomuns ou tentativas de injeção de SQL, garantindo que o tráfego legítimo não seja afetado. Também precisam de acesso 24/7 à Equipe de Resposta a DDoS da AWS (DRT) e engajamento proativo. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Selecione DUAS)",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-002 (pt)"
         },
         "es": {
           "options": [
@@ -258,7 +263,8 @@
             }
           ],
           "explanation": "Las opciones A y E son correctas. WAF en CloudFront mitiga ataques de capa 7 (A). Para habilitar el Involucramiento Proactivo (Proactive Engagement) de Shield Advanced, es estrictamente necesario configurar health checks de Route 53 y asociarlos al recurso protegido (E).",
-          "statement": "Una empresa financiera global aloja una aplicación web sensible a la latencia en AWS mediante Amazon CloudFront, un ALB y EC2. Son objeto de ataques DDoS sofisticados de Capa 7 y vulnerabilidades de aplicación. Han contratado AWS Shield Advanced. Necesitan bloquear automáticamente las IP maliciosas con tasas de solicitud inusuales o intentos de inyección SQL. También necesitan acceso 24/7 al Equipo de Respuesta a DDoS de AWS (DRT) e involucración proactiva (proactive engagement). ¿Qué combinación de pasos debe realizar el Arquitecto de Soluciones? (Seleccione DOS)"
+          "statement": "Una empresa financiera global aloja una aplicación web sensible a la latencia en AWS mediante Amazon CloudFront, un ALB y EC2. Son objeto de ataques DDoS sofisticados de Capa 7 y vulnerabilidades de aplicación. Han contratado AWS Shield Advanced. Necesitan bloquear automáticamente las IP maliciosas con tasas de solicitud inusuales o intentos de inyección SQL. También necesitan acceso 24/7 al Equipo de Respuesta a DDoS de AWS (DRT) e involucración proactiva (proactive engagement). ¿Qué combinación de pasos debe realizar el Arquitecto de Soluciones? (Seleccione DOS)",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-002 (es)"
         }
       },
       "correctAnswers": [
@@ -333,7 +339,8 @@
             }
           ],
           "explanation": "Option A is correct. Amazon Macie is specifically designed to discover sensitive data like PHI and detect public buckets. Macie integrates natively with AWS Organizations for multi-account management and sends findings to AWS Security Hub. Security Hub acts as the central pane of glass, generating EventBridge events for findings, which can then invoke a Lambda function to create Jira tickets automatically. B requires complex manual aggregations. C is incorrect as GuardDuty does not scan S3 object contents for PHI (Macie does). D is not the standard or efficient way to aggregate cross-account findings.",
-          "statement": "A healthcare company stores highly sensitive Protected Health Information (PHI) in multiple Amazon S3 buckets across dozens of AWS accounts in an AWS Organization. A Solutions Architect must design a solution to continuously monitor the buckets for public access and automatically discover any unencrypted PHI data. All findings must be routed to a central security account, and critical findings must automatically open a Jira ticket. Which architecture meets these requirements MOST efficiently?"
+          "statement": "A healthcare company stores highly sensitive Protected Health Information (PHI) in multiple Amazon S3 buckets across dozens of AWS accounts in an AWS Organization. A Solutions Architect must design a solution to continuously monitor the buckets for public access and automatically discover any unencrypted PHI data. All findings must be routed to a central security account, and critical findings must automatically open a Jira ticket. Which architecture meets these requirements MOST efficiently?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-003 (en)"
         },
         "pt": {
           "options": [
@@ -359,7 +366,8 @@
             }
           ],
           "explanation": "A opção A está correta. O Amazon Macie é a ferramenta ideal para descobrir dados confidenciais (PHI) no S3. O Macie integra-se ao AWS Organizations e ao AWS Security Hub para centralização de descobertas. O Security Hub envia eventos para o EventBridge, acionando o Lambda para automação no Jira de maneira eficiente. GuardDuty (C) não analisa conteúdo S3 para encontrar PHI. A opção B é excessivamente complexa e ineficiente.",
-          "statement": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?"
+          "statement": "Uma empresa de saúde armazena informações confidenciais (PHI) em vários buckets S3 em dezenas de contas em um AWS Organization. Um Arquiteto de Soluções deve projetar uma solução para monitorar continuamente os buckets quanto a acesso público e descobrir automaticamente dados PHI não criptografados. Todas as descobertas devem ser roteadas para uma conta central, e descobertas críticas devem abrir automaticamente um ticket no Jira. Qual arquitetura atende a esses requisitos de forma MAIS eficiente?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-003 (pt)"
         },
         "es": {
           "options": [
@@ -385,7 +393,8 @@
             }
           ],
           "explanation": "La opción A es correcta. Amazon Macie está diseñado para clasificar y descubrir datos sensibles en S3 (PHI). Se integra nativamente con Organizations y Security Hub. Security Hub centraliza los eventos en EventBridge, lo que permite activar Lambda de forma automatizada. GuardDuty (C) no examina el interior de los objetos S3 en busca de PHI. La opción B es ineficiente y difícil de mantener.",
-          "statement": "Una empresa de salud almacena datos sensibles (PHI) en varios buckets S3 en docenas de cuentas en una AWS Organization. Un Arquitecto de Soluciones debe diseñar una solución para monitorear continuamente el acceso público a los buckets y descubrir automáticamente datos PHI sin cifrar. Todos los hallazgos deben enviarse a una cuenta central, y los hallazgos críticos deben abrir automáticamente un ticket en Jira. ¿Qué arquitectura cumple esto de manera MÁS eficiente?"
+          "statement": "Una empresa de salud almacena datos sensibles (PHI) en varios buckets S3 en docenas de cuentas en una AWS Organization. Un Arquitecto de Soluciones debe diseñar una solución para monitorear continuamente el acceso público a los buckets y descubrir automáticamente datos PHI sin cifrar. Todos los hallazgos deben enviarse a una cuenta central, y los hallazgos críticos deben abrir automáticamente un ticket en Jira. ¿Qué arquitectura cumple esto de manera MÁS eficiente?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-003 (es)"
         }
       },
       "correctAnswers": [
@@ -454,7 +463,8 @@
             }
           ],
           "explanation": "Option A is correct. AWS WAF natively integrates with Amazon API Gateway. To block Tor nodes and proxies, the AWS Managed Rules for Anonymous IP is the exact feature needed. Furthermore, AWS WAF Account Takeover Prevention (ATP) is explicitly designed to stop credential stuffing attacks by evaluating login attempts against stolen credential databases and behavioral anomalies. Options B, C, and D introduce massive operational complexity and do not possess out-of-the-box credential stuffing mitigation like WAF ATP.",
-          "statement": "An enterprise provides a public-facing API hosted on Amazon API Gateway and AWS Lambda. The API handles user logins and is authenticated via Amazon Cognito. Recently, the API has experienced credential stuffing attacks where attackers try to use leaked usernames and passwords to gain unauthorized access. The company wants to automatically block these login requests. They also want to ensure that any API requests coming from anonymizing proxies and Tor networks are blocked. What is the MOST operationally efficient solution?"
+          "statement": "An enterprise provides a public-facing API hosted on Amazon API Gateway and AWS Lambda. The API handles user logins and is authenticated via Amazon Cognito. Recently, the API has experienced credential stuffing attacks where attackers try to use leaked usernames and passwords to gain unauthorized access. The company wants to automatically block these login requests. They also want to ensure that any API requests coming from anonymizing proxies and Tor networks are blocked. What is the MOST operationally efficient solution?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-004 (en)"
         },
         "pt": {
           "options": [
@@ -480,7 +490,8 @@
             }
           ],
           "explanation": "A opção A está correta. O AWS WAF integra-se nativamente ao API Gateway. O bloqueio de redes Tor e proxies é perfeitamente atendido pelas Regras Gerenciadas da AWS para IPs Anônimos. O WAF Account Takeover Prevention (ATP) foi projetado exatamente para mitigar ataques de credential stuffing de forma automatizada, inspecionando endpoints de login. As opções alternativas exigem muito esforço manual ou não atendem aos requisitos (como o Macie, que não detecta ataques em trânsito).",
-          "statement": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?"
+          "statement": "Uma empresa fornece uma API pública hospedada no Amazon API Gateway e AWS Lambda. A API lida com logins autenticados via Amazon Cognito. Recentemente, a API sofreu ataques de preenchimento de credenciais (credential stuffing). A empresa deseja bloquear essas solicitações de login automaticamente. Eles também desejam garantir que solicitações vindas de proxies anonimizadores e redes Tor sejam bloqueadas. Qual é a solução MAIS eficiente operacionalmente?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-004 (pt)"
         },
         "es": {
           "options": [
@@ -506,7 +517,8 @@
             }
           ],
           "explanation": "La opción A es correcta. AWS WAF se integra fácilmente con API Gateway. Para bloquear nodos Tor y proxies, la regla administrada para IPs Anónimas es ideal. Además, WAF Account Takeover Prevention (ATP) está diseñado específicamente para detener ataques de credential stuffing al evaluar intentos de inicio de sesión contra bases de datos comprometidas y anomalías. Las otras opciones requieren gran esfuerzo y no ofrecen protección nativa contra credential stuffing.",
-          "statement": "Una empresa ofrece una API pública alojada en Amazon API Gateway y AWS Lambda. La API maneja inicios de sesión autenticados mediante Amazon Cognito. Recientemente, la API ha sufrido ataques de relleno de credenciales (credential stuffing). La empresa desea bloquear estas solicitudes automáticamente. También quieren asegurar que se bloqueen las solicitudes de proxies anónimos y redes Tor. ¿Cuál es la solución MÁS eficiente a nivel operativo?"
+          "statement": "Una empresa ofrece una API pública alojada en Amazon API Gateway y AWS Lambda. La API maneja inicios de sesión autenticados mediante Amazon Cognito. Recientemente, la API ha sufrido ataques de relleno de credenciales (credential stuffing). La empresa desea bloquear estas solicitudes automáticamente. También quieren asegurar que se bloqueen las solicitudes de proxies anónimos y redes Tor. ¿Cuál es la solución MÁS eficiente a nivel operativo?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-004 (es)"
         }
       },
       "correctAnswers": [
@@ -574,7 +586,8 @@
             }
           ],
           "explanation": "Option B is correct. AWS Security Hub natively supports cross-Region aggregation of findings. By setting the security tooling account as the delegated administrator for both GuardDuty and Security Hub, GuardDuty findings are routed to Security Hub in each Region. Security Hub then securely aggregates these findings cross-Region into the designated aggregation Region ('us-east-1'), providing a unified dashboard without any custom coding or complex data pipelines. Options A and D require managing data pipelines and custom visualization. Option C is incorrect because Amazon Detective is used for root cause analysis and investigation, not as a primary aggregation dashboard for all global alerts.",
-          "statement": "A global company has deployed workloads in 5 AWS Regions across 50 accounts in an AWS Organization. They use Amazon GuardDuty for threat detection in all accounts and Regions. The Chief Information Security Officer (CISO) requires a single, consolidated dashboard in the 'us-east-1' Region of the dedicated security tooling account. This dashboard must display all GuardDuty findings from all 5 Regions and all 50 accounts. Which approach requires the LEAST custom development?"
+          "statement": "A global company has deployed workloads in 5 AWS Regions across 50 accounts in an AWS Organization. They use Amazon GuardDuty for threat detection in all accounts and Regions. The Chief Information Security Officer (CISO) requires a single, consolidated dashboard in the 'us-east-1' Region of the dedicated security tooling account. This dashboard must display all GuardDuty findings from all 5 Regions and all 50 accounts. Which approach requires the LEAST custom development?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-005 (en)"
         },
         "pt": {
           "options": [
@@ -600,7 +613,8 @@
             }
           ],
           "explanation": "A opção B está correta. O AWS Security Hub oferece suporte nativo à agregação de descobertas entre regiões. Configurando a conta de segurança como administrador delegado do GuardDuty e do Security Hub, as descobertas são enviadas para o Security Hub e agregadas nativamente na região designada (us-east-1). Isso cria um painel único sem necessidade de codificação personalizada (como as opções A e D exigiriam). O Detective (C) é focado em investigação de causa raiz, não agregação global em painel.",
-          "statement": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?"
+          "statement": "Uma empresa global implantou cargas de trabalho em 5 regiões da AWS em 50 contas em um AWS Organization. Eles usam o Amazon GuardDuty para detecção de ameaças em todas as contas e regiões. O CISO exige um painel único e consolidado na região 'us-east-1' da conta de segurança para visualizar todas as descobertas do GuardDuty de todas as regiões e contas. Qual abordagem exige MENOS desenvolvimento personalizado?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-005 (pt)"
         },
         "es": {
           "options": [
@@ -626,7 +640,8 @@
             }
           ],
           "explanation": "La opción B es correcta. AWS Security Hub admite de forma nativa la agregación de hallazgos entre regiones. Al establecer la cuenta de seguridad como administrador delegado para GuardDuty y Security Hub, los hallazgos se consolidan de forma nativa y segura en la región de agregación ('us-east-1') sin requerir tuberías de datos o código personalizado (a diferencia de A y D). Amazon Detective (C) se utiliza para análisis forense e investigaciones, no como panel de alertas global.",
-          "statement": "Una empresa global ha implementado cargas de trabajo en 5 regiones de AWS en 50 cuentas de una AWS Organization. Utilizan Amazon GuardDuty en todas las cuentas y regiones. El CISO requiere un panel único y consolidado en la región 'us-east-1' de la cuenta de seguridad, que muestre todos los hallazgos de GuardDuty de las 5 regiones y 50 cuentas. ¿Qué enfoque requiere la MENOR cantidad de desarrollo personalizado?"
+          "statement": "Una empresa global ha implementado cargas de trabajo en 5 regiones de AWS en 50 cuentas de una AWS Organization. Utilizan Amazon GuardDuty en todas las cuentas y regiones. El CISO requiere un panel único y consolidado en la región 'us-east-1' de la cuenta de seguridad, que muestre todos los hallazgos de GuardDuty de las 5 regiones y 50 cuentas. ¿Qué enfoque requiere la MENOR cantidad de desarrollo personalizado?",
+          "generalExplanation": "General explanation for sap-c02-sec-adv-005 (es)"
         }
       },
       "correctAnswers": [
@@ -698,7 +713,8 @@
             }
           ],
           "explanation": "Option B is correct. Right-sizing should always be performed before purchasing commitments. Enabling Compute Optimizer at the org level provides visibility. To make business units accountable for their commitments but allow floating of unused discounts, member accounts should purchase the Savings Plans and the management account should enable discount sharing. Compute Savings Plans provide the flexibility needed for both EC2 and Fargate.",
-          "statement": "A global enterprise has hundreds of AWS accounts managed by AWS Organizations. They have a mix of predictable, steady-state EC2 workloads and highly variable auto-scaling containerized workloads on Fargate. The FinOps team wants to maximize discount coverage without risking underutilization of commitments. They also need to optimize the sizing of EC2 instances and EBS volumes before committing to any new Savings Plans. The company mandates that individual business units should be accountable for their own Savings Plan commitments, but any unutilized commitment should float to other accounts in the organization.\n\nHow should the Solutions Architect design this cost optimization strategy?"
+          "statement": "A global enterprise has hundreds of AWS accounts managed by AWS Organizations. They have a mix of predictable, steady-state EC2 workloads and highly variable auto-scaling containerized workloads on Fargate. The FinOps team wants to maximize discount coverage without risking underutilization of commitments. They also need to optimize the sizing of EC2 instances and EBS volumes before committing to any new Savings Plans. The company mandates that individual business units should be accountable for their own Savings Plan commitments, but any unutilized commitment should float to other accounts in the organization.\n\nHow should the Solutions Architect design this cost optimization strategy?",
+          "generalExplanation": "General explanation for sap-c02-cost-001 (en)"
         },
         "pt": {
           "options": [
@@ -724,7 +740,8 @@
             }
           ],
           "explanation": "A opção B está correta. O dimensionamento correto deve sempre ser realizado antes da compra de compromissos. Habilitar o Compute Optimizer fornece visibilidade. Para responsabilizar as unidades pelos compromissos, mas permitir a flutuação de descontos não utilizados, as contas membros devem comprar os planos e a conta de gerenciamento deve habilitar o compartilhamento.",
-          "statement": "Uma empresa global possui centenas de contas AWS gerenciadas pelo AWS Organizations. Eles têm uma mistura de cargas de trabalho EC2 previsíveis e estáveis e cargas de trabalho em contêineres altamente variáveis no Fargate. A equipe de FinOps quer maximizar a cobertura de descontos sem o risco de subutilização dos compromissos. Eles também precisam otimizar o tamanho das instâncias EC2 e volumes EBS antes de se comprometerem com novos Savings Plans. A empresa exige que as unidades de negócios individuais sejam responsáveis por seus próprios Savings Plans, mas qualquer compromisso não utilizado deve flutuar para outras contas na organização.\n\nComo o Arquiteto de Soluções deve projetar esta estratégia de otimização de custos?"
+          "statement": "Uma empresa global possui centenas de contas AWS gerenciadas pelo AWS Organizations. Eles têm uma mistura de cargas de trabalho EC2 previsíveis e estáveis e cargas de trabalho em contêineres altamente variáveis no Fargate. A equipe de FinOps quer maximizar a cobertura de descontos sem o risco de subutilização dos compromissos. Eles também precisam otimizar o tamanho das instâncias EC2 e volumes EBS antes de se comprometerem com novos Savings Plans. A empresa exige que as unidades de negócios individuais sejam responsáveis por seus próprios Savings Plans, mas qualquer compromisso não utilizado deve flutuar para outras contas na organização.\n\nComo o Arquiteto de Soluções deve projetar esta estratégia de otimização de custos?",
+          "generalExplanation": "General explanation for sap-c02-cost-001 (pt)"
         },
         "es": {
           "options": [
@@ -750,7 +767,8 @@
             }
           ],
           "explanation": "La opción B es correcta. El ajuste de tamaño siempre debe realizarse antes de comprar compromisos. Habilitar el Compute Optimizer proporciona visibilidad. Para que las unidades rindan cuentas de sus compromisos pero permitir que floten los descuentos no utilizados, las cuentas miembros deben comprar los Savings Plans y la cuenta de administración debe habilitar el uso compartido de descuentos.",
-          "statement": "Una empresa global tiene cientos de cuentas de AWS administradas por AWS Organizations. Tienen una combinación de cargas de trabajo de EC2 predecibles y estables y cargas de trabajo en contenedores altamente variables en Fargate. El equipo de FinOps desea maximizar la cobertura de descuentos sin correr el riesgo de subutilizar los compromisos. También necesitan optimizar el tamaño de las instancias EC2 y los volúmenes de EBS antes de comprometerse con nuevos Savings Plans. La empresa exige que las unidades de negocio individuales rindan cuentas de sus propios compromisos, pero cualquier compromiso no utilizado debe flotar hacia otras cuentas.\n\n¿Cómo debería diseñar el Arquitecto de Soluciones esta estrategia de optimización de costos?"
+          "statement": "Una empresa global tiene cientos de cuentas de AWS administradas por AWS Organizations. Tienen una combinación de cargas de trabajo de EC2 predecibles y estables y cargas de trabajo en contenedores altamente variables en Fargate. El equipo de FinOps desea maximizar la cobertura de descuentos sin correr el riesgo de subutilizar los compromisos. También necesitan optimizar el tamaño de las instancias EC2 y los volúmenes de EBS antes de comprometerse con nuevos Savings Plans. La empresa exige que las unidades de negocio individuales rindan cuentas de sus propios compromisos, pero cualquier compromiso no utilizado debe flotar hacia otras cuentas.\n\n¿Cómo debería diseñar el Arquitecto de Soluciones esta estrategia de optimización de costos?",
+          "generalExplanation": "General explanation for sap-c02-cost-001 (es)"
         }
       },
       "options": [
@@ -825,7 +843,8 @@
             }
           ],
           "explanation": "Options A and C are correct. AWS Cost Categories allow you to create custom rules to categorize costs based on tags, accounts, and other dimensions, automatically solving the untagged resources issue by falling back to account ID mappings. Creating a CUR with Athena integration allows QuickSight to easily ingest and visualize the detailed, categorized billing data without managing custom ETL pipelines.",
-          "statement": "An enterprise uses AWS Organizations with consolidated billing. They need a customized cost allocation strategy that maps AWS spending to internal business units, projects, and environments (Dev, Test, Prod). Many resources do not have tags, and tagging policies were only recently enforced. The FinOps team wants a daily updated dashboard in Amazon QuickSight that categorizes costs according to these dimensions, even for historical untagged resources (using account IDs as a fallback).\n\nWhich combination of actions will meet these requirements with the LEAST operational overhead? (Select TWO)"
+          "statement": "An enterprise uses AWS Organizations with consolidated billing. They need a customized cost allocation strategy that maps AWS spending to internal business units, projects, and environments (Dev, Test, Prod). Many resources do not have tags, and tagging policies were only recently enforced. The FinOps team wants a daily updated dashboard in Amazon QuickSight that categorizes costs according to these dimensions, even for historical untagged resources (using account IDs as a fallback).\n\nWhich combination of actions will meet these requirements with the LEAST operational overhead? (Select TWO)",
+          "generalExplanation": "General explanation for sap-c02-cost-002 (en)"
         },
         "pt": {
           "options": [
@@ -856,7 +875,8 @@
             }
           ],
           "explanation": "As opções A e C estão corretas. O AWS Cost Categories permite mapear e categorizar custos via regras sem precisar de scripts. O CUR com Athena permite que o QuickSight consuma facilmente os dados.",
-          "statement": "Uma empresa usa o AWS Organizations com faturamento consolidado. Eles precisam de uma estratégia personalizada de alocação de custos que mapeie os gastos da AWS para unidades de negócios internas, projetos e ambientes (Dev, Test, Prod). Muitos recursos não possuem tags, e as políticas de tags foram aplicadas apenas recentemente. A equipe de FinOps quer um painel atualizado diariamente no Amazon QuickSight que categorize os custos de acordo com essas dimensões, mesmo para recursos sem tags históricos (usando IDs de conta como contingência).\n\nQual combinação de ações atenderá a esses requisitos com a MENOR sobrecarga operacional? (Selecione DUAS)"
+          "statement": "Uma empresa usa o AWS Organizations com faturamento consolidado. Eles precisam de uma estratégia personalizada de alocação de custos que mapeie os gastos da AWS para unidades de negócios internas, projetos e ambientes (Dev, Test, Prod). Muitos recursos não possuem tags, e as políticas de tags foram aplicadas apenas recentemente. A equipe de FinOps quer um painel atualizado diariamente no Amazon QuickSight que categorize os custos de acordo com essas dimensões, mesmo para recursos sem tags históricos (usando IDs de conta como contingência).\n\nQual combinação de ações atenderá a esses requisitos com a MENOR sobrecarga operacional? (Selecione DUAS)",
+          "generalExplanation": "General explanation for sap-c02-cost-002 (pt)"
         },
         "es": {
           "options": [
@@ -887,7 +907,8 @@
             }
           ],
           "explanation": "Las opciones A y C son correctas. AWS Cost Categories agrupa costos automáticamente basado en reglas. CUR con integración Athena permite a QuickSight consultar la información rápidamente sin desarrollo adicional de ETL.",
-          "statement": "Una empresa usa AWS Organizations con facturación consolidada. Necesitan una estrategia de asignación de costos personalizada que asigne el gasto a unidades de negocio internas, proyectos y entornos (Dev, Test, Prod). Muchos recursos no tienen etiquetas, y las políticas de etiquetas se aplicaron recientemente. El equipo de FinOps desea un panel actualizado diariamente en Amazon QuickSight que categorice los costos, incluso para recursos históricos sin etiquetas (usando IDs de cuenta como respaldo).\n\n¿Qué combinación de acciones cumplirá con estos requisitos con la MENOR sobrecarga operativa? (Seleccione DOS)"
+          "statement": "Una empresa usa AWS Organizations con facturación consolidada. Necesitan una estrategia de asignación de costos personalizada que asigne el gasto a unidades de negocio internas, proyectos y entornos (Dev, Test, Prod). Muchos recursos no tienen etiquetas, y las políticas de etiquetas se aplicaron recientemente. El equipo de FinOps desea un panel actualizado diariamente en Amazon QuickSight que categorice los costos, incluso para recursos históricos sin etiquetas (usando IDs de cuenta como respaldo).\n\n¿Qué combinación de acciones cumplirá con estos requisitos con la MENOR sobrecarga operativa? (Seleccione DOS)",
+          "generalExplanation": "General explanation for sap-c02-cost-002 (es)"
         }
       },
       "options": [
@@ -961,7 +982,8 @@
             }
           ],
           "explanation": "Option B is correct. Spot Fleet with the `price-capacity-optimized` strategy provides the best balance of cost and lower interruption rates by selecting pools with the highest capacity and lowest price. Defining target capacity in vCPUs and mixing instance families and sizes greatly reduces the risk of mass interruptions.",
-          "statement": "A big data analytics company runs a massive parallel processing workload using a custom application on Amazon EC2. The workload is fault-tolerant, interruptible, and can be paused and resumed without data loss. The application requires at least 1000 vCPUs and 4000 GiB of memory to complete processing within the required timeframe. The company wants to minimize costs by using Amazon EC2 Spot Instances but has experienced significant delays in processing due to mass interruptions when a single instance type is reclaimed.\n\nWhat is the MOST cost-effective and resilient architectural approach for this workload?"
+          "statement": "A big data analytics company runs a massive parallel processing workload using a custom application on Amazon EC2. The workload is fault-tolerant, interruptible, and can be paused and resumed without data loss. The application requires at least 1000 vCPUs and 4000 GiB of memory to complete processing within the required timeframe. The company wants to minimize costs by using Amazon EC2 Spot Instances but has experienced significant delays in processing due to mass interruptions when a single instance type is reclaimed.\n\nWhat is the MOST cost-effective and resilient architectural approach for this workload?",
+          "generalExplanation": "General explanation for sap-c02-cost-003 (en)"
         },
         "pt": {
           "options": [
@@ -987,7 +1009,8 @@
             }
           ],
           "explanation": "A opção B é a correta. Spot Fleet com `price-capacity-optimized` equilibra o preço com a resiliência à interrupção. Diversificar famílias e tamanhos reduz o risco de desligamento simultâneo.",
-          "statement": "Uma empresa de análise de big data executa uma enorme carga de trabalho de processamento paralelo usando um aplicativo personalizado no Amazon EC2. A carga de trabalho é tolerante a falhas, interrompível e pode ser pausada e retomada sem perda de dados. O aplicativo requer pelo menos 1000 vCPUs e 4000 GiB de memória para concluir o processamento dentro do prazo. A empresa quer minimizar os custos usando Instâncias Spot, mas experimentou atrasos significativos devido a interrupções em massa quando um único tipo de instância é recuperado.\n\nQual é a abordagem arquitetônica MAIS econômica e resiliente para esta carga de trabalho?"
+          "statement": "Uma empresa de análise de big data executa uma enorme carga de trabalho de processamento paralelo usando um aplicativo personalizado no Amazon EC2. A carga de trabalho é tolerante a falhas, interrompível e pode ser pausada e retomada sem perda de dados. O aplicativo requer pelo menos 1000 vCPUs e 4000 GiB de memória para concluir o processamento dentro do prazo. A empresa quer minimizar os custos usando Instâncias Spot, mas experimentou atrasos significativos devido a interrupções em massa quando um único tipo de instância é recuperado.\n\nQual é a abordagem arquitetônica MAIS econômica e resiliente para esta carga de trabalho?",
+          "generalExplanation": "General explanation for sap-c02-cost-003 (pt)"
         },
         "es": {
           "options": [
@@ -1013,7 +1036,8 @@
             }
           ],
           "explanation": "La opción B es correcta. El Spot Fleet configurado con `price-capacity-optimized` y diversificando tipos/familias es la forma óptima de protegerse de interrupciones mientras se reduce el costo.",
-          "statement": "Una empresa de análisis de big data ejecuta una carga de trabajo de procesamiento masivo en paralelo en Amazon EC2. La carga de trabajo es tolerante a fallas, interrumpible y se puede pausar sin pérdida de datos. La aplicación requiere al menos 1000 vCPUs y 4000 GiB de memoria. La empresa desea minimizar costos usando Instancias Spot, pero ha experimentado retrasos significativos debido a interrupciones masivas cuando se reclama un tipo de instancia único.\n\n¿Cuál es el enfoque arquitectónico MÁS rentable y resiliente para esta carga de trabajo?"
+          "statement": "Una empresa de análisis de big data ejecuta una carga de trabajo de procesamiento masivo en paralelo en Amazon EC2. La carga de trabajo es tolerante a fallas, interrumpible y se puede pausar sin pérdida de datos. La aplicación requiere al menos 1000 vCPUs y 4000 GiB de memoria. La empresa desea minimizar costos usando Instancias Spot, pero ha experimentado retrasos significativos debido a interrupciones masivas cuando se reclama un tipo de instancia único.\n\n¿Cuál es el enfoque arquitectónico MÁS rentable y resiliente para esta carga de trabajo?",
+          "generalExplanation": "General explanation for sap-c02-cost-003 (es)"
         }
       },
       "options": [
@@ -1081,7 +1105,8 @@
             }
           ],
           "explanation": "Option B is correct. AWS Budgets allows configuring Budget Actions that directly integrate with resources like IAM, RDS, and EC2 Auto Scaling. Configuring an action to set the MaxSize to the current DesiredCapacity perfectly meets the requirement to prevent further scale-out while maintaining the currently running instances.",
-          "statement": "A company hosts a multi-tier web application using Amazon EC2 Auto Scaling groups for the web and application tiers. The FinOps team has defined a strict monthly budget for the AWS account. If the forecasted cost exceeds the monthly budget by 10%, the company wants to automatically restrict the Auto Scaling groups from scaling out any further, while maintaining the current capacity.\n\nHow can a Solutions Architect automate this requirement?"
+          "statement": "A company hosts a multi-tier web application using Amazon EC2 Auto Scaling groups for the web and application tiers. The FinOps team has defined a strict monthly budget for the AWS account. If the forecasted cost exceeds the monthly budget by 10%, the company wants to automatically restrict the Auto Scaling groups from scaling out any further, while maintaining the current capacity.\n\nHow can a Solutions Architect automate this requirement?",
+          "generalExplanation": "General explanation for sap-c02-cost-004 (en)"
         },
         "pt": {
           "options": [
@@ -1107,7 +1132,8 @@
             }
           ],
           "explanation": "A opção B está correta. As Ações de Orçamento da AWS integram-se nativamente com o Auto Scaling para controlar atributos como o MaxSize, sem a necessidade de código personalizado ou Lambdas.",
-          "statement": "Uma empresa hospeda uma aplicação web em várias camadas usando grupos do Amazon EC2 Auto Scaling. A equipe de FinOps definiu um orçamento mensal rigoroso para a conta AWS. Se o custo previsto exceder o orçamento mensal em 10%, a empresa deseja restringir automaticamente o escalonamento adicional dos grupos de Auto Scaling, mantendo a capacidade atual.\n\nComo um Arquiteto de Soluções pode automatizar esse requisito?"
+          "statement": "Uma empresa hospeda uma aplicação web em várias camadas usando grupos do Amazon EC2 Auto Scaling. A equipe de FinOps definiu um orçamento mensal rigoroso para a conta AWS. Se o custo previsto exceder o orçamento mensal em 10%, a empresa deseja restringir automaticamente o escalonamento adicional dos grupos de Auto Scaling, mantendo a capacidade atual.\n\nComo um Arquiteto de Soluções pode automatizar esse requisito?",
+          "generalExplanation": "General explanation for sap-c02-cost-004 (pt)"
         },
         "es": {
           "options": [
@@ -1133,7 +1159,8 @@
             }
           ],
           "explanation": "La opción B es correcta. Las Acciones de Presupuesto de AWS admiten el control directo de los grupos de Auto Scaling, permitiendo fijar el MaxSize a la capacidad deseada actual para detener futuras expansiones automáticamente.",
-          "statement": "Una empresa aloja una aplicación web de varios niveles usando grupos de Auto Scaling de Amazon EC2. El equipo de FinOps ha definido un presupuesto mensual estricto. Si el costo previsto excede el presupuesto mensual en un 10%, la empresa desea restringir automáticamente el escalado horizontal de los grupos de Auto Scaling, mientras se mantiene la capacidad actual.\n\n¿Cómo puede automatizar este requisito un Arquitecto de Soluciones?"
+          "statement": "Una empresa aloja una aplicación web de varios niveles usando grupos de Auto Scaling de Amazon EC2. El equipo de FinOps ha definido un presupuesto mensual estricto. Si el costo previsto excede el presupuesto mensual en un 10%, la empresa desea restringir automáticamente el escalado horizontal de los grupos de Auto Scaling, mientras se mantiene la capacidad actual.\n\n¿Cómo puede automatizar este requisito un Arquitecto de Soluciones?",
+          "generalExplanation": "General explanation for sap-c02-cost-004 (es)"
         }
       },
       "options": [
@@ -1202,7 +1229,8 @@
             }
           ],
           "explanation": "Option C is correct. AWS Systems Manager provides out-of-the-box integration with AWS Compute Optimizer via runbooks to automatically apply storage and compute optimization recommendations across accounts and regions. This minimizes custom scripting and operational overhead while safely transitioning volumes (e.g., from gp2 to gp3 or adjusting io1/io2).",
-          "statement": "A company migrated thousands of EC2 instances and attached EBS volumes to AWS over the last year. They are using general purpose SSD (gp2) and provisioned IOPS SSD (io1) volumes. A recent FinOps audit revealed that storage costs are significantly higher than expected. The Solutions Architect must implement a strategy to analyze EBS volume usage, identify underutilized volumes, and automate the optimization of volume types and IOPS settings without impacting application performance.\n\nWhich solution requires the LEAST operational effort?"
+          "statement": "A company migrated thousands of EC2 instances and attached EBS volumes to AWS over the last year. They are using general purpose SSD (gp2) and provisioned IOPS SSD (io1) volumes. A recent FinOps audit revealed that storage costs are significantly higher than expected. The Solutions Architect must implement a strategy to analyze EBS volume usage, identify underutilized volumes, and automate the optimization of volume types and IOPS settings without impacting application performance.\n\nWhich solution requires the LEAST operational effort?",
+          "generalExplanation": "General explanation for sap-c02-cost-005 (en)"
         },
         "pt": {
           "options": [
@@ -1228,7 +1256,8 @@
             }
           ],
           "explanation": "A opção C está correta. O Systems Manager se integra nativamente ao Compute Optimizer para aplicar recomendações automaticamente (como conversões de gp2 para gp3), exigindo o menor esforço operacional.",
-          "statement": "Uma empresa migrou milhares de instâncias EC2 e volumes EBS anexados para a AWS no último ano. Eles estão usando volumes SSD de uso geral (gp2) e IOPS provisionadas (io1). Uma auditoria recente de FinOps revelou que os custos de armazenamento são maiores que o esperado. O Arquiteto de Soluções deve implementar uma estratégia para analisar o uso do volume EBS, identificar volumes subutilizados e automatizar a otimização de tipos de volume e IOPS sem impactar o desempenho do aplicativo.\n\nQual solução requer o MENOR esforço operacional?"
+          "statement": "Uma empresa migrou milhares de instâncias EC2 e volumes EBS anexados para a AWS no último ano. Eles estão usando volumes SSD de uso geral (gp2) e IOPS provisionadas (io1). Uma auditoria recente de FinOps revelou que os custos de armazenamento são maiores que o esperado. O Arquiteto de Soluções deve implementar uma estratégia para analisar o uso do volume EBS, identificar volumes subutilizados e automatizar a otimização de tipos de volume e IOPS sem impactar o desempenho do aplicativo.\n\nQual solução requer o MENOR esforço operacional?",
+          "generalExplanation": "General explanation for sap-c02-cost-005 (pt)"
         },
         "es": {
           "options": [
@@ -1254,7 +1283,8 @@
             }
           ],
           "explanation": "La opción C es correcta. Systems Manager Quick Setup proporciona integraciones preconstruidas con Compute Optimizer para aplicar sus recomendaciones a gran escala de forma automática.",
-          "statement": "Una empresa migró miles de instancias EC2 y volúmenes EBS a AWS el último año. Utilizan volúmenes de SSD de uso general (gp2) y de IOPS provisionadas (io1). Una auditoría de FinOps reciente reveló que los costos de almacenamiento son más altos de lo esperado. El Arquitecto de Soluciones debe implementar una estrategia para analizar el uso del volumen de EBS, identificar volúmenes subutilizados y automatizar la optimización de los tipos de volumen sin afectar el rendimiento.\n\n¿Qué solución requiere el MENOR esfuerzo operativo?"
+          "statement": "Una empresa migró miles de instancias EC2 y volúmenes EBS a AWS el último año. Utilizan volúmenes de SSD de uso general (gp2) y de IOPS provisionadas (io1). Una auditoría de FinOps reciente reveló que los costos de almacenamiento son más altos de lo esperado. El Arquitecto de Soluciones debe implementar una estrategia para analizar el uso del volumen de EBS, identificar volúmenes subutilizados y automatizar la optimización de los tipos de volumen sin afectar el rendimiento.\n\n¿Qué solución requiere el MENOR esfuerzo operativo?",
+          "generalExplanation": "General explanation for sap-c02-cost-005 (es)"
         }
       },
       "options": [
@@ -1328,7 +1358,8 @@
             }
           ],
           "explanation": "To restrict regions while allowing global services and specific roles, you must use a `Deny` policy. The `NotAction` element (Option A) is used to exempt global services from the `Deny` rule, as AWS Organizations does not automatically exempt them all by default if `Action: *` is used. The `ArnNotLike` condition (Option D) is used with `aws:PrincipalArn` to exempt the specific IAM role from the `Deny` effect by matching its ARN pattern across all accounts.",
-          "statement": "A company has a multi-account AWS environment managed by AWS Organizations. The cloud center of excellence wants to enforce a Service Control Policy (SCP) that denies the creation of any resources outside of `us-east-1` and `us-west-2`. However, the policy must not impact the functionality of AWS global services such as AWS IAM, Amazon CloudFront, and Amazon Route 53. Additionally, an IAM role named `GlobalAdminRole` deployed in all member accounts must be exempt from this restriction so it can deploy global infrastructure.\n\nWhich combination of elements within the SCP statement will meet these requirements? (Select TWO.)"
+          "statement": "A company has a multi-account AWS environment managed by AWS Organizations. The cloud center of excellence wants to enforce a Service Control Policy (SCP) that denies the creation of any resources outside of `us-east-1` and `us-west-2`. However, the policy must not impact the functionality of AWS global services such as AWS IAM, Amazon CloudFront, and Amazon Route 53. Additionally, an IAM role named `GlobalAdminRole` deployed in all member accounts must be exempt from this restriction so it can deploy global infrastructure.\n\nWhich combination of elements within the SCP statement will meet these requirements? (Select TWO.)",
+          "generalExplanation": "General explanation for sap-c02-gov-001 (en)"
         },
         "es": {
           "options": [
@@ -1359,7 +1390,8 @@
             }
           ],
           "explanation": "Para restringir las regiones permitiendo al mismo tiempo los servicios globales y roles específicos, debe utilizar una política `Deny`. El elemento `NotAction` (Opción A) se usa para eximir a los servicios globales de la regla `Deny`, ya que AWS Organizations no los exime automáticamente por defecto si se usa `Action: *`. La condición `ArnNotLike` (Opción D) se usa con `aws:PrincipalArn` para eximir al rol de IAM específico del efecto `Deny` al coincidir con el patrón de su ARN en todas las cuentas.",
-          "statement": "Una empresa tiene un entorno de AWS con múltiples cuentas gestionado por AWS Organizations. El centro de excelencia en la nube desea aplicar una Service Control Policy (SCP) que deniegue la creación de cualquier recurso fuera de `us-east-1` y `us-west-2`. Sin embargo, la política no debe afectar la funcionalidad de los servicios globales de AWS como AWS IAM, Amazon CloudFront y Amazon Route 53. Además, un rol de IAM llamado `GlobalAdminRole` implementado en todas las cuentas miembro debe estar exento de esta restricción para que pueda implementar infraestructura global.\n\n¿Qué combinación de elementos dentro de la declaración de la SCP cumplirá con estos requisitos? (Seleccione DOS.)"
+          "statement": "Una empresa tiene un entorno de AWS con múltiples cuentas gestionado por AWS Organizations. El centro de excelencia en la nube desea aplicar una Service Control Policy (SCP) que deniegue la creación de cualquier recurso fuera de `us-east-1` y `us-west-2`. Sin embargo, la política no debe afectar la funcionalidad de los servicios globales de AWS como AWS IAM, Amazon CloudFront y Amazon Route 53. Además, un rol de IAM llamado `GlobalAdminRole` implementado en todas las cuentas miembro debe estar exento de esta restricción para que pueda implementar infraestructura global.\n\n¿Qué combinación de elementos dentro de la declaración de la SCP cumplirá con estos requisitos? (Seleccione DOS.)",
+          "generalExplanation": "General explanation for sap-c02-gov-001 (es)"
         },
         "pt": {
           "options": [
@@ -1390,7 +1422,8 @@
             }
           ],
           "explanation": "Para restringir regiões enquanto permite serviços globais e roles específicas, você deve usar uma política de `Deny`. O elemento `NotAction` (Opção A) é usado para isentar serviços globais da regra de `Deny`, pois o AWS Organizations não os isenta automaticamente por padrão se `Action: *` for usado. A condição `ArnNotLike` (Opção D) é usada com `aws:PrincipalArn` para isentar a role do IAM específica do efeito de `Deny`, correspondendo ao seu padrão de ARN em todas as contas.",
-          "statement": "Uma empresa possui um ambiente AWS com várias contas gerenciado pelo AWS Organizations. O centro de excelência em nuvem deseja aplicar uma Service Control Policy (SCP) que negue a criação de quaisquer recursos fora de `us-east-1` e `us-west-2`. No entanto, a política não deve impactar a funcionalidade de serviços globais da AWS, como AWS IAM, Amazon CloudFront e Amazon Route 53. Além disso, uma role do IAM chamada `GlobalAdminRole` implantada em todas as contas membro deve ser isenta dessa restrição para poder implantar infraestrutura global.\n\nQual combinação de elementos dentro da declaração da SCP atenderá a esses requisitos? (Selecione DUAS.)"
+          "statement": "Uma empresa possui um ambiente AWS com várias contas gerenciado pelo AWS Organizations. O centro de excelência em nuvem deseja aplicar uma Service Control Policy (SCP) que negue a criação de quaisquer recursos fora de `us-east-1` e `us-west-2`. No entanto, a política não deve impactar a funcionalidade de serviços globais da AWS, como AWS IAM, Amazon CloudFront e Amazon Route 53. Além disso, uma role do IAM chamada `GlobalAdminRole` implantada em todas as contas membro deve ser isenta dessa restrição para poder implantar infraestrutura global.\n\nQual combinação de elementos dentro da declaração da SCP atenderá a esses requisitos? (Selecione DUAS.)",
+          "generalExplanation": "General explanation for sap-c02-gov-001 (pt)"
         }
       },
       "options": [
@@ -1463,7 +1496,8 @@
             }
           ],
           "explanation": "Customizations for AWS Control Tower (CfCT) is the recommended framework for deploying custom guardrails, AWS Config rules, and resources (like CloudFormation templates) to accounts governed by Control Tower. It automates deployment to existing and newly vended accounts automatically via a CI/CD pipeline, minimizing operational overhead.",
-          "statement": "A company is setting up a landing zone using AWS Control Tower. They have a strict compliance requirement that every Amazon S3 bucket created in any account must have an object lock configuration enabled. AWS Control Tower does not natively provide a mandatory guardrail for this specific requirement. \n\nHow can a Solutions Architect automate the enforcement of this rule across all new and existing accounts within the Control Tower environment with the LEAST operational overhead?"
+          "statement": "A company is setting up a landing zone using AWS Control Tower. They have a strict compliance requirement that every Amazon S3 bucket created in any account must have an object lock configuration enabled. AWS Control Tower does not natively provide a mandatory guardrail for this specific requirement. \n\nHow can a Solutions Architect automate the enforcement of this rule across all new and existing accounts within the Control Tower environment with the LEAST operational overhead?",
+          "generalExplanation": "General explanation for sap-c02-gov-002 (en)"
         },
         "es": {
           "options": [
@@ -1489,7 +1523,8 @@
             }
           ],
           "explanation": "Customizations for AWS Control Tower (CfCT) es el marco recomendado para implementar guardrails personalizados, reglas de AWS Config y recursos (como plantillas de CloudFormation) en cuentas regidas por Control Tower. Automatiza la implementación en cuentas existentes y recién creadas automáticamente a través de una canalización CI/CD, minimizando la carga operativa.",
-          "statement": "Una empresa está configurando una landing zone utilizando AWS Control Tower. Tienen un estricto requisito de cumplimiento de que cada bucket de Amazon S3 creado en cualquier cuenta debe tener habilitada una configuración de object lock. AWS Control Tower no proporciona de forma nativa un guardrail obligatorio para este requisito específico.\n\n¿Cómo puede un Arquitecto de Soluciones automatizar la aplicación de esta regla en todas las cuentas nuevas y existentes dentro del entorno de Control Tower con la MENOR carga operativa?"
+          "statement": "Una empresa está configurando una landing zone utilizando AWS Control Tower. Tienen un estricto requisito de cumplimiento de que cada bucket de Amazon S3 creado en cualquier cuenta debe tener habilitada una configuración de object lock. AWS Control Tower no proporciona de forma nativa un guardrail obligatorio para este requisito específico.\n\n¿Cómo puede un Arquitecto de Soluciones automatizar la aplicación de esta regla en todas las cuentas nuevas y existentes dentro del entorno de Control Tower con la MENOR carga operativa?",
+          "generalExplanation": "General explanation for sap-c02-gov-002 (es)"
         },
         "pt": {
           "options": [
@@ -1515,7 +1550,8 @@
             }
           ],
           "explanation": "O Customizations for AWS Control Tower (CfCT) é a estrutura recomendada para implantar guardrails personalizados, regras do AWS Config e recursos (como modelos do CloudFormation) em contas governadas pelo Control Tower. Ele automatiza a implantação para contas existentes e recém-criadas automaticamente por meio de um pipeline CI/CD, minimizando a sobrecarga operacional.",
-          "statement": "Uma empresa está configurando uma landing zone usando o AWS Control Tower. Eles têm um requisito estrito de conformidade de que cada bucket do Amazon S3 criado em qualquer conta deve ter uma configuração de object lock ativada. O AWS Control Tower não fornece nativamente um guardrail obrigatório para esse requisito específico.\n\nComo um Arquiteto de Soluções pode automatizar a aplicação dessa regra em todas as contas novas e existentes dentro do ambiente do Control Tower com a MENOR sobrecarga operacional?"
+          "statement": "Uma empresa está configurando uma landing zone usando o AWS Control Tower. Eles têm um requisito estrito de conformidade de que cada bucket do Amazon S3 criado em qualquer conta deve ter uma configuração de object lock ativada. O AWS Control Tower não fornece nativamente um guardrail obrigatório para esse requisito específico.\n\nComo um Arquiteto de Soluções pode automatizar a aplicação dessa regra em todas as contas novas e existentes dentro do ambiente do Control Tower com a MENOR sobrecarga operacional?",
+          "generalExplanation": "General explanation for sap-c02-gov-002 (pt)"
         }
       },
       "options": [
@@ -1583,7 +1619,8 @@
             }
           ],
           "explanation": "AWS Service Catalog supports Organizational Unit (OU) sharing, which automatically grants access to existing and new accounts within the OU. By enabling Principal Name Sharing, the central account can associate principals (like roles or groups) to the portfolio by name, and when shared to member accounts, any local principal with the exact matching name will automatically have access, eliminating the need to manually map roles in each child account.",
-          "statement": "A large enterprise uses AWS Organizations and AWS Service Catalog to distribute standardized IT services. The central IT team operates from a shared services account and creates Service Catalog portfolios. They want to share these portfolios with all member accounts in a specific Organizational Unit (OU) without having to manually manage the sharing when new accounts are added or removed from the OU. They also want to ensure that IAM principals in the member accounts can only provision products if they have the appropriate local IAM permissions matching the product's launch constraints.\n\nWhich approach satisfies these requirements with the LEAST operational overhead?"
+          "statement": "A large enterprise uses AWS Organizations and AWS Service Catalog to distribute standardized IT services. The central IT team operates from a shared services account and creates Service Catalog portfolios. They want to share these portfolios with all member accounts in a specific Organizational Unit (OU) without having to manually manage the sharing when new accounts are added or removed from the OU. They also want to ensure that IAM principals in the member accounts can only provision products if they have the appropriate local IAM permissions matching the product's launch constraints.\n\nWhich approach satisfies these requirements with the LEAST operational overhead?",
+          "generalExplanation": "General explanation for sap-c02-gov-003 (en)"
         },
         "es": {
           "options": [
@@ -1609,7 +1646,8 @@
             }
           ],
           "explanation": "AWS Service Catalog admite el uso compartido por Unidad Organizativa (OU), lo que otorga acceso automáticamente a las cuentas nuevas y existentes dentro de la OU. Al habilitar Principal Name Sharing, la cuenta central puede asociar principales (como roles o grupos) al portafolio por nombre, y cuando se comparte con las cuentas miembro, cualquier principal local con el nombre exacto coincidente tendrá acceso automáticamente, eliminando la necesidad de asignar roles manualmente en cada cuenta secundaria.",
-          "statement": "Una gran empresa utiliza AWS Organizations y AWS Service Catalog para distribuir servicios de TI estandarizados. El equipo central de TI opera desde una cuenta de servicios compartidos y crea portafolios de Service Catalog. Desean compartir estos portafolios con todas las cuentas miembro en una Unidad Organizativa (OU) específica sin tener que gestionar manualmente el uso compartido cuando se agregan o eliminan nuevas cuentas de la OU. También quieren asegurarse de que los principales de IAM en las cuentas miembro solo puedan aprovisionar productos si tienen los permisos de IAM locales adecuados que coincidan con las restricciones de lanzamiento del producto.\n\n¿Qué enfoque satisface estos requisitos con la MENOR carga operativa?"
+          "statement": "Una gran empresa utiliza AWS Organizations y AWS Service Catalog para distribuir servicios de TI estandarizados. El equipo central de TI opera desde una cuenta de servicios compartidos y crea portafolios de Service Catalog. Desean compartir estos portafolios con todas las cuentas miembro en una Unidad Organizativa (OU) específica sin tener que gestionar manualmente el uso compartido cuando se agregan o eliminan nuevas cuentas de la OU. También quieren asegurarse de que los principales de IAM en las cuentas miembro solo puedan aprovisionar productos si tienen los permisos de IAM locales adecuados que coincidan con las restricciones de lanzamiento del producto.\n\n¿Qué enfoque satisface estos requisitos con la MENOR carga operativa?",
+          "generalExplanation": "General explanation for sap-c02-gov-003 (es)"
         },
         "pt": {
           "options": [
@@ -1635,7 +1673,8 @@
             }
           ],
           "explanation": "O AWS Service Catalog oferece suporte ao compartilhamento de Unidade Organizacional (OU), que concede acesso automaticamente a contas novas e existentes dentro da OU. Ao ativar o Principal Name Sharing, a conta central pode associar principais (como roles ou grupos) ao portfólio por nome, e quando compartilhado com contas membro, qualquer principal local com o nome exato correspondente terá acesso automaticamente, eliminando a necessidade de mapear roles manualmente em cada conta filha.",
-          "statement": "Uma grande empresa usa o AWS Organizations e o AWS Service Catalog para distribuir serviços de TI padronizados. A equipe central de TI opera a partir de uma conta de serviços compartilhados e cria portfólios do Service Catalog. Eles desejam compartilhar esses portfólios com todas as contas membro em uma Unidade Organizacional (OU) específica sem precisar gerenciar manualmente o compartilhamento quando novas contas são adicionadas ou removidas da OU. Eles também desejam garantir que os principais do IAM nas contas membro só possam provisionar produtos se tiverem as permissões locais do IAM apropriadas correspondentes às restrições de inicialização do produto.\n\nQual abordagem atende a esses requisitos com a MENOR sobrecarga operacional?"
+          "statement": "Uma grande empresa usa o AWS Organizations e o AWS Service Catalog para distribuir serviços de TI padronizados. A equipe central de TI opera a partir de uma conta de serviços compartilhados e cria portfólios do Service Catalog. Eles desejam compartilhar esses portfólios com todas as contas membro em uma Unidade Organizacional (OU) específica sem precisar gerenciar manualmente o compartilhamento quando novas contas são adicionadas ou removidas da OU. Eles também desejam garantir que os principais do IAM nas contas membro só possam provisionar produtos se tiverem as permissões locais do IAM apropriadas correspondentes às restrições de inicialização do produto.\n\nQual abordagem atende a esses requisitos com a MENOR sobrecarga operacional?",
+          "generalExplanation": "General explanation for sap-c02-gov-003 (pt)"
         }
       },
       "options": [
@@ -1703,7 +1742,8 @@
             }
           ],
           "explanation": "Organization-level conformance packs allow you to deploy a collection of AWS Config rules and remediation actions across an entire AWS Organization or specific OUs. By packaging both the CIS rules and the custom rules into a single conformance pack deployed at the organization level, new accounts automatically receive these rules. Using an AWS Config Aggregator in a delegated administrator account provides the required consolidated view of compliance.",
-          "statement": "A multinational corporation has hundreds of AWS accounts managed via AWS Organizations. The central governance team needs a consolidated view of compliance against the CIS AWS Foundations Benchmark across all accounts. They also need the ability to deploy organizational-wide custom compliance rules that are not part of the standard CIS framework, and they want these rules to automatically apply to any newly created account.\n\nWhat is the MOST operationally efficient solution?"
+          "statement": "A multinational corporation has hundreds of AWS accounts managed via AWS Organizations. The central governance team needs a consolidated view of compliance against the CIS AWS Foundations Benchmark across all accounts. They also need the ability to deploy organizational-wide custom compliance rules that are not part of the standard CIS framework, and they want these rules to automatically apply to any newly created account.\n\nWhat is the MOST operationally efficient solution?",
+          "generalExplanation": "General explanation for sap-c02-gov-004 (en)"
         },
         "es": {
           "options": [
@@ -1729,7 +1769,8 @@
             }
           ],
           "explanation": "Los conformance packs a nivel de organización le permiten implementar una colección de reglas de AWS Config y acciones de remediación en toda una organización de AWS u OUs específicas. Al empaquetar tanto las reglas CIS como las reglas personalizadas en un solo conformance pack implementado a nivel de organización, las nuevas cuentas reciben automáticamente estas reglas. El uso de un Agregador de AWS Config en una cuenta de administrador delegada proporciona la vista consolidada requerida del cumplimiento.",
-          "statement": "Una corporación multinacional tiene cientos de cuentas de AWS gestionadas a través de AWS Organizations. El equipo central de gobernanza necesita una vista consolidada del cumplimiento frente al CIS AWS Foundations Benchmark en todas las cuentas. También necesitan la capacidad de implementar reglas de cumplimiento personalizadas a nivel de organización que no forman parte del marco CIS estándar, y quieren que estas reglas se apliquen automáticamente a cualquier cuenta de nueva creación.\n\n¿Cuál es la solución MÁS eficiente desde el punto de vista operativo?"
+          "statement": "Una corporación multinacional tiene cientos de cuentas de AWS gestionadas a través de AWS Organizations. El equipo central de gobernanza necesita una vista consolidada del cumplimiento frente al CIS AWS Foundations Benchmark en todas las cuentas. También necesitan la capacidad de implementar reglas de cumplimiento personalizadas a nivel de organización que no forman parte del marco CIS estándar, y quieren que estas reglas se apliquen automáticamente a cualquier cuenta de nueva creación.\n\n¿Cuál es la solución MÁS eficiente desde el punto de vista operativo?",
+          "generalExplanation": "General explanation for sap-c02-gov-004 (es)"
         },
         "pt": {
           "options": [
@@ -1755,7 +1796,8 @@
             }
           ],
           "explanation": "Os conformance packs em nível de organização permitem que você implante uma coleção de regras do AWS Config e ações de remediação em toda uma Organização da AWS ou em OUs específicas. Ao empacotar tanto as regras do CIS quanto as regras personalizadas em um único conformance pack implantado em nível de organização, novas contas recebem automaticamente essas regras. O uso de um AWS Config Aggregator em uma conta de administrador delegada fornece a visualização consolidada necessária de conformidade.",
-          "statement": "Uma corporação multinacional tem centenas de contas da AWS gerenciadas pelo AWS Organizations. A equipe central de governança precisa de uma visão consolidada da conformidade com o CIS AWS Foundations Benchmark em todas as contas. Eles também precisam da capacidade de implantar regras de conformidade personalizadas em toda a organização que não fazem parte da estrutura padrão do CIS, e desejam que essas regras se apliquem automaticamente a qualquer conta recém-criada.\n\nQual é a solução MAIS eficiente operacionalmente?"
+          "statement": "Uma corporação multinacional tem centenas de contas da AWS gerenciadas pelo AWS Organizations. A equipe central de governança precisa de uma visão consolidada da conformidade com o CIS AWS Foundations Benchmark em todas as contas. Eles também precisam da capacidade de implantar regras de conformidade personalizadas em toda a organização que não fazem parte da estrutura padrão do CIS, e desejam que essas regras se apliquem automaticamente a qualquer conta recém-criada.\n\nQual é a solução MAIS eficiente operacionalmente?",
+          "generalExplanation": "General explanation for sap-c02-gov-004 (pt)"
         }
       },
       "options": [
@@ -1829,7 +1871,8 @@
             }
           ],
           "explanation": "SCPs are used to enforce maximum available permissions globally across accounts. Option D enforces the ABAC rule globally: it explicitly denies starting/stopping instances if the `Project` tag on the resource does not match the `Project` tag on the IAM principal. Option A correctly prevents anyone except the `TagAdmin` role from altering tags on instances that already have the `Project` tag present (`Null: false`). Option C is an IAM policy, not an SCP, and B is an SCP but `Allow` in SCPs only establishes bounds, it does not grant permissions directly or override overly permissive local IAM policies.",
-          "statement": "A company is implementing Attribute-Based Access Control (ABAC) across its AWS Organizations environment. The central security team wants to strictly enforce that developers can only start or stop Amazon EC2 instances if the instance's `Project` tag exactly matches the `Project` tag on the developer's IAM role. Furthermore, they want to ensure that no one can modify or remove the `Project` tag on any existing EC2 instance, except for an administrative IAM role named `TagAdmin`.\n\nWhich combination of Service Control Policy (SCP) statements will globally enforce these security constraints? (Select TWO.)"
+          "statement": "A company is implementing Attribute-Based Access Control (ABAC) across its AWS Organizations environment. The central security team wants to strictly enforce that developers can only start or stop Amazon EC2 instances if the instance's `Project` tag exactly matches the `Project` tag on the developer's IAM role. Furthermore, they want to ensure that no one can modify or remove the `Project` tag on any existing EC2 instance, except for an administrative IAM role named `TagAdmin`.\n\nWhich combination of Service Control Policy (SCP) statements will globally enforce these security constraints? (Select TWO.)",
+          "generalExplanation": "General explanation for sap-c02-gov-005 (en)"
         },
         "es": {
           "options": [
@@ -1860,7 +1903,8 @@
             }
           ],
           "explanation": "Las SCP se utilizan para hacer cumplir los permisos máximos disponibles de forma global en todas las cuentas. La opción D aplica la regla ABAC globalmente: deniega explícitamente el inicio/detención de instancias si la etiqueta `Project` en el recurso no coincide con la etiqueta `Project` en el principal de IAM. La opción A evita correctamente que cualquier persona que no sea el rol `TagAdmin` altere las etiquetas en instancias que ya tienen la etiqueta `Project` presente (`Null: false`). La opción C es una política de IAM, no una SCP, y B es una SCP pero el `Allow` en las SCP solo establece límites, no otorga permisos directamente ni anula políticas locales de IAM excesivamente permisivas.",
-          "statement": "Una empresa está implementando el Control de Acceso Basado en Atributos (ABAC) en todo su entorno de AWS Organizations. El equipo central de seguridad quiere imponer estrictamente que los desarrolladores solo puedan iniciar o detener instancias de Amazon EC2 si la etiqueta `Project` de la instancia coincide exactamente con la etiqueta `Project` en el rol de IAM del desarrollador. Además, quieren asegurarse de que nadie pueda modificar o eliminar la etiqueta `Project` en ninguna instancia de EC2 existente, a excepción de un rol de IAM administrativo llamado `TagAdmin`.\n\n¿Qué combinación de declaraciones de la Service Control Policy (SCP) aplicará globalmente estas restricciones de seguridad? (Seleccione DOS.)"
+          "statement": "Una empresa está implementando el Control de Acceso Basado en Atributos (ABAC) en todo su entorno de AWS Organizations. El equipo central de seguridad quiere imponer estrictamente que los desarrolladores solo puedan iniciar o detener instancias de Amazon EC2 si la etiqueta `Project` de la instancia coincide exactamente con la etiqueta `Project` en el rol de IAM del desarrollador. Además, quieren asegurarse de que nadie pueda modificar o eliminar la etiqueta `Project` en ninguna instancia de EC2 existente, a excepción de un rol de IAM administrativo llamado `TagAdmin`.\n\n¿Qué combinación de declaraciones de la Service Control Policy (SCP) aplicará globalmente estas restricciones de seguridad? (Seleccione DOS.)",
+          "generalExplanation": "General explanation for sap-c02-gov-005 (es)"
         },
         "pt": {
           "options": [
@@ -1891,7 +1935,8 @@
             }
           ],
           "explanation": "As SCPs são usadas para impor permissões máximas disponíveis globalmente em todas as contas. A Opção D impõe a regra ABAC globalmente: ela nega explicitamente o início/parada de instâncias se a tag `Project` no recurso não corresponder à tag `Project` no principal do IAM. A Opção A impede corretamente que qualquer pessoa, exceto a role `TagAdmin`, altere as tags em instâncias que já têm a tag `Project` presente (`Null: false`). A Opção C é uma política do IAM, não uma SCP, e B é uma SCP, mas `Allow` em SCPs apenas estabelece limites, ele não concede permissões diretamente ou substitui políticas locais do IAM excessivamente permissivas.",
-          "statement": "Uma empresa está implementando o Controle de Acesso Baseado em Atributos (ABAC) em todo o seu ambiente do AWS Organizations. A equipe central de segurança deseja impor estritamente que os desenvolvedores só possam iniciar ou parar instâncias do Amazon EC2 se a tag `Project` da instância corresponder exatamente à tag `Project` na role do IAM do desenvolvedor. Além disso, eles desejam garantir que ninguém possa modificar ou remover a tag `Project` em nenhuma instância do EC2 existente, exceto uma role do IAM administrativa chamada `TagAdmin`.\n\nQual combinação de declarações da Service Control Policy (SCP) aplicará globalmente essas restrições de segurança? (Selecione DUAS.)"
+          "statement": "Uma empresa está implementando o Controle de Acesso Baseado em Atributos (ABAC) em todo o seu ambiente do AWS Organizations. A equipe central de segurança deseja impor estritamente que os desenvolvedores só possam iniciar ou parar instâncias do Amazon EC2 se a tag `Project` da instância corresponder exatamente à tag `Project` na role do IAM do desenvolvedor. Além disso, eles desejam garantir que ninguém possa modificar ou remover a tag `Project` em nenhuma instância do EC2 existente, exceto uma role do IAM administrativa chamada `TagAdmin`.\n\nQual combinação de declarações da Service Control Policy (SCP) aplicará globalmente essas restrições de segurança? (Selecione DUAS.)",
+          "generalExplanation": "General explanation for sap-c02-gov-005 (pt)"
         }
       },
       "options": [
@@ -2586,7 +2631,8 @@
             }
           ],
           "explanation": "Amazon EMR provides native integration with AWS Lake Formation, allowing you to define row-level and column-level security for Apache Spark workloads. When integrated with IAM Identity Center, it authenticates users and passes their identities to Lake Formation, evaluating fine-grained access controls centrally without the operational overhead of third-party tools like Apache Ranger.",
-          "statement": "A company is migrating its massive Hadoop cluster to Amazon EMR. They need to implement fine-grained access control (column-level and row-level) for their Apache Spark workloads on EMR, pulling data from Amazon S3. The security team mandates that AWS Lake Formation must manage the permissions centrally. Which architecture meets these requirements with the LEAST operational overhead?"
+          "statement": "A company is migrating its massive Hadoop cluster to Amazon EMR. They need to implement fine-grained access control (column-level and row-level) for their Apache Spark workloads on EMR, pulling data from Amazon S3. The security team mandates that AWS Lake Formation must manage the permissions centrally. Which architecture meets these requirements with the LEAST operational overhead?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345671 (en)"
         },
         "pt": {
           "options": [
@@ -2612,7 +2658,8 @@
             }
           ],
           "explanation": "O Amazon EMR oferece integração nativa com o AWS Lake Formation, permitindo definir segurança em nível de linha e coluna para cargas de trabalho do Apache Spark. Quando integrado ao IAM Identity Center, ele autentica os usuários e repassa suas identidades ao Lake Formation, avaliando os controles de acesso granulares de forma centralizada sem a sobrecarga de ferramentas de terceiros.",
-          "statement": "Uma empresa está migrando seu enorme cluster Hadoop para o Amazon EMR. Eles precisam implementar controle de acesso granular (em nível de coluna e linha) para suas cargas de trabalho do Apache Spark no EMR, extraindo dados do Amazon S3. A equipe de segurança exige que o AWS Lake Formation gerencie as permissões de forma centralizada. Qual arquitetura atende a esses requisitos com a MENOR sobrecarga operacional?"
+          "statement": "Uma empresa está migrando seu enorme cluster Hadoop para o Amazon EMR. Eles precisam implementar controle de acesso granular (em nível de coluna e linha) para suas cargas de trabalho do Apache Spark no EMR, extraindo dados do Amazon S3. A equipe de segurança exige que o AWS Lake Formation gerencie as permissões de forma centralizada. Qual arquitetura atende a esses requisitos com a MENOR sobrecarga operacional?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345671 (pt)"
         },
         "es": {
           "options": [
@@ -2638,7 +2685,8 @@
             }
           ],
           "explanation": "Amazon EMR proporciona integración nativa con AWS Lake Formation, lo que le permite definir la seguridad a nivel de fila y columna para las cargas de trabajo de Apache Spark. Cuando se integra con IAM Identity Center, autentica a los usuarios y transmite sus identidades a Lake Formation, evaluando los controles de acceso detallados de forma centralizada sin la sobrecarga de herramientas de terceros.",
-          "statement": "Una empresa está migrando su enorme clúster de Hadoop a Amazon EMR. Necesitan implementar un control de acceso detallado (a nivel de columna y fila) para sus cargas de trabajo de Apache Spark en EMR, extrayendo datos de Amazon S3. El equipo de seguridad exige que AWS Lake Formation administre los permisos de forma centralizada. ¿Qué arquitectura cumple con estos requisitos con la MENOR sobrecarga operativa?"
+          "statement": "Una empresa está migrando su enorme clúster de Hadoop a Amazon EMR. Necesitan implementar un control de acceso detallado (a nivel de columna y fila) para sus cargas de trabajo de Apache Spark en EMR, extrayendo datos de Amazon S3. El equipo de seguridad exige que AWS Lake Formation administre los permisos de forma centralizada. ¿Qué arquitectura cumple con estos requisitos con la MENOR sobrecarga operativa?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345671 (es)"
         }
       },
       "options": [
@@ -2708,7 +2756,8 @@
             }
           ],
           "explanation": "Amazon Managed Service for Apache Flink is ideal for complex, stateful streaming applications including windowing, natively integrating with Amazon MSK. Outputting to Kinesis Data Firehose handles the micro-batching required for efficiently loading data into Amazon Redshift. Direct Query in QuickSight enables near real-time dashboards.",
-          "statement": "A global financial institution streams millions of transactions per second into Amazon MSK. They require real-time fraud detection utilizing complex windowing and stateful processing. Aggregated results must be stored in Amazon Redshift to power near real-time dashboards in Amazon QuickSight. Which solution is the MOST resilient and scalable while minimizing infrastructure management?"
+          "statement": "A global financial institution streams millions of transactions per second into Amazon MSK. They require real-time fraud detection utilizing complex windowing and stateful processing. Aggregated results must be stored in Amazon Redshift to power near real-time dashboards in Amazon QuickSight. Which solution is the MOST resilient and scalable while minimizing infrastructure management?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345672 (en)"
         },
         "pt": {
           "options": [
@@ -2734,7 +2783,8 @@
             }
           ],
           "explanation": "O Amazon Managed Service for Apache Flink é ideal para aplicativos de streaming complexos e com estado, integrando-se nativamente ao Amazon MSK. A saída para o Kinesis Data Firehose lida com o micro-batching necessário para carregar dados de forma eficiente no Amazon Redshift. O Direct Query no QuickSight permite painéis quase em tempo real.",
-          "statement": "Uma instituição financeira global transmite milhões de transações por segundo para o Amazon MSK. Eles exigem detecção de fraude em tempo real utilizando janelas complexas e processamento com estado (stateful). Os resultados agregados devem ser armazenados no Amazon Redshift para alimentar painéis quase em tempo real no Amazon QuickSight. Qual solução é a MAIS resiliente e escalável enquanto minimiza o gerenciamento de infraestrutura?"
+          "statement": "Uma instituição financeira global transmite milhões de transações por segundo para o Amazon MSK. Eles exigem detecção de fraude em tempo real utilizando janelas complexas e processamento com estado (stateful). Os resultados agregados devem ser armazenados no Amazon Redshift para alimentar painéis quase em tempo real no Amazon QuickSight. Qual solução é a MAIS resiliente e escalável enquanto minimiza o gerenciamento de infraestrutura?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345672 (pt)"
         },
         "es": {
           "options": [
@@ -2760,7 +2810,8 @@
             }
           ],
           "explanation": "Amazon Managed Service for Apache Flink es ideal para aplicaciones de transmisión complejas y con estado, integrándose de forma nativa con Amazon MSK. La salida a Kinesis Data Firehose maneja el micro-lote requerido para cargar datos de manera eficiente en Amazon Redshift. Direct Query en QuickSight permite paneles casi en tiempo real.",
-          "statement": "Una institución financiera global transmite millones de transacciones por segundo a Amazon MSK. Requieren la detección de fraude en tiempo real utilizando ventanas complejas y procesamiento con estado. Los resultados agregados deben almacenarse en Amazon Redshift para alimentar paneles casi en tiempo real en Amazon QuickSight. ¿Qué solución es la MÁS resistente y escalable al tiempo que minimiza la gestión de la infraestructura?"
+          "statement": "Una institución financiera global transmite millones de transacciones por segundo a Amazon MSK. Requieren la detección de fraude en tiempo real utilizando ventanas complejas y procesamiento con estado. Los resultados agregados deben almacenarse en Amazon Redshift para alimentar paneles casi en tiempo real en Amazon QuickSight. ¿Qué solución es la MÁS resistente y escalable al tiempo que minimiza la gestión de la infraestructura?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345672 (es)"
         }
       },
       "options": [
@@ -2828,7 +2879,8 @@
             }
           ],
           "explanation": "AWS Lake Formation natively integrates with Amazon Redshift datashares. By registering a datashare in Lake Formation, you can manage and grant access to the datashare centrally across different AWS accounts, meeting the governance requirements without duplicating data or writing custom export jobs.",
-          "statement": "An enterprise maintains a central Amazon Redshift cluster (Enterprise Data Warehouse) in Account A. Business units in Accounts B, C, and D need to analyze subsets of this data using their own Redshift clusters to isolate compute resources. The data governance team demands centralized tracking of data permissions via AWS Lake Formation, and strictly prohibits data duplication. How can a Solutions Architect meet these requirements?"
+          "statement": "An enterprise maintains a central Amazon Redshift cluster (Enterprise Data Warehouse) in Account A. Business units in Accounts B, C, and D need to analyze subsets of this data using their own Redshift clusters to isolate compute resources. The data governance team demands centralized tracking of data permissions via AWS Lake Formation, and strictly prohibits data duplication. How can a Solutions Architect meet these requirements?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345673 (en)"
         },
         "pt": {
           "options": [
@@ -2854,7 +2906,8 @@
             }
           ],
           "explanation": "O AWS Lake Formation se integra nativamente aos datashares do Amazon Redshift. Ao registrar um datashare no Lake Formation, você pode gerenciar e conceder acesso a ele de forma centralizada em diferentes contas da AWS, atendendo aos requisitos de governança sem duplicar dados ou criar trabalhos de exportação.",
-          "statement": "Uma empresa mantém um cluster central do Amazon Redshift (Data Warehouse Corporativo) na Conta A. As unidades de negócios nas Contas B, C e D precisam analisar subconjuntos desses dados usando seus próprios clusters Redshift para isolar recursos computacionais. A equipe de governança de dados exige o rastreamento centralizado de permissões via AWS Lake Formation e proíbe estritamente a duplicação de dados. Como um Arquiteto de Soluções pode atender a esses requisitos?"
+          "statement": "Uma empresa mantém um cluster central do Amazon Redshift (Data Warehouse Corporativo) na Conta A. As unidades de negócios nas Contas B, C e D precisam analisar subconjuntos desses dados usando seus próprios clusters Redshift para isolar recursos computacionais. A equipe de governança de dados exige o rastreamento centralizado de permissões via AWS Lake Formation e proíbe estritamente a duplicação de dados. Como um Arquiteto de Soluções pode atender a esses requisitos?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345673 (pt)"
         },
         "es": {
           "options": [
@@ -2880,7 +2933,8 @@
             }
           ],
           "explanation": "AWS Lake Formation se integra de forma nativa con los datashares de Amazon Redshift. Al registrar un datashare en Lake Formation, puede administrar y otorgar acceso de forma centralizada en diferentes cuentas de AWS, cumpliendo con los requisitos de gobernanza sin duplicar datos ni escribir trabajos de exportación personalizados.",
-          "statement": "Una empresa mantiene un clúster central de Amazon Redshift (Enterprise Data Warehouse) en la Cuenta A. Las unidades de negocio en las Cuentas B, C y D necesitan analizar subconjuntos de estos datos usando sus propios clústeres de Redshift para aislar los recursos informáticos. El equipo de gobierno de datos exige el seguimiento centralizado de los permisos a través de AWS Lake Formation y prohíbe estrictamente la duplicación de datos. ¿Cómo puede un arquitecto de soluciones cumplir con estos requisitos?"
+          "statement": "Una empresa mantiene un clúster central de Amazon Redshift (Enterprise Data Warehouse) en la Cuenta A. Las unidades de negocio en las Cuentas B, C y D necesitan analizar subconjuntos de estos datos usando sus propios clústeres de Redshift para aislar los recursos informáticos. El equipo de gobierno de datos exige el seguimiento centralizado de los permisos a través de AWS Lake Formation y prohíbe estrictamente la duplicación de datos. ¿Cómo puede un arquitecto de soluciones cumplir con estos requisitos?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345673 (es)"
         }
       },
       "options": [
@@ -2949,7 +3003,8 @@
             }
           ],
           "explanation": "Connecting QuickSight to Athena using SPICE ensures high-performance dashboards (under 2 seconds load time) regardless of the backend data size, as SPICE is an in-memory calculation engine. SPICE can easily handle hourly refreshes. Deploying QuickSight across multiple regions allows localized access for users in the US and Europe.",
-          "statement": "A company possesses a petabyte-scale data lake on Amazon S3 processed by Amazon EMR, with metadata stored in the AWS Glue Data Catalog. They must provide interactive dashboards to 10,000 global users spanning the US and Europe using Amazon QuickSight. Dashboard load times must remain under 2 seconds, and data should refresh hourly. What is the BEST architectural approach?"
+          "statement": "A company possesses a petabyte-scale data lake on Amazon S3 processed by Amazon EMR, with metadata stored in the AWS Glue Data Catalog. They must provide interactive dashboards to 10,000 global users spanning the US and Europe using Amazon QuickSight. Dashboard load times must remain under 2 seconds, and data should refresh hourly. What is the BEST architectural approach?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345674 (en)"
         },
         "pt": {
           "options": [
@@ -2975,7 +3030,8 @@
             }
           ],
           "explanation": "Conectar o QuickSight ao Athena usando o SPICE garante painéis de alto desempenho (tempo de carregamento inferior a 2 segundos) independentemente do tamanho dos dados no back-end, pois o SPICE é um mecanismo de cálculo em memória. O SPICE suporta atualizações a cada hora. A implantação do QuickSight em várias regiões permite acesso localizado.",
-          "statement": "Uma empresa possui um data lake em escala de petabytes no Amazon S3 processado pelo Amazon EMR, com metadados armazenados no AWS Glue Data Catalog. Eles devem fornecer painéis interativos para 10.000 usuários globais espalhados pelos EUA e Europa usando o Amazon QuickSight. Os tempos de carregamento do painel devem permanecer abaixo de 2 segundos, e os dados devem ser atualizados a cada hora. Qual é a MELHOR abordagem arquitetônica?"
+          "statement": "Uma empresa possui um data lake em escala de petabytes no Amazon S3 processado pelo Amazon EMR, com metadados armazenados no AWS Glue Data Catalog. Eles devem fornecer painéis interativos para 10.000 usuários globais espalhados pelos EUA e Europa usando o Amazon QuickSight. Os tempos de carregamento do painel devem permanecer abaixo de 2 segundos, e os dados devem ser atualizados a cada hora. Qual é a MELHOR abordagem arquitetônica?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345674 (pt)"
         },
         "es": {
           "options": [
@@ -3001,7 +3057,8 @@
             }
           ],
           "explanation": "La conexión de QuickSight a Athena a través de SPICE garantiza tableros de alto rendimiento (menos de 2 segundos de tiempo de carga) independientemente del tamaño de los datos del backend, ya que SPICE es un motor de cálculo en memoria. SPICE puede manejar actualizaciones cada hora. La implementación de QuickSight en varias regiones permite el acceso localizado.",
-          "statement": "Una empresa posee un lago de datos a escala de petabytes en Amazon S3 procesado por Amazon EMR, con metadados almacenados en AWS Glue Data Catalog. Deben proporcionar paneles interactivos a 10,000 usuarios globales que abarcan los EE. UU. y Europa mediante Amazon QuickSight. Los tiempos de carga del tablero deben permanecer por debajo de los 2 segundos, y los datos deben actualizarse cada hora. ¿Cuál es el MEJOR enfoque arquitectónico?"
+          "statement": "Una empresa posee un lago de datos a escala de petabytes en Amazon S3 procesado por Amazon EMR, con metadados almacenados en AWS Glue Data Catalog. Deben proporcionar paneles interactivos a 10,000 usuarios globales que abarcan los EE. UU. y Europa mediante Amazon QuickSight. Los tiempos de carga del tablero deben permanecer por debajo de los 2 segundos, y los datos deben actualizarse cada hora. ¿Cuál es el MEJOR enfoque arquitectónico?",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345674 (es)"
         }
       },
       "options": [
@@ -3071,7 +3128,8 @@
             }
           ],
           "explanation": "Apache Iceberg is a modern open table format that natively supports schema evolution and time-travel queries. Amazon Managed Service for Apache Flink can easily write streaming data to S3 in Iceberg format. AWS Glue Data Catalog supports automatic compaction for Iceberg tables, effectively optimizing small files for Athena queries without writing custom compaction jobs or managing complex Spark clusters.",
-          "statement": "A media company captures clickstream events using Amazon MSK. They need to ingest this streaming data into a governed data lake on Amazon S3. The architecture must partition the data by time, support schema evolution, and automatically perform file compaction to optimize query performance in Amazon Athena. The solution should require minimal custom development and operational overhead."
+          "statement": "A media company captures clickstream events using Amazon MSK. They need to ingest this streaming data into a governed data lake on Amazon S3. The architecture must partition the data by time, support schema evolution, and automatically perform file compaction to optimize query performance in Amazon Athena. The solution should require minimal custom development and operational overhead.",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345675 (en)"
         },
         "pt": {
           "options": [
@@ -3097,7 +3155,8 @@
             }
           ],
           "explanation": "O Apache Iceberg é um formato de tabela aberta moderno que oferece suporte nativo à evolução de esquema e consultas de viagem no tempo. O Amazon Managed Service for Apache Flink pode gravar facilmente dados de streaming no S3 no formato Iceberg. O AWS Glue Data Catalog oferece suporte à compactação automática para tabelas Iceberg, otimizando pequenos arquivos para consultas do Athena sem gravar trabalhos de compactação personalizados ou gerenciar clusters Spark complexos.",
-          "statement": "Uma empresa de mídia captura eventos de clickstream usando o Amazon MSK. Eles precisam ingerir esses dados de streaming em um data lake governado no Amazon S3. A arquitetura deve particionar os dados por tempo, oferecer suporte à evolução de esquema e executar compactação automática de arquivos para otimizar o desempenho das consultas no Amazon Athena. A solução deve exigir o mínimo de desenvolvimento personalizado e sobrecarga operacional."
+          "statement": "Uma empresa de mídia captura eventos de clickstream usando o Amazon MSK. Eles precisam ingerir esses dados de streaming em um data lake governado no Amazon S3. A arquitetura deve particionar os dados por tempo, oferecer suporte à evolução de esquema e executar compactação automática de arquivos para otimizar o desempenho das consultas no Amazon Athena. A solução deve exigir o mínimo de desenvolvimento personalizado e sobrecarga operacional.",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345675 (pt)"
         },
         "es": {
           "options": [
@@ -3123,7 +3182,8 @@
             }
           ],
           "explanation": "Apache Iceberg es un formato de tabla abierta moderno que admite de forma nativa la evolución del esquema y las consultas de viaje en el tiempo. Amazon Managed Service for Apache Flink puede escribir fácilmente datos de transmisión en S3 en formato Iceberg. AWS Glue Data Catalog admite la compactación automática de tablas de Iceberg, lo que optimiza archivos pequeños para consultas de Athena sin necesidad de escribir trabajos de compactación personalizados ni administrar clústeres de Spark complejos.",
-          "statement": "Una empresa de medios captura eventos de secuencias de clics (clickstream) utilizando Amazon MSK. Necesitan ingerir estos datos de transmisión en un lago de datos gobernado en Amazon S3. La arquitectura debe particionar los datos por tiempo, admitir la evolución del esquema y realizar automáticamente la compactación de archivos para optimizar el rendimiento de las consultas en Amazon Athena. La solución debe requerir un desarrollo personalizado mínimo y una baja sobrecarga operativa."
+          "statement": "Una empresa de medios captura eventos de secuencias de clics (clickstream) utilizando Amazon MSK. Necesitan ingerir estos datos de transmisión en un lago de datos gobernado en Amazon S3. La arquitectura debe particionar los datos por tiempo, admitir la evolución del esquema y realizar automáticamente la compactación de archivos para optimizar el rendimiento de las consultas en Amazon Athena. La solución debe requerir un desarrollo personalizado mínimo y una baja sobrecarga operativa.",
+          "generalExplanation": "General explanation for e81f1b6a-939e-4a7b-a2c3-9d1a12345675 (es)"
         }
       },
       "options": [

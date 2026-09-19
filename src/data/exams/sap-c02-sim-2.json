@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Advanced enterprise architecture mock exam for AWS SAP-C02 covering multi-account governance, hybrid DNS routing, distributed telemetry, and large-scale cloud modernization.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 73,
+  "timeLimitMinutes": 70,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [

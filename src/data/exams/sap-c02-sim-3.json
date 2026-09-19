@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "High-fidelity professional mock exam for AWS SAP-C02 assessing advanced organizational complexity, multi-tier security, real-time analytics, and enterprise migration strategies.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 73,
+  "timeLimitMinutes": 70,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [
