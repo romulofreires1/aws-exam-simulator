@@ -1303,8 +1303,8 @@
           "options": [
             {
               "id": "A",
-              "text": "Use an `Effect: Deny` statement with a `NotAction` element listing the actions of the global services to exclude them from the region restriction.",
-              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
+              "text": "Use an `Effect: Deny` statement with the `StringNotEquals` condition for `aws:RequestedRegion` specifying the allowed regions, and combine it with `NotAction` listing global services.",
+              "explanation": "Correct. The core of a region restriction requires `Effect: Deny` combined with `StringNotEquals` for `aws:RequestedRegion` (blocking access outside allowed regions). Alongside this, using `NotAction` in the same statement is the best practice and mandatory to exempt global service calls (like IAM, Route 53, and CloudFront), preventing them from being blocked globally."
             },
             {
               "id": "B",
@@ -1313,8 +1313,8 @@
             },
             {
               "id": "C",
-              "text": "Use the `StringEquals` condition key for `aws:RequestedRegion` with values `us-east-1` and `us-west-2`. This solution ensures complete alignment with the principles of the AWS Well-Architected Framework.",
-              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
+              "text": "Use an `Effect: Deny` statement combined with the `StringEquals` condition key for `aws:RequestedRegion` listing the regions `us-east-1` and `us-west-2`.",
+              "explanation": "Incorrect. By using `Effect: Deny` along with the `StringEquals` operator for the allowed regions, you would create a policy that explicitly DENIES access WITHIN `us-east-1` and `us-west-2`, which is the direct opposite of the requirement. To block outside the allowed regions, `StringNotEquals` must be used."
             },
             {
               "id": "D",
@@ -1334,8 +1334,8 @@
           "options": [
             {
               "id": "A",
-              "text": "Usar una declaración `Effect: Deny` con un elemento `NotAction` que enumere las acciones de los servicios globales para excluirlos de la restricción de región.",
-              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
+              "text": "Utilizar una declaración `Effect: Deny` con la condición `StringNotEquals` para `aws:RequestedRegion` especificando las regiones permitidas, y combinar con `NotAction` listando los servicios globales.",
+              "explanation": "Correcta. El núcleo de una restricción de región requiere `Effect: Deny` combinado con `StringNotEquals` para `aws:RequestedRegion` (bloqueando el acceso fuera de las regiones permitidas). Junto a esto, el uso de `NotAction` en la misma declaración es la mejor práctica y obligatorio para eximir las llamadas a servicios globales (como IAM, Route 53 y CloudFront), evitando que se bloqueen globalmente."
             },
             {
               "id": "B",
@@ -1344,8 +1344,8 @@
             },
             {
               "id": "C",
-              "text": "Usar la clave de condición `StringEquals` para `aws:RequestedRegion` con los valores `us-east-1` y `us-west-2`. Esta solución garantiza una alineación completa con los principios del marco de AWS Well-Architected.",
-              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
+              "text": "Utilice una declaración `Effect: Deny` combinada con la clave de condición `StringEquals` para `aws:RequestedRegion` listando las regiones `us-east-1` y `us-west-2`.",
+              "explanation": "Incorrecta. Al usar `Effect: Deny` junto con el operador `StringEquals` para las regiones permitidas, crearía una política que DENIEGA explícitamente el acceso DENTRO de `us-east-1` y `us-west-2`, que es el opuesto directo del requisito. Para bloquear fuera de las regiones permitidas, se debe usar `StringNotEquals`."
             },
             {
               "id": "D",
@@ -1365,8 +1365,8 @@
           "options": [
             {
               "id": "A",
-              "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região.",
-              "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
+              "text": "Usar uma declaração `Effect: Deny` com a condição `StringNotEquals` para `aws:RequestedRegion` especificando as regiões permitidas, e combinar com `NotAction` listando as ações dos serviços globais para isentá-los.",
+              "explanation": "Correta. O núcleo de uma restrição de região exige `Effect: Deny` combinado com `StringNotEquals` para `aws:RequestedRegion` (bloqueando acesso fora das regiões permitidas). Junto a isso, o uso de `NotAction` na mesma declaração é a melhor prática e obrigatório para isentar chamadas de serviços globais (como IAM, Route 53 e CloudFront), evitando que eles sejam bloqueados globalmente."
             },
             {
               "id": "B",
@@ -1375,8 +1375,8 @@
             },
             {
               "id": "C",
-              "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
-              "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
+              "text": "Usar uma declaração `Effect: Deny` combinada com a chave de condição `StringEquals` para `aws:RequestedRegion` listando as regiões `us-east-1` e `us-west-2`.",
+              "explanation": "Incorreta. Ao usar `Effect: Deny` juntamente com o operador `StringEquals` para as regiões permitidas, você criaria uma política que explicitamente NEGA o acesso DENTRO de `us-east-1` e `us-west-2`, o que é o oposto direto do requisito. Para bloquear fora das regiões permitidas, deve-se usar `StringNotEquals`."
             },
             {
               "id": "D",
@@ -1396,8 +1396,8 @@
       "options": [
         {
           "id": "A",
-          "text": "Usar uma declaração `Effect: Deny` com um elemento `NotAction` listando as ações dos serviços globais para excluí-los da restrição de região.",
-          "explanation": "Correta. Usar a condição `NotAction` é a melhor prática para aplicar uma restrição de região mantendo os serviços globais (como AWS IAM, Route 53 e CloudFront) totalmente isentos, evitando que as chamadas desses serviços sejam bloqueadas, uma vez que eles não resolvem endpoints regionais padrões."
+          "text": "Usar uma declaração `Effect: Deny` com a condição `StringNotEquals` para `aws:RequestedRegion` especificando as regiões permitidas, e combinar com `NotAction` listando as ações dos serviços globais para isentá-los.",
+          "explanation": "Correta. O núcleo de uma restrição de região exige `Effect: Deny` combinado com `StringNotEquals` para `aws:RequestedRegion` (bloqueando acesso fora das regiões permitidas). Junto a isso, o uso de `NotAction` na mesma declaração é a melhor prática e obrigatório para isentar chamadas de serviços globais (como IAM, Route 53 e CloudFront), evitando que eles sejam bloqueados globalmente."
         },
         {
           "id": "B",
@@ -1406,8 +1406,8 @@
         },
         {
           "id": "C",
-          "text": "Usar a chave de condição `StringEquals` para `aws:RequestedRegion` com os valores `us-east-1` e `us-west-2`. Esta solução garante o alinhamento completo com os princípios do Well-Architected Framework da AWS.",
-          "explanation": "Incorreta. O operador `StringEquals` com a chave `aws:RequestedRegion` avaliaria as regiões positivamente, mas por si só não ignora chamadas feitas para serviços globais (que muitas vezes não enviam a chave de região), bloqueando o tráfego de controle acidentalmente a menos que NotAction seja aplicado estruturalmente."
+          "text": "Usar uma declaração `Effect: Deny` combinada com a chave de condição `StringEquals` para `aws:RequestedRegion` listando as regiões `us-east-1` e `us-west-2`.",
+          "explanation": "Incorreta. Ao usar `Effect: Deny` juntamente com o operador `StringEquals` para as regiões permitidas, você criaria uma política que explicitamente NEGA o acesso DENTRO de `us-east-1` e `us-west-2`, o que é o oposto direto do requisito. Para bloquear fora das regiões permitidas, deve-se usar `StringNotEquals`."
         },
         {
           "id": "D",
