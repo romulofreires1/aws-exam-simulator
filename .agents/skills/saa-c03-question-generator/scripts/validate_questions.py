@@ -106,13 +106,34 @@ def validate_question(q, index=0, strict=False):
             explanation = opt.get("explanation", "").strip()
             if not explanation:
                 errors.append(f"{prefix} Opção '{opt_id}': Explicação da opção vazia.")
-            elif len(explanation.split()) < 6:
-                msg = f"{prefix} Opção '{opt_id}': Explicação muito rasa ({len(explanation.split())} palavras). Deve justificar tecnicamente o acerto ou erro."
-                if strict:
-                    errors.append(msg)
+            else:
+                word_count = len(explanation.split())
+                if word_count < 25:
+                    msg = f"{prefix} Opção '{opt_id}': Explicação rasa ({word_count} palavras). Aprofunde tecnicamente o porquê da alternativa estar correta ou errada (mínimo de 25 palavras)."
+                    if strict:
+                        errors.append(msg)
+                    else:
+                        warnings.append(msg)
+                
+                generic_phrases = [
+                    "Esta escolha é incorreta porque introduz uma sobrecarga operacional",
+                    "Esta é a escolha correta porque satisfaz nativamente todas as restrições",
+                    "This choice is incorrect because it introduces significant operational",
+                    "This is the correct choice because it natively satisfies"
+                ]
+                for phrase in generic_phrases:
+                    if phrase.lower() in explanation.lower():
+                        errors.append(f"{prefix} Opção '{opt_id}': BLOQUEADO - A explicação usa um texto genérico ('{phrase[:30]}...'). Você deve escrever uma justificativa específica baseada na arquitetura da opção.")
+                        
+                # Consistency check
+                lower_expl = explanation.lower().strip()
+                is_correct = opt_id.lower() in [c.lower() for c in correct_ans]
+                if is_correct:
+                    if lower_expl.startswith("incorret") or lower_expl.startswith("incorrect"):
+                        errors.append(f"{prefix} Opção '{opt_id}': CONTRADIÇÃO - A opção é um gabarito correto, mas a explicação começa com 'Incorreta'.")
                 else:
-                    warnings.append(msg)
-
+                    if lower_expl.startswith("corret") or lower_expl.startswith("correct"):
+                        errors.append(f"{prefix} Opção '{opt_id}': CONTRADIÇÃO - A opção é incorreta, mas a explicação começa com 'Correta'.")
         # Checagem de assimetria de distratores
         if option_lengths:
             min_len = min(option_lengths)

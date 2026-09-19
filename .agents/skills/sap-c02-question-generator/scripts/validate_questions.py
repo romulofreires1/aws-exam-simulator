@@ -113,7 +113,6 @@ def validate_question(q, index=0, strict=False):
                     else:
                         warnings.append(msg)
                 
-                # Check for generic boilerplate
                 generic_phrases = [
                     "Esta escolha é incorreta porque introduz uma sobrecarga operacional",
                     "Esta é a escolha correta porque satisfaz nativamente todas as restrições",
@@ -123,7 +122,16 @@ def validate_question(q, index=0, strict=False):
                 for phrase in generic_phrases:
                     if phrase.lower() in explanation.lower():
                         errors.append(f"{prefix} Opção '{opt_id}': BLOQUEADO - A explicação usa um texto genérico ('{phrase[:30]}...'). Você deve escrever uma justificativa específica baseada na arquitetura da opção.")
-
+                        
+                # Consistency check
+                lower_expl = explanation.lower().strip()
+                is_correct = opt_id.lower() in [c.lower() for c in correct_ans]
+                if is_correct:
+                    if lower_expl.startswith("incorret") or lower_expl.startswith("incorrect"):
+                        errors.append(f"{prefix} Opção '{opt_id}': CONTRADIÇÃO - A opção é um gabarito correto, mas a explicação começa com 'Incorreta'.")
+                else:
+                    if lower_expl.startswith("corret") or lower_expl.startswith("correct"):
+                        errors.append(f"{prefix} Opção '{opt_id}': CONTRADIÇÃO - A opção é incorreta, mas a explicação começa com 'Correta'.")
         # Checagem de assimetria de distratores (evita alternativa correta gigante e erradas minúsculas)
         if option_lengths:
             min_len = min(option_lengths)
