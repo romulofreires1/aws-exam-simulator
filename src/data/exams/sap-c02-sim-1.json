@@ -33,7 +33,7 @@
   "questions": [
     {
       "id": "sap-sim1-q001",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -159,7 +159,7 @@
     },
     {
       "id": "sap-sim1-q002",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -284,7 +284,7 @@
     },
     {
       "id": "sap-sim1-q003",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -299,7 +299,7 @@
         {
           "id": "A",
           "text": "Deploy an AWS Transit Gateway in the Network Hub account, provision individual VPCs in each of the 120 member accounts, and create VPC attachments and route table associations for every member account.",
-          "explanation": "Incorrect: Creating and managing 120 individual VPCs multiplies CIDR management complexity, Transit Gateway attachment fees ($0.05/hour per attachment), and redundant NAT Gateway infrastructure costs."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
@@ -331,7 +331,7 @@
             {
               "id": "A",
               "text": "Deploy an AWS Transit Gateway in the Network Hub account, provision individual VPCs in each of the 120 member accounts, and create VPC attachments and route table associations for every member account.",
-              "explanation": "Incorrect: Creating and managing 120 individual VPCs multiplies CIDR management complexity, Transit Gateway attachment fees ($0.05/hour per attachment), and redundant NAT Gateway infrastructure costs."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
@@ -409,7 +409,7 @@
     },
     {
       "id": "sap-sim1-q004",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -434,7 +434,7 @@
         {
           "id": "C",
           "text": "Deploy AWS Site-to-Site VPN connections across the public internet using Accelerated Site-to-Site VPN with AWS Global Accelerator, terminating tunnels on an AWS Network Load Balancer in each of the 4 AWS Regions.",
-          "explanation": "Incorrect: Public internet VPNs do not provide dedicated physical interconnects or Layer 2 MACsec hardware encryption and cannot terminate directly on Network Load Balancers."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -466,7 +466,7 @@
             {
               "id": "C",
               "text": "Deploy AWS Site-to-Site VPN connections across the public internet using Accelerated Site-to-Site VPN with AWS Global Accelerator, terminating tunnels on an AWS Network Load Balancer in each of the 4 AWS Regions.",
-              "explanation": "Incorrect: Public internet VPNs do not provide dedicated physical interconnects or Layer 2 MACsec hardware encryption and cannot terminate directly on Network Load Balancers."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -534,7 +534,7 @@
     },
     {
       "id": "sap-sim1-q005",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -569,7 +569,7 @@
         {
           "id": "E",
           "text": "Create Amazon Cognito User Pools in each development account, synchronize directory users via AWS Lambda triggers, and generate temporary IAM STS credentials using Cognito Identity Pools.",
-          "explanation": "Incorrect: Amazon Cognito User Pools is designed for customer-facing consumer applications, not enterprise workforce SSO governance across multi-account AWS Organizations."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -607,7 +607,7 @@
             {
               "id": "E",
               "text": "Create Amazon Cognito User Pools in each development account, synchronize directory users via AWS Lambda triggers, and generate temporary IAM STS credentials using Cognito Identity Pools.",
-              "explanation": "Incorrect: Amazon Cognito User Pools is designed for customer-facing consumer applications, not enterprise workforce SSO governance across multi-account AWS Organizations."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Integrating AWS IAM Identity Center with Microsoft Entra ID via SAML 2.0 and SCIM enables automated user provisioning and MFA without password replication. Configuring Attribute-Based Access Control (ABAC) using session tags (aws:PrincipalTag) in a single Permission Set enables dynamic access based on corporate project attributes."
@@ -651,7 +651,7 @@
             {
               "id": "A",
               "text": "Desplegar un directorio AWS Managed Microsoft AD en cada una de las 200 cuentas miembro y establecer relaciones de confianza de bosque transitivas con Microsoft Entra ID Domain Services.",
-              "explanation": "Incorrecto: Desplegar AWS Managed AD en 200 cuentas individuales genera costos masivos de licencias, requiere sincronización de contraseñas e impone una sobrecarga administrativa inmanejable."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -680,7 +680,7 @@
     },
     {
       "id": "sap-sim1-q006",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -700,27 +700,27 @@
         {
           "id": "B",
           "text": "From the management account of the old organization, remove each subsidiary member account by calling the RemoveAccountFromOrganization API operation for all applicable account IDs.",
-          "explanation": "Correct: Member accounts must first be released from their existing organization using RemoveAccountFromOrganization before they can join a new organization as independent standalone accounts."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
           "text": "Deploy an AWS CloudFormation StackSet from the new management account to provision cross-account IAM roles with AdministratorAccess in all subsidiary member accounts before removal.",
-          "explanation": "Incorrect: CloudFormation StackSets cannot deploy across different organizations without existing organizational trust, and cross-account roles do not perform the structural migration of account ownership."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Create temporary placeholder accounts in the new organization and call the MergeOrganizations API operation from the AWS CLI to merge organizational root hierarchies directly.",
-          "explanation": "Incorrect: AWS Organizations does not provide a MergeOrganizations API; organizations must be consolidated by migrating member accounts individually."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
           "text": "From the management account of the new corporate organization, send an invitation to each subsidiary account by calling the InviteAccountToOrganization API operation.",
-          "explanation": "Correct: The target organization management account must initiate the onboarding process by issuing an invitation handshake via InviteAccountToOrganization."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "F",
           "text": "Sign in to each individual subsidiary member account and accept the organizational invitation by calling the AcceptHandshake API operation with the appropriate handshake ID.",
-          "explanation": "Correct: An authorized administrator within each invited member account must explicitly accept the invitation handshake using AcceptHandshake to finalize joining the new organization."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         }
       ],
       "correctAnswers": [
@@ -744,27 +744,27 @@
             {
               "id": "B",
               "text": "From the management account of the old organization, remove each subsidiary member account by calling the RemoveAccountFromOrganization API operation for all applicable account IDs.",
-              "explanation": "Correct: Member accounts must first be released from their existing organization using RemoveAccountFromOrganization before they can join a new organization as independent standalone accounts."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Deploy an AWS CloudFormation StackSet from the new management account to provision cross-account IAM roles with AdministratorAccess in all subsidiary member accounts before removal.",
-              "explanation": "Incorrect: CloudFormation StackSets cannot deploy across different organizations without existing organizational trust, and cross-account roles do not perform the structural migration of account ownership."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Create temporary placeholder accounts in the new organization and call the MergeOrganizations API operation from the AWS CLI to merge organizational root hierarchies directly.",
-              "explanation": "Incorrect: AWS Organizations does not provide a MergeOrganizations API; organizations must be consolidated by migrating member accounts individually."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
               "text": "From the management account of the new corporate organization, send an invitation to each subsidiary account by calling the InviteAccountToOrganization API operation.",
-              "explanation": "Correct: The target organization management account must initiate the onboarding process by issuing an invitation handshake via InviteAccountToOrganization."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "F",
               "text": "Sign in to each individual subsidiary member account and accept the organizational invitation by calling the AcceptHandshake API operation with the appropriate handshake ID.",
-              "explanation": "Correct: An authorized administrator within each invited member account must explicitly accept the invitation handshake using AcceptHandshake to finalize joining the new organization."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             }
           ],
           "generalExplanation": "Migrating member accounts between AWS Organizations requires: (1) Removing each account from the old organization using RemoveAccountFromOrganization (called from the management account or member account), (2) Inviting each account from the new organization management account using InviteAccountToOrganization, and (3) Accepting the handshake/invitation from within each member account using AcceptHandshake."
@@ -781,7 +781,7 @@
             {
               "id": "B",
               "text": "A partir da conta de gerenciamento da organização antiga, remover cada conta-membro da subsidiária chamando a operação de API RemoveAccountFromOrganization para todos os IDs de conta aplicáveis.",
-              "explanation": "Correto: As contas-membro devem primeiro ser desvinculadas da organização existente usando RemoveAccountFromOrganization antes que possam ingressar em uma nova organização como contas independentes."
+              "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
@@ -791,12 +791,12 @@
             {
               "id": "D",
               "text": "Criar contas temporárias de espaço reservado (placeholders) na nova organização e chamar a operação de API MergeOrganizations a partir da AWS CLI para mesclar as hierarquias organizacionais diretamente.",
-              "explanation": "Incorreto: O AWS Organizations não disponibiliza uma operação de API chamada MergeOrganizations; a consolidação de organizações exige a migração individual de cada conta-membro."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "E",
               "text": "A partir da conta de gerenciamento da nova organização corporativa, enviar um convite para cada conta da subsidiária chamando a operação de API InviteAccountToOrganization.",
-              "explanation": "Correto: A conta de gerenciamento da nova organização deve iniciar o processo de integração emitindo um handshake de convite via InviteAccountToOrganization."
+              "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
             },
             {
               "id": "F",
@@ -818,22 +818,22 @@
             {
               "id": "B",
               "text": "Desde la cuenta de gestión de la organización antigua, eliminar cada cuenta miembro de la subsidiaria llamando a la operación de API RemoveAccountFromOrganization para todas las cuentas aplicables.",
-              "explanation": "Correcto: Las cuentas miembro deben desvincularse primero de su organización existente mediante RemoveAccountFromOrganization antes de poder unirse a una nueva organización."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Implementar un AWS CloudFormation StackSet desde la nueva cuenta de gestión para aprovisionar roles de IAM con AdministratorAccess en todas las cuentas de la subsidiaria antes de la eliminación.",
-              "explanation": "Incorrecto: CloudFormation StackSets no pueden desplegarse entre organizaciones distintas sin confianza previa, y los roles cross-account no realizan la migración estructural de la cuenta."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Crear cuentas temporales de marcador de posición (placeholders) en la nueva organización y llamar a la operación MergeOrganizations de la API de AWS para fusionar las jerarquías.",
-              "explanation": "Incorrecto: AWS Organizations no cuenta con una API MergeOrganizations; la consolidación de organizaciones requiere migrar las cuentas miembro de forma individual."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
               "text": "Desde la cuenta de gestión de la nueva organización corporativa, enviar una invitación a cada cuenta de la subsidiaria llamando a la operación de API InviteAccountToOrganization.",
-              "explanation": "Correcto: La cuenta de gestión de la organización de destino debe iniciar el proceso de incorporación emitiendo una invitación mediante InviteAccountToOrganization."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "F",
@@ -847,7 +847,7 @@
     },
     {
       "id": "sap-sim1-q007",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -877,7 +877,7 @@
         {
           "id": "D",
           "text": "Enable AWS Control Tower in all accounts and configure detective guardrails using AWS Config managed rules to alert the security operations center whenever an unauthorized subscription occurs.",
-          "explanation": "Incorrect: AWS Config detective guardrails do not prevent developers from subscribing to unapproved software and require manual reactive revocation by security engineers."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -909,7 +909,7 @@
             {
               "id": "D",
               "text": "Enable AWS Control Tower in all accounts and configure detective guardrails using AWS Config managed rules to alert the security operations center whenever an unauthorized subscription occurs.",
-              "explanation": "Incorrect: AWS Config detective guardrails do not prevent developers from subscribing to unapproved software and require manual reactive revocation by security engineers."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Creating the procurement-admin-role in the Shared-Services account with the AWSPrivateMarketplaceAdminFullAccess managed policy and applying an organization-wide Root SCP that denies Private Marketplace administration actions to all principals except procurement-admin-role enforces centralized governance without per-account policy overhead."
@@ -936,7 +936,7 @@
             {
               "id": "D",
               "text": "Habilitar o AWS Control Tower em todas as contas e configurar guardrails detectivos usando regras gerenciadas do AWS Config para alertar o centro de operações de segurança sempre que uma assinatura não autorizada ocorrer.",
-              "explanation": "Incorreto: Guardrails detectivos do AWS Config não impedem que desenvolvedores assinem softwares não aprovados em tempo de execução, exigindo remediação manual reativa posterior."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
           "generalExplanation": "A criação da role procurement-admin-role na conta de Serviços Compartilhados com a política gerenciada AWSPrivateMarketplaceAdminFullAccess e a aplicação de uma SCP na Raiz da organização negando ações de administração do Private Marketplace a todos os principais, exceto à procurement-admin-role, garante governança centralizada sem sobrecarga de políticas locais."
@@ -963,7 +963,7 @@
             {
               "id": "D",
               "text": "Habilitar AWS Control Tower en todas las cuentas y configurar guardrails detectivos mediante reglas de AWS Config para alertar al centro de operaciones cuando ocurra una suscripción no autorizada.",
-              "explanation": "Incorrecto: Los guardrails detectivos de AWS Config no impiden la suscripción a software no aprobado en tiempo real, requiriendo revocación manual posterior."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Crear el rol procurement-admin-role en la cuenta de Servicios Compartidos con la política administrada AWSPrivateMarketplaceAdminFullAccess y aplicar una SCP en la Raíz de la organización que deniegue acciones administrativas a todos los principales excepto a procurement-admin-role garantiza gobernanza centralizada sin sobrecarga de gestión."
@@ -972,7 +972,7 @@
     },
     {
       "id": "sap-sim1-q008",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1003,7 +1003,7 @@
         {
           "id": "D",
           "text": "Stream incoming events into an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster with manual broker provisioning, and configure an Amazon Elastic Container Service (ECS) Fargate service polling Kafka topics via consumer groups.",
-          "explanation": "Incorrect: Amazon MSK with manual broker provisioning requires ongoing operational overhead for broker capacity management and partition rebalancing, failing the serverless zero-maintenance requirement."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -1035,7 +1035,7 @@
             {
               "id": "D",
               "text": "Stream incoming events into an Amazon Managed Streaming for Apache Kafka (Amazon MSK) cluster with manual broker provisioning, and configure an Amazon Elastic Container Service (ECS) Fargate service polling Kafka topics via consumer groups.",
-              "explanation": "Incorrect: Amazon MSK with manual broker provisioning requires ongoing operational overhead for broker capacity management and partition rebalancing, failing the serverless zero-maintenance requirement."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Amazon Kinesis Data Streams in On-Demand mode paired with AWS Lambda event source mapping (with bisect-on-function-error and parallelization factor) and Amazon DynamoDB Global Tables provides scalable, strictly ordered per-partition key streaming with worldwide replication."
@@ -1098,7 +1098,7 @@
     },
     {
       "id": "sap-sim1-q009",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1118,12 +1118,12 @@
         {
           "id": "B",
           "text": "Implement multi-region active-active Aurora PostgreSQL using AWS Database Migration Service (DMS) bidirectional replication between us-east-1 and eu-west-1, paired with Amazon Route 53 latency routing policies.",
-          "explanation": "Incorrect: Bidirectional DMS replication introduces potential data conflict resolution issues in transactional financial systems and does not provide automated infrastructure readiness verification."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Configure AWS Backup to take automated EBS volume snapshots every 15 minutes, copy them to eu-west-1, and use AWS CloudFormation StackSets to provision compute infrastructure upon receiving an SNS failover alert.",
-          "explanation": "Incorrect: A 15-minute backup interval violates the sub-second RPO requirement, and provisioning infrastructure on-demand during a disaster exceeds the 2-minute RTO."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -1150,12 +1150,12 @@
             {
               "id": "B",
               "text": "Implement multi-region active-active Aurora PostgreSQL using AWS Database Migration Service (DMS) bidirectional replication between us-east-1 and eu-west-1, paired with Amazon Route 53 latency routing policies.",
-              "explanation": "Incorrect: Bidirectional DMS replication introduces potential data conflict resolution issues in transactional financial systems and does not provide automated infrastructure readiness verification."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Configure AWS Backup to take automated EBS volume snapshots every 15 minutes, copy them to eu-west-1, and use AWS CloudFormation StackSets to provision compute infrastructure upon receiving an SNS failover alert.",
-              "explanation": "Incorrect: A 15-minute backup interval violates the sub-second RPO requirement, and provisioning infrastructure on-demand during a disaster exceeds the 2-minute RTO."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -1204,7 +1204,7 @@
             {
               "id": "B",
               "text": "Implementar Aurora PostgreSQL activo-activo multirregión mediante replicación bidireccional con AWS DMS entre us-east-1 y eu-west-1, junto con políticas de enrutamiento por latencia en Route 53.",
-              "explanation": "Incorrecto: La replicación bidireccional con DMS introduce riesgos de conflicto en sistemas transaccionales y no proporciona verificación automatizada de preparación de infraestructura."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -1223,7 +1223,7 @@
     },
     {
       "id": "sap-sim1-q010",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1348,7 +1348,7 @@
     },
     {
       "id": "sap-sim1-q011",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1473,7 +1473,7 @@
     },
     {
       "id": "sap-sim1-q012",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1503,7 +1503,7 @@
         {
           "id": "D",
           "text": "Configure Amazon Cognito Identity Pools with unauthenticated guest access to exchange device serial numbers for temporary AWS IAM STS credentials via the AWS CLI.",
-          "explanation": "Incorrect: Using unauthenticated Cognito Identity Pools to hand out IAM credentials directly to public hardware devices is an egregious security anti-pattern."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
@@ -1541,7 +1541,7 @@
             {
               "id": "D",
               "text": "Configure Amazon Cognito Identity Pools with unauthenticated guest access to exchange device serial numbers for temporary AWS IAM STS credentials via the AWS CLI.",
-              "explanation": "Incorrect: Using unauthenticated Cognito Identity Pools to hand out IAM credentials directly to public hardware devices is an egregious security anti-pattern."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
@@ -1605,7 +1605,7 @@
             {
               "id": "D",
               "text": "Configurar Amazon Cognito Identity Pools con acceso no autenticado para intercambiar números de serie de dispositivos por credenciales temporales de IAM STS.",
-              "explanation": "Incorrecto: Utilizar Cognito Identity Pools no autenticado para otorgar credenciales de IAM directamente a dispositivos de hardware es un anti-patrón de seguridad crítico."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
@@ -1619,7 +1619,7 @@
     },
     {
       "id": "sap-sim1-q013",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1640,7 +1640,7 @@
         {
           "id": "B",
           "text": "Deploy an Amazon EMR cluster with Apache Spark on EC2 On-Demand instances, writing custom Python scripts to split the CSV, handle retries, and write failed records into an Amazon DynamoDB error table.",
-          "explanation": "Incorrect: Managing a persistent EMR cluster requires substantial operational overhead and custom Spark retry code compared to native managed serverless step orchestrators."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -1672,7 +1672,7 @@
             {
               "id": "B",
               "text": "Deploy an Amazon EMR cluster with Apache Spark on EC2 On-Demand instances, writing custom Python scripts to split the CSV, handle retries, and write failed records into an Amazon DynamoDB error table.",
-              "explanation": "Incorrect: Managing a persistent EMR cluster requires substantial operational overhead and custom Spark retry code compared to native managed serverless step orchestrators."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -1699,7 +1699,7 @@
             {
               "id": "B",
               "text": "Implantar um cluster do Amazon EMR com Apache Spark em instâncias EC2 On-Demand, escrevendo scripts Python personalizados para dividir o CSV, gerenciar repetições e gravar registros com falha em uma tabela de erros do Amazon DynamoDB.",
-              "explanation": "Incorreto: Gerenciar um cluster EMR persistente exige sobrecarga operacional contínua e código customizado de repetição em Spark quando comparado a orquestradores serverless nativos."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -1726,7 +1726,7 @@
             {
               "id": "B",
               "text": "Desplegar un clúster de Amazon EMR con Apache Spark en instancias EC2 On-Demand, escribiendo scripts personalizados en Python para dividir el CSV y gestionar reintentos.",
-              "explanation": "Incorrecto: Administrar un clúster de EMR persistente requiere una sobrecarga operativa considerable y código de reintento personalizado en comparación con orquestadores serverless nativos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -1745,7 +1745,7 @@
     },
     {
       "id": "sap-sim1-q014",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1871,7 +1871,7 @@
     },
     {
       "id": "sap-sim1-q015",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -1902,7 +1902,7 @@
         {
           "id": "D",
           "text": "Replace all private subnets in the application VPCs with public subnets, assign Elastic IP addresses to all EC2 instances, and eliminate NAT Gateways entirely.",
-          "explanation": "Incorrect: Exposing internal application servers and databases in public subnets with direct internet routability introduces critical security compliance violations and security exposure."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
@@ -1940,7 +1940,7 @@
             {
               "id": "D",
               "text": "Replace all private subnets in the application VPCs with public subnets, assign Elastic IP addresses to all EC2 instances, and eliminate NAT Gateways entirely.",
-              "explanation": "Incorrect: Exposing internal application servers and databases in public subnets with direct internet routability introduces critical security compliance violations and security exposure."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
@@ -2004,7 +2004,7 @@
             {
               "id": "D",
               "text": "Reemplazar todas las subredes privadas en las VPCs de aplicación por subredes públicas, asignar IPs elásticas a todas las instancias EC2 y eliminar los NAT Gateways.",
-              "explanation": "Incorrecto: Exponer servidores y bases de datos internas en subredes públicas con acceso directo a internet introduce violaciones de seguridad críticas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
@@ -2018,7 +2018,7 @@
     },
     {
       "id": "sap-sim1-q016",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2039,7 +2039,7 @@
         {
           "id": "B",
           "text": "Create a single EC2 Auto Scaling group of On-Demand instances configured with simple scaling policies based on NetworkIn CloudWatch alarms with a 10-minute cooldown period.",
-          "explanation": "Incorrect: Simple scaling with 10-minute cooldowns reacts too slowly to sudden traffic spikes, and NetworkIn metrics do not accurately reflect web request processing concurrency."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -2049,7 +2049,7 @@
         {
           "id": "D",
           "text": "Provision static EC2 Metal instances in a spread placement group, configure a cron job to launch new Docker containers via SSH, and disable AWS Auto Scaling.",
-          "explanation": "Incorrect: Using static metal instances with manual SSH scripts is an unscalable, highly complex operational anti-pattern that fails cost and automation requirements."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2071,7 +2071,7 @@
             {
               "id": "B",
               "text": "Create a single EC2 Auto Scaling group of On-Demand instances configured with simple scaling policies based on NetworkIn CloudWatch alarms with a 10-minute cooldown period.",
-              "explanation": "Incorrect: Simple scaling with 10-minute cooldowns reacts too slowly to sudden traffic spikes, and NetworkIn metrics do not accurately reflect web request processing concurrency."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -2081,7 +2081,7 @@
             {
               "id": "D",
               "text": "Provision static EC2 Metal instances in a spread placement group, configure a cron job to launch new Docker containers via SSH, and disable AWS Auto Scaling.",
-              "explanation": "Incorrect: Using static metal instances with manual SSH scripts is an unscalable, highly complex operational anti-pattern that fails cost and automation requirements."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Configuring ECS Capacity Providers with managed scaling and managed instance protection, using a mixed-instance Auto Scaling group with EC2 Spot and On-Demand instances, and setting ALB target tracking on RequestCountPerTarget enables responsive and cost-effective scaling."
@@ -2108,7 +2108,7 @@
             {
               "id": "D",
               "text": "Provisionar instâncias EC2 Metal estáticas em um grupo de posicionamento de dispersão (spread), configurar uma tarefa cron para iniciar novos contêineres Docker via SSH e desativar o AWS Auto Scaling.",
-              "explanation": "Incorreto: Utilizar instâncias dedicadas bare-metal estáticas com scripts manuais SSH é um anti-padrão ineficiente, caro e de alta sobrecarga operacional."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
           "generalExplanation": "A configuração de ECS Capacity Providers com managed scaling e managed instance protection, usando um grupo de Auto Scaling de instâncias mistas (Spot e On-Demand) e definindo target tracking no ALB baseado em RequestCountPerTarget viabiliza escalonamento rápido e econômico."
@@ -2135,7 +2135,7 @@
             {
               "id": "D",
               "text": "Aprovisionar instancias estáticas EC2 Metal en un spread placement group y lanzar contenedores mediante scripts SSH cron.",
-              "explanation": "Incorrecto: El uso de instancias bare-metal estáticas con scripts manuales SSH es un anti-patrón de alta sobrecarga y costos exorbitantes."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Configurar ECS Capacity Providers con managed scaling y protección de instancias, utilizar Auto Scaling con instancias Spot y On-Demand y configurar target tracking en ALB según RequestCountPerTarget permite un escalado ágil y rentable."
@@ -2144,7 +2144,7 @@
     },
     {
       "id": "sap-sim1-q017",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2175,7 +2175,7 @@
         {
           "id": "D",
           "text": "Migrate the PostgreSQL database to Amazon DynamoDB Global Tables and configure Amazon CloudWatch Synthetics canaries to monitor read request latency.",
-          "explanation": "Incorrect: Migrating a complex relational PostgreSQL database to DynamoDB requires complete application rewrite, violating standard continuous improvement operational constraints."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2207,7 +2207,7 @@
             {
               "id": "D",
               "text": "Migrate the PostgreSQL database to Amazon DynamoDB Global Tables and configure Amazon CloudWatch Synthetics canaries to monitor read request latency.",
-              "explanation": "Incorrect: Migrating a complex relational PostgreSQL database to DynamoDB requires complete application rewrite, violating standard continuous improvement operational constraints."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Deploying Amazon RDS Proxy between AWS Lambda functions and Amazon Aurora PostgreSQL pools and reuses database connections to prevent exhaustion during scaling spikes. Enabling Amazon DevOps Guru for RDS automatically detects performance anomalies, query regressions, and database bottlenecks using machine learning."
@@ -2261,7 +2261,7 @@
             {
               "id": "D",
               "text": "Migrar la base de datos PostgreSQL a Amazon DynamoDB Global Tables y configurar Amazon CloudWatch Synthetics para monitorizar la latencia.",
-              "explanation": "Incorrecto: Migrar una base de datos relacional compleja a DynamoDB requiere reescribir toda la aplicación, violando restricciones estándar de mejora continua."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Implementar Amazon RDS Proxy entre AWS Lambda y Amazon Aurora PostgreSQL agrupa y reutiliza conexiones para evitar el agotamiento. Habilitar Amazon DevOps Guru for RDS detecta automáticamente anomalías de rendimiento y cuellos de botella mediante aprendizaje automático."
@@ -2270,7 +2270,7 @@
     },
     {
       "id": "sap-sim1-q018",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2296,7 +2296,7 @@
         {
           "id": "C",
           "text": "Configure VPC Flow Logs and application logs to write directly to Amazon S3 buckets in each member account, and use AWS DataSync scheduled hourly tasks to replicate logs to the central Security Account.",
-          "explanation": "Incorrect: DataSync hourly sync introduces a 1-hour delay, failing the real-time streaming mandate, and requires managing 220 separate S3 buckets and sync tasks."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -2328,7 +2328,7 @@
             {
               "id": "C",
               "text": "Configure VPC Flow Logs and application logs to write directly to Amazon S3 buckets in each member account, and use AWS DataSync scheduled hourly tasks to replicate logs to the central Security Account.",
-              "explanation": "Incorrect: DataSync hourly sync introduces a 1-hour delay, failing the real-time streaming mandate, and requires managing 220 separate S3 buckets and sync tasks."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -2372,17 +2372,17 @@
             {
               "id": "A",
               "text": "Instalar agentes Logstash en cada instancia EC2 y contenedor en las 220 cuentas miembro, enviando logs directamente por endpoints HTTPS públicos hacia el clúster central de OpenSearch.",
-              "explanation": "Incorrecto: Administrar agentes en miles de instancias en 220 cuentas genera una carga operativa inmensa y expone endpoints de ingesta a internet pública."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Crear funciones AWS Lambda en cada cuenta miembro activadas por CloudWatch Logs para enviar logs sincrónicamente a las APIs de OpenSearch y S3.",
-              "explanation": "Incorrecto: Funciones Lambda personalizadas en 220 cuentas generan costos elevados, riesgo de throttling ante picos y requieren lógica de reintentos compleja."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Configurar logs para guardarse en buckets S3 locales en cada cuenta y usar AWS DataSync cada hora para replicarlos a la cuenta de Seguridad central.",
-              "explanation": "Incorrecto: La sincronización horaria de DataSync introduce un retraso inaceptable, incumpliendo la transmisión en tiempo real, y requiere gestionar 220 buckets independientes."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -2396,7 +2396,7 @@
     },
     {
       "id": "sap-sim1-q019",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2426,7 +2426,7 @@
         {
           "id": "D",
           "text": "Deploy an AWS KMS customer managed key (CMK) with automatic annual key rotation and configure an AWS Backup vault lock with a 7-year retention policy applied to daily EBS snapshots.",
-          "explanation": "Incorrect: Medical images are stored in Amazon S3, not on EBS block volumes, and KMS key rotation does not prevent S3 object deletion."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2458,7 +2458,7 @@
             {
               "id": "D",
               "text": "Deploy an AWS KMS customer managed key (CMK) with automatic annual key rotation and configure an AWS Backup vault lock with a 7-year retention policy applied to daily EBS snapshots.",
-              "explanation": "Incorrect: Medical images are stored in Amazon S3, not on EBS block volumes, and KMS key rotation does not prevent S3 object deletion."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Amazon S3 Lifecycle transitions objects from S3 Standard to S3 Intelligent-Tiering and then to S3 Glacier Flexible Archive, while S3 Object Lock configured in Compliance Mode prevents all users (including root) from deleting objects until the retention period expires."
@@ -2521,7 +2521,7 @@
     },
     {
       "id": "sap-sim1-q020",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2537,12 +2537,12 @@
         {
           "id": "A",
           "text": "Configure an IAM user with AdministratorAccess in each of the 180 member accounts, writing a local shell script that polls the AWS Security Hub API every 30 seconds and runs iptables commands.",
-          "explanation": "Incorrect: Storing hardcoded credentials and polling APIs via local shell scripts across 180 accounts is an egregious security anti-pattern with high operational overhead."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Deploy Amazon GuardDuty in each member account and configure GuardDuty to send email alerts to account administrators via Amazon SNS, requiring administrators to execute manual remediation steps within 1 hour.",
-          "explanation": "Incorrect: Manual email alerts and human intervention fail the mandatory requirement for automated remediation within 60 seconds across all 180 accounts."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -2569,12 +2569,12 @@
             {
               "id": "A",
               "text": "Configure an IAM user with AdministratorAccess in each of the 180 member accounts, writing a local shell script that polls the AWS Security Hub API every 30 seconds and runs iptables commands.",
-              "explanation": "Incorrect: Storing hardcoded credentials and polling APIs via local shell scripts across 180 accounts is an egregious security anti-pattern with high operational overhead."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Deploy Amazon GuardDuty in each member account and configure GuardDuty to send email alerts to account administrators via Amazon SNS, requiring administrators to execute manual remediation steps within 1 hour.",
-              "explanation": "Incorrect: Manual email alerts and human intervention fail the mandatory requirement for automated remediation within 60 seconds across all 180 accounts."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -2601,7 +2601,7 @@
             {
               "id": "B",
               "text": "Implantar o Amazon GuardDuty em cada conta-membro e configurar o GuardDuty para enviar alertas de e-mail aos administradores de conta via Amazon SNS, exigindo que executem etapas manuais de remediação em até 1 hora.",
-              "explanation": "Incorreto: Alertas manuais por e-mail e intervenção humana violam a exigência obrigatória de remediação automatizada em até 60 segundos em todas as 180 contas."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -2623,12 +2623,12 @@
             {
               "id": "A",
               "text": "Configurar un usuario de IAM con AdministratorAccess en cada una de las 180 cuentas miembro, con un script shell que consulte Security Hub cada 30 segundos y ejecute iptables.",
-              "explanation": "Incorrecto: Almacenar credenciales estáticas y consultar APIs con scripts locales en 180 cuentas es un anti-patrón de seguridad crítico con alta sobrecarga de mantenimiento."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Desplegar Amazon GuardDuty en cada cuenta miembro y enviar alertas por correo electrónico mediante Amazon SNS para que los administradores ejecuten remediaciones manuales.",
-              "explanation": "Incorrecto: Las alertas manuales por correo electrónico e intervención humana incumplen el requisito obligatorio de remediación automatizada en 60 segundos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -2638,7 +2638,7 @@
             {
               "id": "D",
               "text": "Implementar un CloudFormation StackSet que configure Amazon Inspector diariamente y active funciones Lambda en la cuenta raíz para terminar instancias con puertos abiertos.",
-              "explanation": "Incorrecto: Amazon Inspector es un evaluador de vulnerabilidades de software y no evalúa configuraciones de infraestructura como grupos de seguridad en tiempo real."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Designar una cuenta administradora delegada de AWS Security Hub con agregación multirregión, capturar eventos en Amazon EventBridge y ejecutar runbooks de AWS Systems Manager Automation en las cuentas miembro mediante roles cross-account proporciona remediación automatizada centralizada."
@@ -2647,7 +2647,7 @@
     },
     {
       "id": "sap-sim1-q021",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2763,7 +2763,7 @@
             {
               "id": "D",
               "text": "Utilizar AWS Database Migration Service (AWS DMS) para replicar los discos de sistema operativo de las máquinas virtuales hacia volúmenes EBS gp3.",
-              "explanation": "Incorrecto: AWS DMS está diseñado para bases de datos relacionales y almacenes de datos, no para replicar sistemas operativos o máquinas virtuales arrancables."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Instalar el agente de AWS Application Migration Service (AWS MGN) en las máquinas virtuales locales permite replicación continua a nivel de bloque por Direct Connect, pruebas sin disrupción y corte definitivo en pocos minutos."
@@ -2772,7 +2772,7 @@
     },
     {
       "id": "sap-sim1-q022",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2889,7 +2889,7 @@
             {
               "id": "A",
               "text": "Exportar las tablas de Oracle con Oracle Data Pump (expdp), transferirlas mediante AWS Snowball Edge e importarlas en Aurora PostgreSQL con pg_restore.",
-              "explanation": "Incorrecto: Oracle Data Pump con Snowball introduce desfase de datos que no captura transacciones en tiempo real durante el envío físico del dispositivo Snowball."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -2918,7 +2918,7 @@
     },
     {
       "id": "sap-sim1-q023",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2943,12 +2943,12 @@
         {
           "id": "C",
           "text": "Deploy an AWS Lambda@Edge function associated with an Amazon CloudFront distribution, hardcoding HTTP rewrite rules in Node.js to route requests across private VPC Peering connections.",
-          "explanation": "Incorrect: Lambda@Edge cannot communicate directly with private IP addresses inside private VPCs or on-premises networks over VPC Peering without complex public proxies."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Deploy an open-source NGINX reverse proxy cluster on Amazon EC2 instances in each development account and write custom cron scripts to synchronize routing configuration files across servers.",
-          "explanation": "Incorrect: Self-managed NGINX proxy fleets create single points of failure, require ongoing patching and configuration maintenance, and do not provide automated cross-account routing orchestration."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2975,12 +2975,12 @@
             {
               "id": "C",
               "text": "Deploy an AWS Lambda@Edge function associated with an Amazon CloudFront distribution, hardcoding HTTP rewrite rules in Node.js to route requests across private VPC Peering connections.",
-              "explanation": "Incorrect: Lambda@Edge cannot communicate directly with private IP addresses inside private VPCs or on-premises networks over VPC Peering without complex public proxies."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Deploy an open-source NGINX reverse proxy cluster on Amazon EC2 instances in each development account and write custom cron scripts to synchronize routing configuration files across servers.",
-              "explanation": "Incorrect: Self-managed NGINX proxy fleets create single points of failure, require ongoing patching and configuration maintenance, and do not provide automated cross-account routing orchestration."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "AWS Migration Hub Refactor Spaces orchestrates API Gateway, Network Load Balancer, and Transit Gateway across multiple AWS accounts to transparently route traffic between legacy on-premises applications and modern microservices using the Strangler Fig pattern."
@@ -3029,12 +3029,12 @@
             {
               "id": "C",
               "text": "Desplegar una función Lambda@Edge con Amazon CloudFront con reglas de reescritura en Node.js para enrutar peticiones a través de VPC Peering.",
-              "explanation": "Incorrecto: Lambda@Edge no puede comunicarse directamente con direcciones IP privadas dentro de VPCs privadas o redes locales sin intermediarios públicos complejos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Desplegar un clúster de proxy inverso NGINX en instancias EC2 en cada cuenta y sincronizar archivos de configuración mediante scripts cron.",
-              "explanation": "Incorrecto: Administrar clústeres NGINX autogestionados introduce puntos únicos de fallo, sobrecarga constante de parches y carece de integración nativa multicuenta."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "AWS Migration Hub Refactor Spaces orquesta API Gateway, Network Load Balancer y Transit Gateway en múltiples cuentas para enrutar el tráfico de forma transparente entre la aplicación legada y los nuevos microservicios mediante el patrón Strangler Fig."
@@ -3043,7 +3043,7 @@
     },
     {
       "id": "sap-sim1-q024",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -3168,7 +3168,7 @@
     },
     {
       "id": "sap-sim1-q025",
-      "examId": "SAP-C02-SIM-1",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -3184,7 +3184,7 @@
         {
           "id": "A",
           "text": "Emulate the mainframe architecture by launching an Amazon EC2 Mac instance, installing a custom open-source COBOL compiler, and writing output records to local EBS volumes queried via SQLite.",
-          "explanation": "Incorrect: Running custom emulators on EC2 Mac instances lacks enterprise support, job scheduling reliability, horizontal scalability, and integration with modern distributed cloud data lakes."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
@@ -3216,7 +3216,7 @@
             {
               "id": "A",
               "text": "Emulate the mainframe architecture by launching an Amazon EC2 Mac instance, installing a custom open-source COBOL compiler, and writing output records to local EBS volumes queried via SQLite.",
-              "explanation": "Incorrect: Running custom emulators on EC2 Mac instances lacks enterprise support, job scheduling reliability, horizontal scalability, and integration with modern distributed cloud data lakes."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
@@ -3270,7 +3270,7 @@
             {
               "id": "A",
               "text": "Emular la arquitectura de mainframe en instancias EC2 Mac con compiladores COBOL open-source y guardar registros en volúmenes EBS locales consultados con SQLite.",
-              "explanation": "Incorrecto: Emular mainframes en instancias EC2 Mac carece de soporte empresarial, escalabilidad horizontal y capacidades analíticas sobre data lakes modernos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",

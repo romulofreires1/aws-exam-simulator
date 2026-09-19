@@ -5,7 +5,7 @@
   "category": "Professional",
   "description": "Comprehensive enterprise-level mock exam for AWS SAP-C02 focused on gap analysis: Governance, Cost Optimization, Advanced Analytics, Security and Advanced Hybrid Networking.",
   "totalQuestions": 25,
-  "timeLimitMinutes": 73,
+  "timeLimitMinutes": 180,
   "passingScore": 750,
   "icon": "shield-check",
   "domains": [
@@ -48,22 +48,22 @@
         "en": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Use AWS Security Hub in a delegated administrator account to aggregate GuardDuty findings. Create an Amazon EventBridge rule in the central account that triggers an AWS Step Functions state machine to isolate the instance, take snapshots, and send Slack notifications using AWS Chatbot.",
               "explanation": "Correta. O AWS Security Hub já agrega nativamente os achados do GuardDuty de contas membro via administrador delegado. Na conta central, uma única regra do EventBridge pode acionar o Step Functions para orquestrar a resposta (isolamento e snapshots via automação cross-account) e usar o AWS Chatbot para notificar o Slack, minimizando a sobrecarga operacional."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Use AWS Security Hub in a delegated administrator account. In each member account, create EventBridge rules for GuardDuty findings that trigger AWS Systems Manager Automation runbooks to isolate instances and take snapshots, and an SNS topic to notify the security team.",
               "explanation": "Incorreta. Criar regras do EventBridge e runbooks do Systems Manager independentes em CADA conta membro introduz uma sobrecarga operacional massiva de gerenciamento descentralizado, violando o requisito de menor esforço operacional e centralização da solução."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Use AWS Security Hub custom actions in the central account. When a finding is selected, trigger a Lambda function that assumes a cross-account IAM role in the member account to perform isolation and snapshots. Use SNS for Slack notifications.",
               "explanation": "Incorreta. Ações personalizadas do Security Hub exigem seleção e intervenção manual para cada descoberta (o analista precisa clicar para agir), não atendendo ao requisito explícito de resposta automatizada exigida no cenário."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configure GuardDuty to send findings directly to Amazon SNS in the central account. Use an AWS Lambda function subscribed to the SNS topic to evaluate the finding, use cross-account roles to take snapshots and isolate the instance, and send a message to Slack.",
               "explanation": "Incorreta. Avaliar cada descoberta diretamente via Lambda inscrito no SNS central aumenta a complexidade do código personalizado, além de ignorar completamente a capacidade nativa do Security Hub de agregar, normalizar e orquestrar as descobertas de segurança de forma centralizada."
             }
@@ -74,22 +74,22 @@
         "pt": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
               "explanation": "Correta. O AWS Security Hub já agrega nativamente os achados do GuardDuty de contas membro via administrador delegado. Na conta central, uma única regra do EventBridge pode acionar o Step Functions para orquestrar a resposta (isolamento e snapshots via automação cross-account) e usar o AWS Chatbot para notificar o Slack, minimizando a sobrecarga operacional."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
               "explanation": "Incorreta. Criar regras do EventBridge e runbooks do Systems Manager independentes em CADA conta membro introduz uma sobrecarga operacional massiva de gerenciamento descentralizado, violando o requisito de menor esforço operacional e centralização da solução."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
               "explanation": "Incorreta. Ações personalizadas do Security Hub exigem seleção e intervenção manual para cada descoberta (o analista precisa clicar para agir), não atendendo ao requisito explícito de resposta automatizada exigida no cenário."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack.",
               "explanation": "Incorreta. Avaliar cada descoberta diretamente via Lambda inscrito no SNS central aumenta a complexidade do código personalizado, além de ignorar completamente a capacidade nativa do Security Hub de agregar, normalizar e orquestrar as descobertas de segurança de forma centralizada."
             }
@@ -100,22 +100,22 @@
         "es": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Utilizar AWS Security Hub en una cuenta de administrador delegado para agregar hallazgos de GuardDuty. Crear una regla de Amazon EventBridge en la cuenta central que active una máquina de estado de AWS Step Functions para aislar la instancia, tomar snapshots y enviar notificaciones de Slack con AWS Chatbot.",
               "explanation": "Correta. O AWS Security Hub já agrega nativamente os achados do GuardDuty de contas membro via administrador delegado. Na conta central, uma única regra do EventBridge pode acionar o Step Functions para orquestrar a resposta (isolamento e snapshots via automação cross-account) e usar o AWS Chatbot para notificar o Slack, minimizando a sobrecarga operacional."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Utilizar AWS Security Hub en una cuenta de administrador delegado. En cada cuenta miembro, crear reglas de EventBridge que activen runbooks de AWS Systems Manager para aislar instancias y tomar snapshots, y un tema de SNS para notificar al equipo.",
               "explanation": "Incorreta. Criar regras do EventBridge e runbooks do Systems Manager independentes em CADA conta membro introduz uma sobrecarga operacional massiva de gerenciamento descentralizado, violando o requisito de menor esforço operacional e centralização da solução."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Utilizar acciones personalizadas de AWS Security Hub en la cuenta central. Al seleccionar un hallazgo, activar una función Lambda que asuma un rol de IAM entre cuentas en la cuenta miembro para realizar el aislamiento y snapshots. Utilizar SNS para notificaciones de Slack.",
               "explanation": "Incorreta. Ações personalizadas do Security Hub exigem seleção e intervenção manual para cada descoberta (o analista precisa clicar para agir), não atendendo ao requisito explícito de resposta automatizada exigida no cenário."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configurar GuardDuty para enviar hallazgos directamente a Amazon SNS en la cuenta central. Utilizar una función AWS Lambda suscrita al tema de SNS para evaluar el hallazgo, usar roles entre cuentas para tomar snapshots y aislar la instancia, y enviar un mensaje a Slack.",
               "explanation": "Incorreta. Avaliar cada descoberta diretamente via Lambda inscrito no SNS central aumenta a complexidade do código personalizado, além de ignorar completamente a capacidade nativa do Security Hub de agregar, normalizar e orquestrar as descobertas de segurança de forma centralizada."
             }
@@ -125,26 +125,26 @@
         }
       },
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "options": [
         {
-          "id": "a",
+          "id": "A",
           "text": "A) Usar o AWS Security Hub em uma conta de administrador delegado para agregar as descobertas do GuardDuty. Criar uma regra do Amazon EventBridge na conta central que acione uma máquina de estado do AWS Step Functions para isolar a instância, tirar snapshots e enviar notificações no Slack usando o AWS Chatbot.",
           "explanation": "Correta. O AWS Security Hub já agrega nativamente os achados do GuardDuty de contas membro via administrador delegado. Na conta central, uma única regra do EventBridge pode acionar o Step Functions para orquestrar a resposta (isolamento e snapshots via automação cross-account) e usar o AWS Chatbot para notificar o Slack, minimizando a sobrecarga operacional."
         },
         {
-          "id": "b",
+          "id": "B",
           "text": "B) Usar o AWS Security Hub em uma conta de administrador delegado. Em cada conta membro, criar regras do EventBridge para descobertas do GuardDuty que acionem runbooks de Automação do AWS Systems Manager para isolar instâncias e tirar snapshots, e um tópico do SNS para notificar a equipe.",
           "explanation": "Incorreta. Criar regras do EventBridge e runbooks do Systems Manager independentes em CADA conta membro introduz uma sobrecarga operacional massiva de gerenciamento descentralizado, violando o requisito de menor esforço operacional e centralização da solução."
         },
         {
-          "id": "c",
+          "id": "C",
           "text": "C) Usar ações personalizadas do AWS Security Hub na conta central. Ao selecionar uma descoberta, acionar uma função Lambda que assume uma função IAM entre contas na conta membro para executar o isolamento e snapshots. Usar o SNS para notificações do Slack.",
           "explanation": "Incorreta. Ações personalizadas do Security Hub exigem seleção e intervenção manual para cada descoberta (o analista precisa clicar para agir), não atendendo ao requisito explícito de resposta automatizada exigida no cenário."
         },
         {
-          "id": "d",
+          "id": "D",
           "text": "D) Configurar o GuardDuty para enviar descobertas diretamente para o Amazon SNS na conta central. Usar uma função AWS Lambda inscrita no tópico SNS para avaliar a descoberta, usar funções entre contas para tirar snapshots e isolar a instância, e enviar uma mensagem para o Slack.",
           "explanation": "Incorreta. Avaliar cada descoberta diretamente via Lambda inscrito no SNS central aumenta a complexidade do código personalizado, além de ignorar completamente a capacidade nativa do Security Hub de agregar, normalizar e orquestrar as descobertas de segurança de forma centralizada."
         }
@@ -170,27 +170,27 @@
         "en": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Enable AWS WAF on the CloudFront distribution and create a web ACL with AWS Managed Rules for SQL injection. Configure rate-based rules in AWS WAF to block IPs that exceed the request threshold.",
               "explanation": "Correta. O AWS WAF acoplado à distribuição CloudFront usa regras gerenciadas para barrar injeções SQL e regras baseadas em taxa (rate-based) para bloquear IPs abusivos automaticamente na borda global, protegendo a aplicação contra abusos antes que o tráfego atinja a infraestrutura regional (ALB)."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Associate the AWS WAF web ACL with the ALB. Configure the ALB to send access logs to an Amazon S3 bucket, and grant the DRT access to the S3 bucket.",
               "explanation": "Incorreta. Associar a web ACL apenas ao ALB não protege a borda global no nível do CloudFront, permitindo que tráfego malicioso e DDoS de Camada 7 cheguem até a região da VPC. Além disso, a DRT precisa de acessos definidos pelas melhores práticas do Shield, e não de acesso direto apenas a um S3 de logs."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Associate the AWS WAF web ACL with the CloudFront distribution. Grant the DRT access to the WAF web ACL and CloudFront access logs directly through IAM roles.",
               "explanation": "Incorreta. Embora a associação ao CloudFront proteja a borda, não é suficiente apenas conceder acesso à DRT via IAM. O AWS Shield Advanced exige que o engajamento proativo seja ativado através de health checks do Route 53 associados aos recursos protegidos."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Deploy AWS Network Firewall in the VPC to filter malicious Layer 7 traffic before it reaches the ALB, and share the firewall logs with the DRT.",
               "explanation": "Incorreta. O AWS Network Firewall atua principalmente na camada de rede da VPC e, embora possa realizar inspeção L7, atua regionalmente e não é o serviço adequado ou mais ágil para proteção HTTP/HTTPS global na borda comparado ao WAF acoplado ao CloudFront."
             },
             {
-              "id": "e",
+              "id": "E",
               "text": "E) Create an Amazon Route 53 health check for the web application and associate it with the Shield Advanced protected resource. Provide contact details and enable proactive engagement.",
               "explanation": "Correta. Para habilitar o engajamento proativo da Equipe de Resposta a DDoS (DRT) no AWS Shield Advanced, é obrigatório configurar health checks do Amazon Route 53 e associá-los à proteção do Shield, além de fornecer os contatos de emergência corretos. Assim a DRT atua automaticamente se a aplicação degradar."
             }
@@ -201,27 +201,27 @@
         "pt": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
               "explanation": "Correta. O AWS WAF acoplado à distribuição CloudFront usa regras gerenciadas para barrar injeções SQL e regras baseadas em taxa (rate-based) para bloquear IPs abusivos automaticamente na borda global, protegendo a aplicação contra abusos antes que o tráfego atinja a infraestrutura regional (ALB)."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
               "explanation": "Incorreta. Associar a web ACL apenas ao ALB não protege a borda global no nível do CloudFront, permitindo que tráfego malicioso e DDoS de Camada 7 cheguem até a região da VPC. Além disso, a DRT precisa de acessos definidos pelas melhores práticas do Shield, e não de acesso direto apenas a um S3 de logs."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
               "explanation": "Incorreta. Embora a associação ao CloudFront proteja a borda, não é suficiente apenas conceder acesso à DRT via IAM. O AWS Shield Advanced exige que o engajamento proativo seja ativado através de health checks do Route 53 associados aos recursos protegidos."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
               "explanation": "Incorreta. O AWS Network Firewall atua principalmente na camada de rede da VPC e, embora possa realizar inspeção L7, atua regionalmente e não é o serviço adequado ou mais ágil para proteção HTTP/HTTPS global na borda comparado ao WAF acoplado ao CloudFront."
             },
             {
-              "id": "e",
+              "id": "E",
               "text": "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo.",
               "explanation": "Correta. Para habilitar o engajamento proativo da Equipe de Resposta a DDoS (DRT) no AWS Shield Advanced, é obrigatório configurar health checks do Amazon Route 53 e associá-los à proteção do Shield, além de fornecer os contatos de emergência corretos. Assim a DRT atua automaticamente se a aplicação degradar."
             }
@@ -232,27 +232,27 @@
         "es": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Habilitar AWS WAF en la distribución CloudFront y crear una web ACL con reglas administradas para inyección SQL. Configurar reglas basadas en tasa en WAF para bloquear IPs que excedan el límite.",
               "explanation": "Correta. O AWS WAF acoplado à distribuição CloudFront usa regras gerenciadas para barrar injeções SQL e regras baseadas em taxa (rate-based) para bloquear IPs abusivos automaticamente na borda global, protegendo a aplicação contra abusos antes que o tráfego atinja a infraestrutura regional (ALB)."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Asociar la web ACL de AWS WAF al ALB. Configurar el ALB para enviar registros a Amazon S3 y otorgar al DRT acceso al bucket.",
               "explanation": "Incorreta. Associar a web ACL apenas ao ALB não protege a borda global no nível do CloudFront, permitindo que tráfego malicioso e DDoS de Camada 7 cheguem até a região da VPC. Além disso, a DRT precisa de acessos definidos pelas melhores práticas do Shield, e não de acesso direto apenas a um S3 de logs."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Asociar la web ACL de WAF a CloudFront. Otorgar al DRT acceso a la web ACL y los registros de CloudFront mediante roles IAM.",
               "explanation": "Incorreta. Embora a associação ao CloudFront proteja a borda, não é suficiente apenas conceder acesso à DRT via IAM. O AWS Shield Advanced exige que o engajamento proativo seja ativado através de health checks do Route 53 associados aos recursos protegidos."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Implementar AWS Network Firewall en la VPC para filtrar tráfico malicioso de Capa 7 antes del ALB.",
               "explanation": "Incorreta. O AWS Network Firewall atua principalmente na camada de rede da VPC e, embora possa realizar inspeção L7, atua regionalmente e não é o serviço adequado ou mais ágil para proteção HTTP/HTTPS global na borda comparado ao WAF acoplado ao CloudFront."
             },
             {
-              "id": "e",
+              "id": "E",
               "text": "E) Crear un health check de Amazon Route 53 para la aplicación web y asociarlo al recurso protegido por Shield Advanced. Proporcionar contactos y habilitar el proactive engagement.",
               "explanation": "Correta. Para habilitar o engajamento proativo da Equipe de Resposta a DDoS (DRT) no AWS Shield Advanced, é obrigatório configurar health checks do Amazon Route 53 e associá-los à proteção do Shield, além de fornecer os contatos de emergência corretos. Assim a DRT atua automaticamente se a aplicação degradar."
             }
@@ -262,32 +262,32 @@
         }
       },
       "correctAnswers": [
-        "a",
-        "e"
+        "A",
+        "E"
       ],
       "options": [
         {
-          "id": "a",
+          "id": "A",
           "text": "A) Habilitar o AWS WAF na distribuição CloudFront e criar uma web ACL com regras gerenciadas para injeção de SQL. Configurar regras baseadas em taxa no WAF para bloquear IPs que excedem o limite.",
           "explanation": "Correta. O AWS WAF acoplado à distribuição CloudFront usa regras gerenciadas para barrar injeções SQL e regras baseadas em taxa (rate-based) para bloquear IPs abusivos automaticamente na borda global, protegendo a aplicação contra abusos antes que o tráfego atinja a infraestrutura regional (ALB)."
         },
         {
-          "id": "b",
+          "id": "B",
           "text": "B) Associar a web ACL do AWS WAF ao ALB. Configurar o ALB para enviar logs para um bucket do Amazon S3 e conceder ao DRT acesso ao bucket.",
           "explanation": "Incorreta. Associar a web ACL apenas ao ALB não protege a borda global no nível do CloudFront, permitindo que tráfego malicioso e DDoS de Camada 7 cheguem até a região da VPC. Além disso, a DRT precisa de acessos definidos pelas melhores práticas do Shield, e não de acesso direto apenas a um S3 de logs."
         },
         {
-          "id": "c",
+          "id": "C",
           "text": "C) Associar a web ACL do WAF ao CloudFront. Conceder ao DRT acesso à web ACL e aos logs do CloudFront diretamente por meio de funções do IAM.",
           "explanation": "Incorreta. Embora a associação ao CloudFront proteja a borda, não é suficiente apenas conceder acesso à DRT via IAM. O AWS Shield Advanced exige que o engajamento proativo seja ativado através de health checks do Route 53 associados aos recursos protegidos."
         },
         {
-          "id": "d",
+          "id": "D",
           "text": "D) Implantar o AWS Network Firewall na VPC para filtrar tráfego malicioso da Camada 7 antes que atinja o ALB, e compartilhar logs com o DRT.",
           "explanation": "Incorreta. O AWS Network Firewall atua principalmente na camada de rede da VPC e, embora possa realizar inspeção L7, atua regionalmente e não é o serviço adequado ou mais ágil para proteção HTTP/HTTPS global na borda comparado ao WAF acoplado ao CloudFront."
         },
         {
-          "id": "e",
+          "id": "E",
           "text": "E) Criar um health check do Amazon Route 53 para a aplicação web e associá-lo ao recurso protegido pelo Shield Advanced. Fornecer detalhes de contato e habilitar o engajamento proativo.",
           "explanation": "Correta. Para habilitar o engajamento proativo da Equipe de Resposta a DDoS (DRT) no AWS Shield Advanced, é obrigatório configurar health checks do Amazon Route 53 e associá-los à proteção do Shield, além de fornecer os contatos de emergência corretos. Assim a DRT atua automaticamente se a aplicação degradar."
         }
@@ -312,22 +312,22 @@
         "en": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Enable Amazon Macie in the central security account and add member accounts via AWS Organizations. Configure Macie automated data discovery. Enable AWS Security Hub in the central account and integrate it with Macie. Create an EventBridge rule in the central account to capture Security Hub findings with a 'CRITICAL' severity and trigger a Lambda function to create a Jira ticket.",
               "explanation": "Correta. O Amazon Macie é nativamente projetado para varrer buckets S3 e classificar dados sensíveis como PHI de forma centralizada via contas membros. A integração nativa com o Security Hub permite capturar descobertas unificadas no EventBridge para acionar uma função Lambda que abra o ticket no Jira sem necessidade de regras complexas por conta."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Deploy AWS Config rules in all member accounts using AWS CloudFormation StackSets to detect public S3 buckets. Enable Macie in each account independently and send findings to a central S3 bucket. Use Athena to query the bucket and trigger a Lambda function via a scheduled EventBridge rule to open Jira tickets.",
               "explanation": "Incorreta. Usar regras do AWS Config gerencia a configuração (como acessos públicos), mas o Macie não envia nativamente resultados diretamente para um bucket central que deve ser consultado periodicamente pelo Athena. Isso introduz grande latência na detecção e alta complexidade de engenharia de dados desnecessária."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Use AWS IAM Access Analyzer in the central account to detect public S3 buckets. Enable Amazon GuardDuty in the central account to scan S3 object contents for PHI. Route GuardDuty findings to Security Hub, and use a Security Hub custom action to trigger a Jira API integration.",
               "explanation": "Incorreta. O GuardDuty detecta anomalias de comportamento em logs e acessos, não realiza varredura profunda de conteúdo em objetos do S3 para detectar dados sensíveis (PHI). Para descoberta e classificação de dados no S3, o serviço nativo e correto é o Amazon Macie."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Enable AWS Systems Manager Incident Manager. Configure Macie in the central account to send findings directly to Incident Manager. Create an Incident Manager response plan that uses AWS Chatbot to open Jira tickets for any public S3 bucket or unencrypted PHI finding.",
               "explanation": "Incorreta. O Systems Manager Incident Manager é usado para gestão e mitigação de incidentes operacionais, mas o Macie não suporta o envio nativo direto e exclusivo de descobertas para ele como um fluxo de trabalho de triagem. A arquitetura recomendada pela AWS para agregar descobertas de segurança de múltiplas contas e serviços é o AWS Security Hub."
             }
@@ -338,22 +338,22 @@
         "pt": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
               "explanation": "Correta. O Amazon Macie é nativamente projetado para varrer buckets S3 e classificar dados sensíveis como PHI de forma centralizada via contas membros. A integração nativa com o Security Hub permite capturar descobertas unificadas no EventBridge para acionar uma função Lambda que abra o ticket no Jira sem necessidade de regras complexas por conta."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
               "explanation": "Incorreta. Usar regras do AWS Config gerencia a configuração (como acessos públicos), mas o Macie não envia nativamente resultados diretamente para um bucket central que deve ser consultado periodicamente pelo Athena. Isso introduz grande latência na detecção e alta complexidade de engenharia de dados desnecessária."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
               "explanation": "Incorreta. O GuardDuty detecta anomalias de comportamento em logs e acessos, não realiza varredura profunda de conteúdo em objetos do S3 para detectar dados sensíveis (PHI). Para descoberta e classificação de dados no S3, o serviço nativo e correto é o Amazon Macie."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets.",
               "explanation": "Incorreta. O Systems Manager Incident Manager é usado para gestão e mitigação de incidentes operacionais, mas o Macie não suporta o envio nativo direto e exclusivo de descobertas para ele como um fluxo de trabalho de triagem. A arquitetura recomendada pela AWS para agregar descobertas de segurança de múltiplas contas e serviços é o AWS Security Hub."
             }
@@ -364,22 +364,22 @@
         "es": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Habilitar Amazon Macie en la cuenta de seguridad central y agregar las cuentas miembro. Configurar el descubrimiento de datos de Macie. Habilitar AWS Security Hub en la cuenta central e integrarlo con Macie. Crear una regla de EventBridge para capturar hallazgos CRÍTICOS y activar una función Lambda para crear el ticket en Jira.",
               "explanation": "Correta. O Amazon Macie é nativamente projetado para varrer buckets S3 e classificar dados sensíveis como PHI de forma centralizada via contas membros. A integração nativa com o Security Hub permite capturar descobertas unificadas no EventBridge para acionar uma função Lambda que abra o ticket no Jira sem necessidade de regras complexas por conta."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Implementar reglas de AWS Config mediante CloudFormation StackSets. Habilitar Macie de forma independiente y enviar hallazgos a un bucket S3 central. Usar Athena y EventBridge programado para activar Lambda.",
               "explanation": "Incorreta. Usar regras do AWS Config gerencia a configuração (como acessos públicos), mas o Macie não envia nativamente resultados diretamente para um bucket central que deve ser consultado periodicamente pelo Athena. Isso introduz grande latência na detecção e alta complexidade de engenharia de dados desnecessária."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Usar IAM Access Analyzer para detectar buckets públicos y GuardDuty para escanear el contenido S3 en busca de PHI. Enviar al Security Hub y usar una acción personalizada.",
               "explanation": "Incorreta. O GuardDuty detecta anomalias de comportamento em logs e acessos, não realiza varredura profunda de conteúdo em objetos do S3 para detectar dados sensíveis (PHI). Para descoberta e classificação de dados no S3, o serviço nativo e correto é o Amazon Macie."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Habilitar Systems Manager Incident Manager y configurar Macie para enviar hallazgos directamente. Usar AWS Chatbot en el plan de respuesta para abrir tickets.",
               "explanation": "Incorreta. O Systems Manager Incident Manager é usado para gestão e mitigação de incidentes operacionais, mas o Macie não suporta o envio nativo direto e exclusivo de descobertas para ele como um fluxo de trabalho de triagem. A arquitetura recomendada pela AWS para agregar descobertas de segurança de múltiplas contas e serviços é o AWS Security Hub."
             }
@@ -389,26 +389,26 @@
         }
       },
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "options": [
         {
-          "id": "a",
+          "id": "A",
           "text": "A) Habilitar o Amazon Macie na conta central de segurança e adicionar contas membros. Configurar a descoberta automatizada do Macie. Habilitar o AWS Security Hub na conta central e integrá-lo ao Macie. Criar uma regra do EventBridge para capturar descobertas CRÍTICAS e acionar um Lambda para criar o ticket no Jira.",
           "explanation": "Correta. O Amazon Macie é nativamente projetado para varrer buckets S3 e classificar dados sensíveis como PHI de forma centralizada via contas membros. A integração nativa com o Security Hub permite capturar descobertas unificadas no EventBridge para acionar uma função Lambda que abra o ticket no Jira sem necessidade de regras complexas por conta."
         },
         {
-          "id": "b",
+          "id": "B",
           "text": "B) Implantar regras do AWS Config nas contas usando CloudFormation StackSets. Habilitar o Macie independentemente e enviar para um bucket S3 central. Usar Athena e uma regra agendada para acionar um Lambda.",
           "explanation": "Incorreta. Usar regras do AWS Config gerencia a configuração (como acessos públicos), mas o Macie não envia nativamente resultados diretamente para um bucket central que deve ser consultado periodicamente pelo Athena. Isso introduz grande latência na detecção e alta complexidade de engenharia de dados desnecessária."
         },
         {
-          "id": "c",
+          "id": "C",
           "text": "C) Usar IAM Access Analyzer para buckets públicos e GuardDuty para escanear conteúdo do S3 em busca de PHI. Roteá-los para o Security Hub com uma ação personalizada para o Jira.",
           "explanation": "Incorreta. O GuardDuty detecta anomalias de comportamento em logs e acessos, não realiza varredura profunda de conteúdo em objetos do S3 para detectar dados sensíveis (PHI). Para descoberta e classificação de dados no S3, o serviço nativo e correto é o Amazon Macie."
         },
         {
-          "id": "d",
+          "id": "D",
           "text": "D) Habilitar o Systems Manager Incident Manager e configurar o Macie para enviar descobertas diretamente a ele. Usar o AWS Chatbot no plano de resposta para abrir tickets.",
           "explanation": "Incorreta. O Systems Manager Incident Manager é usado para gestão e mitigação de incidentes operacionais, mas o Macie não suporta o envio nativo direto e exclusivo de descobertas para ele como um fluxo de trabalho de triagem. A arquitetura recomendada pela AWS para agregar descobertas de segurança de múltiplas contas e serviços é o AWS Security Hub."
         }
@@ -433,22 +433,22 @@
         "en": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Deploy AWS WAF on the API Gateway. Add the AWS Managed Rules for Anonymous IP list to block Tor and proxies. Enable AWS WAF Account Takeover Prevention (ATP) to monitor and block credential stuffing attacks by inspecting the login requests.",
               "explanation": "Correta. O AWS WAF no API Gateway possui um grupo de regras gerenciadas para IPs Anônimos que bloqueia tráfego Tor/proxies sem esforço. Adicionalmente, o recurso WAF Account Takeover Prevention (ATP) é projetado nativa e especificamente para mitigar ataques de preenchimento de credenciais em endpoints de login."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Deploy AWS Network Firewall and configure Suricata rules to detect Tor exit nodes and credential stuffing patterns. Route API Gateway traffic through the Network Firewall using a VPC Endpoint.",
               "explanation": "Incorreta. O AWS Network Firewall não possui regras nativas para preenchimento de credenciais (credential stuffing) em nível de transação HTTP de aplicação, sendo mais focado em filtragem L3-L7 em nível de sub-rede, e rotear o API Gateway de volta para ele aumentaria drasticamente a latência e a complexidade arquitetônica."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Modify the Lambda functions to inspect the source IP address against a frequently updated, downloaded list of Tor exit nodes. Integrate Amazon Macie to detect credential stuffing payloads in the API requests.",
               "explanation": "Incorreta. Escrever lógica customizada no código Lambda para analisar IPs e listas de nós Tor introduz alta sobrecarga de manutenção, risco de desempenho e falhas de escala. Além disso, o Amazon Macie procura por dados sensíveis em repouso no S3, não monitora tráfego HTTP para payloads de credential stuffing."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configure AWS Shield Advanced on the API Gateway. Enable the Shield Advanced automatic application layer DDoS mitigation. Create an EventBridge rule to invoke a Lambda function that updates an API Gateway resource policy to block malicious IPs.",
               "explanation": "Incorreta. O AWS Shield Advanced oferece mitigação avançada para DDoS volumétricos (L3/L4) e proteção DDoS L7, mas não tem foco ou capacidade nativa para inspecionar payloads de login e mitigarCredential Stuffing ou Account Takeover, o que é papel específico do WAF ATP."
             }
@@ -459,22 +459,22 @@
         "pt": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
               "explanation": "Correta. O AWS WAF no API Gateway possui um grupo de regras gerenciadas para IPs Anônimos que bloqueia tráfego Tor/proxies sem esforço. Adicionalmente, o recurso WAF Account Takeover Prevention (ATP) é projetado nativa e especificamente para mitigar ataques de preenchimento de credenciais em endpoints de login."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
               "explanation": "Incorreta. O AWS Network Firewall não possui regras nativas para preenchimento de credenciais (credential stuffing) em nível de transação HTTP de aplicação, sendo mais focado em filtragem L3-L7 em nível de sub-rede, e rotear o API Gateway de volta para ele aumentaria drasticamente a latência e a complexidade arquitetônica."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
               "explanation": "Incorreta. Escrever lógica customizada no código Lambda para analisar IPs e listas de nós Tor introduz alta sobrecarga de manutenção, risco de desempenho e falhas de escala. Além disso, o Amazon Macie procura por dados sensíveis em repouso no S3, não monitora tráfego HTTP para payloads de credential stuffing."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos.",
               "explanation": "Incorreta. O AWS Shield Advanced oferece mitigação avançada para DDoS volumétricos (L3/L4) e proteção DDoS L7, mas não tem foco ou capacidade nativa para inspecionar payloads de login e mitigarCredential Stuffing ou Account Takeover, o que é papel específico do WAF ATP."
             }
@@ -485,22 +485,22 @@
         "es": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Implementar AWS WAF en el API Gateway. Agregar las Reglas Administradas de AWS para IPs Anónimas para bloquear Tor y proxies. Habilitar AWS WAF Account Takeover Prevention (ATP) para monitorear y bloquear ataques de credential stuffing inspeccionando las solicitudes de inicio de sesión.",
               "explanation": "Correta. O AWS WAF no API Gateway possui um grupo de regras gerenciadas para IPs Anônimos que bloqueia tráfego Tor/proxies sem esforço. Adicionalmente, o recurso WAF Account Takeover Prevention (ATP) é projetado nativa e especificamente para mitigar ataques de preenchimento de credenciais em endpoints de login."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Implementar AWS Network Firewall y configurar reglas Suricata para detectar nodos de Tor y patrones de credential stuffing. Enrutar el tráfico de API Gateway a través del Network Firewall.",
               "explanation": "Incorreta. O AWS Network Firewall não possui regras nativas para preenchimento de credenciais (credential stuffing) em nível de transação HTTP de aplicação, sendo mais focado em filtragem L3-L7 em nível de sub-rede, e rotear o API Gateway de volta para ele aumentaria drasticamente a latência e a complexidade arquitetônica."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Modificar las funciones Lambda para inspeccionar las IPs contra una lista descargada de nodos de Tor. Integrar Amazon Macie para detectar ataques de credential stuffing.",
               "explanation": "Incorreta. Escrever lógica customizada no código Lambda para analisar IPs e listas de nós Tor introduz alta sobrecarga de manutenção, risco de desempenho e falhas de escala. Além disso, o Amazon Macie procura por dados sensíveis em repouso no S3, não monitora tráfego HTTP para payloads de credential stuffing."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Configurar AWS Shield Advanced en API Gateway. Habilitar la mitigación automática de DDoS en capa de aplicación y actualizar una política de recursos vía Lambda.",
               "explanation": "Incorreta. O AWS Shield Advanced oferece mitigação avançada para DDoS volumétricos (L3/L4) e proteção DDoS L7, mas não tem foco ou capacidade nativa para inspecionar payloads de login e mitigarCredential Stuffing ou Account Takeover, o que é papel específico do WAF ATP."
             }
@@ -510,26 +510,26 @@
         }
       },
       "correctAnswers": [
-        "a"
+        "A"
       ],
       "options": [
         {
-          "id": "a",
+          "id": "A",
           "text": "A) Implantar o AWS WAF no API Gateway. Adicionar a lista de Regras Gerenciadas da AWS para IPs Anônimos para bloquear Tor e proxies. Habilitar o AWS WAF Account Takeover Prevention (ATP) para monitorar e bloquear ataques de credential stuffing inspecionando as solicitações de login.",
           "explanation": "Correta. O AWS WAF no API Gateway possui um grupo de regras gerenciadas para IPs Anônimos que bloqueia tráfego Tor/proxies sem esforço. Adicionalmente, o recurso WAF Account Takeover Prevention (ATP) é projetado nativa e especificamente para mitigar ataques de preenchimento de credenciais em endpoints de login."
         },
         {
-          "id": "b",
+          "id": "B",
           "text": "B) Implantar o AWS Network Firewall e configurar regras Suricata para detectar nós Tor e padrões de credential stuffing. Roteie o tráfego do API Gateway através do Network Firewall.",
           "explanation": "Incorreta. O AWS Network Firewall não possui regras nativas para preenchimento de credenciais (credential stuffing) em nível de transação HTTP de aplicação, sendo mais focado em filtragem L3-L7 em nível de sub-rede, e rotear o API Gateway de volta para ele aumentaria drasticamente a latência e a complexidade arquitetônica."
         },
         {
-          "id": "c",
+          "id": "C",
           "text": "C) Modificar as funções Lambda para inspecionar os IPs com base em uma lista de nós do Tor. Integrar o Amazon Macie para detectar payloads de credential stuffing.",
           "explanation": "Incorreta. Escrever lógica customizada no código Lambda para analisar IPs e listas de nós Tor introduz alta sobrecarga de manutenção, risco de desempenho e falhas de escala. Além disso, o Amazon Macie procura por dados sensíveis em repouso no S3, não monitora tráfego HTTP para payloads de credential stuffing."
         },
         {
-          "id": "d",
+          "id": "D",
           "text": "D) Configurar o AWS Shield Advanced no API Gateway. Habilitar mitigação de DDoS na camada de aplicação e acionar um Lambda via EventBridge para atualizar a política de recursos.",
           "explanation": "Incorreta. O AWS Shield Advanced oferece mitigação avançada para DDoS volumétricos (L3/L4) e proteção DDoS L7, mas não tem foco ou capacidade nativa para inspecionar payloads de login e mitigarCredential Stuffing ou Account Takeover, o que é papel específico do WAF ATP."
         }
@@ -553,22 +553,22 @@
         "en": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. In each of the other 4 Regions, configure GuardDuty to export findings to an Amazon S3 bucket in 'us-east-1'. Use Amazon QuickSight to visualize the findings.",
               "explanation": "Incorreta. Configurar exportação de descobertas do GuardDuty de cada região para um bucket do S3 e construir painéis personalizados no Amazon QuickSight exige grande esforço de desenvolvimento, manutenção de esquemas no Athena e engenharia de dados, indo contra o requisito de minimizar esforço."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Designate the security tooling account as the GuardDuty delegated administrator in all 5 Regions. Enable AWS Security Hub in all 5 Regions and designate the security tooling account as the Security Hub delegated administrator. Use Security Hub cross-Region aggregation in the 'us-east-1' security tooling account to consolidate all findings.",
               "explanation": "Correta. O AWS Security Hub atua nativamente como o hub centralizado de segurança. A configuração de uma conta como administrador delegado do Security Hub, associada à funcionalidade nativa de 'cross-region aggregation', consolida automaticamente as descobertas do GuardDuty de todas as contas e regiões em um único painel na us-east-1."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Enable Amazon Detective in the security tooling account in 'us-east-1'. Integrate GuardDuty from all 50 accounts and all 5 Regions directly into the Amazon Detective graph in 'us-east-1' to provide a unified dashboard.",
               "explanation": "Incorreta. O Amazon Detective é uma ferramenta focada em investigação visual avançada de incidentes (forense e triagem), não é desenhado primariamente para atuar como o painel mestre de consolidação de todas as descobertas (SPoG) de segurança preventiva/postural em tempo real, papel que pertence ao Security Hub."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Create an EventBridge rule in each account and Region to capture GuardDuty findings. Set the target to an EventBridge event bus in the security tooling account in 'us-east-1'. Use AWS Step Functions to format the findings and store them in Amazon DynamoDB for visualization.",
               "explanation": "Incorreta. Construir um pipeline personalizado de ingestão de eventos usando EventBridge em 50 contas e 5 regiões, roteamento para um barramento central e formato via Step Functions e DynamoDB introduz a maior sobrecarga de desenvolvimento possível entre as opções, ignorando serviços nativos de consolidação."
             }
@@ -579,22 +579,22 @@
         "pt": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
               "explanation": "Incorreta. Configurar exportação de descobertas do GuardDuty de cada região para um bucket do S3 e construir painéis personalizados no Amazon QuickSight exige grande esforço de desenvolvimento, manutenção de esquemas no Athena e engenharia de dados, indo contra o requisito de minimizar esforço."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
               "explanation": "Correta. O AWS Security Hub atua nativamente como o hub centralizado de segurança. A configuração de uma conta como administrador delegado do Security Hub, associada à funcionalidade nativa de 'cross-region aggregation', consolida automaticamente as descobertas do GuardDuty de todas as contas e regiões em um único painel na us-east-1."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
               "explanation": "Incorreta. O Amazon Detective é uma ferramenta focada em investigação visual avançada de incidentes (forense e triagem), não é desenhado primariamente para atuar como o painel mestre de consolidação de todas as descobertas (SPoG) de segurança preventiva/postural em tempo real, papel que pertence ao Security Hub."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB.",
               "explanation": "Incorreta. Construir um pipeline personalizado de ingestão de eventos usando EventBridge em 50 contas e 5 regiões, roteamento para um barramento central e formato via Step Functions e DynamoDB introduz a maior sobrecarga de desenvolvimento possível entre as opções, ignorando serviços nativos de consolidação."
             }
@@ -605,22 +605,22 @@
         "es": {
           "options": [
             {
-              "id": "a",
+              "id": "A",
               "text": "A) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Configurar GuardDuty para exportar hallazgos a un bucket S3 en us-east-1. Usar Amazon QuickSight para visualizarlos.",
               "explanation": "Incorreta. Configurar exportação de descobertas do GuardDuty de cada região para um bucket do S3 e construir painéis personalizados no Amazon QuickSight exige grande esforço de desenvolvimento, manutenção de esquemas no Athena e engenharia de dados, indo contra o requisito de minimizar esforço."
             },
             {
-              "id": "b",
+              "id": "B",
               "text": "B) Designar la cuenta de seguridad como administrador delegado de GuardDuty en todas las regiones. Habilitar AWS Security Hub en las 5 regiones y designar la cuenta de seguridad como administrador delegado de Security Hub. Utilizar la agregación entre regiones de Security Hub en us-east-1 para consolidar todos los hallazgos.",
               "explanation": "Correta. O AWS Security Hub atua nativamente como o hub centralizado de segurança. A configuração de uma conta como administrador delegado do Security Hub, associada à funcionalidade nativa de 'cross-region aggregation', consolida automaticamente as descobertas do GuardDuty de todas as contas e regiões em um único painel na us-east-1."
             },
             {
-              "id": "c",
+              "id": "C",
               "text": "C) Habilitar Amazon Detective en la cuenta de seguridad en us-east-1. Integrar GuardDuty de todas las cuentas y regiones directamente en el gráfico de Amazon Detective en us-east-1.",
               "explanation": "Incorreta. O Amazon Detective é uma ferramenta focada em investigação visual avançada de incidentes (forense e triagem), não é desenhado primariamente para atuar como o painel mestre de consolidação de todas as descobertas (SPoG) de segurança preventiva/postural em tempo real, papel que pertence ao Security Hub."
             },
             {
-              "id": "d",
+              "id": "D",
               "text": "D) Crear una regla de EventBridge en cada cuenta y región para capturar hallazgos. Enviarlos a un bus de eventos central en us-east-1 y usar Step Functions para guardarlos en Amazon DynamoDB.",
               "explanation": "Incorreta. Construir um pipeline personalizado de ingestão de eventos usando EventBridge em 50 contas e 5 regiões, roteamento para um barramento central e formato via Step Functions e DynamoDB introduz a maior sobrecarga de desenvolvimento possível entre as opções, ignorando serviços nativos de consolidação."
             }
@@ -630,26 +630,26 @@
         }
       },
       "correctAnswers": [
-        "b"
+        "B"
       ],
       "options": [
         {
-          "id": "a",
+          "id": "A",
           "text": "A) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Configurar o GuardDuty para exportar descobertas para um bucket S3 na us-east-1. Usar o Amazon QuickSight para visualizar as descobertas.",
           "explanation": "Incorreta. Configurar exportação de descobertas do GuardDuty de cada região para um bucket do S3 e construir painéis personalizados no Amazon QuickSight exige grande esforço de desenvolvimento, manutenção de esquemas no Athena e engenharia de dados, indo contra o requisito de minimizar esforço."
         },
         {
-          "id": "b",
+          "id": "B",
           "text": "B) Designar a conta de segurança como administrador delegado do GuardDuty em todas as regiões. Habilitar o AWS Security Hub nas 5 regiões e designar a conta de segurança como administrador delegado do Security Hub. Usar a agregação entre regiões do Security Hub na conta de segurança em us-east-1 para consolidar as descobertas.",
           "explanation": "Correta. O AWS Security Hub atua nativamente como o hub centralizado de segurança. A configuração de uma conta como administrador delegado do Security Hub, associada à funcionalidade nativa de 'cross-region aggregation', consolida automaticamente as descobertas do GuardDuty de todas as contas e regiões em um único painel na us-east-1."
         },
         {
-          "id": "c",
+          "id": "C",
           "text": "C) Habilitar o Amazon Detective na conta de segurança em us-east-1. Integrar o GuardDuty de todas as 50 contas e 5 regiões diretamente no gráfico do Amazon Detective em us-east-1 para fornecer um painel unificado.",
           "explanation": "Incorreta. O Amazon Detective é uma ferramenta focada em investigação visual avançada de incidentes (forense e triagem), não é desenhado primariamente para atuar como o painel mestre de consolidação de todas as descobertas (SPoG) de segurança preventiva/postural em tempo real, papel que pertence ao Security Hub."
         },
         {
-          "id": "d",
+          "id": "D",
           "text": "D) Criar uma regra do EventBridge em cada conta e região para capturar as descobertas. Definir o destino para um barramento de eventos central na us-east-1. Usar o Step Functions para formatá-las e armazená-las no Amazon DynamoDB.",
           "explanation": "Incorreta. Construir um pipeline personalizado de ingestão de eventos usando EventBridge em 50 contas e 5 regiões, roteamento para um barramento central e formato via Step Functions e DynamoDB introduz a maior sobrecarga de desenvolvimento possível entre as opções, ignorando serviços nativos de consolidação."
         }

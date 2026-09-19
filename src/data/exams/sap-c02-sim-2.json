@@ -33,7 +33,7 @@
   "questions": [
     {
       "id": "sap-sim2-q001",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -49,22 +49,22 @@
         {
           "id": "A",
           "text": "Deploy an AWS Lambda function in the management account triggered by CloudWatch Events to call the CreateAccount API and execute local shell scripts containing Terraform binary CLI commands on a self-managed EC2 instance.",
-          "explanation": "Incorrect: Self-managed EC2 execution servers with custom shell scripts create single points of failure, scaling bottlenecks, and severe operational maintenance overhead."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Deploy the AWS Control Tower Account Factory for Terraform (AFT) framework, configuring the Git repository for account requests and pipeline customizations to automatically provision and baseline new accounts using Terraform Cloud.",
-          "explanation": "Correct: AWS Control Tower Account Factory for Terraform (AFT) is the AWS-recommended solution for automating account provisioning, baselining, and customization using Terraform pipelines."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
           "text": "Create an AWS Service Catalog portfolio containing AWS CloudFormation templates in every member account and instruct account administrators to launch products manually via the AWS Management Console.",
-          "explanation": "Incorrect: Manual execution in each member account fails the automated Git-driven pipeline requirement and introduces high administrative complexity."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Configure an Amazon EventBridge rule in each member account that triggers AWS Systems Manager Automation runbooks to compile and execute local Terraform state files from an S3 bucket.",
-          "explanation": "Incorrect: Distributing Terraform state management across hundreds of standalone member accounts without a central orchestrator creates synchronization conflicts and lacks unified governance."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -81,22 +81,22 @@
             {
               "id": "A",
               "text": "Deploy an AWS Lambda function in the management account triggered by CloudWatch Events to call the CreateAccount API and execute local shell scripts containing Terraform binary CLI commands on a self-managed EC2 instance.",
-              "explanation": "Incorrect: Self-managed EC2 execution servers with custom shell scripts create single points of failure, scaling bottlenecks, and severe operational maintenance overhead."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Deploy the AWS Control Tower Account Factory for Terraform (AFT) framework, configuring the Git repository for account requests and pipeline customizations to automatically provision and baseline new accounts using Terraform Cloud.",
-              "explanation": "Correct: AWS Control Tower Account Factory for Terraform (AFT) is the AWS-recommended solution for automating account provisioning, baselining, and customization using Terraform pipelines."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Create an AWS Service Catalog portfolio containing AWS CloudFormation templates in every member account and instruct account administrators to launch products manually via the AWS Management Console.",
-              "explanation": "Incorrect: Manual execution in each member account fails the automated Git-driven pipeline requirement and introduces high administrative complexity."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Configure an Amazon EventBridge rule in each member account that triggers AWS Systems Manager Automation runbooks to compile and execute local Terraform state files from an S3 bucket.",
-              "explanation": "Incorrect: Distributing Terraform state management across hundreds of standalone member accounts without a central orchestrator creates synchronization conflicts and lacks unified governance."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "AWS Control Tower Account Factory for Terraform (AFT) integrates Terraform pipelines directly with AWS Control Tower, automatically provisioning and customizing new AWS accounts in response to Git repository requests."
@@ -108,7 +108,7 @@
             {
               "id": "A",
               "text": "Implantar uma função AWS Lambda na conta de gerenciamento acionada por eventos do CloudWatch para chamar a API CreateAccount e executar scripts shell locais com binários do Terraform em uma instância EC2 autogerenciada.",
-              "explanation": "Incorreto: Servidores EC2 autogerenciados com scripts shell locais criam pontos únicos de falha, gargalos de escalabilidade e altíssima sobrecarga de manutenção operacional."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
@@ -118,7 +118,7 @@
             {
               "id": "C",
               "text": "Criar um portfólio do AWS Service Catalog contendo modelos do AWS CloudFormation em cada conta-membro e orientar os administradores de conta a executar produtos manualmente pelo AWS Management Console.",
-              "explanation": "Incorreto: A execução manual em cada conta-membro viola o requisito de automação orientada a Git e introduz alta complexidade administrativa."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -135,7 +135,7 @@
             {
               "id": "A",
               "text": "Desplegar una función AWS Lambda en la cuenta de gestión para llamar a CreateAccount y ejecutar scripts shell con Terraform en una instancia EC2 autogestionada.",
-              "explanation": "Incorrecto: Administrar instancias EC2 con scripts shell personalizados introduce puntos únicos de fallo y alta sobrecarga de mantenimiento."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -145,12 +145,12 @@
             {
               "id": "C",
               "text": "Crear un portafolio de AWS Service Catalog con plantillas de CloudFormation en cada cuenta miembro e instruir a los administradores a lanzar productos manualmente.",
-              "explanation": "Incorrecto: El aprovisionamiento manual mediante consola incumple el requisito de automatización mediante Git y genera una alta carga administrativa."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Configurar una regla de Amazon EventBridge en cada cuenta miembro para ejecutar runbooks de Systems Manager Automation que compilen archivos de estado de Terraform.",
-              "explanation": "Incorrecto: Descentralizar la gestión de estado de Terraform en cientos de cuentas genera conflictos de concurrencia y carece de gobernanza unificada."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "AWS Control Tower Account Factory for Terraform (AFT) integra pipelines de Terraform con AWS Control Tower, aprovisionando y personalizando automáticamente nuevas cuentas de AWS ante solicitudes en Git."
@@ -159,7 +159,7 @@
     },
     {
       "id": "sap-sim2-q002",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -174,7 +174,7 @@
         {
           "id": "A",
           "text": "Deploy custom BIND DNS forwarder EC2 instances in every one of the 120 VPCs, configuring local iptables forwarding rules to synchronize DNS caches with on-premises domain controllers.",
-          "explanation": "Incorrect: Deploying and maintaining 120 pairs of self-managed BIND forwarders requires substantial patching, monitoring, high-availability management, and licensing overhead."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
@@ -206,7 +206,7 @@
             {
               "id": "A",
               "text": "Deploy custom BIND DNS forwarder EC2 instances in every one of the 120 VPCs, configuring local iptables forwarding rules to synchronize DNS caches with on-premises domain controllers.",
-              "explanation": "Incorrect: Deploying and maintaining 120 pairs of self-managed BIND forwarders requires substantial patching, monitoring, high-availability management, and licensing overhead."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
@@ -233,7 +233,7 @@
             {
               "id": "A",
               "text": "Implantar instâncias EC2 com encaminhadores de DNS BIND customizados em cada uma das 120 VPCs, configurando regras locais de iptables para sincronizar caches de DNS com os controladores de domínio on-premises.",
-              "explanation": "Incorreto: Implantar e manter 120 pares de servidores BIND autogerenciados exige aplicação contínua de patches, monitoramento, gestão de alta disponibilidade e alta sobrecarga operacional."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
@@ -260,12 +260,12 @@
             {
               "id": "A",
               "text": "Desplegar instancias EC2 con servidores BIND en cada una de las 120 VPCs configurando reenvío mediante iptables. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar servidores BIND en 120 VPCs genera una sobrecarga inmensa de parches, alta disponibilidad y mantenimiento."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Crear zonas alojadas públicas en Route 53 para example.corp y aws.internal publicando registros A para todos los microservicios internos. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Publicar dominios y direcciones IP privadas en DNS público expone información interna confidencial y vulnera la seguridad corporativa."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -275,7 +275,7 @@
             {
               "id": "D",
               "text": "Configurar DHCP Option Sets en todas las VPCs apuntando directamente a las IPs de los servidores DNS locales de Active Directory. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Configurar DHCP Option Sets directamente a DNS locales interrumpe la resolución de endpoints internos de AWS y metadatos de instancias."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Implementar Route 53 Resolver Inbound Endpoints (para consultas on-premises a AWS) y Outbound Endpoints con Resolver Rules compartidas mediante AWS RAM en una VPC de Servicios Compartidos centralizada resuelve la resolución híbrida bidireccional."
@@ -284,7 +284,7 @@
     },
     {
       "id": "sap-sim2-q003",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -304,17 +304,17 @@
         {
           "id": "B",
           "text": "Configure an IAM Permissions Boundary in each member account that adds an explicit Deny for kms:Decrypt when the request does not originate from a specific VPC Endpoint IP address.",
-          "explanation": "Incorrect: Restricting by VPC endpoint IP address does not isolate tenant identities dynamically and requires continuous IP address updates."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Create separate dedicated AWS KMS multi-region keys for every onboarded tenant and attach an inline IAM policy to each user with hardcoded KMS Key ARNs.",
-          "explanation": "Incorrect: Creating individual keys and hardcoding ARNs in IAM policies across hundreds of users and tenants creates severe management overhead that fails the requirement."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Deploy an AWS Lambda authorizer that intercepts all KMS API calls and validates JWT claims against an Amazon Cognito User Pool before granting access.",
-          "explanation": "Incorrect: AWS KMS is a foundational cryptographic AWS service that does not support custom external Lambda authorizers in its native API control plane."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -336,17 +336,17 @@
             {
               "id": "B",
               "text": "Configure an IAM Permissions Boundary in each member account that adds an explicit Deny for kms:Decrypt when the request does not originate from a specific VPC Endpoint IP address.",
-              "explanation": "Incorrect: Restricting by VPC endpoint IP address does not isolate tenant identities dynamically and requires continuous IP address updates."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Create separate dedicated AWS KMS multi-region keys for every onboarded tenant and attach an inline IAM policy to each user with hardcoded KMS Key ARNs.",
-              "explanation": "Incorrect: Creating individual keys and hardcoding ARNs in IAM policies across hundreds of users and tenants creates severe management overhead that fails the requirement."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Deploy an AWS Lambda authorizer that intercepts all KMS API calls and validates JWT claims against an Amazon Cognito User Pool before granting access.",
-              "explanation": "Incorrect: AWS KMS is a foundational cryptographic AWS service that does not support custom external Lambda authorizers in its native API control plane."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Using Attribute-Based Access Control (ABAC) in the KMS key policy with the StringEquals condition comparing 'aws:ResourceTag/TenantID' to '${aws:PrincipalTag/TenantID}' dynamically restricts KMS operations to matching tenant session tags without key policy modification."
@@ -363,7 +363,7 @@
             {
               "id": "B",
               "text": "Configurar um IAM Permissions Boundary em cada conta-membro adicionando um Deny explícito para kms:Decrypt quando a requisição não se originar de um endereço IP específico de VPC Endpoint.",
-              "explanation": "Incorreto: Restringir por endereço IP de VPC endpoint não isola identidades de tenants dinamicamente e exige atualização contínua de faixas de IP."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -390,17 +390,17 @@
             {
               "id": "B",
               "text": "Configurar un Límite de Permisos de IAM con Deny explícito para kms:Decrypt si la petición no proviene de una IP de VPC Endpoint específica.",
-              "explanation": "Incorrecto: Restringir por IP de VPC endpoint no proporciona aislamiento dinámico por cliente y requiere gestión manual constante de IPs."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Crear claves multirregión de KMS dedicadas para cada cliente y adjuntar políticas inline con ARNs estáticos a cada usuario. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Crear claves independientes con ARNs fijos en políticas de IAM genera una sobrecarga inmanejable que incumple el requisito de automatización."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Desplegar un autorizador de AWS Lambda que intercepte llamadas a la API de KMS y valide tokens JWT contra Amazon Cognito User Pools.",
-              "explanation": "Incorrecto: AWS KMS es un servicio criptográfico fundamental que no admite autorizadores personalizados de Lambda en su plano de control de API nativo."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Utilizar Attribute-Based Access Control (ABAC) en la política de clave KMS con la condición StringEquals comparando 'aws:ResourceTag/TenantID' con '${aws:PrincipalTag/TenantID}' restringe dinámicamente las operaciones de KMS a las session tags coincidentes."
@@ -409,7 +409,7 @@
     },
     {
       "id": "sap-sim2-q004",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -424,27 +424,27 @@
         {
           "id": "A",
           "text": "Configure Amazon S3 Cross-Region Replication (CRR) to replicate the entire multi-petabyte genomics bucket into 80 dedicated S3 buckets inside each member account.",
-          "explanation": "Incorrect: Replicating petabytes of genomic data into 80 separate accounts multiplies storage and cross-account transfer costs by 80x, creating massive cost inefficiency."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Create Amazon S3 Access Points for the genomics bucket dedicated to each analytics team, configuring the Network origin to Virtual Private Cloud (VPC) and specifying the allowed VPC ID for each team.",
-          "explanation": "Correct: S3 Access Points allow defining dedicated access hostnames and independent access point policies per team, scoping network origin exclusively to private VPCs."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
           "text": "Make the central Amazon S3 bucket publicly readable and configure presigned URLs generated by an AWS Lambda function running in each member account.",
-          "explanation": "Incorrect: Making sensitive healthcare and genomic buckets public is a critical security vulnerability and violates HIPAA compliance regulations."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Attach an S3 Access Point Policy to each Access Point that restricts read operations to the specific dataset prefixes and grant permissions to the respective member account IAM roles.",
-          "explanation": "Correct: Access Point policies enable decentralized access governance, allowing granular permissions to be applied per dataset prefix without modifying the central bucket policy."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "E",
           "text": "Deploy an AWS Storage Gateway Tape Gateway in each member account and configure scheduled VTL backups to write data into S3 Glacier Deep Archive.",
-          "explanation": "Incorrect: Tape Gateways are for legacy virtual tape archival; they do not provide real-time interactive query access to S3 data lakes."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -462,27 +462,27 @@
             {
               "id": "A",
               "text": "Configure Amazon S3 Cross-Region Replication (CRR) to replicate the entire multi-petabyte genomics bucket into 80 dedicated S3 buckets inside each member account.",
-              "explanation": "Incorrect: Replicating petabytes of genomic data into 80 separate accounts multiplies storage and cross-account transfer costs by 80x, creating massive cost inefficiency."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Create Amazon S3 Access Points for the genomics bucket dedicated to each analytics team, configuring the Network origin to Virtual Private Cloud (VPC) and specifying the allowed VPC ID for each team.",
-              "explanation": "Correct: S3 Access Points allow defining dedicated access hostnames and independent access point policies per team, scoping network origin exclusively to private VPCs."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Make the central Amazon S3 bucket publicly readable and configure presigned URLs generated by an AWS Lambda function running in each member account.",
-              "explanation": "Incorrect: Making sensitive healthcare and genomic buckets public is a critical security vulnerability and violates HIPAA compliance regulations."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Attach an S3 Access Point Policy to each Access Point that restricts read operations to the specific dataset prefixes and grant permissions to the respective member account IAM roles.",
-              "explanation": "Correct: Access Point policies enable decentralized access governance, allowing granular permissions to be applied per dataset prefix without modifying the central bucket policy."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "E",
               "text": "Deploy an AWS Storage Gateway Tape Gateway in each member account and configure scheduled VTL backups to write data into S3 Glacier Deep Archive.",
-              "explanation": "Incorrect: Tape Gateways are for legacy virtual tape archival; they do not provide real-time interactive query access to S3 data lakes."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Deploying Amazon S3 Access Points restricted to VPC Endpoints allows delegating access management to individual datasets with dedicated access point policies. Enforcing access via Gateway/Interface Endpoints ensures all traffic remains entirely on the private AWS network."
@@ -494,7 +494,7 @@
             {
               "id": "A",
               "text": "Configurar o Amazon S3 Cross-Region Replication (CRR) para replicar todo o bucket de genômica de múltiplos petabytes em 80 buckets S3 dedicados dentro de cada conta-membro.",
-              "explanation": "Incorreto: Replicar petabytes de dados genômicos em 80 contas separadas multiplica os custos de armazenamento e transferência em 80 vezes, gerando ineficiência orçamentária absurda."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
@@ -504,7 +504,7 @@
             {
               "id": "C",
               "text": "Tornar o bucket central do Amazon S3 publicamente legível e configurar presigned URLs geradas por uma função AWS Lambda em execução em cada conta-membro.",
-              "explanation": "Incorreto: Tornar públicos buckets contendo dados confidenciais de saúde e genômica é uma grave falha de segurança que viola normas de conformidade (HIPAA)."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -526,7 +526,7 @@
             {
               "id": "A",
               "text": "Configurar Amazon S3 Cross-Region Replication (CRR) para replicar el bucket de múltiples petabytes en 80 buckets en cada cuenta miembro. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Replicar petabytes de datos en 80 cuentas multiplica por 80 los costos de almacenamiento y transferencia de datos, resultando inviable económicamente."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -536,17 +536,17 @@
             {
               "id": "C",
               "text": "Hacer público el bucket central de Amazon S3 y generar URLs prefirmadas mediante una función Lambda en cada cuenta miembro. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Hacer público un bucket con datos médicos confidenciales es una vulnerabilidad de seguridad crítica y viola regulaciones de cumplimiento."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Adjuntar una política de Access Point a cada punto de acceso restringiendo la lectura a los prefijos específicos y otorgar permisos a los roles de IAM de cada cuenta miembro.",
-              "explanation": "Correcto: Las políticas de Access Point permiten una gestión descentralizada, aplicando permisos granulares por prefijo sin modificar la política central del bucket."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "E",
               "text": "Desplegar un Tape Gateway de AWS Storage Gateway en cada cuenta miembro para escribir datos en S3 Glacier Deep Archive. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Tape Gateway está diseñado para archivado en cinta virtual y no proporciona acceso analítico interactivo en tiempo real a data lakes en S3."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Implementar Amazon S3 Access Points restringidos a VPC Endpoints permite delegar el control de acceso a datasets específicos con políticas independientes. Forzar el acceso mediante VPC Endpoints asegura que el tráfico no salga de la red privada de AWS."
@@ -555,7 +555,7 @@
     },
     {
       "id": "sap-sim2-q005",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -575,7 +575,7 @@
         {
           "id": "B",
           "text": "Deploy an Application Load Balancer in each spoke VPC and configure path-based routing rules that forward all outbound traffic to public NAT Gateways.",
-          "explanation": "Incorrect: Application Load Balancers only handle inbound Layer 7 HTTP/HTTPS traffic and cannot act as transparent Layer 3 egress routers for spoke VPCs."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -585,12 +585,12 @@
         {
           "id": "D",
           "text": "Configure VPC Peering connections between all 90 spoke VPCs and the Central Egress VPC with DNS resolution enabled. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: VPC Peering does not support transitive routing (traffic cannot hop from spoke VPC through Egress VPC to the internet via NAT Gateways)."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
           "text": "Enable Proxy Protocol v2 on the Network Load Balancers in each spoke VPC to inject client source IP headers. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Proxy Protocol v2 is an application-layer header mechanism for TCP connections on NLBs, not a routing solution for generic multi-VPC internet egress inspection."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "F",
@@ -619,7 +619,7 @@
             {
               "id": "B",
               "text": "Deploy an Application Load Balancer in each spoke VPC and configure path-based routing rules that forward all outbound traffic to public NAT Gateways.",
-              "explanation": "Incorrect: Application Load Balancers only handle inbound Layer 7 HTTP/HTTPS traffic and cannot act as transparent Layer 3 egress routers for spoke VPCs."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -629,12 +629,12 @@
             {
               "id": "D",
               "text": "Configure VPC Peering connections between all 90 spoke VPCs and the Central Egress VPC with DNS resolution enabled. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: VPC Peering does not support transitive routing (traffic cannot hop from spoke VPC through Egress VPC to the internet via NAT Gateways)."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
               "text": "Enable Proxy Protocol v2 on the Network Load Balancers in each spoke VPC to inject client source IP headers. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Proxy Protocol v2 is an application-layer header mechanism for TCP connections on NLBs, not a routing solution for generic multi-VPC internet egress inspection."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "F",
@@ -656,7 +656,7 @@
             {
               "id": "B",
               "text": "Implantar um Application Load Balancer em cada VPC spoke e configurar regras de roteamento baseadas em caminho que encaminham todo o tráfego de saída para NAT Gateways públicos.",
-              "explanation": "Incorreto: Application Load Balancers só processam tráfego de entrada HTTP/HTTPS de Camada 7 e não operam como roteadores transparentes de egresso de Camada 3."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -688,12 +688,12 @@
             {
               "id": "A",
               "text": "Desplegar un Gateway Load Balancer (GWLB) en la VPC de Egreso Central y registrar las instancias de firewall de terceros en el grupo de destino de GWLB.",
-              "explanation": "Correcto: Gateway Load Balancer distribuye transparentemente el tráfico de Capa 3 hacia flotas de appliances mediante encapsulación GENEVE preservando los encabezados IP originales."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "B",
               "text": "Desplegar un Application Load Balancer en cada VPC spoke con reglas basadas en rutas hacia NAT Gateways públicos. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los balanceadores de carga de aplicación solo gestionan tráfico entrante de Capa 7 y no funcionan como enrutadores de egreso de Capa 3."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -703,12 +703,12 @@
             {
               "id": "D",
               "text": "Configurar conexiones de VPC Peering entre las 90 VPCs spoke y la VPC de Egreso Central. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: VPC Peering no admite enrutamiento transitivo (el tráfico no puede pasar de una spoke a través de la VPC de egreso hacia internet)."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
               "text": "Habilitar Proxy Protocol v2 en los Network Load Balancers en cada VPC spoke para inyectar encabezados de IP de origen. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Proxy Protocol v2 es un mecanismo de cabeceras de aplicación para NLBs y no una solución de enrutamiento de egreso para múltiples VPCs."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "F",
@@ -722,7 +722,7 @@
     },
     {
       "id": "sap-sim2-q006",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-1-org-complexity",
       "domainName": "Domain 1: Design Solutions for Organizational Complexity",
       "services": [
@@ -737,17 +737,17 @@
         {
           "id": "A",
           "text": "Enable Equal-Cost Multi-Path (ECMP) routing on the Transit Gateway and configure static host routes in each spoke VPC route table. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: ECMP balances flows across VPN/Direct Connect paths and does not guarantee symmetric AZ routing on VPC attachments."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Deploy an Application Load Balancer in each spoke VPC and enable Cross-Zone Load Balancing on all target groups. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: ALBs operate at Layer 7 and do not solve Layer 3/4 packet routing asymmetry across Transit Gateway attachments."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Replace the AWS Network Firewall endpoints with NAT Gateways in each Availability Zone of the spoke application VPCs. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: NAT Gateways only handle outbound internet egress and do not perform stateful deep packet inspection between internal spoke VPCs."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -769,17 +769,17 @@
             {
               "id": "A",
               "text": "Enable Equal-Cost Multi-Path (ECMP) routing on the Transit Gateway and configure static host routes in each spoke VPC route table. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: ECMP balances flows across VPN/Direct Connect paths and does not guarantee symmetric AZ routing on VPC attachments."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Deploy an Application Load Balancer in each spoke VPC and enable Cross-Zone Load Balancing on all target groups. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: ALBs operate at Layer 7 and do not solve Layer 3/4 packet routing asymmetry across Transit Gateway attachments."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Replace the AWS Network Firewall endpoints with NAT Gateways in each Availability Zone of the spoke application VPCs. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: NAT Gateways only handle outbound internet egress and do not perform stateful deep packet inspection between internal spoke VPCs."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -796,17 +796,17 @@
             {
               "id": "A",
               "text": "Habilitar o roteamento Equal-Cost Multi-Path (ECMP) no Transit Gateway e configurar rotas estáticas de host na tabela de rotas de cada VPC spoke.",
-              "explanation": "Incorreto: O ECMP balanceia fluxos entre túneis VPN/Direct Connect e não garante roteamento simétrico entre Zonas de Disponibilidade em anexos de VPC."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
               "text": "Implantar um Application Load Balancer em cada VPC spoke e habilitar o Cross-Zone Load Balancing em todos os target groups. Esta etapa de configuração garante total conformidade com arquiteturas de segurança corporativas e diretrizes do AWS Well-Architected Framework.",
-              "explanation": "Incorreto: ALBs operam na Camada 7 e não resolvem a assimetria de roteamento de pacotes de Camada 3/4 em anexos do Transit Gateway."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
               "text": "Substituir os endpoints do AWS Network Firewall por NAT Gateways em cada Zona de Disponibilidade das VPCs de aplicação spoke. Esta etapa de configuração garante total conformidade com arquiteturas de segurança corporativas e diretrizes do AWS Well-Architected Framework.",
-              "explanation": "Incorreto: NAT Gateways apenas realizam tradução de endereços para saída à internet e não realizam inspeção profunda de pacotes com estado entre VPCs internas."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -823,17 +823,17 @@
             {
               "id": "A",
               "text": "Habilitar enrutamiento ECMP en Transit Gateway y configurar rutas estáticas de host en cada VPC spoke. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: ECMP distribuye flujos entre túneles VPN/Direct Connect y no garantiza simetría de Zonas de Disponibilidad en adjuntos de VPC."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Desplegar un Application Load Balancer en cada VPC spoke con Cross-Zone Load Balancing habilitado. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los balanceadores de aplicación operan en Capa 7 y no solucionan la asimetría de enrutamiento de Capa 3/4 en Transit Gateway."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Reemplazar los endpoints de AWS Network Firewall por NAT Gateways en cada Zona de Disponibilidad de las VPCs spoke. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los NAT Gateways solo gestionan tráfico saliente a internet y no realizan inspección profunda de tráfico entre VPCs internas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -847,7 +847,7 @@
     },
     {
       "id": "sap-sim2-q007",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -867,7 +867,7 @@
         {
           "id": "B",
           "text": "Deploy an Amazon Aurora PostgreSQL cluster with write-forwarding enabled across multiple AWS Regions and configure an audit trigger that writes to an S3 bucket.",
-          "explanation": "Incorrect: Database administrators can alter triggers, modify underlying table rows, or truncate audit logs, failing the strict immutable cryptographic proof requirement."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -899,7 +899,7 @@
             {
               "id": "B",
               "text": "Deploy an Amazon Aurora PostgreSQL cluster with write-forwarding enabled across multiple AWS Regions and configure an audit trigger that writes to an S3 bucket.",
-              "explanation": "Incorrect: Database administrators can alter triggers, modify underlying table rows, or truncate audit logs, failing the strict immutable cryptographic proof requirement."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -948,12 +948,12 @@
             {
               "id": "A",
               "text": "Desplegar una tabla de Amazon DynamoDB con DynamoDB Streams y replicar eventos en un bucket de Amazon S3 con versionado. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Las tablas estándar de DynamoDB permiten modificar registros y el versionado de S3 no proporciona cadenas de verificación criptográfica SHA-256 integradas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Desplegar un clúster de Amazon Aurora PostgreSQL con write-forwarding y disparadores de auditoría que escriban en S3. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los administradores de bases de datos pueden modificar disparadores o alterar registros, incumpliendo el requisito de inmutabilidad criptográfica absoluta."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -972,7 +972,7 @@
     },
     {
       "id": "sap-sim2-q008",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -987,7 +987,7 @@
         {
           "id": "A",
           "text": "Deploy an Auto Scaling group of Amazon EC2 instances running open-source FFmpeg software to poll an S3 bucket, transcode videos into HLS segments, and serve streams directly from public EC2 web servers.",
-          "explanation": "Incorrect: Self-managed EC2 FFmpeg clusters require complex instance auto-scaling, OS maintenance, patching, and lack global CDN edge caching."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
@@ -1019,7 +1019,7 @@
             {
               "id": "A",
               "text": "Deploy an Auto Scaling group of Amazon EC2 instances running open-source FFmpeg software to poll an S3 bucket, transcode videos into HLS segments, and serve streams directly from public EC2 web servers.",
-              "explanation": "Incorrect: Self-managed EC2 FFmpeg clusters require complex instance auto-scaling, OS maintenance, patching, and lack global CDN edge caching."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
@@ -1073,7 +1073,7 @@
             {
               "id": "A",
               "text": "Desplegar un grupo de Auto Scaling de instancias EC2 con FFmpeg para transcodificar videos y transmitirlos directamente desde servidores web públicos. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar clústeres EC2 con FFmpeg requiere gestión de escalabilidad y parches, y carece de distribución global por CDN."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -1097,7 +1097,7 @@
     },
     {
       "id": "sap-sim2-q009",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1113,17 +1113,17 @@
         {
           "id": "A",
           "text": "Send order events directly to an Amazon Simple Notification Service (SNS) Standard topic and configure fan-out subscriptions to 10 independent AWS Lambda worker functions.",
-          "explanation": "Incorrect: Amazon SNS Standard topics do not guarantee strict message ordering or deduplication, potentially causing inventory race conditions and out-of-order execution."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Deploy an Amazon Elastic Kubernetes Service (EKS) cluster with a persistent MySQL pod and write synchronous REST API integration scripts across all microservices.",
-          "explanation": "Incorrect: Synchronous REST integration tightly couples microservices, creating cascading failures during downstream outages and failing the asynchronous decoupling requirement."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Publish events to Amazon Kinesis Data Firehose configured to buffer records for 300 seconds and deliver JSON files into Amazon S3 Glacier Instant Retrieval.",
-          "explanation": "Incorrect: Kinesis Data Firehose micro-batching introduces a 5-minute buffering delay, failing the real-time sequential processing requirement for transactional orders."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -1145,17 +1145,17 @@
             {
               "id": "A",
               "text": "Send order events directly to an Amazon Simple Notification Service (SNS) Standard topic and configure fan-out subscriptions to 10 independent AWS Lambda worker functions.",
-              "explanation": "Incorrect: Amazon SNS Standard topics do not guarantee strict message ordering or deduplication, potentially causing inventory race conditions and out-of-order execution."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Deploy an Amazon Elastic Kubernetes Service (EKS) cluster with a persistent MySQL pod and write synchronous REST API integration scripts across all microservices.",
-              "explanation": "Incorrect: Synchronous REST integration tightly couples microservices, creating cascading failures during downstream outages and failing the asynchronous decoupling requirement."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Publish events to Amazon Kinesis Data Firehose configured to buffer records for 300 seconds and deliver JSON files into Amazon S3 Glacier Instant Retrieval.",
-              "explanation": "Incorrect: Kinesis Data Firehose micro-batching introduces a 5-minute buffering delay, failing the real-time sequential processing requirement for transactional orders."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -1199,22 +1199,22 @@
             {
               "id": "A",
               "text": "Enviar pedidos a un tema estándar de Amazon SNS con distribución hacia 10 funciones Lambda independientes. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los temas estándar de SNS no garantizan entrega ordenada ni deduplicación, generando condiciones de carrera en el inventario."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Desplegar un clúster de Amazon EKS con un pod de MySQL y llamadas síncronas REST entre todos los microservicios. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: La integración síncrona acopla fuertemente los servicios y provoca fallos en cascada ante caídas de dependencias."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Publicar eventos en Amazon Kinesis Data Firehose con buffer de 300 segundos y entregar datos en Amazon S3 Glacier. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: El buffer de 5 minutos de Firehose introduce un retraso inaceptable para el procesamiento de pedidos transaccionales."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Publicar pedidos en una cola Amazon SQS FIFO con MessageGroupId como CustomerID y MessageDeduplicationId activado. Configurar AWS Lambda con maxReceiveCount en 3 hacia una cola SQS FIFO DLQ y persistir en DynamoDB.",
-              "explanation": "Correcto: SQS FIFO garantiza orden estricto por cliente mediante MessageGroupId, evita duplicados, admite reintentos con DLQ y se integra nativamente con AWS Lambda."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             }
           ],
           "generalExplanation": "Publicar pedidos en colas Amazon SQS FIFO con MessageGroupId como ID de cliente, consumir eventos mediante AWS Lambda con DLQ y almacenar el estado en Amazon DynamoDB proporciona procesamiento desacoplado y estrictamente ordenado."
@@ -1223,7 +1223,7 @@
     },
     {
       "id": "sap-sim2-q010",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1248,12 +1248,12 @@
         {
           "id": "C",
           "text": "Deploy an Amazon DocumentDB cluster in us-east-1, configure continuous snapshot replication to S3 buckets in other regions, and use Route 53 weighted routing.",
-          "explanation": "Incorrect: Snapshot replication introduces hours of lag and cannot serve real-time sub-10ms leaderboard read/write requests globally."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Deploy an Amazon EC2 Redis cluster in a public subnet in us-east-1 and configure players to connect directly using static Elastic IP addresses.",
-          "explanation": "Incorrect: Single-region EC2 Redis without CDN caching or global replication suffers high international network latency and lacks high availability across continents."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -1280,12 +1280,12 @@
             {
               "id": "C",
               "text": "Deploy an Amazon DocumentDB cluster in us-east-1, configure continuous snapshot replication to S3 buckets in other regions, and use Route 53 weighted routing.",
-              "explanation": "Incorrect: Snapshot replication introduces hours of lag and cannot serve real-time sub-10ms leaderboard read/write requests globally."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Deploy an Amazon EC2 Redis cluster in a public subnet in us-east-1 and configure players to connect directly using static Elastic IP addresses.",
-              "explanation": "Incorrect: Single-region EC2 Redis without CDN caching or global replication suffers high international network latency and lacks high availability across continents."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Amazon DynamoDB Global Tables provides fully managed, multi-region active-active database replication with low-latency reads and writes. Route 53 Geolocation or Latency Routing with health checks automatically routes users to the nearest responsive regional application endpoint."
@@ -1334,12 +1334,12 @@
             {
               "id": "C",
               "text": "Desplegar un clúster de Amazon DocumentDB en us-east-1 con replicación de instantáneas hacia S3 en otras regiones. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: La replicación de instantáneas tiene horas de retraso y no permite responder a consultas en tiempo real con latencia sub-10ms a nivel mundial."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Desplegar un clúster Redis en EC2 en subred pública en us-east-1 con IPs elásticas estáticas para los jugadores. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Un clúster Redis en una sola región sin replicación global genera latencias elevadas para jugadores internacionales y carece de alta disponibilidad."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Amazon DynamoDB Global Tables proporciona replicación activa-activa multirregión con latencia sub-10ms. Las políticas de enrutamiento por latencia o geolocalización de Route 53 con comprobaciones de salud enrutan a los usuarios automáticamente al endpoint regional más cercano."
@@ -1348,7 +1348,7 @@
     },
     {
       "id": "sap-sim2-q011",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1364,7 +1364,7 @@
         {
           "id": "A",
           "text": "Deploy an Amazon EC2 Auto Scaling cluster running open-source Hadoop and Hive, writing output CSV files to Amazon Elastic Block Store (EBS) gp3 volumes attached to EC2 instances.",
-          "explanation": "Incorrect: Self-managed Hadoop and Hive clusters on EC2 require ongoing patching, master node high-availability management, and EBS volumes cannot be shared across multiple accounts."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
@@ -1396,7 +1396,7 @@
             {
               "id": "A",
               "text": "Deploy an Amazon EC2 Auto Scaling cluster running open-source Hadoop and Hive, writing output CSV files to Amazon Elastic Block Store (EBS) gp3 volumes attached to EC2 instances.",
-              "explanation": "Incorrect: Self-managed Hadoop and Hive clusters on EC2 require ongoing patching, master node high-availability management, and EBS volumes cannot be shared across multiple accounts."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
@@ -1450,12 +1450,12 @@
             {
               "id": "A",
               "text": "Desplegar un clúster de Amazon EC2 Auto Scaling con Hadoop y Hive, guardando archivos CSV en volúmenes EBS gp3. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar clústeres Hadoop y Hive en EC2 requiere parches continuos y los volúmenes EBS no se pueden compartir entre múltiples cuentas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Aprovisionar un clúster de Amazon EMR de tamaño fijo con 50 instancias On-Demand y copiar datos nocturnamente a clústeres Redshift independientes. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Clústeres EMR de tamaño fijo generan costos ociosos y copiar petabytes de datos a múltiples cuentas genera costos de almacenamiento exorbitantes."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -1465,7 +1465,7 @@
             {
               "id": "D",
               "text": "Desplegar un clúster de Amazon OpenSearch Service con 20 nodos y transmitir logs mediante AWS Lambda. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: OpenSearch Service está optimizado para búsqueda de logs, no para transformaciones masivas en Spark ni análisis de data warehousing relacional sobre petabytes."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Amazon EMR Serverless ejecuta trabajos Spark bajo demanda sin gestionar infraestructura. Los metadados se catalogan en AWS Glue Data Catalog sobre Amazon S3, y Amazon Redshift Serverless consulta los datos y comparte vistas entre cuentas mediante Redshift Data Sharing sin duplicación."
@@ -1474,7 +1474,7 @@
     },
     {
       "id": "sap-sim2-q012",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1504,7 +1504,7 @@
         {
           "id": "D",
           "text": "Export virtual machine disks as VMDK files into Amazon S3 Glacier Flexible Archive buckets every 15 minutes, restoring data using AWS Snowball Edge devices.",
-          "explanation": "Incorrect: Exporting VMDKs to Glacier and using physical Snowball devices takes days or weeks to recover, completely violating the 15-minute RTO and 30-second RPO."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
@@ -1542,7 +1542,7 @@
             {
               "id": "D",
               "text": "Export virtual machine disks as VMDK files into Amazon S3 Glacier Flexible Archive buckets every 15 minutes, restoring data using AWS Snowball Edge devices.",
-              "explanation": "Incorrect: Exporting VMDKs to Glacier and using physical Snowball devices takes days or weeks to recover, completely violating the 15-minute RTO and 30-second RPO."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
@@ -1606,7 +1606,7 @@
             {
               "id": "D",
               "text": "Exportar discos VMDK a Amazon S3 Glacier cada 15 minutos y restaurar datos mediante dispositivos físicos Snowball Edge. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: La exportación a Glacier y el uso de dispositivos Snowball requiere días o semanas, violando por completo los objetivos de RTO y RPO."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
@@ -1620,7 +1620,7 @@
     },
     {
       "id": "sap-sim2-q013",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-2-new-solutions",
       "domainName": "Domain 2: Design for New Solutions",
       "services": [
@@ -1645,7 +1645,7 @@
         {
           "id": "C",
           "text": "Deploy self-managed NGINX proxy instances in public subnets in all 50 VPCs, configuring basic HTTP authentication and local modsecurity firewall rules. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Self-managed NGINX proxies in public subnets expose private agency networks to the internet and require extensive manual patching and rule management."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -1677,7 +1677,7 @@
             {
               "id": "C",
               "text": "Deploy self-managed NGINX proxy instances in public subnets in all 50 VPCs, configuring basic HTTP authentication and local modsecurity firewall rules. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Self-managed NGINX proxies in public subnets expose private agency networks to the internet and require extensive manual patching and rule management."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -1704,7 +1704,7 @@
             {
               "id": "C",
               "text": "Implantar instâncias de proxy NGINX autogerenciadas em sub-redes públicas em todas as 50 VPCs, configurando autenticação HTTP básica e regras de firewall locais com modsecurity.",
-              "explanation": "Incorreto: Proxies NGINX autogerenciados em sub-redes públicas expõem as redes privadas da agência à internet e exigem extensa manutenção manual de patches e regras."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -1731,7 +1731,7 @@
             {
               "id": "C",
               "text": "Desplegar proxies NGINX autogestionados en subredes públicas en las 50 VPCs con autenticación básica y modsecurity. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar proxies NGINX en subredes públicas expone la red privada a internet y genera una sobrecarga continua de mantenimiento de parches."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -1745,7 +1745,7 @@
     },
     {
       "id": "sap-sim2-q014",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -1765,12 +1765,12 @@
         {
           "id": "B",
           "text": "Replace all private subnets with public subnets, assign Elastic IP addresses to all EC2 instances, and disable NAT Gateways. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Placing GPU instances with direct public internet access exposes backend analytics workloads to security risks and violates corporate compliance mandates."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Configure AWS Site-to-Site VPN connections from each VPC to an on-premises proxy server that routes traffic back to AWS via public internet.",
-          "explanation": "Incorrect: Routing cloud traffic through on-premises proxies over VPN adds massive latency, egress data transfer costs, and bandwidth bottlenecks."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -1797,12 +1797,12 @@
             {
               "id": "B",
               "text": "Replace all private subnets with public subnets, assign Elastic IP addresses to all EC2 instances, and disable NAT Gateways. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Placing GPU instances with direct public internet access exposes backend analytics workloads to security risks and violates corporate compliance mandates."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Configure AWS Site-to-Site VPN connections from each VPC to an on-premises proxy server that routes traffic back to AWS via public internet.",
-              "explanation": "Incorrect: Routing cloud traffic through on-premises proxies over VPN adds massive latency, egress data transfer costs, and bandwidth bottlenecks."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -1824,7 +1824,7 @@
             {
               "id": "B",
               "text": "Substituir todas as sub-redes privadas por sub-redes públicas, atribuir endereços IP Elásticos a todas as instâncias EC2 e desativar os NAT Gateways.",
-              "explanation": "Incorreto: Posicionar instâncias de GPU com acesso direto à internet pública expõe as cargas analíticas a riscos graves de segurança e viola conformidade corporativa."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -1846,17 +1846,17 @@
             {
               "id": "A",
               "text": "Desplegar Interface VPC Endpoints de AWS PrivateLink para Amazon S3 y DynamoDB en cada subred privada en las 30 VPCs. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Los Interface VPC Endpoints cobran tarifa por hora y $0.01 por GB procesado, generando costos significativos frente a los Gateway Endpoints gratuitos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Reemplazar las subredes privadas por públicas, asignar IPs elásticas a las instancias EC2 y eliminar los NAT Gateways. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Exponer instancias de GPU con acceso directo a internet introduce graves riesgos de seguridad e incumple normativas de cumplimiento."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Configurar conexiones VPN Site-to-Site desde cada VPC hacia un proxy local que reenvíe el tráfico a AWS por internet. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Enrutar tráfico cloud a través de proxies locales añade latencia inaceptable, cuellos de botella y costos de transferencia innecesarios."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -1870,7 +1870,7 @@
     },
     {
       "id": "sap-sim2-q015",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -1886,7 +1886,7 @@
         {
           "id": "A",
           "text": "Deploy the AWS Distro for OpenTelemetry (ADOT) collector as a sidecar container in Amazon ECS tasks and Amazon EKS pods, and instrument application code using OpenTelemetry SDKs with W3C Trace Context propagation.",
-          "explanation": "Correct: AWS Distro for OpenTelemetry (ADOT) is the AWS-supported, CNCF-compliant distribution that collects metrics and traces with standard W3C propagation without proprietary agent lock-in."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "B",
@@ -1896,17 +1896,17 @@
         {
           "id": "C",
           "text": "Deploy an Amazon DynamoDB table in each region to store custom span IDs and query records using Amazon Athena federated queries. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Building a custom distributed tracing engine on DynamoDB and Athena requires enormous custom development and operational maintenance compared to managed tracing tools."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Configure the ADOT collector to export distributed traces to AWS X-Ray and enable Amazon CloudWatch ServiceLens with Container Insights to correlate traces, application logs, and container metrics in a unified service map.",
-          "explanation": "Correct: CloudWatch ServiceLens integrates AWS X-Ray distributed traces with CloudWatch Container Insights metrics and logs, enabling visual drill-down into latency bottlenecks and dependency graphs."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "E",
           "text": "Enable AWS CloudTrail data events for all Amazon S3 buckets and configure Amazon QuickSight to render request latency histograms. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: CloudTrail tracks management and object API calls; it does not collect internal microservice application HTTP traces or distributed span context."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -1924,7 +1924,7 @@
             {
               "id": "A",
               "text": "Deploy the AWS Distro for OpenTelemetry (ADOT) collector as a sidecar container in Amazon ECS tasks and Amazon EKS pods, and instrument application code using OpenTelemetry SDKs with W3C Trace Context propagation.",
-              "explanation": "Correct: AWS Distro for OpenTelemetry (ADOT) is the AWS-supported, CNCF-compliant distribution that collects metrics and traces with standard W3C propagation without proprietary agent lock-in."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "B",
@@ -1934,17 +1934,17 @@
             {
               "id": "C",
               "text": "Deploy an Amazon DynamoDB table in each region to store custom span IDs and query records using Amazon Athena federated queries. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Building a custom distributed tracing engine on DynamoDB and Athena requires enormous custom development and operational maintenance compared to managed tracing tools."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Configure the ADOT collector to export distributed traces to AWS X-Ray and enable Amazon CloudWatch ServiceLens with Container Insights to correlate traces, application logs, and container metrics in a unified service map.",
-              "explanation": "Correct: CloudWatch ServiceLens integrates AWS X-Ray distributed traces with CloudWatch Container Insights metrics and logs, enabling visual drill-down into latency bottlenecks and dependency graphs."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "E",
               "text": "Enable AWS CloudTrail data events for all Amazon S3 buckets and configure Amazon QuickSight to render request latency histograms. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: CloudTrail tracks management and object API calls; it does not collect internal microservice application HTTP traces or distributed span context."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Deploying AWS Distro for OpenTelemetry (ADOT) sidecars and agents enables open-standard metrics and distributed tracing collection. Ingesting traces into AWS X-Ray and enabling CloudWatch ServiceLens with Container Insights correlates distributed trace graphs, infrastructure metrics, and container performance in a unified view."
@@ -1998,17 +1998,17 @@
             {
               "id": "C",
               "text": "Desplegar una tabla de DynamoDB en cada región para guardar span IDs y consultar mediante consultas federadas de Amazon Athena. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Construir un motor de trazado personalizado en DynamoDB y Athena requiere desarrollo y mantenimiento masivo frente a herramientas nativas especializadas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Configurar el colector ADOT para exportar trazas hacia AWS X-Ray y habilitar Amazon CloudWatch ServiceLens con Container Insights para correlacionar trazas, logs y métricas en un mapa de servicios.",
-              "explanation": "Correcto: CloudWatch ServiceLens integra trazas de AWS X-Ray con métricas de Container Insights y logs, proporcionando mapas visuales de dependencias y análisis de latencia."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "E",
               "text": "Habilitar eventos de datos en CloudTrail para buckets S3 y usar Amazon QuickSight para histogramas de latencia. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: CloudTrail registra llamadas a APIs de AWS, no recolecta trazas HTTP de microservicios ni información de spans distribuidos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Implementar sidecars de AWS Distro for OpenTelemetry (ADOT) permite la recolección estandarizada de métricas y trazas abiertas de CNCF. Ingerir trazas en AWS X-Ray y habilitar CloudWatch ServiceLens con Container Insights correlaciona trazas distribuidas, métricas de infraestructura y rendimiento de contenedores en una vista unificada."
@@ -2017,7 +2017,7 @@
     },
     {
       "id": "sap-sim2-q016",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2037,17 +2037,17 @@
         {
           "id": "B",
           "text": "Create an Amazon Elastic File System (Amazon EFS) file system with General Purpose performance mode. Configure an EFS Access Point with an enforced POSIX user ID, and configure the Amazon ECS task definition with an EFS volume configuration referencing the access point and task execution role.",
-          "explanation": "Correct: Amazon EFS provides serverless, multi-AZ POSIX shared storage that mounts natively on AWS Fargate tasks using EFS Access Points with IAM authorization."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
           "text": "Deploy an Amazon EC2 instance running Samba Windows File Sharing in a public subnet, mounting the shared drive into ECS tasks using CIFS volume parameters.",
-          "explanation": "Incorrect: Self-managed Samba servers create single points of failure, scaling bottlenecks, security vulnerabilities, and require manual maintenance."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Configure Amazon S3 File Gateway on an EC2 instance in each Availability Zone, and configure Fargate tasks to mount the NFS shares using local boot scripts.",
-          "explanation": "Incorrect: AWS Fargate is a serverless container environment that does not permit running local EC2 boot scripts to mount external Storage Gateway virtual appliances."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2069,17 +2069,17 @@
             {
               "id": "B",
               "text": "Create an Amazon Elastic File System (Amazon EFS) file system with General Purpose performance mode. Configure an EFS Access Point with an enforced POSIX user ID, and configure the Amazon ECS task definition with an EFS volume configuration referencing the access point and task execution role.",
-              "explanation": "Correct: Amazon EFS provides serverless, multi-AZ POSIX shared storage that mounts natively on AWS Fargate tasks using EFS Access Points with IAM authorization."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Deploy an Amazon EC2 instance running Samba Windows File Sharing in a public subnet, mounting the shared drive into ECS tasks using CIFS volume parameters.",
-              "explanation": "Incorrect: Self-managed Samba servers create single points of failure, scaling bottlenecks, security vulnerabilities, and require manual maintenance."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Configure Amazon S3 File Gateway on an EC2 instance in each Availability Zone, and configure Fargate tasks to mount the NFS shares using local boot scripts.",
-              "explanation": "Incorrect: AWS Fargate is a serverless container environment that does not permit running local EC2 boot scripts to mount external Storage Gateway virtual appliances."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Configuring an Amazon Elastic File System (Amazon EFS) file system with EFS access points and referencing the EFS volume directly within the Amazon ECS task definition allows AWS Fargate tasks across multiple Availability Zones to mount shared POSIX storage seamlessly."
@@ -2101,7 +2101,7 @@
             {
               "id": "C",
               "text": "Implantar uma instância Amazon EC2 executando Samba Windows File Sharing em uma sub-rede pública, montando a unidade compartilhada nas tarefas ECS usando parâmetros de volume CIFS.",
-              "explanation": "Incorreto: Servidores Samba autogerenciados criam pontos únicos de falha, gargalos de escalabilidade, vulnerabilidades de segurança e exigem manutenção manual contínua."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -2123,17 +2123,17 @@
             {
               "id": "B",
               "text": "Crear un sistema de archivos de Amazon EFS en modo General Purpose. Configurar un Access Point de EFS con usuario POSIX y configurar la task definition de ECS referenciando el Access Point.",
-              "explanation": "Correcto: Amazon EFS proporciona almacenamiento compartido POSIX multi-AZ serverless que se monta nativamente en tareas de Fargate mediante EFS Access Points con autorización IAM."
+              "explanation": "Esta arquitectura representa el enfoque ideal para el escenario presentado, garantizando el cumplimiento integral de todas las estrictas restricciones mencionadas en el enunciado, además de proporcionar una excelente rentabilidad y una perfecta alineación con los pilares establecidos por el AWS Well-Architected Framework."
             },
             {
               "id": "C",
               "text": "Desplegar una instancia EC2 con Samba en subred pública montando el recurso compartido en ECS mediante CIFS. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar servidores Samba introduce puntos únicos de fallo, cuellos de botella de rendimiento y vulnerabilidades de seguridad."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Configurar S3 File Gateway en instancias EC2 en cada Zona de Disponibilidad y montar NFS en Fargate mediante scripts de arranque. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: AWS Fargate es un entorno serverless que no permite ejecutar scripts de arranque de sistema operativo para montar dispositivos de Storage Gateway."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Configurar un sistema de archivos Amazon EFS con puntos de acceso de EFS y referenciar el volumen en la definición de tarea de ECS permite a las tareas de Fargate en múltiples Zonas de Disponibilidad montar almacenamiento POSIX compartido nativamente."
@@ -2142,7 +2142,7 @@
     },
     {
       "id": "sap-sim2-q017",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2157,12 +2157,12 @@
         {
           "id": "A",
           "text": "Increase the Aurora PostgreSQL instance size to db.r6g.16xlarge and create 15 Aurora read replicas across three Availability Zones with read-write splitting. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Aurora read replicas only offload read traffic; adding read replicas does not solve write lock contention or increase master write IOPS capacity."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Migrate all driver GPS data into Amazon S3 Standard buckets and configure Amazon Athena to execute queries using scheduled AWS Glue crawlers.",
-          "explanation": "Incorrect: Amazon Athena and Glue crawlers have multi-second query latencies and cannot serve real-time transactional driver lookup queries with sub-millisecond requirements."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
@@ -2172,7 +2172,7 @@
         {
           "id": "D",
           "text": "Deploy an Amazon RDS for MySQL Single-AZ database and configure local cron scripts on EC2 instances to dump database tables to CSV files every 5 minutes.",
-          "explanation": "Incorrect: Single-AZ MySQL lacks high availability, lacks sub-millisecond in-memory performance, and cron dumps introduce severe data locking and latency spikes."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2189,12 +2189,12 @@
             {
               "id": "A",
               "text": "Increase the Aurora PostgreSQL instance size to db.r6g.16xlarge and create 15 Aurora read replicas across three Availability Zones with read-write splitting. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Aurora read replicas only offload read traffic; adding read replicas does not solve write lock contention or increase master write IOPS capacity."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Migrate all driver GPS data into Amazon S3 Standard buckets and configure Amazon Athena to execute queries using scheduled AWS Glue crawlers.",
-              "explanation": "Incorrect: Amazon Athena and Glue crawlers have multi-second query latencies and cannot serve real-time transactional driver lookup queries with sub-millisecond requirements."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
@@ -2204,7 +2204,7 @@
             {
               "id": "D",
               "text": "Deploy an Amazon RDS for MySQL Single-AZ database and configure local cron scripts on EC2 instances to dump database tables to CSV files every 5 minutes.",
-              "explanation": "Incorrect: Single-AZ MySQL lacks high availability, lacks sub-millisecond in-memory performance, and cron dumps introduce severe data locking and latency spikes."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Deploying Amazon MemoryDB for Redis as an in-memory primary datastore for live driver locations delivers microsecond read/write latency with Multi-AZ ACID persistence. Implementing native PostgreSQL declarative table partitioning by timestamp on Amazon Aurora PostgreSQL handles historical trip archival without write contention."
@@ -2243,12 +2243,12 @@
             {
               "id": "A",
               "text": "Aumentar la instancia de Aurora PostgreSQL a db.r6g.16xlarge y crear 15 réplicas de lectura de Aurora en tres Zonas de Disponibilidad. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Las réplicas de lectura solo absorben consultas de lectura; añadir réplicas no mitiga la saturación de I/O de escritura en el nodo principal."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
               "text": "Migrar los datos GPS a Amazon S3 y consultar con Amazon Athena mediante AWS Glue crawlers. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Amazon Athena y Glue crawlers tienen latencias de varios segundos y no pueden responder a consultas transaccionales en tiempo real con latencia sub-milisegundo."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -2258,7 +2258,7 @@
             {
               "id": "D",
               "text": "Desplegar una base de datos Amazon RDS for MySQL Single-AZ con scripts cron para exportar tablas a CSV cada 5 minutos. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Single-AZ carece de alta disponibilidad y rendimiento sub-milisegundo, y las exportaciones periódicas provocan bloqueos y degradación."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Desplegar Amazon MemoryDB for Redis como almacén en memoria para conductores activos proporciona latencia en microsegundos con persistencia ACID Multi-AZ. Implementar particionamiento declarativo de tablas por timestamp en Amazon Aurora PostgreSQL gestiona el histórico sin cuellos de botella de I/O."
@@ -2267,7 +2267,7 @@
     },
     {
       "id": "sap-sim2-q018",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2283,22 +2283,22 @@
         {
           "id": "A",
           "text": "Designate the central Security Account as the delegated administrator for Amazon GuardDuty and AWS Security Hub. Create an Amazon EventBridge rule in the Security Account that matches GuardDuty finding types and invokes an AWS Systems Manager Automation runbook that assumes a pre-configured IAM role in the member account to replace security groups and revoke IAM credentials.",
-          "explanation": "Correct: GuardDuty delegated administration centralizes multi-account findings, while EventBridge and Systems Manager Automation runbooks execute cross-account remediation actions within seconds using least-privilege IAM roles."
+          "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "B",
           "text": "Configure Amazon SNS topics in each of the 150 member accounts to send SMS text messages to on-call security engineers, requiring engineers to manually log in and terminate affected EC2 instances.",
-          "explanation": "Incorrect: Manual human response via SMS violates the mandatory requirement for automated incident containment within 30 seconds across 150 accounts."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Deploy an Amazon EC2 instance running open-source Snort IDS in each member account and configure scheduled cron jobs to parse log files every 15 minutes.",
-          "explanation": "Incorrect: Snort instances in each account require extensive management, lack centralized multi-account aggregation, and 15-minute polling violates the 30-second response mandate."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Attach an IAM policy with an explicit Deny on ec2:RunInstances to the root user of all member accounts in AWS Organizations. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Denying ec2:RunInstances prevents new instances from being created, but does nothing to isolate already compromised active instances or revoke leaked IAM access keys."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2315,22 +2315,22 @@
             {
               "id": "A",
               "text": "Designate the central Security Account as the delegated administrator for Amazon GuardDuty and AWS Security Hub. Create an Amazon EventBridge rule in the Security Account that matches GuardDuty finding types and invokes an AWS Systems Manager Automation runbook that assumes a pre-configured IAM role in the member account to replace security groups and revoke IAM credentials.",
-              "explanation": "Correct: GuardDuty delegated administration centralizes multi-account findings, while EventBridge and Systems Manager Automation runbooks execute cross-account remediation actions within seconds using least-privilege IAM roles."
+              "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
               "id": "B",
               "text": "Configure Amazon SNS topics in each of the 150 member accounts to send SMS text messages to on-call security engineers, requiring engineers to manually log in and terminate affected EC2 instances.",
-              "explanation": "Incorrect: Manual human response via SMS violates the mandatory requirement for automated incident containment within 30 seconds across 150 accounts."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Deploy an Amazon EC2 instance running open-source Snort IDS in each member account and configure scheduled cron jobs to parse log files every 15 minutes.",
-              "explanation": "Incorrect: Snort instances in each account require extensive management, lack centralized multi-account aggregation, and 15-minute polling violates the 30-second response mandate."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Attach an IAM policy with an explicit Deny on ec2:RunInstances to the root user of all member accounts in AWS Organizations. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Denying ec2:RunInstances prevents new instances from being created, but does nothing to isolate already compromised active instances or revoke leaked IAM access keys."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Centralizing Amazon GuardDuty and AWS Security Hub findings into a delegated Security Account, routing findings via Amazon EventBridge, and invoking AWS Systems Manager Automation runbooks that assume cross-account roles to quarantine affected resources delivers automated containment in seconds."
@@ -2347,7 +2347,7 @@
             {
               "id": "B",
               "text": "Configurar tópicos do Amazon SNS em cada uma das 150 contas-membro para enviar mensagens SMS para engenheiros de segurança de plantão, exigindo que façam login manual e encerrem as instâncias EC2 afetadas.",
-              "explanation": "Incorreto: A resposta humana manual via SMS viola a exigência mandatória de contenção automatizada de incidentes em até 30 segundos em 150 contas."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
@@ -2357,7 +2357,7 @@
             {
               "id": "D",
               "text": "Anexar uma política IAM com Deny explícito em ec2:RunInstances ao usuário root de todas as contas-membro no AWS Organizations. Esta etapa de configuração garante total conformidade com arquiteturas de segurança corporativas e diretrizes do AWS Well-Architected Framework.",
-              "explanation": "Incorreto: Negar ec2:RunInstances impede que novas instâncias sejam criadas, mas não isola instâncias ativas comprometidas nem revoga chaves de acesso do IAM vazadas."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
           "generalExplanation": "A centralização de descobertas do Amazon GuardDuty e AWS Security Hub em uma conta de Segurança delegada, o roteamento de achados via Amazon EventBridge e a execução de runbooks do AWS Systems Manager Automation que assumem roles cross-account para isolar recursos afetados fornece contenção automatizada em segundos."
@@ -2374,17 +2374,17 @@
             {
               "id": "B",
               "text": "Configurar temas de Amazon SNS en cada una de las 150 cuentas para enviar mensajes SMS a ingenieros de guardia para terminación manual.",
-              "explanation": "Incorrecto: La intervención humana manual por SMS incumple el requisito de contención automatizada en 30 segundos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Desplegar instancias EC2 con Snort IDS en cada cuenta y configurar cron jobs para analizar logs cada 15 minutos. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Administrar instancias con Snort genera alta sobrecarga y el intervalo de 15 minutos incumple el objetivo de respuesta en 30 segundos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Adjuntar una política de IAM con Deny explícito en ec2:RunInstances al usuario root en todas las cuentas miembro. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Denegar ec2:RunInstances solo evita crear nuevas instancias, pero no aísla servidores comprometidos ni revoca credenciales vulneradas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Centralizar los hallazgos de GuardDuty y Security Hub en una cuenta de Seguridad delegada, enrutar eventos mediante Amazon EventBridge y ejecutar runbooks de AWS Systems Manager Automation con roles cross-account aplica contención automatizada en segundos."
@@ -2393,7 +2393,7 @@
     },
     {
       "id": "sap-sim2-q019",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-3-continuous-improvement",
       "domainName": "Domain 3: Continuous Improvement for Existing Solutions",
       "services": [
@@ -2418,7 +2418,7 @@
         {
           "id": "C",
           "text": "Transfer policy files to an on-premises Tape Library using AWS Storage Gateway Tape Gateway and lock virtual tapes in a physical safe.",
-          "explanation": "Incorrect: Storing virtual tapes on-premises adds hardware and facility maintenance expenses and prevents automated cloud-based legal retrieval and compliance auditing."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -2450,7 +2450,7 @@
             {
               "id": "C",
               "text": "Transfer policy files to an on-premises Tape Library using AWS Storage Gateway Tape Gateway and lock virtual tapes in a physical safe.",
-              "explanation": "Incorrect: Storing virtual tapes on-premises adds hardware and facility maintenance expenses and prevents automated cloud-based legal retrieval and compliance auditing."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -2477,7 +2477,7 @@
             {
               "id": "C",
               "text": "Transferir arquivos de apólices para uma biblioteca de fitas on-premises usando o AWS Storage Gateway Tape Gateway e trancar as fitas virtuais em um cofre físico.",
-              "explanation": "Incorreto: Armazenar fitas virtuais on-premises adiciona custos de hardware e infraestrutura física e impede a recuperação jurídica automatizada e auditorias em nuvem."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -2504,12 +2504,12 @@
             {
               "id": "C",
               "text": "Transferir archivos a una biblioteca de cintas local con Tape Gateway y almacenar cintas en una caja fuerte física. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Mantener cintas virtuales en instalaciones locales añade costos de infraestructura física y dificulta auditorías automatizadas en la nube."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Habilitar S3 Object Lock en Modo Governance con retención de 30 días en S3 One Zone-IA. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: El Modo Governance permite el borrado por usuarios autorizados, 30 días es insuficiente para litigios y One Zone-IA carece de resiliencia multi-AZ."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Transicionar objetos a Amazon S3 Glacier Deep Archive minimiza los costos de almacenamiento ($0.00099 por GB/mes), mientras que aplicar S3 Object Lock con Legal Hold impide el borrado indefinidamente hasta que sea revocado por personal legal autorizado."
@@ -2518,7 +2518,7 @@
     },
     {
       "id": "sap-sim2-q020",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2533,17 +2533,17 @@
         {
           "id": "A",
           "text": "Export all servers as OVA files, upload them to Amazon S3 using AWS Snowball Edge devices, and call the VM Import/Export CLI operation during each cutover weekend.",
-          "explanation": "Incorrect: Exporting OVA files and physically shipping Snowball devices takes weeks, lacks continuous live synchronization, and exceeds the 20-minute cutover window."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
           "text": "Deploy AWS Server Migration Service (AWS SMS) connectors in all data centers to take scheduled snapshot backups of source VMs into Amazon S3.",
-          "explanation": "Incorrect: AWS SMS is snapshot-based and deprecated in favor of AWS MGN, which provides real-time continuous block-level replication and automated post-launch script execution."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
           "text": "Write custom Python scripts using AWS SDK (Boto3) to stop on-premises servers, take dd image copies, transfer images over SFTP, and convert them to EBS snapshots.",
-          "explanation": "Incorrect: Custom dd imaging scripts require stopping source servers for hours, resulting in massive unacceptable downtime and high operational failure risks."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
@@ -2565,17 +2565,17 @@
             {
               "id": "A",
               "text": "Export all servers as OVA files, upload them to Amazon S3 using AWS Snowball Edge devices, and call the VM Import/Export CLI operation during each cutover weekend.",
-              "explanation": "Incorrect: Exporting OVA files and physically shipping Snowball devices takes weeks, lacks continuous live synchronization, and exceeds the 20-minute cutover window."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "B",
               "text": "Deploy AWS Server Migration Service (AWS SMS) connectors in all data centers to take scheduled snapshot backups of source VMs into Amazon S3.",
-              "explanation": "Incorrect: AWS SMS is snapshot-based and deprecated in favor of AWS MGN, which provides real-time continuous block-level replication and automated post-launch script execution."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "C",
               "text": "Write custom Python scripts using AWS SDK (Boto3) to stop on-premises servers, take dd image copies, transfer images over SFTP, and convert them to EBS snapshots.",
-              "explanation": "Incorrect: Custom dd imaging scripts require stopping source servers for hours, resulting in massive unacceptable downtime and high operational failure risks."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
@@ -2602,7 +2602,7 @@
             {
               "id": "C",
               "text": "Escrever scripts Python customizados usando o AWS SDK (Boto3) para desligar servidores on-premises, tirar cópias de imagens com dd, transferir imagens por SFTP e convertê-las em snapshots EBS.",
-              "explanation": "Incorreto: Scripts customizados com dd exigem o desligamento de servidores de origem por horas, gerando indisponibilidade massiva inaceitável e alto risco operacional."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
@@ -2619,7 +2619,7 @@
             {
               "id": "A",
               "text": "Exportar servidores como archivos OVA, subirlos a S3 con AWS Snowball Edge y usar VM Import/Export durante cada fin de semana de corte.",
-              "explanation": "Incorrecto: Exportar archivos OVA y enviar dispositivos Snowball requiere semanas, carece de sincronización continua y supera la ventana de corte de 20 minutos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -2629,7 +2629,7 @@
             {
               "id": "C",
               "text": "Escribir scripts personalizados en Python para detener servidores locales, generar imágenes dd, transferirlas por SFTP y convertirlas en instantáneas EBS. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Scripts manuales con dd requieren detener servidores durante horas, provocando indisponibilidad inaceptable y alto riesgo de fallos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -2643,7 +2643,7 @@
     },
     {
       "id": "sap-sim2-q021",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2673,7 +2673,7 @@
         {
           "id": "D",
           "text": "Deploy AWS Application Migration Service (AWS MGN) to perform block-level replication of the SQL Server VM disks to Amazon Aurora shared storage.",
-          "explanation": "Incorrect: AWS MGN is a block-level server lift-and-shift tool; it cannot perform heterogeneous schema conversion from SQL Server relational database to Aurora MySQL."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2705,7 +2705,7 @@
             {
               "id": "D",
               "text": "Deploy AWS Application Migration Service (AWS MGN) to perform block-level replication of the SQL Server VM disks to Amazon Aurora shared storage.",
-              "explanation": "Incorrect: AWS MGN is a block-level server lift-and-shift tool; it cannot perform heterogeneous schema conversion from SQL Server relational database to Aurora MySQL."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Using the AWS Schema Conversion Tool (AWS SCT) to convert T-SQL schemas and stored procedures to Aurora MySQL dialect, paired with AWS Database Migration Service (AWS DMS) executing a Full Load plus ongoing Change Data Capture (CDC) task, enables near-zero downtime heterogeneous database migration."
@@ -2744,7 +2744,7 @@
             {
               "id": "A",
               "text": "Exportar las tablas de SQL Server a archivos BCP, subirlos a S3 e importarlos en Aurora MySQL con LOAD DATA INFILE. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Exportaciones manuales BCP generan datos estáticos que no capturan transacciones activas y no convierten código T-SQL a MySQL."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "B",
@@ -2754,12 +2754,12 @@
             {
               "id": "C",
               "text": "Configurar SQL Server Always On Availability Groups para replicar datos directamente a una réplica de lectura de Aurora MySQL por Direct Connect.",
-              "explanation": "Incorrecto: SQL Server Always On solo opera entre instancias homogéneas de SQL Server; no puede replicar datos hacia motores MySQL."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Implementar AWS Application Migration Service (AWS MGN) para replicar los discos de SQL Server hacia el almacenamiento de Aurora. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: AWS MGN es una herramienta de migración a nivel de bloque y no realiza conversiones heterogéneas entre motores de bases de datos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Utilizar AWS Schema Conversion Tool (AWS SCT) para convertir esquemas y procedimientos T-SQL a dialecto Aurora MySQL, junto con AWS Database Migration Service (AWS DMS) en modo Full Load más Change Data Capture (CDC), permite una migración heterogénea con mínimo tiempo de inactividad."
@@ -2768,7 +2768,7 @@
     },
     {
       "id": "sap-sim2-q022",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -2798,12 +2798,12 @@
         {
           "id": "D",
           "text": "Deploy an AWS Lambda@Edge function on Amazon CloudFront to rewrite incoming HTTP requests and forward packets over public internet VPN connections. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Lambda@Edge cannot route requests directly to private RFC 1918 subnets or on-premises networks over private Direct Connect connections without complex public proxies."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "E",
           "text": "Rewrite all monolithic business logic into Amazon DynamoDB transactional stored procedures and eliminate the legacy database entirely. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Amazon DynamoDB is a NoSQL key-value store that does not support relational stored procedures or SQL dialect, requiring destructive refactoring."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -2836,12 +2836,12 @@
             {
               "id": "D",
               "text": "Deploy an AWS Lambda@Edge function on Amazon CloudFront to rewrite incoming HTTP requests and forward packets over public internet VPN connections. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Lambda@Edge cannot route requests directly to private RFC 1918 subnets or on-premises networks over private Direct Connect connections without complex public proxies."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "E",
               "text": "Rewrite all monolithic business logic into Amazon DynamoDB transactional stored procedures and eliminate the legacy database entirely. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Amazon DynamoDB is a NoSQL key-value store that does not support relational stored procedures or SQL dialect, requiring destructive refactoring."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "Deploying an AWS Migration Hub Refactor Spaces environment creates an isolated multi-account routing boundary with managed API Gateway and Transit Gateway infrastructure. Defining Refactor Spaces services and route rules with URL path matching allows routing specific endpoints to containerized microservices while routing default traffic to on-premises legacy systems."
@@ -2868,12 +2868,12 @@
             {
               "id": "D",
               "text": "Implantar uma função AWS Lambda@Edge no Amazon CloudFront para reescrever requisições HTTP de entrada e encaminhar pacotes sobre conexões VPN pela internet pública.",
-              "explanation": "Incorreto: O Lambda@Edge não consegue rotear requisições diretamente para sub-redes privadas RFC 1918 ou redes on-premises sobre Direct Connect privado sem proxies públicos complexos."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "E",
               "text": "Reescrever toda a lógica de negócios monolítica em stored procedures transacionais do Amazon DynamoDB e eliminar o banco de dados legado completamente.",
-              "explanation": "Incorreto: O Amazon DynamoDB é um banco de dados NoSQL chave-valor que não suporta stored procedures relacionais ou dialeto SQL, exigindo refatoração destrutiva inviável."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
           "generalExplanation": "A implantação de um ambiente do AWS Migration Hub Refactor Spaces cria um limite de roteamento multi-conta com infraestrutura gerenciada de API Gateway e Transit Gateway. Definir serviços e regras de rota no Refactor Spaces com correspondência de caminho de URL permite rotear endpoints específicos para microsserviços conteinerizados enquanto encaminha o tráfego padrão para os sistemas legados on-premises."
@@ -2890,7 +2890,7 @@
             {
               "id": "B",
               "text": "Configurar enrutamiento ponderado en Route 53 para enviar el 50% de consultas DNS a IPs locales y 50% al balanceador de AWS.",
-              "explanation": "Incorrecto: El enrutamiento ponderado por DNS distribuye tráfico aleatoriamente y no puede inspeccionar rutas URL (/accounts vs /transfers) para microservicios específicos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
@@ -2900,12 +2900,12 @@
             {
               "id": "D",
               "text": "Desplegar una función Lambda@Edge en Amazon CloudFront para reescribir peticiones y reenviarlas por VPN pública. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Lambda@Edge no puede comunicarse directamente con subredes privadas RFC 1918 ni redes locales mediante conexiones privadas de Direct Connect."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "E",
               "text": "Reescribir toda la lógica monolítica en procedimientos almacenados de DynamoDB y eliminar la base de datos local. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: DynamoDB es una base de datos NoSQL que no admite procedimientos almacenados relacionales ni SQL tradicional."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "Implementar un entorno de AWS Migration Hub Refactor Spaces crea una frontera de enrutamiento multicuenta con API Gateway y Transit Gateway. Definir servicios y rutas en Refactor Spaces con coincidencia de URL permite enrutar endpoints específicos a microservicios en ECS mientras se mantiene el tráfico por defecto hacia el monolito local."
@@ -2914,7 +2914,7 @@
     },
     {
       "id": "sap-sim2-q023",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -3020,12 +3020,12 @@
             {
               "id": "B",
               "text": "Desplegar un appliance de AWS Storage Gateway File Gateway en VMware para escribir archivos en un bucket de Amazon S3. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: File Gateway almacena archivos como objetos en S3 y no replica directamente en Amazon FSx for Windows File Server preservando descriptores NTFS nativos."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "C",
               "text": "Escribir scripts de PowerShell en instancias EC2 que monten el recurso local por VPN y copien archivos con Copy-Item. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: Scripts de PowerShell en un solo hilo sobre VPN son inviables para 500 TB y carecen de verificación de integridad paralelizada."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
@@ -3039,7 +3039,7 @@
     },
     {
       "id": "sap-sim2-q024",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
@@ -3064,12 +3064,12 @@
         {
           "id": "C",
           "text": "Maintain the on-premises mainframe permanently and create AWS Lambda functions that execute telnet terminal screen-scraping 3270 scripts over the internet. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: Terminal screen scraping is fragile, introduces high latency, fails security compliance standards, and does not eliminate mainframe operating costs."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
           "text": "Rewrite all mainframe COBOL applications into Amazon DynamoDB JavaScript stored procedures and host web frontends on Amazon S3 static website hosting. This configuration step ensures complete alignment with enterprise security architectures and AWS best practices.",
-          "explanation": "Incorrect: DynamoDB does not support JavaScript stored procedures or relational banking ledger transactions natively, and rewriting millions of lines manually is high risk."
+          "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
       "correctAnswers": [
@@ -3096,12 +3096,12 @@
             {
               "id": "C",
               "text": "Maintain the on-premises mainframe permanently and create AWS Lambda functions that execute telnet terminal screen-scraping 3270 scripts over the internet. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: Terminal screen scraping is fragile, introduces high latency, fails security compliance standards, and does not eliminate mainframe operating costs."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
               "id": "D",
               "text": "Rewrite all mainframe COBOL applications into Amazon DynamoDB JavaScript stored procedures and host web frontends on Amazon S3 static website hosting. This step ensures complete alignment with enterprise security architectures and AWS Well-Architected Framework guidelines.",
-              "explanation": "Incorrect: DynamoDB does not support JavaScript stored procedures or relational banking ledger transactions natively, and rewriting millions of lines manually is high risk."
+              "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],
           "generalExplanation": "AWS Mainframe Modernization (Refactor with AWS Blu Age) automatically transforms legacy COBOL/CICS applications into modern Java Spring Boot microservices deployed on Amazon ECS or AWS Fargate backed by Amazon Aurora PostgreSQL."
@@ -3128,7 +3128,7 @@
             {
               "id": "D",
               "text": "Reescrever todas as aplicações COBOL do mainframe em stored procedures JavaScript no Amazon DynamoDB e hospedar frontends web no Amazon S3 com hospedagem de site estático.",
-              "explanation": "Incorreto: O DynamoDB não suporta stored procedures em JavaScript nem transações relacionais bancárias nativas, e reescrever milhões de linhas manualmente apresenta risco inaceitável."
+              "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
           "generalExplanation": "O AWS Mainframe Modernization (Refactor com AWS Blu Age) transforma automaticamente aplicações legadas em COBOL/CICS em microsserviços modernos Java Spring Boot implantados no Amazon ECS ou AWS Fargate sustentados pelo Amazon Aurora PostgreSQL."
@@ -3150,12 +3150,12 @@
             {
               "id": "C",
               "text": "Mantener el mainframe local y crear funciones Lambda que ejecuten screen-scraping de terminales 3270 por telnet. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: El screen-scraping de terminales es frágil, introduce latencia, incumple estándares de seguridad y no reduce costos de mainframe."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             },
             {
               "id": "D",
               "text": "Reescribir las aplicaciones COBOL en procedimientos almacenados JavaScript en DynamoDB. Este paso de configuración garantiza un cumplimiento total con arquitecturas de seguridad corporativas y directrices de AWS Well-Architected Framework.",
-              "explanation": "Incorrecto: DynamoDB no admite procedimientos almacenados en JavaScript ni transacciones bancarias relacionales complejas."
+              "explanation": "La justificación de que esta alternativa se considere inadecuada es que termina agregando una capa adicional innecesaria de complejidad administrativa, sin lograr resolver de forma nativa el desafío arquitectónico central y yendo en contra de los principios fundamentales de excelencia recomendados por AWS."
             }
           ],
           "generalExplanation": "AWS Mainframe Modernization (Refactor con AWS Blu Age) transforma automáticamente aplicaciones COBOL/CICS en microservicios Java Spring Boot desplegados en Amazon ECS con Fargate respaldados por Amazon Aurora PostgreSQL."
@@ -3164,7 +3164,7 @@
     },
     {
       "id": "sap-sim2-q025",
-      "examId": "SAP-C02-SIM-2",
+      "examId": "SAP-C02",
       "domainId": "domain-4-migration-modernization",
       "domainName": "Domain 4: Accelerate Workload Migration and Modernization",
       "services": [
