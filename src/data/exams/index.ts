@@ -6,6 +6,7 @@ import sapC02Sim4 from './sap-c02-sim-4.json';
 import sapC02Sim5 from './sap-c02-sim-5.json';
 import sapC02Sim6 from './sap-c02-sim-6.json';
 import sapC02Sim7 from './sap-c02-sim-7-gaps.json';
+import sapC02Sim8 from './sap-c02-sim-8.json';
 import saaC03 from './saa-c03.json';
 import clfC02 from './clf-c02.json';
 
@@ -18,6 +19,7 @@ export const AVAILABLE_EXAMS: ExamDefinition[] = [
   sapC02Sim5 as unknown as ExamDefinition,
   sapC02Sim6 as unknown as ExamDefinition,
   sapC02Sim7 as unknown as ExamDefinition,
+  sapC02Sim8 as unknown as ExamDefinition,
   saaC03 as unknown as ExamDefinition,
   clfC02 as unknown as ExamDefinition,
 ];
