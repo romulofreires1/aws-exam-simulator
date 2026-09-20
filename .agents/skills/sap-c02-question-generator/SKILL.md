@@ -20,12 +20,12 @@ This skill guides the creation and validation of exam-grade questions for the **
    - It is **NOT** restricted to any specific folder, past gaps list, or external subset. It explores the entire breadth of AWS enterprise architectures (hybrid networking, IAM/governance multi-account, resilience/DR, analytics/data lakes, cost optimization, migration 7 Rs, container & serverless modernizations, etc.).
 2. **Mandatory Type Mix (20-25% Multiple Choice)**:
    - A realistic exam must contain **20% to 25% multiple choice questions** ("Select TWO" or "Select THREE").
-   - A 25-question mock exam must contain **at leastmultiple choice questions**.
-3. **Engenharia Rigorosa de Distratores Altamente Plausveis (ZERO Alternativas bvias)**:
-   - **PROIBIDO**: Distratores obviamente errados, ingnuos, curtos (menos de 20 palavras) ou contendo servios/scripts absurdos (como "criar 5000 usurios manuais" ou "fazer proxy com iptables").
-   - **OBRIGATRIO**: Todas as alternativas **DEVEM parecer solues 100% profissionais, vlidas, modernas e viveis tecnicamente**. Devem ter entre 25 a 45 palavras no mnimo.
-   - **Matriz de Deciso 2x2 (Micro-Diff)**: Estruture as opes em pares conceituais simtricos. Duas opes devem diferir APENAS em um detalhe tcnico, como nome de uma API, flag de configurao, porta ou mecanismo de permisso.
-4. **Regra Obrigatria de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
+   - A 25-question mock exam must contain **at least 5 multiple choice questions**.
+3. **Engenharia Rigorosa de Distratores Altamente Plausíveis (ZERO Alternativas Óbvias)**:
+   - **PROIBIDO**: Distratores obviamente errados, ingênuos, curtos (menos de 20 palavras) ou contendo serviços/scripts absurdos (como "criar 5000 usuários manuais" ou "fazer proxy com iptables").
+   - **OBRIGATÓRIO**: Todas as alternativas **DEVEM parecer soluções 100% profissionais, válidas, modernas e viáveis tecnicamente**. Devem ter entre 25 a 45 palavras no mínimo.
+   - **Matriz de Decisão 2x2 (Micro-Diff)**: Estruture as opções em pares conceituais simétricos. Duas opções devem diferir APENAS em um detalhe técnico, como nome de uma API, flag de configuração, porta ou mecanismo de permissão.
+4. **Regra Obrigatória de Embaralhamento de Gabaritos (Strict Answer Shuffling)**:
    - **NUNCA** posicione a resposta correta sempre na opo `A` ou nas opes `A` e `B`.
    - As respostas corretas **DEVEM** ser distribudas de forma balanceada e pseudo-aleatria entre todas as opes (`A`, `B`, `C`, `D` para escolha nica; combinaes variadas como `["B", "D"]`, `["A", "C"]`, `["C", "E"]` para mltipla escolha).
 
@@ -45,7 +45,7 @@ Follow these steps to produce high-fidelity SAP-C02 questions:
   - **JSON**: Integration into `src/data/exams/*.json` (see `templates/simulator_question.json`).
   - **Markdown**: Formatted for Obsidian study vaults (see `templates/obsidian_question.md`).
   - **Bilingual Support**: Portuguese (PT-BR) with standard AWS English terminology, or English, based on user preference.
-- **Enforce Multiple Choice Quotas**: If generating a batch of questions, ensure at least 20-25% are `multiple` choice (withoptions for "Select TWO" and 6 options for "Select THREE").
+- **Enforce Multiple Choice Quotas**: If generating a batch of questions, ensure at least 20-25% are `multiple` choice (with 5 options for "Select TWO" and 6 options for "Select THREE").
 
 ### Step 2: Consult Technical References
 Review domain references and enterprise architecture patterns:
@@ -79,9 +79,9 @@ For each option (both correct and incorrect):
 ### Step 5: Validate Output
 
 > [!CAUTION]
-> **NUNCA salve ou integre um arquivo JSON sem antes executar o checklist abaixo. Qualquer item com   um bloqueador.**
+> **NUNCA salve ou integre um arquivo JSON sem antes executar o checklist abaixo. Qualquer item com ❌ é um bloqueador.**
 
-####  BLOQUEADORES  Cheklist Obrigatrio Antes de Salvar
+#### 🛑 BLOQUEADORES – Checklist Obrigatório Antes de Salvar
 
 Para cada questo gerada, verifique:
 

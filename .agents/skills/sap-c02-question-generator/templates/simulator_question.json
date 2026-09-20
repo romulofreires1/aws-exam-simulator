@@ -35,6 +35,83 @@
           }
         ],
         "generalExplanation": "Service Control Policies (SCPs)..."
+      },
+      "es": {
+        "domainName": "Dominio 1:...",
+        "statement": "Una corporación global administra más de 300 cuentas...",
+        "options": [
+          {
+            "id": "A",
+            "text": "Implementar reglas administradas de AWS Config...",
+            "explanation": "Incorrecto: AWS Config es..."
+          }
+        ],
+        "generalExplanation": "Service Control Policies (SCPs)..."
+      }
+    }
+  },
+  "multipleChoiceExample": {
+    "id": "sap-q102",
+    "examId": "SAP-C02",
+    "domainId": "domain-2-new-solutions",
+    "domainName": "Domain 2: Design for New Solutions",
+    "services": [
+      "Amazon Aurora",
+      "AWS Route 53 ARC"
+    ],
+    "type": "multiple",
+    "requiredChoices": 2,
+    "statement": "A financial application requires RTO < 2 minutes. Which combination of steps should the Solutions Architect take? (Select TWO.)",
+    "options": [
+      {
+        "id": "A",
+        "text": "Configure Amazon Aurora Global Database...",
+        "explanation": "Correct: Aurora Global Database provides..."
+      },
+      {
+        "id": "B",
+        "text": "Configure Amazon RDS Read Replicas...",
+        "explanation": "Incorrect: RDS Read Replicas require..."
+      }
+    ],
+    "correctAnswers": ["A", "D"],
+    "generalExplanation": "To achieve an RTO of less than 2 minutes...",
+    "referenceUrl": "https://...",
+    "difficulty": "hard",
+    "translations": {
+      "pt": {
+        "domainName": "Domínio 2:...",
+        "statement": "Uma aplicação financeira exige RTO < 2 minutos. Qual combinação de etapas o Arquiteto de Soluções deve seguir? (Escolha duas.)",
+        "options": [
+          {
+            "id": "A",
+            "text": "Configurar o Amazon Aurora Global Database...",
+            "explanation": "Correto: O Aurora Global Database fornece..."
+          },
+          {
+            "id": "B",
+            "text": "Configurar réplicas de leitura do Amazon RDS...",
+            "explanation": "Incorreto: As réplicas de leitura exigem..."
+          }
+        ],
+        "generalExplanation": "Para atingir um RTO menor que 2 minutos..."
+      },
+      "es": {
+        "domainName": "Dominio 2:...",
+        "statement": "Una aplicación financiera requiere RTO < 2 minutos. ¿Qué combinación de pasos debe tomar el Arquitecto de Soluciones? (Seleccione dos.)",
+        "options": [
+          {
+            "id": "A",
+            "text": "Configurar Amazon Aurora Global Database...",
+            "explanation": "Correcto: Aurora Global Database proporciona..."
+          },
+          {
+            "id": "B",
+            "text": "Configurar réplicas de lectura de Amazon RDS...",
+            "explanation": "Incorrecto: Las réplicas de lectura requieren..."
+          }
+        ],
+        "generalExplanation": "Para lograr un RTO menor a 2 minutos..."
       }
     }
   }

@@ -1412,12 +1412,12 @@
             },
             {
               "id": "D",
-              "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`.",
+              "text": "Incluir na configuração JSON uma declaração de SCP que contenha uma condição estrita baseada no operador condicional ArnNotLike direcionado especificamente para a chave global aws:PrincipalArn com o valor restrito configurado para arn:aws:iam::*:role/GlobalAdminRole.",
               "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
             },
             {
               "id": "E",
-              "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
+              "text": "Incluir uma condição baseada em texto usando o operador de string `StringNotLike` para a chave de contexto `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
               "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
             }
           ],
@@ -1444,12 +1444,12 @@
         },
         {
           "id": "D",
-          "text": "Incluir uma condição usando o operador `ArnNotLike` para a chave `aws:PrincipalArn` com o valor `arn:aws:iam::*:role/GlobalAdminRole`.",
+          "text": "Incluir na configuração JSON uma declaração de SCP que contenha uma condição estrita baseada no operador condicional ArnNotLike direcionado especificamente para a chave global aws:PrincipalArn com o valor restrito configurado para arn:aws:iam::*:role/GlobalAdminRole.",
           "explanation": "Correta. O operador `ArnNotLike` avaliado com a chave de condição `aws:PrincipalArn` permite aplicar a isenção de forma explícita para qualquer papel (IAM Role) correspondente. Assim, a política limitadora atua sobre toda a conta membro, *exceto* os usuários que estiverem atuando sob a role designada `GlobalAdminRole`."
         },
         {
           "id": "E",
-          "text": "Incluir uma condição usando o operador `StringNotLike` para a chave `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
+          "text": "Incluir uma condição baseada em texto usando o operador de string `StringNotLike` para a chave de contexto `aws:PrincipalArn` com o valor `GlobalAdminRole`.",
           "explanation": "Incorreta. O operador `StringNotLike` usado diretamente não é a forma recomendada ou infalível para lidar com a chave condicional `aws:PrincipalArn`. A sintaxe correta para avaliar um ARN exige que a chave condicional coincida perfeitamente com a estrutura do ARN (usando ArnNotLike) evitando problemas de análise de string solta."
         }
       ],
@@ -1930,7 +1930,7 @@
             },
             {
               "id": "E",
-              "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
+              "text": "Adicionar uma declaração de política SCP explícita com `Effect: Deny`, bloqueando a `Action: \"ec2:*Tags\"` usando a `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
               "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
             }
           ],
@@ -1962,7 +1962,7 @@
         },
         {
           "id": "E",
-          "text": "Adicionar uma declaração SCP com `Effect: Deny`, `Action: \"ec2:*Tags\"`, `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
+          "text": "Adicionar uma declaração de política SCP explícita com `Effect: Deny`, bloqueando a `Action: \"ec2:*Tags\"` usando a `Condition: { \"StringNotEquals\": { \"aws:PrincipalTag/Project\": \"${aws:ResourceTag/Project}\" } }`.",
           "explanation": "Incorreta. Tentar limitar ou restringir explicitamente uma chamada elástica e massiva como `ec2:*Tags` usando strings desancoradas para tags não é confiável. Além disso, falha drasticamente na conformidade do caso de uso pois esta formulação em bloco não oferece nenhuma exceção real (como exigido) para que os diretores autênticos e homologados da role `TagAdmin` possam corrigir discrepâncias nas tags de forma lícita."
         }
       ],
@@ -2016,7 +2016,7 @@
             {
               "id": "A",
               "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em todas as VPCs. Configurar os servidores DNS on-premises para encaminhar consultas para os endpoints Inbound de cada VPC e associar uma regra para encaminhar consultas ao on-premises.",
-              "explanation": "Incorreto: Implantar endpoints em 150 VPCs introduz custos maciços e extrema sobrecarga operacional. Os endpoints são cobrados por hora por ENI provisionada."
+              "explanation": "Incorreto: Implantar e manter endpoints de forma distribuída e independente em 150 VPCs introduz custos recorrentes maciços e extrema sobrecarga técnica, uma vez que os endpoints são cobrados por hora operacional por cada ENI provisionada."
             },
             {
               "id": "B",
@@ -2031,7 +2031,7 @@
             {
               "id": "D",
               "text": "Implantar instâncias EC2 altamente disponíveis executando BIND DNS na VPC de Shared Services. Configurar todos os DHCP Options Sets das VPCs para apontar para o BIND, realizando o forward condicional nativo para o Route 53.",
-              "explanation": "Incorreto: Gerenciar servidores DNS customizados em instâncias EC2 introduz carga administrativa de patching, HA e escalabilidade, contrariando o princípio de menor sobrecarga."
+              "explanation": "Incorreto: Provisionar e gerenciar servidores DNS customizados baseados em instâncias EC2 introduz forte carga administrativa contínua relacionada a patching de SO, implementação de HA e escalabilidade, contrariando frontalmente o princípio exigido de menor sobrecarga."
             }
           ],
           "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS.",
@@ -2068,7 +2068,7 @@
         {
           "id": "A",
           "text": "Criar endpoints Inbound e Outbound do Route 53 Resolver em todas as VPCs. Configurar os servidores DNS on-premises para encaminhar consultas para os endpoints Inbound de cada VPC e associar uma regra para encaminhar consultas ao on-premises.",
-          "explanation": "Incorreto: Implantar endpoints em 150 VPCs introduz custos maciços e extrema sobrecarga operacional. Os endpoints são cobrados por hora por ENI provisionada."
+          "explanation": "Incorreto: Implantar e manter endpoints de forma distribuída e independente em 150 VPCs introduz custos recorrentes maciços e extrema sobrecarga técnica, uma vez que os endpoints são cobrados por hora operacional por cada ENI provisionada."
         },
         {
           "id": "B",
@@ -2083,7 +2083,7 @@
         {
           "id": "D",
           "text": "Implantar instâncias EC2 altamente disponíveis executando BIND DNS na VPC de Shared Services. Configurar todos os DHCP Options Sets das VPCs para apontar para o BIND, realizando o forward condicional nativo para o Route 53.",
-          "explanation": "Incorreto: Gerenciar servidores DNS customizados em instâncias EC2 introduz carga administrativa de patching, HA e escalabilidade, contrariando o princípio de menor sobrecarga."
+          "explanation": "Incorreto: Provisionar e gerenciar servidores DNS customizados baseados em instâncias EC2 introduz forte carga administrativa contínua relacionada a patching de SO, implementação de HA e escalabilidade, contrariando frontalmente o princípio exigido de menor sobrecarga."
         }
       ],
       "generalExplanation": "Centralizar Endpoints do Route 53 Resolver em uma VPC de Shared Services e usar o AWS RAM para compartilhar regras entre a AWS Organization é o padrão ouro na AWS.",
@@ -2141,17 +2141,17 @@
             {
               "id": "B",
               "text": "Manter os Transit Gateways existentes. Em cada uma das 5 regiões, criar três tabelas de rotas separadas. Atualizar as conexões de peering para propagar rotas apenas entre as tabelas correspondentes através das regiões.",
-              "explanation": "Incorreto: Manter 15 tabelas de rotas e malhas de peering introduz extrema sobrecarga, complexidade de troubleshooting e risco de erros humanos."
+              "explanation": "Incorreto: Criar e manter continuamente 15 tabelas de rotas isoladas e múltiplas malhas de VPC peering estáticas introduz extrema sobrecarga administrativa, alta complexidade de troubleshooting e eleva muito o risco inerente de erros humanos no roteamento."
             },
             {
               "id": "C",
               "text": "Substituir os Transit Gateways por um único AWS Direct Connect Gateway associado a todas as VPCs globais. Usar o AWS Network Firewall em cada região para descartar o tráfego de forma centralizada.",
-              "explanation": "Incorreto: O Direct Connect Gateway não roteia tráfego diretamente entre VPCs. É restrito a tráfego on-premises para a AWS."
+              "explanation": "Incorreto: O Direct Connect Gateway, por design arquitetural da AWS, não possui a capacidade de rotear tráfego transitivo diretamente entre VPCs conectadas a ele. Sua finalidade é estritamente encaminhar tráfego de redes on-premises para a AWS."
             },
             {
               "id": "D",
               "text": "Implementar o AWS Cloud WAN criando três core networks separadas. Conectar as redes usando Peering e usar Security Groups para bloquear tráfego entre os ambientes.",
-              "explanation": "Incorreto: O Cloud WAN usa segmentos dentro de um único core network para atingir esse objetivo nativamente, criar vários core networks aumenta a sobrecarga."
+              "explanation": "Incorreto: O AWS Cloud WAN utiliza o conceito nativo de segmentos e políticas de roteamento dentro de um único core network unificado para atingir esse objetivo com isolamento; criar vários core networks desnecessariamente aumenta drasticamente a sobrecarga administrativa e de rede."
             }
           ],
           "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente.",
@@ -2193,17 +2193,17 @@
         {
           "id": "B",
           "text": "Manter os Transit Gateways existentes. Em cada uma das 5 regiões, criar três tabelas de rotas separadas. Atualizar as conexões de peering para propagar rotas apenas entre as tabelas correspondentes através das regiões.",
-          "explanation": "Incorreto: Manter 15 tabelas de rotas e malhas de peering introduz extrema sobrecarga, complexidade de troubleshooting e risco de erros humanos."
+          "explanation": "Incorreto: Criar e manter continuamente 15 tabelas de rotas isoladas e múltiplas malhas de VPC peering estáticas introduz extrema sobrecarga administrativa, alta complexidade de troubleshooting e eleva muito o risco inerente de erros humanos no roteamento."
         },
         {
           "id": "C",
           "text": "Substituir os Transit Gateways por um único AWS Direct Connect Gateway associado a todas as VPCs globais. Usar o AWS Network Firewall em cada região para descartar o tráfego de forma centralizada.",
-          "explanation": "Incorreto: O Direct Connect Gateway não roteia tráfego diretamente entre VPCs. É restrito a tráfego on-premises para a AWS."
+          "explanation": "Incorreto: O Direct Connect Gateway, por design arquitetural da AWS, não possui a capacidade de rotear tráfego transitivo diretamente entre VPCs conectadas a ele. Sua finalidade é estritamente encaminhar tráfego de redes on-premises para a AWS."
         },
         {
           "id": "D",
           "text": "Implementar o AWS Cloud WAN criando três core networks separadas. Conectar as redes usando Peering e usar Security Groups para bloquear tráfego entre os ambientes.",
-          "explanation": "Incorreto: O Cloud WAN usa segmentos dentro de um único core network para atingir esse objetivo nativamente, criar vários core networks aumenta a sobrecarga."
+          "explanation": "Incorreto: O AWS Cloud WAN utiliza o conceito nativo de segmentos e políticas de roteamento dentro de um único core network unificado para atingir esse objetivo com isolamento; criar vários core networks desnecessariamente aumenta drasticamente a sobrecarga administrativa e de rede."
         }
       ],
       "generalExplanation": "O AWS Cloud WAN abstrai a complexidade do TGW Peering usando uma Core Network Policy global que define as topologias de segmentação de rede logicamente.",
@@ -2262,7 +2262,7 @@
             {
               "id": "A",
               "text": "Criar uma AWS Direct Connect Private VIF. Provisionar o Customer Gateway usando o endereço IP privado do dispositivo VPN on-premises.",
-              "explanation": "Incorreto: A VIF Privada conecta-se a um Direct Connect Gateway, e o cenário estipula o uso explícito de uma Public VIF."
+              "explanation": "Incorreto: Uma Virtual Interface (VIF) Privada é projetada para conectar-se a recursos internos como um Virtual Private Gateway ou Direct Connect Gateway, enquanto o cenário proposto exige estipuladamente o uso e a terminação do tráfego através de uma Public VIF e seus endpoints públicos."
             },
             {
               "id": "B",
@@ -2271,8 +2271,8 @@
             },
             {
               "id": "C",
-              "text": "Habilitar o parâmetro de criptografia IPsec diretamente no console do AWS Direct Connect, informando a chave KMS.",
-              "explanation": "Incorreto: Não existe esse parâmetro nativo simples no DX. A criptografia requer sobreposição com VPN ou suporte de hardware MACsec."
+              "text": "Habilitar o parâmetro de criptografia de tunelamento IPsec de maneira nativa diretamente através da interface de gerenciamento do console do AWS Direct Connect, informando previamente a chave AWS KMS necessária.",
+              "explanation": "Incorreto: No contexto atual do AWS Direct Connect, não existe tal parâmetro nativo e simples no console para forçar a encriptação in-flight IPsec diretamente. A criptografia ponta-a-ponta robusta desse link requer inevitavelmente uma sobreposição com AWS VPN ou adoção formal de suporte de hardware dedicado MACsec nos roteadores de borda."
             },
             {
               "id": "D",
@@ -2281,8 +2281,8 @@
             },
             {
               "id": "E",
-              "text": "Implantar um AWS Network Firewall no Transit Gateway para criptografar o tráfego nativamente sem configurações IPsec.",
-              "explanation": "Incorreto: O Network Firewall faz inspeção de pacotes e regras stateful, não provê túnel IPsec na camada de rede/transporte."
+              "text": "Implantar centralizadamente um componente do AWS Network Firewall anexo ao Transit Gateway para processar e criptografar o tráfego inter-VPC e híbrido nativamente, com o propósito de eliminar completamente as configurações complexas de túneis IPsec BGP.",
+              "explanation": "Incorreto: O serviço gerenciado AWS Network Firewall é fundamentalmente projetado e otimizado apenas para inspeção profunda de pacotes, filtragem e regras stateful no nível da camada de aplicação e rede. Ele não atua como terminador de túneis e definitivamente não provê suporte para a criação de túneis IPsec na camada de rede ou de transporte."
             }
           ],
           "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet.",
@@ -2324,7 +2324,7 @@
         {
           "id": "A",
           "text": "Criar uma AWS Direct Connect Private VIF. Provisionar o Customer Gateway usando o endereço IP privado do dispositivo VPN on-premises.",
-          "explanation": "Incorreto: A VIF Privada conecta-se a um Direct Connect Gateway, e o cenário estipula o uso explícito de uma Public VIF."
+          "explanation": "Incorreto: Uma Virtual Interface (VIF) Privada é projetada para conectar-se a recursos internos como um Virtual Private Gateway ou Direct Connect Gateway, enquanto o cenário proposto exige estipuladamente o uso e a terminação do tráfego através de uma Public VIF e seus endpoints públicos."
         },
         {
           "id": "B",
@@ -2333,8 +2333,8 @@
         },
         {
           "id": "C",
-          "text": "Habilitar o parâmetro de criptografia IPsec diretamente no console do AWS Direct Connect, informando a chave KMS.",
-          "explanation": "Incorreto: Não existe esse parâmetro nativo simples no DX. A criptografia requer sobreposição com VPN ou suporte de hardware MACsec."
+          "text": "Habilitar o parâmetro de criptografia de tunelamento IPsec de maneira nativa diretamente através da interface de gerenciamento do console do AWS Direct Connect, informando previamente a chave AWS KMS necessária.",
+          "explanation": "Incorreto: No contexto atual do AWS Direct Connect, não existe tal parâmetro nativo e simples no console para forçar a encriptação in-flight IPsec diretamente. A criptografia ponta-a-ponta robusta desse link requer inevitavelmente uma sobreposição com AWS VPN ou adoção formal de suporte de hardware dedicado MACsec nos roteadores de borda."
         },
         {
           "id": "D",
@@ -2343,8 +2343,8 @@
         },
         {
           "id": "E",
-          "text": "Implantar um AWS Network Firewall no Transit Gateway para criptografar o tráfego nativamente sem configurações IPsec.",
-          "explanation": "Incorreto: O Network Firewall faz inspeção de pacotes e regras stateful, não provê túnel IPsec na camada de rede/transporte."
+          "text": "Implantar centralizadamente um componente do AWS Network Firewall anexo ao Transit Gateway para processar e criptografar o tráfego inter-VPC e híbrido nativamente, com o propósito de eliminar completamente as configurações complexas de túneis IPsec BGP.",
+          "explanation": "Incorreto: O serviço gerenciado AWS Network Firewall é fundamentalmente projetado e otimizado apenas para inspeção profunda de pacotes, filtragem e regras stateful no nível da camada de aplicação e rede. Ele não atua como terminador de túneis e definitivamente não provê suporte para a criação de túneis IPsec na camada de rede ou de transporte."
         }
       ],
       "generalExplanation": "A arquitetura de VPN sobre Direct Connect (Public VIF) exige o anúncio via BGP dos IPs públicos da AWS para que o túnel IPsec passe pelo link dedicado físico e não pela internet.",
@@ -2397,7 +2397,7 @@
             {
               "id": "A",
               "text": "Criar múltiplos endpoints do AWS Client VPN, um para cada grupo. Conectar cada endpoint à respectiva VPC. Integrar com SAML 2.0 e usar Security Groups.",
-              "explanation": "Incorreto: Múltiplos endpoints aumentam os custos de provisionamento e o esforço administrativo consideravelmente."
+              "explanation": "Incorreto: Implementar a abordagem com múltiplos Client VPN endpoints segmentados fragmenta o gerenciamento técnico, aumenta diretamente os custos-base mensais de provisionamento e eleva o esforço administrativo consideravelmente ao obrigar o time a coordenar certificados ou pools de IPs separados e independentes."
             },
             {
               "id": "B",
@@ -2407,7 +2407,7 @@
             {
               "id": "C",
               "text": "Implementar uma AWS Site-to-Site VPN terminando no Transit Gateway. Implantar um servidor Radius em EC2 para SAML. Usar o AWS Network Firewall para filtrar pacotes por grupos de usuários.",
-              "explanation": "Incorreto: AWS Site-to-Site VPN não é adequado para acesso discado de clientes remotos. O Client VPN é a solução gerenciada correta."
+              "explanation": "Incorreto: A tecnologia AWS Site-to-Site VPN requer dispositivos corporativos fixos de hardware IPSec instalados on-premises, o que torna a solução inviável e não adequada arquiteturalmente para cenários baseados primariamente em acesso discado esporádico de múltiplos clientes remotos móveis. Para esse caso o AWS Client VPN é mandatório e representa a solução gerenciada tecnicamente correta."
             },
             {
               "id": "D",
@@ -2449,7 +2449,7 @@
         {
           "id": "A",
           "text": "Criar múltiplos endpoints do AWS Client VPN, um para cada grupo. Conectar cada endpoint à respectiva VPC. Integrar com SAML 2.0 e usar Security Groups.",
-          "explanation": "Incorreto: Múltiplos endpoints aumentam os custos de provisionamento e o esforço administrativo consideravelmente."
+          "explanation": "Incorreto: Implementar a abordagem com múltiplos Client VPN endpoints segmentados fragmenta o gerenciamento técnico, aumenta diretamente os custos-base mensais de provisionamento e eleva o esforço administrativo consideravelmente ao obrigar o time a coordenar certificados ou pools de IPs separados e independentes."
         },
         {
           "id": "B",
@@ -2459,7 +2459,7 @@
         {
           "id": "C",
           "text": "Implementar uma AWS Site-to-Site VPN terminando no Transit Gateway. Implantar um servidor Radius em EC2 para SAML. Usar o AWS Network Firewall para filtrar pacotes por grupos de usuários.",
-          "explanation": "Incorreto: AWS Site-to-Site VPN não é adequado para acesso discado de clientes remotos. O Client VPN é a solução gerenciada correta."
+          "explanation": "Incorreto: A tecnologia AWS Site-to-Site VPN requer dispositivos corporativos fixos de hardware IPSec instalados on-premises, o que torna a solução inviável e não adequada arquiteturalmente para cenários baseados primariamente em acesso discado esporádico de múltiplos clientes remotos móveis. Para esse caso o AWS Client VPN é mandatório e representa a solução gerenciada tecnicamente correta."
         },
         {
           "id": "D",
@@ -2532,7 +2532,7 @@
             {
               "id": "D",
               "text": "Habilitar roteamento assimétrico no Transit Gateway e usar o AWS Global Accelerator com um 'traffic dial weight' de 100% para o Location A.",
-              "explanation": "Incorreto: Global Accelerator não roteia tráfego em conexões privadas Direct Connect, sendo focado em IPs Anycast para a internet pública."
+              "explanation": "Incorreto: O AWS Global Accelerator opera estritamente na borda da rede global da AWS fornecendo otimização via IPs estáticos Anycast e trânsito pela infraestrutura pública de peering; ele não tem a funcionalidade técnica de receber, originar ou rotear tráfego interno originado por meio de conexões estritamente privadas provenientes do AWS Direct Connect."
             }
           ],
           "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect.",
@@ -2584,7 +2584,7 @@
         {
           "id": "D",
           "text": "Habilitar roteamento assimétrico no Transit Gateway e usar o AWS Global Accelerator com um 'traffic dial weight' de 100% para o Location A.",
-          "explanation": "Incorreto: Global Accelerator não roteia tráfego em conexões privadas Direct Connect, sendo focado em IPs Anycast para a internet pública."
+          "explanation": "Incorreto: O AWS Global Accelerator opera estritamente na borda da rede global da AWS fornecendo otimização via IPs estáticos Anycast e trânsito pela infraestrutura pública de peering; ele não tem a funcionalidade técnica de receber, originar ou rotear tráfego interno originado por meio de conexões estritamente privadas provenientes do AWS Direct Connect."
         }
       ],
       "generalExplanation": "BGP Communities (7224:7100, 7224:7200, 7224:7300) são a maneira oficial da AWS de permitir que administradores de rede on-premises controlem a preferência de tráfego de saída da AWS através de conexões redundantes de Direct Connect.",

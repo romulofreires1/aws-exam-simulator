@@ -579,7 +579,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Configurar o Amazon Cognito User Pools para gerar credenciais temporárias do AWS STS após a autenticação social bem-sucedida.",
+              "text": "Configurar o serviço Amazon Cognito User Pools juntamente com Identity Pools para gerar ativamente credenciais temporárias do AWS STS após cada autenticação social bem-sucedida.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -642,7 +642,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Configurar o Amazon Cognito User Pools para gerar credenciais temporárias do AWS STS após a autenticação social bem-sucedida.",
+          "text": "Configurar o serviço Amazon Cognito User Pools juntamente com Identity Pools para gerar ativamente credenciais temporárias do AWS STS após cada autenticação social bem-sucedida.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -850,7 +850,7 @@
             },
             {
               "id": "C",
-              "text": "Falta um elemento Principal na política inline do Permission Set 'RedshiftAdmin' especificando o ARN do grupo 'DataEngineers'.",
+              "text": "Ocorre uma omissão crítica, pois falta um elemento Principal na política inline atrelada ao Permission Set 'RedshiftAdmin' que deveria estar especificando diretamente o ARN do grupo corporativo 'DataEngineers'.",
               "explanation": "Incorreto: Permission Sets (e políticas do IAM em geral) definem permissões (o que pode ser feito), não o Principal (quem está fazendo). O Principal é implicitamente a role assumida."
             },
             {
@@ -903,7 +903,7 @@
         },
         {
           "id": "C",
-          "text": "Falta um elemento Principal na política inline do Permission Set 'RedshiftAdmin' especificando o ARN do grupo 'DataEngineers'.",
+          "text": "Ocorre uma omissão crítica, pois falta um elemento Principal na política inline atrelada ao Permission Set 'RedshiftAdmin' que deveria estar especificando diretamente o ARN do grupo corporativo 'DataEngineers'.",
           "explanation": "Incorreto: Permission Sets (e políticas do IAM em geral) definem permissões (o que pode ser feito), não o Principal (quem está fazendo). O Principal é implicitamente a role assumida."
         },
         {
@@ -922,7 +922,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica.",
+          "text": "Compre imediatamente uma Instância Reservada Zonal para poder garantir de fato a reserva da capacidade de computação das instâncias críticas requeridas na Zona de Disponibilidade (AZ) específica.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -990,7 +990,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Compre uma Instância Reservada Regional para garantir a capacidade das instâncias críticas na Zona de Disponibilidade específica.",
+              "text": "Compre imediatamente uma Instância Reservada Zonal para poder garantir de fato a reserva da capacidade de computação das instâncias críticas requeridas na Zona de Disponibilidade (AZ) específica.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -1606,7 +1606,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Habilitar o Amazon S3 Object Lock em modo de conformidade para o bucket que armazena os logs.",
+              "text": "Habilitar a funcionalidade Amazon S3 Object Lock rodando estritamente em modo de conformidade (compliance mode) para todo o bucket designado que armazena centralizadamente os arquivos de logs corporativos.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -1659,7 +1659,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Habilitar o Amazon S3 Object Lock em modo de conformidade para o bucket que armazena os logs.",
+          "text": "Habilitar a funcionalidade Amazon S3 Object Lock rodando estritamente em modo de conformidade (compliance mode) para todo o bucket designado que armazena centralizadamente os arquivos de logs corporativos.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -1729,7 +1729,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Usar Amazon GuardDuty para anomalias em chamadas de API operacionais e detecção de ameaças de segurança.",
+              "text": "Habilitar centralmente e usar o Amazon GuardDuty para investigar e encontrar anomalias suspeitas em chamadas de API operacionais e efetuar a detecção contínua de ameaças avançadas de segurança.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -1782,7 +1782,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Usar Amazon GuardDuty para anomalias em chamadas de API operacionais e detecção de ameaças de segurança.",
+          "text": "Habilitar centralmente e usar o Amazon GuardDuty para investigar e encontrar anomalias suspeitas em chamadas de API operacionais e efetuar a detecção contínua de ameaças avançadas de segurança.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -1858,12 +1858,12 @@
           "options": [
             {
               "id": "A",
-              "text": "Usar o Amazon CloudWatch Logs Insights para pesquisar interativamente e agregar os fluxos de log centralizados.",
+              "text": "Usar os recursos nativos do Amazon CloudWatch Logs Insights para conseguir pesquisar interativamente através de queries personalizadas e agregar visualmente todos os fluxos de log que foram centralizados.",
               "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
             },
             {
               "id": "B",
-              "text": "Usar o Amazon Athena para transmitir métricas continuamente ao parceiro terceirizado via Amazon Kinesis Data Firehose.",
+              "text": "Usar a ferramenta serverless Amazon Athena com o propósito incorreto de tentar transmitir métricas continuamente ao parceiro terceirizado através do serviço Amazon Kinesis Data Firehose para análise externa.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -1878,7 +1878,7 @@
             },
             {
               "id": "E",
-              "text": "Usar o AWS Trusted Advisor para consultar fluxos de logs e agregar métricas para a plataforma de terceiros.",
+              "text": "Usar equivocadamente a plataforma AWS Trusted Advisor no intuito de conseguir consultar fluxos de logs contínuos e tentar agregar métricas dinâmicas diretamente para alimentar a plataforma de terceiros requerida.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -1921,12 +1921,12 @@
       "options": [
         {
           "id": "A",
-          "text": "Usar o Amazon CloudWatch Logs Insights para pesquisar interativamente e agregar os fluxos de log centralizados.",
+          "text": "Usar os recursos nativos do Amazon CloudWatch Logs Insights para conseguir pesquisar interativamente através de queries personalizadas e agregar visualmente todos os fluxos de log que foram centralizados.",
           "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "B",
-          "text": "Usar o Amazon Athena para transmitir métricas continuamente ao parceiro terceirizado via Amazon Kinesis Data Firehose.",
+          "text": "Usar a ferramenta serverless Amazon Athena com o propósito incorreto de tentar transmitir métricas continuamente ao parceiro terceirizado através do serviço Amazon Kinesis Data Firehose para análise externa.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -1941,7 +1941,7 @@
         },
         {
           "id": "E",
-          "text": "Usar o AWS Trusted Advisor para consultar fluxos de logs e agregar métricas para a plataforma de terceiros.",
+          "text": "Usar equivocadamente a plataforma AWS Trusted Advisor no intuito de conseguir consultar fluxos de logs contínuos e tentar agregar métricas dinâmicas diretamente para alimentar a plataforma de terceiros requerida.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -2011,7 +2011,7 @@
             },
             {
               "id": "D",
-              "text": "Modificar o cabeçalho de rastreamento do X-Ray no aplicativo cliente para solicitar um service graph de maior resolução.",
+              "text": "Modificar diretamente a configuração do cabeçalho de rastreamento nativo do X-Ray no código do aplicativo cliente a fim de conseguir solicitar formalmente um service graph de qualidade e de maior resolução.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -2064,7 +2064,7 @@
         },
         {
           "id": "D",
-          "text": "Modificar o cabeçalho de rastreamento do X-Ray no aplicativo cliente para solicitar um service graph de maior resolução.",
+          "text": "Modificar diretamente a configuração do cabeçalho de rastreamento nativo do X-Ray no código do aplicativo cliente a fim de conseguir solicitar formalmente um service graph de qualidade e de maior resolução.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -2253,7 +2253,7 @@
             },
             {
               "id": "B",
-              "text": "Implantar um sistema de arquivos Amazon FSx for Lustre vinculado ao bucket do Amazon S3.",
+              "text": "Implantar e provisionar um cluster de sistema de arquivos de altíssima performance Amazon FSx for Lustre que esteja devidamente vinculado a um bucket subjacente de armazenamento do Amazon S3.",
               "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
             },
             {
@@ -2316,7 +2316,7 @@
         },
         {
           "id": "B",
-          "text": "Implantar um sistema de arquivos Amazon FSx for Lustre vinculado ao bucket do Amazon S3.",
+          "text": "Implantar e provisionar um cluster de sistema de arquivos de altíssima performance Amazon FSx for Lustre que esteja devidamente vinculado a um bucket subjacente de armazenamento do Amazon S3.",
           "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
@@ -3110,7 +3110,7 @@
         },
         {
           "id": "E",
-          "text": "DynamoDB On-Demand capacity mode must be enabled to allow DAX to scale its nodes horizontally across Availability Zones automatically.",
+          "text": "The Amazon DynamoDB On-Demand capacity mode must definitely be enabled first in order to allow the DAX cluster to properly scale all its nodes horizontally across Availability Zones completely automatically.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -3148,7 +3148,7 @@
             },
             {
               "id": "E",
-              "text": "DynamoDB On-Demand capacity mode must be enabled to allow DAX to scale its nodes horizontally across Availability Zones automatically.",
+              "text": "The Amazon DynamoDB On-Demand capacity mode must definitely be enabled first in order to allow the DAX cluster to properly scale all its nodes horizontally across Availability Zones completely automatically.",
               "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             }
           ],

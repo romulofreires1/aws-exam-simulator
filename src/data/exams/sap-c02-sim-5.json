@@ -198,7 +198,7 @@
         },
         {
           "id": "B",
-          "text": "Ingest all telemetry events into Amazon Kinesis Data Streams using On-Demand mode.",
+          "text": "Ingest all the generated high-throughput telemetry events effectively into the Amazon Kinesis Data Streams using the highly scalable On-Demand capacity mode configuration directly.",
           "explanation": "Correct: Kinesis Data Streams supports sub-second real-time streaming, allows multiple independent consumer applications to read the same data, and On-Demand mode eliminates shard management overhead for unpredictable gaming traffic."
         },
         {
@@ -236,7 +236,7 @@
             },
             {
               "id": "B",
-              "text": "Ingest all telemetry events into Amazon Kinesis Data Streams using On-Demand mode.",
+              "text": "Ingest all the generated high-throughput telemetry events effectively into the Amazon Kinesis Data Streams using the highly scalable On-Demand capacity mode configuration directly.",
               "explanation": "Correct: Kinesis Data Streams supports sub-second real-time streaming, allows multiple independent consumer applications to read the same data, and On-Demand mode eliminates shard management overhead for unpredictable gaming traffic."
             },
             {
@@ -339,7 +339,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Deploy the Master and Task nodes on Spot Instances while maintaining the Core nodes on On-Demand instances.",
+          "text": "Deploy the cluster Master and Task nodes dynamically on Spot Instances while maintaining the reliable Core nodes safely on On-Demand instances.",
           "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
@@ -349,7 +349,7 @@
         },
         {
           "id": "C",
-          "text": "Deploy the Task nodes on Spot Instances, keeping the Master and Core nodes on On-Demand or Reserved Instances.",
+          "text": "Deploy the transient Task nodes economically on Spot Instances, definitively keeping the critical Master and Core nodes running safely on On-Demand or Reserved Instances.",
           "explanation": "Correct: Task nodes execute compute tasks but do not host HDFS data. Terminating Task nodes via Spot reclamation only delays compute tasks (which EMR retries) without risking data loss on the cluster's HDFS."
         },
         {
@@ -377,7 +377,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Deploy the Master and Task nodes on Spot Instances while maintaining the Core nodes on On-Demand instances.",
+              "text": "Deploy the cluster Master and Task nodes dynamically on Spot Instances while maintaining the reliable Core nodes safely on On-Demand instances.",
               "explanation": "This architecture represents the ideal approach for the presented scenario, ensuring full compliance with all the strict constraints mentioned in the problem statement, while also providing excellent cost-effectiveness and perfect alignment with the pillars established by the AWS Well-Architected Framework."
             },
             {
@@ -387,7 +387,7 @@
             },
             {
               "id": "C",
-              "text": "Deploy the Task nodes on Spot Instances, keeping the Master and Core nodes on On-Demand or Reserved Instances.",
+              "text": "Deploy the transient Task nodes economically on Spot Instances, definitively keeping the critical Master and Core nodes running safely on On-Demand or Reserved Instances.",
               "explanation": "Correct: Task nodes execute compute tasks but do not host HDFS data. Terminating Task nodes via Spot reclamation only delays compute tasks (which EMR retries) without risking data loss on the cluster's HDFS."
             },
             {
@@ -851,7 +851,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC).",
+          "text": "Use exclusivamente o AWS DMS para realizar a migração homogênea inicial e aplique erroneamente o AWS SCT para gerenciar a replicação contínua Change Data Capture (CDC).",
           "explanation": "Incorrect: AWS DMS is used for data migration, not for schema conversion in heterogeneous migrations. Applying SCT for CDC is also incorrect — SCT handles schema conversion, while DMS handles CDC replication. These roles are reversed."
         },
         {
@@ -861,7 +861,7 @@
         },
         {
           "id": "C",
-          "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema.",
+          "text": "Use incorretamente a ferramenta AWS SCT para tentar replicar ativamente os dados em trânsito e o AWS DMS para realizar a conversão lógica de esquema da base.",
           "explanation": "Incorrect: The roles of DMS and SCT are reversed. SCT is not a data replication tool — it only converts schemas. DMS handles data replication (including CDC), not schema conversion."
         },
         {
@@ -905,7 +905,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Use o AWS DMS para migração homogênea e aplique o AWS SCT para Change Data Capture (CDC).",
+              "text": "Use exclusivamente o AWS DMS para realizar a migração homogênea inicial e aplique erroneamente o AWS SCT para gerenciar a replicação contínua Change Data Capture (CDC).",
               "explanation": "Incorreto: O AWS DMS é usado para migração de dados, não para conversão de esquema em migrações heterogêneas. Usar o SCT para CDC também está incorreto — o SCT converte esquemas e o DMS realiza a replicação CDC. Os papéis estão invertidos."
             },
             {
@@ -915,7 +915,7 @@
             },
             {
               "id": "C",
-              "text": "Use o AWS SCT para replicar os dados e o AWS DMS para conversão de esquema.",
+              "text": "Use incorretamente a ferramenta AWS SCT para tentar replicar ativamente os dados em trânsito e o AWS DMS para realizar a conversão lógica de esquema da base.",
               "explanation": "Incorreto: Os papéis do DMS e SCT estão invertidos. O SCT não é uma ferramenta de replicação de dados — ele apenas converte esquemas. O DMS lida com a replicação de dados (incluindo CDC), não com conversão de esquemas."
             },
             {
@@ -2234,7 +2234,7 @@
         },
         {
           "id": "C",
-          "text": "Implement API Gateway caching with a 300-second TTL to cache the POST transaction requests for checkout processing.",
+          "text": "Implement fully managed API Gateway caching configuration with a 300-second TTL in order to cache the non-idempotent POST transaction requests for real-time checkout processing.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -2272,7 +2272,7 @@
             },
             {
               "id": "C",
-              "text": "Implement API Gateway caching with a 300-second TTL to cache the POST transaction requests for checkout processing.",
+              "text": "Implement fully managed API Gateway caching configuration with a 300-second TTL in order to cache the non-idempotent POST transaction requests for real-time checkout processing.",
               "explanation": "The rationale for this alternative being considered inadequate is that it ends up adding an unnecessary extra layer of administrative complexity, failing to natively solve the core architectural challenge and going against the fundamental principles of excellence recommended by AWS."
             },
             {
@@ -2658,7 +2658,7 @@
             },
             {
               "id": "B",
-              "text": "Gerar S3 pre-signed URLs e entregá-las diretamente aos usuários. Configurar OAI no CloudFront.",
+              "text": "Gerar programaticamente S3 pre-signed URLs temporárias e entregá-las diretamente aos usuários finais clientes. Configurar adicionalmente o Origin Access Identity (OAI) restritivo no CloudFront.",
               "explanation": "Incorreto: O uso de pre-signed URLs do S3 faz com que o usuário acesse o S3 diretamente, ignorando o cache do CloudFront e a CDN."
             },
             {
@@ -2668,7 +2668,7 @@
             },
             {
               "id": "D",
-              "text": "Usar AWS WAF no CloudFront inspecionando tokens JWT. Proteger o bucket S3 com VPC Gateway Endpoints.",
+              "text": "Usar ativamente o firewall AWS WAF diretamente no CloudFront inspecionando estritamente as assinaturas dos tokens JWT. Proteger secundariamente o bucket S3 privado usando as configurações do VPC Gateway Endpoints.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -2711,7 +2711,7 @@
         },
         {
           "id": "B",
-          "text": "Gerar S3 pre-signed URLs e entregá-las diretamente aos usuários. Configurar OAI no CloudFront.",
+          "text": "Gerar programaticamente S3 pre-signed URLs temporárias e entregá-las diretamente aos usuários finais clientes. Configurar adicionalmente o Origin Access Identity (OAI) restritivo no CloudFront.",
           "explanation": "Incorreto: O uso de pre-signed URLs do S3 faz com que o usuário acesse o S3 diretamente, ignorando o cache do CloudFront e a CDN."
         },
         {
@@ -2721,7 +2721,7 @@
         },
         {
           "id": "D",
-          "text": "Usar AWS WAF no CloudFront inspecionando tokens JWT. Proteger o bucket S3 com VPC Gateway Endpoints.",
+          "text": "Usar ativamente o firewall AWS WAF diretamente no CloudFront inspecionando estritamente as assinaturas dos tokens JWT. Proteger secundariamente o bucket S3 privado usando as configurações do VPC Gateway Endpoints.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -2776,17 +2776,17 @@
           "options": [
             {
               "id": "A",
-              "text": "Migrar do ElastiCache for Redis para ElastiCache for Memcached, utilizando sua arquitetura multi-thread para abranger múltiplas AZs.",
+              "text": "Migrar o banco de dados do Amazon ElastiCache for Redis para o Amazon ElastiCache for Memcached, com a intenção de utilizar sua arquitetura nativa multi-thread para abranger facilmente múltiplas AZs.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
-              "text": "Configurar Redis Global Datastores para replicar o cache para uma Região secundária para proteger contra falhas de AZ.",
+              "text": "Configurar a replicação usando o recurso nativo Redis Global Datastores para conseguir replicar assincronamente todo o cache para uma Região secundária externa, a fim de proteger contra falhas locais de AZ.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "C",
-              "text": "Habilitar Auto Scaling no cluster Redis para provisionar instantaneamente novos nós em AZs saudáveis durante a interrupção.",
+              "text": "Habilitar de forma proativa o recurso Auto Scaling no cluster do Redis visando provisionar instantaneamente novos nós de computação sob demanda em AZs saudáveis remanescentes durante a referida interrupção.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -2829,17 +2829,17 @@
       "options": [
         {
           "id": "A",
-          "text": "Migrar do ElastiCache for Redis para ElastiCache for Memcached, utilizando sua arquitetura multi-thread para abranger múltiplas AZs.",
+          "text": "Migrar o banco de dados do Amazon ElastiCache for Redis para o Amazon ElastiCache for Memcached, com a intenção de utilizar sua arquitetura nativa multi-thread para abranger facilmente múltiplas AZs.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
-          "text": "Configurar Redis Global Datastores para replicar o cache para uma Região secundária para proteger contra falhas de AZ.",
+          "text": "Configurar a replicação usando o recurso nativo Redis Global Datastores para conseguir replicar assincronamente todo o cache para uma Região secundária externa, a fim de proteger contra falhas locais de AZ.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "C",
-          "text": "Habilitar Auto Scaling no cluster Redis para provisionar instantaneamente novos nós em AZs saudáveis durante a interrupção.",
+          "text": "Habilitar de forma proativa o recurso Auto Scaling no cluster do Redis visando provisionar instantaneamente novos nós de computação sob demanda em AZs saudáveis remanescentes durante a referida interrupção.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -2899,7 +2899,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Implantar uma CloudFront Function no evento Origin Request para inspecionar o User-Agent e redimensionar a imagem.",
+              "text": "Implantar estrategicamente uma função em borda CloudFront Function diretamente no gatilho do evento Origin Request para poder inspecionar o cabeçalho User-Agent e redimensionar dinamicamente a imagem de forma otimizada.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -2909,12 +2909,12 @@
             },
             {
               "id": "C",
-              "text": "Implantar uma função Lambda@Edge no evento Viewer Response para redimensionar a imagem.",
+              "text": "Implantar diretamente uma função customizada do Lambda@Edge no gatilho do evento de rede Viewer Response a fim de interceptar e redimensionar programaticamente a imagem retornada para o cliente final.",
               "explanation": "Incorreto: Funções no Viewer Response rodam após a verificação de cache e seu retorno NÃO é armazenado no cache, o que executaria o redimensionamento em toda requisição."
             },
             {
               "id": "D",
-              "text": "Configurar o AWS WAF para adicionar cabeçalhos de tipo de dispositivo e forçar o redimensionamento via S3 Object Lambda.",
+              "text": "Configurar regras de inspeção no AWS WAF para adicionar cabeçalhos explícitos de tipo de dispositivo remoto e forçar posteriormente o redimensionamento do arquivo via processamento dinâmico com S3 Object Lambda.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -2952,7 +2952,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Implantar uma CloudFront Function no evento Origin Request para inspecionar o User-Agent e redimensionar a imagem.",
+          "text": "Implantar estrategicamente uma função em borda CloudFront Function diretamente no gatilho do evento Origin Request para poder inspecionar o cabeçalho User-Agent e redimensionar dinamicamente a imagem de forma otimizada.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -2962,12 +2962,12 @@
         },
         {
           "id": "C",
-          "text": "Implantar uma função Lambda@Edge no evento Viewer Response para redimensionar a imagem.",
+          "text": "Implantar diretamente uma função customizada do Lambda@Edge no gatilho do evento de rede Viewer Response a fim de interceptar e redimensionar programaticamente a imagem retornada para o cliente final.",
           "explanation": "Incorreto: Funções no Viewer Response rodam após a verificação de cache e seu retorno NÃO é armazenado no cache, o que executaria o redimensionamento em toda requisição."
         },
         {
           "id": "D",
-          "text": "Configurar o AWS WAF para adicionar cabeçalhos de tipo de dispositivo e forçar o redimensionamento via S3 Object Lambda.",
+          "text": "Configurar regras de inspeção no AWS WAF para adicionar cabeçalhos explícitos de tipo de dispositivo remoto e forçar posteriormente o redimensionamento do arquivo via processamento dinâmico com S3 Object Lambda.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -3028,17 +3028,17 @@
           "options": [
             {
               "id": "A",
-              "text": "Habilitar criptografia por meio das configurações padrão de parameter group do ElastiCache.",
+              "text": "Habilitar estritamente a criptografia mandatória simplesmente modificando as configurações padrão disponíveis dentro do parameter group customizado pertencente ao cluster ativo do Amazon ElastiCache.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "B",
-              "text": "Provisionar um novo cluster ElastiCache for Redis com as flags `TransitEncryptionEnabled` e `AtRestEncryptionEnabled` definidas como true.",
+              "text": "Provisionar obrigatoriamente um cluster totalmente novo do Amazon ElastiCache for Redis certificando-se de que as flags nativas de segurança `TransitEncryptionEnabled` e `AtRestEncryptionEnabled` sejam definidas explicitamente como true.",
               "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
             },
             {
               "id": "C",
-              "text": "Configurar uma política IAM com a ação `elasticache:Connect` no EC2.",
+              "text": "Configurar detalhadamente uma política restritiva de segurança baseada no IAM garantindo que possua apenas a ação específica `elasticache:Connect` atrelada diretamente à role das instâncias do Amazon EC2.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -3048,7 +3048,7 @@
             },
             {
               "id": "E",
-              "text": "Usar AWS KMS para gerar chaves e injetá-las dinamicamente no código da aplicação.",
+              "text": "Usar o serviço de criptografia AWS KMS para conseguir gerar assincronamente novas chaves de acesso e cuidar de injetá-las de modo totalmente dinâmico dentro do código-fonte da aplicação.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -3091,17 +3091,17 @@
       "options": [
         {
           "id": "A",
-          "text": "Habilitar criptografia por meio das configurações padrão de parameter group do ElastiCache.",
+          "text": "Habilitar estritamente a criptografia mandatória simplesmente modificando as configurações padrão disponíveis dentro do parameter group customizado pertencente ao cluster ativo do Amazon ElastiCache.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "B",
-          "text": "Provisionar um novo cluster ElastiCache for Redis com as flags `TransitEncryptionEnabled` e `AtRestEncryptionEnabled` definidas como true.",
+          "text": "Provisionar obrigatoriamente um cluster totalmente novo do Amazon ElastiCache for Redis certificando-se de que as flags nativas de segurança `TransitEncryptionEnabled` e `AtRestEncryptionEnabled` sejam definidas explicitamente como true.",
           "explanation": "Esta arquitetura representa a abordagem ideal para o cenário apresentado, garantindo o cumprimento integral de todas as rigorosas restrições mencionadas no enunciado, além de proporcionar excelente custo-benefício e alinhamento perfeito com os pilares estabelecidos pelo AWS Well-Architected Framework."
         },
         {
           "id": "C",
-          "text": "Configurar uma política IAM com a ação `elasticache:Connect` no EC2.",
+          "text": "Configurar detalhadamente uma política restritiva de segurança baseada no IAM garantindo que possua apenas a ação específica `elasticache:Connect` atrelada diretamente à role das instâncias do Amazon EC2.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -3111,7 +3111,7 @@
         },
         {
           "id": "E",
-          "text": "Usar AWS KMS para gerar chaves e injetá-las dinamicamente no código da aplicação.",
+          "text": "Usar o serviço de criptografia AWS KMS para conseguir gerar assincronamente novas chaves de acesso e cuidar de injetá-las de modo totalmente dinâmico dentro do código-fonte da aplicação.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -3166,7 +3166,7 @@
           "options": [
             {
               "id": "A",
-              "text": "Habilitar endpoints Edge-Optimized no API Gateway, descartando o CloudFront externo.",
+              "text": "Habilitar a utilização nativa de endpoints do tipo Edge-Optimized diretamente no Amazon API Gateway, descartando intencionalmente e completamente a necessidade de provisionar a distribuição do CloudFront externo.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -3176,12 +3176,12 @@
             },
             {
               "id": "C",
-              "text": "Configurar uma Origin Request Policy no CloudFront para encaminhar os cabeçalhos para a origem, mas excluí-los da Cache Key.",
+              "text": "Configurar cuidadosamente uma Origin Request Policy dedicada no Amazon CloudFront desenhada apenas para encaminhar os cabeçalhos de autenticação adiante para a origem final, mas assegurando de excluí-los terminantemente da Cache Key.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
-              "text": "Implementar o AWS WAF para fazer cache dependendo da assinatura JWT.",
+              "text": "Implementar ativamente as inspeções e as regras restritivas através do AWS WAF para conseguir de alguma forma forçar o sistema a fazer cache customizado dependendo estritamente do payload da assinatura JWT recebida.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ],
@@ -3219,7 +3219,7 @@
       "options": [
         {
           "id": "A",
-          "text": "Habilitar endpoints Edge-Optimized no API Gateway, descartando o CloudFront externo.",
+          "text": "Habilitar a utilização nativa de endpoints do tipo Edge-Optimized diretamente no Amazon API Gateway, descartando intencionalmente e completamente a necessidade de provisionar a distribuição do CloudFront externo.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -3229,12 +3229,12 @@
         },
         {
           "id": "C",
-          "text": "Configurar uma Origin Request Policy no CloudFront para encaminhar os cabeçalhos para a origem, mas excluí-los da Cache Key.",
+          "text": "Configurar cuidadosamente uma Origin Request Policy dedicada no Amazon CloudFront desenhada apenas para encaminhar os cabeçalhos de autenticação adiante para a origem final, mas assegurando de excluí-los terminantemente da Cache Key.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
-          "text": "Implementar o AWS WAF para fazer cache dependendo da assinatura JWT.",
+          "text": "Implementar ativamente as inspeções e as regras restritivas através do AWS WAF para conseguir de alguma forma forçar o sistema a fazer cache customizado dependendo estritamente do payload da assinatura JWT recebida.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],

@@ -1308,12 +1308,12 @@
         },
         {
           "id": "C",
-          "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho mais curto que a conexão VPN.",
+          "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho BGP anunciado mais curto que a conexão VPN, garantindo a prioridade de roteamento do tráfego.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
           "id": "D",
-          "text": "Configurar a Preferência Local (Local Preference) para um valor mais alto no roteador on-premises para a conexão DX.",
+          "text": "Configurar a Preferência Local (Local Preference) BGP para um valor direcional mais alto no roteador on-premises focado exclusivamente para a conexão dedicada do AWS Direct Connect.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -1376,12 +1376,12 @@
             },
             {
               "id": "C",
-              "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho mais curto que a conexão VPN.",
+              "text": "Configurar o 'AS PATH prepending' na conexão DX para tornar o caminho BGP anunciado mais curto que a conexão VPN, garantindo a prioridade de roteamento do tráfego.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
               "id": "D",
-              "text": "Configurar a Preferência Local (Local Preference) para um valor mais alto no roteador on-premises para a conexão DX.",
+              "text": "Configurar a Preferência Local (Local Preference) BGP para um valor direcional mais alto no roteador on-premises focado exclusivamente para a conexão dedicada do AWS Direct Connect.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -1464,7 +1464,7 @@
         },
         {
           "id": "F",
-          "text": "Criar uma regra do Route 53 Resolver para amazonaws.com e associá-la ao CIDR da rede on-premises.",
+          "text": "Criar uma regra de encaminhamento condicional do Route 53 Resolver para amazonaws.com e associá-la aos blocos CIDR específicos da rede do data center on-premises.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         }
       ],
@@ -1543,7 +1543,7 @@
             },
             {
               "id": "F",
-              "text": "Criar uma regra do Route 53 Resolver para amazonaws.com e associá-la ao CIDR da rede on-premises.",
+              "text": "Criar uma regra de encaminhamento condicional do Route 53 Resolver para amazonaws.com e associá-la aos blocos CIDR específicos da rede do data center on-premises.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             }
           ]
@@ -1877,7 +1877,7 @@
         },
         {
           "id": "D",
-          "text": "Implantar um NAT Gateway na sub-rede pública e configurar rotas para 0.0.0.0/0 e ::/0 apontando para o NAT Gateway.",
+          "text": "Implantar um NAT Gateway gerenciado na sub-rede pública designada e configurar as tabelas de rotas privadas para 0.0.0.0/0 apontando especificamente para este componente de saída.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {
@@ -1945,7 +1945,7 @@
             },
             {
               "id": "D",
-              "text": "Implantar um NAT Gateway na sub-rede pública e configurar rotas para 0.0.0.0/0 e ::/0 apontando para o NAT Gateway.",
+              "text": "Implantar um NAT Gateway gerenciado na sub-rede pública designada e configurar as tabelas de rotas privadas para 0.0.0.0/0 apontando especificamente para este componente de saída.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -2928,7 +2928,7 @@
             },
             {
               "id": "B",
-              "text": "Amazon Aurora Global Database com o cluster primário em uma região e clusters secundários nas outras.",
+              "text": "Implantar o Amazon Aurora Global Database mantendo o cluster de gravação primário em uma região principal e múltiplos clusters secundários de leitura escalonados nas outras regiões geográficas.",
               "explanation": "O Aurora Global Database roteia gravações para a região primária, adicionando latência para gravações de outros continentes. Não é uma solução de gravação ativo-ativo em todas as regiões."
             },
             {
@@ -2980,7 +2980,7 @@
         },
         {
           "id": "B",
-          "text": "Amazon Aurora Global Database com o cluster primário em uma região e clusters secundários nas outras.",
+          "text": "Implantar o Amazon Aurora Global Database mantendo o cluster de gravação primário em uma região principal e múltiplos clusters secundários de leitura escalonados nas outras regiões geográficas.",
           "explanation": "O Aurora Global Database roteia gravações para a região primária, adicionando latência para gravações de outros continentes. Não é uma solução de gravação ativo-ativo em todas as regiões."
         },
         {
@@ -3189,7 +3189,7 @@
             },
             {
               "id": "D",
-              "text": "Usar comandos S3 Sync acionados pelo Amazon EventBridge a cada 15 minutos para copiar dados para a região secundária.",
+              "text": "Implementar um job de sincronização com comandos S3 Sync acionados nativamente pelo Amazon EventBridge em intervalos fixos de 15 minutos para copiar e assegurar os dados para a região secundária de DR.",
               "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
             },
             {
@@ -3251,7 +3251,7 @@
         },
         {
           "id": "D",
-          "text": "Usar comandos S3 Sync acionados pelo Amazon EventBridge a cada 15 minutos para copiar dados para a região secundária.",
+          "text": "Implementar um job de sincronização com comandos S3 Sync acionados nativamente pelo Amazon EventBridge em intervalos fixos de 15 minutos para copiar e assegurar os dados para a região secundária de DR.",
           "explanation": "A justificativa para essa alternativa ser considerada inadequada é que ela acaba adicionando uma camada extra de complexidade administrativa desnecessária, não conseguindo resolver o desafio arquitetônico central de maneira nativa e contrariando os princípios fundamentais de excelência recomendados pela AWS."
         },
         {

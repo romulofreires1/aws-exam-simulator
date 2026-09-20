@@ -40,10 +40,28 @@ def validate_question(q, index=0, strict=False):
     if "scenario" in q or "question" in q:
         errors.append(f"{prefix}: Proibido o uso dos campos 'scenario' e 'question'. Use apenas 'statement'.")
     
-    for lang in ["en", "pt", "es"]:
-        t = q.get("translations", {}).get(lang, {})
-        if "scenario" in t or "question" in t:
-            errors.append(f"{prefix} ({lang}): Proibido o uso de 'scenario' e 'question'. Use apenas 'statement'.")
+    if "translations" in q:
+        for lang in ["en", "pt", "es"]:
+            t = q.get("translations", {}).get(lang)
+            if not t:
+                errors.append(f"{prefix}: Tradução ausente para '{lang}'.")
+                continue
+
+            if "scenario" in t or "question" in t:
+                errors.append(f"{prefix} ({lang}): Proibido o uso de 'scenario' e 'question'. Use apenas 'statement'.")
+            
+            if not t.get("statement", "").strip():
+                errors.append(f"{prefix} ({lang}): 'statement' não pode ser vazio na tradução.")
+            if not t.get("generalExplanation", "").strip():
+                errors.append(f"{prefix} ({lang}): 'generalExplanation' não pode ser vazio na tradução.")
+            
+            t_options = t.get("options", [])
+            for opt in t_options:
+                opt_id = opt.get("id", "UNKNOWN")
+                if not opt.get("text", "").strip():
+                    errors.append(f"{prefix} ({lang}) Opção '{opt_id}': 'text' não pode ser vazio na tradução.")
+                if not opt.get("explanation", "").strip():
+                    errors.append(f"{prefix} ({lang}) Opção '{opt_id}': 'explanation' não pode ser vazio na tradução.")
 
     # STRICT TYPE check
     if q_type not in ["single", "multiple"]:
@@ -176,7 +194,7 @@ def check_answer_distribution(questions):
     mult_count = len(multiple_answer_sets)
     mult_pct = (mult_count / total_qs) * 100
     
-    if total_qs >= 10 and mult_pct < 15:
+    if total_qs >= 10 and mult_pct < 20:
          errors.append(f"Cota de Múltipla Escolha violada: O arquivo tem {mult_pct:.1f}% de questões multiple. Exigido: pelo menos 20%.")
 
     if single_answers and len(questions) >= 10:
