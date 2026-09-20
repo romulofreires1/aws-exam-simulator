@@ -349,7 +349,11 @@ export function QuestionView({
           <InstantFeedback
             question={question}
             selectedOptionIds={response.selectedOptionIds}
-            isCorrect={response.isCorrect || false}
+            isCorrect={
+              question.correctAnswers.length === response.selectedOptionIds.length &&
+              question.correctAnswers.every((id) => response.selectedOptionIds.includes(id))
+            }
+            timeSpentSeconds={response.timeSpentSeconds}
           />
         )}
       </div>

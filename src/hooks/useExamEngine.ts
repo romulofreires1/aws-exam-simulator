@@ -616,10 +616,32 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
         });
       }
       setTotalTimeSpentSeconds((prev) => prev + 1);
+
+      // Track time spent per question
+      if (currentQuestion?.id) {
+        setResponses((prev) => {
+          const qId = currentQuestion.id;
+          const current = prev[qId] || {
+            selectedOptionIds: [],
+            eliminatedOptionIds: [],
+            highlightedText: {},
+            isChecked: false,
+            isFlagged: false,
+            timeSpentSeconds: 0,
+          };
+          return {
+            ...prev,
+            [qId]: {
+              ...current,
+              timeSpentSeconds: (current.timeSpentSeconds || 0) + 1,
+            },
+          };
+        });
+      }
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [isInitialized, isCompleted, isAbandoned, isPaused, mode]);
+  }, [isInitialized, isCompleted, isAbandoned, isPaused, mode, currentQuestion?.id]);
 
   // Auto-submissão quando o tempo esgota no modo real
   useEffect(() => {

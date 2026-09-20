@@ -1,19 +1,21 @@
 'use client';
 
 import React from 'react';
-import { CheckCircle2, XCircle, ExternalLink, HelpCircle, Lightbulb } from 'lucide-react';
+import { CheckCircle2, XCircle, ExternalLink, HelpCircle, Lightbulb, Clock } from 'lucide-react';
 import { Question } from '@/types/exam';
 
 interface InstantFeedbackProps {
   question: Question;
   selectedOptionIds: string[];
   isCorrect: boolean;
+  timeSpentSeconds?: number;
 }
 
 export function InstantFeedback({
   question,
   selectedOptionIds,
   isCorrect,
+  timeSpentSeconds,
 }: InstantFeedbackProps) {
   if (selectedOptionIds.length === 0) {
     return (
@@ -33,22 +35,34 @@ export function InstantFeedback({
       }`}
     >
       {/* Feedback Banner */}
-      <div className="flex items-center gap-2.5 mb-4">
-        {isCorrect ? (
-          <CheckCircle2 className="h-6 w-6 text-emerald-400 shrink-0" />
-        ) : (
-          <XCircle className="h-6 w-6 text-rose-400 shrink-0" />
-        )}
-        <div>
-          <h3 className="font-bold text-base">
-            {isCorrect ? 'Correct Answer!' : 'Incorrect Answer'}
-          </h3>
-          <p className="text-xs opacity-80">
-            {isCorrect
-              ? 'Great architectural reasoning.'
-              : `The correct answer is: ${question.correctAnswers.join(', ')}.`}
-          </p>
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-2.5">
+          {isCorrect ? (
+            <CheckCircle2 className="h-6 w-6 text-emerald-400 shrink-0" />
+          ) : (
+            <XCircle className="h-6 w-6 text-rose-400 shrink-0" />
+          )}
+          <div>
+            <h3 className="font-bold text-base">
+              {isCorrect ? 'Correct Answer!' : 'Incorrect Answer'}
+            </h3>
+            <p className="text-xs opacity-80">
+              {isCorrect
+                ? 'Great architectural reasoning.'
+                : `The correct answer is: ${question.correctAnswers.join(', ')}.`}
+            </p>
+          </div>
         </div>
+        
+        {timeSpentSeconds !== undefined && (
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/50 border border-slate-700/50 text-slate-300">
+            <Clock className="h-3.5 w-3.5" />
+            <span className="text-xs font-medium font-mono">
+              {Math.floor(timeSpentSeconds / 60) > 0 ? `${Math.floor(timeSpentSeconds / 60)}m ` : ''}
+              {timeSpentSeconds % 60}s
+            </span>
+          </div>
+        )}
       </div>
 
       {/* General Explanation */}
