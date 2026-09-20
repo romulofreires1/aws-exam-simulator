@@ -629,6 +629,11 @@ export function useExamEngine({ exam, mode, initialLanguage, onFinishExam }: Use
             isFlagged: false,
             timeSpentSeconds: 0,
           };
+          
+          if (current.isAnswerChecked) {
+            return prev;
+          }
+          
           return {
             ...prev,
             [qId]: {
